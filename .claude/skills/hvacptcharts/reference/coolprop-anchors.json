@@ -1,0 +1,12 @@
+[
+  { "slug": "r-22",     "tempF": 70, "expectedPsig": 121.4, "tolerance": 0.05 },
+  { "slug": "r-410a",   "tempF": 70, "expectedPsig": 201.5, "tolerance": 0.05 },
+  { "slug": "r-134a",   "tempF": 70, "expectedPsig": 71.1,  "tolerance": 0.05 },
+  { "slug": "r-32",     "tempF": 70, "expectedPsig": 188.5, "tolerance": 0.05 },
+  { "slug": "r-404a",   "tempF": 70, "expectedPsig": 165.3, "tolerance": 0.05 },
+  { "slug": "r-407c",   "tempF": 70, "expectedPsig": 140.5, "tolerance": 0.05 },
+  { "slug": "r-1234yf", "tempF": 70, "expectedPsig": 73.9,  "tolerance": 0.05 },
+  { "slug": "r-744",    "tempF": 70, "expectedPsig": 838.1, "tolerance": 0.05 },
+  { "slug": "r-717",    "tempF": 70, "expectedPsig": 114.1, "tolerance": 0.05 },
+  { "slug": "r-290",    "tempF": 70, "expectedPsig": 110.2, "tolerance": 0.05 }
+]

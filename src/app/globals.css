@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — keep in sync with docs/spec/05-SVG_INVENTORY.md.
+ * Every SVG component consumes these as CSS vars; no color literals in components.
+ */
+:root {
+  /* Surface */
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Chart palette */
+  --c-bubble: hsl(220 60% 50%);
+  --c-dew: hsl(280 60% 50%);
+  --c-axis: hsl(0 0% 30%);
+  --c-grid: hsl(0 0% 88%);
+  --c-text: hsl(0 0% 15%);
+  --c-accent: hsl(15 80% 50%);
+
+  /* Safety class palette */
+  --c-safe-a1: hsl(140 60% 45%);
+  --c-safe-a2: hsl(30 90% 50%);
+  --c-safe-a2l: hsl(50 90% 50%);
+  --c-safe-a3: hsl(0 80% 50%);
+  --c-safe-b1: hsl(220 60% 35%);
+  --c-safe-b2: hsl(0 70% 35%);
+  --c-safe-b2l: hsl(0 80% 30%);
+  --c-safe-b3: hsl(0 90% 25%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --c-axis: hsl(0 0% 75%);
+    --c-grid: hsl(0 0% 22%);
+    --c-text: hsl(0 0% 90%);
+  }
+}
+
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+}
