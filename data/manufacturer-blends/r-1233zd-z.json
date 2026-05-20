@@ -1,0 +1,23 @@
+{
+  "slug": "r-1233zd-z",
+  "ptSource": "TODO: Honeywell datasheet for Z-isomer of R-1233zd (specialty applications)",
+  "ptSourceUrl": null,
+  "verifiedBy": "TODO: cross-check against published research literature",
+  "physical": {
+    "boilingPointC": null,
+    "boilingPointF": null,
+    "critical": {
+      "tempC": null,
+      "tempF": null,
+      "pressurePsia": null,
+      "pressurePsig": null,
+      "pressureKpaA": null,
+      "pressureKpaG": null
+    },
+    "molarMassGPerMol": 130.5,
+    "liquidDensityKgPerM3At25C": null,
+    "temperatureGlideF": 0,
+    "hasSignificantGlide": false
+  },
+  "ptChart": []
+}

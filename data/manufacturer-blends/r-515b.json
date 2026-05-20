@@ -1,0 +1,23 @@
+{
+  "slug": "r-515b",
+  "ptSource": "TODO: Honeywell Solstice N15 (R-515B) technical data sheet",
+  "ptSourceUrl": "https://www.honeywell-refrigerants.com/americas/product/solstice-n15/",
+  "verifiedBy": "TODO: cross-check against ASHRAE 34-2022 R-515B designation",
+  "physical": {
+    "boilingPointC": -18.9,
+    "boilingPointF": -2,
+    "critical": {
+      "tempC": 108.6,
+      "tempF": 227.5,
+      "pressurePsia": 514,
+      "pressurePsig": 499,
+      "pressureKpaA": 3544,
+      "pressureKpaG": 3443
+    },
+    "molarMassGPerMol": 117.5,
+    "liquidDensityKgPerM3At25C": 1238,
+    "temperatureGlideF": 0,
+    "hasSignificantGlide": false
+  },
+  "ptChart": []
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "r-503",
+  "ptSource": "TODO: ASHRAE Handbook of Refrigeration 2022 (historical tables for retired R-503 azeotrope)",
+  "ptSourceUrl": null,
+  "verifiedBy": "TODO: cross-check against historical ASHRAE 34 R-503 designation",
+  "physical": {
+    "boilingPointC": -87.8,
+    "boilingPointF": -126,
+    "critical": {
+      "tempC": 19.5,
+      "tempF": 67.1,
+      "pressurePsia": 627,
+      "pressurePsig": 612,
+      "pressureKpaA": 4323,
+      "pressureKpaG": 4222
+    },
+    "molarMassGPerMol": 87.3,
+    "liquidDensityKgPerM3At25C": null,
+    "temperatureGlideF": 0,
+    "hasSignificantGlide": false
+  },
+  "ptChart": []
+}

@@ -1,0 +1,282 @@
+{
+  "ipcc-ar5-ch8a1": {
+    "title": "Climate Change 2013: The Physical Science Basis, Chapter 8 Appendix 8.A (Table 8.A.1, GWP values)",
+    "publisher": "IPCC AR5 Working Group I",
+    "year": 2013,
+    "url": "https://www.ipcc.ch/site/assets/uploads/2018/02/WG1AR5_Chapter08_FINAL.pdf",
+    "accessed": "2026-05-20"
+  },
+  "ipcc-ar6-ch7": {
+    "title": "Climate Change 2021: The Physical Science Basis, Chapter 7 Supplementary Material (Table 7.SM.7, GWP values)",
+    "publisher": "IPCC AR6 Working Group I",
+    "year": 2021,
+    "url": "https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter07_SM.pdf",
+    "accessed": "2026-05-20"
+  },
+  "ashrae-34-2022": {
+    "title": "ANSI/ASHRAE Standard 34-2022: Designation and Safety Classification of Refrigerants",
+    "publisher": "ASHRAE",
+    "year": 2022,
+    "url": "https://www.ashrae.org/technical-resources/standards-and-guidelines",
+    "accessed": "2026-05-20"
+  },
+  "ashrae-refrigeration-handbook-2022": {
+    "title": "ASHRAE Handbook of Refrigeration (2022 edition)",
+    "publisher": "ASHRAE",
+    "year": 2022,
+    "url": "https://www.ashrae.org/technical-resources/ashrae-handbook",
+    "accessed": "2026-05-20"
+  },
+  "ashrae-fundamentals-handbook-2021": {
+    "title": "ASHRAE Handbook of Fundamentals (2021 edition)",
+    "publisher": "ASHRAE",
+    "year": 2021,
+    "url": "https://www.ashrae.org/technical-resources/ashrae-handbook",
+    "accessed": "2026-05-20"
+  },
+  "epa-aim-act": {
+    "title": "American Innovation and Manufacturing (AIM) Act of 2020 — HFC phase-down rule",
+    "publisher": "US EPA",
+    "year": 2021,
+    "url": "https://www.epa.gov/climate-hfcs-reduction",
+    "accessed": "2026-05-20"
+  },
+  "epa-snap": {
+    "title": "Significant New Alternatives Policy (SNAP) Program",
+    "publisher": "US EPA",
+    "year": 2024,
+    "url": "https://www.epa.gov/snap",
+    "accessed": "2026-05-20"
+  },
+  "epa-section-608": {
+    "title": "EPA Section 608 Refrigerant Management Program (technician certification, leak repair, recovery)",
+    "publisher": "US EPA",
+    "year": 2024,
+    "url": "https://www.epa.gov/section608",
+    "accessed": "2026-05-20"
+  },
+  "coolprop-7-2-0": {
+    "title": "CoolProp 7.2.0 — open-source thermodynamic property library with REFPROP-compatible Helmholtz EOS",
+    "publisher": "Ian Bell et al.",
+    "year": 2024,
+    "url": "http://www.coolprop.org/",
+    "accessed": "2026-05-20"
+  },
+  "nist-webbook": {
+    "title": "NIST Chemistry WebBook (NIST Standard Reference Database Number 69)",
+    "publisher": "US National Institute of Standards and Technology",
+    "year": 2024,
+    "url": "https://webbook.nist.gov/chemistry/",
+    "accessed": "2026-05-20"
+  },
+  "montreal-protocol": {
+    "title": "Montreal Protocol on Substances that Deplete the Ozone Layer",
+    "publisher": "UNEP Ozone Secretariat",
+    "year": 1987,
+    "url": "https://ozone.unep.org/treaties/montreal-protocol",
+    "accessed": "2026-05-20"
+  },
+  "kigali-amendment": {
+    "title": "Kigali Amendment to the Montreal Protocol (HFC phase-down)",
+    "publisher": "UNEP Ozone Secretariat",
+    "year": 2016,
+    "url": "https://ozone.unep.org/treaties/montreal-protocol/amendments/kigali-amendment-2016-amendment-montreal-protocol-agreed",
+    "accessed": "2026-05-20"
+  },
+  "honeywell-n40-datasheet": {
+    "title": "Solstice N40 (R-448A) Technical Data Sheet",
+    "publisher": "Honeywell",
+    "year": 2023,
+    "url": "https://www.honeywell-refrigerants.com/americas/product/solstice-n40/",
+    "accessed": "2026-05-20"
+  },
+  "honeywell-n13-datasheet": {
+    "title": "Solstice N13 (R-513A) Technical Data Sheet",
+    "publisher": "Honeywell",
+    "year": 2023,
+    "url": "https://www.honeywell-refrigerants.com/americas/product/solstice-n13/",
+    "accessed": "2026-05-20"
+  },
+  "honeywell-n15-datasheet": {
+    "title": "Solstice N15 (R-515B) Technical Data Sheet",
+    "publisher": "Honeywell",
+    "year": 2023,
+    "url": "https://www.honeywell-refrigerants.com/americas/product/solstice-n15/",
+    "accessed": "2026-05-20"
+  },
+  "honeywell-515a-datasheet": {
+    "title": "Solstice 515A Technical Data Sheet",
+    "publisher": "Honeywell",
+    "year": 2023,
+    "url": "https://www.honeywell-refrigerants.com/americas/product/solstice-515a/",
+    "accessed": "2026-05-20"
+  },
+  "honeywell-l40x-datasheet": {
+    "title": "Solstice L40X (R-455A) Technical Data Sheet",
+    "publisher": "Honeywell",
+    "year": 2023,
+    "url": "https://www.honeywell-refrigerants.com/americas/product/solstice-l40x/",
+    "accessed": "2026-05-20"
+  },
+  "honeywell-mo99-datasheet": {
+    "title": "Genetron MO99 (R-438A) Technical Data Sheet",
+    "publisher": "Honeywell",
+    "year": 2022,
+    "url": "https://www.honeywell-refrigerants.com/americas/product/genetron-mo99/",
+    "accessed": "2026-05-20"
+  },
+  "honeywell-solstice-ze-datasheet": {
+    "title": "Solstice ze (R-1234ze) Technical Data Sheet",
+    "publisher": "Honeywell",
+    "year": 2023,
+    "url": "https://www.honeywell-refrigerants.com/americas/product/solstice-ze/",
+    "accessed": "2026-05-20"
+  },
+  "honeywell-solstice-1233zd-datasheet": {
+    "title": "Solstice 1233zd / Solstice LBA Technical Data Sheet",
+    "publisher": "Honeywell",
+    "year": 2023,
+    "url": "https://www.honeywell-refrigerants.com/americas/product/solstice-1233zd/",
+    "accessed": "2026-05-20"
+  },
+  "chemours-opteon-xp10-datasheet": {
+    "title": "Opteon XP10 (R-513A and R-450A product lines) Technical Information",
+    "publisher": "Chemours",
+    "year": 2023,
+    "url": "https://www.chemours.com/en/brands-and-products/opteon",
+    "accessed": "2026-05-20"
+  },
+  "chemours-opteon-xl41-datasheet": {
+    "title": "Opteon XL41 (R-454B) Technical Information",
+    "publisher": "Chemours",
+    "year": 2023,
+    "url": "https://www.chemours.com/en/brands-and-products/opteon",
+    "accessed": "2026-05-20"
+  },
+  "chemours-opteon-xl20-datasheet": {
+    "title": "Opteon XL20 (R-454C) Technical Information",
+    "publisher": "Chemours",
+    "year": 2023,
+    "url": "https://www.chemours.com/en/brands-and-products/opteon",
+    "accessed": "2026-05-20"
+  },
+  "chemours-opteon-xp40-datasheet": {
+    "title": "Opteon XP40 (R-449A) Technical Information",
+    "publisher": "Chemours",
+    "year": 2023,
+    "url": "https://www.chemours.com/en/brands-and-products/opteon",
+    "accessed": "2026-05-20"
+  },
+  "chemours-opteon-xp44-datasheet": {
+    "title": "Opteon XP44 (R-452A) Technical Information",
+    "publisher": "Chemours",
+    "year": 2023,
+    "url": "https://www.chemours.com/en/brands-and-products/opteon",
+    "accessed": "2026-05-20"
+  },
+  "chemours-opteon-xp30-datasheet": {
+    "title": "Opteon XP30 (R-514A) Technical Information",
+    "publisher": "Chemours",
+    "year": 2023,
+    "url": "https://www.chemours.com/en/brands-and-products/opteon",
+    "accessed": "2026-05-20"
+  },
+  "chemours-opteon-1100-datasheet": {
+    "title": "Opteon 1100 (R-1336mzz(Z)) Technical Information",
+    "publisher": "Chemours",
+    "year": 2023,
+    "url": "https://www.chemours.com/en/brands-and-products/opteon",
+    "accessed": "2026-05-20"
+  },
+  "chemours-opteon-yf-datasheet": {
+    "title": "Opteon YF (R-1234yf) Technical Information",
+    "publisher": "Chemours",
+    "year": 2023,
+    "url": "https://www.chemours.com/en/brands-and-products/opteon",
+    "accessed": "2026-05-20"
+  },
+  "arkema-forane-22-pt-chart": {
+    "title": "Forane 22 (R-22) Pressure Temperature Chart",
+    "publisher": "Arkema",
+    "year": 2022,
+    "url": "https://www.arkema.com/files/live/sites/shared_arkema/files/downloads/fluorochemicals/forane-22-pressure-temperature-chart.pdf",
+    "accessed": "2026-05-20"
+  },
+  "arkema-forane-410a-pt-chart": {
+    "title": "Forane 410A Pressure Temperature Chart",
+    "publisher": "Arkema",
+    "year": 2022,
+    "url": "https://www.arkema.com/global/en/products/product-finder/range-viewer/forane-410a/",
+    "accessed": "2026-05-20"
+  },
+  "arkema-forane-427a-datasheet": {
+    "title": "Forane 427A (R-427A) Technical Data Sheet",
+    "publisher": "Arkema",
+    "year": 2022,
+    "url": "https://www.arkema.com/global/en/products/product-finder/range-viewer/forane-427a/",
+    "accessed": "2026-05-20"
+  },
+  "agc-amolea-1224yd-datasheet": {
+    "title": "AMOLEA 1224yd (R-1224yd(Z)) Technical Data",
+    "publisher": "AGC Chemicals",
+    "year": 2023,
+    "url": "https://www.agc-chemicals.com/jp/en/fluorine/products/detail/amolea/",
+    "accessed": "2026-05-20"
+  },
+  "carrier-puron-advance": {
+    "title": "Puron Advance (R-454B) Product Information",
+    "publisher": "Carrier",
+    "year": 2024,
+    "url": "https://www.carrier.com/residential/en/us/products/puron-advance/",
+    "accessed": "2026-05-20"
+  },
+  "carrier-r410a-charging-chart": {
+    "title": "Carrier Residential Split System Service Manual — R-410A Charging Tables",
+    "publisher": "Carrier",
+    "year": 2023,
+    "url": "https://www.carrier.com/residential/en/us/products/",
+    "accessed": "2026-05-20"
+  },
+  "acca-manual-j": {
+    "title": "ACCA Manual J — Residential Load Calculation (8th Edition)",
+    "publisher": "Air Conditioning Contractors of America",
+    "year": 2016,
+    "url": "https://www.acca.org/standards/technical-manuals/manual-j",
+    "accessed": "2026-05-20"
+  },
+  "acca-manual-s": {
+    "title": "ACCA Manual S — Residential Equipment Selection",
+    "publisher": "Air Conditioning Contractors of America",
+    "year": 2014,
+    "url": "https://www.acca.org/standards/technical-manuals/manual-s",
+    "accessed": "2026-05-20"
+  },
+  "acca-manual-d": {
+    "title": "ACCA Manual D — Residential Duct Systems",
+    "publisher": "Air Conditioning Contractors of America",
+    "year": 2016,
+    "url": "https://www.acca.org/standards/technical-manuals/manual-d",
+    "accessed": "2026-05-20"
+  },
+  "acca-manual-t": {
+    "title": "ACCA Manual T — Air Distribution Basics; charging and adjusting refrigerant systems",
+    "publisher": "Air Conditioning Contractors of America",
+    "year": 2017,
+    "url": "https://www.acca.org/standards/technical-manuals",
+    "accessed": "2026-05-20"
+  },
+  "iiar-ammonia-standards": {
+    "title": "IIAR 2 — Safe Design of Closed-Circuit Ammonia Refrigeration Systems",
+    "publisher": "International Institute of All-Natural Refrigeration (IIAR)",
+    "year": 2021,
+    "url": "https://www.iiar.org/IIAR/Standards/IIAR_Standards.aspx",
+    "accessed": "2026-05-20"
+  },
+  "ul-60335-2-40": {
+    "title": "UL 60335-2-40 — Safety of Household and Similar Electrical Appliances, Part 2-40: Particular Requirements for Electrical Heat Pumps, Air-Conditioners, and Dehumidifiers (covers A2L charge limits and equipment design)",
+    "publisher": "Underwriters Laboratories / IEC",
+    "year": 2024,
+    "url": "https://standardscatalog.ul.com/ProductDetail.aspx?productid=UL60335-2-40",
+    "accessed": "2026-05-20"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "r-514a",
+  "ptSource": "TODO: Chemours Opteon XP30 (R-514A) technical data sheet",
+  "ptSourceUrl": "https://www.chemours.com/en/brands-and-products/opteon",
+  "verifiedBy": "TODO: cross-check against ASHRAE 34-2022 R-514A designation",
+  "physical": {
+    "boilingPointC": 29.4,
+    "boilingPointF": 84.9,
+    "critical": {
+      "tempC": 178.4,
+      "tempF": 353.1,
+      "pressurePsia": 525,
+      "pressurePsig": 510,
+      "pressureKpaA": 3620,
+      "pressureKpaG": 3519
+    },
+    "molarMassGPerMol": 139.6,
+    "liquidDensityKgPerM3At25C": 1300,
+    "temperatureGlideF": 0,
+    "hasSignificantGlide": false
+  },
+  "ptChart": []
+}

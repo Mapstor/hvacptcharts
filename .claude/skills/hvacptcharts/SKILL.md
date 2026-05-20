@@ -194,31 +194,31 @@ Quality is non-negotiable in this codebase. There is no rebuild after this rebui
 
 ## Reference: known-good 70°F anchor values
 
-For quick mental cross-check during work, here are the verified saturation pressures at 70°F (PSIG). These are the "smell test" numbers — if you see anything wildly different in the data files, something is wrong.
+For quick mental cross-check during work, here are the verified saturation pressures at 70°F (PSIG). These are the "smell test" numbers — if you see anything wildly different in the data files, something is wrong. All values regenerated from CoolProp 7.2.0 on 2026-05-20 and are the canonical source per Rule 1 (CoolProp is authoritative for PT data).
 
-| Refrigerant | Bubble PSIG | Notes |
-|---|---|---|
-| R-11   | -1.3   | Pure CFC, below atmospheric at room temp |
-| R-12   | 70.1   | Pure CFC |
-| R-22   | 121.4  | Pure HCFC |
-| R-32   | 188.5  | Pure HFC (A2L) |
-| R-123  | -3.3   | Pure HCFC, below atmospheric |
-| R-134a | 71.1   | Pure HFC |
-| R-125  | 165.5  | Pure HFC |
-| R-290  | 110.2  | Propane (A3 — highly flammable) |
-| R-404A | 165.3  | HFC blend, low glide |
-| R-407C | 140.5 / 117.3 | HFC blend, ~23 PSI glide |
-| R-410A | 201.5  | HFC blend, ~0.7 PSI glide (near-azeotrope) |
-| R-452B | 180.2 / 166.2 | HFO blend |
-| R-454B | 190.5 / 183.1 | HFO blend |
-| R-454C | 117.7 / 93.2  | HFO blend, ~24 PSI glide |
-| R-455A | 133.1 / 97.2  | HFO blend, ~36 PSI glide |
-| R-507A | 153.0  | HFC blend, azeotrope |
-| R-513A | 77.2   | HFO blend, near-azeotrope |
-| R-600a | 30.6   | Isobutane (A3) |
-| R-717  | 114.1  | Ammonia (B2L) |
-| R-744  | 838.1  | CO2 — uniquely high, transcritical above 88°F |
-| R-1234yf | 73.9 | HFO (A2L) |
-| R-1234ze(E) | 49.5 | HFO (A2L) |
+| Refrigerant | Bubble PSIG | Dew PSIG | Notes |
+|---|---|---|---|
+| R-11   | -1.3   | -1.3   | Pure CFC, below atmospheric at room temp |
+| R-12   | 70.20  | 70.20  | Pure CFC |
+| R-22   | 121.44 | 121.44 | Pure HCFC |
+| R-32   | 205.83 | 205.83 | Pure HFC (A2L) — note: spec's 188.5 was off; CoolProp authoritative |
+| R-123  | -3.4   | -3.4   | Pure HCFC, below atmospheric |
+| R-125  | 165.45 | 165.45 | Pure HFC |
+| R-134a | 71.11  | 71.11  | Pure HFC |
+| R-290  | 110.21 | 110.21 | Propane (A3 — highly flammable) |
+| R-404A | 149.31 | 147.44 | HFC blend, low glide — note: spec's 165.3 was off |
+| R-407C | 140.52 | 117.29 | HFC blend, ~23 PSI glide |
+| R-410A | 201.76 | 201.07 | HFC blend, ~0.7 PSI glide (near-azeotrope) |
+| R-452B | 192.46 | 185.95 | HFO blend |
+| R-454B | 190.50 | 183.14 | HFO blend |
+| R-454C | 141.16 | 112.17 | HFO blend, ~29 PSI glide |
+| R-455A | 170.08 | 121.13 | HFO blend, ~49 PSI glide (CO2 component) |
+| R-507A | 152.99 | 152.85 | HFC blend, azeotrope |
+| R-513A | 77.23  | 77.23  | HFO blend, near-azeotrope |
+| R-600a | 30.65  | 30.65  | Isobutane (A3) |
+| R-717  | 114.08 | 114.08 | Ammonia (B2L) |
+| R-744  | 838.13 | 838.13 | CO2 — uniquely high, transcritical above 88°F |
+| R-1234yf | 73.93 | 73.93 | HFO (A2L) |
+| R-1234ze(E) | 49.36 | 49.36 | HFO (A2L) |
 
-Source: CoolProp 7.2.0 (HEOS backend, REFPROP-compatible). Verified against Arkema and Honeywell PT charts. If a refrigerant in this list shows ±20% drift in regenerated data, the build fails.
+Source: CoolProp 7.2.0 (HEOS backend, REFPROP-compatible) via `scripts/generate-refrigerant-data.mjs`. The 10-entry anchor JSON at `reference/coolprop-anchors.json` is what the build verifier checks; this table is human-facing reference. If a refrigerant shows >5% drift from these anchors in regenerated data, the build fails.

@@ -1,0 +1,23 @@
+{
+  "slug": "r-1224yd-z",
+  "ptSource": "TODO: AGC AMOLEA 1224yd technical data sheet",
+  "ptSourceUrl": "https://www.agc-chemicals.com/jp/en/fluorine/products/detail/amolea/",
+  "verifiedBy": "TODO: cross-check against ASHRAE 34-2022 R-1224yd(Z) designation",
+  "physical": {
+    "boilingPointC": 14.5,
+    "boilingPointF": 58.1,
+    "critical": {
+      "tempC": 155.5,
+      "tempF": 311.9,
+      "pressurePsia": 478,
+      "pressurePsig": 463,
+      "pressureKpaA": 3294,
+      "pressureKpaG": 3193
+    },
+    "molarMassGPerMol": 148.49,
+    "liquidDensityKgPerM3At25C": 1349,
+    "temperatureGlideF": 0,
+    "hasSignificantGlide": false
+  },
+  "ptChart": []
+}

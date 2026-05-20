@@ -1,0 +1,23 @@
+{
+  "slug": "r-1336mzz-z",
+  "ptSource": "TODO: Chemours Opteon 1100 technical data sheet",
+  "ptSourceUrl": "https://www.chemours.com/en/brands-and-products/opteon",
+  "verifiedBy": "TODO: cross-check against ASHRAE 34-2022 R-1336mzz(Z) designation",
+  "physical": {
+    "boilingPointC": 33.4,
+    "boilingPointF": 92.1,
+    "critical": {
+      "tempC": 171.3,
+      "tempF": 340.3,
+      "pressurePsia": 415,
+      "pressurePsig": 400,
+      "pressureKpaA": 2862,
+      "pressureKpaG": 2761
+    },
+    "molarMassGPerMol": 164.06,
+    "liquidDensityKgPerM3At25C": 1372,
+    "temperatureGlideF": 0,
+    "hasSignificantGlide": false
+  },
+  "ptChart": []
+}

@@ -1,0 +1,2725 @@
+{
+  "r-11": {
+    "displayName": "R-11",
+    "altSpellings": ["R11", "CFC-11", "Freon-11", "Freon 11"],
+    "chemicalName": "Trichlorofluoromethane",
+    "chemicalFormula": "CCl3F",
+    "ashraeNumber": "R-11",
+    "type": "cfc",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R11",
+    "tradeNames": [
+      { "name": "Freon 11", "manufacturer": "Chemours (historical: DuPont)" },
+      { "name": "Genetron 11", "manufacturer": "Honeywell" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 1.0,
+      "gwp100Ar5": 4750,
+      "gwp100Ar6": 5560,
+      "atmosphericLifetimeYears": 45,
+      "snapStatus": "Production banned under the Montreal Protocol (US: 1996)"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB"],
+      "incompatible": ["POE"],
+      "notes": "Mineral oil is the historical standard. R-11 is a low-pressure refrigerant historically used in centrifugal chillers."
+    },
+    "applications": [
+      "Centrifugal chillers (historical, large-tonnage)",
+      "Low-pressure refrigeration systems (legacy)",
+      "Reference fluid for ODP definition (R-11 = 1.0)"
+    ],
+    "replacementOptions": ["r-123", "r-1233zd-e", "r-514a"],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": true,
+      "epaPhaseoutDate": "1996-01-01",
+      "aimActAffected": false,
+      "snapApproved": false
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R11)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-1150": {
+    "displayName": "R-1150",
+    "altSpellings": ["R1150", "Ethylene", "Ethene"],
+    "chemicalName": "Ethylene",
+    "chemicalFormula": "C2H4",
+    "ashraeNumber": "R-1150",
+    "type": "hc",
+    "safetyClass": "A3",
+    "strategy": "manual",
+    "cpIdentifier": null,
+    "tradeNames": [],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 4,
+      "gwp100Ar6": null,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Industrial use; not SNAP-listed for HVAC"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB", "PAO"],
+      "incompatible": ["POE"],
+      "notes": "Used primarily in low-temperature industrial refrigeration cascade systems. Critical point at 9.2°C (48.6°F) — supercritical in most building-HVAC ambient ranges."
+    },
+    "applications": [
+      "Low-temperature cascade refrigeration",
+      "Industrial gas processing",
+      "LNG and ethylene production"
+    ],
+    "replacementOptions": ["r-744"],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": null
+    },
+    "verifiedAgainst": ["Manufacturer datasheet (pending)", "NIST WebBook (Ethylene)"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "Manufacturer datasheet (subcritical region) + NIST WebBook"
+  },
+  "r-12": {
+    "displayName": "R-12",
+    "altSpellings": ["R12", "CFC-12", "Freon-12", "Freon 12"],
+    "chemicalName": "Dichlorodifluoromethane",
+    "chemicalFormula": "CCl2F2",
+    "ashraeNumber": "R-12",
+    "type": "cfc",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R12",
+    "tradeNames": [
+      { "name": "Freon 12", "manufacturer": "Chemours (historical: DuPont)" },
+      { "name": "Genetron 12", "manufacturer": "Honeywell" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 1.0,
+      "gwp100Ar5": 10900,
+      "gwp100Ar6": 12500,
+      "atmosphericLifetimeYears": 100,
+      "snapStatus": "Production banned under the Montreal Protocol (US: 1996)"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB"],
+      "incompatible": ["POE"],
+      "notes": "Mineral oil was standard in R-12 systems. Industry standard for residential refrigerators and mobile AC for decades before HFC transition."
+    },
+    "applications": [
+      "Mobile air conditioning (historical, pre-1995)",
+      "Domestic refrigerators (legacy)",
+      "Medium-temperature commercial refrigeration (legacy)"
+    ],
+    "replacementOptions": ["r-134a", "r-152a", "r-1234yf"],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": true,
+      "epaPhaseoutDate": "1996-01-01",
+      "aimActAffected": false,
+      "snapApproved": false
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R12)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-1224yd-z": {
+    "displayName": "R-1224yd(Z)",
+    "altSpellings": ["R1224ydZ", "R-1224yd", "AMOLEA 1224yd"],
+    "chemicalName": "(Z)-1-Chloro-2,3,3,3-tetrafluoro-1-propene",
+    "chemicalFormula": "CF3CF=CHCl (Z isomer)",
+    "ashraeNumber": "R-1224yd(Z)",
+    "type": "hfo-pure",
+    "safetyClass": "A1",
+    "strategy": "manual",
+    "cpIdentifier": null,
+    "tradeNames": [
+      { "name": "AMOLEA 1224yd", "manufacturer": "AGC Chemicals" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0.00012,
+      "gwp100Ar5": 1,
+      "gwp100Ar6": null,
+      "atmosphericLifetimeYears": 0.06,
+      "snapStatus": "Listed acceptable for use as a substitute for R-123 in centrifugal chillers"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PVE"],
+      "incompatible": ["MO"],
+      "notes": "Designed as a low-GWP replacement for R-123 in low-pressure centrifugal chillers."
+    },
+    "applications": [
+      "Low-pressure centrifugal chillers (high-tonnage commercial)",
+      "Industrial cooling"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-123"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["AGC AMOLEA 1224yd technical datasheet"],
+    "gwpSource": "IPCC AR5 (approximation for HCFO)",
+    "propertiesSource": "AGC AMOLEA 1224yd technical datasheet"
+  },
+  "r-123": {
+    "displayName": "R-123",
+    "altSpellings": ["R123", "HCFC-123"],
+    "chemicalName": "2,2-Dichloro-1,1,1-trifluoroethane",
+    "chemicalFormula": "CHCl2CF3",
+    "ashraeNumber": "R-123",
+    "type": "hcfc",
+    "safetyClass": "B1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R123",
+    "tradeNames": [
+      { "name": "Freon 123", "manufacturer": "Chemours (historical: DuPont)" },
+      { "name": "Genetron 123", "manufacturer": "Honeywell" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0.02,
+      "gwp100Ar5": 77,
+      "gwp100Ar6": 79,
+      "atmosphericLifetimeYears": 1.3,
+      "snapStatus": "HCFC; US production for new equipment ended 2020; servicing of existing equipment allowed with reclaimed/stockpiled supply"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB"],
+      "incompatible": ["POE"],
+      "notes": "Low-pressure refrigerant for centrifugal chillers. Higher toxicity (B1) compared with most HCFCs — proper ventilation is required."
+    },
+    "applications": [
+      "Low-pressure centrifugal chillers (large commercial buildings)",
+      "Industrial process cooling"
+    ],
+    "replacementOptions": ["r-1233zd-e", "r-1224yd-z", "r-514a"],
+    "replaces": ["r-11"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": "2020-01-01",
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R123)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-1233zd-e": {
+    "displayName": "R-1233zd(E)",
+    "altSpellings": ["R1233zdE", "R-1233zd", "HCFO-1233zd(E)"],
+    "chemicalName": "(E)-1-Chloro-3,3,3-trifluoro-1-propene",
+    "chemicalFormula": "CF3CH=CHCl (E isomer)",
+    "ashraeNumber": "R-1233zd(E)",
+    "type": "hfo-pure",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R1233zd(E)",
+    "tradeNames": [
+      { "name": "Solstice 1233zd", "manufacturer": "Honeywell" },
+      { "name": "Solstice LBA", "manufacturer": "Honeywell" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0.00034,
+      "gwp100Ar5": 1,
+      "gwp100Ar6": 4,
+      "atmosphericLifetimeYears": 0.07,
+      "snapStatus": "Listed acceptable for use as a substitute for R-123 in centrifugal chillers and as a foam blowing agent"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PVE"],
+      "incompatible": ["MO"],
+      "notes": "Low-pressure HCFO with very low GWP and short atmospheric lifetime. Engineered as a long-term R-123 replacement."
+    },
+    "applications": [
+      "Low-pressure centrifugal chillers",
+      "Foam blowing agent (polyurethane insulation)",
+      "Organic Rankine cycle working fluid"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-123", "r-11"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R1233zd(E))", "Honeywell Solstice LBA technical datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + Honeywell Solstice technical datasheet"
+  },
+  "r-1233zd-z": {
+    "displayName": "R-1233zd(Z)",
+    "altSpellings": ["R1233zdZ", "HCFO-1233zd(Z)"],
+    "chemicalName": "(Z)-1-Chloro-3,3,3-trifluoro-1-propene",
+    "chemicalFormula": "CF3CH=CHCl (Z isomer)",
+    "ashraeNumber": "R-1233zd(Z)",
+    "type": "hfo-pure",
+    "safetyClass": "A1",
+    "strategy": "manual",
+    "cpIdentifier": null,
+    "tradeNames": [],
+    "composition": [],
+    "environmental": {
+      "odp": null,
+      "gwp100Ar5": null,
+      "gwp100Ar6": null,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": null
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "Z-isomer of R-1233zd. Less common than the E-isomer; specialty foam blowing agent and low-GWP heat-transfer fluid applications."
+    },
+    "applications": [
+      "Foam blowing agent (specialty applications)",
+      "Heat-transfer fluid (research/specialty)"
+    ],
+    "replacementOptions": [],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": null
+    },
+    "verifiedAgainst": ["Manufacturer datasheet (pending)"],
+    "gwpSource": "Pending source citation",
+    "propertiesSource": "Manufacturer datasheet (pending)"
+  },
+  "r-1234yf": {
+    "displayName": "R-1234yf",
+    "altSpellings": ["R1234yf", "HFO-1234yf"],
+    "chemicalName": "2,3,3,3-Tetrafluoropropene",
+    "chemicalFormula": "CF3CF=CH2",
+    "ashraeNumber": "R-1234yf",
+    "type": "hfo-pure",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "R1234yf",
+    "tradeNames": [
+      { "name": "Opteon YF", "manufacturer": "Chemours" },
+      { "name": "Solstice yf", "manufacturer": "Honeywell" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 4,
+      "gwp100Ar6": 0.501,
+      "atmosphericLifetimeYears": 0.029,
+      "snapStatus": "Listed acceptable for mobile AC; class A2L — mildly flammable"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PAG"],
+      "incompatible": ["MO"],
+      "notes": "Industry standard for mobile AC since the 2010s as a low-GWP R-134a replacement. PAG is the OEM mobile-AC standard; POE used in stationary applications."
+    },
+    "applications": [
+      "Mobile air conditioning (passenger vehicles, most OEMs since 2014)",
+      "Light commercial refrigeration",
+      "Industrial chiller alternative"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-134a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R1234yf)", "Chemours Opteon YF datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-1234ze": {
+    "displayName": "R-1234ze",
+    "altSpellings": ["R1234ze", "HFO-1234ze", "R-1234ze(E)"],
+    "chemicalName": "1,3,3,3-Tetrafluoropropene (the E isomer is the default unless Z specified)",
+    "chemicalFormula": "CHF=CHCF3",
+    "ashraeNumber": "R-1234ze(E)",
+    "type": "hfo-pure",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "R1234ze(E)",
+    "tradeNames": [
+      { "name": "Solstice ze", "manufacturer": "Honeywell" },
+      { "name": "Opteon 1100", "manufacturer": "Chemours (some references)" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 7,
+      "gwp100Ar6": 1.37,
+      "atmosphericLifetimeYears": 0.045,
+      "snapStatus": "Listed acceptable for chillers and commercial refrigeration; class A2L"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PVE"],
+      "incompatible": ["MO"],
+      "notes": "Long-term low-GWP replacement for R-134a in chillers, heat pumps, and commercial refrigeration. Same molecule as the explicit E-isomer page; this slug preserves a legacy URL."
+    },
+    "applications": [
+      "Centrifugal chillers (low-pressure / large-tonnage)",
+      "Heat pumps (commercial)",
+      "Foam blowing agent",
+      "Aerosol propellant"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-134a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R1234ze(E))", "Honeywell Solstice ze datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + Honeywell Solstice ze technical datasheet"
+  },
+  "r-1234ze-e": {
+    "displayName": "R-1234ze(E)",
+    "altSpellings": ["R1234zeE", "HFO-1234ze(E)", "R-1234ze"],
+    "chemicalName": "(E)-1,3,3,3-Tetrafluoropropene",
+    "chemicalFormula": "CHF=CHCF3 (E isomer)",
+    "ashraeNumber": "R-1234ze(E)",
+    "type": "hfo-pure",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "R1234ze(E)",
+    "tradeNames": [
+      { "name": "Solstice ze", "manufacturer": "Honeywell" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 7,
+      "gwp100Ar6": 1.37,
+      "atmosphericLifetimeYears": 0.045,
+      "snapStatus": "Listed acceptable for chillers and commercial refrigeration; class A2L"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PVE"],
+      "incompatible": ["MO"],
+      "notes": "Explicit E-isomer designation. Long-term low-GWP replacement for R-134a in chillers and heat pumps."
+    },
+    "applications": [
+      "Centrifugal chillers",
+      "Heat pumps (commercial)",
+      "Foam blowing",
+      "Aerosol propellant"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-134a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R1234ze(E))", "Honeywell Solstice ze datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + Honeywell Solstice ze technical datasheet"
+  },
+  "r-1234ze-z": {
+    "displayName": "R-1234ze(Z)",
+    "altSpellings": ["R1234zeZ", "HFO-1234ze(Z)"],
+    "chemicalName": "(Z)-1,3,3,3-Tetrafluoropropene",
+    "chemicalFormula": "CHF=CHCF3 (Z isomer)",
+    "ashraeNumber": "R-1234ze(Z)",
+    "type": "hfo-pure",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "R1234ze(Z)",
+    "tradeNames": [
+      { "name": "Solstice zd", "manufacturer": "Honeywell (related lines)" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": null,
+      "gwp100Ar6": null,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Specialty applications; high-temperature heat pumps"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "Z-isomer with higher boiling point than R-1234ze(E). Used in high-temperature heat pumps and organic Rankine cycle applications."
+    },
+    "applications": [
+      "High-temperature heat pumps (industrial)",
+      "Organic Rankine cycle working fluid"
+    ],
+    "replacementOptions": [],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": null
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R1234ze(Z))"],
+    "gwpSource": "Pending source citation",
+    "propertiesSource": "CoolProp 7.2.0"
+  },
+  "r-124": {
+    "displayName": "R-124",
+    "altSpellings": ["R124", "HCFC-124"],
+    "chemicalName": "1-Chloro-1,2,2,2-tetrafluoroethane",
+    "chemicalFormula": "CHClFCF3",
+    "ashraeNumber": "R-124",
+    "type": "hcfc",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R124",
+    "tradeNames": [],
+    "composition": [],
+    "environmental": {
+      "odp": 0.022,
+      "gwp100Ar5": 527,
+      "gwp100Ar6": 597,
+      "atmosphericLifetimeYears": 5.9,
+      "snapStatus": "HCFC; production phased out"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB"],
+      "incompatible": ["POE"],
+      "notes": "Historical use as a blend component in R-22 retrofits (R-409A, R-414B). Standalone use is rare."
+    },
+    "applications": [
+      "Component in HCFC retrofit blends (legacy)",
+      "Aerosol propellant (legacy)"
+    ],
+    "replacementOptions": ["r-134a", "r-1234yf"],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": true,
+      "epaPhaseoutDate": "2015-01-01",
+      "aimActAffected": false,
+      "snapApproved": false
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R124)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-125": {
+    "displayName": "R-125",
+    "altSpellings": ["R125", "HFC-125"],
+    "chemicalName": "Pentafluoroethane",
+    "chemicalFormula": "CHF2CF3",
+    "ashraeNumber": "R-125",
+    "type": "hfc-pure",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R125",
+    "tradeNames": [
+      { "name": "Suva 125", "manufacturer": "Chemours" },
+      { "name": "Genetron 125", "manufacturer": "Honeywell" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 3500,
+      "gwp100Ar6": 3740,
+      "atmosphericLifetimeYears": 28.2,
+      "snapStatus": "AIM Act phase-down affected; primarily used as a blend component"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO", "AB"],
+      "notes": "Rarely used standalone. Primary applications are as a blend component (R-404A, R-407C, R-410A, R-507A) and as a clean agent (FM-200/HFC-227ea-class fire suppression in some lists, though HFC-227ea is the more common agent)."
+    },
+    "applications": [
+      "Blend component in R-404A, R-407C, R-410A, R-507A",
+      "Fire suppression (some applications)"
+    ],
+    "replacementOptions": [],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R125)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-1270": {
+    "displayName": "R-1270",
+    "altSpellings": ["R1270", "Propylene", "Propene"],
+    "chemicalName": "Propylene",
+    "chemicalFormula": "C3H6",
+    "ashraeNumber": "R-1270",
+    "type": "hc",
+    "safetyClass": "A3",
+    "strategy": "coolprop",
+    "cpIdentifier": "Propylene",
+    "tradeNames": [],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2,
+      "gwp100Ar6": null,
+      "atmosphericLifetimeYears": 0.001,
+      "snapStatus": "Listed acceptable for industrial refrigeration; class A3 — highly flammable"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB", "PAO"],
+      "incompatible": ["POE"],
+      "notes": "Highly flammable (A3). Used in industrial refrigeration where flammability can be managed. Mineral oil is standard; HC-rated equipment design is mandatory."
+    },
+    "applications": [
+      "Industrial refrigeration (specialty)",
+      "Ethylene production cascade systems",
+      "Some commercial refrigeration in regions with HC-rated equipment"
+    ],
+    "replacementOptions": ["r-290", "r-744"],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (Propylene)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-13": {
+    "displayName": "R-13",
+    "altSpellings": ["R13", "CFC-13", "Freon-13"],
+    "chemicalName": "Chlorotrifluoromethane",
+    "chemicalFormula": "CClF3",
+    "ashraeNumber": "R-13",
+    "type": "cfc",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R13",
+    "tradeNames": [
+      { "name": "Freon 13", "manufacturer": "Chemours (historical: DuPont)" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 1.0,
+      "gwp100Ar5": 14400,
+      "gwp100Ar6": 16200,
+      "atmosphericLifetimeYears": 640,
+      "snapStatus": "Production banned under the Montreal Protocol (US: 1996)"
+    },
+    "lubricants": {
+      "compatible": ["MO"],
+      "incompatible": ["POE"],
+      "notes": "Ultra-low temperature refrigerant (NBP -81.4°C). Used historically as the low-stage refrigerant in cascade systems for environmental test chambers and cryogenic applications. Critical point at 28.8°C (83.9°F) — chart is partial."
+    },
+    "applications": [
+      "Cascade low-stage refrigerant (legacy)",
+      "Environmental test chambers (low-temperature)",
+      "Cryogenic applications (legacy)"
+    ],
+    "replacementOptions": ["r-503", "r-744"],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": true,
+      "epaPhaseoutDate": "1996-01-01",
+      "aimActAffected": false,
+      "snapApproved": false
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R13)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-1336mzz-z": {
+    "displayName": "R-1336mzz(Z)",
+    "altSpellings": ["R1336mzzZ", "HFO-1336mzz(Z)", "Opteon 1100"],
+    "chemicalName": "(Z)-1,1,1,4,4,4-Hexafluoro-2-butene",
+    "chemicalFormula": "CF3CH=CHCF3 (Z isomer)",
+    "ashraeNumber": "R-1336mzz(Z)",
+    "type": "hfo-pure",
+    "safetyClass": "A1",
+    "strategy": "manual",
+    "cpIdentifier": null,
+    "tradeNames": [
+      { "name": "Opteon 1100", "manufacturer": "Chemours" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2,
+      "gwp100Ar6": 18,
+      "atmosphericLifetimeYears": 0.07,
+      "snapStatus": "Listed acceptable for chillers and heat pumps; foam blowing applications"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PVE"],
+      "incompatible": ["MO"],
+      "notes": "Very low GWP HFO designed for high-temperature heat pumps, organic Rankine cycle, and foam blowing. Higher NBP than R-1234ze(E)."
+    },
+    "applications": [
+      "High-temperature heat pumps (industrial)",
+      "Organic Rankine cycle working fluid",
+      "Foam blowing agent (polyurethane insulation)",
+      "Centrifugal chillers (low-pressure)"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-245fa", "r-123"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["Chemours Opteon 1100 technical datasheet"],
+    "gwpSource": "IPCC AR5 (approximation for HFO)",
+    "propertiesSource": "Chemours Opteon 1100 technical datasheet"
+  },
+  "r-134a": {
+    "displayName": "R-134a",
+    "altSpellings": ["R134a", "HFC-134a"],
+    "chemicalName": "1,1,1,2-Tetrafluoroethane",
+    "chemicalFormula": "CH2FCF3",
+    "ashraeNumber": "R-134a",
+    "type": "hfc-pure",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R134a",
+    "tradeNames": [
+      { "name": "Suva 134a", "manufacturer": "Chemours (historical: DuPont)" },
+      { "name": "Genetron 134a", "manufacturer": "Honeywell" },
+      { "name": "Forane 134a", "manufacturer": "Arkema" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 1430,
+      "gwp100Ar6": 1530,
+      "atmosphericLifetimeYears": 14,
+      "snapStatus": "AIM Act phase-down affected; SNAP-listed for declining set of applications"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PAG"],
+      "incompatible": ["MO", "AB"],
+      "notes": "Mobile AC originally used R-134a with PAG oil; stationary equipment uses POE. POE is hygroscopic — pull deep vacuum before charging."
+    },
+    "applications": [
+      "Mobile air conditioning (legacy vehicles pre-2014)",
+      "Medium-temperature commercial refrigeration",
+      "Centrifugal chillers (medium-pressure)",
+      "Domestic refrigerators (legacy)"
+    ],
+    "replacementOptions": ["r-1234yf", "r-513a", "r-450a", "r-516a"],
+    "replaces": ["r-12"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R134a)", "ASHRAE Handbook of Refrigeration 2022", "Chemours Suva 134a datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-143a": {
+    "displayName": "R-143a",
+    "altSpellings": ["R143a", "HFC-143a"],
+    "chemicalName": "1,1,1-Trifluoroethane",
+    "chemicalFormula": "CH3CF3",
+    "ashraeNumber": "R-143a",
+    "type": "hfc-pure",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "R143a",
+    "tradeNames": [],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 4470,
+      "gwp100Ar6": 5810,
+      "atmosphericLifetimeYears": 51,
+      "snapStatus": "Primarily used as a blend component; AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "Used almost exclusively as a blend component (R-404A, R-507A). A2L mild flammability; high GWP."
+    },
+    "applications": [
+      "Blend component in R-404A, R-507A, R-427A",
+      "Standalone use is rare"
+    ],
+    "replacementOptions": [],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R143a)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-152a": {
+    "displayName": "R-152a",
+    "altSpellings": ["R152a", "HFC-152a"],
+    "chemicalName": "1,1-Difluoroethane",
+    "chemicalFormula": "CH3CHF2",
+    "ashraeNumber": "R-152a",
+    "type": "hfc-pure",
+    "safetyClass": "A2",
+    "strategy": "coolprop",
+    "cpIdentifier": "R152a",
+    "tradeNames": [
+      { "name": "Genetron 152a", "manufacturer": "Honeywell" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 124,
+      "gwp100Ar6": 164,
+      "atmosphericLifetimeYears": 1.5,
+      "snapStatus": "Listed acceptable for some applications; class A2 — flammable, restricted use"
+    },
+    "lubricants": {
+      "compatible": ["POE", "MO"],
+      "incompatible": [],
+      "notes": "Class A2 (flammable, low burning velocity). Used as an aerosol propellant and as a blend component to lower GWP. Some mobile AC research interest as a low-GWP option."
+    },
+    "applications": [
+      "Aerosol propellant (consumer products)",
+      "Blend component (R-500 historical, R-516A)",
+      "Foam blowing agent"
+    ],
+    "replacementOptions": [],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R152a)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-218": {
+    "displayName": "R-218",
+    "altSpellings": ["R218", "PFC-218"],
+    "chemicalName": "Octafluoropropane",
+    "chemicalFormula": "C3F8",
+    "ashraeNumber": "R-218",
+    "type": "hfc-pure",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R218",
+    "tradeNames": [],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 8830,
+      "gwp100Ar6": 9290,
+      "atmosphericLifetimeYears": 2600,
+      "snapStatus": "Very high GWP; restricted to specialty uses"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PAO"],
+      "incompatible": ["MO"],
+      "notes": "Perfluorocarbon (PFC). Extremely long atmospheric lifetime and high GWP. Used in specialty low-temperature applications and as a fire suppression agent (FE-13)."
+    },
+    "applications": [
+      "Low-temperature cascade refrigeration (specialty)",
+      "Fire suppression (clean agent, legacy)",
+      "Electronics testing baths"
+    ],
+    "replacementOptions": [],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": null
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R218)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-22": {
+    "displayName": "R-22",
+    "altSpellings": ["R22", "HCFC-22", "Freon-22", "Freon 22"],
+    "chemicalName": "Chlorodifluoromethane",
+    "chemicalFormula": "CHClF2",
+    "ashraeNumber": "R-22",
+    "type": "hcfc",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R22",
+    "tradeNames": [
+      { "name": "Freon 22", "manufacturer": "Chemours (historical: DuPont)" },
+      { "name": "Genetron 22", "manufacturer": "Honeywell" },
+      { "name": "Forane 22", "manufacturer": "Arkema" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0.055,
+      "gwp100Ar5": 1810,
+      "gwp100Ar6": 1960,
+      "atmosphericLifetimeYears": 11.9,
+      "snapStatus": "HCFC; US production for new equipment ended 2010; virgin production for service ended 2020 (Montreal Protocol)"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB"],
+      "incompatible": ["POE"],
+      "notes": "Mineral oil is the historical standard. Alkylbenzene (AB) is compatible. POE is NOT used with R-22 — POE is required only for HFC retrofits."
+    },
+    "applications": [
+      "Existing residential central AC systems (servicing only)",
+      "Commercial chillers (legacy)",
+      "Heat pumps (legacy)",
+      "Medium-temperature refrigeration"
+    ],
+    "replacementOptions": ["r-410a", "r-407c", "r-422d", "r-438a", "r-427a"],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": true,
+      "epaPhaseoutDate": "2020-01-01",
+      "aimActAffected": false,
+      "snapApproved": false
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R22)", "Arkema Forane 22 PT chart", "ASHRAE Handbook of Refrigeration 2022", "EPA Section 608 training materials"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-236ea": {
+    "displayName": "R-236ea",
+    "altSpellings": ["R236ea", "HFC-236ea"],
+    "chemicalName": "1,1,1,2,3,3-Hexafluoropropane",
+    "chemicalFormula": "CF3CHFCHF2",
+    "ashraeNumber": "R-236ea",
+    "type": "hfc-pure",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R236EA",
+    "tradeNames": [],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 1370,
+      "gwp100Ar6": 1500,
+      "atmosphericLifetimeYears": 11,
+      "snapStatus": "Specialty uses"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "Specialty HFC used in organic Rankine cycle and high-temperature heat pump applications. Limited commercial availability."
+    },
+    "applications": [
+      "Organic Rankine cycle (waste heat recovery)",
+      "High-temperature heat pump research"
+    ],
+    "replacementOptions": [],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": null
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R236EA)"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0"
+  },
+  "r-236fa": {
+    "displayName": "R-236fa",
+    "altSpellings": ["R236fa", "HFC-236fa"],
+    "chemicalName": "1,1,1,3,3,3-Hexafluoropropane",
+    "chemicalFormula": "CF3CH2CF3",
+    "ashraeNumber": "R-236fa",
+    "type": "hfc-pure",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R236FA",
+    "tradeNames": [
+      { "name": "FE-36", "manufacturer": "Chemours (fire suppression)" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 9810,
+      "gwp100Ar6": 8060,
+      "atmosphericLifetimeYears": 242,
+      "snapStatus": "Fire suppression and specialty applications; high GWP under restriction"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "Primarily a fire suppression agent (FE-36). Limited refrigeration use due to high GWP."
+    },
+    "applications": [
+      "Fire suppression (FE-36, total flooding systems)",
+      "Specialty refrigeration"
+    ],
+    "replacementOptions": [],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": null
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R236FA)"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0"
+  },
+  "r-245fa": {
+    "displayName": "R-245fa",
+    "altSpellings": ["R245fa", "HFC-245fa"],
+    "chemicalName": "1,1,1,3,3-Pentafluoropropane",
+    "chemicalFormula": "CHF2CH2CF3",
+    "ashraeNumber": "R-245fa",
+    "type": "hfc-pure",
+    "safetyClass": "B1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R245fa",
+    "tradeNames": [
+      { "name": "Genetron 245fa", "manufacturer": "Honeywell" },
+      { "name": "Enovate 3000", "manufacturer": "Honeywell (foam blowing)" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 1030,
+      "gwp100Ar6": 962,
+      "atmosphericLifetimeYears": 7.9,
+      "snapStatus": "Approved for organic Rankine cycle and low-pressure chillers; AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "Low-pressure HFC for organic Rankine cycle and centrifugal chillers. Class B1 indicates higher toxicity than typical HFCs."
+    },
+    "applications": [
+      "Organic Rankine cycle (geothermal, waste heat recovery)",
+      "Low-pressure centrifugal chillers",
+      "Foam blowing agent (polyurethane)"
+    ],
+    "replacementOptions": ["r-1233zd-e", "r-1336mzz-z"],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R245fa)", "Honeywell Genetron 245fa datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-290": {
+    "displayName": "R-290",
+    "altSpellings": ["R290", "Propane", "HC-290"],
+    "chemicalName": "Propane",
+    "chemicalFormula": "C3H8",
+    "ashraeNumber": "R-290",
+    "type": "hc",
+    "safetyClass": "A3",
+    "strategy": "coolprop",
+    "cpIdentifier": "Propane",
+    "tradeNames": [
+      { "name": "Care 40", "manufacturer": "Care Refrigerants" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 3,
+      "gwp100Ar6": 0.072,
+      "atmosphericLifetimeYears": 0.04,
+      "snapStatus": "Listed acceptable for household refrigerators, freezers, and small commercial refrigeration with charge limits; class A3 — highly flammable"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB", "PAO"],
+      "incompatible": ["POE"],
+      "notes": "Highly flammable (A3). EPA charge limits apply: 150 g for household refrigerators, increasing limits for commercial under updated SNAP rules. HC-rated equipment design with sealed systems and leak detection is mandatory."
+    },
+    "applications": [
+      "Household refrigerators and freezers (Europe widely; US increasingly)",
+      "Small commercial refrigeration (display cases, ice machines)",
+      "Heat pumps (small residential, R-290 monobloc designs growing)"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-22", "r-134a", "r-404a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (Propane)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-32": {
+    "displayName": "R-32",
+    "altSpellings": ["R32", "HFC-32", "Difluoromethane"],
+    "chemicalName": "Difluoromethane",
+    "chemicalFormula": "CH2F2",
+    "ashraeNumber": "R-32",
+    "type": "hfc-pure",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "R32",
+    "tradeNames": [
+      { "name": "Forane 32", "manufacturer": "Arkema" },
+      { "name": "Genetron 32", "manufacturer": "Honeywell" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 675,
+      "gwp100Ar6": 771,
+      "atmosphericLifetimeYears": 5.2,
+      "snapStatus": "Listed acceptable for residential and light commercial AC; class A2L — mildly flammable, special handling required"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO", "AB"],
+      "notes": "POE required. A2L mild flammability: low burning velocity, but requires A2L-rated equipment, leak detection, and ventilation per UL 60335-2-40 / ASHRAE 15."
+    },
+    "applications": [
+      "Residential central air conditioning (replacing R-410A in new equipment)",
+      "Heat pumps (residential and light commercial)",
+      "VRF/VRV systems",
+      "Light commercial split systems"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-410a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R32)", "Arkema Forane 32 datasheet", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-365mfc": {
+    "displayName": "R-365mfc",
+    "altSpellings": ["R365mfc", "HFC-365mfc"],
+    "chemicalName": "1,1,1,3,3-Pentafluorobutane",
+    "chemicalFormula": "CF3CH2CF2CH3",
+    "ashraeNumber": "R-365mfc",
+    "type": "hfc-pure",
+    "safetyClass": "A2",
+    "strategy": "coolprop",
+    "cpIdentifier": "R365MFC",
+    "tradeNames": [
+      { "name": "Solkane 365mfc", "manufacturer": "Solvay" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 794,
+      "gwp100Ar6": 914,
+      "atmosphericLifetimeYears": 8.7,
+      "snapStatus": "Primarily foam blowing applications"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "Class A2 (flammable). Primarily used as a foam blowing agent for polyurethane insulation. Limited refrigeration use."
+    },
+    "applications": [
+      "Foam blowing agent (polyurethane insulation)",
+      "Solvent applications",
+      "Limited refrigeration use"
+    ],
+    "replacementOptions": [],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R365MFC)"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0"
+  },
+  "r-404a": {
+    "displayName": "R-404A",
+    "altSpellings": ["R404A", "404A"],
+    "chemicalName": "Ternary HFC blend",
+    "chemicalFormula": "R-143a/R-125/R-134a (52/44/4)",
+    "ashraeNumber": "R-404A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R404A.mix",
+    "tradeNames": [
+      { "name": "Suva HP62", "manufacturer": "Chemours (historical: DuPont)" },
+      { "name": "Forane 404A", "manufacturer": "Arkema" },
+      { "name": "Genetron 404A", "manufacturer": "Honeywell" }
+    ],
+    "composition": [
+      { "component": "R-143a", "massFraction": 0.52 },
+      { "component": "R-125",  "massFraction": 0.44 },
+      { "component": "R-134a", "massFraction": 0.04 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 3922,
+      "gwp100Ar6": 4728,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "AIM Act phase-down affected; SNAP delisted for many new equipment categories"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO", "AB"],
+      "notes": "POE required. The standard low-/medium-temperature commercial refrigeration HFC for two decades; high GWP (~3922) makes it the primary phase-down target in commercial refrigeration."
+    },
+    "applications": [
+      "Commercial refrigeration (supermarket cases, walk-in coolers/freezers)",
+      "Low-temperature transport refrigeration",
+      "Ice machines"
+    ],
+    "replacementOptions": ["r-448a", "r-449a", "r-454c", "r-455a", "r-290", "r-744"],
+    "replaces": ["r-502", "r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": false
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R404A.mix)", "Arkema Forane 404A PT chart", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-407a": {
+    "displayName": "R-407A",
+    "altSpellings": ["R407A", "407A"],
+    "chemicalName": "Ternary HFC blend",
+    "chemicalFormula": "R-32/R-125/R-134a (20/40/40)",
+    "ashraeNumber": "R-407A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R407A.mix",
+    "tradeNames": [
+      { "name": "Forane 407A", "manufacturer": "Arkema" }
+    ],
+    "composition": [
+      { "component": "R-32",   "massFraction": 0.20 },
+      { "component": "R-125",  "massFraction": 0.40 },
+      { "component": "R-134a", "massFraction": 0.40 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2107,
+      "gwp100Ar6": 2298,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for some commercial refrigeration; AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. Used as a medium-/low-temperature R-22 retrofit, also as a lower-GWP alternative to R-404A in commercial refrigeration. Significant temperature glide (~5-6 K)."
+    },
+    "applications": [
+      "Commercial refrigeration (medium and low temp)",
+      "R-22 / R-404A retrofit",
+      "Supermarket display cases"
+    ],
+    "replacementOptions": ["r-448a", "r-449a", "r-455a"],
+    "replaces": ["r-22", "r-404a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R407A.mix)", "Arkema Forane 407A datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-407c": {
+    "displayName": "R-407C",
+    "altSpellings": ["R407C", "407C"],
+    "chemicalName": "Ternary HFC blend",
+    "chemicalFormula": "R-32/R-125/R-134a (23/25/52)",
+    "ashraeNumber": "R-407C",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R407C.mix",
+    "tradeNames": [
+      { "name": "Suva 407C", "manufacturer": "Chemours" },
+      { "name": "Forane 407C", "manufacturer": "Arkema" },
+      { "name": "Genetron 407C", "manufacturer": "Honeywell" }
+    ],
+    "composition": [
+      { "component": "R-32",   "massFraction": 0.23 },
+      { "component": "R-125",  "massFraction": 0.25 },
+      { "component": "R-134a", "massFraction": 0.52 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 1774,
+      "gwp100Ar6": 1908,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable; AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. The most common R-22 drop-in retrofit. Substantial temperature glide (~7-8 K) — TXV systems should be retuned and EXV is preferred for new equipment. Closely matches R-22 operating pressures."
+    },
+    "applications": [
+      "Residential and light commercial AC (R-22 retrofit)",
+      "Heat pumps (R-22 retrofit)",
+      "Medium-temperature commercial refrigeration",
+      "Chillers"
+    ],
+    "replacementOptions": ["r-32", "r-454b", "r-452b"],
+    "replaces": ["r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R407C.mix)", "Arkema Forane 407C PT chart", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-407f": {
+    "displayName": "R-407F",
+    "altSpellings": ["R407F", "407F"],
+    "chemicalName": "Ternary HFC blend",
+    "chemicalFormula": "R-32/R-125/R-134a (30/30/40)",
+    "ashraeNumber": "R-407F",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R407F.mix",
+    "tradeNames": [
+      { "name": "Genetron Performax LT", "manufacturer": "Honeywell" }
+    ],
+    "composition": [
+      { "component": "R-32",   "massFraction": 0.30 },
+      { "component": "R-125",  "massFraction": 0.30 },
+      { "component": "R-134a", "massFraction": 0.40 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 1825,
+      "gwp100Ar6": 1990,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for commercial refrigeration; AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. Designed as a lower-GWP, higher-capacity alternative to R-404A in commercial refrigeration. Significant temperature glide."
+    },
+    "applications": [
+      "Commercial refrigeration (medium and low temp)",
+      "Supermarket display cases",
+      "R-404A retrofit (lower GWP, similar capacity)"
+    ],
+    "replacementOptions": ["r-448a", "r-449a", "r-455a"],
+    "replaces": ["r-22", "r-404a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R407F.mix)", "Honeywell Genetron Performax LT datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-410a": {
+    "displayName": "R-410A",
+    "altSpellings": ["R410A", "410A", "R-410a", "Puron"],
+    "chemicalName": "Binary HFC blend",
+    "chemicalFormula": "R-32/R-125 (50/50)",
+    "ashraeNumber": "R-410A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R410A.mix",
+    "tradeNames": [
+      { "name": "Puron", "manufacturer": "Carrier" },
+      { "name": "Genetron AZ-20", "manufacturer": "Honeywell" },
+      { "name": "Suva 410A", "manufacturer": "Chemours" },
+      { "name": "Forane 410A", "manufacturer": "Arkema" }
+    ],
+    "composition": [
+      { "component": "R-32",  "massFraction": 0.50 },
+      { "component": "R-125", "massFraction": 0.50 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2088,
+      "gwp100Ar6": 2256,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "AIM Act phase-down affected; SNAP delisted for new residential AC equipment as of Jan 1, 2025"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO", "AB"],
+      "notes": "POE required. Near-azeotropic (glide <1°F) so it behaves close to a pure refrigerant. Operating pressures roughly 60% higher than equivalent R-22 systems — gauges, hoses, and recovery equipment must be appropriately rated."
+    },
+    "applications": [
+      "Residential central air conditioning (existing equipment)",
+      "Heat pumps (residential and light commercial)",
+      "Light commercial split systems",
+      "Packaged rooftop units (legacy)"
+    ],
+    "replacementOptions": ["r-32", "r-454b", "r-452b"],
+    "replaces": ["r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R410A.mix)", "Arkema Forane 410A PT chart", "Honeywell Genetron AZ-20 PT chart", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-417a": {
+    "displayName": "R-417A",
+    "altSpellings": ["R417A", "417A"],
+    "chemicalName": "Ternary HFC blend with isobutane",
+    "chemicalFormula": "R-125/R-134a/R-600 (46.6/50.0/3.4)",
+    "ashraeNumber": "R-417A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R417A.mix",
+    "tradeNames": [
+      { "name": "ISCEON MO59", "manufacturer": "Chemours (historical)" }
+    ],
+    "composition": [
+      { "component": "R-125",  "massFraction": 0.466 },
+      { "component": "R-134a", "massFraction": 0.500 },
+      { "component": "R-600",  "massFraction": 0.034 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2346,
+      "gwp100Ar6": 2530,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB", "POE"],
+      "incompatible": [],
+      "notes": "Designed as a mineral-oil-compatible R-22 retrofit (the hydrocarbon component aids miscibility). One of the few HFC blends that does not require an oil change from R-22 systems."
+    },
+    "applications": [
+      "R-22 retrofit (mineral-oil compatible)",
+      "Residential and light commercial AC",
+      "Heat pumps"
+    ],
+    "replacementOptions": ["r-32", "r-454b"],
+    "replaces": ["r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R417A.mix)"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-421a": {
+    "displayName": "R-421A",
+    "altSpellings": ["R421A", "421A"],
+    "chemicalName": "Binary HFC blend",
+    "chemicalFormula": "R-125/R-134a (58/42)",
+    "ashraeNumber": "R-421A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R421A.mix",
+    "tradeNames": [
+      { "name": "Choice R-421A", "manufacturer": "ICOR International" }
+    ],
+    "composition": [
+      { "component": "R-125",  "massFraction": 0.58 },
+      { "component": "R-134a", "massFraction": 0.42 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2630,
+      "gwp100Ar6": 2820,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["POE", "MO", "AB"],
+      "incompatible": [],
+      "notes": "R-22 retrofit option. Mineral oil compatibility makes it a low-effort retrofit choice."
+    },
+    "applications": [
+      "R-22 retrofit (commercial AC, heat pumps)",
+      "Medium-temperature refrigeration"
+    ],
+    "replacementOptions": ["r-32", "r-454b"],
+    "replaces": ["r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R421A.mix)"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-422a": {
+    "displayName": "R-422A",
+    "altSpellings": ["R422A", "422A"],
+    "chemicalName": "Ternary HFC blend with isobutane",
+    "chemicalFormula": "R-125/R-134a/R-600a (85.1/11.5/3.4)",
+    "ashraeNumber": "R-422A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R422A.mix",
+    "tradeNames": [
+      { "name": "ISCEON MO79", "manufacturer": "Chemours" }
+    ],
+    "composition": [
+      { "component": "R-125",  "massFraction": 0.851 },
+      { "component": "R-134a", "massFraction": 0.115 },
+      { "component": "R-600a", "massFraction": 0.034 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 3143,
+      "gwp100Ar6": 3370,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed for R-502 / R-22 retrofit (low-temp); AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB", "POE"],
+      "incompatible": [],
+      "notes": "Mineral-oil-compatible retrofit for R-502 and R-22 low-temperature systems."
+    },
+    "applications": [
+      "R-502 retrofit (low-temperature commercial refrigeration)",
+      "R-22 retrofit (low-temp)"
+    ],
+    "replacementOptions": ["r-448a", "r-449a", "r-455a"],
+    "replaces": ["r-502", "r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R422A.mix)"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-422b": {
+    "displayName": "R-422B",
+    "altSpellings": ["R422B", "422B"],
+    "chemicalName": "Ternary HFC blend with isobutane",
+    "chemicalFormula": "R-125/R-134a/R-600a (55/42/3)",
+    "ashraeNumber": "R-422B",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R422B.mix",
+    "tradeNames": [],
+    "composition": [
+      { "component": "R-125",  "massFraction": 0.55 },
+      { "component": "R-134a", "massFraction": 0.42 },
+      { "component": "R-600a", "massFraction": 0.03 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2526,
+      "gwp100Ar6": 2710,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB", "POE"],
+      "incompatible": [],
+      "notes": "Mineral-oil-compatible R-22 retrofit. Less common than R-422A or R-422D in practice."
+    },
+    "applications": [
+      "R-22 retrofit (medium-temperature)",
+      "Commercial AC retrofit"
+    ],
+    "replacementOptions": ["r-32", "r-454b"],
+    "replaces": ["r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R422B.mix)"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-422d": {
+    "displayName": "R-422D",
+    "altSpellings": ["R422D", "422D"],
+    "chemicalName": "Ternary HFC blend with isobutane",
+    "chemicalFormula": "R-125/R-134a/R-600a (65.1/31.5/3.4)",
+    "ashraeNumber": "R-422D",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R422D.mix",
+    "tradeNames": [
+      { "name": "ISCEON MO29", "manufacturer": "Chemours" }
+    ],
+    "composition": [
+      { "component": "R-125",  "massFraction": 0.651 },
+      { "component": "R-134a", "massFraction": 0.315 },
+      { "component": "R-600a", "massFraction": 0.034 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2729,
+      "gwp100Ar6": 2930,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB", "POE"],
+      "incompatible": [],
+      "notes": "Mineral-oil-compatible R-22 retrofit. Popular medium-temperature drop-in option for commercial AC where oil change is impractical."
+    },
+    "applications": [
+      "R-22 retrofit (medium-temperature commercial AC)",
+      "Heat pumps (legacy retrofit)"
+    ],
+    "replacementOptions": ["r-32", "r-454b"],
+    "replaces": ["r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R422D.mix)", "Chemours ISCEON MO29 datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-427a": {
+    "displayName": "R-427A",
+    "altSpellings": ["R427A", "427A", "Forane 427A"],
+    "chemicalName": "Quaternary HFC blend",
+    "chemicalFormula": "R-32/R-125/R-143a/R-134a (15/25/10/50)",
+    "ashraeNumber": "R-427A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R427A.mix",
+    "tradeNames": [
+      { "name": "Forane 427A", "manufacturer": "Arkema" }
+    ],
+    "composition": [
+      { "component": "R-32",   "massFraction": 0.15 },
+      { "component": "R-125",  "massFraction": 0.25 },
+      { "component": "R-143a", "massFraction": 0.10 },
+      { "component": "R-134a", "massFraction": 0.50 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2138,
+      "gwp100Ar6": 2370,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB", "POE"],
+      "incompatible": [],
+      "notes": "Marketed as 'simple retrofit' from R-22 — designed to work with any of MO/AB/POE oils."
+    },
+    "applications": [
+      "R-22 retrofit (commercial AC, heat pumps, supermarket refrigeration)",
+      "Compatible with mineral oil systems"
+    ],
+    "replacementOptions": ["r-32", "r-454b"],
+    "replaces": ["r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["Arkema Forane 427A technical datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "Arkema Forane 427A datasheet + ASHRAE Standard 34-2022"
+  },
+  "r-438a": {
+    "displayName": "R-438A",
+    "altSpellings": ["R438A", "438A", "Genetron MO99"],
+    "chemicalName": "Five-component HFC blend with hydrocarbons",
+    "chemicalFormula": "R-32/R-125/R-134a/R-600/R-601a (8.5/45/44.2/1.7/0.6)",
+    "ashraeNumber": "R-438A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "manual",
+    "cpIdentifier": null,
+    "tradeNames": [
+      { "name": "Genetron MO99", "manufacturer": "Honeywell" }
+    ],
+    "composition": [
+      { "component": "R-32",    "massFraction": 0.085 },
+      { "component": "R-125",   "massFraction": 0.450 },
+      { "component": "R-134a",  "massFraction": 0.442 },
+      { "component": "R-600",   "massFraction": 0.017 },
+      { "component": "R-601a",  "massFraction": 0.006 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2265,
+      "gwp100Ar6": 2440,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB", "POE"],
+      "incompatible": [],
+      "notes": "Hydrocarbon components aid miscibility with mineral oil. Marketed by Honeywell as a 'no oil change' R-22 retrofit."
+    },
+    "applications": [
+      "R-22 retrofit (commercial AC, refrigeration)",
+      "Compatible with mineral oil systems"
+    ],
+    "replacementOptions": ["r-32", "r-454b"],
+    "replaces": ["r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["Honeywell Genetron MO99 technical datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "Honeywell Genetron MO99 datasheet + ASHRAE Standard 34-2022"
+  },
+  "r-448a": {
+    "displayName": "R-448A",
+    "altSpellings": ["R448A", "448A", "Solstice N40"],
+    "chemicalName": "Five-component HFC/HFO blend",
+    "chemicalFormula": "R-32/R-125/R-1234yf/R-134a/R-1234ze (26/26/20/21/7)",
+    "ashraeNumber": "R-448A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "manual",
+    "cpIdentifier": null,
+    "tradeNames": [
+      { "name": "Solstice N40", "manufacturer": "Honeywell" }
+    ],
+    "composition": [
+      { "component": "R-32",        "massFraction": 0.26 },
+      { "component": "R-125",       "massFraction": 0.26 },
+      { "component": "R-1234yf",    "massFraction": 0.20 },
+      { "component": "R-134a",      "massFraction": 0.21 },
+      { "component": "R-1234ze(E)", "massFraction": 0.07 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 1387,
+      "gwp100Ar6": 1421,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for commercial refrigeration; replacement for R-404A and R-22 in medium/low-temp applications"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO", "AB"],
+      "notes": "POE required. Designed as a lower-GWP replacement for R-404A in commercial refrigeration. Significant glide (~5 K)."
+    },
+    "applications": [
+      "Commercial refrigeration (supermarket cases, walk-in coolers)",
+      "Medium and low-temperature refrigeration",
+      "R-404A retrofit candidate"
+    ],
+    "replacementOptions": ["r-454c", "r-455a", "r-744"],
+    "replaces": ["r-404a", "r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["Honeywell Solstice N40 PT chart 2023", "ASHRAE Standard 34-2022 Designation R-448A"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "Honeywell Solstice N40 datasheet + ASHRAE Standard 34-2022"
+  },
+  "r-449a": {
+    "displayName": "R-449A",
+    "altSpellings": ["R449A", "449A", "Opteon XP40"],
+    "chemicalName": "Quaternary HFC/HFO blend",
+    "chemicalFormula": "R-32/R-125/R-1234yf/R-134a (24.3/24.7/25.3/25.7)",
+    "ashraeNumber": "R-449A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R449A.mix",
+    "tradeNames": [
+      { "name": "Opteon XP40", "manufacturer": "Chemours" }
+    ],
+    "composition": [
+      { "component": "R-32",     "massFraction": 0.243 },
+      { "component": "R-125",    "massFraction": 0.247 },
+      { "component": "R-1234yf", "massFraction": 0.253 },
+      { "component": "R-134a",   "massFraction": 0.257 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 1397,
+      "gwp100Ar6": 1430,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for commercial refrigeration; R-404A and R-22 replacement"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO", "AB"],
+      "notes": "POE required. Lower-GWP R-404A replacement, similar capacity. Significant temperature glide."
+    },
+    "applications": [
+      "Commercial refrigeration (medium/low temp)",
+      "Supermarket display cases",
+      "R-404A retrofit"
+    ],
+    "replacementOptions": ["r-454c", "r-455a", "r-744"],
+    "replaces": ["r-404a", "r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R449A.mix)", "Chemours Opteon XP40 datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-450a": {
+    "displayName": "R-450A",
+    "altSpellings": ["R450A", "450A", "Opteon XP10"],
+    "chemicalName": "Binary HFC/HFO blend",
+    "chemicalFormula": "R-134a/R-1234ze(E) (42/58)",
+    "ashraeNumber": "R-450A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "manual",
+    "cpIdentifier": null,
+    "tradeNames": [
+      { "name": "Opteon XP10", "manufacturer": "Chemours" }
+    ],
+    "composition": [
+      { "component": "R-134a",      "massFraction": 0.42 },
+      { "component": "R-1234ze(E)", "massFraction": 0.58 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 605,
+      "gwp100Ar6": 645,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable; commercial refrigeration and chillers"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. Lower-GWP R-134a alternative for medium-temp commercial refrigeration, chillers, and heat pumps. Low glide (~0.5 K)."
+    },
+    "applications": [
+      "Medium-temperature commercial refrigeration",
+      "Centrifugal and screw chillers",
+      "R-134a retrofit"
+    ],
+    "replacementOptions": ["r-1234yf", "r-513a", "r-516a"],
+    "replaces": ["r-134a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["Chemours Opteon XP10 PT chart"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "Chemours Opteon XP10 datasheet + ASHRAE Standard 34-2022"
+  },
+  "r-452a": {
+    "displayName": "R-452A",
+    "altSpellings": ["R452A", "452A", "Opteon XP44"],
+    "chemicalName": "Ternary HFC/HFO blend",
+    "chemicalFormula": "R-32/R-125/R-1234yf (11/59/30)",
+    "ashraeNumber": "R-452A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R452A.mix",
+    "tradeNames": [
+      { "name": "Opteon XP44", "manufacturer": "Chemours" }
+    ],
+    "composition": [
+      { "component": "R-32",     "massFraction": 0.11 },
+      { "component": "R-125",    "massFraction": 0.59 },
+      { "component": "R-1234yf", "massFraction": 0.30 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2140,
+      "gwp100Ar6": 2293,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for transport refrigeration; R-404A replacement"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. Targeted at transport refrigeration where R-404A pressure/capacity match matters. Lower GWP than R-404A but still significant."
+    },
+    "applications": [
+      "Transport refrigeration (truck, trailer, marine)",
+      "Commercial refrigeration",
+      "R-404A retrofit"
+    ],
+    "replacementOptions": ["r-454c", "r-455a"],
+    "replaces": ["r-404a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R452A.mix)", "Chemours Opteon XP44 datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-452b": {
+    "displayName": "R-452B",
+    "altSpellings": ["R452B", "452B", "Opteon XL55"],
+    "chemicalName": "Ternary HFC/HFO blend",
+    "chemicalFormula": "R-32/R-1234yf/R-125 (67/26/7)",
+    "ashraeNumber": "R-452B",
+    "type": "hfo-blend",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "HEOS::R32[0.81813]&R1234yf[0.14484]&R125[0.03704]",
+    "tradeNames": [
+      { "name": "Opteon XL55", "manufacturer": "Chemours" },
+      { "name": "Solstice 452B", "manufacturer": "Honeywell" }
+    ],
+    "composition": [
+      { "component": "R-32",     "massFraction": 0.67 },
+      { "component": "R-1234yf", "massFraction": 0.26 },
+      { "component": "R-125",    "massFraction": 0.07 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 698,
+      "gwp100Ar6": 766,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for residential and light commercial AC; class A2L"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. A2L — mildly flammable. Long-term R-410A replacement with very similar operating pressures (within ~5%), enabling near drop-in compatibility for compatible-rated equipment."
+    },
+    "applications": [
+      "Residential and light commercial AC (R-410A replacement)",
+      "Heat pumps",
+      "VRF/VRV systems"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-410a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (HEOS R452B composition)", "Chemours Opteon XL55 datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-454b": {
+    "displayName": "R-454B",
+    "altSpellings": ["R454B", "454B", "Opteon XL41", "Puron Advance"],
+    "chemicalName": "Binary HFC/HFO blend",
+    "chemicalFormula": "R-32/R-1234yf (68.9/31.1)",
+    "ashraeNumber": "R-454B",
+    "type": "hfo-blend",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "R454B.mix",
+    "tradeNames": [
+      { "name": "Opteon XL41", "manufacturer": "Chemours" },
+      { "name": "Puron Advance", "manufacturer": "Carrier" }
+    ],
+    "composition": [
+      { "component": "R-32",     "massFraction": 0.689 },
+      { "component": "R-1234yf", "massFraction": 0.311 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 466,
+      "gwp100Ar6": 532,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for residential and light commercial AC; class A2L — leading R-410A replacement in US for 2025+ equipment"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. A2L — mildly flammable. The current leading R-410A replacement in US residential split systems. Similar pressures to R-410A; equipment is rated for A2L handling."
+    },
+    "applications": [
+      "Residential central air conditioning (R-410A replacement)",
+      "Heat pumps (residential and light commercial)",
+      "Light commercial split systems",
+      "VRF systems"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-410a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R454B.mix)", "Chemours Opteon XL41 datasheet", "Carrier Puron Advance documentation"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-454c": {
+    "displayName": "R-454C",
+    "altSpellings": ["R454C", "454C", "Opteon XL20"],
+    "chemicalName": "Binary HFC/HFO blend",
+    "chemicalFormula": "R-32/R-1234yf (21.5/78.5)",
+    "ashraeNumber": "R-454C",
+    "type": "hfo-blend",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "HEOS::R32[0.37514]&R1234yf[0.62486]",
+    "tradeNames": [
+      { "name": "Opteon XL20", "manufacturer": "Chemours" }
+    ],
+    "composition": [
+      { "component": "R-32",     "massFraction": 0.215 },
+      { "component": "R-1234yf", "massFraction": 0.785 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 148,
+      "gwp100Ar6": 167,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for commercial refrigeration; class A2L; below EU F-Gas 150 threshold"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. A2L. Very low GWP — meets EU F-Gas <150 threshold for stationary refrigeration. Targeted at low/medium-temp commercial refrigeration."
+    },
+    "applications": [
+      "Commercial refrigeration (low and medium temp)",
+      "Supermarket cases",
+      "R-404A retrofit",
+      "Heat pumps"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-404a", "r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (HEOS R454C composition)", "Chemours Opteon XL20 datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-455a": {
+    "displayName": "R-455A",
+    "altSpellings": ["R455A", "455A", "Solstice L40X"],
+    "chemicalName": "Ternary CO2/HFC/HFO blend",
+    "chemicalFormula": "CO2/R-32/R-1234yf (3/21.5/75.5)",
+    "ashraeNumber": "R-455A",
+    "type": "hfo-blend",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "HEOS::CarbonDioxide[0.05962]&R32[0.36141]&R1234yf[0.57897]",
+    "tradeNames": [
+      { "name": "Solstice L40X", "manufacturer": "Honeywell" }
+    ],
+    "composition": [
+      { "component": "CO2",      "massFraction": 0.03 },
+      { "component": "R-32",     "massFraction": 0.215 },
+      { "component": "R-1234yf", "massFraction": 0.755 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 148,
+      "gwp100Ar6": 167,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for commercial refrigeration; class A2L; below EU F-Gas 150 threshold"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. A2L. Very low GWP — meets EU F-Gas <150 threshold. CO2 component contributes a significant temperature glide (~7-9 K)."
+    },
+    "applications": [
+      "Commercial refrigeration (low and medium temp)",
+      "Supermarket cases",
+      "R-404A retrofit (Honeywell L40X product line)"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-404a", "r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (HEOS R455A composition)", "Honeywell Solstice L40X datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-457a": {
+    "displayName": "R-457A",
+    "altSpellings": ["R457A", "457A"],
+    "chemicalName": "Ternary HFC/HFO blend",
+    "chemicalFormula": "R-32/R-152a/R-1234yf (18/12/70)",
+    "ashraeNumber": "R-457A",
+    "type": "hfo-blend",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "HEOS::R32[0.30312]&R152a[0.15916]&R1234yf[0.53772]",
+    "tradeNames": [],
+    "composition": [
+      { "component": "R-32",     "massFraction": 0.18 },
+      { "component": "R-152a",   "massFraction": 0.12 },
+      { "component": "R-1234yf", "massFraction": 0.70 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 139,
+      "gwp100Ar6": 156,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Below EU F-Gas 150 threshold; commercial refrigeration applications"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. A2L. Very low GWP. Less commonly deployed than R-454C or R-455A but offers similar performance envelope."
+    },
+    "applications": [
+      "Commercial refrigeration (medium temp)",
+      "R-404A retrofit option"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-404a", "r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (HEOS R457A composition)"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-500": {
+    "displayName": "R-500",
+    "altSpellings": ["R500"],
+    "chemicalName": "Azeotropic CFC/HFC blend",
+    "chemicalFormula": "R-12/R-152a (73.8/26.2)",
+    "ashraeNumber": "R-500",
+    "type": "cfc",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R500.mix",
+    "tradeNames": [],
+    "composition": [
+      { "component": "R-12",   "massFraction": 0.738 },
+      { "component": "R-152a", "massFraction": 0.262 }
+    ],
+    "environmental": {
+      "odp": 0.605,
+      "gwp100Ar5": 8077,
+      "gwp100Ar6": null,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "CFC blend; production banned under the Montreal Protocol (US: 1996)"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB"],
+      "incompatible": ["POE"],
+      "notes": "Azeotropic CFC blend with no glide. Historically used in 60 Hz markets as a higher-capacity alternative to R-12 in 50 Hz applications. Banned for production."
+    },
+    "applications": [
+      "Centrifugal chillers (legacy)",
+      "Commercial refrigeration (legacy)"
+    ],
+    "replacementOptions": ["r-134a", "r-450a"],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": true,
+      "epaPhaseoutDate": "1996-01-01",
+      "aimActAffected": false,
+      "snapApproved": false
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R500.mix)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-502": {
+    "displayName": "R-502",
+    "altSpellings": ["R502"],
+    "chemicalName": "Azeotropic HCFC/CFC blend",
+    "chemicalFormula": "R-22/R-115 (48.8/51.2)",
+    "ashraeNumber": "R-502",
+    "type": "hcfc",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R502.mix",
+    "tradeNames": [],
+    "composition": [
+      { "component": "R-22",  "massFraction": 0.488 },
+      { "component": "R-115", "massFraction": 0.512 }
+    ],
+    "environmental": {
+      "odp": 0.221,
+      "gwp100Ar5": 4657,
+      "gwp100Ar6": null,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Production banned under the Montreal Protocol (R-115 component is a CFC)"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB"],
+      "incompatible": ["POE"],
+      "notes": "Azeotrope with no glide. Historically the dominant low-temperature commercial refrigerant for supermarkets. Banned because R-115 is a CFC."
+    },
+    "applications": [
+      "Low-temperature commercial refrigeration (legacy)",
+      "Supermarket frozen food cases (legacy)"
+    ],
+    "replacementOptions": ["r-404a", "r-507a", "r-448a", "r-449a", "r-454c"],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": true,
+      "epaPhaseoutDate": "1996-01-01",
+      "aimActAffected": false,
+      "snapApproved": false
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R502.mix)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-503": {
+    "displayName": "R-503",
+    "altSpellings": ["R503"],
+    "chemicalName": "Binary HFC/CFC azeotropic blend",
+    "chemicalFormula": "R-23/R-13 (40.1/59.9)",
+    "ashraeNumber": "R-503",
+    "type": "cfc",
+    "safetyClass": "A1",
+    "strategy": "manual",
+    "cpIdentifier": null,
+    "tradeNames": [],
+    "composition": [
+      { "component": "R-23", "massFraction": 0.401 },
+      { "component": "R-13", "massFraction": 0.599 }
+    ],
+    "environmental": {
+      "odp": 0.599,
+      "gwp100Ar5": 13600,
+      "gwp100Ar6": null,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Production banned under the Montreal Protocol (R-13 is a CFC)"
+    },
+    "lubricants": {
+      "compatible": ["MO"],
+      "incompatible": ["POE"],
+      "notes": "Azeotrope. Historically used as the low-stage refrigerant in cascade systems for environmental test chambers and cryogenic applications. Banned for production."
+    },
+    "applications": [
+      "Cascade low-stage refrigeration (legacy)",
+      "Cryogenic and ultra-low-temperature systems (legacy)"
+    ],
+    "replacementOptions": ["r-744"],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": true,
+      "epaPhaseoutDate": "1996-01-01",
+      "aimActAffected": false,
+      "snapApproved": false
+    },
+    "verifiedAgainst": ["ASHRAE Handbook of Refrigeration 2022 (historical tables)"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "ASHRAE Handbook of Refrigeration 2022 (historical tables)"
+  },
+  "r-507a": {
+    "displayName": "R-507A",
+    "altSpellings": ["R507A", "R507", "507A", "Suva 507"],
+    "chemicalName": "Binary HFC azeotropic blend",
+    "chemicalFormula": "R-125/R-143a (50/50)",
+    "ashraeNumber": "R-507A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R507A.mix",
+    "tradeNames": [
+      { "name": "Suva 507", "manufacturer": "Chemours" },
+      { "name": "Forane 507", "manufacturer": "Arkema" },
+      { "name": "Genetron AZ-50", "manufacturer": "Honeywell" }
+    ],
+    "composition": [
+      { "component": "R-125",  "massFraction": 0.50 },
+      { "component": "R-143a", "massFraction": 0.50 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 3985,
+      "gwp100Ar6": 4775,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "AIM Act phase-down affected; SNAP delisted for many new commercial refrigeration categories"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. Azeotrope — no glide. Used in low-temperature commercial refrigeration as an alternative to R-404A. Higher GWP than R-404A; primary phase-down target."
+    },
+    "applications": [
+      "Low-temperature commercial refrigeration",
+      "Supermarket frozen food",
+      "Ice machines",
+      "Transport refrigeration"
+    ],
+    "replacementOptions": ["r-448a", "r-449a", "r-454c", "r-455a", "r-744"],
+    "replaces": ["r-502"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": false
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R507A.mix)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-513a": {
+    "displayName": "R-513A",
+    "altSpellings": ["R513A", "513A", "Opteon XP10 (alt)", "Solstice N13"],
+    "chemicalName": "Binary HFC/HFO blend",
+    "chemicalFormula": "R-134a/R-1234yf (44/56)",
+    "ashraeNumber": "R-513A",
+    "type": "hfc-blend",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "R513A.mix",
+    "tradeNames": [
+      { "name": "Opteon XP10", "manufacturer": "Chemours (alternative product line)" },
+      { "name": "Solstice N13", "manufacturer": "Honeywell" }
+    ],
+    "composition": [
+      { "component": "R-134a",   "massFraction": 0.44 },
+      { "component": "R-1234yf", "massFraction": 0.56 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 631,
+      "gwp100Ar6": 673,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for chillers, commercial refrigeration, and heat pumps"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. Near-azeotropic (low glide). Lower-GWP R-134a replacement for chillers and medium-temp refrigeration."
+    },
+    "applications": [
+      "Centrifugal and screw chillers",
+      "Medium-temperature commercial refrigeration",
+      "Heat pumps",
+      "R-134a retrofit (drop-in compatible in many systems)"
+    ],
+    "replacementOptions": ["r-1234yf", "r-450a", "r-516a"],
+    "replaces": ["r-134a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": true,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (R513A.mix)", "Chemours Opteon XP10 datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-514a": {
+    "displayName": "R-514A",
+    "altSpellings": ["R514A", "514A", "Opteon XP30"],
+    "chemicalName": "Binary HFO/HCO blend",
+    "chemicalFormula": "R-1336mzz(Z)/R-1130(E) (74.7/25.3)",
+    "ashraeNumber": "R-514A",
+    "type": "hfo-blend",
+    "safetyClass": "B1",
+    "strategy": "manual",
+    "cpIdentifier": null,
+    "tradeNames": [
+      { "name": "Opteon XP30", "manufacturer": "Chemours" }
+    ],
+    "composition": [
+      { "component": "R-1336mzz(Z)", "massFraction": 0.747 },
+      { "component": "R-1130(E)",    "massFraction": 0.253 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 2,
+      "gwp100Ar6": null,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for low-pressure centrifugal chillers; replacement for R-123"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PVE"],
+      "incompatible": ["MO"],
+      "notes": "Very low GWP centrifugal chiller refrigerant. B1 safety class (higher toxicity than typical HFOs) — ventilation and leak detection required."
+    },
+    "applications": [
+      "Low-pressure centrifugal chillers (high-tonnage commercial)",
+      "R-123 replacement"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-123"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["Chemours Opteon XP30 technical datasheet"],
+    "gwpSource": "IPCC AR5 (composition-weighted approximation)",
+    "propertiesSource": "Chemours Opteon XP30 datasheet"
+  },
+  "r-515a": {
+    "displayName": "R-515A",
+    "altSpellings": ["R515A", "515A"],
+    "chemicalName": "Binary HFO/HFC azeotropic blend",
+    "chemicalFormula": "R-1234ze(E)/R-227ea (88/12)",
+    "ashraeNumber": "R-515A",
+    "type": "hfo-blend",
+    "safetyClass": "A1",
+    "strategy": "manual",
+    "cpIdentifier": null,
+    "tradeNames": [
+      { "name": "Solstice 515A", "manufacturer": "Honeywell" }
+    ],
+    "composition": [
+      { "component": "R-1234ze(E)", "massFraction": 0.88 },
+      { "component": "R-227ea",     "massFraction": 0.12 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 392,
+      "gwp100Ar6": 416,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for centrifugal chillers and medium-temp commercial refrigeration"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PVE"],
+      "incompatible": ["MO"],
+      "notes": "Near-azeotropic. A1 (non-flammable) — unlike pure R-1234ze(E) which is A2L. R-227ea addition shifts the blend to A1 classification."
+    },
+    "applications": [
+      "Centrifugal chillers",
+      "Medium-temperature commercial refrigeration",
+      "R-134a / R-1234ze retrofit where A1 is required"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-134a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["Honeywell Solstice 515A technical datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "Honeywell Solstice 515A datasheet"
+  },
+  "r-515b": {
+    "displayName": "R-515B",
+    "altSpellings": ["R515B", "515B", "Solstice N15"],
+    "chemicalName": "Binary HFO/HFC azeotropic blend",
+    "chemicalFormula": "R-1234ze(E)/R-227ea (91.1/8.9)",
+    "ashraeNumber": "R-515B",
+    "type": "hfo-blend",
+    "safetyClass": "A1",
+    "strategy": "manual",
+    "cpIdentifier": null,
+    "tradeNames": [
+      { "name": "Solstice N15", "manufacturer": "Honeywell" }
+    ],
+    "composition": [
+      { "component": "R-1234ze(E)", "massFraction": 0.911 },
+      { "component": "R-227ea",     "massFraction": 0.089 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 293,
+      "gwp100Ar6": 311,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for centrifugal chillers"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PVE"],
+      "incompatible": ["MO"],
+      "notes": "Azeotrope. A1 classification (non-flammable). Lower GWP than R-515A. R-227ea content stays just above the minimum needed to maintain A1 classification."
+    },
+    "applications": [
+      "Centrifugal chillers",
+      "Medium-temperature commercial refrigeration"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-134a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["Honeywell Solstice N15 technical datasheet"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "Honeywell Solstice N15 datasheet"
+  },
+  "r-516a": {
+    "displayName": "R-516A",
+    "altSpellings": ["R516A", "516A"],
+    "chemicalName": "Ternary HFO/HFC blend",
+    "chemicalFormula": "R-1234yf/R-134a/R-152a (77.5/8.5/14)",
+    "ashraeNumber": "R-516A",
+    "type": "hfo-blend",
+    "safetyClass": "A2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "HEOS::R1234yf[0.69711]&R134a[0.08545]&R152a[0.21744]",
+    "tradeNames": [],
+    "composition": [
+      { "component": "R-1234yf", "massFraction": 0.775 },
+      { "component": "R-134a",   "massFraction": 0.085 },
+      { "component": "R-152a",   "massFraction": 0.140 }
+    ],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 142,
+      "gwp100Ar6": 161,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable for some commercial refrigeration; below EU F-Gas 150 threshold"
+    },
+    "lubricants": {
+      "compatible": ["POE"],
+      "incompatible": ["MO"],
+      "notes": "POE required. A2L — mildly flammable. Low GWP (under 150). R-134a retrofit option in markets prioritizing low GWP."
+    },
+    "applications": [
+      "Medium-temperature commercial refrigeration",
+      "R-134a retrofit",
+      "Mobile AC alternative (specialty)"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-134a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (HEOS R516A composition)", "ASHRAE Standard 34-2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-600a": {
+    "displayName": "R-600a",
+    "altSpellings": ["R600a", "Isobutane", "HC-600a"],
+    "chemicalName": "Isobutane (2-methylpropane)",
+    "chemicalFormula": "C4H10 (isomer)",
+    "ashraeNumber": "R-600a",
+    "type": "hc",
+    "safetyClass": "A3",
+    "strategy": "coolprop",
+    "cpIdentifier": "IsoButane",
+    "tradeNames": [
+      { "name": "Care 30", "manufacturer": "Care Refrigerants" }
+    ],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 3,
+      "gwp100Ar6": 0.005,
+      "atmosphericLifetimeYears": 0.02,
+      "snapStatus": "Listed acceptable for household refrigeration and small commercial; class A3 — highly flammable"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB", "PAO"],
+      "incompatible": ["POE"],
+      "notes": "Highly flammable (A3). Mineral oil standard. EPA charge limit 150 g for household refrigerators; updated SNAP rules expanded to small commercial applications."
+    },
+    "applications": [
+      "Household refrigerators and freezers (dominant globally)",
+      "Wine coolers and small beverage merchandisers",
+      "Small commercial refrigeration"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-12", "r-134a"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (IsoButane)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-717": {
+    "displayName": "R-717",
+    "altSpellings": ["R717", "Ammonia", "NH3"],
+    "chemicalName": "Ammonia",
+    "chemicalFormula": "NH3",
+    "ashraeNumber": "R-717",
+    "type": "natural",
+    "safetyClass": "B2L",
+    "strategy": "coolprop",
+    "cpIdentifier": "Ammonia",
+    "tradeNames": [],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 0,
+      "gwp100Ar6": 0,
+      "atmosphericLifetimeYears": 0.01,
+      "snapStatus": "Listed acceptable for industrial refrigeration; class B2L — toxic and mildly flammable"
+    },
+    "lubricants": {
+      "compatible": ["MO", "AB", "PAO"],
+      "incompatible": ["POE"],
+      "notes": "Class B2L — TOXIC and mildly flammable. Workplace exposure limit (NIOSH IDLH 300 ppm; OSHA TWA 50 ppm). Industrial refrigeration standard for decades; charge handling, leak detection, and ventilation are strict regulatory requirements. Ammonia attacks copper — use steel piping and components."
+    },
+    "applications": [
+      "Industrial refrigeration (food processing, cold storage warehouses)",
+      "Ice rinks",
+      "Petrochemical processing",
+      "Large heat pumps (commercial/industrial)"
+    ],
+    "replacementOptions": [],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (Ammonia)", "ASHRAE Handbook of Refrigeration 2022", "IIAR (International Institute of Ammonia Refrigeration) standards"],
+    "gwpSource": "IPCC AR5 Table 8.A.1 (ammonia is not a GHG)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-744": {
+    "displayName": "R-744",
+    "altSpellings": ["R744", "CO2", "Carbon Dioxide"],
+    "chemicalName": "Carbon dioxide",
+    "chemicalFormula": "CO2",
+    "ashraeNumber": "R-744",
+    "type": "natural",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "CarbonDioxide",
+    "tradeNames": [],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 1,
+      "gwp100Ar6": 1,
+      "atmosphericLifetimeYears": null,
+      "snapStatus": "Listed acceptable broadly; the GWP=1 reference refrigerant"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PAG"],
+      "incompatible": ["MO"],
+      "notes": "Critical point at 31.0°C (87.8°F) — most commercial systems operate transcritically. Very high operating pressures (typically 60-130 bar). Specialty equipment, POE oil (specific CO2-rated formulations), and high-pressure components required."
+    },
+    "applications": [
+      "Commercial refrigeration (supermarket booster and transcritical CO2 systems, expanding rapidly)",
+      "Cascade refrigeration (CO2 low-stage)",
+      "Heat pumps (water heating, with high COP at moderate ambient)",
+      "Mobile AC (heat pumps, EU/Japan adoption)"
+    ],
+    "replacementOptions": [],
+    "replaces": ["r-404a", "r-22"],
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (CarbonDioxide)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 (CO2 is the GWP reference, defined as 1)",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  },
+  "r-c318": {
+    "displayName": "R-c318",
+    "altSpellings": ["Rc318", "R-C318", "PFC-c318", "Octafluorocyclobutane"],
+    "chemicalName": "Octafluorocyclobutane",
+    "chemicalFormula": "c-C4F8",
+    "ashraeNumber": "R-C318",
+    "type": "hfc-pure",
+    "safetyClass": "A1",
+    "strategy": "coolprop",
+    "cpIdentifier": "RC318",
+    "tradeNames": [],
+    "composition": [],
+    "environmental": {
+      "odp": 0,
+      "gwp100Ar5": 10300,
+      "gwp100Ar6": 9540,
+      "atmosphericLifetimeYears": 3200,
+      "snapStatus": "Specialty applications; very high GWP and atmospheric lifetime"
+    },
+    "lubricants": {
+      "compatible": ["POE", "PAO"],
+      "incompatible": ["MO"],
+      "notes": "Perfluorocarbon (PFC) — extremely persistent in the atmosphere. Specialty uses; food propellant (FDA approved), semiconductor etching, electronics dielectric. Very limited refrigeration use."
+    },
+    "applications": [
+      "Food aerosol propellant (specialty)",
+      "Semiconductor etching gas",
+      "Electronics dielectric fluid",
+      "Specialty refrigeration (rare)"
+    ],
+    "replacementOptions": [],
+    "replaces": null,
+    "regulatoryStatus": {
+      "epaPhaseoutComplete": false,
+      "epaPhaseoutDate": null,
+      "aimActAffected": false,
+      "snapApproved": true
+    },
+    "verifiedAgainst": ["CoolProp 7.2.0 (RC318)", "ASHRAE Handbook of Refrigeration 2022"],
+    "gwpSource": "IPCC AR5 Table 8.A.1",
+    "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
+  }
+}

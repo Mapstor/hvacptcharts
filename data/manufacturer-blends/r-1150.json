@@ -1,0 +1,23 @@
+{
+  "slug": "r-1150",
+  "ptSource": "TODO: NIST WebBook (ethylene) for subcritical region (below Tcrit ≈ 9.2°C / 48.6°F)",
+  "ptSourceUrl": "https://webbook.nist.gov/chemistry/fluid/",
+  "verifiedBy": "TODO: cross-check against ASHRAE Handbook of Refrigeration 2022 (hydrocarbon refrigerants)",
+  "physical": {
+    "boilingPointC": -103.7,
+    "boilingPointF": -154.7,
+    "critical": {
+      "tempC": 9.2,
+      "tempF": 48.6,
+      "pressurePsia": 731,
+      "pressurePsig": 716,
+      "pressureKpaA": 5041,
+      "pressureKpaG": 4940
+    },
+    "molarMassGPerMol": 28.054,
+    "liquidDensityKgPerM3At25C": null,
+    "temperatureGlideF": 0,
+    "hasSignificantGlide": false
+  },
+  "ptChart": []
+}
