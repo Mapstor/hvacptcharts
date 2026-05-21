@@ -199,28 +199,43 @@ export function getPressureAtTempF(
 }
 
 /**
- * Inverse lookup: saturation temperature (°F) at a given suction-line bubble pressure (PSIG).
- * Used by the superheat calculator. Returns null if pressure is outside the chart's
- * pressure range.
+ * Inverse lookup: saturation temperature (°F) at a given pressure (PSIG).
+ *
+ * `curve` chooses which saturation boundary to interpolate on:
+ *   - "bubble" (default): pressure-vs-temperature on the saturated-LIQUID line.
+ *     Use this for **subcooling** measurement (liquid line) — at the bubble
+ *     pressure on the liquid side, the bubble temp is the boundary below which
+ *     refrigerant is fully liquid and subcooled.
+ *   - "dew": pressure-vs-temperature on the saturated-VAPOR line. Use this for
+ *     **superheat** measurement (suction line) — at the dew pressure on the
+ *     vapor side, the dew temp is the boundary above which refrigerant is
+ *     fully vapor and superheated.
+ *
+ * For pure refrigerants and azeotropes the two curves coincide and the choice
+ * is moot. For zeotropic blends (R-407C, R-454C, R-455A, etc.) using the wrong
+ * curve produces superheat / subcooling errors equal to the glide.
+ *
+ * Returns null if pressure is outside the chart's range for the chosen curve
+ * or the refrigerant has no PT data.
  */
 export function getSaturationTempAtPsigF(
   slug: string,
-  psig: number
+  psig: number,
+  curve: "bubble" | "dew" = "bubble"
 ): number | null {
   const r = getRefrigerant(slug);
   if (!r || r.ptChart.length === 0) return null;
-  const sorted = [...r.ptChart].sort((a, b) => a.bubblePsig - b.bubblePsig);
-  const minP = sorted[0].bubblePsig;
-  const maxP = sorted[sorted.length - 1].bubblePsig;
+  const pField = curve === "bubble" ? "bubblePsig" : "dewPsig";
+  const sorted = [...r.ptChart].sort((a, b) => a[pField] - b[pField]);
+  const minP = sorted[0][pField];
+  const maxP = sorted[sorted.length - 1][pField];
   if (psig < minP || psig > maxP) return null;
   for (let i = 0; i < sorted.length - 1; i++) {
     const a = sorted[i];
     const b = sorted[i + 1];
-    if (a.bubblePsig <= psig && psig <= b.bubblePsig) {
-      // Guard against the degenerate (identical-pressure) interval that arises
-      // near the top of a transcritical fluid's chart.
-      if (b.bubblePsig === a.bubblePsig) return a.tempF;
-      const t = (psig - a.bubblePsig) / (b.bubblePsig - a.bubblePsig);
+    if (a[pField] <= psig && psig <= b[pField]) {
+      if (b[pField] === a[pField]) return a.tempF;
+      const t = (psig - a[pField]) / (b[pField] - a[pField]);
       return a.tempF + t * (b.tempF - a.tempF);
     }
   }
