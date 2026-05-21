@@ -1,0 +1,57 @@
+---
+slug: r-134a
+title: "R-134a Pressure Temperature Chart & Properties"
+metaTitle: "R-134a PT Chart, GWP 1430, AIM Act, Mobile AC Legacy"
+metaDescription: "Verified R-134a (HFC-134a, 1,1,1,2-tetrafluoroethane) pressure-temperature chart from -40°F to 150°F. ASHRAE A1, GWP 1430. POE oil for stationary, PAG for mobile AC. AIM Act phase-down affected."
+introOneLiner: "Pure HFC, 1,1,1,2-tetrafluoroethane (CH₂FCF₃). The dominant mobile AC refrigerant for ~20 years (1995–2014 in the US) and the standard for medium-pressure centrifugal chillers and domestic refrigeration. AIM Act phase-down affected."
+
+narrative:
+  whatItIs: |
+    R-134a is pure 1,1,1,2-tetrafluoroethane (CH₂FCF₃), a single-molecule hydrofluorocarbon. It was developed in the early 1990s as the primary replacement for R-12 (CFC) in mobile air conditioning and small commercial refrigeration after the Montreal Protocol forced CFC phase-out.
+
+    From 1995 through approximately 2014, R-134a was the dominant mobile AC refrigerant globally. It remains widely used in medium-pressure centrifugal chillers, domestic refrigerators (in some markets), and as a blend component in lower-GWP HFC/HFO blends like R-449A, R-450A, R-513A, R-516A.
+
+  whereItsUsed:
+    - Existing mobile air conditioning (US passenger vehicles pre-2014; many fleet vehicles still in service)
+    - Centrifugal chillers — medium-pressure commercial cooling (large office buildings, hospitals)
+    - Domestic refrigerators (legacy installations and some current European production)
+    - Medium-temperature commercial refrigeration (existing equipment service)
+    - Component in R-449A, R-450A, R-513A, R-516A blends
+
+  phaseDownStatus: |
+    R-134a is subject to the EPA AIM Act HFC phase-down. The 2015 EPA SNAP rule delisted R-134a for new motor vehicle AC, which drove the global mobile AC transition to R-1234yf for vehicles produced from approximately 2014 onward.
+
+    For stationary applications (chillers, commercial refrigeration), R-134a remains in service but is being displaced by lower-GWP options: R-1234yf, R-513A (44/56 R-134a/R-1234yf, GWP 631), R-450A (42/58 R-134a/R-1234ze(E), GWP 605), and R-516A (77.5/8.5/14 R-1234yf/R-134a/R-152a, GWP 142). The 70% AIM Act reduction baseline in 2029 and 85% in 2036 will further constrain R-134a supply.
+
+  serviceNotes: |
+    Polyolester (POE) oil is the standard for stationary applications. Mobile AC uses Polyalkylene Glycol (PAG) lubricants — distinct chemistry that is NOT compatible with POE; do not cross-contaminate.
+
+    POE is hygroscopic; pull vacuum to 500 microns and verify a hold for 30+ minutes before charging. PAG is also moisture-sensitive but to a lesser degree. EPA Section 608 certification is required to service R-134a equipment; recovery is mandatory.
+
+faqs:
+  - q: "What is the normal operating pressure of R-134a?"
+    a: "On a residential or commercial chiller with R-134a at 95°F outdoor ambient, expect roughly 30–45 PSIG suction and 130–160 PSIG discharge in a properly-charged system. R-134a saturation at 95°F is 124 PSIG — operating pressures fall on either side as the evaporator runs colder than ambient and the condenser runs hotter. Mobile AC operates at higher dynamic pressures (suction ~25–45 PSIG, discharge ~150–250 PSIG) due to higher condenser temperatures and varying compressor speed."
+
+  - q: "How does R-134a compare to R-1234yf?"
+    a: "Very similar saturation pressures — R-134a at 70°F = 71.1 PSIG, R-1234yf = 73.9 PSIG. R-1234yf was specifically engineered as a low-GWP drop-in for R-134a's mobile AC pressure envelope. The substantive difference is GWP (R-134a 1430 vs R-1234yf ~4 IPCC AR5) and safety class (R-134a A1 vs R-1234yf A2L mildly flammable). Mobile AC OEMs converted to R-1234yf for new vehicles between 2014 and 2017 to meet GWP regulations."
+
+  - q: "What lubricant does R-134a use?"
+    a: "Stationary applications (chillers, commercial refrigeration): Polyolester (POE) oil. Mobile AC: Polyalkylene Glycol (PAG) oil. These two lubricants are chemically distinct and not interchangeable. Mineral oil — the standard for R-12 mobile AC before the HFC transition — is NOT compatible with R-134a; a mineral-oil R-12 retrofit to R-134a requires an oil change."
+
+  - q: "Can I retrofit an R-12 system to R-134a?"
+    a: "Yes, but it requires more than a refrigerant swap. The mineral or alkylbenzene oil in the R-12 system must be replaced with PAG (mobile) or POE (stationary). Older elastomer seals may need replacement (R-134a is more polar than R-12 and attacks some R-12-compatible elastomers). Component pressure ratings should be verified — R-134a operates at higher pressures than R-12. Most R-12 to R-134a retrofits in the 1990s and 2000s used 'POE-compatible' R-134a equipment kits with new compressors and expansion devices."
+
+  - q: "Why is R-134a being phased out?"
+    a: "GWP. R-134a's IPCC AR5 100-year GWP of 1430 places it above the EPA AIM Act 700 threshold for new equipment in most categories. The EU F-Gas Regulation has further restricted R-134a in new stationary refrigeration with a 150-GWP threshold. Replacement options for stationary applications include R-1234yf, R-513A, R-450A, and R-516A; mobile AC has already transitioned globally to R-1234yf."
+
+  - q: "Is R-134a flammable?"
+    a: "No. R-134a is ASHRAE safety class A1 — non-toxic and non-flammable under normal handling conditions. This is part of why it dominated mobile AC for two decades: vehicle environments do not tolerate A2L or A3 flammable refrigerants well without significant safety engineering. R-1234yf, the modern replacement, is A2L (mildly flammable) and required revised vehicle safety systems to deploy."
+
+  - q: "Can R-134a be used in air conditioning?"
+    a: "Yes, but its lower saturation pressures and lower volumetric capacity make it less efficient than R-22 or R-410A for typical residential air conditioning applications. R-134a's niche in cooling is medium-pressure centrifugal chillers (large commercial cooling) where its properties match the equipment design, and mobile AC where the higher compressor speeds compensate for lower volumetric capacity. Residential and light commercial AC dominantly use R-410A historically and R-32/R-454B going forward."
+
+retrofitGuidance:
+  fromRefrigerant: r-12
+  notes: |
+    R-12 to R-134a retrofits require an oil change (mineral/AB → PAG or POE), elastomer seal inspection, and component pressure-rating verification. Most R-12-era systems have been fully replaced by now; remaining service work is rare. For new equipment in R-134a's traditional applications, the modern path is to skip R-134a entirely and use R-1234yf (mobile), R-513A or R-450A (chillers/commercial refrigeration), or R-516A (medium-temp commercial).
+---

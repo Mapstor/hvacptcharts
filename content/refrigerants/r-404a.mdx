@@ -1,0 +1,57 @@
+---
+slug: r-404a
+title: "R-404A Pressure Temperature Chart & Properties"
+metaTitle: "R-404A PT Chart, GWP 3922, AIM Act Phase-Down, POE Required"
+metaDescription: "Verified R-404A (HFC ternary blend) pressure-temperature chart. ASHRAE A1, GWP 3922 — primary AIM Act phase-down target. POE oil required. Replacement options: R-448A, R-449A, R-454C, R-455A, R-744."
+introOneLiner: "Ternary HFC blend (52% R-143a / 44% R-125 / 4% R-134a) that has dominated low-temperature commercial refrigeration for two decades. GWP 3922 makes it the primary phase-down target under the EPA AIM Act."
+
+narrative:
+  whatItIs: |
+    R-404A is a ternary near-azeotropic blend of three HFCs: 52% R-143a, 44% R-125, and 4% R-134a by mass. It was developed in the early 1990s as the primary replacement for R-502 — the azeotropic HCFC/CFC blend that dominated low-temperature commercial refrigeration before the Montreal Protocol forced CFC phase-out.
+
+    From the late 1990s through the mid-2010s R-404A was the default refrigerant in supermarket display cases, walk-in coolers and freezers, refrigerated transport, and ice machines. Its zero ODP made it Montreal-Protocol compliant; its GWP of 3922 has made it the primary target of the EPA AIM Act and EU F-Gas Regulation phase-downs.
+
+  whereItsUsed:
+    - Existing supermarket refrigeration (display cases, walk-in coolers, walk-in freezers)
+    - Existing refrigerated transport (truck, trailer, intermodal)
+    - Ice machines (commercial)
+    - Cold storage warehouses (low and medium temperature)
+    - Servicing-only; new equipment in most applications has transitioned to alternatives
+
+  phaseDownStatus: |
+    R-404A is among the most aggressively phased-down refrigerants in the US under the AIM Act. The 2021 AIM Act technology transition rule prohibits production and import of HFCs with GWP above 700 in new equipment for most commercial refrigeration categories effective January 1, 2025. R-404A's GWP of 3922 places it well above this threshold.
+
+    Reclaimed R-404A remains legal for servicing existing equipment indefinitely under current regulations. The 2029 and 2036 AIM Act reduction baselines (70% and 85% respectively below the 2011-2013 average) will further constrain virgin supply. Most new commercial refrigeration installations have moved to R-448A (GWP 1387), R-449A (1397), R-454C (148), R-455A (148), R-744 (CO₂ transcritical), or R-290 (propane) charge-limited self-contained systems.
+
+  serviceNotes: |
+    Polyolester (POE) oil is required. Mineral oil and alkylbenzene oils are not miscible with R-404A and must not be used. POE is hygroscopic; pull vacuum to 500 microns and verify a hold for 30+ minutes before charging.
+
+    R-404A has a small but measurable temperature glide (~1–2°F at typical operating pressures). For most service work this is negligible, but precision charge measurement on critical equipment should account for it. R-404A discharge temperatures run cooler than R-22 at equivalent operating points; existing R-22 condensers can typically handle R-404A from a pressure standpoint but compressor lubrication can be marginal at low load.
+
+faqs:
+  - q: "What is the normal operating pressure of R-404A?"
+    a: "On a low-temperature commercial refrigeration system at 0°F evaporator with 95°F ambient, expect roughly 12–18 PSIG suction and 240–290 PSIG discharge on a properly-charged system. Saturation pressure at 0°F is ~12 PSIG; at 95°F (discharge saturation reference) it's ~233 PSIG. Operating pressures depend heavily on the evaporator setpoint — medium-temperature systems (35°F evap) run higher suction (around 35–45 PSIG)."
+
+  - q: "Why is R-404A being phased out so aggressively?"
+    a: "Its GWP of 3922 (IPCC AR5) is among the highest of common HFC refrigerants — higher than R-410A (2088) and R-407C (1774). For low-temperature commercial refrigeration, where leak rates have historically been higher than in hermetic residential AC equipment, R-404A's per-pound climate impact is substantial. The 2025 AIM Act new-equipment prohibition (GWP > 700) effectively ended R-404A in new installations; ongoing service supply will increasingly depend on reclaimed material."
+
+  - q: "What can I use to replace R-404A in existing equipment?"
+    a: "Several options depending on temperature application. R-448A (Solstice N40) and R-449A (Opteon XP40) are direct R-404A retrofits for medium-temperature commercial refrigeration with lower GWP (~1390) and similar capacity. R-454C (148) and R-455A (148) are A2L blends targeting EU F-Gas compliance. For new equipment, R-290 (propane) for charge-limited self-contained units and R-744 (CO₂ transcritical) for supermarket centralized systems are the dominant low-GWP paths."
+
+  - q: "What lubricant does R-404A use?"
+    a: "Polyolester (POE) oil exclusively. Mineral oil (MO) and alkylbenzene (AB) — the standards for R-502 and earlier CFC/HCFC blends — are not miscible with R-404A. Some 1990s R-502 retrofits used 'soft conversion' procedures with partial POE replacement; in practice these have largely been replaced by now."
+
+  - q: "Can I retrofit R-22 equipment to R-404A?"
+    a: "Generally not recommended. R-22 and R-404A operate at different pressures (R-404A higher) and use incompatible lubricants. For R-22 retrofits in low-temperature commercial refrigeration the preferred drop-in blends are R-407A and R-407F (similar GWP envelope) or, for very-low-GWP applications, R-448A and R-449A (require POE oil change)."
+
+  - q: "Does R-404A have temperature glide?"
+    a: "Yes, but small — about 1–2°F across typical operating pressure ranges. R-404A is classified as a near-azeotropic blend and behaves close to a pure refrigerant in service. The glide is small enough that standard tools and procedures designed for pure refrigerants generally apply; precise charge measurement on critical equipment should still account for it."
+
+  - q: "Is reclaimed R-404A safe to use?"
+    a: "Yes, when reclaimed to AHRI Standard 700 specifications. Reclamation processes recover R-404A from end-of-life equipment, separate contaminants and other refrigerants, and bring the material back to virgin specification. The reclaimed cylinders are labeled with the AHRI 700 designation. Using non-reclaimed recovered refrigerant (i.e., refrigerant that has only been recovered, not reclaimed) risks system contamination and warranty issues."
+
+retrofitGuidance:
+  fromRefrigerant: r-502
+  notes: |
+    R-502 to R-404A retrofits were common during the 1990s CFC phase-down. The oil change from mineral/alkylbenzene to POE is mandatory; both system flush and triple oil change procedures were used historically. Component pressure ratings need verification — R-404A operates at higher discharge pressures than R-502. By now most R-502 equipment has been fully replaced. For new commercial refrigeration installations, skip R-404A entirely and use R-448A/R-449A (medium temp), R-454C/R-455A (any temp, EU F-Gas compliant), R-290 (charge-limited), or R-744 transcritical CO₂ (large centralized systems).
+---
