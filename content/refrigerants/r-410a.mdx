@@ -1,0 +1,70 @@
+---
+slug: r-410a
+title: "R-410A Pressure Temperature Chart & Properties"
+metaTitle: "R-410A PT Chart, GWP 2088, POE Lubricant, AIM Act Status"
+metaDescription: "Verified R-410A pressure-temperature chart from -40°F to 150°F. 50/50 R-32 + R-125 blend, ASHRAE A1, GWP 2088. POE oil required. AIM Act phase-down information."
+introOneLiner: "A near-azeotropic 50/50 blend of R-32 and R-125, the standard residential AC refrigerant from the early 2000s, now in active phase-down under the AIM Act."
+
+narrative:
+  whatItIs: |
+    R-410A is a near-azeotropic blend of difluoromethane (R-32) and pentafluoroethane (R-125) in equal mass proportions. It was developed in the 1990s as the replacement for R-22 in residential and light commercial cooling — zero ozone-depletion potential while delivering meaningfully higher volumetric capacity than the refrigerant it succeeded.
+
+    Because the two components have very similar saturation properties, R-410A behaves close to a pure refrigerant in service. The temperature glide at 70°F is roughly 0.7°F — small enough that most tools and procedures designed for pure refrigerants apply without adjustment.
+
+  whereItsUsed:
+    - Residential central air conditioning (existing equipment installed roughly 2003–2024)
+    - Heat pumps (residential and light commercial)
+    - Light commercial split systems
+    - Packaged rooftop units (legacy installations)
+    - VRF/VRV systems (in the residential and light commercial segment)
+
+  phaseDownStatus: |
+    Under the EPA's AIM Act, R-410A is in active phase-down. The rule prohibits production and import of HFCs with GWP above 700 in new equipment in most residential AC categories starting January 1, 2025. R-410A's GWP of 2088 places it well above this threshold.
+
+    New residential and light commercial AC systems are transitioning to R-32 (GWP 675) and R-454B (GWP 466). Existing R-410A equipment continues to be serviceable; reclaimed R-410A will take an increasing share of the service supply through the phase-down's 70% reduction step in 2029 and the 85% step in 2036.
+
+  serviceNotes: |
+    Polyolester (POE) oil is required. Mineral oil and alkylbenzene oils are not miscible with R-410A and must not be used.
+
+    POE is hygroscopic — it absorbs moisture from the atmosphere rapidly. Vacuum integrity matters more than with mineral-oil systems. Pull vacuum to 500 microns and verify it holds for 30+ minutes before charging.
+
+    R-410A operating pressures are roughly 60% higher than equivalent R-22 systems. Gauges, hoses, recovery cylinders, and recovery machines must be rated for R-410A's higher pressure range (typically 800 PSI rated equipment).
+
+faqs:
+  - q: "What is the normal operating pressure of R-410A?"
+    a: |
+      On a 95°F outdoor day with a properly charged residential R-410A system, expect low-side (suction) pressures around 130 PSIG and high-side (discharge) pressures around 350–400 PSIG. Saturation pressure at 95°F is 291 PSIG; actual operating values depend on superheat, subcooling, ambient, and indoor load.
+
+  - q: "What does R-410A's GWP of 2088 mean?"
+    a: |
+      Global Warming Potential is a relative measure. A single kilogram of R-410A released to the atmosphere traps about 2,088 times as much heat over 100 years as a single kilogram of CO2. This IPCC AR5 figure is what the EPA uses to assign R-410A to the AIM Act phase-down tier.
+
+  - q: "Can I retrofit an R-22 system to R-410A?"
+    a: |
+      No. R-410A operates at substantially higher pressures than R-22 and uses an incompatible lubricant (POE rather than mineral oil). Retrofit requires replacing the compressor, expansion device, and possibly the indoor coil. At that point the economics favor a full system replacement with new R-410A or A2L equipment.
+
+      For a true retrofit of an existing R-22 system where full replacement isn't possible, look at R-407C, R-422D, R-438A, or R-427A — drop-in blends formulated for R-22 retrofit.
+
+  - q: "Is R-410A flammable?"
+    a: |
+      R-410A is ASHRAE safety class A1: non-toxic and non-flammable under normal handling. Its near-term replacements R-32 (A2L) and R-454B (A2L) are mildly flammable and require A2L-rated equipment, leak detection, and ventilation per UL 60335-2-40 / ASHRAE 15.
+
+  - q: "When will R-410A be phased out completely?"
+    a: |
+      New residential AC equipment using R-410A has not been produced since January 1, 2025 under the AIM Act. R-410A itself remains legal to service existing equipment indefinitely under current regulations. The service supply is expected to come increasingly from reclaimed R-410A through the 2030s as virgin production is curtailed by the AIM Act's 70% (2029) and 85% (2036) reduction baselines.
+
+  - q: "What lubricant does R-410A use?"
+    a: |
+      Polyolester (POE) oil. Mineral oil (MO) and alkylbenzene (AB) — the standards for R-22 and R-12 systems — are not miscible with R-410A and will not return to the compressor.
+
+      POE absorbs moisture from the atmosphere rapidly; minimize the time the oil is exposed to ambient air and pull a deep vacuum (500 microns held for 30+ minutes) before charging.
+
+retrofitGuidance:
+  fromRefrigerant: r-22
+  notes: |
+    Direct retrofit is not recommended. R-410A's higher pressures exceed the design rating of most R-22 system components. The standard path forward is full system replacement with new equipment — and increasingly that new equipment uses R-32 or R-454B rather than R-410A.
+---
+
+import { RefrigerantCycle } from "@/components/refrigerant/RefrigerantCycle";
+
+R-410A systems operate in the same vapor-compression cycle as their R-22 predecessors: isentropic compression, isobaric heat rejection, isenthalpic expansion, isobaric heat absorption. The defining difference is the pressure-temperature curve — at equivalent operating points R-410A sits roughly 60% higher in pressure than R-22.

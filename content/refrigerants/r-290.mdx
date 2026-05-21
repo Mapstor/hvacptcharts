@@ -1,0 +1,60 @@
+---
+slug: r-290
+title: "R-290 (Propane) Pressure Temperature Chart & Properties"
+metaTitle: "R-290 Propane PT Chart, A3 Flammable, Mineral Oil, GWP 3"
+metaDescription: "Verified R-290 (propane) pressure-temperature chart. ASHRAE A3 (highly flammable). GWP 3. Charge limits and HC-rated equipment design are mandatory."
+introOneLiner: "Pure hydrocarbon propane (C₃H₈), ASHRAE A3 (highly flammable). Near-zero GWP. Dominant in household refrigeration globally; expanding into commercial refrigeration under updated EPA SNAP rules."
+
+narrative:
+  whatItIs: |
+    R-290 is pure propane (C₃H₈) — a single-component hydrocarbon refrigerant, not a blend. It has been used in industrial refrigeration since the 19th century and is the dominant household-refrigerator refrigerant globally outside the US.
+
+    R-290 is ASHRAE class A3: lower toxicity, highly flammable with a burning velocity above 100 cm/s. This is materially different from any HFC or HFO refrigerant. Equipment design, charge limits, ventilation, leak detection, and service procedures must all account for the flammability hazard.
+
+  whereItsUsed:
+    - Household refrigerators and freezers (dominant globally; expanding in the US under SNAP rule updates)
+    - Wine coolers, beverage merchandisers, small commercial display cases
+    - Plug-in commercial refrigeration (charge-limited applications)
+    - Heat pumps (small residential, R-290 monobloc designs growing)
+    - Industrial process cooling
+
+  phaseDownStatus: |
+    R-290 itself is not phase-down-targeted — its GWP of 3 is below every regulatory threshold. The constraint is flammability. EPA SNAP rules and UL 60335-2-89 charge limits restrict the maximum refrigerant charge per circuit based on application:
+
+    - Household refrigerators: 150 grams (~5.3 oz)
+    - Small commercial refrigeration: 500 grams (recently raised from 150 g for certain self-contained applications)
+    - Larger commercial / industrial: subject to ventilation and machine room requirements
+
+  serviceNotes: |
+    Mineral oil (MO) is the lubricant standard for propane systems. POE is NOT used.
+
+    Service requires HC-rated equipment design, sealed systems where practical, and adherence to charge limits. Refrigerant must be recovered with HC-rated recovery equipment; never vent.
+
+    Brazing and any open flame must occur AFTER the system has been thoroughly evacuated of refrigerant. A leak detector specifically calibrated for hydrocarbons (not halogenated refrigerants) is required for leak detection.
+
+faqs:
+  - q: "Is R-290 the same as the propane I use for grilling?"
+    a: |
+      Chemically yes, but refrigerant-grade R-290 is purified to a much higher standard. Refrigerant propane is specified to ≥99.5% purity with strict limits on moisture, sulfur, and other contaminants. Commercial-grade propane (like LPG for grills) contains odorants, ethyl mercaptan, and other impurities that would damage refrigeration system seals and components.
+
+  - q: "What lubricant does R-290 use?"
+    a: |
+      Mineral oil (MO) is the standard. Alkylbenzene (AB) and polyalphaolefin (PAO) are also compatible. POE is NOT used with R-290 in original systems.
+
+  - q: "Is R-290 dangerous to work with?"
+    a: |
+      It is highly flammable (ASHRAE A3) and requires appropriate procedures. The risks are manageable in well-designed systems with proper charge limits, ventilation, and service procedures. Most R-290 equipment is factory-sealed; field service is limited to leak repair and recovery rather than open-system work. EPA Section 608 certification plus equipment-specific HC training are typical service prerequisites.
+
+  - q: "What is the GWP of R-290?"
+    a: |
+      Approximately 3 (IPCC AR5) — effectively zero compared with HFC refrigerants. R-290 atmospheric lifetime is only about two weeks. This makes it one of the lowest-impact refrigerant choices available, contingent on the flammability constraint being manageable for the application.
+
+  - q: "What is the normal operating pressure of R-290?"
+    a: |
+      Similar to R-22. At 95°F outdoor ambient, expect roughly 65 PSIG suction and 220 PSIG discharge on a small R-290 system. Saturation pressure at 95°F is 175 PSIG. Standard R-22-rated gauges, hoses, and recovery equipment work with R-290 from a pressure standpoint, but must be confirmed HC-compatible (most halogenated-refrigerant equipment uses elastomers attacked by hydrocarbons).
+
+retrofitGuidance:
+  fromRefrigerant: r-22
+  notes: |
+    Drop-in retrofit is generally not recommended due to flammability. The original system must be HC-rated for safety: brushless electrical components, sealed electrics in the refrigerant circuit, no open flames in the operating envelope, and an explosion-safe enclosure for service. Most retrofits are equipment replacement with new HC-rated equipment, not refrigerant swap.
+---

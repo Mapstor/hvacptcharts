@@ -1,0 +1,67 @@
+---
+slug: r-32
+title: "R-32 Pressure Temperature Chart & Properties"
+metaTitle: "R-32 PT Chart, A2L Safety Class, GWP 675, POE Lubricant"
+metaDescription: "Verified R-32 (difluoromethane) pressure-temperature chart. ASHRAE A2L (mildly flammable). GWP 675. The primary R-410A replacement in new residential AC equipment under the AIM Act."
+introOneLiner: "Pure HFC difluoromethane (CH₂F₂), ASHRAE A2L (mildly flammable). Lower GWP (675) than R-410A makes it a primary residential AC replacement under the AIM Act."
+
+narrative:
+  whatItIs: |
+    R-32 is pure difluoromethane (CH₂F₂), a single-molecule hydrofluorocarbon — not a blend. It is one of the two components of R-410A (50/50 R-32 + R-125), but unlike R-410A, R-32 standalone has a meaningfully lower GWP of 675 (compared with R-410A's 2088).
+
+    R-32 is ASHRAE class A2L: lower toxicity, mildly flammable with a low burning velocity (≤ 10 cm/s). This is a critical distinction — R-32 is NOT class A1 like R-410A. Equipment, leak detection, and handling protocols must be A2L-rated per UL 60335-2-40 and ASHRAE 15.
+
+  whereItsUsed:
+    - Residential central air conditioning (the leading R-410A replacement in equipment manufactured since ~2024 in the US; dominant in Japan, India, and parts of Europe since the late 2010s)
+    - Heat pumps (residential and light commercial)
+    - VRF/VRV systems
+    - Light commercial split systems
+    - Component in R-410A, R-407C, R-454B, R-452B, R-454C, R-455A, R-448A, R-449A blends
+
+  phaseDownStatus: |
+    R-32 is not directly phase-down-targeted by the AIM Act; its GWP of 675 falls below the AIM Act's 700 threshold for new residential AC equipment. The AIM Act's phase-down baseline applies to total HFC consumption, so R-32 demand still contributes — but it is positioned as one of the long-term replacement options rather than a near-term target.
+
+    The EU F-Gas Regulation pushes harder: the 150 GWP threshold for stationary refrigeration would eventually displace R-32 in favor of even lower-GWP options like R-454C (148), R-455A (148), R-516A (142), or natural refrigerants.
+
+  serviceNotes: |
+    Polyolester (POE) oil is required, the same as R-410A. Vacuum integrity matters: POE is hygroscopic, so pull to 500 microns and verify it holds for 30+ minutes before charging.
+
+    A2L handling requires:
+    - A2L-rated charge limits per UL 60335-2-40 (varies by application and equipment volume)
+    - Refrigerant leak detection sensors in machine rooms
+    - No open flames during service (brazing is acceptable with appropriate clearance and ventilation)
+    - A2L-rated recovery cylinders (yellow with red top stripe)
+    - Technician training specific to A2L handling beyond Section 608
+
+faqs:
+  - q: "Is R-32 flammable?"
+    a: |
+      Yes — R-32 is ASHRAE class A2L, mildly flammable with a low burning velocity (≤ 10 cm/s) and a heat of combustion below 19,000 kJ/kg. It will propagate flame in air at standard atmospheric pressure and 60°C, but its low burning velocity limits the explosion hazard.
+
+      A2L is materially different from A1 (non-flammable) and A3 (highly flammable). R-32 falls between these — manageable with appropriate equipment design and procedures, but not safe to treat as non-flammable.
+
+  - q: "Why is R-32 replacing R-410A?"
+    a: |
+      Two main reasons. First, GWP: R-32 at 675 falls below the AIM Act's 700 threshold for new residential AC equipment; R-410A at 2088 does not. Second, R-32 has higher volumetric capacity than R-410A, allowing roughly 10-15% smaller refrigerant charge for the same cooling capacity in optimized designs.
+
+  - q: "What lubricant does R-32 use?"
+    a: |
+      Polyolester (POE) oil — the same as R-410A. Mineral oil and alkylbenzene are not miscible with R-32 and must not be used. POE is hygroscopic, so vacuum integrity is critical.
+
+  - q: "Can I retrofit an R-410A system to R-32?"
+    a: |
+      Not as a drop-in. While R-32 and R-410A use the same POE oil, their pressure-temperature curves differ slightly and the A2L flammability classification of R-32 requires equipment redesign for safety. Compressor, expansion device, and safety systems would need replacement. Full system replacement with new R-32-rated equipment is the standard path.
+
+  - q: "Is R-32 the same as R-410A?"
+    a: |
+      No. R-32 is the pure compound difluoromethane (CH₂F₂). R-410A is a 50/50 mass blend of R-32 and R-125. Pressures, capacity, and GWP all differ.
+
+  - q: "What is the normal operating pressure of R-32?"
+    a: |
+      Slightly higher than R-410A at the same operating points. At 95°F outdoor ambient, expect roughly 140 PSIG suction and 350-400 PSIG discharge on a properly charged residential R-32 system. Saturation pressure at 95°F is 296 PSIG. Gauges, hoses, and recovery equipment rated for R-410A's 800 PSI envelope are appropriate for R-32.
+
+retrofitGuidance:
+  fromRefrigerant: r-410a
+  notes: |
+    Direct retrofit is not recommended. The compressor and expansion device must be R-32 / A2L-rated, the safety systems must include A2L leak detection, and the charge limits per UL 60335-2-40 must be respected. The economics favor a full system replacement with R-32-rated equipment.
+---
