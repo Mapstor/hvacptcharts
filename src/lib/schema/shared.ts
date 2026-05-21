@@ -25,4 +25,18 @@ export const WEBSITE = {
   url: SITE_URL,
   publisher: { "@id": `${SITE_URL}/#organization` },
   inLanguage: "en-US",
+  /**
+   * Sitelinks Search Box action. Backed by the homepage's `?q=` parameter,
+   * which filters the refrigerant browser. Only safe to emit because the URL
+   * actually returns useful results — Google penalizes false SearchAction
+   * declarations.
+   */
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
