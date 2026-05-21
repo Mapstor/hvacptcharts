@@ -1,0 +1,86 @@
+---
+id: 410a
+refrigerantSlug: r-410a
+title: "What Should R-410A Pressures Be?"
+metaTitle: "R-410A Normal Operating Pressures by Outdoor Ambient"
+metaDescription: "Typical R-410A suction and discharge pressure ranges for residential AC by ambient temperature, with diagnostic procedure and FAQ."
+introOneLiner: "Typical R-410A suction and discharge pressure ranges for residential air conditioning, indexed by outdoor ambient. Pressures roughly 60% higher than equivalent R-22 systems; equipment must be rated accordingly."
+
+operatingRangesSource: "ACCA Manual T charging procedures; manufacturer service literature for R-410A residential split systems (Carrier, Trane, Lennox, Goodman, Rheem)"
+
+operatingRanges:
+  - ambientF: 75
+    application: "Residential AC at 75°F outdoor"
+    suctionPsigLow: 115
+    suctionPsigHigh: 135
+    dischargePsigLow: 250
+    dischargePsigHigh: 305
+    superheatTargetF: [8, 15]
+    subcoolingTargetF: [8, 14]
+  - ambientF: 85
+    application: "Residential AC at 85°F outdoor"
+    suctionPsigLow: 120
+    suctionPsigHigh: 140
+    dischargePsigLow: 300
+    dischargePsigHigh: 355
+    superheatTargetF: [8, 15]
+    subcoolingTargetF: [8, 14]
+  - ambientF: 95
+    application: "Residential AC at 95°F outdoor (rating condition)"
+    suctionPsigLow: 125
+    suctionPsigHigh: 145
+    dischargePsigLow: 350
+    dischargePsigHigh: 410
+    superheatTargetF: [8, 15]
+    subcoolingTargetF: [8, 12]
+  - ambientF: 105
+    application: "Residential AC at 105°F outdoor"
+    suctionPsigLow: 130
+    suctionPsigHigh: 150
+    dischargePsigLow: 400
+    dischargePsigHigh: 470
+    superheatTargetF: [10, 18]
+    subcoolingTargetF: [6, 12]
+  - ambientF: 115
+    application: "Residential AC at 115°F outdoor (hot-climate extreme)"
+    suctionPsigLow: 135
+    suctionPsigHigh: 160
+    dischargePsigLow: 450
+    dischargePsigHigh: 525
+    superheatTargetF: [10, 20]
+    subcoolingTargetF: [5, 10]
+
+narrativeIntro: |
+  R-410A operates at substantially higher pressures than R-22 — roughly 60% higher across the envelope. On a 95°F rating day, expect ~135 PSIG suction (vs. ~70 for R-22) and ~380 PSIG discharge (vs. ~260 for R-22). Service equipment, gauges, hoses, and recovery cylinders must be rated for R-410A's higher operating envelope (typically 800 PSI rated equipment).
+
+  The ranges below assume a properly-charged system on a TXV (thermostatic expansion valve) metering device — the dominant configuration for R-410A residential equipment. Fixed-orifice systems show slightly more variability in superheat and subcooling targets; refer to the equipment's charging chart for fixed-orifice values.
+
+diagnosticSteps:
+  - title: "Measure outdoor ambient and indoor return-air temperatures"
+    text: "Record the outdoor dry-bulb temperature near the condenser unit (not in direct sun) and the indoor return-air temperature at the air handler. R-410A residential AC is rated at 95°F outdoor / 80°F indoor dry-bulb (67°F wet-bulb) per AHRI 210/240."
+    tools: ["Outdoor dry-bulb thermometer", "Indoor return-air thermometer"]
+  - title: "Read low-side and high-side pressures (R-410A-rated gauges)"
+    text: "Connect the manifold gauge set to the suction and discharge service ports. R-410A pressures exceed standard R-22 gauge ranges — confirm your manifold is rated 800 PSI on the high side. Let the system run 10–15 minutes under load before recording values."
+    tools: ["R-410A-rated manifold gauge set (800 PSI high-side rating minimum)", "R-410A-rated hoses"]
+  - title: "Compare to expected ranges and identify the deviation"
+    text: "If low-side is below the table: undercharge, liquid-line restriction, or evaporator airflow issue. If low-side is above: overcharge, dirty evaporator coil, or compressor inefficiency. If high-side is above: dirty condenser, restricted condenser airflow, overcharge, or non-condensables. If high-side is below: undercharge, low ambient, or compressor wear."
+  - title: "Verify with superheat and subcooling — TXV systems use subcooling primarily"
+    text: "Pressure readings alone do not pin down the cause. On a TXV system, subcooling is the primary charging metric (target 8–12°F at the condenser outlet). Superheat hovers near the TXV setpoint regardless of charge, so superheat in-range does NOT confirm correct charge on a TXV system. High superheat with low subcooling indicates undercharge; the combined calculator shows the pattern with an interpretation banner."
+    tools: ["Contact or clamp-on temperature probe", "Probe insulation"]
+
+faqs:
+  - q: "What's the normal operating pressure of R-410A at 95°F outdoor?"
+    a: "Expect roughly 125–145 PSIG suction and 350–410 PSIG discharge on a properly-charged residential R-410A system at the 95°F rating condition. Saturation pressure at 95°F is 291 PSIG; the suction is lower because the evaporator runs colder than ambient (typically 40°F saturation), and the discharge is higher because the condenser runs hotter than ambient (typically 110–115°F saturation)."
+  - q: "How does R-410A pressure compare to R-22?"
+    a: "R-410A operates at roughly 60% higher pressures than R-22 across the envelope. On the same 95°F day with comparable system designs, R-410A suction is ~125–145 PSIG while R-22 is ~65–75 PSIG; R-410A discharge is ~350–410 PSIG while R-22 is ~240–280 PSIG. This is structural and is why R-22 equipment cannot be retrofitted to R-410A without component replacement."
+  - q: "What gauge rating do I need for R-410A?"
+    a: "Confirm 800 PSI rating on the high-side gauge and hoses. Standard R-22 manifolds rated 500 PSI high-side will read but should not be used at the higher pressures R-410A reaches at hot ambient conditions (110°F+ outdoor produces discharge pressures approaching 500 PSIG). R-410A-specific manifolds use 5/16\" SAE service hoses (vs 1/4\" SAE for R-22) — adapters exist but reduce reliability."
+  - q: "Why is R-410A being phased out?"
+    a: "Its Global Warming Potential of 2088 (IPCC AR5) places it above the 700 GWP threshold the EPA AIM Act set for new residential AC equipment as of January 1, 2025. Production of R-410A continues for servicing existing equipment, but new residential AC equipment now uses R-32 (GWP 675), R-454B (GWP 466), or R-452B (GWP 698). Existing R-410A systems remain serviceable indefinitely under current regulations."
+  - q: "What lubricant does R-410A use?"
+    a: "Polyolester (POE) oil. Mineral oil (MO) and alkylbenzene (AB) — standard for R-22 and R-12 — are not miscible with R-410A. POE is hygroscopic; pull vacuum to 500 microns and verify it holds for 30+ minutes before charging."
+  - q: "Why does my high-side pressure keep climbing during operation?"
+    a: "Most likely: condenser airflow problem (dirty coil, blocked fins, restricted condenser-side path, slow fan). Less common: overcharge (verify with subcooling — high subcooling + climbing discharge is the overcharge signal), non-condensables (air or moisture left in the system from inadequate evacuation), or a restricted liquid line causing the condenser to back-fill with liquid. Address airflow first; it's the most common and easiest to verify."
+
+faqs_END: ""
+---

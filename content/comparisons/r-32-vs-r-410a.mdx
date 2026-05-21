@@ -1,0 +1,36 @@
+---
+slug: r-32-vs-r-410a
+refrigerantA: r-32
+refrigerantB: r-410a
+title: "R-32 vs R-410A: Working Comparison for HVAC"
+metaTitle: "R-32 vs R-410A — Pressures, GWP, Safety, Retrofit Reality"
+metaDescription: "Direct comparison of R-32 and R-410A for residential AC: pressure curves, GWP, ASHRAE class, lubricant, retrofit feasibility, and what the AIM Act phase-down means."
+introOneLiner: "R-32 is the long-term replacement; R-410A is the legacy. Same lubricant (POE), similar pressures, but R-32 is A2L (mildly flammable) where R-410A is A1 (non-flammable). GWP 675 vs 2088 — the regulatory driver."
+
+chooseA: "Installing new residential or light commercial AC equipment. R-32 is the AIM-Act-compliant choice (GWP 675 < 700 threshold), higher volumetric capacity allows smaller charge, and most major manufacturers now ship R-32 equipment globally."
+
+chooseB: "Servicing existing R-410A equipment. Reclaimed R-410A remains legal and available; production for service continues. A direct retrofit to R-32 is not feasible due to A2L safety class change and equipment design differences."
+
+whenNeither: "If GWP below 150 matters (EU F-Gas, some corporate sustainability programs), look at R-454C (148), R-455A (148), R-516A (142), or natural refrigerants (R-290, R-744). R-454B (GWP 466, A2L) is also competing with R-32 in the new-equipment space; the choice between R-32 and R-454B is largely an OEM preference."
+
+retrofitNotes: |
+  R-410A → R-32 is NOT a drop-in retrofit. The substantive blocker is the safety-class change from A1 to A2L: equipment must be designed for A2L handling (sealed electrics in the refrigerant circuit, A2L-rated leak detection, charge limits per UL 60335-2-40 / ASHRAE 15). An R-410A system retrofitted with R-32 would need a new compressor, new safety systems, and new charge limits — at which point the economics favor a full equipment replacement.
+
+  Both refrigerants use POE oil, so the lubricant side of a hypothetical retrofit is compatible. Both operate at very similar pressures (R-32 ~5–8% higher), so component pressure ratings are not the blocker — A2L safety design is.
+
+  For new installations, the choice between R-32 and R-454B is the realistic one. R-32 is a pure refrigerant with no temperature glide; R-454B is a 68.9/31.1 R-32/R-1234yf blend with very low glide (~0.4°F) and lower GWP (466 vs 675). Both are A2L. Daikin and Mitsubishi favor R-32 in their VRF and split lines; Carrier favors R-454B (Puron Advance) in their US residential AC.
+
+faqs:
+  - q: "Are R-32 and R-410A interchangeable?"
+    a: "No. They're chemically related — R-410A is 50% R-32 + 50% R-125 by mass — but they have meaningfully different properties. R-32 alone has higher volumetric capacity, higher discharge temperature, and a different safety class (A2L vs A1). Equipment designed for one is not safety-rated for the other. Servicing an R-410A system with R-32 would void warranty and create an unsafe condition."
+  - q: "Why is R-410A being replaced?"
+    a: "Its GWP of 2088 places it above the AIM Act's 700-GWP threshold for new residential AC equipment as of January 1, 2025. The phase-down doesn't ban R-410A for existing equipment service — reclaimed R-410A remains legal and will be available through the 2030s — but new equipment production has transitioned to A2L alternatives (R-32, R-454B, R-452B)."
+  - q: "Will R-32 systems cost more or less than R-410A systems?"
+    a: "Roughly similar in equipment cost. R-32 itself is cheaper per pound than R-410A (especially as R-410A production winds down), but A2L equipment requires additional safety systems (leak detection sensors, charge-limit-compliant designs) which add modest cost. Installation labor is similar. Long-term total cost of ownership favors R-32 due to lower refrigerant cost and continued availability."
+  - q: "Is R-32 dangerous to handle?"
+    a: "It's A2L — mildly flammable — which requires specific procedures but is manageable. No open flames during service (brazing requires evacuation and venting per A2L procedures). A2L-rated recovery equipment (yellow cylinders with red top stripe). Technician training on A2L handling beyond standard Section 608 certification. The risk is materially lower than A3 hydrocarbons (R-290, R-600a) where charge limits are much stricter."
+  - q: "Can a homeowner tell the difference between R-32 and R-410A?"
+    a: "Yes — check the equipment label and data plate. New equipment manufactured 2025+ will be labeled R-32 or R-454B (the A2L alternatives) rather than R-410A. Service cylinders are color-coded differently (R-410A pink; R-32 and R-454B yellow with red top stripe for A2L). The equipment outline 'A2L' label is visible on the outdoor unit."
+  - q: "What pressures do R-32 systems run at?"
+    a: "Very similar to R-410A — about 5–8% higher across the operating envelope. On a 95°F day, expect ~140 PSIG suction and ~390 PSIG discharge for R-32 vs ~135 PSIG suction and ~380 PSIG discharge for R-410A. Service equipment rated for R-410A (800 PSI high-side) is appropriate for R-32. See [/what-pressure-should-r32-be/](/what-pressure-should-r32-be/) for the full ranges."
+---

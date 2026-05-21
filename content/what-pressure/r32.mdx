@@ -1,0 +1,86 @@
+---
+id: r32
+refrigerantSlug: r-32
+title: "What Should R-32 Pressures Be?"
+metaTitle: "R-32 Normal Operating Pressures — A2L Residential AC Reference"
+metaDescription: "Typical R-32 suction and discharge pressure ranges for residential air conditioning, plus A2L handling notes and diagnostic procedure."
+introOneLiner: "Typical R-32 suction and discharge pressure ranges for residential AC, with A2L handling notes. Pressures slightly higher than R-410A; safety class is A2L (mildly flammable) rather than A1."
+
+operatingRangesSource: "Manufacturer service literature for R-32 residential split systems (Daikin, Mitsubishi, LG, and US R-32 equipment); ACCA Manual T charging procedures adapted for R-32 systems"
+
+operatingRanges:
+  - ambientF: 75
+    application: "Residential AC at 75°F outdoor"
+    suctionPsigLow: 120
+    suctionPsigHigh: 140
+    dischargePsigLow: 260
+    dischargePsigHigh: 315
+    superheatTargetF: [8, 15]
+    subcoolingTargetF: [8, 14]
+  - ambientF: 85
+    application: "Residential AC at 85°F outdoor"
+    suctionPsigLow: 125
+    suctionPsigHigh: 145
+    dischargePsigLow: 310
+    dischargePsigHigh: 365
+    superheatTargetF: [8, 15]
+    subcoolingTargetF: [8, 14]
+  - ambientF: 95
+    application: "Residential AC at 95°F outdoor (rating condition)"
+    suctionPsigLow: 130
+    suctionPsigHigh: 150
+    dischargePsigLow: 360
+    dischargePsigHigh: 420
+    superheatTargetF: [8, 15]
+    subcoolingTargetF: [8, 12]
+  - ambientF: 105
+    application: "Residential AC at 105°F outdoor"
+    suctionPsigLow: 135
+    suctionPsigHigh: 155
+    dischargePsigLow: 410
+    dischargePsigHigh: 480
+    superheatTargetF: [10, 18]
+    subcoolingTargetF: [6, 12]
+  - ambientF: 115
+    application: "Residential AC at 115°F outdoor (hot-climate extreme)"
+    suctionPsigLow: 140
+    suctionPsigHigh: 165
+    dischargePsigLow: 460
+    dischargePsigHigh: 540
+    superheatTargetF: [10, 20]
+    subcoolingTargetF: [5, 10]
+
+narrativeIntro: |
+  R-32 operates at pressures slightly higher than R-410A — about 5–8% across the envelope. R-32 saturation at 95°F is 296 PSIG vs. R-410A's 291 PSIG; the operating pressures track that small difference. Service equipment rated for R-410A (800 PSI high-side) is equally appropriate for R-32 from a pressure-rating standpoint.
+
+  The substantive operational difference is the A2L safety class. R-32 is mildly flammable (low burning velocity, ≤ 10 cm/s) where R-410A is non-flammable (A1). This is materially different from R-410A handling — A2L charge limits per UL 60335-2-40, refrigerant leak detection sensors, A2L-rated recovery cylinders, and technician training specific to A2L apply. Treating R-32 as if it were R-410A from a safety standpoint is a structural error.
+
+diagnosticSteps:
+  - title: "Measure outdoor ambient and indoor return-air temperatures"
+    text: "Same procedure as R-410A — record outdoor dry-bulb at the condenser unit (not in direct sun) and indoor return-air dry-bulb at the air handler. Rating conditions are 95°F outdoor / 80°F indoor dry-bulb per AHRI 210/240."
+    tools: ["Outdoor dry-bulb thermometer", "Indoor return-air thermometer"]
+  - title: "Read low-side and high-side pressures"
+    text: "Connect the manifold gauge set to the suction and discharge service ports. R-32-rated gauges are appropriate; R-410A-rated 800 PSI gauges work for R-32 from a pressure standpoint. Let the system run 10–15 minutes under load before recording. Confirm no open flames in the area before disconnecting hoses — A2L procedures."
+    tools: ["R-32 or R-410A-rated manifold gauge set (800 PSI minimum)", "No-flame work environment"]
+  - title: "Compare to expected ranges and identify the deviation"
+    text: "Same diagnostic patterns as R-22 and R-410A: low low-side suggests undercharge or restriction; high low-side suggests overcharge or compressor issue; high high-side suggests dirty condenser or restricted airflow; low high-side suggests undercharge or low ambient. Use the operating range table above for the specific outdoor ambient."
+  - title: "Verify with superheat and subcooling — TXV/EXV systems use subcooling primarily"
+    text: "Same TXV-vs-fixed-orifice logic as R-410A. R-32 systems are typically TXV or EXV; subcooling is the primary charging metric (8–12°F at condenser outlet target). Superheat hovers near the metering device setpoint; in-range superheat does not confirm correct charge on a TXV system. The combined PT/SH/SC calculator shows both with an interpretation banner."
+    tools: ["Contact or clamp-on temperature probe", "Probe insulation"]
+
+faqs:
+  - q: "What's the normal operating pressure of R-32 at 95°F outdoor?"
+    a: "Expect roughly 130–150 PSIG suction and 360–420 PSIG discharge on a properly-charged residential R-32 system at the 95°F rating condition. Saturation pressure at 95°F is 296 PSIG; operating pressures fall on either side as the evaporator runs colder than ambient and the condenser runs hotter."
+  - q: "How does R-32 pressure compare to R-410A?"
+    a: "Very similar — about 5–8% higher across the envelope. R-32 suction at 95°F outdoor is ~130–150 PSIG vs. R-410A's ~125–145; R-32 discharge is ~360–420 PSIG vs. R-410A's ~350–410. Service equipment rated for R-410A is appropriate for R-32 pressure-wise. The substantive difference is the A2L safety class, not the operating pressures."
+  - q: "Is R-32 flammable?"
+    a: "Yes — R-32 is ASHRAE class A2L, mildly flammable with a low burning velocity (≤ 10 cm/s) and a heat of combustion below 19,000 kJ/kg. It will propagate flame in air at standard atmospheric pressure and 60°C, but the low burning velocity limits the explosion hazard. A2L equipment design, charge limits, leak detection, and service procedures apply per UL 60335-2-40 and ASHRAE 15. Treating R-32 like A1 R-410A is a safety-critical error."
+  - q: "What gauges and recovery equipment do I need for R-32?"
+    a: "R-410A-rated 800 PSI manifolds work for R-32 pressure-wise. Recovery cylinders are color-coded yellow with red top stripe for A2L (distinct from R-410A's pink). A2L-specific recovery machines exist; R-410A recovery machines can be used for A2L only if specifically certified by the manufacturer — check the equipment marking. Hoses must be rated for the working pressure and resistant to refrigerant permeation."
+  - q: "Why is R-32 replacing R-410A?"
+    a: "Two reasons. First, GWP: R-32 at 675 falls below the AIM Act 700 threshold for new residential AC equipment; R-410A at 2088 does not. Second, capacity: R-32 has higher volumetric refrigerating capacity than R-410A, allowing roughly 10–15% smaller charge for the same cooling capacity in optimized designs. R-454B (GWP 466) is a parallel A2L choice with very similar pressure characteristics."
+  - q: "What lubricant does R-32 use?"
+    a: "Polyolester (POE) oil — the same as R-410A. Mineral oil and alkylbenzene are not miscible with R-32 and must not be used. POE is hygroscopic; pull vacuum to 500 microns and verify it holds for 30+ minutes before charging."
+
+faqs_END: ""
+---
