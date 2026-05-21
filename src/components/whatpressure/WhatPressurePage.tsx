@@ -166,8 +166,34 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
 }
 
 function ContentComingSoon({ id }: { id: string }) {
+  const pageUrl = `${SITE_URL}/what-pressure-should-${id}/`;
+  const placeholderSchema = [
+    ORG,
+    WEBSITE,
+    {
+      "@type": "Article",
+      "@id": `${pageUrl}#article`,
+      headline: `Operating-pressure reference for ${id.toUpperCase()} — editorial pending`,
+      description: `Operating-pressure ranges and diagnostic procedure for ${id.toUpperCase()}. Editorial pass pending; the page renders rather than 404ing so internal links stay live.`,
+      url: pageUrl,
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      author: { "@id": `${SITE_URL}/#organization` },
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${pageUrl}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+        { "@type": "ListItem", position: 2, name: "PT Charts", item: `${SITE_URL}/pt-charts-tools-hub/` },
+        { "@type": "ListItem", position: 3, name: `What pressure should ${id.toUpperCase()} be?` },
+      ],
+    },
+  ];
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16 text-center">
+    <>
+      <JsonLd graph={placeholderSchema} />
+      <article className="mx-auto max-w-3xl px-4 py-16 text-center">
       <h1 className="text-2xl font-bold">Operating-pressure reference coming soon</h1>
       <p className="mt-4 text-zinc-600 dark:text-zinc-400">
         Per-refrigerant operating-pressure data for <code>{id}</code> hasn&apos;t been compiled yet. The page renders
@@ -181,6 +207,7 @@ function ContentComingSoon({ id }: { id: string }) {
         for the saturation chart and properties.
       </p>
     </article>
+    </>
   );
 }
 
