@@ -43,7 +43,7 @@ const CATEGORIES: Category[] = [
   },
   {
     name: "calculator",
-    matcher: (u) => /^\/(pt-calculator|superheat-calculator|subcooling-calculator|pt-superheat-subcooling-calculator|saturation-properties-calculator|refrigerant-pt-comparison-tool)\/$/.test(u),
+    matcher: (u) => /^\/(pt-calculator|superheat-calculator|subcooling-calculator|pt-superheat-subcooling-calculator|saturation-properties-calculator|refrigerant-pt-comparison-tool|refrigerant-retrofit-compatibility-calculator)\/$/.test(u),
     required: ["Organization", "WebSite", "Article", "WebApplication", "BreadcrumbList"],
     expected: ["FAQPage"],
   },

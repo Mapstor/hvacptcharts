@@ -41,7 +41,7 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/saturation-properties-calculator/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/refrigerant-pt-comparison-tool/", priority: 0.7, changeFrequency: "monthly" },
   // { url: "/refrigerant-charge-calculator/", priority: 0.7, changeFrequency: "monthly" }, // pending
-  // { url: "/refrigerant-retrofit-compatibility-calculator/", priority: 0.7, changeFrequency: "monthly" }, // pending
+  { url: "/refrigerant-retrofit-compatibility-calculator/", priority: 0.7, changeFrequency: "monthly" },
   // { url: "/system-pressure-diagnostic-calculator/", priority: 0.6, changeFrequency: "monthly" }, // pending
   // { url: "/psychrometric-calculator/", priority: 0.6, changeFrequency: "monthly" }, // port-as-is pending
   // { url: "/duct-size-calculator/", priority: 0.6, changeFrequency: "monthly" }, // port-as-is pending
