@@ -1,0 +1,60 @@
+---
+slug: r-600a
+title: "R-600a (Isobutane) Pressure Temperature Chart & Properties"
+metaTitle: "R-600a Isobutane PT Chart, A3 Highly Flammable, Household Refrigeration"
+metaDescription: "R-600a (isobutane, 2-methylpropane) — pure hydrocarbon refrigerant. ASHRAE A3 (highly flammable). GWP 3. The dominant household refrigerator refrigerant globally. EPA 150g charge limit; HC-rated equipment design required."
+introOneLiner: "Pure hydrocarbon — isobutane (2-methylpropane, C₄H₁₀). ASHRAE A3 (highly flammable). GWP 3. The dominant refrigerant in household refrigerators and freezers globally (~80% of global production). EPA 150g charge limit for household applications; HC-rated equipment design mandatory."
+
+narrative:
+  whatItIs: |
+    R-600a is pure isobutane (2-methylpropane, C₄H₁₀) — a single-component hydrocarbon refrigerant. Isobutane has been used as a refrigerant since the early 20th century and has become the dominant household refrigerator refrigerant globally since the mid-1990s, driven by very low GWP and excellent energy efficiency in domestic applications.
+
+    R-600a is ASHRAE class A3: lower toxicity, highly flammable with burning velocity above 100 cm/s. The flammability is the defining design constraint — equipment must be designed for sealed-system operation, charge limits apply per EPA SNAP and UL 60335-2-89, and field service is limited to specific procedures (typically full system replacement rather than refrigerant recharge for failed seal points).
+
+  whereItsUsed:
+    - Household refrigerators and freezers (~80% of global production by unit count)
+    - Wine coolers and small beverage merchandisers
+    - Small commercial refrigeration (charge-limited self-contained units per EPA SNAP)
+    - Some heat pump applications (small residential, R-600a specifically)
+    - Industrial process cooling (specialty applications)
+
+  phaseDownStatus: |
+    R-600a is not phase-down-targeted — GWP 3 is below every regulatory threshold. The constraints are entirely about the flammability hazard. EPA SNAP and UL 60335-2-89 specify charge limits by application: 150 grams (~5.3 oz) maximum for household refrigerators; increased limits (typically 500 grams) for some commercial self-contained equipment under updated SNAP rules; larger systems require explosion-proof equipment design and machine room ventilation that are typically not economic at smaller scales.
+
+    For household refrigeration in regions with mature HC-rated equipment availability (EU, most of Asia, increasingly North America), R-600a is the default choice. In some commercial refrigeration segments R-290 (propane) is competing with R-600a where the higher capacity per unit charge of propane offsets its slightly different safety profile.
+
+  serviceNotes: |
+    Mineral oil (MO) is the standard lubricant for R-600a systems. Alkylbenzene (AB) and polyalphaolefin (PAO) are also compatible. POE is NOT used with R-600a in original systems.
+
+    Most R-600a systems are factory-sealed and not field-serviceable. Field service when needed requires HC-rated recovery equipment and leak detection specifically calibrated for hydrocarbons (not halogenated refrigerants). EPA Section 608 certification plus equipment-specific HC training are typical service prerequisites. Brazing or any open flame requires the system to be evacuated to safe levels before work begins.
+
+faqs:
+  - q: "Why R-600a (isobutane) instead of R-290 (propane) for household refrigeration?"
+    a: "Energy efficiency at refrigerator operating conditions. R-600a's saturation pressure at typical household refrigerator evaporator temperatures (~-20°F to 0°F) is lower than R-290's, which means lower compressor pressure ratios and better isentropic efficiency for the small compressors used in domestic refrigerators. R-290 has higher volumetric capacity (good for higher-temperature applications like AC and commercial refrigeration) but R-600a is better matched to the household refrigerator duty cycle."
+
+  - q: "Is R-600a the same as butane I use in lighters?"
+    a: "Chemically related — isobutane is one isomer of butane (the other is n-butane, R-600). Lighter fuel is typically a mix of isobutane, n-butane, and propane optimized for combustion characteristics. Refrigerant-grade R-600a is purified to higher standards (≥99.5% isobutane) without the combustion-grade odorants and additives. Don't substitute lighter fuel for refrigerant-grade R-600a — the impurities damage refrigeration system components."
+
+  - q: "What is the EPA charge limit for R-600a?"
+    a: "150 grams (~5.3 oz) maximum for household refrigerators, freezers, and similar self-contained equipment per EPA SNAP 21 (2015 rule). For commercial self-contained refrigeration the limit was raised in the 2020s SNAP updates to roughly 500 grams (~17.6 oz) for many applications. Above these limits the equipment design must include explosion-proof electrical components and machine room ventilation that are typically not economic outside larger industrial settings."
+
+  - q: "What lubricant does R-600a use?"
+    a: "Mineral oil (MO) is the standard. Alkylbenzene (AB) and polyalphaolefin (PAO) are also compatible. POE is NOT used with R-600a in original systems. Field substitution to POE serves no purpose and introduces contamination risk."
+
+  - q: "How is R-600a serviced if it leaks?"
+    a: "Most household refrigerator service for R-600a leaks is full equipment replacement rather than refrigerant recharge. The factory-sealed systems contain such small charges (150 g) that the cost of HC-rated service equipment and procedures generally exceeds the cost of equipment replacement for the consumer. For commercial self-contained equipment under the higher SNAP charge limits, manufacturer-authorized service centers with HC-rated equipment perform leak repair and recharge per equipment-specific procedures."
+
+  - q: "What is the normal operating pressure of R-600a?"
+    a: "Much lower than R-134a or HFC blends. Suction at typical household refrigerator evaporator (~-15°F): roughly 0-3 PSIG (essentially atmospheric, with some systems running slight vacuum). Discharge at typical condenser (~110°F): roughly 75-90 PSIG. R-600a's saturation pressure at 70°F is 30.65 PSIG — substantially lower than R-134a's 71 PSIG. Equipment is designed around these lower pressures."
+
+  - q: "Why is R-600a dominant in household refrigeration globally but less common in the US?"
+    a: "Regulatory and market timing. EU and most of Asia approved R-600a for household refrigeration in the mid-1990s and equipment ecosystems matured quickly. The US was slower — EPA didn't approve R-600a under SNAP for household refrigeration until 2011, and the 150 g charge limit kept US household refrigerator manufacturers on R-134a longer than European counterparts. Current US household refrigerator production is converting to R-600a but the installed base remains predominantly R-134a."
+
+  - q: "Is R-600a dangerous?"
+    a: "It's highly flammable (ASHRAE A3) and requires appropriate equipment design and service procedures. The risks are well-understood and manageable: factory-sealed systems, charge limits per regulation, sealed electrical components in the refrigerant circuit, HC-rated service equipment, and trained service personnel. The track record of R-600a in household refrigeration over three decades of widespread global deployment is excellent — far fewer safety incidents than with the cooking-gas applications of similar hydrocarbons."
+
+retrofitGuidance:
+  fromRefrigerant: r-134a
+  notes: |
+    R-134a to R-600a is not a refrigerant-only retrofit. The flammability difference (A1 → A3) requires HC-rated equipment design throughout — sealed electrical components, no open flames in the operating envelope, explosion-safe enclosures for service, charge limits per EPA SNAP. The realistic path is equipment replacement with new R-600a-rated household refrigerator equipment at end of life. R-134a household refrigerators continue to be serviceable with reclaimed R-134a; the transition is happening at equipment-replacement cadence rather than retrofit.
+---

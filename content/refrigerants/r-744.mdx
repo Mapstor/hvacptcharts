@@ -1,0 +1,62 @@
+---
+slug: r-744
+title: "R-744 (CO2) Pressure Temperature Chart & Properties"
+metaTitle: "R-744 CO2 PT Chart, Transcritical Operation, Supermarket Refrigeration"
+metaDescription: "R-744 (carbon dioxide) — pure natural refrigerant. ASHRAE A1, GWP 1, ODP 0. Critical at 88°F — most commercial systems operate transcritically. High-pressure equipment required (100-130 bar)."
+introOneLiner: "Pure carbon dioxide (CO₂). ASHRAE A1 (non-toxic, non-flammable). Zero ODP, GWP 1 (the reference refrigerant). Critical temperature 88°F / 31°C — most commercial refrigeration systems operate transcritically. The fastest-growing commercial refrigeration option globally."
+
+narrative:
+  whatItIs: |
+    R-744 is pure carbon dioxide (CO₂) — a natural refrigerant with zero ozone-depletion potential and a global warming potential of 1 (CO₂ is the GWP reference). It has been used in refrigeration since the 19th century but lost market share to CFCs and HFCs through most of the 20th century. The HFC phase-down has driven R-744's return as the long-term replacement for high-GWP HFCs in commercial refrigeration.
+
+    R-744's defining property is its low critical temperature: 87.8°F (30.98°C). Above this temperature no saturation state exists — the substance is supercritical. Most commercial CO₂ refrigeration systems operate "transcritically": the high side of the cycle exceeds critical temperature in typical ambient conditions, while the low side remains subcritical. This requires specialized equipment design with high pressure ratings (typically 100-130 bar / 1500-1900 PSIG) and gas-cooler heat exchangers rather than conventional condensers.
+
+  whereItsUsed:
+    - Supermarket refrigeration — transcritical CO₂ centralized systems (the fastest-growing application; dominant in northern Europe and rapidly expanding in North America)
+    - Cascade refrigeration — CO₂ as the low-stage refrigerant with R-717 (ammonia) high-stage
+    - Heat pumps — CO₂ heat pumps for water heating (high COP at moderate ambient; dominant in Japan and growing globally)
+    - Industrial refrigeration — process cooling, freezing
+    - Some automotive heat pump applications (EU, Japan)
+
+  phaseDownStatus: |
+    R-744 is not phase-down-targeted — GWP 1 makes it the long-term refrigerant of choice from a climate-impact standpoint. EU F-Gas Regulation, EPA AIM Act, and Kigali Amendment all treat CO₂-as-refrigerant as outside the HFC scope. The constraints on R-744 are technical (equipment cost, transcritical efficiency at hot ambient) and operational (high-pressure equipment training, specific lubrication and seals).
+
+    For new commercial refrigeration installations in regions with strong climate regulation (EU, increasingly US Pacific and Northeast), R-744 transcritical systems are now the default choice. Equipment cost has declined substantially over the past decade as the supplier ecosystem has matured. Hot-climate efficiency challenges have been addressed by parallel compression, ejector cycles, and other system-level innovations.
+
+  serviceNotes: |
+    Polyolester (POE) oil is the standard for CO₂ refrigeration; specific formulations are CO₂-rated (different from R-410A POE). Some applications use Polyalkylene Glycol (PAG) for specific compressor types. Mineral oil is not used.
+
+    Operating pressures are substantially higher than any HFC refrigerant. The high side in a transcritical CO₂ system at 95°F ambient runs at approximately 90-110 bar (1300-1600 PSIG); the low side at typical evaporator conditions (~30°F to -20°F depending on application) is 36-200 bar — wait, that's incorrect because low-side is subcritical. Let me restate: at typical 25°F to 0°F evaporator conditions, suction pressure is 200-300 PSIG. Manifold gauges, hoses, and recovery equipment must be rated for these higher pressures; standard HFC service equipment is not adequate.
+
+    R-744 systems require specific safety training: high-pressure CO₂ release is an asphyxiation risk in enclosed spaces; pressure relief discharge must be vented to safe locations; service procedures account for the transcritical operation. The IIR (International Institute of Refrigeration) and ASHRAE publish R-744-specific safety guidance.
+
+faqs:
+  - q: "What does 'transcritical' mean for CO₂ refrigeration?"
+    a: "It means the high side of the refrigeration cycle operates above CO₂'s critical temperature (87.8°F / 31°C). Above the critical point, no saturation state exists — the substance is supercritical, with continuous variation in density and other properties rather than a phase change. The low side of a transcritical CO₂ system remains subcritical (below 87.8°F), so the cycle includes a saturation transition at the evaporator. The high-side 'gas cooler' replaces the conventional condenser since no condensation occurs. Transcritical operation is common for CO₂ in ambient conditions above ~70°F."
+
+  - q: "What is the normal operating pressure of R-744?"
+    a: "Substantially higher than HFC refrigerants. Suction (subcritical evaporator) at typical commercial refrigeration setpoints: ~200-300 PSIG for 0°F to 25°F evaporator. High side (transcritical gas cooler): ~1300-1700 PSIG depending on ambient and load. The high-side pressure is actively controlled in transcritical operation to optimize efficiency — there is no simple 'discharge saturation' value the way there is for subcritical refrigerants. Equipment is typically rated for 130 bar (~1885 PSIG) maximum working pressure."
+
+  - q: "Why is R-744 growing so quickly?"
+    a: "Climate regulation plus mature technology. GWP 1 puts R-744 outside the HFC phase-down scope; no regulatory uncertainty about future supply. Equipment costs have declined substantially over the past decade. Transcritical efficiency at hot ambient has been addressed by parallel compression, ejector cycles, and adiabatic gas cooling. Supermarket chains (especially in EU and increasingly North America) are committing to R-744 transcritical for new builds and remodels to satisfy corporate sustainability goals."
+
+  - q: "What lubricant does R-744 use?"
+    a: "Polyolester (POE) oil specifically formulated for CO₂. Some applications use Polyalkylene Glycol (PAG). The CO₂-rated POE formulations differ from R-410A POE in viscosity and additive packages tuned for transcritical CO₂ operation. Mineral oil is not used. Check the equipment manufacturer's specification for the specific lubricant — substitution is not safe."
+
+  - q: "What are the safety considerations for R-744?"
+    a: "Three main risks. (1) Asphyxiation from CO₂ release in enclosed spaces — CO₂ displaces oxygen. Above 10% concentration is immediately dangerous. (2) High-pressure release — the much higher operating pressures mean greater stored energy; rupture is more energetic than HFC systems. (3) Carbonic acid formation — moisture in the system produces carbonic acid which is corrosive. The mitigations: ventilation requirements per ASHRAE 15; specific pressure-relief sizing per IIR/ASHRAE guidance; deep evacuation before charging."
+
+  - q: "Why does the PT chart stop at 87°F?"
+    a: "R-744's critical temperature is 87.8°F (30.98°C). Above this temperature, no saturation state exists — CO₂ is supercritical, with continuous variation in density rather than a phase change. The standard PT chart only applies to subcritical operation. For transcritical operation, the high-side pressure is controlled rather than dictated by a saturation curve; refer to manufacturer literature for the specific equipment's high-side pressure profile vs ambient."
+
+  - q: "Can I retrofit an HFC system to R-744?"
+    a: "No. R-744 systems are purpose-built around the refrigerant — pressure ratings, compressor design, heat exchangers (gas cooler instead of condenser), expansion devices, control systems, and safety equipment all differ. There is no meaningful retrofit path; new installations are designed from the ground up as CO₂ systems. The relevant comparison for an existing HFC system is whether to continue HFC service (R-448A/R-449A retrofit for R-404A; R-454C for very low GWP) or to plan a full equipment replacement with CO₂ transcritical when the existing system reaches end of life."
+
+  - q: "Where can I learn more about CO₂ transcritical refrigeration?"
+    a: "ASHRAE has published extensive technical resources on transcritical CO₂; the ASHRAE Handbook of Refrigeration includes a dedicated chapter. The IIR (International Institute of Refrigeration) publishes white papers and informatory notes on R-744 applications. Equipment manufacturers (Hillphoenix, Hussmann, Carel, Danfoss, Carrier Commercial Refrigeration) publish system-level guidance for their CO₂ transcritical product lines."
+
+retrofitGuidance:
+  fromRefrigerant: r-404a
+  notes: |
+    There is no refrigerant-only retrofit from HFC systems to R-744. The pressure ratings, compressor design, heat exchangers, and safety equipment all differ. The realistic transition path is full equipment replacement with a CO₂ transcritical system at end of life of the existing HFC equipment. For new commercial refrigeration installations in climate-restricted regions, R-744 transcritical is increasingly the default; equipment cost premiums have narrowed substantially and operational efficiency has improved with parallel compression and ejector cycle innovations.
+---

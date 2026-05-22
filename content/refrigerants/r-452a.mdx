@@ -1,0 +1,56 @@
+---
+slug: r-452a
+title: "R-452A Pressure Temperature Chart & Properties"
+metaTitle: "R-452A (Opteon XP44) PT Chart, A1, GWP 2140, Transport Refrigeration"
+metaDescription: "R-452A (Chemours Opteon XP44) — ternary HFC/HFO blend optimized for transport refrigeration. ASHRAE A1, GWP 2140. POE oil required. R-404A retrofit for truck and trailer."
+introOneLiner: "Ternary HFC/HFO blend (11% R-32 / 59% R-125 / 30% R-1234yf). Branded as Chemours Opteon XP44. ASHRAE A1, GWP 2140 — engineered for transport refrigeration where R-404A's capacity and low-temperature performance are critical."
+
+narrative:
+  whatItIs: |
+    R-452A is a ternary zeotropic blend developed by Chemours specifically for transport refrigeration applications — truck, trailer, intermodal container, and marine refrigeration where the demanding duty cycle (high ambient, road vibration, frequent door openings, low-temperature setpoints) makes R-404A's capacity and pressure characteristics hard to replace without performance penalty.
+
+    The composition combines R-32 (capacity), R-125 (non-flammability and pressure rating), and R-1234yf (lower GWP). The blend is non-flammable A1, which simplifies vehicle and trailer system design where the A2L safety class would add cost and complexity to the closed transport environment.
+
+  whereItsUsed:
+    - Refrigerated transport — truck and trailer reefer units
+    - Marine refrigeration (intermodal containers, fishing fleet)
+    - Self-contained commercial refrigeration where R-404A capacity match is needed
+    - R-404A retrofit (specifically in transport applications)
+
+  phaseDownStatus: |
+    R-452A's GWP of 2140 is meaningfully lower than R-404A (3922) but still above the EU F-Gas 150 threshold and the AIM Act 700 new-equipment threshold for most stationary applications. Its position in the lineup is application-specific: where the duty cycle and equipment design favor an A1 non-flammable refrigerant and the lower-GWP alternatives (R-454C, R-455A at GWP 148) introduce A2L safety complications, R-452A is the medium-term compromise.
+
+    Long-term, transport refrigeration is transitioning toward R-454C, R-455A, R-744 (CO₂ transcritical), and R-290 (hydrocarbon, charge-limited self-contained units) depending on the specific application and regulatory regime.
+
+  serviceNotes: |
+    Polyolester (POE) oil is required. Significant temperature glide (~5°F at typical evaporator conditions); EXV is preferred for new equipment, and TXV systems require retuning per the equipment OEM guidance.
+
+    Transport refrigeration service has additional considerations beyond stationary refrigeration: vibration-rated service equipment, EPA Section 608 plus DOT compliance for transport refrigerant cylinders, and equipment-OEM-specific charging procedures (Carrier Transicold, Thermo King, etc. each have their own R-452A guidance).
+
+faqs:
+  - q: "Why R-452A in transport refrigeration instead of R-448A or R-449A?"
+    a: "Capacity and pressure match to R-404A. Transport refrigeration equipment is designed around R-404A's pressure envelope and capacity per unit displacement. R-448A (Solstice N40) and R-449A (Opteon XP40) work as transport retrofits but typically at slightly lower capacity. R-452A's composition was specifically tuned to match R-404A capacity for transport's demanding duty cycle; the tradeoff is higher GWP (2140 vs ~1390 for R-448A/R-449A)."
+
+  - q: "What is the normal operating pressure of R-452A?"
+    a: "Comparable to R-404A in transport refrigeration applications. At a 0°F evaporator setpoint with 95°F ambient, expect roughly 15-22 PSIG suction and 250-300 PSIG discharge. Saturation at 0°F is ~15 PSIG; at 95°F it's ~233 PSIG. Operating pressures fall on either side as evaporator load and condenser airflow drive the operating point."
+
+  - q: "What lubricant does R-452A use?"
+    a: "Polyolester (POE) oil. Mineral oil and alkylbenzene are not miscible. POE is hygroscopic; deep vacuum and verified hold before charging are required."
+
+  - q: "Does R-452A have temperature glide?"
+    a: "Yes — about 5°F at typical evaporator conditions. Use the dew curve for superheat measurement, bubble for subcooling. Charge by weight per the equipment manufacturer's specification, not by gauge."
+
+  - q: "Can I retrofit an R-404A transport unit to R-452A?"
+    a: "Yes, with the standard retrofit procedure: recover R-404A, verify POE oil in the system, replace filter-drier with POE-compatible model, pull vacuum, charge R-452A by weight per the equipment OEM's specification. Carrier Transicold and Thermo King both publish R-452A retrofit guidance for their reefer product lines."
+
+  - q: "What's the long-term replacement for R-452A in transport?"
+    a: "For transport refrigeration the longer-term path varies by application. Truck and trailer reefer units are transitioning toward R-454C (A2L, GWP 148) and R-455A (A2L, GWP 148) where the safety class change is acceptable. Marine container refrigeration is moving toward R-744 (CO₂ transcritical) and R-454C. R-452A is the medium-term option where the A1 safety class outweighs the GWP premium."
+
+  - q: "Is R-452A AIM Act compliant?"
+    a: "For transport refrigeration the AIM Act technology transition rules have different effective dates and GWP thresholds than for stationary AC. R-452A's GWP of 2140 falls above the most restrictive 2025 thresholds for some equipment categories but remains permissible for transport-specific applications under the current rules. Verify the specific equipment category and effective date in the latest EPA AIM Act SNAP rule."
+
+retrofitGuidance:
+  fromRefrigerant: r-404a
+  notes: |
+    Standard R-404A to R-452A retrofit for transport refrigeration equipment. Recover R-404A; verify POE oil; replace filter-drier; pull vacuum to 500 microns held 30 minutes; charge R-452A by weight per the equipment OEM (Carrier Transicold, Thermo King, etc.) specification. Capacity match is close to R-404A, which is the primary reason R-452A is preferred for transport over the lower-GWP alternatives.
+---
