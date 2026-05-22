@@ -1,0 +1,57 @@
+---
+slug: r-448a
+title: "R-448A Pressure Temperature Chart & Properties"
+metaTitle: "R-448A (Solstice N40) PT Chart, A1, GWP 1387, R-404A Replacement"
+metaDescription: "R-448A (Honeywell Solstice N40) — 5-component HFC/HFO blend for commercial refrigeration. ASHRAE A1, GWP 1387. POE oil required. Lower-GWP R-404A replacement."
+introOneLiner: "Five-component HFC/HFO blend (26% R-32 / 26% R-125 / 20% R-1234yf / 21% R-134a / 7% R-1234ze(E)). Branded as Honeywell Solstice N40. ASHRAE A1, GWP 1387 — designed as a lower-GWP R-404A replacement for medium and low-temperature commercial refrigeration."
+
+narrative:
+  whatItIs: |
+    R-448A is a five-component zeotropic blend developed by Honeywell as the engineered low-GWP replacement for R-404A in commercial refrigeration. The composition combines the high capacity of R-32 with the very-low-GWP HFO components R-1234yf and R-1234ze(E), tempered by R-125 (non-flammability) and R-134a (capacity match to R-404A).
+
+    The result is a non-flammable A1 blend with GWP 1387 — substantially lower than R-404A's 3922 but still above the EU F-Gas 150 threshold. R-448A targets the existing commercial refrigeration installed base where retrofit from R-404A is operationally simpler than equipment replacement with an A2L or natural-refrigerant alternative.
+
+  whereItsUsed:
+    - Commercial refrigeration medium-temperature (supermarket display cases, walk-in coolers)
+    - Commercial refrigeration low-temperature (frozen food cases, walk-in freezers)
+    - R-404A retrofit (Honeywell's primary marketing position)
+    - R-22 retrofit (where compressor capacity matches)
+    - Refrigerated transport
+
+  phaseDownStatus: |
+    R-448A's GWP of 1387 places it well below R-404A (3922) but above the EU F-Gas Regulation 150 threshold for new stationary refrigeration. It does not satisfy the EU's long-term replacement objective; for new EU installations the long-term path is R-454C, R-455A, R-516A, or natural refrigerants.
+
+    In the US, R-448A is broadly accepted under the AIM Act for commercial refrigeration applications and is a primary R-404A retrofit refrigerant. It will likely remain in active service for the installed base through the 2030s while new equipment transitions to A2L or natural refrigerants.
+
+  serviceNotes: |
+    Polyolester (POE) oil is required. Mineral oil and alkylbenzene are not miscible. R-448A has a significant temperature glide (~5 K at typical evaporator pressures) — TXV operation requires attention; EXV is preferred for new equipment design.
+
+    For R-404A to R-448A retrofits the procedure is similar to other HFC swaps: recover R-404A, drain residual oil, charge fresh POE, replace filter-drier, pull vacuum, charge by weight per the system's calculated capacity. Honeywell publishes detailed retrofit guidance in the Solstice N40 service literature.
+
+faqs:
+  - q: "What is R-448A also called?"
+    a: "R-448A is the ASHRAE 34 designation. Its primary commercial brand is Honeywell Solstice N40. The 'N40' name reflects the blend's positioning as a non-flammable A1 replacement for the R-404A family (the '40' nods to the R-404A original)."
+
+  - q: "Why use R-448A instead of R-404A?"
+    a: "GWP. R-448A's 1387 is 65% lower than R-404A's 3922. Under the EPA AIM Act and EU F-Gas Regulation, R-404A in new equipment is broadly restricted; R-448A in existing equipment is the operationally-simplest near-term retrofit that meaningfully reduces climate impact. For new installations the path is typically further to R-454C (148), R-455A (148), or natural refrigerants."
+
+  - q: "Can I drop R-448A into an R-404A system?"
+    a: "It's marketed as a retrofit but requires service work: drain mineral oil residue, charge fresh POE, replace the filter-drier, pull deep vacuum, and recharge by weight (not by gauge — the blend's glide makes gauge-based charging inaccurate). Honeywell publishes a detailed Solstice N40 retrofit procedure including TXV adjustment guidance. The R-404A system's compressor and electrical components are typically pressure-compatible with R-448A without modification."
+
+  - q: "What's the difference between R-448A and R-449A?"
+    a: "Both are HFC/HFO blends targeting R-404A replacement with similar GWP (~1390). R-448A (Honeywell Solstice N40) is 5-component including R-1234ze(E); R-449A (Chemours Opteon XP40) is 4-component without R-1234ze(E). Pressures and capacities are very similar. The choice is largely about manufacturer support, distributor availability, and existing system compatibility per the OEM service guidance. Both are A1, both use POE, both are direct R-404A retrofit candidates."
+
+  - q: "What lubricant does R-448A use?"
+    a: "Polyolester (POE) oil. Mineral oil and alkylbenzene oils are not miscible with R-448A and must not be used. POE is hygroscopic; pull deep vacuum and verify a hold before charging."
+
+  - q: "Does R-448A have temperature glide?"
+    a: "Yes — about 5 K (9°F) at typical evaporator conditions. This is significant enough to matter for TXV operation and superheat measurement. Use the dew curve for superheat math (the site's superheat calculator handles this automatically). EXV metering is preferred for new equipment design with R-448A; for retrofits the existing TXV can usually be retuned per Honeywell's guidance."
+
+  - q: "Why is the PT chart on this page empty?"
+    a: "R-448A is one of 11 manufacturer-blend refrigerants that CoolProp 7.2.0 doesn't model directly. The site's PT chart for R-448A comes from transcribed values in the Honeywell Solstice N40 technical datasheet; that transcription work is pending in the project's editorial queue. The narrative and reference fields above are sourced; the PT chart will populate when the manufacturer datasheet transcription is verified. In the meantime, refer to the Honeywell Solstice N40 datasheet directly for service work."
+
+retrofitGuidance:
+  fromRefrigerant: r-404a
+  notes: |
+    The R-448A target retrofit. Standard procedure per Honeywell Solstice N40 service literature: recover R-404A; drain residual mineral oil traces (R-404A systems should already be on POE, but verify); replace filter-drier with POE-compatible model; pull vacuum to 500 microns held 30 minutes; charge R-448A by weight per the system's calculated capacity (NOT by gauge — the glide makes gauge-based charging inaccurate by several °F equivalent). Retune the TXV per Honeywell's guidance for the higher discharge pressures and the glide handling.
+---

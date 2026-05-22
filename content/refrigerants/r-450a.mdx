@@ -1,0 +1,57 @@
+---
+slug: r-450a
+title: "R-450A Pressure Temperature Chart & Properties"
+metaTitle: "R-450A (Opteon XP10) PT Chart, A1, GWP 605, R-134a Replacement"
+metaDescription: "R-450A (Chemours Opteon XP10) — binary HFO/HFC blend for chillers and commercial refrigeration. ASHRAE A1, GWP 605. Low glide. POE oil required."
+introOneLiner: "Binary HFO/HFC blend (42% R-134a / 58% R-1234ze(E)). Branded as Chemours Opteon XP10. ASHRAE A1, GWP 605 — designed as a lower-GWP R-134a replacement for centrifugal chillers and medium-temperature commercial refrigeration. Near-azeotropic (low glide ~0.5 K)."
+
+narrative:
+  whatItIs: |
+    R-450A is a binary near-azeotropic blend of 42% R-134a and 58% R-1234ze(E) by mass. The composition was engineered as a lower-GWP, non-flammable replacement for R-134a in centrifugal chillers and medium-temperature commercial refrigeration where the A2L safety class of pure R-1234ze(E) is operationally inconvenient.
+
+    By blending R-134a (capacity, A1 contribution) with R-1234ze(E) (very low GWP), R-450A achieves a GWP of 605 — below the EPA AIM Act 700 threshold and well below R-134a's 1430. The R-134a content keeps the blend non-flammable (A1) and matches R-134a's saturation pressures closely.
+
+  whereItsUsed:
+    - Centrifugal chillers (medium-pressure commercial cooling — large office buildings, hospitals)
+    - Screw chillers
+    - Medium-temperature commercial refrigeration (supermarket display cases)
+    - Heat pumps (some commercial applications)
+    - R-134a retrofit (when staying A1 matters more than maximum GWP reduction)
+
+  phaseDownStatus: |
+    R-450A's GWP of 605 is below the EPA AIM Act 700 threshold for new equipment in most stationary refrigeration and chiller categories — it remains compliant for new installations under current US regulations. It does not satisfy the EU F-Gas 150 threshold; EU long-term paths for chillers use R-1234ze(E) (A2L, GWP 7) or R-515B (A1, GWP 293).
+
+    For the US market R-450A is positioned as a "stay-A1" alternative to R-1234ze(E) — same low-GWP family but without the A2L safety class change that affects machine room requirements, ventilation, and leak detection regulations. The tradeoff is somewhat higher GWP and the R-134a content keeping the blend within AIM-Act-restricted refrigerant family.
+
+  serviceNotes: |
+    Polyolester (POE) oil is required. Mineral oil and alkylbenzene are not miscible. POE is hygroscopic; pull deep vacuum and verify a hold before charging.
+
+    R-450A is near-azeotropic — temperature glide of approximately 0.5 K (1°F) at typical operating pressures. This is small enough that most tools and procedures designed for pure refrigerants apply without adjustment. For R-134a retrofits, R-450A typically requires no expansion valve changes; pressure characteristics are within ~5% of R-134a across the operating range.
+
+faqs:
+  - q: "What is R-450A also called?"
+    a: "R-450A is the ASHRAE 34 designation. Its primary commercial brand is Chemours Opteon XP10. (Note: 'Opteon XP10' is also used by Chemours for R-513A in some product lines — verify the specific Opteon SKU on the cylinder marking, as Opteon XP10 has been the brand for both blends in different documents.)"
+
+  - q: "What's the difference between R-450A and R-134a?"
+    a: "GWP and composition. R-450A is a binary blend of R-134a (42%) and R-1234ze(E) (58%) with GWP 605; R-134a is pure with GWP 1430. Saturation pressures are within ~5% across the operating range — R-450A's pressures are slightly lower than R-134a's, reflecting the lower-pressure R-1234ze(E) component. Both are A1 non-flammable; both use POE oil. R-450A is the structural replacement for new equipment where R-134a's GWP is restricted."
+
+  - q: "How does R-450A compare to R-513A?"
+    a: "Both are HFC/HFO blends for chillers; both are A1. R-450A is 42/58 R-134a/R-1234ze(E) with GWP 605; R-513A is 44/56 R-134a/R-1234yf with GWP 631. Performance is very similar. The choice is largely about manufacturer support (Chemours markets both as Opteon-line products) and specific equipment OEM compatibility lists. Both are direct R-134a retrofits in equipment certified for them."
+
+  - q: "Can I retrofit R-134a to R-450A?"
+    a: "Yes, in many systems with relatively modest service work. Both use POE oil. R-450A's pressures are within ~5% of R-134a. Expansion valve replacement is typically not required for near-azeotropic blends. The compressor must be R-450A-rated per the OEM — for some equipment R-450A is on the approved refrigerant list out of the box, for others it requires a different compressor or system component. Verify per equipment manufacturer literature."
+
+  - q: "What lubricant does R-450A use?"
+    a: "Polyolester (POE) oil. Mineral oil and alkylbenzene are not miscible. POE is hygroscopic; pull deep vacuum and verify a hold before charging."
+
+  - q: "Why is the PT chart on this page empty?"
+    a: "R-450A is one of 11 manufacturer-blend refrigerants that CoolProp 7.2.0 doesn't model directly. The site's PT chart comes from transcribed values in the Chemours Opteon XP10 technical datasheet; that transcription is pending in the project's editorial queue. The narrative and reference fields above are sourced; the PT chart will populate when the manufacturer datasheet transcription is verified."
+
+  - q: "Why R-450A instead of pure R-1234ze(E)?"
+    a: "Safety class. Pure R-1234ze(E) is A2L (mildly flammable). R-450A's R-134a content keeps it A1 (non-flammable). For machine rooms and applications where A2L safety procedures (charge limits, leak detection, ventilation) are operationally inconvenient, R-450A provides most of the GWP benefit without the safety class change. The tradeoff: R-450A's GWP of 605 is higher than R-1234ze(E)'s 7."
+
+retrofitGuidance:
+  fromRefrigerant: r-134a
+  notes: |
+    R-134a to R-450A is a relatively simple retrofit: both use POE oil, pressures are within 5%, and the blend is near-azeotropic so no expansion valve adjustment is typically needed. Procedure: recover R-134a, verify POE in the system, replace filter-drier with POE-compatible model, pull vacuum to 500 microns held 30 minutes, charge R-450A by weight per the system's calculated capacity. Verify compatibility per the equipment OEM service literature — not all R-134a equipment is rated for R-450A operation even at the similar pressures.
+---

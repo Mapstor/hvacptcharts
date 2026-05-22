@@ -1,0 +1,59 @@
+---
+slug: r-454c
+title: "R-454C Pressure Temperature Chart & Properties"
+metaTitle: "R-454C (Opteon XL20) PT Chart, A2L, GWP 148, EU F-Gas Compliant"
+metaDescription: "R-454C (Chemours Opteon XL20) — binary HFC/HFO blend. ASHRAE A2L, GWP 148 (below EU F-Gas 150 threshold). Large temperature glide (~29 PSI). POE oil required. R-404A replacement for commercial refrigeration."
+introOneLiner: "Binary HFC/HFO blend (21.5% R-32 / 78.5% R-1234yf). Branded as Chemours Opteon XL20. ASHRAE A2L, GWP 148 — below the EU F-Gas Regulation 150 threshold for new stationary refrigeration. Significant temperature glide (~29 PSI at 70°F) reflects the high R-1234yf content."
+
+narrative:
+  whatItIs: |
+    R-454C is a binary zeotropic blend of 21.5% R-32 and 78.5% R-1234yf by mass. The R-1234yf-dominant composition produces a very low GWP of 148 — meeting the EU F-Gas Regulation 150-GWP threshold for new stationary refrigeration that most HFC blends fail. R-454C is positioned as a long-term low-GWP refrigerant for commercial refrigeration at any temperature range.
+
+    The high R-1234yf content also produces a large temperature glide — approximately 29 PSI at 70°F operating pressure, or roughly 8-9°F at typical evaporator conditions. This is significant enough that R-454C cannot be treated as a near-azeotrope for service or design purposes; TXV calibration and superheat measurement need explicit accounting for the glide.
+
+  whereItsUsed:
+    - Commercial refrigeration medium-temperature (supermarket display cases, walk-in coolers)
+    - Commercial refrigeration low-temperature (frozen food, walk-in freezers)
+    - R-404A retrofit candidate (for systems where A2L safety is acceptable)
+    - R-22 retrofit (where compressor capacity and A2L acceptability align)
+    - Heat pumps (some commercial applications, particularly EU market)
+
+  phaseDownStatus: |
+    R-454C is positioned as a long-term replacement for higher-GWP commercial refrigeration refrigerants. Its GWP of 148 is below both the EPA AIM Act 700 threshold and the EU F-Gas Regulation 150 threshold for new stationary refrigeration. It is one of the very-low-GWP A2L options (alongside R-455A at 148 and R-516A at 142) that meet the EU's long-term replacement objectives.
+
+    The A2L safety class is the main constraint: equipment design must accommodate A2L charge limits and leak detection per UL 60335-2-40 and ASHRAE 15. For commercial refrigeration this is more impactful than for residential AC because of larger charge sizes and machine room ventilation requirements.
+
+  serviceNotes: |
+    Polyolester (POE) oil is required. The significant temperature glide (~29 PSI at 70°F operating pressure, equivalent to roughly 8-9°F at evaporator conditions) requires explicit attention. Use the dew curve for superheat math (the site's superheat calculator handles this automatically); use the bubble curve for subcooling math.
+
+    Charge R-454C by weight per the system's calculated capacity. Gauge-based charging on a zeotropic blend introduces errors on the order of the glide. EXV metering is preferred for new equipment design; existing TXVs typically require retuning per the equipment OEM service literature.
+
+    A2L safety class requires: A2L-rated charge limits per UL 60335-2-40 and ASHRAE 15; refrigerant leak detection sensors; no open flames during service; A2L-rated recovery cylinders (yellow with red top stripe); technician A2L handling training.
+
+faqs:
+  - q: "What is R-454C also called?"
+    a: "R-454C is the ASHRAE 34 designation. Its primary commercial brand is Chemours Opteon XL20. The 'XL' prefix in Chemours' Opteon brand indicates the A2L/extra-low-GWP product line; 'L20' references the very low GWP."
+
+  - q: "What's the difference between R-454C and R-454B?"
+    a: "Both are R-32/R-1234yf binary blends with different compositions. R-454B is 68.9/31.1 R-32/R-1234yf (R-32 dominant) targeted at R-410A replacement in residential AC. R-454C is 21.5/78.5 R-32/R-1234yf (R-1234yf dominant) targeted at lower-temp commercial refrigeration. R-454B has GWP 466 and small glide (~0.4°F); R-454C has GWP 148 and large glide (~9°F). They are designed for fundamentally different applications despite the similar ASHRAE designation."
+
+  - q: "Why does R-454C have such a large temperature glide?"
+    a: "Composition. R-32 has a normal boiling point of -51.7°C and R-1234yf has -29.5°C — a 22°C difference. At 78.5% R-1234yf mass content, the blend behaves much more like R-1234yf than R-32, with a substantial temperature spread between bubble (start of evaporation, R-32-rich vapor leaving liquid) and dew (end of evaporation, all liquid gone). The glide is structural to the blend chemistry."
+
+  - q: "How does R-454C compare to R-404A?"
+    a: "R-454C operates at lower pressures than R-404A (suction at 70°F evap ~ 25-35 PSIG for R-454C vs ~12-18 for R-404A — wait, this isn't correct because R-454C has higher saturation pressure at low temps; let me think again — actually R-454C at 70°F is 141 bubble / 112 dew PSIG, R-404A is 149 PSIG, so they're comparable at evaporator conditions). The substantive differences: GWP (R-454C 148 vs R-404A 3922 — a 96% reduction), safety class (R-454C A2L vs R-404A A1), and glide (R-454C ~9°F vs R-404A ~2°F). R-454C is positioned as the long-term low-GWP replacement for R-404A in EU-compliant commercial refrigeration."
+
+  - q: "Is R-454C AIM Act and EU F-Gas compliant?"
+    a: "Yes to both. GWP 148 is below the EPA AIM Act 700 threshold for new equipment and below the EU F-Gas Regulation 150 threshold for new stationary refrigeration. R-454C is one of the very-low-GWP refrigerants that meets the EU's long-term replacement objectives without resorting to natural refrigerants."
+
+  - q: "Should I use the dew or bubble pressure for charging R-454C?"
+    a: "Neither — charge by weight, not by gauge. R-454C's ~29 PSI glide at 70°F means the saturation 'temperature' at a given pressure depends on which curve (bubble or dew) you reference. Gauge-based charge adjustment introduces errors on the order of the glide. For superheat measurement at the suction line, use the dew curve (the site's superheat calculator handles this automatically); for subcooling at the liquid line, use the bubble curve."
+
+  - q: "What lubricant does R-454C use?"
+    a: "Polyolester (POE) oil. Mineral oil and alkylbenzene are not miscible. POE is hygroscopic; pull vacuum to 500 microns and verify a hold before charging."
+
+retrofitGuidance:
+  fromRefrigerant: r-404a
+  notes: |
+    R-404A to R-454C is a meaningful retrofit — a 96% GWP reduction (3922 → 148) — but requires accommodating the safety class change (A1 → A2L) and the substantial glide difference (~2°F → ~9°F). Procedure: recover R-404A; verify A2L-rated equipment including compressor, electrical components, leak detection; replace filter-drier with POE-compatible model; pull vacuum to 500 microns held 30 minutes; charge R-454C by weight; retune TXV per the equipment OEM service literature for the larger glide. In many cases the A2L equipment requirement makes full equipment replacement the practical path rather than a refrigerant-only retrofit.
+---

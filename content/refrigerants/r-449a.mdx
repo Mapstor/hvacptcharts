@@ -1,0 +1,57 @@
+---
+slug: r-449a
+title: "R-449A Pressure Temperature Chart & Properties"
+metaTitle: "R-449A (Opteon XP40) PT Chart, A1, GWP 1397, R-404A Retrofit"
+metaDescription: "R-449A (Chemours Opteon XP40) — quaternary HFC/HFO blend for commercial refrigeration. ASHRAE A1, GWP 1397. POE oil required. Direct R-404A retrofit option."
+introOneLiner: "Quaternary HFC/HFO blend (24.3% R-32 / 24.7% R-125 / 25.3% R-1234yf / 25.7% R-134a). Branded as Chemours Opteon XP40. ASHRAE A1, GWP 1397 — designed as a lower-GWP R-404A replacement, parallel to Honeywell's Solstice N40 (R-448A)."
+
+narrative:
+  whatItIs: |
+    R-449A is a four-component zeotropic blend developed by Chemours as a direct lower-GWP replacement for R-404A in commercial refrigeration. The composition is approximately quarters of R-32 (capacity), R-125 (non-flammability), R-1234yf (very low GWP HFO), and R-134a (capacity match to R-404A).
+
+    R-449A and Honeywell's R-448A occupy effectively the same market position: both are A1 (non-flammable), both have GWP near 1390 (~65% lower than R-404A), both target the existing commercial refrigeration installed base for retrofit. The choice between them is largely about manufacturer support and distributor availability rather than performance.
+
+  whereItsUsed:
+    - Commercial refrigeration medium-temperature (supermarket display cases, walk-in coolers)
+    - Commercial refrigeration low-temperature (frozen food, walk-in freezers)
+    - R-404A retrofit (Chemours' primary marketing position)
+    - R-22 retrofit (where compressor capacity matches)
+    - Refrigerated transport
+
+  phaseDownStatus: |
+    R-449A's GWP of 1397 falls well below R-404A (3922) and above the EU F-Gas 150 threshold for new stationary refrigeration. The EU long-term path for new installations is R-454C, R-455A, R-516A, or natural refrigerants. In the US, R-449A is accepted broadly under the AIM Act for commercial refrigeration and is a leading R-404A retrofit candidate.
+
+    For the existing commercial refrigeration installed base, R-449A is a realistic medium-term solution — it eliminates ~65% of the per-pound climate impact of continued R-404A operation without requiring equipment replacement. New equipment installations are more likely to use the very-low-GWP A2L blends or natural refrigerants.
+
+  serviceNotes: |
+    Polyolester (POE) oil is required. R-449A has significant temperature glide (~5–6 K at typical evaporator pressures); TXV operation requires attention and EXV is preferred for new equipment design.
+
+    For R-404A retrofit the procedure follows the standard HFC swap: recover R-404A, verify POE oil, replace filter-drier, pull deep vacuum (POE is hygroscopic), charge R-449A by weight per the system's calculated capacity. Chemours publishes detailed Opteon XP40 retrofit guidance.
+
+faqs:
+  - q: "What is R-449A also called?"
+    a: "R-449A is the ASHRAE 34 designation. Its primary commercial brand is Chemours Opteon XP40. (Some European literature also uses R-449A trade names from other manufacturers — Forane 449A from Arkema, for instance — but Opteon XP40 is the dominant US brand.)"
+
+  - q: "R-448A or R-449A for an R-404A retrofit?"
+    a: "Functionally very similar. Both are A1, both use POE, both have GWP ~1390, both are direct R-404A retrofit candidates. The differences: R-448A (Honeywell Solstice N40) is 5-component including R-1234ze(E); R-449A (Chemours Opteon XP40) is 4-component. Glides are similar. The choice is typically determined by the OEM's service guidance for the specific equipment, distributor availability, and contractor preference. Both follow the same retrofit procedure pattern."
+
+  - q: "What lubricant does R-449A use?"
+    a: "Polyolester (POE) oil. Mineral oil and alkylbenzene are not miscible. POE is hygroscopic; vacuum integrity matters before charging."
+
+  - q: "Does R-449A have temperature glide?"
+    a: "Yes — about 5–6 K (9–11°F) at typical evaporator pressures. This is significant for TXV operation: the valve may not control superheat correctly across the full operating range without retuning. EXV metering is preferred for new equipment. For superheat measurement use the dew curve as the saturation reference (the site's superheat calculator handles this automatically)."
+
+  - q: "Why is R-404A being replaced?"
+    a: "GWP. R-404A's 3922 is among the highest of common HFC refrigerants. EPA AIM Act technology transition rules prohibited production of HFCs with GWP above 700 in most new commercial refrigeration equipment effective January 1, 2025; R-404A does not comply. R-449A at 1397 is a meaningful improvement and operates similarly enough to R-404A that retrofitting the existing installed base is operationally feasible."
+
+  - q: "Can I charge R-449A by gauge?"
+    a: "Not accurately. R-449A's ~5–6 K temperature glide means the saturation 'temperature' at a given pressure depends on whether you're looking at the bubble or dew curve. Charging by gauge-derived saturation reading introduces errors on the order of the glide. Charge by weight per the system's calculated capacity (per the OEM service literature or Chemours Opteon XP40 retrofit guidance)."
+
+  - q: "What's the long-term replacement for R-449A?"
+    a: "For new equipment subject to EU F-Gas 150 or stricter regulation: R-454C (148), R-455A (148), R-516A (142), R-744 (CO₂ transcritical), or R-290 (propane) in charge-limited self-contained systems. R-449A is the medium-term path for existing installed-base retrofit; new equipment installations are increasingly moving past it to one of the A2L or natural-refrigerant options."
+
+retrofitGuidance:
+  fromRefrigerant: r-404a
+  notes: |
+    The R-449A target retrofit. Procedure follows Chemours Opteon XP40 service literature: recover R-404A; verify residual oil is POE (R-404A systems were originally POE so this should be fine); replace filter-drier with POE-compatible model; pull vacuum to 500 microns held 30 minutes; charge R-449A by weight per system capacity (do NOT charge by gauge due to glide). Retune TXV per Chemours guidance for the slightly different discharge envelope and the glide.
+---
