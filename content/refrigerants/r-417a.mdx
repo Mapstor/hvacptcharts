@@ -1,0 +1,56 @@
+---
+slug: r-417a
+title: "R-417A Pressure Temperature Chart & Properties"
+metaTitle: "R-417A (ISCEON MO59) PT Chart, A1, GWP 2346, R-22 Retrofit (MO-Compatible)"
+metaDescription: "R-417A (ISCEON MO59) — ternary HFC blend with isobutane. ASHRAE A1, GWP 2346. R-22 retrofit refrigerant that works with mineral oil — no oil change required."
+introOneLiner: "Ternary HFC blend with hydrocarbon (46.6% R-125 / 50.0% R-134a / 3.4% R-600). Branded as ISCEON MO59 (originally DuPont, now Chemours). ASHRAE A1, GWP 2346. The R-22 retrofit refrigerant that works with mineral oil — designed for systems where a POE oil change is impractical."
+
+narrative:
+  whatItIs: |
+    R-417A is a ternary blend developed in the early 2000s as a "no oil change" R-22 retrofit refrigerant. The 3.4% R-600 (n-butane) hydrocarbon component aids miscibility between the HFC refrigerants and mineral oil, allowing R-417A to circulate properly in systems that retain their original R-22-era mineral oil charge.
+
+    This is the structural appeal of R-417A: the most operationally-burdensome step of an R-22-to-HFC retrofit — draining mineral oil and replacing it with POE — is eliminated. The trade-off is a higher GWP (2346) than other R-22 retrofit blends, and slightly different capacity match.
+
+  whereItsUsed:
+    - R-22 retrofit (the primary application; "MO-compatible" is the key marketing position)
+    - Residential and light commercial AC retrofit
+    - Heat pumps (R-22 retrofit)
+    - Some medium-temperature commercial refrigeration
+
+  phaseDownStatus: |
+    R-417A's GWP of 2346 places it above the EPA AIM Act 700 threshold for new equipment. For new installations R-417A is not the choice; for R-22 retrofit work it remains a legitimate option where oil-change avoidance is the priority.
+
+    As R-22 systems reach end of life, the realistic path is full equipment replacement with new R-454B / R-32 / R-452B equipment (residential AC) or R-448A / R-449A equipment (commercial refrigeration) rather than refrigerant-only retrofit. R-417A's market position narrows as the R-22 installed base ages out.
+
+  serviceNotes: |
+    Compatible with mineral oil (MO), alkylbenzene (AB), and POE oils — one of the rare HFC blends that works across the lubricant family lines. For R-22 retrofits the existing mineral oil typically stays in the system; no flush or oil change is required.
+
+    R-417A has moderate temperature glide (~7-8°F at typical evaporator pressures). TXV systems generally require retuning; existing R-22 expansion valves may not control superheat correctly across the full operating range without adjustment. Capacity match to R-22 is reasonable but slightly lower (~5-8% reduced cooling output depending on operating point).
+
+faqs:
+  - q: "What does 'MO-compatible' mean for R-417A?"
+    a: "R-417A is miscible with mineral oil (MO), the historical R-22 lubricant. For most R-22-to-HFC retrofits the largest service expense is draining the mineral oil and replacing with POE; R-417A's 3.4% R-600 (n-butane) hydrocarbon component aids miscibility enough that the original mineral oil can stay in the system. This eliminates the oil-change step entirely — typically saving several hours of labor and the cost of the POE replacement oil per service call."
+
+  - q: "How does R-417A compare to R-407C for R-22 retrofit?"
+    a: "R-407C has lower GWP (1774 vs 2346) and slightly better capacity match to R-22, but requires a POE oil change. R-417A has higher GWP but works with the existing mineral oil. R-407C is the better refrigerant from a climate-impact standpoint; R-417A is the better refrigerant from a service-cost standpoint. The choice depends on whether oil-change avoidance is operationally critical and whether the equipment is expected to remain in service long enough for the GWP difference to matter."
+
+  - q: "What is the normal operating pressure of R-417A?"
+    a: "Slightly lower than R-22 across the envelope (~5-10% lower). On a residential AC system at 95°F outdoor ambient retrofitted from R-22 to R-417A, expect roughly 55-70 PSIG suction and 215-260 PSIG discharge — modestly lower than R-22's 65-75 / 240-280. The capacity match is reasonable but produces about 5-8% lower cooling output for the same compressor displacement."
+
+  - q: "Does R-417A have temperature glide?"
+    a: "Yes — about 7-8°F at typical evaporator pressures. This is comparable to R-407C and meaningful enough that TXV operation should be reviewed after retrofit. EXV systems handle the glide automatically; fixed-orifice systems are less affected because they don't rely on TXV-based superheat control. For superheat measurement use the dew curve as the saturation reference (the site's superheat calculator handles this automatically)."
+
+  - q: "Is R-417A still being made?"
+    a: "Production continues for the retrofit market but at declining volumes as the R-22 installed base shrinks. AIM Act phase-down constraints reduce supply over time. For new R-22 retrofit work R-417A remains commercially available; long-term supply for service of past retrofits will depend on continued production decisions and the reclamation market."
+
+  - q: "Should I use R-417A or just replace the R-22 equipment?"
+    a: "Economics-dependent. R-417A retrofit costs less than full equipment replacement and preserves the existing investment. Full equipment replacement provides a modern R-454B / R-32 system with substantially lower GWP, higher efficiency (SEER2 ratings exceed legacy R-22 systems by 20-30%), and longer expected service life. For R-22 equipment less than ~10 years old in good condition with no other major issues, R-417A retrofit can be the right economic choice; for older equipment with multiple issues, replacement is typically preferred."
+
+  - q: "What's the GWP of R-417A?"
+    a: "2346 (IPCC AR5, mass-weighted from components). For context: R-22 GWP is 1810 — R-417A is actually slightly higher GWP than the R-22 it replaces, which is part of the AIM Act's structural challenge with retrofit blends. The R-417A appeal is operational (no oil change) rather than climate (its GWP is comparable to R-22's)."
+
+retrofitGuidance:
+  fromRefrigerant: r-22
+  notes: |
+    The R-417A target retrofit. Procedure: recover R-22; replace filter-drier (with HFC-compatible model); pull vacuum to 500 microns held 30 minutes; charge R-417A by weight per the system's calculated capacity (typically 85-95% of original R-22 charge weight). The mineral oil stays in the system — no oil change required. Verify TXV operation after retrofit; significant glide may require expansion-valve adjustment. Verify cooling capacity output; capacity is ~5-8% lower than R-22, which may matter at the system's design ambient condition.
+---

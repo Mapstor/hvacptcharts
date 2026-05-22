@@ -1,0 +1,53 @@
+---
+slug: r-421a
+title: "R-421A Pressure Temperature Chart & Properties"
+metaTitle: "R-421A PT Chart, A1, GWP 2630, R-22 Retrofit (MO-Compatible)"
+metaDescription: "R-421A (Choice R-421A) — binary HFC blend (R-125/R-134a 58/42). ASHRAE A1, GWP 2630. R-22 retrofit option with mineral oil compatibility."
+introOneLiner: "Binary HFC blend (58% R-125 / 42% R-134a). Branded as Choice R-421A by ICOR International. ASHRAE A1, GWP 2630. An R-22 retrofit option emphasizing simplicity (binary blend, mineral-oil compatible) over the lower-GWP alternatives."
+
+narrative:
+  whatItIs: |
+    R-421A is a binary blend of 58% R-125 and 42% R-134a by mass, developed by ICOR International as an R-22 retrofit refrigerant. The binary composition (only two components) simplifies manufacturing compared to the 3- and 5-component R-22 retrofit blends, and the absence of a high-volatility R-32 component keeps the operating pressures close to R-22 across the envelope.
+
+    Compared to other "MO-compatible" R-22 retrofit options (R-417A, R-422A, R-422D, R-427A, R-438A), R-421A's lack of a hydrocarbon component means it relies on the HFC components themselves for mineral-oil miscibility — this works in practice for most R-22 retrofit applications but with somewhat less margin than the hydrocarbon-aided blends.
+
+  whereItsUsed:
+    - R-22 retrofit (residential AC, heat pumps, light commercial)
+    - Medium-temperature commercial refrigeration (R-22 retrofit)
+    - Existing R-22 equipment service where oil change is impractical
+
+  phaseDownStatus: |
+    R-421A's GWP of 2630 is above the EPA AIM Act 700 threshold for new equipment. For new installations R-421A is not the choice; for R-22 retrofit work it remains commercially available.
+
+    The R-22 retrofit market itself is shrinking as the R-22 installed base ages out. New equipment installations use R-454B / R-32 / R-452B (residential AC) or R-448A / R-449A (commercial refrigeration) rather than refrigerant-only R-22 retrofits.
+
+  serviceNotes: |
+    Compatible with mineral oil (MO), alkylbenzene (AB), and POE oils. For R-22 retrofits the existing mineral oil typically stays in the system. R-421A has moderate temperature glide (~7-8°F at typical operating pressures); TXV operation may require retuning after retrofit.
+
+faqs:
+  - q: "How does R-421A compare to R-417A for R-22 retrofit?"
+    a: "Similar function (MO-compatible R-22 retrofit blends) with composition differences. R-421A is binary (R-125/R-134a only); R-417A is ternary (R-125/R-134a/R-600 — the hydrocarbon component aids miscibility). R-421A: GWP 2630, slightly closer to R-22 pressure envelope. R-417A: GWP 2346, hydrocarbon-aided mineral oil miscibility. Both are AIM-Act-affected and not for new equipment; the choice between them is largely distributor availability and contractor preference."
+
+  - q: "What is the normal operating pressure of R-421A?"
+    a: "Close to R-22 across the envelope. At 95°F outdoor ambient on a residential AC retrofitted to R-421A, expect roughly 60-75 PSIG suction and 230-275 PSIG discharge — within a few PSI of R-22's operating envelope. The closer pressure match (vs higher-pressure R-22 retrofits) reduces stress on system components originally designed for R-22 pressures."
+
+  - q: "What lubricant does R-421A use?"
+    a: "Compatible with mineral oil (MO), alkylbenzene (AB), and POE. For R-22 retrofits the existing mineral oil typically stays in the system. The hydrocarbon-free binary blend has somewhat less miscibility margin than hydrocarbon-aided R-22 retrofit blends (R-417A, R-422 series, R-438A) but works in practice for most retrofits."
+
+  - q: "Does R-421A have temperature glide?"
+    a: "Yes — about 7-8°F at typical evaporator pressures. Use the dew curve for superheat measurement. TXV systems may require retuning after retrofit; EXV systems handle the glide automatically."
+
+  - q: "Should I use R-421A or replace the R-22 equipment?"
+    a: "Same economic analysis as other R-22 retrofits. For equipment less than ~10 years old in good condition with no other major issues, R-421A retrofit can be cost-effective. For older equipment with multiple service-life concerns, full replacement with modern R-454B / R-32 equipment provides better long-term value through higher efficiency and longer expected service life."
+
+  - q: "Is R-421A a near-azeotrope?"
+    a: "No — R-421A has meaningful temperature glide (~7-8°F at typical operating pressures), placing it in the zeotropic category. This is similar to other R-22 retrofit blends in this family (R-417A, R-422 series). For service work treat it as a zeotrope: dew curve for superheat, bubble curve for subcooling, charge by weight not by gauge."
+
+  - q: "What is the GWP of R-421A?"
+    a: "2630 (IPCC AR5, mass-weighted from R-125 and R-134a components). This is higher than R-22's GWP of 1810. Like other R-22 retrofit HFC blends, the GWP exchange isn't favorable on a per-pound basis — the retrofit's value is operational continuity (no equipment replacement) rather than climate-impact reduction."
+
+retrofitGuidance:
+  fromRefrigerant: r-22
+  notes: |
+    Standard R-22 to R-421A retrofit procedure: recover R-22; replace filter-drier with HFC-compatible model; pull vacuum to 500 microns held 30 minutes; charge R-421A by weight per the system's calculated capacity (typically 90-100% of original R-22 charge weight). Mineral oil typically stays in the system. Verify TXV operation; significant glide may require expansion valve adjustment.
+---
