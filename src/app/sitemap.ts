@@ -54,7 +54,7 @@ const STATIC_PAGES: StaticEntry[] = [
   // Long-form guides
   { url: "/superheat-subcooling-fundamentals/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/pt-chart-guide/", priority: 0.7, changeFrequency: "monthly" },
-  // { url: "/high-head-pressure-causes/", priority: 0.7, changeFrequency: "monthly" }, // pending
+  { url: "/high-head-pressure-causes/", priority: 0.7, changeFrequency: "monthly" },
   // { url: "/refrigerant-comparison-guide/", priority: 0.7, changeFrequency: "monthly" }, // pending
   // { url: "/carrier-410a-charging-chart/", priority: 0.5, changeFrequency: "yearly" }, // pending
   // { url: "/refrigerant-prices-guide/", priority: 0.6, changeFrequency: "monthly" }, // pending
@@ -69,8 +69,8 @@ const STATIC_PAGES: StaticEntry[] = [
 
   // Comparison pages
   { url: "/r-32-vs-r-410a/", priority: 0.7, changeFrequency: "monthly" },
-  // { url: "/r-32-vs-r-454b/", priority: 0.6, changeFrequency: "monthly" }, // pending
-  // { url: "/r-410a-vs-r-454b/", priority: 0.6, changeFrequency: "monthly" }, // pending
+  { url: "/r-32-vs-r-454b/", priority: 0.6, changeFrequency: "monthly" },
+  { url: "/r-410a-vs-r-454b/", priority: 0.6, changeFrequency: "monthly" },
 
   // HVAC guides — preserved from legacy; 17 pages port-as-is in Phase 7.
   // Uncomment as MDX files land in content/guides/.

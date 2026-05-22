@@ -1,0 +1,91 @@
+---
+id: r134a
+refrigerantSlug: r-134a
+title: "What Should R-134a Pressures Be?"
+metaTitle: "R-134a Operating Pressures — Chillers, Mobile AC, Commercial Refrigeration"
+metaDescription: "Typical R-134a suction and discharge pressure ranges across its three main applications (chillers, mobile AC, commercial refrigeration) with diagnostic procedure."
+introOneLiner: "R-134a operating pressures vary substantially across its three main applications: centrifugal chillers, mobile air conditioning, and medium-temperature commercial refrigeration. Operating envelopes for each are documented below."
+
+operatingRangesSource: "ACCA Manual T; ASHRAE Refrigeration Handbook 2022; manufacturer service literature for centrifugal chillers (Carrier, Trane, York) and mobile AC (Toyota, GM, Honda, VW service manuals)"
+
+operatingRanges:
+  - ambientF: 95
+    application: "Centrifugal chiller, 95°F outdoor, 45°F leaving water"
+    suctionPsigLow: 35
+    suctionPsigHigh: 50
+    dischargePsigLow: 130
+    dischargePsigHigh: 170
+    superheatTargetF: [8, 15]
+    subcoolingTargetF: [8, 14]
+  - ambientF: 105
+    application: "Centrifugal chiller, 105°F outdoor"
+    suctionPsigLow: 38
+    suctionPsigHigh: 55
+    dischargePsigLow: 150
+    dischargePsigHigh: 195
+    superheatTargetF: [8, 15]
+    subcoolingTargetF: [6, 12]
+  - ambientF: 95
+    application: "Mobile AC at highway speed, 95°F ambient"
+    suctionPsigLow: 25
+    suctionPsigHigh: 45
+    dischargePsigLow: 175
+    dischargePsigHigh: 250
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [5, 15]
+  - ambientF: 95
+    application: "Mobile AC at idle, 95°F ambient"
+    suctionPsigLow: 30
+    suctionPsigHigh: 50
+    dischargePsigLow: 200
+    dischargePsigHigh: 300
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [5, 15]
+  - ambientF: 95
+    application: "Medium-temp commercial refrig, 35°F evap"
+    suctionPsigLow: 25
+    suctionPsigHigh: 38
+    dischargePsigLow: 135
+    dischargePsigHigh: 175
+    superheatTargetF: [10, 20]
+    subcoolingTargetF: [5, 15]
+
+narrativeIntro: |
+  R-134a's operating envelope depends heavily on the application. Centrifugal chillers run steady-state at moderate pressures with the compressor unloaded to match load. Mobile AC operates dynamically with substantial pressure swings as compressor speed varies with engine RPM, condenser airflow varies with vehicle speed, and load varies with cabin demand. Commercial refrigeration runs at lower evaporator temperatures with correspondingly lower suction pressures.
+
+  R-134a saturation at 70°F is 71 PSIG (the reference pressure value for the dataset). Operating pressures fall on either side as superheat, subcooling, and condenser/evaporator temperatures determine the actual line conditions.
+
+diagnosticSteps:
+  - title: "Identify the application and equipment context"
+    text: "R-134a operating pressures differ by factor of 3+ across applications. Centrifugal chillers are steady-state; mobile AC is dynamic; commercial refrigeration is low-evap. Before reading gauges, identify which family applies — the same suction pressure that's normal for a chiller (~40 PSIG) would indicate a problem on a mobile AC system at highway speed."
+  - title: "Read low-side and high-side pressures at steady state"
+    text: "Connect manifold gauges to suction and discharge service ports. For chillers, let the system stabilize for 15+ minutes under load. For mobile AC, take readings at a defined operating condition (idle for several minutes, then highway speed equivalent — engine at 1500-2000 RPM with AC at maximum cooling). For commercial refrigeration, ensure the case temperature has stabilized at setpoint."
+    tools: ["Manifold gauge set rated for R-134a (300 PSI minimum)", "Application-specific service adapters"]
+  - title: "Compare to expected ranges for the specific application"
+    text: "Use the operating-range table above for the closest matching application. For chillers, compare to the leaving water / outdoor ambient combination. For mobile AC, compare to the operating-condition reading (idle vs highway). For commercial refrigeration, compare to the evaporator setpoint."
+  - title: "Verify with superheat and subcooling — separately for each application"
+    text: "Superheat targets differ by application: chillers 8-15°F; mobile AC 5-15°F; commercial refrig 10-20°F. Subcooling targets similarly differ. High superheat + low subcooling = undercharge regardless of application. The combined PT/SH/SC calculator handles the math automatically."
+    tools: ["Contact temperature probe with insulation", "Application-specific clamp adapters"]
+
+faqs:
+  - q: "What's the normal operating pressure of R-134a in a residential AC system?"
+    a: "Residential central AC doesn't typically use R-134a. R-134a's lower volumetric capacity makes it inefficient for the residential AC envelope; R-22 (legacy) and R-410A / R-32 / R-454B (current) are the residential AC refrigerants. R-134a's residential application is some heat pumps, mobile AC, and centrifugal chillers in large commercial buildings."
+
+  - q: "What's the normal pressure of R-134a in a car AC system?"
+    a: "Highly dependent on engine RPM and ambient. At 95°F ambient with engine at idle (~700 RPM), expect roughly 30-50 PSIG suction and 200-300 PSIG discharge. At highway speed (engine 2000+ RPM), suction stays similar but discharge can drop to 175-250 PSIG due to better condenser airflow. The compressor is variable-displacement or cycling-fixed on most modern vehicles — readings change rapidly with operating condition."
+
+  - q: "Why does my R-134a chiller discharge pressure climb during operation?"
+    a: "Most common: condenser airflow problem (dirty coil, blocked fins, slow fan). Less common: overcharge (verify subcooling — high subcooling alongside climbing discharge is the overcharge signature), non-condensables (air or moisture from inadequate evacuation), restricted liquid line, or compressor wear reducing efficiency. Check airflow and cleanliness first."
+
+  - q: "What lubricant is in an R-134a system?"
+    a: "Depends on the application. Stationary (chillers, commercial refrig): POE (polyolester). Mobile AC: PAG (polyalkylene glycol). The two are NOT interchangeable. R-12 systems retrofitted to R-134a in the 1990s used PAG (mobile) or POE (stationary) replacement oil — never mineral oil."
+
+  - q: "Can I use R-1234yf service equipment on an R-134a system?"
+    a: "Some equipment is dual-rated. Modern recovery machines often handle both R-134a and R-1234yf with separate cylinders to avoid cross-contamination. Manifold gauges can be the same (pressure rating is similar) but cylinders, hoses, and recovery equipment should be application-specific or explicitly dual-rated. Cross-contaminating an R-134a system with R-1234yf voids warranty and creates an unidentifiable mixture."
+
+  - q: "Is R-134a being phased out?"
+    a: "For mobile AC, yes — already largely complete; new vehicles since ~2014-2017 use R-1234yf. For stationary applications, R-134a remains in service but is constrained by the EPA AIM Act phase-down (production caps based on GWP-weighted consumption). The lower-GWP A1 chiller replacements are R-450A and R-513A; A2L alternatives include R-1234yf, R-1234ze(E), and R-516A."
+
+  - q: "What's the saturation pressure of R-134a at 70°F?"
+    a: "71.1 PSIG. This is the reference saturation value used by gauges with R-134a temperature scales. Operating pressures on a running system fall on either side of saturation depending on superheat (suction line) and subcooling (liquid line)."
+---
