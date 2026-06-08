@@ -1,8 +1,8 @@
 {
   "slug": "r-514a",
-  "ptSource": "TODO: Chemours Opteon XP30 (R-514A) technical data sheet",
-  "ptSourceUrl": "https://www.chemours.com/en/brands-and-products/opteon",
-  "verifiedBy": "TODO: cross-check against ASHRAE 34-2022 R-514A designation",
+  "ptSource": "Manufacturer datasheet: Chemours Opteon XP30 (R-514A) Technical Information",
+  "ptSourceUrl": "https://www.opteon.com/en/products/stationary-refrigerants/xp30",
+  "verifiedBy": "DATA NOT TRANSCRIBED IN THIS BUILD: R-514A components (R-1336mzz(Z) and R-1130(E)) are not in the CoolProp 7.2.0 WASM build's pure-fluid library; mixture composition cannot be computed.",
   "physical": {
     "boilingPointC": 29.4,
     "boilingPointF": 84.9,
@@ -19,5 +19,14 @@
     "temperatureGlideF": 0,
     "hasSignificantGlide": false
   },
-  "ptChart": []
+  "ptChart": [],
+  "dataStatus": "manufacturer-datasheet-published",
+  "primarySources": [
+    {
+      "type": "manufacturer-datasheet",
+      "citation": "The Chemours Company, Opteon XP30 (R-514A) Technical Information.",
+      "url": "https://www.opteon.com/en/products/stationary-refrigerants/xp30",
+      "scope": "PT chart for R-514A (R-1336mzz(Z)/R-1130(E) 74.7/25.3 mass%, low-pressure chiller refrigerant)."
+    }
+  ]
 }

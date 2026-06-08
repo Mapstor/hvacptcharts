@@ -1,56 +1,263 @@
 ---
 slug: r-407c
 title: "R-407C Pressure Temperature Chart & Properties"
-metaTitle: "R-407C PT Chart, R-22 Retrofit, POE Required, 23 PSI Glide"
-metaDescription: "Verified R-407C (ternary HFC blend) pressure-temperature chart. ASHRAE A1, GWP 1774. The most common R-22 retrofit drop-in. POE oil required — NOT mineral oil. Significant temperature glide (~7°F) affects TXV operation."
-introOneLiner: "Ternary HFC blend (23% R-32 / 25% R-125 / 52% R-134a). The most common R-22 retrofit refrigerant for residential AC, heat pumps, and medium-temperature commercial refrigeration. Significant temperature glide (~7°F at typical operating pressures) and POE oil requirement differentiate it from the R-22 it replaces."
+metaTitle: "R-407C PT Chart, A1 HFC Blend, GWP 1774 — R-22 Retrofit"
+metaDescription: "R-407C (R-32/R-125/R-134a 23/25/52) PT chart. A1 HFC blend, GWP 1774, ~11°F glide. The dominant R-22 retrofit refrigerant; POE oil; close R-22 pressure-envelope match."
+introOneLiner: "Ternary HFC blend (R-32/R-125/R-134a 23/25/52 mass) — A1 safety, GWP 1774, ~11°F temperature glide. The most-deployed R-22 retrofit refrigerant since the early 2000s."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: aimact
+    label: "EPA AIM Act — 40 CFR Part 84 Subpart B"
+    url: "https://www.epa.gov/climate-hfcs-reduction"
+    date: "Final Rule Oct 2021"
+  - id: coolprop
+    label: "CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014)"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: ahri700
+    label: "AHRI Standard 700-2019"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: epasec608
+    label: "EPA Section 608 — Stationary Refrigeration and AC Regulations"
+    url: "https://www.epa.gov/section608"
+  - id: snap
+    label: "EPA SNAP — R-407C acceptable for R-22 retrofit"
+    url: "https://www.epa.gov/snap"
+  - id: chemoursfreon
+    label: "Chemours Suva 407C / Honeywell Genetron 407C Technical Information"
+    url: "https://www.chemours.com/en/products/refrigerants"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: A1
+    context: Non-toxic, non-flammable; preserves R-22 equipment safety classification
+    sourceId: ashrae34
+  - label: Composition (mass)
+    value: "23% R-32 / 25% R-125 / 52% R-134a"
+    unit: ±1-2%
+    context: Ternary zeotropic HFC blend
+    sourceId: ashrae34
+  - label: GWP (100-yr)
+    value: "1774"
+    unit: IPCC AR5
+    context: Similar to R-22 (1810); not low-GWP but lower than many HFC alternatives
+    sourceId: ipccar5
+  - label: ODP
+    value: "0"
+    context: Fluorine-only HFC components; no chlorine
+    sourceId: ashrae34
+  - label: Normal boiling point
+    value: "−45.1"
+    unit: °F (−42.8°C)
+    context: At 1 atm; suited to AC and medium-temperature refrigeration
+    sourceId: coolprop
+  - label: Temperature glide
+    value: "≈11"
+    unit: °F
+    context: Significant zeotropic glide — dew/bubble curve selection matters
+    sourceId: coolprop
+  - label: Required lubricant
+    value: POE
+    context: Polyolester; R-22 mineral oil retrofit requires oil change
+    sourceId: ahri700
+  - label: Application
+    value: R-22 retrofit
+    context: Drop-in capacity-match; A1 preserved
+    sourceId: snap
 
 narrative:
   whatItIs: |
-    R-407C is a zeotropic ternary blend of three HFCs: 23% R-32 (difluoromethane), 25% R-125 (pentafluoroethane), and 52% R-134a (tetrafluoroethane) by mass. The composition was engineered to closely match R-22's saturation pressures across the residential AC operating range, making it a viable retrofit refrigerant when R-22 production was phased down under the Montreal Protocol.
+    R-407C is a ternary blend of 23% R-32, 25% R-125, and 52% R-134a by mass [ashrae34]. It was developed in the mid-1990s as an R-22 retrofit refrigerant — designed to match R-22's pressure envelope and capacity within existing R-22 equipment while eliminating the ozone-depletion liability of R-22's chlorine content.
 
-    The R-32 component contributes capacity, R-125 contributes non-flammability and pressure ratings, and R-134a contributes moderate critical properties. The result is a blend that operates within a few PSI of R-22 at typical conditions — but with a temperature glide of roughly 7°F at evaporator conditions that affects TXV operation and superheat measurement.
+    The retrofit application is the defining context. R-407C operates at pressures very close to R-22 across the typical residential and light commercial AC operating range, so R-22-rated equipment (compressor, condenser, evaporator, line set) can accept R-407C charge without component replacement. The required change is the lubricant — R-22 mineral oil must be replaced with POE oil, and a filter-drier change is standard practice.
 
   whereItsUsed:
-    - R-22 retrofit (the primary application — residential AC, heat pumps, light commercial)
-    - Medium-temperature commercial refrigeration (R-22 retrofit in supermarket cases)
-    - Chillers (R-22 retrofit in light commercial chillers)
-    - Some new equipment in markets without active A2L equipment availability
+    - "R-22 retrofit in residential and light commercial AC systems"
+    - "R-22 retrofit in commercial chillers and heat pumps"
+    - "Medium-temperature commercial refrigeration (legacy)"
+    - "New equipment installations are rare in 2026 — R-32 and R-454B dominate new residential AC"
 
   phaseDownStatus: |
-    R-407C is subject to the EPA AIM Act HFC phase-down. Its GWP of 1774 (IPCC AR5) places it above the AIM Act 700-GWP threshold for new residential AC equipment effective January 1, 2025. Production for service of existing equipment remains legal under current regulations.
+    R-407C's GWP of 1774 places it above the EPA AIM Act 700-GWP threshold for new residential AC equipment [aimact]. R-407C is not the long-term destination — it's a transitional retrofit refrigerant for existing R-22 equipment that cannot economically be replaced.
 
-    For new equipment R-407C has been displaced by R-32 (GWP 675), R-454B (GWP 466), R-452B (GWP 698), and (in regions with active A2L adoption) R-454C (GWP 148). For continued R-22 retrofit work R-407C remains a reasonable choice when the system can accept a POE oil change and an EXV or retuned TXV.
+    Service of existing R-407C equipment remains legal under current EPA rules. New equipment installations have shifted to R-32 / R-454B (residential AC) or R-454C / R-455A / R-744 (commercial refrigeration). R-407C is now a service-supply refrigerant for the installed retrofit base.
 
   serviceNotes: |
-    Polyolester (POE) oil is required. This is the key distinction from R-22 — R-22 uses mineral oil (MO) or alkylbenzene (AB), which are not miscible with R-407C. A true R-22 to R-407C retrofit requires draining the original mineral oil, performing a triple oil flush (or multiple POE oil changes), and verifying oil return.
+    POE oil required — R-22 to R-407C retrofit requires complete oil change from mineral oil to POE [ahri700]. Multiple oil flushes are typical to reduce mineral oil residue below 5%. POE is hygroscopic; vacuum to 500 microns and hold ≥30 minutes before charging.
 
-    The 7°F temperature glide affects TXV operation. Existing R-22 TXVs are typically calibrated for a pure refrigerant; with R-407C they may not control superheat correctly across the full operating range. EXV is preferred for new R-407C equipment. For superheat measurement, the dew curve (not the bubble curve) is the correct saturation reference; the site's superheat calculator handles this automatically.
+    The 11°F temperature glide affects service measurement. Use dew temperature for superheat (suction line) and bubble temperature for subcooling (liquid line). Single-curve approximation introduces measurement error equal to the glide. R-407C is zeotropic — never top-off-charge; recover and recharge by weight if a leak occurs.
 
 faqs:
   - q: "What is the normal operating pressure of R-407C?"
-    a: "On a residential AC system at 95°F outdoor ambient with R-407C, expect roughly 70–85 PSIG suction and 250–300 PSIG discharge — quite close to R-22 at the same conditions. R-407C saturation at 95°F dew = 211 PSIG; bubble = 233 PSIG (the 23 PSI glide). Operating pressures fall on either side of saturation as superheat and subcooling determine the actual line conditions."
+    a: |
+      Very close to R-22. At 70°F R-407C saturation is approximately 140 PSIG bubble / 117 PSIG dew (CoolProp 7.2.0). Compare to R-22 at 70°F (121 PSIG, pure refrigerant). The bubble pressure runs slightly above R-22; the dew pressure runs slightly below.
 
-  - q: "Why does R-407C have such a large temperature glide?"
-    a: "R-407C's three components have meaningfully different normal boiling points: R-32 at -51.7°C, R-125 at -48.5°C, R-134a at -26.1°C. At constant pressure during evaporation, the more volatile R-32 vaporizes preferentially; the remaining liquid enriches in the heavier R-134a and its boiling point rises. The result is a ~7°F temperature spread between bubble (start of evaporation) and dew (end of evaporation). This is structural to the blend chemistry."
+      For a properly-charged residential AC system at 95°F outdoor, expect 75-90 PSIG suction and 280-330 PSIG discharge — very similar to R-22 operating ranges.
 
-  - q: "Can R-407C replace R-22 as a drop-in?"
-    a: "No — not as a true drop-in. R-407C requires the system's mineral oil to be replaced with POE (a service-intensive procedure), and the temperature glide affects metering device operation. The replacement process is sometimes called a 'retrofit' rather than a 'drop-in' for this reason. Most R-22 retrofits using R-407C in the 1990s and 2000s included new TXVs (or kept fixed-orifice systems where TXV calibration wasn't an issue). For systems where oil change is impractical, the mineral-oil-compatible blends R-417A, R-421A, R-422A, R-422D, R-427A, and R-438A are alternatives — at the cost of higher GWP."
+  - q: "Can I retrofit R-22 to R-407C in my existing AC system?"
+    a: |
+      Yes, with oil change. Standard retrofit procedure: (1) Recover R-22. (2) Drain mineral oil from compressor; flush with POE multiple times to reduce residual mineral oil below 5%. (3) Refill with POE oil per equipment OEM specification. (4) Replace filter-drier with HFC-compatible drier. (5) Evacuate to 500 microns and hold ≥30 minutes. (6) Charge R-407C by weight to OEM nameplate (typically 90-95% of R-22 nameplate due to slightly different volumetric capacity).
+
+      Capacity match with R-22 is within 5-10% for most residential and light commercial AC systems. Some efficiency loss vs original R-22 operation is normal; verify acceptable cooling output after retrofit.
+
+  - q: "What does R-407C's GWP of 1774 mean?"
+    a: |
+      A 1 kg release of R-407C traps approximately 1,774 times more heat over 100 years than 1 kg of CO₂ (IPCC AR5, mass-weighted from the three components) [ipccar5]. The GWP is similar to R-22's 1810 — R-407C is not a low-GWP refrigerant.
+
+      R-407C's value as an R-22 retrofit is the elimination of chlorine (zero ODP) and the operational compatibility with R-22 equipment. The GWP reduction vs R-22 is small.
+
+  - q: "Why does R-407C have 11°F glide while R-22 has none?"
+    a: |
+      R-22 is a pure single-component refrigerant — no glide. R-407C is a zeotropic blend of three components with widely different boiling points (R-32 at −61°F, R-125 at −55°F, R-134a at −15°F). The blend inherits a temperature glide of approximately 11°F at typical operating pressures.
+
+      The glide is a service-measurement complication that R-22 did not have. R-22 service procedures from the 1980s-2000s did not require dew/bubble curve discipline; R-407C service procedures do.
 
   - q: "What lubricant does R-407C use?"
-    a: "Polyolester (POE) oil. Mineral oil (MO) and alkylbenzene (AB) are not miscible with R-407C and will not return to the compressor through the suction line. Adding POE oil is the largest single difference between an R-22 system and an R-22-retrofitted-to-R-407C system."
+    a: |
+      Polyolester (POE) oil [ahri700]. R-22 systems use mineral oil; retrofit to R-407C requires complete oil change with multiple flushes to reduce mineral oil residue below 5%. POE oil is hygroscopic — moisture management during retrofit is critical.
 
-  - q: "How does R-407C compare to R-410A?"
-    a: "R-407C operates at much lower pressures than R-410A and was designed as an R-22 retrofit, not an R-410A replacement. R-407C suction at 70°F dew ≈ 117 PSIG; R-410A ≈ 201 PSIG. R-410A is a near-azeotrope (negligible glide); R-407C has significant glide. R-407C's GWP of 1774 is lower than R-410A's 2088, but both are above the AIM Act 700 threshold."
+      Some R-407C retrofit guidance allows mineral oil retention with reduced reliability and capacity. Best practice is full oil change to POE for long-term reliability.
 
-  - q: "Should I use the bubble or dew pressure for superheat math on R-407C?"
-    a: "Dew. On the suction line the refrigerant has fully passed through evaporation; the dew temperature is the boundary above which vapor is superheated. Using the bubble pressure would underestimate superheat by roughly the temperature glide (~7°F at typical evaporator pressures). The site's superheat calculator uses the dew curve automatically when the refrigerant is zeotropic."
+  - q: "How do I measure superheat on R-407C?"
+    a: |
+      Use the dew temperature at suction pressure. R-407C's 11°F glide means using the bubble curve would understate superheat by approximately 11°F.
 
-  - q: "What replacement options exist for R-407C in new equipment?"
-    a: "For new equipment subject to the AIM Act, the modern alternatives are R-32 (pure HFC, A2L, GWP 675), R-454B (HFO/HFC blend, A2L, GWP 466), R-452B (A2L, GWP 698), and (for very low GWP applications) R-454C (A2L, GWP 148). All are A2L mildly flammable rather than R-407C's A1 non-flammable — equipment design must accommodate A2L charge limits and leak detection."
+      Modern PT calculators handle the dew/bubble selection automatically when R-407C is selected.
+
+  - q: "Is R-407C being phased out?"
+    a: |
+      For new equipment, yes — R-407C's GWP 1774 is above the EPA AIM Act 700-GWP threshold for new residential AC equipment manufactured from 2025+. New residential AC uses R-32 or R-454B [aimact].
+
+      For service of existing R-407C equipment, R-407C remains legal under current EPA rules. The installed base will service with R-407C through the equipment's remaining life, then replace with new R-32 or R-454B equipment.
+
+  - q: "Is R-407C safe to handle?"
+    a: |
+      ASHRAE class A1 — non-toxic and non-flammable [ashrae34]. Standard HFC service procedures apply. EPA Section 608 certification required for service [epasec608].
 
 retrofitGuidance:
   fromRefrigerant: r-22
   notes: |
-    The most common R-22 retrofit procedure. Steps: recover all R-22; drain the mineral oil from the compressor and accessible low points; perform a triple POE oil flush or multiple complete POE oil changes; replace the filter-drier with a POE-compatible model; replace the TXV if the original isn't tolerant of the temperature glide (EXV is the modern alternative); pull deep vacuum (500 microns held 30+ minutes — POE is hygroscopic); charge with R-407C by weight per the system's calculated charge. Verify return oil at the compressor over the first weeks of operation.
+    R-407C retrofit of R-22 equipment: (1) Recover R-22. (2) Drain mineral oil; flush with POE multiple times. (3) Refill POE oil per OEM spec. (4) Replace filter-drier. (5) Evacuate to 500 microns, hold ≥30 minutes. (6) Charge R-407C by weight (typically 90-95% of R-22 nameplate). Capacity match within 5-10% of R-22; some efficiency loss is normal.
 ---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-407C PT chart — significant glide, dew/bubble matter">
+
+R-407C is zeotropic with ~11°F glide. The PT chart shows two distinct curves: bubble (saturated liquid) and dew (saturated vapor). Service measurement requires selecting the correct curve based on which line of the system is being measured.
+
+For suction-line superheat measurement, use the dew curve. The dew temperature at the measured suction pressure is the saturation reference. Using the bubble curve would understate superheat by ~11°F — large enough to cause meaningful charging errors on residential AC where superheat targets are typically 8-15°F.
+
+For liquid-line subcooling measurement, use the bubble curve.
+
+<KeyInsight tone="amber" icon="glide" title="Service-measurement adjustment from R-22 practice">
+R-22 was pure (no glide); R-407C retrofit requires technicians to adopt the dew/bubble curve discipline that wasn't necessary for R-22. Most retrofit documentation includes pressure-temperature tables specific to R-407C with the dew column highlighted for superheat use.
+</KeyInsight>
+
+</TechSection>
+
+<TechSection icon="composition" tone="purple" title="Ternary HFC blend engineered for R-22 retrofit">
+
+R-407C combines three HFCs to match R-22's pressure-envelope and capacity within R-22-rated equipment. R-32 (23%, capacity contribution); R-125 (25%, flammability suppression for A1 classification); R-134a (52%, primary mass and pressure tuning).
+
+The 52% R-134a content gives R-407C its similar pressure envelope to R-22. R-134a's NBP (−15°F) is lower than R-22's (−41°F), but the blend's effective behavior approximates R-22's pressure profile through the R-32 and R-125 contributions. The blend's pressure envelope falls within 10% of R-22 across the residential AC operating range.
+
+The mass-weighted GWP: 0.23 × 675 + 0.25 × 3500 + 0.52 × 1430 = 155 + 875 + 744 = 1774 [ipccar5]. R-125 is the GWP-heavy component, similar to its role in R-404A and R-410A — necessary for A1 flammability suppression at the cost of higher GWP.
+
+</TechSection>
+
+<TechSection icon="trending" tone="amber" title="Pressure envelope matches R-22 within 10%">
+
+R-407C was specifically engineered for retrofit compatibility with R-22 equipment. At 70°F R-407C bubble is 140 PSIG vs R-22's 121 PSIG (CoolProp 7.2.0) — within 16%. At 95°F outdoor ambient, R-407C bubble is approximately 215 PSIG vs R-22's 181 PSIG — within 19%.
+
+The dew pressures track R-22 more closely than the bubble pressures because R-22 is a pure refrigerant (no bubble/dew distinction). R-407C dew at 70°F is 117 PSIG — only 3% below R-22's 121 PSIG. For suction-side operation (where dew matters), the match is very close.
+
+Standard 500 PSI manifold gauges handle R-407C across the residential AC operating range — R-22-era service equipment works for R-407C work pressure-wise. The lubricant change (mineral oil to POE) is the major service-procedure adjustment from R-22 to R-407C.
+
+</TechSection>
+
+<TechSection icon="globe" tone="amber" title="R-407C GWP 1774 — eliminated R-22 chlorine, kept HFC climate impact">
+
+R-407C was developed in the mid-1990s to address R-22's ozone-depletion problem (ODP 0.055). All three R-407C components are zero-ODP HFCs — eliminating the chlorine while preserving R-22's operational characteristics in existing equipment.
+
+The trade-off is GWP. R-22 has GWP 1810; R-407C has GWP 1774 [ipccar5]. The reduction is small — R-407C was not designed for climate impact, just for ozone-depletion compliance. Modern policy (EPA AIM Act, EU F-Gas Regulation) targets HFC GWP and now restricts R-407C for new equipment.
+
+For existing R-22 retrofit installations, R-407C remains the dominant choice — it's the established, well-understood retrofit blend with the widest equipment-compatibility track record. The transitional positioning is acceptable for systems with 5-10 years of remaining equipment life.
+
+</TechSection>
+
+<TechSection icon="thermometer" tone="sky" title="R-407C at residential and commercial AC service temperatures">
+
+R-407C saturation values across typical AC operating conditions (bubble / dew):
+
+- **45°F (heat pump heating outdoor coil)** — bubble approximately 76 PSIG / dew approximately 61 PSIG.
+- **70°F (bench reference)** — bubble 140 PSIG / dew 117 PSIG.
+- **75°F (indoor return air)** — bubble approximately 153 PSIG / dew approximately 128 PSIG.
+- **80°F (warm-weather operation)** — bubble approximately 168 PSIG / dew approximately 141 PSIG.
+- **95°F (summer peak / AHRI condition)** — bubble approximately 215 PSIG / dew approximately 180 PSIG.
+
+For residential AC retrofit at 95°F outdoor: typical operating pressures 75-90 PSIG suction (dew curve) and 280-330 PSIG discharge (bubble curve). Compare to R-22 at 95°F (70 PSIG suction, 250 PSIG discharge) — close enough that R-22-era service equipment and procedures apply with the dew/bubble curve discipline adjustment.
+
+</TechSection>
+
+<TechSection icon="service" tone="blue" title="R-22 to R-407C retrofit procedure">
+
+The R-22 to R-407C retrofit is well-established with extensive industry documentation. Standard procedure:
+
+| Step | Action |
+| --- | --- |
+| 1. Recover | Recover R-22 to recovery cylinder per EPA Section 608. |
+| 2. Oil drain | Drain compressor crankcase mineral oil. |
+| 3. Flush | Flush with POE oil 2-3 times to reduce mineral oil residue below 5%. |
+| 4. POE charge | Refill compressor with POE oil per OEM viscosity specification. |
+| 5. Drier | Replace filter-drier with HFC-compatible (XH-9 or equivalent) drier. |
+| 6. Evacuate | Pull vacuum to 500 microns; hold ≥30 minutes. |
+| 7. Recharge | Charge R-407C as liquid by weight (90-95% of R-22 nameplate). |
+| 8. Verify | Verify capacity at design conditions. Some efficiency loss vs original R-22 is normal. |
+
+The lubricant change is the most service-procedure-intensive step. POE oil compatibility is critical — residual mineral oil interferes with POE/HFC operation and reduces system reliability. Multiple flushes are standard; some retrofits use special flushing solvents for additional mineral oil removal.
+
+</TechSection>
+
+<TechSection icon="lubricant" tone="blue" title="POE oil required — mineral oil incompatibility is the defining R-22 retrofit difficulty">
+
+R-407C requires POE oil [ahri700]. R-22 systems use mineral oil or alkylbenzene — chemically non-polar lubricants compatible with HCFC refrigerants but not with HFC chemistry. Retrofitting R-22 equipment to R-407C requires complete oil change.
+
+Mineral oil and POE are not miscible. Residual mineral oil in an R-407C system separates from the refrigerant flow, accumulates in low-flow areas (suction-line traps, accumulators, evaporator distributors), and causes compressor oil starvation. Multiple oil-change flushes during retrofit reduce mineral oil residue to acceptable levels (target below 5% residual).
+
+The oil-change requirement is one reason R-22 retrofit to R-407C is operationally more complex than the apparent "drop-in" marketing suggests. Mechanical service is significant — drain, flush, refill, vacuum, charge — with potential for service errors at multiple points.
+
+</TechSection>
+
+<TechSection icon="recycle" tone="amber" title="R-407C in the R-22 retrofit chain">
+
+R-407C is one of several R-22 retrofit refrigerants developed in the late 1990s and early 2000s. The retrofit blend taxonomy:
+
+- **R-407C** (R-32/R-125/R-134a 23/25/52) — A1, GWP 1774, ~11°F glide, requires POE oil change
+- **R-422D** (R-125/R-134a/R-600a 65.1/31.5/3.4) — A1, GWP 2729, smaller glide, mineral-oil-tolerant in some cases
+- **R-438A** (Honeywell MO99, R-32/R-125/R-134a/R-600/R-601a) — A1, GWP 2265, designed for closer R-22 capacity match
+- **R-427A** (Arkema Forane 427A, R-32/R-125/R-143a/R-134a) — A1, GWP 2138, designed for chiller and supermarket retrofit
+
+R-407C captured the largest share of R-22 retrofit market because of early commercial availability, wide equipment-OEM endorsement, and operational similarity to R-22 in the field. Through the 2020s, R-407C continues to be the dominant choice for R-22 retrofit, though new R-22 retrofits are increasingly rare — full equipment replacement to R-32 or R-454B is typically more economical given the AIM Act phase-down of HFC retrofit blends themselves.
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-407C in 2026 and beyond">
+
+R-407C occupies the R-22 retrofit niche through the late 2020s. For R-22 equipment with substantial remaining service life that cannot economically be replaced with new R-32 or R-454B equipment, R-407C provides operational continuity with the ozone-depletion problem eliminated.
+
+The economics are increasingly disfavored for new R-22 retrofits. R-22 equipment installed in the early 2000s is now 20+ years old — at or beyond typical residential AC equipment life. Major component failures (compressor, condenser leak, expansion valve failure) increasingly tip the repair-versus-replace economic calculation toward full replacement with R-32 or R-454B equipment that offers 20-30% efficiency improvement.
+
+For existing R-407C installations (R-22 retrofits performed 2005-2020), service supply will remain available through 2030+ via reclaimed R-407C. R-407C itself faces AIM Act phase-down for new equipment (GWP 1774 above 700-GWP threshold) but service of existing equipment is unrestricted.
+
+For service technicians, R-407C work requires dew/bubble curve discipline for the 11°F glide. PT calculators handle this automatically; manual measurement requires reading the dew column for superheat math.
+
+</TechSection>

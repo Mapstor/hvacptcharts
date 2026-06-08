@@ -40,9 +40,9 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/pt-superheat-subcooling-calculator/", priority: 0.8, changeFrequency: "monthly" },
   { url: "/saturation-properties-calculator/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/refrigerant-pt-comparison-tool/", priority: 0.7, changeFrequency: "monthly" },
-  // { url: "/refrigerant-charge-calculator/", priority: 0.7, changeFrequency: "monthly" }, // pending
+  { url: "/refrigerant-charge-calculator/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/refrigerant-retrofit-compatibility-calculator/", priority: 0.7, changeFrequency: "monthly" },
-  // { url: "/system-pressure-diagnostic-calculator/", priority: 0.6, changeFrequency: "monthly" }, // pending
+  { url: "/system-pressure-diagnostic-calculator/", priority: 0.7, changeFrequency: "monthly" },
   // { url: "/psychrometric-calculator/", priority: 0.6, changeFrequency: "monthly" }, // port-as-is pending
   // { url: "/duct-size-calculator/", priority: 0.6, changeFrequency: "monthly" }, // port-as-is pending
   // { url: "/hvac-load-calculator/", priority: 0.6, changeFrequency: "monthly" }, // port-as-is pending
@@ -55,22 +55,35 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/superheat-subcooling-fundamentals/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/pt-chart-guide/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/high-head-pressure-causes/", priority: 0.7, changeFrequency: "monthly" },
-  // { url: "/refrigerant-comparison-guide/", priority: 0.7, changeFrequency: "monthly" }, // pending
+  { url: "/refrigerant-comparison-guide/", priority: 0.8, changeFrequency: "monthly" },
   // { url: "/carrier-410a-charging-chart/", priority: 0.5, changeFrequency: "yearly" }, // pending
   // { url: "/refrigerant-prices-guide/", priority: 0.6, changeFrequency: "monthly" }, // pending
 
-  // What-pressure pages (6)
-  { url: "/what-pressure-should-410a-be/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/what-pressure-should-r22-be/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/what-pressure-should-r32-be/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/what-pressure-should-r134a-be/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/what-pressure-should-r404a-be/", priority: 0.6, changeFrequency: "monthly" },
-  { url: "/what-pressure-should-r454b-be/", priority: 0.6, changeFrequency: "monthly" },
+  // What-pressure pages
+  { url: "/what-pressure-should-410a/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/what-pressure-should-r22/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/what-pressure-should-r32/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/what-pressure-should-r134a/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/what-pressure-should-r404a/", priority: 0.6, changeFrequency: "monthly" },
+  { url: "/what-pressure-should-r454b/", priority: 0.6, changeFrequency: "monthly" },
+  { url: "/what-pressure-should-r407c/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/what-pressure-should-r454c/", priority: 0.6, changeFrequency: "monthly" },
+  { url: "/what-pressure-should-r744/", priority: 0.6, changeFrequency: "monthly" },
 
   // Comparison pages
   { url: "/r-32-vs-r-410a/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/r-32-vs-r-454b/", priority: 0.6, changeFrequency: "monthly" },
   { url: "/r-410a-vs-r-454b/", priority: 0.6, changeFrequency: "monthly" },
+  { url: "/r-22-vs-r-410a/", priority: 0.8, changeFrequency: "monthly" },
+  { url: "/r-22-vs-r-407c/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/r-404a-vs-r-449a/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/r-134a-vs-r-513a/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/r-454c-vs-r-455a/", priority: 0.6, changeFrequency: "monthly" },
+  { url: "/r-22-vs-r-32/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/r-407c-vs-r-410a/", priority: 0.6, changeFrequency: "monthly" },
+  { url: "/r-22-vs-r-454b/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/r-1234yf-vs-r-134a/", priority: 0.6, changeFrequency: "monthly" },
+  { url: "/r-744-vs-r-290/", priority: 0.6, changeFrequency: "monthly" },
 
   // HVAC guides — preserved from legacy; 17 pages port-as-is in Phase 7.
   // Uncomment as MDX files land in content/guides/.

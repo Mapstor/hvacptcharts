@@ -1,0 +1,54 @@
+---
+slug: r-422b
+title: "R-422B Pressure Temperature Chart & Properties"
+metaTitle: "R-422B PT Chart, A1 HFC Blend, GWP 2526 — R-22 Retrofit"
+metaDescription: "Verified R-422B (HFC blend, 55/42/3 R-125/R-134a/R-600a) PT chart and properties. ASHRAE A1, GWP 2526. Mineral-oil-compatible R-22 medium-temp retrofit option."
+introOneLiner: "Ternary HFC blend with hydrocarbon (55% R-125 / 42% R-134a / 3% R-600a). A1 safety class, GWP 2526. Mineral-oil-compatible R-22 retrofit for medium-temperature applications. Less commonly deployed than R-422A or R-422D in practice."
+
+narrative:
+  whatItIs: |
+    R-422B is a ternary HFC blend with a small isobutane (R-600a, hydrocarbon) component. Composition by mass: 55% R-125, 42% R-134a, 3% R-600a. The R-125-R-134a backbone provides medium-temperature capacity matched to R-22; the R-600a addition aids miscibility with mineral oil — allowing R-22 retrofit without the POE oil change that R-410A or R-407C retrofit would demand.
+
+    R-422B is part of the broader R-422 family of R-22 retrofit blends: R-422A (low-temp focus, 85% R-125), R-422B (medium-temp, 55% R-125), R-422C (some markets, 82% R-125), R-422D (medium-temp, 65% R-125). R-422B in practice is less commonly deployed than R-422A (better low-temp match) or R-422D (which captures most medium-temp retrofit interest). It exists in the family for capacity-matching specific equipment configurations.
+
+  whereItsUsed:
+    - R-22 retrofit, medium-temperature applications (commercial AC, light commercial cooling)
+    - Existing equipment where mineral oil staying in the system is desirable
+    - Service stock for properties where R-422D or R-422A isn't a better capacity match
+
+  phaseDownStatus: |
+    R-422B is affected by the EPA AIM Act HFC phase-down — its GWP of 2526 is well above the 700-GWP threshold for HVAC equipment. It remains commercially available for service of existing equipment, but as R-22 equipment ages out through replacement cycles, the R-422B retrofit market continues to shrink. For new equipment R-422B is not an option; for legacy R-22 equipment that's worth keeping operational, R-422B and the rest of the R-422 family remain viable until full replacement.
+
+    Modern R-22 retrofit guidance increasingly favors full system replacement with R-32 (A2L, GWP 675) or R-454B (A2L, GWP 466) rather than HFC drop-in retrofit, because the new equipment is more efficient and the HFC retrofits face their own AIM Act phase-down.
+
+  serviceNotes: |
+    Mineral oil (MO), alkylbenzene (AB), and POE oils are all compatible. The 3% R-600a hydrocarbon component aids mineral oil return — that's the design feature distinguishing R-422 family blends from R-407C (which requires POE oil change). R-422B has substantial temperature glide (~7°F) — use the dew curve for superheat and the bubble curve for subcooling, matching the procedure for any zeotropic blend.
+
+    EPA Section 608 Type II or Universal certification covers R-422B. Recovery is required.
+
+faqs:
+  - q: "What's the difference between R-422A, R-422B, and R-422D?"
+    a: |
+      All three are HFC ternary blends with small hydrocarbon for mineral oil miscibility. R-422A is R-125/R-134a/R-600a at 85.1/11.5/3.4 — low-temperature focus, high R-125 for high vapor pressure. R-422B is 55/42/3 — medium-temperature focus, more R-134a content. R-422D is R-125/R-134a/R-600a at 65.1/31.5/3.4 — between the other two, marketed broadly for medium-temperature AC and refrigeration. R-422D captures most market share in the medium-temperature R-22 retrofit space; R-422A is preferred for low-temperature; R-422B exists as a capacity-specific option.
+
+  - q: "Why does R-422B have glide while R-422A is closer to azeotropic?"
+    a: |
+      R-422A's 85% R-125 content makes it close to pure R-125 behavior — small fractions of other components produce small glide. R-422B's more balanced 55/42 R-125/R-134a composition spans a wider range of pure-component boiling points (R-125 at -49°C vs R-134a at -26°C), producing larger glide. Larger glide affects how superheat and subcooling are measured (use dew for superheat, bubble for subcooling) but does not preclude use in equipment originally designed for azeotropic refrigerants.
+
+  - q: "What lubricant does R-422B use?"
+    a: |
+      Mineral oil (MO), alkylbenzene (AB), and POE are all compatible. For R-22 to R-422B retrofit, mineral oil typically stays in the system — that's the design intent. The 3% R-600a component aids HFC-mineral-oil miscibility that would otherwise be poor for a 55/42 R-125/R-134a blend alone.
+
+  - q: "Should I retrofit to R-422B or do a full system replacement?"
+    a: |
+      Decision factors: (1) equipment age — over 15 years and full replacement is usually more cost-effective; (2) leak history — multiple leaks point to system condition issues that retrofit won't fix; (3) future-proofing — R-422B faces its own AIM Act phase-down, so retrofit buys time but not permanently; (4) energy cost differential — new R-32 or R-454B equipment is ~20-30% more efficient than R-22 era equipment. For systems under 10 years with no leaks where capital is constrained, R-422B retrofit is reasonable. For older systems, replace.
+
+  - q: "What is the GWP of R-422B?"
+    a: |
+      2526 per IPCC AR5, mass-weighted from components: R-125 (3500) at 55%, R-134a (1430) at 42%, R-600a (3) at 3%. This is well above the AIM Act 700-GWP threshold for new equipment but adequate-to-better than R-22's GWP 1810 (though R-22 has ODP, which R-422B does not — different concerns).
+
+retrofitGuidance:
+  fromRefrigerant: r-22
+  notes: |
+    R-22 to R-422B retrofit: recover R-22 to recovery cylinder; replace filter-drier with HFC-compatible model; pull vacuum to 500 microns held 30 minutes; charge R-422B by weight at 90-95% of the original R-22 nameplate charge. Mineral oil stays in the system. Adjust TXV if necessary — glide may require slight adjustment for stable operation. Verify superheat (dew curve) and subcooling (bubble curve) at steady state. Capacity match to R-22 medium-temperature operation is close but typically 3-7% lower; recommend verifying delivered capacity meets application requirements.
+---

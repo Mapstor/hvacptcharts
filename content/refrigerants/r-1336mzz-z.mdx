@@ -1,0 +1,173 @@
+---
+slug: r-1336mzz-z
+title: "R-1336mzz(Z) Pressure Temperature Chart & Properties"
+metaTitle: "R-1336mzz(Z) PT Chart, A1 HFO, GWP 2 — High-Temp Heat Pumps"
+metaDescription: "R-1336mzz(Z) (cis-1,1,1,4,4,4-hexafluoro-2-butene) PT chart. A1 non-flammable HFO, GWP 2. Chemours Opteon 1100. High-temperature heat pumps and very low-pressure chillers. Higher boiling point than R-123."
+introOneLiner: "Pure HFO (cis-1,1,1,4,4,4-hexafluoro-2-butene) — A1 non-flammable, GWP 2, very low operating pressures. Chemours Opteon 1100. High-temperature heat pump and process refrigeration applications where high condensing temperatures matter."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: coolprop
+    label: "CoolProp 7.2.0"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: snap
+    label: "EPA SNAP — R-1336mzz(Z) acceptable for high-temperature heat pumps"
+    url: "https://www.epa.gov/snap"
+  - id: ahri700
+    label: "AHRI Standard 700-2019"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: chemoursopteon
+    label: "Chemours Opteon 1100 (R-1336mzz(Z)) Product Data Sheet"
+    url: "https://www.chemours.com/en/products/refrigerants"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: A1
+    context: Non-toxic, non-flammable
+    sourceId: ashrae34
+  - label: Chemical formula
+    value: CF₃CH=CHCF₃ (Z)
+    context: cis-1,1,1,4,4,4-Hexafluoro-2-butene (4-carbon HFO with central double bond)
+    sourceId: ashrae34
+  - label: GWP (100-yr)
+    value: "2"
+    unit: IPCC AR5
+    context: Very low — short atmospheric lifetime
+    sourceId: ipccar5
+  - label: ODP
+    value: "0"
+    context: Fluorine-only HFO; no chlorine
+    sourceId: ashrae34
+  - label: Normal boiling point
+    value: "92.1"
+    unit: °F (33.4°C)
+    context: Higher than R-123, R-1233zd(E); very low pressure operation
+    sourceId: coolprop
+  - label: Temperature glide
+    value: "0"
+    unit: °F
+    context: Pure single-component refrigerant
+    sourceId: coolprop
+  - label: Required lubricant
+    value: POE / PVE / PAG
+    context: Equipment-OEM specific; verify per service literature
+    sourceId: ahri700
+  - label: Trade name
+    value: Opteon 1100
+    context: Chemours brand
+    sourceId: chemoursopteon
+
+narrative:
+  whatItIs: |
+    R-1336mzz(Z) is a pure HFO (4-carbon hydrofluoroolefin) with a higher boiling point and lower vapor pressure than other HFO refrigerants [ashrae34]. The molecular structure (CF₃CH=CHCF₃, Z isomer) places it in a unique niche for high-temperature heat pump and very-low-pressure refrigeration applications where the high normal boiling point (92°F) and A1 safety class are operational advantages.
+
+    R-1336mzz(Z) was developed by Chemours as Opteon 1100, targeting industrial heat pump and high-temperature process refrigeration applications. The high NBP means very low operating pressures even at typical condensing temperatures — chillers and heat pumps using R-1336mzz(Z) often operate at sub-atmospheric pressure on the evaporator side.
+
+  whereItsUsed:
+    - "High-temperature industrial heat pumps (process heating applications, up to 150°C delivery temperatures)"
+    - "Very low-pressure centrifugal chillers"
+    - "Foam blowing agent in polyurethane insulation"
+    - "Organic Rankine Cycle (ORC) waste-heat recovery applications"
+
+  phaseDownStatus: |
+    R-1336mzz(Z) faces no phase-down pressure — GWP 2 is below every regulatory threshold. R-1336mzz(Z) is structurally a long-term destination refrigerant for high-temperature heat pump and specialty very-low-pressure applications.
+
+    EPA SNAP has approved R-1336mzz(Z) for industrial heat pump applications [snap]. The refrigerant is increasingly specified for new high-temperature heat pump equipment installations as the technology matures.
+
+  serviceNotes: |
+    Lubricant choice depends on equipment OEM — POE, PVE, or PAG depending on specific compressor design [ahri700]. Verify against equipment service literature.
+
+    Very-low operating pressures mean sub-atmospheric operation on the evaporator side is common. Equipment-OEM service procedures address purge unit operation, vacuum integrity, and the specific service considerations for low-pressure refrigeration systems.
+
+faqs:
+  - q: "What is R-1336mzz(Z) used for?"
+    a: |
+      High-temperature industrial heat pumps and specialty low-pressure chillers. Chemours markets the refrigerant as Opteon 1100 [chemoursopteon]. The high boiling point (92°F) suits applications where typical refrigerant operating temperatures fall in ranges other refrigerants can't reach efficiently — industrial process heating, ORC waste-heat recovery, high-condensing-temperature heat pumps.
+
+  - q: "What's R-1336mzz(Z)'s GWP?"
+    a: |
+      2 per IPCC AR5 — very low [ipccar5]. The short atmospheric lifetime drives the low GWP. R-1336mzz(Z) sits in the same low-GWP tier as R-744 (CO₂), R-1234yf, R-1234ze.
+
+  - q: "Why does R-1336mzz(Z) have such high boiling point?"
+    a: |
+      The 4-carbon molecular structure produces lower vapor pressure than smaller HFOs like R-1234yf or R-1234ze. The higher molecular weight (164 g/mol vs R-1234yf's 114) and the specific molecular geometry both contribute to the higher NBP (92°F vs R-1234yf's −21°F).
+
+  - q: "Is R-1336mzz(Z) flammable?"
+    a: |
+      No — ASHRAE class A1 (non-toxic, non-flammable) [ashrae34]. The 4-carbon HFO structure is large enough that combustion in air is not sustained under normal conditions.
+
+  - q: "What lubricant does R-1336mzz(Z) use?"
+    a: |
+      Equipment-OEM dependent — POE, PVE, or PAG depending on compressor design [ahri700]. Verify against equipment service literature for the specific application.
+
+  - q: "What is Opteon 1100?"
+    a: |
+      Chemours' trade name for R-1336mzz(Z) [chemoursopteon]. Chemours is the primary commercial manufacturer.
+
+  - q: "Where will R-1336mzz(Z) grow in the future?"
+    a: |
+      Industrial high-temperature heat pumps are the primary growth area as the EU and global industrial decarbonization initiatives accelerate. R-1336mzz(Z) enables electric-driven heat pump replacement of natural-gas-fired industrial process heating in applications up to ~150°C delivery temperature. Demand will grow significantly through the 2025-2035 decade.
+
+retrofitGuidance:
+  fromRefrigerant: ""
+  notes: |
+    R-1336mzz(Z) is a new-equipment refrigerant for high-temperature heat pumps and specialty low-pressure refrigeration. Field retrofit of other refrigerants to R-1336mzz(Z) is uncommon — the very low pressure envelope and high boiling point make equipment-design changes substantial. Application is new-equipment specification rather than refrigerant swap.
+---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-1336mzz(Z) PT chart — very low pressures, sub-atmospheric on evaporator">
+
+R-1336mzz(Z)'s PT chart shows very low operating pressures across the typical heat pump and refrigeration range. At 70°F R-1336mzz(Z) saturation is approximately −2 PSIG (slightly sub-atmospheric); at typical chiller evaporator temperatures (45°F), saturation is well into vacuum. At condensing temperatures (120-150°F for high-temperature heat pumps), saturation reaches 30-60 PSIG.
+
+Single saturation curve (pure refrigerant, no glide). The operating envelope is unique among mainstream refrigerants — substantially lower than R-134a, comparable to R-123 / R-1233zd(E) for low-pressure chiller applications.
+
+<KeyInsight tone="amber" icon="warning" title="Vacuum operation requires equipment-OEM expertise">
+Sub-atmospheric operation requires careful equipment design — air ingress through any leak causes refrigerant contamination with non-condensables. R-1336mzz(Z) systems include purge units, vacuum-rated isolation valves, and leak-detection systems specific to vacuum-operation refrigeration. Service technicians need OEM-specific training for these systems.
+</KeyInsight>
+
+</TechSection>
+
+<TechSection icon="composition" tone="purple" title="Four-carbon HFO structure for high boiling point">
+
+R-1336mzz(Z) is a 4-carbon hydrofluoroolefin (CF₃CH=CHCF₃, Z isomer). The 4-carbon backbone with central carbon-carbon double bond and terminal trifluoromethyl groups produces the molecule's distinctive properties: high normal boiling point (92°F), low vapor pressure across the operating range, A1 safety classification.
+
+The molecular weight (164 g/mol) is the highest among mainstream HFO refrigerants — substantially higher than R-1234yf (114 g/mol) or R-1234ze (114 g/mol). The heavier molecule produces lower vapor density at any given pressure, contributing to the very low operating pressure envelope.
+
+</TechSection>
+
+<TechSection icon="trending" tone="amber" title="High boiling point enables high-temperature heat pump applications">
+
+R-1336mzz(Z)'s 92°F normal boiling point is the key feature for high-temperature heat pump applications. At typical industrial process heating delivery temperatures (100-150°C / 212-302°F), R-1336mzz(Z) operates at moderate condensing pressures (30-60 PSIG) — within compressor design tolerances.
+
+For comparison, R-134a or R-410A at the same condensing temperatures would operate at very high pressures — well above standard equipment design ratings or requiring transcritical operation. R-1336mzz(Z) extends the temperature range of practical vapor-compression heat pumps significantly above conventional HFC refrigerants.
+
+This makes R-1336mzz(Z) the enabling refrigerant for industrial decarbonization applications where heat pumps replace natural-gas-fired process heating. The EU REPowerEU initiative and US Inflation Reduction Act industrial efficiency provisions both drive growth in this segment through 2025-2035.
+
+</TechSection>
+
+<TechSection icon="globe" tone="emerald" title="GWP 2 — among the lowest commercial refrigerants">
+
+R-1336mzz(Z)'s GWP of 2 (IPCC AR5) places it in the very-low tier alongside R-744 (1), R-1234ze (7), R-1234yf (4), R-290 (3) [ipccar5]. The combination of very-low GWP and A1 safety classification gives R-1336mzz(Z) excellent regulatory positioning for the foreseeable future.
+
+EPA SNAP has approved R-1336mzz(Z) for high-temperature heat pump applications [snap]. EU F-Gas Regulation provides clear positioning under all current thresholds. No phase-down risk through any plausible future regulatory scenario.
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-1336mzz(Z) in 2026 and beyond">
+
+R-1336mzz(Z) occupies a specialty niche in 2026 — industrial high-temperature heat pumps and specialty low-pressure refrigeration. Market growth is significant as industrial decarbonization initiatives accelerate.
+
+For technicians, R-1336mzz(Z) work is unusual — very low operating pressures, vacuum operation on the evaporator side, equipment-OEM-specific service procedures. The refrigerant ecosystem is smaller than mainstream HFCs; service expertise is concentrated in OEM-trained networks rather than general HVAC service technicians.
+
+For equipment specifiers, R-1336mzz(Z) is increasingly the choice for industrial high-temperature heat pumps where conventional HFC refrigerants don't reach the required delivery temperatures efficiently. The application growth is driven by industrial decarbonization economics and regulatory pressure on fossil-fuel-fired process heating.
+
+</TechSection>

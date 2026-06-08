@@ -1,0 +1,162 @@
+---
+slug: r-152a
+title: "R-152a Pressure Temperature Chart & Properties"
+metaTitle: "R-152a PT Chart, A2 HFC, GWP 124 — Aerosol Propellant and Blend Component"
+metaDescription: "R-152a (1,1-difluoroethane) PT chart. A2 flammable HFC, GWP 124, ODP 0. Aerosol propellant standard, foam blowing agent, component in R-500. Limited refrigerant use due to A2 flammability."
+introOneLiner: "Pure HFC (1,1-difluoroethane, CHF₂CH₃) — A2 flammable, GWP 124 (low for HFC). Primarily used as aerosol propellant and foam blowing agent rather than refrigerant. Limited refrigeration use due to A2 flammability classification."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: coolprop
+    label: "CoolProp 7.2.0"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: snap
+    label: "EPA SNAP — R-152a acceptable for limited refrigeration end-uses"
+    url: "https://www.epa.gov/snap"
+  - id: ahri700
+    label: "AHRI Standard 700-2019"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: nistwebbook
+    label: "NIST Chemistry WebBook — 1,1-Difluoroethane (CAS 75-37-6)"
+    url: "https://webbook.nist.gov/chemistry/fluid/"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: A2
+    context: Lower toxicity, flammable (more flammable than A2L, less than A3)
+    sourceId: ashrae34
+  - label: Chemical formula
+    value: CHF₂CH₃
+    context: 1,1-Difluoroethane (pure HFC, single component)
+    sourceId: ashrae34
+  - label: GWP (100-yr)
+    value: "124"
+    unit: IPCC AR5
+    context: Low for an HFC; below most regulatory thresholds
+    sourceId: ipccar5
+  - label: ODP
+    value: "0"
+    context: Fluorine-only HFC; no chlorine
+    sourceId: ashrae34
+  - label: Normal boiling point
+    value: "−11.2"
+    unit: °F (−24.0°C)
+    context: At 1 atm
+    sourceId: coolprop
+  - label: Primary applications
+    value: Aerosol / foam
+    context: Dominantly used as aerosol propellant and foam blowing agent rather than refrigerant
+    sourceId: snap
+
+narrative:
+  whatItIs: |
+    R-152a is 1,1-difluoroethane (CHF₂CH₃) — a pure HFC with A2 safety classification and relatively low GWP (124) for an HFC [ashrae34][ipccar5]. R-152a's A2 flammability classification (more flammable than A2L, less than A3 hydrocarbons) limits its commercial use as a refrigerant.
+
+    R-152a's dominant commercial role is as an aerosol propellant (the "canned air" used for dusting electronics, the propellant in many compressed-air products) and as a foam blowing agent for polyurethane and other foam manufacturing. Refrigeration use is limited — historically R-152a was a component in R-500 (CFC era blend) and is occasionally specified for special low-GWP applications.
+
+  whereItsUsed:
+    - "Aerosol propellant (compressed-air dusters, specialty propellant applications)"
+    - "Foam blowing agent for polyurethane and polystyrene foams"
+    - "Historical component in R-500 (CFC era R-12 / R-152a azeotrope; banned 1996)"
+    - "Some R-22 retrofit blends in specialty applications"
+    - "Limited use in mobile AC research and prototype applications"
+
+  phaseDownStatus: |
+    R-152a faces minimal phase-down pressure — GWP 124 is below most regulatory thresholds [snap]. The constraints on R-152a use are safety-related (A2 flammability) rather than environmental.
+
+    R-152a is not on EPA AIM Act priority targeting lists for restriction. EU F-Gas Regulation does not specifically restrict R-152a as a refrigerant. The market position is stable but limited by the flammability classification.
+
+  serviceNotes: |
+    R-152a is rarely encountered as a standalone refrigerant in commercial HVAC service. When encountered, A2 flammability procedures apply — A2 is more flammable than A2L, requiring stricter ignition-source controls during service.
+
+    POE or mineral oil compatible depending on application [ahri700].
+
+faqs:
+  - q: "What is R-152a used for?"
+    a: |
+      Primarily aerosol propellant (compressed-air dusters, "canned air" for electronics cleaning) and foam blowing agent for polyurethane manufacturing. Refrigeration use is limited — R-152a's A2 flammability classification restricts mainstream refrigerant adoption.
+
+      Historically R-152a was a component in R-500 (R-12/R-152a azeotrope, banned 1996 with R-12 under Montreal Protocol). Modern refrigeration use is niche.
+
+  - q: "What's R-152a's GWP?"
+    a: |
+      124 per IPCC AR5 — low for an HFC [ipccar5]. The short atmospheric lifetime (~1.4 years) drives the relatively low GWP. R-152a's low GWP is favorable, but the A2 flammability classification limits commercial refrigeration adoption.
+
+  - q: "Is R-152a flammable?"
+    a: |
+      Yes — ASHRAE class A2 (flammable, more so than A2L) [ashrae34]. A2 refrigerants have higher burning velocity than A2L and require stricter equipment-design accommodations. Most commercial refrigerant applications choose A2L (R-32) or A1 (R-410A) over A2 (R-152a) to avoid the more stringent A2 safety requirements.
+
+  - q: "Why isn't R-152a used more in refrigeration?"
+    a: |
+      A2 flammability classification. A2 refrigerants face stricter equipment-design requirements than A2L (R-32, R-454B, etc.) and are not approved for most US commercial refrigeration end-uses without specific equipment certification.
+
+      The trade-off is unfavorable for refrigeration: R-152a's low GWP (124) doesn't compensate for the A2 flammability complexity in most applications when A2L alternatives (R-32, R-454B) offer comparable GWP positioning with manageable A2L flammability.
+
+  - q: "What's R-152a used for in cans of compressed air?"
+    a: |
+      R-152a is the working substance in many "canned air" or "compressed air duster" products used for cleaning electronics. The product is mostly liquid R-152a; spraying releases vapor that propels dust away from the cleaned surfaces. The aerosol use accounts for the largest commercial R-152a market.
+
+  - q: "What lubricant does R-152a use?"
+    a: |
+      Application-dependent. Foam blowing and aerosol applications don't use lubricant (R-152a is the active substance, not a refrigerant in a closed compressor system). For the limited refrigeration applications, POE or mineral oil compatibility depends on the specific equipment design [ahri700].
+
+retrofitGuidance:
+  fromRefrigerant: ""
+  notes: |
+    R-152a is rarely used as a standalone commercial refrigerant. Retrofit of HFC equipment to R-152a is essentially non-existent due to the A2 flammability classification requiring equipment-design accommodations not typically present in HFC equipment.
+---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-152a PT chart">
+
+R-152a's PT chart is a single saturation curve (pure refrigerant). At 70°F R-152a saturation is approximately 65 PSIG (CoolProp 7.2.0). The pressure envelope is moderate — comparable to R-134a — but commercial refrigeration use is limited by A2 flammability.
+
+</TechSection>
+
+<TechSection icon="composition" tone="purple" title="HFC chemistry — 2-carbon backbone with 2 fluorines">
+
+R-152a is 1,1-difluoroethane: CHF₂CH₃ — two carbons, two fluorines on one carbon, three hydrogens on the other (plus one hydrogen on the carbon bearing the fluorines). The asymmetric structure with substantial hydrogen content gives R-152a its A2 flammability — the hydrogen-rich methyl group provides combustible chemistry.
+
+The short atmospheric lifetime (~1.4 years) is what gives R-152a its low GWP (124) — much lower than fully-fluorinated HFCs like R-125 (GWP 3500) or R-143a (GWP 4470) that persist in the atmosphere for decades.
+
+</TechSection>
+
+<TechSection icon="globe" tone="emerald" title="GWP 124 — low for HFC, but A2 flammability constrains refrigeration use">
+
+R-152a's GWP of 124 is low for an HFC — below the EU F-Gas 150-GWP threshold for several commercial refrigeration categories. The low GWP would be favorable for refrigerant use if not for the A2 flammability classification.
+
+The combination of A2 flammability and low GWP makes R-152a an interesting candidate for refrigerant applications where the safety class can be managed. In practice, A2L alternatives (R-32, R-454B with GWP 466) typically win commercial refrigerant adoption over A2 R-152a because A2L equipment design is more widely available than A2 equipment.
+
+</TechSection>
+
+<TechSection icon="warning" tone="amber" title="A2 flammability is more constraining than A2L">
+
+R-152a's A2 classification places it between A2L (mildly flammable, low burning velocity) and A3 (highly flammable hydrocarbons). A2 refrigerants have:
+
+- **Higher burning velocity than A2L** (typically 10-100 cm/s vs A2L's ≤10 cm/s)
+- **Lower minimum ignition energy** than A2L
+- **Stricter equipment-design requirements** than A2L (more stringent ignition-source isolation, charge limits)
+- **More limited EPA SNAP approval** scope than A2L
+
+The A2 classification is the primary reason R-152a hasn't captured commercial refrigeration market share comparable to its low GWP positioning would suggest. Most refrigerant markets choose A2L (manageable flammability) or A1 (no flammability) over A2 (more flammable than A2L) when alternatives exist.
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-152a in 2026 and beyond">
+
+R-152a's market role is concentrated in non-refrigerant applications: aerosol propellants and foam blowing. The commercial refrigeration market hasn't adopted R-152a meaningfully due to the A2 flammability classification.
+
+For service technicians, R-152a is essentially invisible in commercial HVAC service — almost never encountered in field work. Aerosol and foam blowing applications use R-152a in non-HVAC contexts (chemical manufacturing, electronics cleaning, foam manufacturing).
+
+The low GWP (124) makes R-152a interesting from a climate perspective — it's one of the lower-GWP HFCs available. But the A2 flammability has prevented mainstream commercial refrigeration adoption, and the A2L alternatives (R-32, R-454B at GWP 466-675) capture the low-GWP refrigerant market R-152a's GWP positioning might otherwise serve.
+
+</TechSection>

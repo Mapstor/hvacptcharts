@@ -51,8 +51,8 @@
     "ashraeNumber": "R-1150",
     "type": "hc",
     "safetyClass": "A3",
-    "strategy": "manual",
-    "cpIdentifier": null,
+    "strategy": "coolprop",
+    "cpIdentifier": "Ethylene",
     "tradeNames": [],
     "composition": [],
     "environmental": {
@@ -80,9 +80,9 @@
       "aimActAffected": false,
       "snapApproved": null
     },
-    "verifiedAgainst": ["Manufacturer datasheet (pending)", "NIST WebBook (Ethylene)"],
+    "verifiedAgainst": ["CoolProp 7.2.0 (Ethylene)", "NIST WebBook (Ethylene)", "ASHRAE Handbook of Refrigeration 2022"],
     "gwpSource": "IPCC AR5 Table 8.A.1",
-    "propertiesSource": "Manufacturer datasheet (subcritical region) + NIST WebBook"
+    "propertiesSource": "CoolProp 7.2.0 (Ethylene) — REFPROP-compatible EOS"
   },
   "r-12": {
     "displayName": "R-12",

@@ -20,6 +20,8 @@ export interface CalculatorShellProps {
   faqs?: FAQ[];
   /** Generation date for provenance. */
   generatedDate: string;
+  /** Rich content rendered after the calculator widget, before howTo. */
+  bodySections?: React.ReactNode;
 }
 
 export function CalculatorShell({
@@ -31,6 +33,7 @@ export function CalculatorShell({
   relatedTools,
   faqs,
   generatedDate,
+  bodySections,
 }: CalculatorShellProps) {
   const schemaGraph = buildCalculatorSchema({ ...schema, faqs });
 
@@ -54,6 +57,8 @@ export function CalculatorShell({
         <section className="mb-10 rounded-lg border border-zinc-200 bg-zinc-50/50 p-4 dark:border-zinc-800 dark:bg-zinc-900/30 sm:p-6">
           {children}
         </section>
+
+        {bodySections ? <div className="mb-10">{bodySections}</div> : null}
 
         {howTo ? (
           <section className="mb-10">

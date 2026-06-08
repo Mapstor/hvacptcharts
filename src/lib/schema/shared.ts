@@ -12,9 +12,13 @@ export const ORG = {
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
-    url: `${SITE_URL}/logo.png`,
-    width: 512,
-    height: 512,
+    // Served by Next.js metadata route at src/app/apple-icon.tsx (180x180 PNG).
+    // Schema.org requires Organization.logo to be a real image URL; using
+    // /logo.png would 404 and break the Organization entity.
+    url: `${SITE_URL}/apple-icon`,
+    width: 180,
+    height: 180,
+    encodingFormat: "image/png",
   },
 };
 

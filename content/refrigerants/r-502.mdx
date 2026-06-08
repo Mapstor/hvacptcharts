@@ -1,0 +1,60 @@
+---
+slug: r-502
+title: "R-502 Pressure Temperature Chart & Properties"
+metaTitle: "R-502 PT Chart, Azeotropic HCFC/CFC Blend, GWP 4657 — Banned"
+metaDescription: "R-502 (azeotropic blend, 48.8/51.2 R-22/R-115) PT chart and properties. Historical dominant low-temperature commercial refrigerant. Banned 1996 under Montreal Protocol (R-115 is a CFC)."
+introOneLiner: "Historical azeotropic blend of R-22 (HCFC) and R-115 (CFC), 48.8/51.2 by mass. ASHRAE A1, ODP 0.221, GWP 4657. Production banned in 1996 under the Montreal Protocol because the R-115 component is a CFC. Was the dominant low-temperature commercial refrigerant for three decades."
+
+narrative:
+  whatItIs: |
+    R-502 is an azeotropic blend of R-22 (chlorodifluoromethane, HCFC) and R-115 (chloropentafluoroethane, CFC) in 48.8/51.2 mass ratio. The R-115 component carries the chlorofluorocarbon liability — its production was banned in the United States on January 1, 1996 under the Montreal Protocol CFC phase-out. As a CFC-containing blend, R-502 was banned alongside pure CFCs even though its bulk is the HCFC R-22.
+
+    From the 1960s through the mid-1990s, R-502 was the dominant refrigerant in low-temperature commercial refrigeration — supermarket frozen food cases, walk-in freezers, ice machines, and industrial process cooling. R-22 alone has inadequate capacity at low evaporator setpoints (below -10°F) for the compressor displacement available in that era's equipment; R-502's azeotropic blend provided both the capacity and the discharge-temperature suppression needed for reliable low-temperature operation. The discharge-temperature reduction was important — R-22 alone produces very high compressor discharge temperatures at low-temp setpoints, reducing compressor life.
+
+  whereItsUsed:
+    - Supermarket low-temperature commercial refrigeration (legacy, pre-1996)
+    - Walk-in freezers and frozen food cases (legacy)
+    - Commercial ice machines (legacy)
+    - Industrial process cooling at low-temperature setpoints (legacy)
+    - No new equipment since 1996; reclaimed supply for diminishing legacy equipment
+
+  phaseDownStatus: |
+    R-502 production has been banned in the United States for almost three decades. The vast majority of R-502 equipment has aged out through normal replacement cycles — typical commercial refrigeration equipment life is 15-20 years, so equipment installed before 1996 is now mostly retired. The remaining R-502 equipment in service is at the long-tail end of legacy installations.
+
+    For any remaining R-502 equipment, the retrofit refrigerants are R-422A (HFC, mineral-oil-compatible, A1, GWP 3143), R-404A (HFC, POE-oil, A1, GWP 3922) historically, and more recently R-448A, R-449A, R-454C, R-455A as low-GWP options. R-422A retrofit is the easiest because mineral oil stays in the system; for low-GWP modern equipment, full replacement is typical.
+
+  serviceNotes: |
+    Mineral oil (MO) and alkylbenzene (AB) are compatible. POE is NOT used with R-502 in original equipment. EPA Section 608 Type II certification covers R-502 handling; recovery is required.
+
+    R-502 is azeotropic (glide ~0.3°F per CoolProp at 0°C) — effectively a single-fluid refrigerant with no bubble/dew distinction needed for superheat or subcooling measurement. This was the original design intent — R-502 was developed to give the capacity of a blend with the service simplicity of a pure refrigerant.
+
+faqs:
+  - q: "What was R-502 used for?"
+    a: |
+      Low-temperature commercial refrigeration was the dominant application: supermarket frozen food cases, walk-in freezers, commercial ice machines, and industrial process cooling at sub-zero (°F) evaporator setpoints. R-502 displaced R-22 at low-temp because R-22's discharge temperature at low evaporator settings was too high for reliable compressor operation, and R-502's blend chemistry tamed that — giving capacity AND lower discharge temperature.
+
+  - q: "Why was R-502 banned?"
+    a: |
+      The R-115 component (chloropentafluoroethane, 51.2% of R-502) is a chlorofluorocarbon — CClF₂CF₃. R-115's ODP is 0.6, contributing the bulk of R-502's 0.221 blend ODP. The Montreal Protocol mandated CFC phase-out; the US implemented the production ban on January 1, 1996. R-502 was banned because of the R-115 component, even though most of the molecule by mass is HCFC R-22 (which was banned later, in 2020, for its own ODP).
+
+  - q: "What replaced R-502 in modern equipment?"
+    a: |
+      The succession: (1) initially R-404A and R-507A (HFC blends, A1, GWP ~3900) replaced R-502 in new equipment from the late 1990s through ~2015; (2) R-448A and R-449A (HFC blends, A1, lower GWP ~1300-1400) took over as AIM Act and SNAP pressure increased; (3) for new equipment from 2024 onward, R-454C, R-455A, and R-744 (CO₂ transcritical) are the low-GWP A2L/A1 options.
+
+  - q: "Can I retrofit R-502 equipment to R-404A?"
+    a: |
+      Yes, with oil change. R-502 uses mineral oil; R-404A requires POE oil. Retrofit procedure: recover R-502; flush oil (often requiring multiple oil changes due to mineral oil residue in compressor); install POE oil; replace filter-drier; pull vacuum to 500 microns; charge R-404A by weight. Verify TXV operation. R-422A is a simpler retrofit (keeps mineral oil) but has higher GWP than R-448A or R-449A modern options. Full equipment replacement is often the practical choice given the age of remaining R-502 equipment.
+
+  - q: "Is R-502 an azeotrope or zeotrope?"
+    a: |
+      Azeotrope (or near-azeotrope). R-502 has minimal temperature glide (~0.3°F) at typical operating pressures — bubble and dew points are essentially coincident. The 48.8/51.2 composition was chosen specifically to produce azeotropic behavior, allowing R-502 to be handled like a pure refrigerant in service. This service simplicity was a major commercial advantage compared to zeotropic blends like R-407C that came later.
+
+  - q: "What is the GWP of R-502?"
+    a: |
+      4657 per IPCC AR5, mass-weighted from R-22 (1810) at 48.8% and R-115 (7370) at 51.2%. The high GWP is dominated by R-115. Combined with the 0.221 ODP, R-502 was unviable in modern regulatory environments regardless of which constraint applied first.
+
+retrofitGuidance:
+  fromRefrigerant: ""
+  notes: |
+    R-502 to R-422A retrofit (mineral-oil-compatible): recover R-502; replace filter-drier; charge R-422A by weight at 90-95% of original R-502 capacity. Mineral oil stays. Capacity match is close (within 5%). R-502 to R-404A retrofit requires POE oil change and is more involved. For long-term low-GWP, R-448A or R-449A retrofit (also requires POE oil) is preferred over R-404A. For most equipment by 2025, full replacement with modern low-GWP commercial refrigeration is more cost-effective than retrofit.
+---

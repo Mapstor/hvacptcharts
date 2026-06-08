@@ -38,3 +38,40 @@ export function loadComparison(slug: string): LoadedComparison | null {
   }
   return { frontmatter: fm, body: content.trim() };
 }
+
+export interface ComparisonSummary {
+  slug: string;
+  refrigerantA: string;
+  refrigerantB: string;
+  title: string;
+}
+
+/**
+ * List all comparison pages by reading every .mdx file in content/comparisons/.
+ * Used to programmatically surface related pair comparisons on per-refrigerant
+ * pages.
+ */
+export function listComparisons(): ComparisonSummary[] {
+  if (!fs.existsSync(CONTENT_DIR)) return [];
+  const out: ComparisonSummary[] = [];
+  for (const file of fs.readdirSync(CONTENT_DIR)) {
+    if (!file.endsWith(".mdx")) continue;
+    const slug = file.replace(/\.mdx$/, "");
+    const c = loadComparison(slug);
+    if (!c) continue;
+    out.push({
+      slug,
+      refrigerantA: c.frontmatter.refrigerantA,
+      refrigerantB: c.frontmatter.refrigerantB,
+      title: c.frontmatter.title,
+    });
+  }
+  return out;
+}
+
+/** Find comparison summaries that involve the given refrigerant slug. */
+export function findComparisonsForRefrigerant(slug: string): ComparisonSummary[] {
+  return listComparisons().filter(
+    (c) => c.refrigerantA === slug || c.refrigerantB === slug,
+  );
+}

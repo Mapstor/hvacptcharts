@@ -1,0 +1,173 @@
+---
+slug: r-125
+title: "R-125 Pressure Temperature Chart & Properties"
+metaTitle: "R-125 PT Chart, A1 HFC Component, GWP 3500 — Blend Constituent"
+metaDescription: "R-125 (pentafluoroethane, CHF₂CF₃) PT chart. A1 non-flammable, GWP 3500. Primary flammability-suppression component in R-410A, R-404A, R-407C, R-507A, R-407A, and many HFC blends."
+introOneLiner: "Pure HFC (pentafluoroethane, CHF₂CF₃) — A1 non-flammable, GWP 3500. Rarely used as a standalone refrigerant; the dominant flammability-suppression component in HFC blends (R-410A, R-404A, R-407C, R-507A, others)."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: coolprop
+    label: "CoolProp 7.2.0"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: aimact
+    label: "EPA AIM Act — 40 CFR Part 84 Subpart B"
+    url: "https://www.epa.gov/climate-hfcs-reduction"
+    date: "Final Rule Oct 2021"
+  - id: ahri700
+    label: "AHRI Standard 700-2019"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: nistwebbook
+    label: "NIST Chemistry WebBook — Pentafluoroethane (CAS 354-33-6)"
+    url: "https://webbook.nist.gov/chemistry/fluid/"
+  - id: ashraehandbook
+    label: "ASHRAE Handbook of Refrigeration 2022"
+    url: "https://www.ashrae.org/technical-resources/ashrae-handbook"
+    date: "2022"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: A1
+    context: Non-toxic, non-flammable — used as flammability suppressor in HFC blends
+    sourceId: ashrae34
+  - label: Chemical formula
+    value: CHF₂CF₃
+    context: Pentafluoroethane (pure HFC, single component)
+    sourceId: ashrae34
+  - label: GWP (100-yr)
+    value: "3500"
+    unit: IPCC AR5
+    context: Very high — atmospheric lifetime approximately 29 years
+    sourceId: ipccar5
+  - label: ODP
+    value: "0"
+    context: Fluorine-only HFC; no chlorine
+    sourceId: ashrae34
+  - label: Normal boiling point
+    value: "−55.4"
+    unit: °F (−48.6°C)
+    context: At 1 atm
+    sourceId: coolprop
+  - label: Use as standalone
+    value: Rare
+    context: Almost always used as blend component, not standalone refrigerant
+    sourceId: ashraehandbook
+  - label: Component in R-410A
+    value: "50%"
+    context: Mass fraction in R-410A (R-32/R-125 50/50)
+    sourceId: ashrae34
+  - label: Component in R-404A
+    value: "44%"
+    context: Mass fraction in R-404A (R-125/R-143a/R-134a 44/52/4)
+    sourceId: ashrae34
+
+narrative:
+  whatItIs: |
+    R-125 is pentafluoroethane (CHF₂CF₃) — a pure HFC with A1 safety classification and very high GWP (3500) [ashrae34][ipccar5]. R-125 is rarely used as a standalone refrigerant because its very high GWP and unfavorable thermodynamic properties make better-balanced alternatives preferable for nearly all direct refrigeration applications.
+
+    R-125's dominant role is as a blend component. R-125 is the primary flammability-suppression ingredient in major HFC blends — its A1 classification and high vapor pressure make it effective at keeping multi-component HFC blends in the A1 non-flammable safety class. Major blends using R-125: R-410A (50% R-125), R-404A (44%), R-407C (25%), R-507A (50%), R-407A (40%), R-407F (30%), and many others.
+
+  whereItsUsed:
+    - "Component in R-410A (50% mass) — primary residential AC HFC blend"
+    - "Component in R-404A (44%) — legacy commercial refrigeration"
+    - "Component in R-407C (25%) — R-22 retrofit blend"
+    - "Component in R-507A (50%) — alternative R-502 replacement"
+    - "Component in R-448A, R-449A — modern R-404A retrofit blends"
+    - "Standalone fire suppression in some specialty applications"
+
+  phaseDownStatus: |
+    R-125 as a standalone refrigerant faces phase-down pressure under EPA AIM Act and EU F-Gas Regulation due to its very high GWP (3500). However, R-125 is not typically used standalone, so the direct refrigerant-level restrictions matter less than the blend-level restrictions on R-410A, R-404A, etc. [aimact].
+
+    As HFC blends containing R-125 are phased down (R-410A in residential AC from 2025, R-404A in commercial refrigeration through 2024-2025), R-125 production volumes decrease accordingly. Modern low-GWP blends use less R-125 (R-454B contains zero R-125; R-454C contains zero R-125) — the structural trajectory is toward minimizing R-125 content in HFC formulations.
+
+  serviceNotes: |
+    R-125 is rarely encountered as a standalone refrigerant in field service. Service technicians work with R-125 as a component in HFC blends; the blend behavior dominates service considerations.
+
+    POE oil compatible. Standard HFC service procedures apply when encountered in blend form.
+
+faqs:
+  - q: "What is R-125 used for?"
+    a: |
+      Almost entirely as a component in HFC blends. R-125's role is flammability suppression — its A1 classification and high vapor pressure suppress flammability in blends containing A2L components (like R-32) to produce A1 blends. Major blends: R-410A (50%), R-404A (44%), R-407C (25%), R-507A (50%) [ashrae34].
+
+  - q: "What's R-125's GWP?"
+    a: |
+      3500 per IPCC AR5 — very high [ipccar5]. The 29-year atmospheric lifetime drives the high GWP. R-125's high GWP is the primary reason blends containing significant R-125 content (R-410A 50%, R-404A 44%) have high overall GWP and face aggressive phase-down.
+
+  - q: "Why is R-125 used if its GWP is so high?"
+    a: |
+      Flammability suppression. R-125 is A1 (non-flammable) and is effective at suppressing flammability in HFC blends containing A2L components like R-32 (mildly flammable). Without R-125 (or equivalent A1 components), most HFC blends would be A2L and require A2L-rated equipment.
+
+      The trade-off — accepting high GWP for A1 classification — is the engineering tension driving the current HFC-to-A2L transition. Modern low-GWP blends (R-454B, R-454C, R-455A) accept A2L classification to avoid R-125's GWP burden.
+
+  - q: "Can R-125 be used as a refrigerant by itself?"
+    a: |
+      Technically yes (it has a usable PT curve), but rarely done in commercial practice. R-125 as a standalone refrigerant has very high GWP without compensating thermodynamic advantages over alternatives. Some specialty applications use R-125 as a fire-suppression agent (FE-25, FM-200 family).
+
+  - q: "What lubricant does R-125 use?"
+    a: |
+      POE oil typically when encountered in blend form [ahri700]. Standalone R-125 (rare) would use POE.
+
+  - q: "Is R-125 being phased out?"
+    a: |
+      Indirectly, through the phase-down of HFC blends containing R-125. As R-410A, R-404A, R-407C face EPA AIM Act and EU F-Gas restrictions, R-125 production volumes decrease. The newer low-GWP blends (R-454B, R-454C, R-455A) contain little or no R-125, reflecting the structural trajectory away from high-GWP blend components.
+
+retrofitGuidance:
+  fromRefrigerant: ""
+  notes: |
+    R-125 is essentially never used as a standalone refrigerant. Retrofit considerations apply at the blend level (R-410A, R-404A, etc.) rather than at the R-125 component level. For applications where R-125 is the active refrigerant, no retrofit alternatives are commonly considered.
+---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-125 PT chart">
+
+R-125's PT chart is a single saturation curve. The pressure envelope is high — R-125 at 70°F is approximately 235 PSIG (CoolProp 7.2.0). This high vapor pressure is part of what makes R-125 useful as a blend component for raising the overall blend pressure envelope (e.g., R-125's high pressure contributes to R-410A's high operating pressure profile).
+
+R-125 is rarely encountered as a standalone refrigerant in field service, so its standalone PT chart is primarily a reference for understanding blend behavior.
+
+</TechSection>
+
+<TechSection icon="composition" tone="purple" title="HFC chemistry — five fluorines on a 2-carbon backbone">
+
+R-125 is pentafluoroethane: CHF₂CF₃ — five fluorines, one hydrogen, two carbons. The high fluorine content gives R-125 its non-flammability (A1) and its long atmospheric lifetime (~29 years) — fluorine bonds resist OH radical attack that breaks down most HFCs.
+
+The long atmospheric lifetime is the chemistry feature driving R-125's very high GWP (3500). Each kilogram of R-125 released to atmosphere persists for decades and traps 3500× more heat over 100 years than 1 kg of CO₂.
+
+</TechSection>
+
+<TechSection icon="climate" tone="red" title="GWP 3500 — among the highest of mainstream HFCs">
+
+R-125's GWP of 3500 places it among the highest of mainstream HFC refrigerants — alongside R-143a (4470) and R-23 (14800). The very high GWP is the structural reason HFC blends containing significant R-125 content have high overall GWP.
+
+The 50% R-125 content in R-410A contributes most of R-410A's 2088 GWP. The 44% R-125 content in R-404A contributes substantially to R-404A's 3922 GWP. Reducing or eliminating R-125 is the primary mechanism for reducing GWP in modern low-GWP HFC blend formulations.
+
+</TechSection>
+
+<TechSection icon="recycle" tone="amber" title="R-125 as the flammability-suppression component — and its trade-off">
+
+R-125's commercial value derives from its A1 non-flammability and ability to suppress flammability in HFC blends containing A2L components. R-32 (the high-capacity HFC component used in most modern blends) is A2L; R-125 added to R-32 in sufficient mass fraction suppresses flammability to produce A1 blends.
+
+The trade-off: high GWP in exchange for A1 classification. Engineering teams have accepted this trade-off for decades, producing high-GWP A1 blends (R-410A, R-404A, R-407C) that became industry standards.
+
+Modern policy reverses the trade-off. EU F-Gas Regulation and EPA AIM Act prioritize GWP reduction over safety classification preservation; new low-GWP blends accept A2L classification (R-454B, R-454C, R-455A) and eliminate or minimize R-125. The structural trajectory is away from R-125-heavy blends.
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-125 in 2026 and beyond">
+
+R-125's market role is shrinking as HFC blends containing significant R-125 content face phase-down pressure. R-410A (50% R-125) phase-down in residential AC from 2025; R-404A (44% R-125) phase-down in commercial refrigeration through 2024-2025. New low-GWP blends use less R-125 or none at all.
+
+For service technicians, R-125 work is encountered as blend service — recovering and recharging R-410A, R-404A, R-407C, R-448A, R-449A and similar blends rather than handling standalone R-125. The blend behavior dominates service procedures.
+
+For equipment specifiers, the trajectory away from R-125-heavy blends is the key trend. New equipment specifications increasingly use R-32 (no R-125), R-454B (no R-125), R-454C (no R-125), R-455A (no R-125) rather than legacy R-410A or R-404A formulations.
+
+</TechSection>

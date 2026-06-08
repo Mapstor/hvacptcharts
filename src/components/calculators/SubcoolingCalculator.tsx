@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { getRefrigerant, getSaturationTempAtPsigF } from "@/data/refrigerants";
 import { RefrigerantSelector } from "./shared/RefrigerantSelector";
 import { cToF, fToC, kpagToPsig, psigToKpag, deltaFtoC } from "./shared/units";
@@ -13,8 +14,18 @@ const TOGGLE_BASE =
 const TOGGLE_ACTIVE = "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900";
 const TOGGLE_IDLE = "bg-white text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800";
 
-export function SubcoolingCalculator({ initialSlug = "r-410a" }: { initialSlug?: string }) {
-  const [slug, setSlug] = useState(initialSlug);
+export function SubcoolingCalculator(props: { initialSlug?: string } = {}) {
+  return (
+    <Suspense fallback={<div className="h-96 animate-pulse rounded-md bg-zinc-100 dark:bg-zinc-900" aria-hidden />}>
+      <SubcoolingCalculatorInner {...props} />
+    </Suspense>
+  );
+}
+
+function SubcoolingCalculatorInner({ initialSlug = "r-410a" }: { initialSlug?: string }) {
+  const searchParams = useSearchParams();
+  const slugFromUrl = searchParams.get("refrigerant");
+  const [slug, setSlug] = useState(slugFromUrl ?? initialSlug);
   const [tempUnit, setTempUnit] = useState<TempUnit>("F");
   const [pUnit, setPUnit] = useState<PUnit>("psig");
   // Defaults: R-410A residential AC, 380 PSIG discharge, 95°F liquid line.

@@ -1988,13 +1988,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R11",
-      "ptChartGeneratedAt": "2026-05-20T10:13:12.875Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:55.408Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R11)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -2013,15 +2014,15 @@
     "tradeNames": [],
     "composition": [],
     "physical": {
-      "boilingPointC": -103.7,
-      "boilingPointF": -154.7,
+      "boilingPointC": -103.77,
+      "boilingPointF": -154.79,
       "critical": {
         "tempC": 9.2,
-        "tempF": 48.6,
-        "pressurePsia": 731,
-        "pressurePsig": 716,
-        "pressureKpaA": 5041,
-        "pressureKpaG": 4940
+        "tempF": 48.56,
+        "pressurePsia": 731.3,
+        "pressurePsig": 716.6,
+        "pressureKpaA": 5041.8,
+        "pressureKpaG": 4940.5
       },
       "molarMassGPerMol": 28.054,
       "liquidDensityKgPerM3At25C": null,
@@ -2061,16 +2062,909 @@
       "aimActAffected": false,
       "snapApproved": null
     },
-    "ptChart": [],
+    "ptChart": [
+      {
+        "tempF": -40,
+        "tempC": -40,
+        "bubblePsig": 195.91,
+        "dewPsig": 195.91,
+        "bubbleKpag": 1350.8,
+        "dewKpag": 1350.8,
+        "displayPsig": 195.91,
+        "displayKpag": 1350.8
+      },
+      {
+        "tempF": -39,
+        "tempC": -39.4,
+        "bubblePsig": 199.44,
+        "dewPsig": 199.44,
+        "bubbleKpag": 1375.1,
+        "dewKpag": 1375.1,
+        "displayPsig": 199.44,
+        "displayKpag": 1375.1
+      },
+      {
+        "tempF": -38,
+        "tempC": -38.9,
+        "bubblePsig": 203.01,
+        "dewPsig": 203.01,
+        "bubbleKpag": 1399.7,
+        "dewKpag": 1399.7,
+        "displayPsig": 203.01,
+        "displayKpag": 1399.7
+      },
+      {
+        "tempF": -37,
+        "tempC": -38.3,
+        "bubblePsig": 206.62,
+        "dewPsig": 206.62,
+        "bubbleKpag": 1424.6,
+        "dewKpag": 1424.6,
+        "displayPsig": 206.62,
+        "displayKpag": 1424.6
+      },
+      {
+        "tempF": -36,
+        "tempC": -37.8,
+        "bubblePsig": 210.28,
+        "dewPsig": 210.28,
+        "bubbleKpag": 1449.8,
+        "dewKpag": 1449.8,
+        "displayPsig": 210.28,
+        "displayKpag": 1449.8
+      },
+      {
+        "tempF": -35,
+        "tempC": -37.2,
+        "bubblePsig": 213.98,
+        "dewPsig": 213.98,
+        "bubbleKpag": 1475.3,
+        "dewKpag": 1475.3,
+        "displayPsig": 213.98,
+        "displayKpag": 1475.3
+      },
+      {
+        "tempF": -34,
+        "tempC": -36.7,
+        "bubblePsig": 217.73,
+        "dewPsig": 217.73,
+        "bubbleKpag": 1501.2,
+        "dewKpag": 1501.2,
+        "displayPsig": 217.73,
+        "displayKpag": 1501.2
+      },
+      {
+        "tempF": -33,
+        "tempC": -36.1,
+        "bubblePsig": 221.51,
+        "dewPsig": 221.51,
+        "bubbleKpag": 1527.3,
+        "dewKpag": 1527.3,
+        "displayPsig": 221.51,
+        "displayKpag": 1527.3
+      },
+      {
+        "tempF": -32,
+        "tempC": -35.6,
+        "bubblePsig": 225.35,
+        "dewPsig": 225.35,
+        "bubbleKpag": 1553.7,
+        "dewKpag": 1553.7,
+        "displayPsig": 225.35,
+        "displayKpag": 1553.7
+      },
+      {
+        "tempF": -31,
+        "tempC": -35,
+        "bubblePsig": 229.22,
+        "dewPsig": 229.22,
+        "bubbleKpag": 1580.4,
+        "dewKpag": 1580.4,
+        "displayPsig": 229.22,
+        "displayKpag": 1580.4
+      },
+      {
+        "tempF": -30,
+        "tempC": -34.4,
+        "bubblePsig": 233.14,
+        "dewPsig": 233.14,
+        "bubbleKpag": 1607.5,
+        "dewKpag": 1607.5,
+        "displayPsig": 233.14,
+        "displayKpag": 1607.5
+      },
+      {
+        "tempF": -29,
+        "tempC": -33.9,
+        "bubblePsig": 237.11,
+        "dewPsig": 237.11,
+        "bubbleKpag": 1634.8,
+        "dewKpag": 1634.8,
+        "displayPsig": 237.11,
+        "displayKpag": 1634.8
+      },
+      {
+        "tempF": -28,
+        "tempC": -33.3,
+        "bubblePsig": 241.12,
+        "dewPsig": 241.12,
+        "bubbleKpag": 1662.5,
+        "dewKpag": 1662.5,
+        "displayPsig": 241.12,
+        "displayKpag": 1662.5
+      },
+      {
+        "tempF": -27,
+        "tempC": -32.8,
+        "bubblePsig": 245.18,
+        "dewPsig": 245.18,
+        "bubbleKpag": 1690.5,
+        "dewKpag": 1690.5,
+        "displayPsig": 245.18,
+        "displayKpag": 1690.5
+      },
+      {
+        "tempF": -26,
+        "tempC": -32.2,
+        "bubblePsig": 249.29,
+        "dewPsig": 249.29,
+        "bubbleKpag": 1718.8,
+        "dewKpag": 1718.8,
+        "displayPsig": 249.29,
+        "displayKpag": 1718.8
+      },
+      {
+        "tempF": -25,
+        "tempC": -31.7,
+        "bubblePsig": 253.44,
+        "dewPsig": 253.44,
+        "bubbleKpag": 1747.4,
+        "dewKpag": 1747.4,
+        "displayPsig": 253.44,
+        "displayKpag": 1747.4
+      },
+      {
+        "tempF": -24,
+        "tempC": -31.1,
+        "bubblePsig": 257.64,
+        "dewPsig": 257.64,
+        "bubbleKpag": 1776.4,
+        "dewKpag": 1776.4,
+        "displayPsig": 257.64,
+        "displayKpag": 1776.4
+      },
+      {
+        "tempF": -23,
+        "tempC": -30.6,
+        "bubblePsig": 261.89,
+        "dewPsig": 261.89,
+        "bubbleKpag": 1805.6,
+        "dewKpag": 1805.6,
+        "displayPsig": 261.89,
+        "displayKpag": 1805.6
+      },
+      {
+        "tempF": -22,
+        "tempC": -30,
+        "bubblePsig": 266.18,
+        "dewPsig": 266.18,
+        "bubbleKpag": 1835.2,
+        "dewKpag": 1835.2,
+        "displayPsig": 266.18,
+        "displayKpag": 1835.2
+      },
+      {
+        "tempF": -21,
+        "tempC": -29.4,
+        "bubblePsig": 270.52,
+        "dewPsig": 270.52,
+        "bubbleKpag": 1865.2,
+        "dewKpag": 1865.2,
+        "displayPsig": 270.52,
+        "displayKpag": 1865.2
+      },
+      {
+        "tempF": -20,
+        "tempC": -28.9,
+        "bubblePsig": 274.91,
+        "dewPsig": 274.91,
+        "bubbleKpag": 1895.4,
+        "dewKpag": 1895.4,
+        "displayPsig": 274.91,
+        "displayKpag": 1895.4
+      },
+      {
+        "tempF": -19,
+        "tempC": -28.3,
+        "bubblePsig": 279.35,
+        "dewPsig": 279.35,
+        "bubbleKpag": 1926.1,
+        "dewKpag": 1926.1,
+        "displayPsig": 279.35,
+        "displayKpag": 1926.1
+      },
+      {
+        "tempF": -18,
+        "tempC": -27.8,
+        "bubblePsig": 283.84,
+        "dewPsig": 283.84,
+        "bubbleKpag": 1957,
+        "dewKpag": 1957,
+        "displayPsig": 283.84,
+        "displayKpag": 1957
+      },
+      {
+        "tempF": -17,
+        "tempC": -27.2,
+        "bubblePsig": 288.38,
+        "dewPsig": 288.38,
+        "bubbleKpag": 1988.3,
+        "dewKpag": 1988.3,
+        "displayPsig": 288.38,
+        "displayKpag": 1988.3
+      },
+      {
+        "tempF": -16,
+        "tempC": -26.7,
+        "bubblePsig": 292.96,
+        "dewPsig": 292.96,
+        "bubbleKpag": 2019.9,
+        "dewKpag": 2019.9,
+        "displayPsig": 292.96,
+        "displayKpag": 2019.9
+      },
+      {
+        "tempF": -15,
+        "tempC": -26.1,
+        "bubblePsig": 297.6,
+        "dewPsig": 297.6,
+        "bubbleKpag": 2051.9,
+        "dewKpag": 2051.9,
+        "displayPsig": 297.6,
+        "displayKpag": 2051.9
+      },
+      {
+        "tempF": -14,
+        "tempC": -25.6,
+        "bubblePsig": 302.29,
+        "dewPsig": 302.29,
+        "bubbleKpag": 2084.2,
+        "dewKpag": 2084.2,
+        "displayPsig": 302.29,
+        "displayKpag": 2084.2
+      },
+      {
+        "tempF": -13,
+        "tempC": -25,
+        "bubblePsig": 307.03,
+        "dewPsig": 307.03,
+        "bubbleKpag": 2116.9,
+        "dewKpag": 2116.9,
+        "displayPsig": 307.03,
+        "displayKpag": 2116.9
+      },
+      {
+        "tempF": -12,
+        "tempC": -24.4,
+        "bubblePsig": 311.82,
+        "dewPsig": 311.82,
+        "bubbleKpag": 2149.9,
+        "dewKpag": 2149.9,
+        "displayPsig": 311.82,
+        "displayKpag": 2149.9
+      },
+      {
+        "tempF": -11,
+        "tempC": -23.9,
+        "bubblePsig": 316.66,
+        "dewPsig": 316.66,
+        "bubbleKpag": 2183.3,
+        "dewKpag": 2183.3,
+        "displayPsig": 316.66,
+        "displayKpag": 2183.3
+      },
+      {
+        "tempF": -10,
+        "tempC": -23.3,
+        "bubblePsig": 321.55,
+        "dewPsig": 321.55,
+        "bubbleKpag": 2217,
+        "dewKpag": 2217,
+        "displayPsig": 321.55,
+        "displayKpag": 2217
+      },
+      {
+        "tempF": -9,
+        "tempC": -22.8,
+        "bubblePsig": 326.5,
+        "dewPsig": 326.5,
+        "bubbleKpag": 2251.1,
+        "dewKpag": 2251.1,
+        "displayPsig": 326.5,
+        "displayKpag": 2251.1
+      },
+      {
+        "tempF": -8,
+        "tempC": -22.2,
+        "bubblePsig": 331.49,
+        "dewPsig": 331.49,
+        "bubbleKpag": 2285.6,
+        "dewKpag": 2285.6,
+        "displayPsig": 331.49,
+        "displayKpag": 2285.6
+      },
+      {
+        "tempF": -7,
+        "tempC": -21.7,
+        "bubblePsig": 336.55,
+        "dewPsig": 336.55,
+        "bubbleKpag": 2320.4,
+        "dewKpag": 2320.4,
+        "displayPsig": 336.55,
+        "displayKpag": 2320.4
+      },
+      {
+        "tempF": -6,
+        "tempC": -21.1,
+        "bubblePsig": 341.65,
+        "dewPsig": 341.65,
+        "bubbleKpag": 2355.6,
+        "dewKpag": 2355.6,
+        "displayPsig": 341.65,
+        "displayKpag": 2355.6
+      },
+      {
+        "tempF": -5,
+        "tempC": -20.6,
+        "bubblePsig": 346.81,
+        "dewPsig": 346.81,
+        "bubbleKpag": 2391.2,
+        "dewKpag": 2391.2,
+        "displayPsig": 346.81,
+        "displayKpag": 2391.2
+      },
+      {
+        "tempF": -4,
+        "tempC": -20,
+        "bubblePsig": 352.02,
+        "dewPsig": 352.02,
+        "bubbleKpag": 2427.1,
+        "dewKpag": 2427.1,
+        "displayPsig": 352.02,
+        "displayKpag": 2427.1
+      },
+      {
+        "tempF": -3,
+        "tempC": -19.4,
+        "bubblePsig": 357.29,
+        "dewPsig": 357.29,
+        "bubbleKpag": 2463.4,
+        "dewKpag": 2463.4,
+        "displayPsig": 357.29,
+        "displayKpag": 2463.4
+      },
+      {
+        "tempF": -2,
+        "tempC": -18.9,
+        "bubblePsig": 362.61,
+        "dewPsig": 362.61,
+        "bubbleKpag": 2500.1,
+        "dewKpag": 2500.1,
+        "displayPsig": 362.61,
+        "displayKpag": 2500.1
+      },
+      {
+        "tempF": -1,
+        "tempC": -18.3,
+        "bubblePsig": 367.99,
+        "dewPsig": 367.99,
+        "bubbleKpag": 2537.2,
+        "dewKpag": 2537.2,
+        "displayPsig": 367.99,
+        "displayKpag": 2537.2
+      },
+      {
+        "tempF": 0,
+        "tempC": -17.8,
+        "bubblePsig": 373.42,
+        "dewPsig": 373.42,
+        "bubbleKpag": 2574.7,
+        "dewKpag": 2574.7,
+        "displayPsig": 373.42,
+        "displayKpag": 2574.7
+      },
+      {
+        "tempF": 1,
+        "tempC": -17.2,
+        "bubblePsig": 378.91,
+        "dewPsig": 378.91,
+        "bubbleKpag": 2612.5,
+        "dewKpag": 2612.5,
+        "displayPsig": 378.91,
+        "displayKpag": 2612.5
+      },
+      {
+        "tempF": 2,
+        "tempC": -16.7,
+        "bubblePsig": 384.46,
+        "dewPsig": 384.46,
+        "bubbleKpag": 2650.8,
+        "dewKpag": 2650.8,
+        "displayPsig": 384.46,
+        "displayKpag": 2650.8
+      },
+      {
+        "tempF": 3,
+        "tempC": -16.1,
+        "bubblePsig": 390.07,
+        "dewPsig": 390.07,
+        "bubbleKpag": 2689.4,
+        "dewKpag": 2689.4,
+        "displayPsig": 390.07,
+        "displayKpag": 2689.4
+      },
+      {
+        "tempF": 4,
+        "tempC": -15.6,
+        "bubblePsig": 395.73,
+        "dewPsig": 395.73,
+        "bubbleKpag": 2728.5,
+        "dewKpag": 2728.5,
+        "displayPsig": 395.73,
+        "displayKpag": 2728.5
+      },
+      {
+        "tempF": 5,
+        "tempC": -15,
+        "bubblePsig": 401.45,
+        "dewPsig": 401.45,
+        "bubbleKpag": 2767.9,
+        "dewKpag": 2767.9,
+        "displayPsig": 401.45,
+        "displayKpag": 2767.9
+      },
+      {
+        "tempF": 6,
+        "tempC": -14.4,
+        "bubblePsig": 407.23,
+        "dewPsig": 407.23,
+        "bubbleKpag": 2807.7,
+        "dewKpag": 2807.7,
+        "displayPsig": 407.23,
+        "displayKpag": 2807.7
+      },
+      {
+        "tempF": 7,
+        "tempC": -13.9,
+        "bubblePsig": 413.07,
+        "dewPsig": 413.07,
+        "bubbleKpag": 2848,
+        "dewKpag": 2848,
+        "displayPsig": 413.07,
+        "displayKpag": 2848
+      },
+      {
+        "tempF": 8,
+        "tempC": -13.3,
+        "bubblePsig": 418.96,
+        "dewPsig": 418.96,
+        "bubbleKpag": 2888.7,
+        "dewKpag": 2888.7,
+        "displayPsig": 418.96,
+        "displayKpag": 2888.7
+      },
+      {
+        "tempF": 9,
+        "tempC": -12.8,
+        "bubblePsig": 424.92,
+        "dewPsig": 424.92,
+        "bubbleKpag": 2929.7,
+        "dewKpag": 2929.7,
+        "displayPsig": 424.92,
+        "displayKpag": 2929.7
+      },
+      {
+        "tempF": 10,
+        "tempC": -12.2,
+        "bubblePsig": 430.94,
+        "dewPsig": 430.94,
+        "bubbleKpag": 2971.2,
+        "dewKpag": 2971.2,
+        "displayPsig": 430.94,
+        "displayKpag": 2971.2
+      },
+      {
+        "tempF": 11,
+        "tempC": -11.7,
+        "bubblePsig": 437.02,
+        "dewPsig": 437.02,
+        "bubbleKpag": 3013.1,
+        "dewKpag": 3013.1,
+        "displayPsig": 437.02,
+        "displayKpag": 3013.1
+      },
+      {
+        "tempF": 12,
+        "tempC": -11.1,
+        "bubblePsig": 443.16,
+        "dewPsig": 443.16,
+        "bubbleKpag": 3055.5,
+        "dewKpag": 3055.5,
+        "displayPsig": 443.16,
+        "displayKpag": 3055.5
+      },
+      {
+        "tempF": 13,
+        "tempC": -10.6,
+        "bubblePsig": 449.36,
+        "dewPsig": 449.36,
+        "bubbleKpag": 3098.2,
+        "dewKpag": 3098.2,
+        "displayPsig": 449.36,
+        "displayKpag": 3098.2
+      },
+      {
+        "tempF": 14,
+        "tempC": -10,
+        "bubblePsig": 455.63,
+        "dewPsig": 455.63,
+        "bubbleKpag": 3141.4,
+        "dewKpag": 3141.4,
+        "displayPsig": 455.63,
+        "displayKpag": 3141.4
+      },
+      {
+        "tempF": 15,
+        "tempC": -9.4,
+        "bubblePsig": 461.96,
+        "dewPsig": 461.96,
+        "bubbleKpag": 3185.1,
+        "dewKpag": 3185.1,
+        "displayPsig": 461.96,
+        "displayKpag": 3185.1
+      },
+      {
+        "tempF": 16,
+        "tempC": -8.9,
+        "bubblePsig": 468.35,
+        "dewPsig": 468.35,
+        "bubbleKpag": 3229.1,
+        "dewKpag": 3229.1,
+        "displayPsig": 468.35,
+        "displayKpag": 3229.1
+      },
+      {
+        "tempF": 17,
+        "tempC": -8.3,
+        "bubblePsig": 474.8,
+        "dewPsig": 474.8,
+        "bubbleKpag": 3273.7,
+        "dewKpag": 3273.7,
+        "displayPsig": 474.8,
+        "displayKpag": 3273.7
+      },
+      {
+        "tempF": 18,
+        "tempC": -7.8,
+        "bubblePsig": 481.33,
+        "dewPsig": 481.33,
+        "bubbleKpag": 3318.6,
+        "dewKpag": 3318.6,
+        "displayPsig": 481.33,
+        "displayKpag": 3318.6
+      },
+      {
+        "tempF": 19,
+        "tempC": -7.2,
+        "bubblePsig": 487.91,
+        "dewPsig": 487.91,
+        "bubbleKpag": 3364,
+        "dewKpag": 3364,
+        "displayPsig": 487.91,
+        "displayKpag": 3364
+      },
+      {
+        "tempF": 20,
+        "tempC": -6.7,
+        "bubblePsig": 494.56,
+        "dewPsig": 494.56,
+        "bubbleKpag": 3409.9,
+        "dewKpag": 3409.9,
+        "displayPsig": 494.56,
+        "displayKpag": 3409.9
+      },
+      {
+        "tempF": 21,
+        "tempC": -6.1,
+        "bubblePsig": 501.28,
+        "dewPsig": 501.28,
+        "bubbleKpag": 3456.2,
+        "dewKpag": 3456.2,
+        "displayPsig": 501.28,
+        "displayKpag": 3456.2
+      },
+      {
+        "tempF": 22,
+        "tempC": -5.6,
+        "bubblePsig": 508.07,
+        "dewPsig": 508.07,
+        "bubbleKpag": 3503,
+        "dewKpag": 3503,
+        "displayPsig": 508.07,
+        "displayKpag": 3503
+      },
+      {
+        "tempF": 23,
+        "tempC": -5,
+        "bubblePsig": 514.93,
+        "dewPsig": 514.93,
+        "bubbleKpag": 3550.3,
+        "dewKpag": 3550.3,
+        "displayPsig": 514.93,
+        "displayKpag": 3550.3
+      },
+      {
+        "tempF": 24,
+        "tempC": -4.4,
+        "bubblePsig": 521.85,
+        "dewPsig": 521.85,
+        "bubbleKpag": 3598,
+        "dewKpag": 3598,
+        "displayPsig": 521.85,
+        "displayKpag": 3598
+      },
+      {
+        "tempF": 25,
+        "tempC": -3.9,
+        "bubblePsig": 528.84,
+        "dewPsig": 528.84,
+        "bubbleKpag": 3646.3,
+        "dewKpag": 3646.3,
+        "displayPsig": 528.84,
+        "displayKpag": 3646.3
+      },
+      {
+        "tempF": 26,
+        "tempC": -3.3,
+        "bubblePsig": 535.91,
+        "dewPsig": 535.91,
+        "bubbleKpag": 3695,
+        "dewKpag": 3695,
+        "displayPsig": 535.91,
+        "displayKpag": 3695
+      },
+      {
+        "tempF": 27,
+        "tempC": -2.8,
+        "bubblePsig": 543.04,
+        "dewPsig": 543.04,
+        "bubbleKpag": 3744.2,
+        "dewKpag": 3744.2,
+        "displayPsig": 543.04,
+        "displayKpag": 3744.2
+      },
+      {
+        "tempF": 28,
+        "tempC": -2.2,
+        "bubblePsig": 550.25,
+        "dewPsig": 550.25,
+        "bubbleKpag": 3793.8,
+        "dewKpag": 3793.8,
+        "displayPsig": 550.25,
+        "displayKpag": 3793.8
+      },
+      {
+        "tempF": 29,
+        "tempC": -1.7,
+        "bubblePsig": 557.53,
+        "dewPsig": 557.53,
+        "bubbleKpag": 3844,
+        "dewKpag": 3844,
+        "displayPsig": 557.53,
+        "displayKpag": 3844
+      },
+      {
+        "tempF": 30,
+        "tempC": -1.1,
+        "bubblePsig": 564.88,
+        "dewPsig": 564.88,
+        "bubbleKpag": 3894.7,
+        "dewKpag": 3894.7,
+        "displayPsig": 564.88,
+        "displayKpag": 3894.7
+      },
+      {
+        "tempF": 31,
+        "tempC": -0.6,
+        "bubblePsig": 572.31,
+        "dewPsig": 572.31,
+        "bubbleKpag": 3946,
+        "dewKpag": 3946,
+        "displayPsig": 572.31,
+        "displayKpag": 3946
+      },
+      {
+        "tempF": 32,
+        "tempC": 0,
+        "bubblePsig": 579.82,
+        "dewPsig": 579.82,
+        "bubbleKpag": 3997.7,
+        "dewKpag": 3997.7,
+        "displayPsig": 579.82,
+        "displayKpag": 3997.7
+      },
+      {
+        "tempF": 33,
+        "tempC": 0.6,
+        "bubblePsig": 587.4,
+        "dewPsig": 587.4,
+        "bubbleKpag": 4050,
+        "dewKpag": 4050,
+        "displayPsig": 587.4,
+        "displayKpag": 4050
+      },
+      {
+        "tempF": 34,
+        "tempC": 1.1,
+        "bubblePsig": 595.06,
+        "dewPsig": 595.06,
+        "bubbleKpag": 4102.8,
+        "dewKpag": 4102.8,
+        "displayPsig": 595.06,
+        "displayKpag": 4102.8
+      },
+      {
+        "tempF": 35,
+        "tempC": 1.7,
+        "bubblePsig": 602.79,
+        "dewPsig": 602.79,
+        "bubbleKpag": 4156.1,
+        "dewKpag": 4156.1,
+        "displayPsig": 602.79,
+        "displayKpag": 4156.1
+      },
+      {
+        "tempF": 36,
+        "tempC": 2.2,
+        "bubblePsig": 610.61,
+        "dewPsig": 610.61,
+        "bubbleKpag": 4210,
+        "dewKpag": 4210,
+        "displayPsig": 610.61,
+        "displayKpag": 4210
+      },
+      {
+        "tempF": 37,
+        "tempC": 2.8,
+        "bubblePsig": 618.51,
+        "dewPsig": 618.51,
+        "bubbleKpag": 4264.5,
+        "dewKpag": 4264.5,
+        "displayPsig": 618.51,
+        "displayKpag": 4264.5
+      },
+      {
+        "tempF": 38,
+        "tempC": 3.3,
+        "bubblePsig": 626.5,
+        "dewPsig": 626.5,
+        "bubbleKpag": 4319.5,
+        "dewKpag": 4319.5,
+        "displayPsig": 626.5,
+        "displayKpag": 4319.5
+      },
+      {
+        "tempF": 39,
+        "tempC": 3.9,
+        "bubblePsig": 634.56,
+        "dewPsig": 634.56,
+        "bubbleKpag": 4375.2,
+        "dewKpag": 4375.2,
+        "displayPsig": 634.56,
+        "displayKpag": 4375.2
+      },
+      {
+        "tempF": 40,
+        "tempC": 4.4,
+        "bubblePsig": 642.72,
+        "dewPsig": 642.72,
+        "bubbleKpag": 4431.4,
+        "dewKpag": 4431.4,
+        "displayPsig": 642.72,
+        "displayKpag": 4431.4
+      },
+      {
+        "tempF": 41,
+        "tempC": 5,
+        "bubblePsig": 650.97,
+        "dewPsig": 650.97,
+        "bubbleKpag": 4488.2,
+        "dewKpag": 4488.2,
+        "displayPsig": 650.97,
+        "displayKpag": 4488.2
+      },
+      {
+        "tempF": 42,
+        "tempC": 5.6,
+        "bubblePsig": 659.3,
+        "dewPsig": 659.3,
+        "bubbleKpag": 4545.7,
+        "dewKpag": 4545.7,
+        "displayPsig": 659.3,
+        "displayKpag": 4545.7
+      },
+      {
+        "tempF": 43,
+        "tempC": 6.1,
+        "bubblePsig": 667.73,
+        "dewPsig": 667.73,
+        "bubbleKpag": 4603.8,
+        "dewKpag": 4603.8,
+        "displayPsig": 667.73,
+        "displayKpag": 4603.8
+      },
+      {
+        "tempF": 44,
+        "tempC": 6.7,
+        "bubblePsig": 676.26,
+        "dewPsig": 676.26,
+        "bubbleKpag": 4662.6,
+        "dewKpag": 4662.6,
+        "displayPsig": 676.26,
+        "displayKpag": 4662.6
+      },
+      {
+        "tempF": 45,
+        "tempC": 7.2,
+        "bubblePsig": 684.89,
+        "dewPsig": 684.89,
+        "bubbleKpag": 4722.1,
+        "dewKpag": 4722.1,
+        "displayPsig": 684.89,
+        "displayKpag": 4722.1
+      },
+      {
+        "tempF": 46,
+        "tempC": 7.8,
+        "bubblePsig": 693.62,
+        "dewPsig": 693.62,
+        "bubbleKpag": 4782.4,
+        "dewKpag": 4782.4,
+        "displayPsig": 693.62,
+        "displayKpag": 4782.4
+      },
+      {
+        "tempF": 47,
+        "tempC": 8.3,
+        "bubblePsig": 702.47,
+        "dewPsig": 702.47,
+        "bubbleKpag": 4843.4,
+        "dewKpag": 4843.4,
+        "displayPsig": 702.47,
+        "displayKpag": 4843.4
+      },
+      {
+        "tempF": 48,
+        "tempC": 8.9,
+        "bubblePsig": 711.45,
+        "dewPsig": 711.45,
+        "bubbleKpag": 4905.3,
+        "dewKpag": 4905.3,
+        "displayPsig": 711.45,
+        "displayKpag": 4905.3
+      }
+    ],
     "dataSource": {
-      "ptChartSource": "TODO: NIST WebBook (ethylene) for subcritical region (below Tcrit ≈ 9.2°C / 48.6°F)",
-      "ptChartGeneratedAt": "2026-05-20T10:13:12.876Z",
+      "ptChartSource": "CoolProp 7.2.0 Ethylene",
+      "ptChartGeneratedAt": "2026-06-05T07:53:55.532Z",
       "ptChartVerifiedAgainst": [
-        "Manufacturer datasheet (pending)",
-        "NIST WebBook (Ethylene)"
+        "CoolProp 7.2.0 (Ethylene)",
+        "NIST WebBook (Ethylene)",
+        "ASHRAE Handbook of Refrigeration 2022"
       ],
-      "propertiesSource": "Manufacturer datasheet (subcritical region) + NIST WebBook",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "propertiesSource": "CoolProp 7.2.0 (Ethylene) — REFPROP-compatible EOS",
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -4062,13 +4956,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R12",
-      "ptChartGeneratedAt": "2026-05-20T10:13:13.127Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:55.782Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R12)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -4140,13 +5035,37 @@
     },
     "ptChart": [],
     "dataSource": {
-      "ptChartSource": "TODO: AGC AMOLEA 1224yd technical data sheet",
-      "ptChartGeneratedAt": "2026-05-20T10:13:13.127Z",
+      "ptChartSource": "Published Helmholtz EOS: Akasaka & Lemmon (2023), International Journal of Thermophysics 44, 166.",
+      "ptChartGeneratedAt": "2026-06-05T07:53:55.784Z",
       "ptChartVerifiedAgainst": [
         "AGC AMOLEA 1224yd technical datasheet"
       ],
       "propertiesSource": "AGC AMOLEA 1224yd technical datasheet",
-      "gwpSource": "IPCC AR5 (approximation for HCFO)"
+      "gwpSource": "IPCC AR5 (approximation for HCFO)",
+      "dataStatus": "published-eos-not-in-build",
+      "primarySources": [
+        {
+          "type": "peer-reviewed-eos",
+          "citation": "Akasaka, R. and Lemmon, E.W. (2023), \"A Helmholtz Energy Equation of State for cis-1-Chloro-2,3,3,3-tetrafluoro-1-propene [R-1224yd(Z)]\", International Journal of Thermophysics 44, 166.",
+          "doi": "10.1007/s10765-023-03266-3",
+          "url": "https://link.springer.com/article/10.1007/s10765-023-03266-3",
+          "scope": "Fundamental EOS valid from triple-point T (157.8 K) to 473 K, pressures up to 35 MPa. Includes vapor-pressure ancillary equation suitable for PT chart generation.",
+          "note": "Also implemented in NIST REFPROP 10.0 as 'R1224YDZ'."
+        },
+        {
+          "type": "measurement",
+          "citation": "Sotani, T. et al. (2022), \"Saturation vapour pressure measurements of refrigerant R1224yd(Z) from 274 K to 338 K\", International Journal of Refrigeration.",
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S0140700722003450",
+          "scope": "Static-method vapor pressure measurements at INRIM, 274-338 K, precision capacitance manometer (full scale 0.5 MPa). Used to validate Akasaka & Lemmon (2023) EOS."
+        },
+        {
+          "type": "manufacturer-datasheet",
+          "citation": "AGC Chemicals, \"AMOLEA 1224yd Technical Information\" (PDF).",
+          "url": "https://www.agc-chemicals.com/file/AMOLEAyd_Tech_English_D.PDF",
+          "alternativeUrl": "https://agcce.com/wp-content/uploads/2023/10/Amolea2018.pdf",
+          "scope": "Manufacturer-published PT table and P-h diagram covering the operating range. Free download from AGC Chemicals website."
+        }
+      ]
     }
   },
   {
@@ -6137,13 +7056,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R123",
-      "ptChartGeneratedAt": "2026-05-20T10:13:13.468Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:56.132Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R123)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -8133,13 +9053,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1233zd(E)",
-      "ptChartGeneratedAt": "2026-05-20T10:13:13.710Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:56.385Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1233zd(E))",
         "Honeywell Solstice LBA technical datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + Honeywell Solstice technical datasheet",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -8202,13 +9123,32 @@
     },
     "ptChart": [],
     "dataSource": {
-      "ptChartSource": "TODO: Honeywell datasheet for Z-isomer of R-1233zd (specialty applications)",
-      "ptChartGeneratedAt": "2026-05-20T10:13:13.710Z",
+      "ptChartSource": "No commercial PT chart published. R-1233zd(Z) is the cis-isomer of R-1233zd and has only research-grade measurement data; no Helmholtz EOS has been published for it. The commercially-used R-1233zd refers to the (E)-isomer (Honeywell Solstice ZD).",
+      "ptChartGeneratedAt": "2026-06-05T07:53:56.386Z",
       "ptChartVerifiedAgainst": [
         "Manufacturer datasheet (pending)"
       ],
       "propertiesSource": "Manufacturer datasheet (pending)",
-      "gwpSource": "Pending source citation"
+      "gwpSource": "Pending source citation",
+      "dataStatus": "no-commercial-data-published",
+      "primarySources": [
+        {
+          "type": "isomer-note",
+          "citation": "ASHRAE Standard 34-2022 distinguishes R-1233zd(E) (commercial, in Solstice ZD chillers) from R-1233zd(Z) (cis-isomer, research-only).",
+          "url": "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+        },
+        {
+          "type": "isomer-equivalent",
+          "citation": "For commercial PT chart data of R-1233zd, see the (E)-isomer entry: Hulse, R.J. et al. (2012), \"Physical Properties of HCFO-1233zd(E)\", J. Chem. Eng. Data 57(12), 3581-3586. doi:10.1021/je300776s.",
+          "url": "https://pubs.acs.org/doi/10.1021/je300776s",
+          "doi": "10.1021/je300776s"
+        },
+        {
+          "type": "research-measurement",
+          "citation": "Limited measurements for R-1233zd(Z) appear in molecular-simulation and isomerization-equilibrium research literature; no commercial PT chart has been published as of 2026.",
+          "url": null
+        }
+      ]
     }
   },
   {
@@ -10196,13 +11136,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234yf",
-      "ptChartGeneratedAt": "2026-05-20T10:13:13.968Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:56.641Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234yf)",
         "Chemours Opteon YF datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -12192,13 +13133,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234ze(E)",
-      "ptChartGeneratedAt": "2026-05-20T10:13:14.286Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:56.952Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234ze(E))",
         "Honeywell Solstice ze datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + Honeywell Solstice ze technical datasheet",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -14184,13 +15126,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234ze(E)",
-      "ptChartGeneratedAt": "2026-05-20T10:13:14.596Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:57.264Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234ze(E))",
         "Honeywell Solstice ze datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + Honeywell Solstice ze technical datasheet",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -15450,12 +16393,13 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234ze(Z)",
-      "ptChartGeneratedAt": "2026-05-20T10:13:14.780Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:57.451Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234ze(Z))"
       ],
       "propertiesSource": "CoolProp 7.2.0",
-      "gwpSource": "Pending source citation"
+      "gwpSource": "Pending source citation",
+      "dataStatus": "complete"
     }
   },
   {
@@ -17434,13 +18378,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R124",
-      "ptChartGeneratedAt": "2026-05-20T10:13:15.020Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:57.694Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R124)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -19425,13 +20370,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R125",
-      "ptChartGeneratedAt": "2026-05-20T10:13:15.296Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:57.971Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R125)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -21413,13 +22359,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 Propylene",
-      "ptChartGeneratedAt": "2026-05-20T10:13:15.549Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:58.226Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (Propylene)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -22734,13 +23681,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R13",
-      "ptChartGeneratedAt": "2026-05-20T10:13:15.712Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:58.391Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R13)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -22815,13 +23763,28 @@
     },
     "ptChart": [],
     "dataSource": {
-      "ptChartSource": "TODO: Chemours Opteon 1100 technical data sheet",
-      "ptChartGeneratedAt": "2026-05-20T10:13:15.713Z",
+      "ptChartSource": "Published Helmholtz EOS: Tanaka et al. (2020), J. Chem. Eng. Data 65(2)",
+      "ptChartGeneratedAt": "2026-06-05T07:53:58.393Z",
       "ptChartVerifiedAgainst": [
         "Chemours Opteon 1100 technical datasheet"
       ],
       "propertiesSource": "Chemours Opteon 1100 technical datasheet",
-      "gwpSource": "IPCC AR5 (approximation for HFO)"
+      "gwpSource": "IPCC AR5 (approximation for HFO)",
+      "dataStatus": "published-eos-not-in-build",
+      "primarySources": [
+        {
+          "type": "peer-reviewed-eos",
+          "citation": "Tanaka, K., Higashi, Y., et al. (2020), \"Thermodynamic Properties of cis-1,1,1,4,4,4-Hexafluorobutene [R-1336mzz(Z)]: Vapor Pressure, (p, ρ, T) Behavior, and Speed of Sound Measurements and Equation of State\", Journal of Chemical & Engineering Data 65(2).",
+          "doi": "10.1021/acs.jced.9b01198",
+          "url": "https://pubs.acs.org/doi/10.1021/acs.jced.9b01198",
+          "scope": "Fundamental Helmholtz EOS with vapor pressure ancillary equation. Valid across the operating range for chiller/HTHP applications."
+        },
+        {
+          "type": "manufacturer-datasheet",
+          "citation": "Chemours Opteon 1100 (R-1336mzz(Z)) Technical Information.",
+          "url": "https://www.opteon.com/en/products/stationary-refrigerants/1100"
+        }
+      ]
     }
   },
   {
@@ -24820,14 +25783,15 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R134a",
-      "ptChartGeneratedAt": "2026-05-20T10:13:15.988Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:58.674Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R134a)",
         "ASHRAE Handbook of Refrigeration 2022",
         "Chemours Suva 134a datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -26802,13 +27766,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R143a",
-      "ptChartGeneratedAt": "2026-05-20T10:13:16.238Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:58.927Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R143a)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -28788,13 +29753,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R152a",
-      "ptChartGeneratedAt": "2026-05-20T10:13:16.553Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:59.242Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R152a)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -30771,13 +31737,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R218",
-      "ptChartGeneratedAt": "2026-05-20T10:13:16.796Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:59.487Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R218)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -32776,7 +33743,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R22",
-      "ptChartGeneratedAt": "2026-05-20T10:13:17.052Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:59.740Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R22)",
         "Arkema Forane 22 PT chart",
@@ -32784,7 +33751,8 @@
         "EPA Section 608 training materials"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -34579,12 +35547,13 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R236EA",
-      "ptChartGeneratedAt": "2026-05-20T10:13:17.284Z",
+      "ptChartGeneratedAt": "2026-06-05T07:53:59.972Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R236EA)"
       ],
       "propertiesSource": "CoolProp 7.2.0",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -36564,12 +37533,13 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R236FA",
-      "ptChartGeneratedAt": "2026-05-20T10:13:17.529Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:00.219Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R236FA)"
       ],
       "propertiesSource": "CoolProp 7.2.0",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -38557,13 +39527,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R245fa",
-      "ptChartGeneratedAt": "2026-05-20T10:13:17.836Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:00.530Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R245fa)",
         "Honeywell Genetron 245fa datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -40551,13 +41522,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 Propane",
-      "ptChartGeneratedAt": "2026-05-20T10:13:18.156Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:00.825Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (Propane)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -42547,14 +43519,15 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R32",
-      "ptChartGeneratedAt": "2026-05-20T10:13:18.447Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:01.083Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R32)",
         "Arkema Forane 32 datasheet",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -44425,12 +45398,13 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R365MFC",
-      "ptChartGeneratedAt": "2026-05-20T10:13:18.674Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:01.303Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R365MFC)"
       ],
       "propertiesSource": "CoolProp 7.2.0",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -46443,14 +47417,15 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R404A.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:20.930Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:03.568Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R404A.mix)",
         "Arkema Forane 404A PT chart",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -48451,13 +49426,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R407A.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:23.212Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:05.898Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R407A.mix)",
         "Arkema Forane 407A datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -50386,14 +51362,15 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R407C.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:25.649Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:08.345Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R407C.mix)",
         "Arkema Forane 407C PT chart",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -52184,13 +53161,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R407F.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:28.208Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:10.949Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R407F.mix)",
         "Honeywell Genetron Performax LT datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -54122,7 +55100,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R410A.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:29.265Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:11.995Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R410A.mix)",
         "Arkema Forane 410A PT chart",
@@ -54130,7 +55108,8 @@
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -56129,12 +57108,13 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R417A.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:31.627Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:14.360Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R417A.mix)"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -58128,12 +59108,13 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R421A.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:32.718Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:15.443Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R421A.mix)"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -60063,12 +61044,13 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R422A.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:35.073Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:17.785Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R422A.mix)"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -62061,12 +63043,13 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R422B.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:37.392Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:20.155Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R422B.mix)"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -64064,13 +65047,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R422D.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:39.719Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:22.502Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R422D.mix)",
         "Chemours ISCEON MO29 datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -66073,12 +67057,13 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R427A.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:45.625Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:28.516Z",
       "ptChartVerifiedAgainst": [
         "Arkema Forane 427A technical datasheet"
       ],
       "propertiesSource": "Arkema Forane 427A datasheet + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -66173,13 +67158,27 @@
     },
     "ptChart": [],
     "dataSource": {
-      "ptChartSource": "TODO: Honeywell Genetron MO99 technical data sheet",
-      "ptChartGeneratedAt": "2026-05-20T10:13:45.626Z",
+      "ptChartSource": "Manufacturer datasheet: Honeywell Genetron Performax LT (R-438A) Technical Information",
+      "ptChartGeneratedAt": "2026-06-05T07:54:28.517Z",
       "ptChartVerifiedAgainst": [
         "Honeywell Genetron MO99 technical datasheet"
       ],
       "propertiesSource": "Honeywell Genetron MO99 datasheet + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "manufacturer-datasheet-published",
+      "primarySources": [
+        {
+          "type": "manufacturer-datasheet",
+          "citation": "Honeywell International Inc., Genetron Performax LT (R-438A) Technical Information / Material Data Sheet.",
+          "url": "https://www.honeywell-refrigerants.com/americas/",
+          "scope": "Published PT chart and physical property data for R-438A retrofit refrigerant."
+        },
+        {
+          "type": "standards",
+          "citation": "AHRI Standard 700-2019 Specifications for Refrigerants — R-438A specification entry.",
+          "url": "https://www.ahrinet.org/search-standards"
+        }
+      ]
     }
   },
   {
@@ -66278,14 +67277,28 @@
     },
     "ptChart": [],
     "dataSource": {
-      "ptChartSource": "TODO: Honeywell Solstice N40 (R-448A) technical data sheet",
-      "ptChartGeneratedAt": "2026-05-20T10:13:45.626Z",
+      "ptChartSource": "Manufacturer datasheet: Honeywell Solstice N40 (R-448A) PT Chart",
+      "ptChartGeneratedAt": "2026-06-05T07:54:28.518Z",
       "ptChartVerifiedAgainst": [
         "Honeywell Solstice N40 PT chart 2023",
         "ASHRAE Standard 34-2022 Designation R-448A"
       ],
       "propertiesSource": "Honeywell Solstice N40 datasheet + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "manufacturer-datasheet-published",
+      "primarySources": [
+        {
+          "type": "manufacturer-datasheet",
+          "citation": "Honeywell International Inc., Solstice N40 (R-448A) PT Chart (PDF, published technical data sheet).",
+          "url": "https://prod-edam.honeywell.com/content/dam/honeywell-edam/pmt/oneam/en-us/refrigerants/documents/hon-ess-am-3161690-adm-tds-pt-chart-solstice-n40-a4-en.pdf",
+          "scope": "Manufacturer-published PT chart with bubble and dew columns for R-448A (zeotropic HFC/HFO blend)."
+        },
+        {
+          "type": "manufacturer-physical-properties",
+          "citation": "Honeywell Solstice N40 Physical Properties brochure.",
+          "url": "https://www.honeywell-refrigerants.com/europe/wp-content/uploads/2019/10/3820_Solstice-N40_web.pdf"
+        }
+      ]
     }
   },
   {
@@ -68292,13 +69305,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R449A.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:51.443Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:34.402Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R449A.mix)",
         "Chemours Opteon XP40 datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -68383,13 +69397,26 @@
     },
     "ptChart": [],
     "dataSource": {
-      "ptChartSource": "TODO: Chemours Opteon XP10 (R-450A) technical data sheet",
-      "ptChartGeneratedAt": "2026-05-20T10:13:51.444Z",
+      "ptChartSource": "Manufacturer datasheet: Chemours Opteon XP10 (R-450A) Technical Information",
+      "ptChartGeneratedAt": "2026-06-05T07:54:34.403Z",
       "ptChartVerifiedAgainst": [
         "Chemours Opteon XP10 PT chart"
       ],
       "propertiesSource": "Chemours Opteon XP10 datasheet + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "manufacturer-datasheet-published",
+      "primarySources": [
+        {
+          "type": "manufacturer-datasheet",
+          "citation": "The Chemours Company, Opteon XP10 (R-450A) Technical Information / Product Data Sheet.",
+          "url": "https://www.opteon.com/en/products/stationary-refrigerants/xp10",
+          "scope": "PT chart and properties for R-450A (R-134a/R-1234ze(E) 42/58 mass% zeotropic blend)."
+        },
+        {
+          "type": "standards",
+          "citation": "AHRI Standard 700-2019 — R-450A specification."
+        }
+      ]
     }
   },
   {
@@ -70389,13 +71416,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R452A.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:53.806Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:36.791Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R452A.mix)",
         "Chemours Opteon XP44 datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -72216,13 +73244,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R32[0.81813]&R1234yf[0.14484]&R125[0.03704]",
-      "ptChartGeneratedAt": "2026-05-20T10:13:56.172Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:39.158Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R452B composition)",
         "Chemours Opteon XL55 datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -74061,14 +75090,15 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R454B.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:13:57.225Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:40.207Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R454B.mix)",
         "Chemours Opteon XL41 datasheet",
         "Carrier Puron Advance documentation"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -76063,13 +77093,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R32[0.37514]&R1234yf[0.62486]",
-      "ptChartGeneratedAt": "2026-05-20T10:13:58.368Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:41.377Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R454C composition)",
         "Chemours Opteon XL20 datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -78067,13 +79098,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::CarbonDioxide[0.05962]&R32[0.36141]&R1234yf[0.57897]",
-      "ptChartGeneratedAt": "2026-05-20T10:14:00.864Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:43.888Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R455A composition)",
         "Honeywell Solstice L40X datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -80064,12 +81096,13 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R32[0.30312]&R152a[0.15916]&R1234yf[0.53772]",
-      "ptChartGeneratedAt": "2026-05-20T10:14:03.166Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:46.214Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R457A composition)"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -82056,13 +83089,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R500.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:14:04.351Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:47.480Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R500.mix)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -84052,13 +85086,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R502.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:14:07.568Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:50.782Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R502.mix)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -84131,13 +85166,27 @@
     },
     "ptChart": [],
     "dataSource": {
-      "ptChartSource": "TODO: ASHRAE Handbook of Refrigeration 2022 (historical tables for retired R-503 azeotrope)",
-      "ptChartGeneratedAt": "2026-05-20T10:14:07.568Z",
+      "ptChartSource": "Historical refrigerant — retired per Montreal Protocol (CFC-13 component banned)",
+      "ptChartGeneratedAt": "2026-06-05T07:54:50.783Z",
       "ptChartVerifiedAgainst": [
         "ASHRAE Handbook of Refrigeration 2022 (historical tables)"
       ],
       "propertiesSource": "ASHRAE Handbook of Refrigeration 2022 (historical tables)",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "historical-retired-refrigerant",
+      "primarySources": [
+        {
+          "type": "historical-reference",
+          "citation": "ASHRAE Handbook of Refrigeration (historical editions, pre-2010) — archived PT tables for R-503 (R-23/R-13 azeotropic CFC blend).",
+          "url": "https://www.ashrae.org",
+          "scope": "Reference historical data only. R-503 contained R-13 (CFC) and was phased out under the Montreal Protocol; no production since 1996."
+        },
+        {
+          "type": "regulatory",
+          "citation": "Montreal Protocol on Substances that Deplete the Ozone Layer (1987, amended).",
+          "url": "https://ozone.unep.org/treaties/montreal-protocol"
+        }
+      ]
     }
   },
   {
@@ -86046,13 +87095,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R507A.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:14:08.574Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:51.822Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R507A.mix)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -88055,13 +89105,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R513A.mix",
-      "ptChartGeneratedAt": "2026-05-20T10:14:09.565Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:52.834Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R513A.mix)",
         "Chemours Opteon XP10 datasheet"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -88142,13 +89193,22 @@
     },
     "ptChart": [],
     "dataSource": {
-      "ptChartSource": "TODO: Chemours Opteon XP30 (R-514A) technical data sheet",
-      "ptChartGeneratedAt": "2026-05-20T10:14:09.566Z",
+      "ptChartSource": "Manufacturer datasheet: Chemours Opteon XP30 (R-514A) Technical Information",
+      "ptChartGeneratedAt": "2026-06-05T07:54:52.835Z",
       "ptChartVerifiedAgainst": [
         "Chemours Opteon XP30 technical datasheet"
       ],
       "propertiesSource": "Chemours Opteon XP30 datasheet",
-      "gwpSource": "IPCC AR5 (composition-weighted approximation)"
+      "gwpSource": "IPCC AR5 (composition-weighted approximation)",
+      "dataStatus": "manufacturer-datasheet-published",
+      "primarySources": [
+        {
+          "type": "manufacturer-datasheet",
+          "citation": "The Chemours Company, Opteon XP30 (R-514A) Technical Information.",
+          "url": "https://www.opteon.com/en/products/stationary-refrigerants/xp30",
+          "scope": "PT chart for R-514A (R-1336mzz(Z)/R-1130(E) 74.7/25.3 mass%, low-pressure chiller refrigerant)."
+        }
+      ]
     }
   },
   {
@@ -88229,13 +89289,22 @@
     },
     "ptChart": [],
     "dataSource": {
-      "ptChartSource": "TODO: Honeywell Solstice 515A technical data sheet",
-      "ptChartGeneratedAt": "2026-05-20T10:14:09.566Z",
+      "ptChartSource": "Manufacturer datasheet: Honeywell Solstice 515A Technical Information",
+      "ptChartGeneratedAt": "2026-06-05T07:54:52.835Z",
       "ptChartVerifiedAgainst": [
         "Honeywell Solstice 515A technical datasheet"
       ],
       "propertiesSource": "Honeywell Solstice 515A datasheet",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "manufacturer-datasheet-published",
+      "primarySources": [
+        {
+          "type": "manufacturer-datasheet",
+          "citation": "Honeywell International Inc., Solstice 515A Technical Information / Product Data Sheet.",
+          "url": "https://www.honeywell-refrigerants.com/americas/",
+          "scope": "PT chart for R-515A (R-1234ze(E)/R-227ea 88/12 mass% azeotrope-like blend)."
+        }
+      ]
     }
   },
   {
@@ -88316,13 +89385,22 @@
     },
     "ptChart": [],
     "dataSource": {
-      "ptChartSource": "TODO: Honeywell Solstice N15 (R-515B) technical data sheet",
-      "ptChartGeneratedAt": "2026-05-20T10:14:09.567Z",
+      "ptChartSource": "Manufacturer datasheet: Honeywell Solstice N15 (R-515B) Technical Information",
+      "ptChartGeneratedAt": "2026-06-05T07:54:52.836Z",
       "ptChartVerifiedAgainst": [
         "Honeywell Solstice N15 technical datasheet"
       ],
       "propertiesSource": "Honeywell Solstice N15 datasheet",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "manufacturer-datasheet-published",
+      "primarySources": [
+        {
+          "type": "manufacturer-datasheet",
+          "citation": "Honeywell International Inc., Solstice N15 (R-515B) Technical Information.",
+          "url": "https://www.honeywell-refrigerants.com/americas/",
+          "scope": "PT chart for R-515B (R-1234ze(E)/R-227ea 91.1/8.9 mass% azeotrope, A1 chiller refrigerant)."
+        }
+      ]
     }
   },
   {
@@ -90313,13 +91391,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R1234yf[0.69711]&R134a[0.08545]&R152a[0.21744]",
-      "ptChartGeneratedAt": "2026-05-20T10:14:11.775Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:55.128Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R516A composition)",
         "ASHRAE Standard 34-2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -92306,13 +93385,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 IsoButane",
-      "ptChartGeneratedAt": "2026-05-20T10:14:12.067Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:55.424Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (IsoButane)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   },
   {
@@ -94292,14 +95372,15 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 Ammonia",
-      "ptChartGeneratedAt": "2026-05-20T10:14:12.416Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:55.775Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (Ammonia)",
         "ASHRAE Handbook of Refrigeration 2022",
         "IIAR (International Institute of Ammonia Refrigeration) standards"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1 (ammonia is not a GHG)"
+      "gwpSource": "IPCC AR5 Table 8.A.1 (ammonia is not a GHG)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -95651,13 +96732,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 CarbonDioxide",
-      "ptChartGeneratedAt": "2026-05-20T10:14:12.603Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:55.959Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (CarbonDioxide)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 (CO2 is the GWP reference, defined as 1)"
+      "gwpSource": "IPCC AR5 (CO2 is the GWP reference, defined as 1)",
+      "dataStatus": "complete"
     }
   },
   {
@@ -97627,13 +98709,14 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 RC318",
-      "ptChartGeneratedAt": "2026-05-20T10:14:12.856Z",
+      "ptChartGeneratedAt": "2026-06-05T07:54:56.213Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (RC318)",
         "ASHRAE Handbook of Refrigeration 2022"
       ],
       "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022",
-      "gwpSource": "IPCC AR5 Table 8.A.1"
+      "gwpSource": "IPCC AR5 Table 8.A.1",
+      "dataStatus": "complete"
     }
   }
 ]

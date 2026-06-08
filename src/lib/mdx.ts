@@ -30,6 +30,24 @@ export const RetrofitGuidance = z.object({
   notes: z.string(),
 });
 
+export const SourceRef = z.object({
+  id: z.string(),
+  label: z.string(),
+  url: z.string().url().optional(),
+  date: z.string().optional(),
+  note: z.string().optional(),
+});
+export type SourceRef = z.infer<typeof SourceRef>;
+
+export const KeyStat = z.object({
+  label: z.string(),
+  value: z.string(),
+  unit: z.string().optional(),
+  context: z.string(),
+  sourceId: z.string().optional(),
+});
+export type KeyStat = z.infer<typeof KeyStat>;
+
 export const RefrigerantFrontmatter = z.object({
   slug: z.string(),
   title: z.string().optional(),
@@ -39,6 +57,8 @@ export const RefrigerantFrontmatter = z.object({
   narrative: Narrative.optional().default({ whereItsUsed: [] }),
   faqs: z.array(FAQ).optional().default([]),
   retrofitGuidance: RetrofitGuidance.optional(),
+  sources: z.array(SourceRef).optional().default([]),
+  keyStats: z.array(KeyStat).optional().default([]),
 });
 export type RefrigerantFrontmatter = z.infer<typeof RefrigerantFrontmatter>;
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { getRefrigerant, getSaturationTempAtPsigF } from "@/data/refrigerants";
 import { RefrigerantSelector } from "./shared/RefrigerantSelector";
@@ -14,8 +15,18 @@ const TOGGLE_BASE =
 const TOGGLE_ACTIVE = "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900";
 const TOGGLE_IDLE = "bg-white text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800";
 
-export function SuperheatCalculator({ initialSlug = "r-410a" }: { initialSlug?: string }) {
-  const [slug, setSlug] = useState(initialSlug);
+export function SuperheatCalculator(props: { initialSlug?: string } = {}) {
+  return (
+    <Suspense fallback={<div className="h-96 animate-pulse rounded-md bg-zinc-100 dark:bg-zinc-900" aria-hidden />}>
+      <SuperheatCalculatorInner {...props} />
+    </Suspense>
+  );
+}
+
+function SuperheatCalculatorInner({ initialSlug = "r-410a" }: { initialSlug?: string }) {
+  const searchParams = useSearchParams();
+  const slugFromUrl = searchParams.get("refrigerant");
+  const [slug, setSlug] = useState(slugFromUrl ?? initialSlug);
   const [tempUnit, setTempUnit] = useState<TempUnit>("F");
   const [pUnit, setPUnit] = useState<PUnit>("psig");
   // Defaults: R-410A residential AC at ~95°F outdoor — 130 PSIG suction, 60°F suction line.

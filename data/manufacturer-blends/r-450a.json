@@ -1,8 +1,8 @@
 {
   "slug": "r-450a",
-  "ptSource": "TODO: Chemours Opteon XP10 (R-450A) technical data sheet",
-  "ptSourceUrl": "https://www.chemours.com/en/brands-and-products/opteon",
-  "verifiedBy": "TODO: cross-check against ASHRAE 34-2022 R-450A designation",
+  "ptSource": "Manufacturer datasheet: Chemours Opteon XP10 (R-450A) Technical Information",
+  "ptSourceUrl": "https://www.opteon.com/en/products/stationary-refrigerants/xp10",
+  "verifiedBy": "DATA NOT TRANSCRIBED IN THIS BUILD: CoolProp's R450A.mix is not in this WASM build; explicit HEOS::R134a&R1234ze(E) mixture syntax also not supported. Chemours publishes the PT chart at the URL above.",
   "physical": {
     "boilingPointC": -23.4,
     "boilingPointF": -10.1,
@@ -19,5 +19,18 @@
     "temperatureGlideF": 0.9,
     "hasSignificantGlide": false
   },
-  "ptChart": []
+  "ptChart": [],
+  "dataStatus": "manufacturer-datasheet-published",
+  "primarySources": [
+    {
+      "type": "manufacturer-datasheet",
+      "citation": "The Chemours Company, Opteon XP10 (R-450A) Technical Information / Product Data Sheet.",
+      "url": "https://www.opteon.com/en/products/stationary-refrigerants/xp10",
+      "scope": "PT chart and properties for R-450A (R-134a/R-1234ze(E) 42/58 mass% zeotropic blend)."
+    },
+    {
+      "type": "standards",
+      "citation": "AHRI Standard 700-2019 — R-450A specification."
+    }
+  ]
 }

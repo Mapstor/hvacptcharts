@@ -1,0 +1,96 @@
+---
+id: r407c
+refrigerantSlug: r-407c
+title: "What Should R-407C Pressures Be?"
+metaTitle: "R-407C Normal Operating Pressures — R-22 Retrofit AC Reference"
+metaDescription: "Typical R-407C suction and discharge pressure ranges for residential and light commercial AC. POE oil, 11°F glide, dew-curve superheat measurement."
+introOneLiner: "Typical R-407C suction and discharge ranges for residential and light commercial AC. Pressures sit ~5-10% above R-22 across the envelope. Glide (~11°F) requires dew-curve superheat and bubble-curve subcooling measurement."
+
+operatingRangesSource: "ASHRAE Handbook of Refrigeration 2022 (R-22 retrofit guidance); Honeywell Genetron R-407C technical service literature; Chemours Suva 407C product data; equipment OEM R-22 to R-407C retrofit procedures (Trane, Carrier)"
+
+operatingRanges:
+  - ambientF: 75
+    application: "Residential AC at 75°F outdoor (R-22 retrofit)"
+    suctionPsigLow: 55
+    suctionPsigHigh: 70
+    dischargePsigLow: 175
+    dischargePsigHigh: 220
+    superheatTargetF: [8, 15]
+    subcoolingTargetF: [8, 14]
+  - ambientF: 85
+    application: "Residential AC at 85°F outdoor"
+    suctionPsigLow: 60
+    suctionPsigHigh: 75
+    dischargePsigLow: 220
+    dischargePsigHigh: 270
+    superheatTargetF: [8, 15]
+    subcoolingTargetF: [8, 14]
+  - ambientF: 95
+    application: "Residential AC at 95°F outdoor (rating condition)"
+    suctionPsigLow: 65
+    suctionPsigHigh: 80
+    dischargePsigLow: 260
+    dischargePsigHigh: 320
+    superheatTargetF: [8, 15]
+    subcoolingTargetF: [8, 12]
+  - ambientF: 105
+    application: "Residential AC at 105°F outdoor"
+    suctionPsigLow: 70
+    suctionPsigHigh: 85
+    dischargePsigLow: 305
+    dischargePsigHigh: 370
+    superheatTargetF: [10, 18]
+    subcoolingTargetF: [6, 12]
+  - ambientF: 115
+    application: "Residential AC at 115°F outdoor (hot-climate extreme)"
+    suctionPsigLow: 75
+    suctionPsigHigh: 90
+    dischargePsigLow: 350
+    dischargePsigHigh: 425
+    superheatTargetF: [10, 20]
+    subcoolingTargetF: [5, 10]
+
+narrativeIntro: |
+  R-407C operating pressures sit about 5-10% above R-22 across the operating envelope, which is consistent with R-407C's design intent as an R-22 retrofit refrigerant. Service equipment rated for R-22 is appropriate for R-407C from a pressure-rating standpoint (both well below 500 PSI high-side maximum).
+
+  Two things distinguish R-407C from R-22 in field service. First, R-407C requires POE oil where R-22 uses mineral oil — the retrofit involves an oil change, not just refrigerant replacement. Second, R-407C has substantial temperature glide (~11°F at typical evaporator pressures) where R-22 has none. This matters for service measurement: use the dew curve for superheat (suction line) and the bubble curve for subcooling (liquid line). Using a single curve for both produces a systematic error equal to the glide.
+
+  The site's [superheat calculator](/superheat-calculator/) and [subcooling calculator](/subcooling-calculator/) handle this automatically when R-407C is selected. PT charts that show both bubble and dew columns (which all of this site's R-407C charts do) make manual verification possible.
+
+diagnosticSteps:
+  - title: "Confirm refrigerant type before connecting gauges"
+    text: "Check the equipment data plate. R-407C systems may be original-OEM (less common — most R-407C systems are R-22 retrofits) or marked with a retrofit conversion label. Mismatched gauge connections waste time and risk cross-contamination if the wrong refrigerant has been added during prior service."
+    tools: ["Equipment data plate inspection", "Service history review"]
+  - title: "Measure outdoor ambient and indoor return-air temperatures"
+    text: "Outdoor dry-bulb at the condenser unit (avoid direct sun); indoor return-air dry-bulb at the air handler. AHRI rating conditions: 95°F outdoor / 80°F indoor."
+    tools: ["Outdoor dry-bulb thermometer", "Indoor return-air thermometer"]
+  - title: "Read low-side and high-side pressures with R-22-rated manifold"
+    text: "R-22-rated 500 PSI manifolds are appropriate for R-407C pressure-wise. Let the system run 10-15 minutes under load before recording. Record both suction and discharge pressures simultaneously."
+    tools: ["R-22 or R-407C-rated manifold gauge set (500 PSI minimum)"]
+  - title: "Compute superheat using the DEW curve"
+    text: "For R-407C, the dew curve gives the saturation temperature at the suction-line measurement point (where the refrigerant has fully vaporized). Bubble-curve saturation at the same pressure is the evaporator-INLET saturation, which is wrong for superheat measurement. The superheat calculator handles this when R-407C is selected — manual calculation requires reading the dew column on the PT chart."
+    tools: ["Contact temperature probe with insulation", "PT chart with bubble + dew columns or superheat calculator"]
+  - title: "Compute subcooling using the BUBBLE curve"
+    text: "For R-407C, the bubble curve gives the saturation temperature at the condenser-OUTLET measurement point (where the refrigerant has fully condensed). Dew-curve saturation at the same pressure is the condenser-INLET saturation, which is wrong for subcooling measurement. The subcooling calculator handles this when R-407C is selected."
+    tools: ["Contact temperature probe with insulation", "PT chart with bubble + dew columns or subcooling calculator"]
+  - title: "Compare to expected ranges; diagnose using the standard pattern"
+    text: "Same four diagnostic patterns apply as for any HFC refrigerant: low SH + high SC = overcharge; high SH + low SC = undercharge; high SH + high SC = restriction or low evap airflow; low SH + low SC = airflow or metering device issue. The [combined PT/SH/SC calculator](/pt-superheat-subcooling-calculator/) flags the pattern automatically."
+
+faqs:
+  - q: "What's the normal operating pressure of R-407C at 95°F outdoor?"
+    a: "Expect roughly 65-80 PSIG suction and 260-320 PSIG discharge on a properly-charged R-407C residential AC system at the 95°F rating condition. The exact values depend on indoor return-air temperature, superheat, subcooling, and the specific equipment. Use the operating range table above to compare to your readings."
+  - q: "How does R-407C pressure compare to R-22?"
+    a: "Very close — R-407C operates about 5-10% higher across the envelope. R-407C at 95°F outdoor is ~65-80 PSIG suction / 260-320 PSIG discharge vs. R-22's ~65-80 PSIG suction / 250-300 PSIG discharge. R-22-rated service equipment is appropriate for R-407C. The substantive operational difference is glide (R-407C has ~11°F; R-22 has none) and lubricant (R-407C requires POE; R-22 uses mineral oil)."
+  - q: "Why does R-407C have temperature glide?"
+    a: "R-407C is a ternary HFC blend: 23% R-32, 25% R-125, 52% R-134a by mass. The three components have different vapor pressures, so the blend has bubble (saturated liquid) and dew (saturated vapor) temperatures that differ by ~11°F at typical operating pressures. This is normal for zeotropic blends. R-22 is a pure refrigerant — single component, no glide."
+  - q: "How does glide affect my superheat reading?"
+    a: "If you use the single saturation curve (treating R-407C like a pure refrigerant), you'll get a superheat value that's wrong by ~10°F — apparent superheat is higher than actual superheat. Use the DEW curve for superheat measurement on R-407C. The dew temperature at the suction pressure is the boundary above which refrigerant is fully vapor and superheated. Our [superheat calculator](/superheat-calculator/) uses the dew curve automatically when R-407C is selected."
+  - q: "What lubricant does R-407C use?"
+    a: "Polyolester (POE) oil. Mineral oil (R-22's lubricant) is incompatible — mixing produces sludge formation and accelerated wear. R-22 to R-407C retrofit requires an oil change (typically 2-3 oil-flush cycles to bring mineral oil residual below 5%). POE oil is hygroscopic, so moisture management during service is critical (vacuum to 500 microns, filter-drier replacement)."
+  - q: "Is R-407C being phased out?"
+    a: "Yes, gradually, under the EPA AIM Act. R-407C's GWP of 1774 is well above the 700-GWP threshold for new residential AC equipment beginning January 1, 2025. New equipment uses R-32 or R-454B. R-407C remains legal for service of existing equipment indefinitely under current rules, but new equipment installations have shifted to A2L alternatives. For systems facing major work, full replacement with new R-32/R-454B equipment is increasingly cost-effective."
+  - q: "Can I service R-407C with R-22 gauges?"
+    a: "Pressure-wise, yes — R-22 500 PSI manifolds handle R-407C's operating envelope without issue. Cross-contamination concern: any residual R-22 in the gauges may slightly affect R-407C charging accuracy. For service work where charging accuracy matters, dedicated R-407C gauges or thoroughly-purged manifolds are preferred. Recovery cylinders should be R-407C-dedicated to prevent cross-contamination of the recovered refrigerant."
+
+faqs_END: ""
+---

@@ -1,0 +1,60 @@
+---
+slug: r-1234ze-e
+title: "R-1234ze(E) Pressure Temperature Chart & Properties"
+metaTitle: "R-1234ze(E) Solstice ze PT Chart, A2L HFO, GWP 7 — Chiller Replace"
+metaDescription: "Verified R-1234ze(E) (Honeywell Solstice ze, E-isomer of HFO-1234ze, 1,3,3,3-tetrafluoropropene) PT chart. ASHRAE A2L, GWP 7. Low-pressure chiller R-134a replacement."
+introOneLiner: "Pure HFO — the trans (E) isomer of 1,3,3,3-tetrafluoropropene (CHF=CHCF₃). The default form when 'R-1234ze' is referenced without qualifier. ASHRAE A2L, GWP 7. Honeywell Solstice ze. The low-pressure long-term R-134a replacement in centrifugal chillers and commercial heat pumps."
+
+narrative:
+  whatItIs: |
+    R-1234ze(E) is the explicit-isomer designation for the trans (E) form of 1,3,3,3-tetrafluoropropene. When "R-1234ze" appears in ASHRAE 34 nomenclature, datasheets, or product literature without the (E) or (Z) qualifier, the E-isomer is the default — it is the commercially produced form and the one used in HVAC equipment. The (Z) isomer (cis configuration) has substantially different physical properties and is treated as a separate refrigerant.
+
+    R-1234ze(E)'s saturation pressure profile is about 30% lower than R-134a's across the operating envelope — at 70°F R-1234ze(E) saturates near 49 PSIG vs R-134a's 71 PSIG. This makes it a natural pressure-match for low-pressure centrifugal chiller designs but means R-1234ze(E) chillers need larger compressor displacement (and physical envelope) than R-134a equivalents at the same cooling capacity.
+
+  whereItsUsed:
+    - Low-pressure centrifugal chillers (commercial cooling, district cooling, large office buildings)
+    - Commercial heat pumps in the EU market
+    - Component of R-450A, R-513A, R-515A, R-515B blends
+    - Foam blowing agent (polyurethane insulation panels)
+    - Aerosol propellant in some specialty applications
+
+  phaseDownStatus: |
+    R-1234ze(E) is below every regulatory phase-down threshold — its GWP of 7 (IPCC AR5; ~1.4 by IPCC AR6) is far below EPA AIM Act and EU F-Gas cutoffs. The barriers to wider adoption are A2L flammability classification (requires A2L-rated equipment design, sealed motors, leak detection), the lower volumetric capacity vs R-134a (larger equipment), and refrigerant cost premium per pound.
+
+    For new chiller installations in markets with mature climate regulation (EU, parts of US), R-1234ze(E) is the long-term capacity-equivalent replacement for R-134a. Existing R-134a equipment continues with reclaimed R-134a or transitions through R-450A / R-513A / R-515B (A1, low-but-not-very-low GWP blends with R-1234ze(E) as the major component).
+
+  serviceNotes: |
+    POE oil is the standard lubricant; PVE oil is also approved in some applications. Mineral oil is incompatible. Some specific chiller OEMs use PAG — verify per equipment service literature.
+
+    A2L safety class requires: A2L-rated equipment design (sealed motors or appropriate ignition-source isolation), leak detection per ASHRAE 15, A2L-rated recovery cylinders (yellow with red top stripe), and no open flames during refrigerant service. For larger machine-room installations, ventilation requirements per ASHRAE 15 and IEC 60079-10-1 (hazardous area classification) apply.
+
+faqs:
+  - q: "What's the difference between R-1234ze, R-1234ze(E), and R-1234ze(Z)?"
+    a: |
+      "R-1234ze" without qualifier is the convention shorthand for the E-isomer (the dominant commercial form). "R-1234ze(E)" is the explicit designation when isomer specification matters. "R-1234ze(Z)" is the cis isomer, a separate refrigerant with very different properties (normal boiling point +9.7°C vs E's -19°C). For nearly all HVAC reference purposes, "R-1234ze" and "R-1234ze(E)" refer to the same molecule.
+
+  - q: "Why is R-1234ze(E) used in chillers but R-1234yf in cars?"
+    a: |
+      Pressure envelope. R-1234ze(E) at 70°F is ~49 PSIG vs R-1234yf at ~65 PSIG (both lower than R-134a's 71 PSIG). The lower pressure of R-1234ze(E) is a better match for low-pressure centrifugal chiller compressor designs where evaporator pressures can be sub-atmospheric. R-1234yf's slightly higher pressure better matches mobile AC reciprocating-compressor envelopes and the existing R-134a service-port infrastructure that needed minimal redesign.
+
+  - q: "What is the GWP of R-1234ze(E)?"
+    a: |
+      7 per IPCC AR5 (the EPA AIM Act figure). The IPCC AR6 value is approximately 1.4, reflecting improved atmospheric chemistry modeling. Either value is essentially zero compared to R-134a's GWP 1430 — a 99.5%+ reduction.
+
+  - q: "What lubricant does R-1234ze(E) use?"
+    a: |
+      Polyolester (POE) oil is the standard. Polyvinyl ether (PVE) is also approved by some manufacturers. Some chiller OEMs use Polyalkylene Glycol (PAG). Mineral oil and alkylbenzene are NOT compatible. Always verify per the equipment OEM's service literature.
+
+  - q: "Is R-1234ze(E) chemically stable?"
+    a: |
+      Yes for refrigeration service envelopes. R-1234ze(E) is thermally stable up to typical chiller condensing temperatures (≤160°F) and shows good long-term stability in sealed systems with proper POE oil and dry conditions. Above ~200°F continuous operation, decomposition products can form — relevant for high-temperature heat pump applications where R-1336mzz(Z) is the preferred alternative.
+
+  - q: "Can I retrofit an R-134a chiller to R-1234ze(E)?"
+    a: |
+      Not as a simple drop-in. The substantially lower saturation pressure means R-134a-sized compressors lose ~25-30% capacity if simply refrigerant-swapped. The A2L safety class adds equipment-level requirements (leak detection, sealed motors) that retrofit usually doesn't deliver. The pragmatic path for R-134a chillers facing GWP pressure: (1) continue with reclaimed R-134a until end of life; (2) retrofit to R-513A or R-450A (A1, lower-but-not-very-low GWP) — these have closer pressure envelopes to R-134a; (3) full equipment replacement with new R-1234ze(E)-rated chiller when capital allows.
+
+retrofitGuidance:
+  fromRefrigerant: r-134a
+  notes: |
+    Direct refrigerant-only retrofit from R-134a to R-1234ze(E) is not practical due to the ~30% lower pressure envelope and the A2L safety class change (A1 to A2L requires equipment-level redesign, not just refrigerant swap). For an existing R-134a chiller the realistic options are R-513A retrofit (A1, GWP 631, similar pressure envelope), R-450A retrofit (A1, GWP 605, slight pressure shift), or eventual full replacement with new-design R-1234ze(E) chillers.
+---

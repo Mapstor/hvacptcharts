@@ -1,47 +1,245 @@
 ---
 slug: r-507a
 title: "R-507A Pressure Temperature Chart & Properties"
-metaTitle: "R-507A PT Chart, Azeotrope, A1, GWP 3985, Low-Temp Commercial Refrig"
-metaDescription: "R-507A (Suva 507, Forane 507, Genetron AZ-50) — binary HFC azeotrope. ASHRAE A1, GWP 3985. Low-temperature commercial refrigeration; primary AIM Act phase-down target."
-introOneLiner: "Binary HFC azeotropic blend (50/50 R-125/R-143a). Branded as Suva 507 (Chemours), Forane 507 (Arkema), Genetron AZ-50 (Honeywell). ASHRAE A1, GWP 3985 — among the highest of common HFC refrigerants. Low-temperature commercial refrigeration; primary AIM Act phase-down target."
+metaTitle: "R-507A PT Chart, A1 Azeotrope, GWP 3985 — Legacy R-502 Replacement"
+metaDescription: "R-507A (R-125/R-143a 50/50) PT chart. A1 azeotrope, GWP 3985 — among the highest mainstream HFCs. Legacy R-502 replacement in low-temperature commercial refrigeration; phased down under EPA AIM Act."
+introOneLiner: "Azeotropic R-125/R-143a binary blend (50/50 mass) — A1 safety, GWP 3985, zero glide. Honeywell Genetron AZ-50 / Chemours Suva 507. The azeotropic alternative to R-404A for legacy low-temperature commercial refrigeration; aggressively phased down."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: aimact
+    label: "EPA AIM Act — 40 CFR Part 84 Subpart B + Technology Transitions Rule"
+    url: "https://www.epa.gov/climate-hfcs-reduction"
+    date: "Final Rule Oct 2021, Technology Transitions Rule Oct 2023"
+  - id: snap
+    label: "EPA SNAP — R-507A delistings for commercial refrigeration end-uses"
+    url: "https://www.epa.gov/snap"
+  - id: eufgas
+    label: "EU F-Gas Regulation 517/2014 (revised 2024)"
+    url: "https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases_en"
+  - id: coolprop
+    label: "CoolProp 7.2.0"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: ahri700
+    label: "AHRI Standard 700-2019"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: chemoursfreon
+    label: "Chemours Suva 507 / Honeywell Genetron AZ-50 Technical Information"
+    url: "https://www.chemours.com/en/products/refrigerants"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: A1
+    context: Non-toxic, non-flammable
+    sourceId: ashrae34
+  - label: Composition (mass)
+    value: "50% R-125 / 50% R-143a"
+    context: Binary azeotropic HFC blend
+    sourceId: ashrae34
+  - label: GWP (100-yr)
+    value: "3985"
+    unit: IPCC AR5
+    context: Among the highest of mainstream HFCs; very aggressively phased down
+    sourceId: ipccar5
+  - label: ODP
+    value: "0"
+    context: Fluorine-only HFC components; no chlorine
+    sourceId: ashrae34
+  - label: Normal boiling point
+    value: "−52.1"
+    unit: °F (−46.7°C)
+    context: At 1 atm; well-suited to low-temperature commercial refrigeration
+    sourceId: coolprop
+  - label: Temperature glide
+    value: "≈0"
+    unit: °F
+    context: Azeotrope — single saturation curve, no bubble/dew distinction
+    sourceId: coolprop
+  - label: Required lubricant
+    value: POE
+    context: Polyolester; mineral oil not miscible
+    sourceId: ahri700
+  - label: New-equipment status
+    value: Restricted
+    context: SNAP delisted for many commercial refrigeration categories
+    sourceId: snap
 
 narrative:
   whatItIs: |
-    R-507A is a binary azeotropic blend of 50% R-125 and 50% R-143a by mass. Unlike most refrigerant blends, R-507A behaves as a pure refrigerant — no temperature glide, single saturation pressure at each temperature. This made R-507A the preferred R-502 replacement for low-temperature commercial refrigeration applications where R-404A's small glide was operationally inconvenient.
+    R-507A is an azeotropic binary blend of 50% R-125 and 50% R-143a by mass [ashrae34]. The composition produces zero temperature glide — operationally equivalent to a pure refrigerant for service measurement purposes. R-507A was developed alongside R-404A in the early 1990s as a CFC R-502 replacement for low-temperature commercial refrigeration.
 
-    R-507A's GWP of 3985 is essentially identical to R-404A (3922) — both are very-high-GWP refrigerants and both face the same aggressive AIM Act phase-down. R-507A's only meaningful advantage over R-404A is the azeotropic behavior; in modern commercial refrigeration the replacement choices (R-448A, R-449A, R-454C, R-455A, R-744) all displace both.
+    The defining characteristic in 2026 is very high GWP — 3985, slightly above R-404A's 3922 and among the highest of mainstream HFC refrigerants [ipccar5]. The azeotropic composition is operationally simpler than R-404A's near-azeotropic ternary blend but the GWP positioning is essentially identical — both are aggressively phased down under EPA AIM Act and EU F-Gas Regulation.
 
   whereItsUsed:
-    - Existing low-temperature commercial refrigeration (supermarket frozen food, walk-in freezers, ice machines)
-    - Existing refrigerated transport
-    - Service-only; new equipment in most categories has transitioned to alternatives
+    - "Low-temperature commercial refrigeration — walk-in freezers, frozen food cases (legacy installations)"
+    - "Medium-temperature commercial refrigeration (legacy)"
+    - "Transport refrigeration — reefer units (legacy)"
+    - "Service supply for the existing R-507A installed base"
 
   phaseDownStatus: |
-    R-507A is among the most aggressively phased-down refrigerants under the EPA AIM Act. The 2021 technology transition rule prohibits production and import of HFCs with GWP above 700 in new commercial refrigeration equipment effective January 1, 2025; R-507A at 3985 is well above this threshold.
+    EU F-Gas Regulation 517/2014 banned R-507A in new sub-40 kW commercial refrigeration from 1 January 2020 [eufgas]. EPA SNAP has delisted R-507A for multiple commercial refrigeration end-use categories through 2024-2025 [snap]; the EPA AIM Act Technology Transitions Rule restricts R-507A for new equipment manufacturing in most categories from 2025 [aimact].
 
-    Reclaimed R-507A remains legal for servicing existing equipment indefinitely under current regulations. The 2029 and 2036 AIM Act reduction baselines (70% and 85% below the 2011-2013 baseline) will further constrain virgin supply.
+    Service of existing R-507A equipment remains legal under current US rules. The standard retrofit path is R-448A or R-449A (A1 HFC blends, GWP ~1390); for new equipment R-454C / R-455A (A2L, GWP 148) or R-744 (CO₂ transcritical) are the long-term low-GWP destinations.
 
   serviceNotes: |
-    POE oil required. R-507A is azeotropic — no glide, single saturation pressure at each temperature. Service procedures are simpler than for zeotropic blends; gauge-based charging works correctly. Pressure ratings are similar to R-404A; service equipment is interchangeable from a pressure standpoint.
+    POE oil required — same lubricant family as R-404A and R-410A; mineral oil and alkylbenzene are not miscible [ahri700]. The azeotropic composition means service measurement procedures from pure-refrigerant practice apply directly — no bubble/dew curve discipline needed.
+
+    R-507A operating pressures are slightly above R-404A across the range. Standard manifold gauges rated 500-800 PSI handle the operating envelope. A1 classification means no A2L procedures required.
 
 faqs:
-  - q: "What does 'azeotropic' mean for R-507A?"
-    a: "An azeotropic blend boils and condenses at a single temperature at constant pressure, behaving like a pure refrigerant in service. R-507A's specific R-125/R-143a 50/50 composition is the azeotropic point — at this exact ratio the two components evaporate together rather than fractionating. This makes R-507A operationally simpler than zeotropic blends like R-404A (which has ~2°F glide), R-407C (~7°F), or R-455A (~9°F)."
-
-  - q: "How does R-507A compare to R-404A?"
-    a: "R-507A is azeotropic (no glide); R-404A has small glide (~2°F). Both have similar capacity, similar operating pressures, similar GWP (R-507A 3985, R-404A 3922). Historically R-507A was preferred for applications where the small R-404A glide caused operational issues (precise charge measurement, very tight TXV control). Modern low-GWP A2L blends displace both equally."
-
   - q: "What is the normal operating pressure of R-507A?"
-    a: "Very close to R-404A. At 0°F walk-in freezer evaporator with 95°F ambient, expect roughly 13-20 PSIG suction and 240-290 PSIG discharge. R-507A saturation at 70°F is 153 PSIG (single value — azeotropic). At -20°F (typical frozen food case): ~3 PSIG; at 25°F (walk-in cooler): ~36 PSIG."
+    a: |
+      Slightly above R-404A. At 70°F R-507A saturation is approximately 153 PSIG (CoolProp 7.2.0). Compare to R-404A at 70°F (148 PSIG).
+
+      For low-temperature commercial refrigeration at −20°F evaporator, R-507A saturation is approximately 19 PSIG. Operating pressures track R-404A within a few percent across the typical commercial refrigeration envelope.
+
+  - q: "What's the difference between R-507A and R-404A?"
+    a: |
+      Both are HFC blends developed in the early 1990s as R-502 replacements for low-temperature commercial refrigeration. R-507A is azeotropic (50/50 R-125/R-143a, zero glide); R-404A is near-azeotropic (44/52/4 R-125/R-143a/R-134a, ~0.9°F glide). Both have similar GWP (R-507A 3985, R-404A 3922), both A1, both POE oil.
+
+      R-507A's azeotropic composition is operationally slightly simpler than R-404A's near-azeotropic ternary blend. For practical service purposes the difference is minimal — both behave as effectively pure refrigerants for superheat/subcooling measurement.
+
+  - q: "Why does R-507A have such high GWP?"
+    a: |
+      The 50% R-125 content (GWP 3500) and 50% R-143a content (GWP 4470) combine to produce mass-weighted GWP 3985 [ipccar5]. Both components are high-GWP HFCs — R-125 was chosen for flammability suppression (A1 classification), R-143a for low-temperature capacity.
+
+      The trade-off was acceptable when R-507A was developed (early 1990s) because GWP wasn't yet a regulatory constraint. Modern EPA AIM Act and EU F-Gas Regulation target the high GWP and have made R-507A non-viable for new equipment.
+
+  - q: "Is R-507A still legal?"
+    a: |
+      Production and service of existing equipment remain legal under current EPA rules [aimact]. EPA SNAP has delisted R-507A for new equipment in most commercial refrigeration categories through 2024-2025 [snap].
+
+      For existing R-507A installations, service supply will continue via reclaimed R-507A through the AIM Act production schedule (70%/80%/85% reductions through 2036).
 
   - q: "What lubricant does R-507A use?"
-    a: "POE oil. Mineral oil and alkylbenzene are not miscible."
+    a: |
+      Polyolester (POE) oil — same lubricant family as R-404A, R-410A [ahri700]. Mineral oil and alkylbenzene are NOT compatible.
 
-  - q: "What can replace R-507A in existing equipment?"
-    a: "R-448A, R-449A for medium-temp applications (lower GWP, similar capacity). R-454C, R-455A for very low GWP. R-744 (CO2 transcritical) for centralized commercial refrigeration. R-290 (propane) for charge-limited self-contained equipment. As with R-404A, the retrofit procedure depends on whether the existing equipment is A2L-acceptable and whether oil changes are required."
+  - q: "Does R-507A have temperature glide?"
+    a: |
+      No — R-507A is azeotropic. The 50/50 composition is a true azeotrope with zero temperature glide at typical operating pressures. Service measurement uses a single saturation curve, identical to pure-refrigerant procedures.
+
+      This is the primary operational distinction from R-404A — slightly simpler service measurement, though R-404A's ~0.9°F glide is small enough to be practically negligible.
+
+  - q: "Can I retrofit R-507A to a lower-GWP refrigerant?"
+    a: |
+      Yes — R-448A and R-449A are A1 HFC blends formulated as R-404A/R-507A drop-in retrofits. Same POE oil family, similar pressure envelope, GWP ~1390 (65% reduction). Standard retrofit procedure: recover R-507A, replace filter-drier, evacuate to 500 microns, recharge by weight.
+
+      A2L alternatives (R-454C, R-455A) require A2L-rated equipment design — generally not safe to retrofit A1-rated R-507A equipment without OEM evaluation.
+
+  - q: "Why was R-507A developed?"
+    a: |
+      As an azeotropic alternative to R-404A for R-502 replacement. R-502 was banned in 1996 under the Montreal Protocol (R-115 component is CFC). Both R-404A and R-507A were developed in the early 1990s as HFC-only replacements; R-507A's azeotropic composition matched R-502's azeotropic behavior more closely, while R-404A's near-azeotropic ternary blend offered slightly different capacity characteristics.
+
+      Both refrigerants captured market share in low-temperature commercial refrigeration through 1995-2020. R-404A captured larger overall market share; R-507A remained a meaningful alternative through the late 2010s.
 
 retrofitGuidance:
-  fromRefrigerant: r-502
+  fromRefrigerant: ""
   notes: |
-    Historical R-502 to R-507A retrofits in the 1990s were common; today most R-502 equipment has been replaced through equipment-replacement cycles. For modern commercial refrigeration installations the path is to one of the low-GWP options (R-448A, R-449A, R-454C, R-455A, R-744, R-290) rather than R-507A.
+    R-507A is being retrofitted FROM. Standard retrofit path: R-448A (Honeywell Solstice N40) or R-449A (Chemours Opteon XP40) — both A1 HFC blends with POE oil, GWP ~1390, drop-in capable for most existing R-507A equipment. Same procedure as R-404A retrofit: recover, replace filter-drier, evacuate to 500 microns, recharge by weight. For new equipment, R-454C / R-455A (A2L) or R-744 (CO₂ transcritical) are the long-term low-GWP destinations.
 ---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-507A PT chart — true azeotrope, single curve">
+
+R-507A is a true azeotrope — bubble and dew temperatures coincide exactly across the operating range [coolprop]. The PT chart shows a single saturation curve identical in structure to pure refrigerant charts. No glide correction is ever needed.
+
+For service measurement: superheat = suction line temp − saturation temp at suction pressure; subcooling = saturation temp at discharge pressure − liquid line temp. The azeotropic composition delivers pure-refrigerant service simplicity in a blend formulation.
+
+<KeyInsight tone="emerald" icon="composition" title="Azeotropic vs near-azeotropic — practical difference is small">
+R-507A is azeotropic (zero glide); R-404A is near-azeotropic (~0.9°F glide). For practical service purposes the distinction is small — both behave as effectively pure refrigerants for typical superheat/subcooling measurements. The azeotropic R-507A is marginally simpler in fractionation behavior during partial charging or leaking.
+</KeyInsight>
+
+</TechSection>
+
+<TechSection icon="composition" tone="purple" title="The 50/50 R-125/R-143a binary composition is engineered for azeotropic behavior">
+
+R-507A combines R-125 (50%, GWP 3500, A1) and R-143a (50%, GWP 4470, A2L) in azeotropic proportions. The 50/50 mass ratio is the specific composition where the blend behaves as a single substance — bubble and dew points coincide.
+
+The mass-weighted GWP: 0.50 × 3500 + 0.50 × 4470 = 1750 + 2235 = 3985 [ipccar5]. Both components are high-GWP HFCs. R-125 is chosen for flammability suppression (A1 classification despite the A2L R-143a content); R-143a provides primary low-temperature capacity.
+
+The composition choice reflects 1990s-era engineering priorities — ozone-depletion elimination (both components are zero-ODP) and operational compatibility with R-502 equipment. GWP was not the binding constraint at the time. Modern regulatory frameworks target the high GWP and have made R-507A non-viable for new equipment.
+
+</TechSection>
+
+<TechSection icon="trending" tone="amber" title="Pressure envelope close to R-404A — retrofit-compatible">
+
+R-507A's pressure envelope is slightly above R-404A across the operating range. At 70°F R-507A saturation is 153 PSIG vs R-404A's 148 PSIG (CoolProp 7.2.0) — within 4%. At 95°F, R-507A is approximately 240 PSIG vs R-404A's 232 PSIG.
+
+The small pressure delta means equipment designed for either R-404A or R-507A typically accepts both without modification. Many commercial refrigeration manufacturers specified either refrigerant interchangeably during the 1995-2020 era when both were widely available.
+
+Standard 500-800 PSI manifold gauges handle the operating range. A1 classification means no A2L equipment additions required.
+
+</TechSection>
+
+<TechSection icon="globe" tone="red" title="GWP 3985 — among the highest mainstream refrigerants, very aggressively phased down">
+
+R-507A's GWP of 3985 places it slightly above R-404A's 3922 — among the very highest of mainstream HFC refrigerants. The high GWP is the binding constraint on R-507A's continued use under modern regulatory frameworks.
+
+EPA SNAP has delisted R-507A for new equipment in most commercial refrigeration categories through 2024-2025 [snap]. EU F-Gas Regulation 517/2014 banned R-507A in new sub-40 kW commercial refrigeration from 1 January 2020 [eufgas]. The EPA AIM Act Technology Transitions Rule restricts R-507A for new equipment manufacturing in most categories from 2025 [aimact].
+
+For existing R-507A equipment, the situation parallels R-404A: service supply will continue via reclaimed refrigerant; retrofit to R-448A or R-449A (A1, GWP ~1390) is the standard path for GWP reduction without equipment redesign. For long-term low-GWP, new equipment with R-454C / R-455A (A2L, GWP 148) or R-744 (CO₂, GWP 1) is the replacement direction.
+
+</TechSection>
+
+<TechSection icon="thermometer" tone="sky" title="R-507A at commercial refrigeration service temperatures">
+
+R-507A saturation values across typical commercial refrigeration operating conditions:
+
+- **−40°F (deep freezer)** — R-507A saturation approximately 5 PSIG.
+- **−20°F (frozen food)** — R-507A saturation approximately 19 PSIG.
+- **0°F (freezer)** — R-507A saturation approximately 43 PSIG.
+- **30°F (refrigerated case)** — R-507A saturation approximately 82 PSIG.
+- **70°F (bench reference)** — R-507A saturation 153 PSIG.
+- **95°F (summer condensing)** — R-507A saturation approximately 240 PSIG.
+
+For low-temperature commercial refrigeration at −20°F evaporator / 95°F condenser: typical operating pressures 17-25 PSIG suction and 230-260 PSIG discharge. Very similar to R-404A operating ranges in the same equipment.
+
+</TechSection>
+
+<TechSection icon="service" tone="blue" title="Service procedures — interchangeable with R-404A practice">
+
+R-507A service procedures are essentially interchangeable with R-404A practice. Same safety class (A1), same lubricant family (POE), nearly identical pressure envelope. The only operational distinction is R-507A's zero glide vs R-404A's ~0.9°F glide — both small enough to use single-curve measurement procedures.
+
+| Equipment / procedure | R-404A | R-507A |
+| --- | --- | --- |
+| Manifold gauge rating | 500-800 PSI | 500-800 PSI |
+| Recovery cylinder | Standard 600 PSI | Standard 600 PSI |
+| Lubricant | POE | POE (identical family) |
+| Glide handling | Single curve (near-azeotropic) | Single curve (azeotropic) |
+| Safety class | A1 | A1 |
+| Charge by weight | Required | Required (azeotrope tolerates top-off better than zeotropic blends) |
+| Vacuum target | 500 microns held 30+ min | 500 microns held 30+ min |
+
+Service technicians familiar with R-404A can work on R-507A without procedural change. The interchangeability is one reason both refrigerants captured commercial refrigeration market share through the 1995-2020 era — operators could specify either based on availability without retraining.
+
+</TechSection>
+
+<TechSection icon="recycle" tone="amber" title="R-507A in the commercial refrigeration phase-down chain">
+
+R-507A's history parallels R-404A's: R-502 (CFC, banned 1996) → R-507A and R-404A (HFC, dominant 1996-2020) → R-448A and R-449A (HFC retrofit, GWP ~1390) → R-454C and R-455A (A2L new equipment, GWP 148) → R-744 (CO₂ transcritical, GWP 1, supermarket scale).
+
+R-507A captured smaller overall market share than R-404A through the 1995-2020 era but remained a meaningful alternative for operators preferring azeotropic composition. The phase-down trajectory is essentially identical to R-404A's — both refrigerants face the same regulatory pressures and the same retrofit and replacement paths.
+
+For new commercial refrigeration installations, R-507A is no longer a viable option in most categories under SNAP delistings and AIM Act provisions. The market has moved to A2L low-GWP blends (R-454C, R-455A) or R-744 CO₂ transcritical at supermarket scale.
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-507A in 2026 and beyond">
+
+R-507A occupies essentially the same position as R-404A in 2026 — a legacy commercial refrigeration refrigerant with a substantial installed base, aggressive phase-down for new equipment, and an established retrofit path to R-448A or R-449A for existing equipment.
+
+Service supply for R-507A will continue indefinitely under current EPA rules; reclaimed R-507A will fill an increasing share of the service market as virgin HFC production tightens through the AIM Act baselines (70% reduction by 2029, 80% by 2034, 85% by 2036). Pricing will rise gradually but stays below the steep R-22-style curve because the installed base is smaller.
+
+For existing R-507A equipment, the decision tree mirrors R-404A: continue on reclaimed R-507A for systems with remaining service life; retrofit to R-448A or R-449A for GWP reduction with A1 preservation; replace with new R-454C / R-455A or R-744 equipment for long-term low-GWP positioning. The choice depends on equipment age, capital availability, and operator-specific regulatory pressures.
+
+</TechSection>

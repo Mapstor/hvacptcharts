@@ -1,0 +1,57 @@
+---
+slug: r-13
+title: "R-13 Pressure Temperature Chart & Properties"
+metaTitle: "R-13 PT Chart, CFC Cascade Refrigerant, GWP 14400 — Banned 1996"
+metaDescription: "R-13 (CFC-13, chlorotrifluoromethane) PT chart and properties. Historical cascade low-stage refrigerant for environmental test chambers and cryogenic systems. Banned 1996. ODP 1.0, GWP 14400, atmospheric lifetime 640 years."
+introOneLiner: "Pure CFC, chlorotrifluoromethane (CClF₃). Normal boiling point -114°F — one of the lowest of any commercial refrigerant. Critical temperature only 83.7°F, so the PT chart is limited to ultra-low-temperature operating ranges. Used as cascade low-stage refrigerant for environmental test chambers and cryogenic systems. Production banned in 1996; ODP 1.0, GWP 14,400."
+
+narrative:
+  whatItIs: |
+    R-13 is pure chlorotrifluoromethane (CClF₃), a single-molecule CFC. Its remarkable property is the very low normal boiling point — -114°F (-81°C) — which made it the workhorse low-stage refrigerant in cascade systems designed to reach evaporator temperatures of -100°F to -200°F. Single-stage refrigeration with conventional refrigerants can't reach those temperatures because the pressure ratio across the compressor becomes unmanageable; cascade systems with R-13 as the low-stage and R-22 or R-502 as the high-stage solve that.
+
+    The critical temperature is only 28.8°C (83.7°F) — meaning at any ambient temperature above ~84°F, R-13 cannot condense at any pressure. This is why R-13 was always the low-stage refrigerant — its condenser was internal to the cascade system, exchanging heat with the high-stage refrigerant at temperatures well below ambient (typically condensing at -20°F to 0°F).
+
+    R-13 is a CFC — ODP 1.0 (reference value, equivalent to R-11). Banned for production in the US on January 1, 1996 under the Montreal Protocol.
+
+  whereItsUsed:
+    - Cascade low-stage refrigerant for environmental test chambers (-100°F to -200°F operating range) — legacy equipment only
+    - Cryogenic refrigeration for medical, scientific, and industrial cooling (legacy)
+    - Aerospace component testing chambers (legacy)
+    - No new equipment since 1996; reclaimed R-13 supports any remaining systems
+
+  phaseDownStatus: |
+    R-13 production has been banned for almost three decades. Atmospheric lifetime of 640 years means molecules released even decades ago continue to deplete ozone — R-13 was a particularly damaging CFC because of its very long lifetime combined with full chlorine reactivity in the stratosphere.
+
+    For remaining cascade low-temperature equipment, R-23 (HFC, GWP 14,800 still high but lower than R-13) is the modern replacement low-stage refrigerant. Newer systems use R-744 (CO₂, GWP 1) in cascade — CO₂ has a high triple-point pressure that complicates ultra-low-temp use but works well for the -40°F to -100°F range many cascade systems target. Autocascade systems with mixed-refrigerant blends are another modern approach.
+
+  serviceNotes: |
+    Mineral oil (MO) is compatible. POE is not. EPA Section 608 Type II certification covers R-13. Recovery is required; venting was illegal under Clean Air Act §608 from 1990.
+
+    R-13's combination of low critical temperature and very low boiling point makes service work distinct from typical HVAC: the high side of the cascade may operate at moderate pressures while the low side reaches deep into negative °F territory. Equipment design accommodates this; field service requires understanding the cascade architecture.
+
+faqs:
+  - q: "Why was R-13 used in cascade systems instead of just a single-stage refrigerant?"
+    a: |
+      No single-stage refrigerant can practically reach -100°F to -200°F evaporator temperatures. The pressure ratio across the compressor becomes excessive (typically >10:1 limits compressor efficiency and reliability), and at very low temperatures the suction pressure approaches vacuum, which complicates leak-tightness and lubrication. A cascade system uses two separate refrigeration loops: a high-stage loop with a conventional refrigerant (R-22, R-404A historically) that condenses against ambient, and a low-stage loop with an ultra-low-temperature refrigerant (R-13, R-23, R-503) that condenses against the cold side of the high-stage evaporator. The two loops are coupled thermally but not refrigerant-wise. R-13's low boiling point made it ideal for the low-stage role.
+
+  - q: "What's an environmental test chamber?"
+    a: |
+      A controlled-temperature enclosure used for testing electronic components, aerospace materials, and biomedical samples at extreme temperatures. Common test ranges: -100°F to +250°F for aerospace component qualification, -40°F to +185°F for automotive electronics, -150°F to +200°F for some biomedical work. The cold side of these chambers historically used R-13 cascade systems; modern designs use R-23 cascades, autocascade with HFC blends, or mechanical cryocoolers.
+
+  - q: "Why is R-13's critical temperature so low?"
+    a: |
+      Small molecular size and high vapor pressure. The chlorotrifluoromethane molecule is small (4 atoms) and the molecular interactions in the liquid phase are weak — the critical point (where liquid and vapor phases become indistinguishable) occurs at relatively low temperature. This is a general pattern for small, highly-fluorinated molecules: R-744 (CO₂) has critical temperature 88°F; R-23 has 78°F; R-13 has 84°F; R-14 (tetrafluoromethane) has -49°F. Low critical temperatures make these refrigerants unsuitable for air-cooled condensing at normal ambient.
+
+  - q: "What replaced R-13 in cascade low-stage applications?"
+    a: |
+      R-23 (HFC-23, trifluoromethane, CHF₃) was the immediate replacement when CFCs were phased out in the 1990s. R-23 has similar physical properties to R-13 (NBP -116°F, Tcrit 78.6°F) but is HFC rather than CFC — zero ODP, though still high GWP (14,800). For modern low-GWP cascade systems, R-744 (CO₂) is increasingly used as the low-stage refrigerant despite its higher triple-point pressure complicating very-low-temperature operation. Autocascade systems with mixed refrigerants are another modern approach.
+
+  - q: "What is the ODP and GWP of R-13?"
+    a: |
+      ODP 1.0 (the reference value, same as R-11). GWP 14,400 per IPCC AR5. Atmospheric lifetime 640 years — among the longest of any commercial refrigerant. R-13 was a worst-case CFC for environmental damage: high ODP, very high GWP, extremely persistent.
+
+retrofitGuidance:
+  fromRefrigerant: ""
+  notes: |
+    R-13 cascade equipment retrofit to R-23 is possible but generally requires compressor evaluation (slightly different pressure profile) and oil change (R-13 used mineral oil, R-23 uses POE). For most remaining R-13 equipment by 2025, replacement with modern cascade or autocascade systems is more cost-effective than retrofit — the equipment is 30+ years old and typically at end of service life.
+---

@@ -1,8 +1,8 @@
 {
   "slug": "r-503",
-  "ptSource": "TODO: ASHRAE Handbook of Refrigeration 2022 (historical tables for retired R-503 azeotrope)",
+  "ptSource": "Historical refrigerant — retired per Montreal Protocol (CFC-13 component banned)",
   "ptSourceUrl": null,
-  "verifiedBy": "TODO: cross-check against historical ASHRAE 34 R-503 designation",
+  "verifiedBy": "RETIRED REFRIGERANT: R-503 is no longer in service. PT chart not maintained — no current commercial application exists. For historical reference only, see archived ASHRAE Handbook editions.",
   "physical": {
     "boilingPointC": -87.8,
     "boilingPointF": -126,
@@ -19,5 +19,19 @@
     "temperatureGlideF": 0,
     "hasSignificantGlide": false
   },
-  "ptChart": []
+  "ptChart": [],
+  "dataStatus": "historical-retired-refrigerant",
+  "primarySources": [
+    {
+      "type": "historical-reference",
+      "citation": "ASHRAE Handbook of Refrigeration (historical editions, pre-2010) — archived PT tables for R-503 (R-23/R-13 azeotropic CFC blend).",
+      "url": "https://www.ashrae.org",
+      "scope": "Reference historical data only. R-503 contained R-13 (CFC) and was phased out under the Montreal Protocol; no production since 1996."
+    },
+    {
+      "type": "regulatory",
+      "citation": "Montreal Protocol on Substances that Deplete the Ozone Layer (1987, amended).",
+      "url": "https://ozone.unep.org/treaties/montreal-protocol"
+    }
+  ]
 }

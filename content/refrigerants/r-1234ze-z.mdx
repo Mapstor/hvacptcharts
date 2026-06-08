@@ -1,0 +1,57 @@
+---
+slug: r-1234ze-z
+title: "R-1234ze(Z) Pressure Temperature Chart & Properties"
+metaTitle: "R-1234ze(Z) PT Chart, A2L, High-Temp Heat Pump — Z-Isomer"
+metaDescription: "Verified R-1234ze(Z) (cis-1,3,3,3-tetrafluoropropene Z-isomer) PT chart. ASHRAE A2L. Specialty refrigerant for high-temperature heat pumps and organic Rankine cycle. Normal boiling +9.7°C."
+introOneLiner: "Pure HFO — the cis (Z) isomer of 1,3,3,3-tetrafluoropropene (CHF=CHCF₃). Distinct from the more common E-isomer (R-1234ze(E)) — different physical properties, different applications. Normal boiling point +9.7°C (E-isomer is -19°C). A2L. Used in high-temperature heat pumps and organic Rankine cycle systems."
+
+narrative:
+  whatItIs: |
+    R-1234ze(Z) is the cis (Z) isomer of 1,3,3,3-tetrafluoropropene. Same molecular formula and same atoms as R-1234ze(E), but with the carbon-carbon double bond in cis configuration rather than trans. The geometric difference produces substantially different physical properties — the Z-isomer has a normal boiling point of +9.7°C (49.5°F) versus the E-isomer's -19°C (-2.2°F).
+
+    The higher boiling point makes R-1234ze(Z) unsuitable for typical air-conditioning or chiller applications — its saturation pressure at ambient temperatures is too low (sub-atmospheric on the evaporator side for cooling work). Where it shines is in high-temperature heat pumps and organic Rankine cycle (ORC) systems where the refrigerant's condensing temperature is well above ambient (60-120°C in some industrial process-heating applications). For those applications, the E-isomer's pressure profile is too low; the Z-isomer's profile is appropriate.
+
+  whereItsUsed:
+    - High-temperature industrial heat pumps (process heating 60-130°C condensing)
+    - Organic Rankine cycle (ORC) working fluid for waste-heat recovery
+    - Research applications in academic and pre-commercial settings
+    - Not used in conventional HVAC chiller or AC service
+
+  phaseDownStatus: |
+    R-1234ze(Z) is not subject to phase-down — its GWP is in the same low-single-digit range as R-1234ze(E) (estimated ~6 per IPCC AR5; dataset value pending peer-reviewed publication). No regulatory pressure exists. The constraints on adoption are commercial availability (specialty manufacturer Honeywell), application narrowness (only high-temperature systems), and equipment scarcity (industrial heat pumps and ORC systems are niche markets).
+
+    Industrial decarbonization initiatives (EU Heat Pump 2030 targets, US Inflation Reduction Act industrial heat pump incentives) are growing the high-temperature heat pump market significantly through 2030 — R-1234ze(Z) demand is expected to grow correspondingly, though from a small base.
+
+  serviceNotes: |
+    POE oil is standard; PVE oil is approved in some applications. Mineral oil is not used.
+
+    A2L safety class applies though with reduced practical concern due to the relatively high boiling point — the refrigerant is liquid at ambient temperatures, reducing the vapor-cloud risk that's the primary A2L concern. Standard A2L service procedures (no open flames, A2L-rated leak detection, sealed motor equipment) still apply.
+
+    Industrial heat-pump and ORC equipment is OEM-specific; consult equipment service literature for refrigerant handling. Generic HVAC procedures don't fully cover these specialty applications.
+
+faqs:
+  - q: "Why is R-1234ze(Z) different from R-1234ze(E) if it's the same chemical formula?"
+    a: |
+      Geometric isomers — same atoms, different spatial arrangement around the carbon-carbon double bond. In R-1234ze(E) (trans, "entgegen") the two larger substituents on the double bond are on opposite sides; in R-1234ze(Z) (cis, "zusammen") they're on the same side. This changes the molecule's dipole moment, intermolecular packing, and ultimately its boiling point (Z: +9.7°C vs E: -19°C). The boiling-point difference makes them suitable for completely different temperature ranges of HVAC operation.
+
+  - q: "Can R-1234ze(Z) be used as a drop-in for R-1234ze(E)?"
+    a: |
+      No. The 28°C difference in normal boiling point means R-1234ze(Z) operates at much lower pressures across any given temperature range — an R-1234ze(E) chiller compressor would not develop adequate mass flow with R-1234ze(Z). The two refrigerants are application-distinct: R-1234ze(E) for conventional chillers and HVAC, R-1234ze(Z) for high-temperature heat pumps and ORC. They share a chemical name; they are not interchangeable.
+
+  - q: "What's an organic Rankine cycle?"
+    a: |
+      A power-generation cycle that uses an organic working fluid (refrigerant-class molecule) instead of water in a Rankine cycle. Waste heat (from industrial processes, biomass, geothermal, or solar thermal) vaporizes the working fluid, the vapor expands through a turbine to produce mechanical/electrical power, then condenses for return to the boiler. ORC is used where the heat-source temperature is too low for steam (typically 80-300°C) — water Rankine cycles need much higher temperatures. R-1234ze(Z) and R-245fa are common ORC working fluids in the medium-temperature range; R-1336mzz(Z) for higher temperatures.
+
+  - q: "Where are industrial high-temperature heat pumps used?"
+    a: |
+      Process heating applications where waste heat (40-60°C) is upgraded to useful heat (80-150°C) — district heating networks, dairy and food processing pasteurization, paper drying, chemical batch heating. The economics work where natural gas prices are high or carbon-pricing makes electrified heating competitive. The EU has targeted industrial heat pump growth as part of REPowerEU; the IRA includes industrial heat pump tax credits. R-1234ze(Z) and R-1336mzz(Z) are the typical working fluids for this range.
+
+  - q: "Is R-1234ze(Z) more or less stable than R-1234ze(E)?"
+    a: |
+      Slightly less stable at the upper end of typical operating temperatures. The cis configuration is the higher-energy isomer; under prolonged high-temperature operation R-1234ze(Z) can isomerize to R-1234ze(E). This is generally not significant within rated operating envelopes (condensing <130°C) and proper lubrication, but does mean compressor discharge temperatures should stay within OEM-rated limits.
+
+retrofitGuidance:
+  fromRefrigerant: ""
+  notes: |
+    R-1234ze(Z) is not a retrofit fluid — it's specified for purpose-designed industrial heat pump and ORC equipment. New installations are designed for the specific working fluid; cross-fluid retrofit between R-1234ze(Z) and other working fluids (R-245fa, R-1336mzz(Z), R-514A) requires equipment evaluation per OEM service literature.
+---

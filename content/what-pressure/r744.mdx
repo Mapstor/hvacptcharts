@@ -1,0 +1,106 @@
+---
+id: r744
+refrigerantSlug: r-744
+title: "What Should R-744 (CO₂) Pressures Be?"
+metaTitle: "R-744 CO₂ Operating Pressures — Sub/Transcritical Reference"
+metaDescription: "Typical R-744 (CO₂) operating pressures for transcritical commercial refrigeration, subcritical cascade systems, and heat pumps. Very high pressures vs typical refrigerants; transcritical operation above 88°F."
+introOneLiner: "R-744 (CO₂) operating pressures are unlike any other HVAC refrigerant — saturation at 70°F is 838 PSIG, and above critical temperature (88°F) there is no saturation pressure at all (transcritical operation). Subcritical pressures for cascade and low-temp; transcritical gas-cooler pressures for warm-ambient systems."
+
+operatingRangesSource: "ASHRAE Handbook of Refrigeration 2022 (CO₂ refrigeration); IIR Informatory Note on CO₂; Hillphoenix and other commercial CO₂ refrigeration OEM design literature; Carel and Danfoss control documentation for transcritical CO₂ booster systems"
+
+operatingRanges:
+  - ambientF: 60
+    application: "Subcritical commercial refrigeration — medium-temp (cold ambient, 30°F evap)"
+    suctionPsigLow: 415
+    suctionPsigHigh: 470
+    dischargePsigLow: 600
+    dischargePsigHigh: 700
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [3, 10]
+  - ambientF: 60
+    application: "Subcritical commercial refrigeration — low-temp (cold ambient, -20°F evap)"
+    suctionPsigLow: 215
+    suctionPsigHigh: 260
+    dischargePsigLow: 600
+    dischargePsigHigh: 700
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [3, 10]
+  - ambientF: 80
+    application: "Subcritical operation (just below critical, 30°F evap)"
+    suctionPsigLow: 415
+    suctionPsigHigh: 470
+    dischargePsigLow: 950
+    dischargePsigHigh: 1100
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [3, 8]
+  - ambientF: 95
+    application: "Transcritical operation — medium-temp (30°F evap, 95°F ambient)"
+    suctionPsigLow: 415
+    suctionPsigHigh: 470
+    dischargePsigLow: 1300
+    dischargePsigHigh: 1500
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [0, 0]
+  - ambientF: 105
+    application: "Transcritical operation — medium-temp (30°F evap, 105°F ambient)"
+    suctionPsigLow: 415
+    suctionPsigHigh: 470
+    dischargePsigLow: 1450
+    dischargePsigHigh: 1650
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [0, 0]
+  - ambientF: 95
+    application: "Cascade low-stage (CO₂ low side, -20°F evap, cascade condenser ~10°F)"
+    suctionPsigLow: 215
+    suctionPsigHigh: 260
+    dischargePsigLow: 360
+    dischargePsigHigh: 410
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [3, 10]
+
+narrativeIntro: |
+  R-744 (CO₂) operates fundamentally differently from any other HVAC refrigerant. Three things matter for understanding R-744 pressures:
+
+  **1. Pressures are extremely high.** R-744 saturation pressure at 70°F is 838 PSIG — five to ten times higher than typical HFC refrigerants at the same temperature. Equipment must be rated for these pressures: typical R-744 system high-side pressure ratings are 1450-2000 PSIG (10-14 MPa). Standard HVAC manifold gauges (rated 500-800 PSI) are completely inadequate for R-744 service.
+
+  **2. Critical point at 87.8°F is the dividing line.** Below 87.8°F R-744 has a normal saturation curve and can condense to liquid (subcritical operation). Above 87.8°F there is no saturation — R-744 stays a supercritical fluid that cools through a "gas cooler" rather than condensing through a "condenser" (transcritical operation). In warm climates (most US summer ambient), R-744 systems operate transcritically.
+
+  **3. Transcritical operation requires high-side pressure control.** In subcritical operation, high-side pressure is determined by condenser exit temperature (just like any other refrigerant). In transcritical operation, there is no condensation — the high-side pressure is actively controlled by the system to optimize gas cooler outlet enthalpy for the ambient condition. Typical optimum is 1.2-1.5× the critical pressure (~1300-1700 PSIG). This is set by the system controller, not by ambient alone.
+
+  R-744 systems are common in commercial refrigeration (supermarket CO₂ booster systems for both medium- and low-temperature cases on a single refrigerant) and in heat pumps (especially water heating where the trans-critical cycle's high heat-rejection-side temperature glide matches the water-heating load well). Service requires R-744-specific training, equipment, and procedures.
+
+diagnosticSteps:
+  - title: "Confirm R-744-rated equipment before service"
+    text: "Standard HVAC manifold gauges, hoses, and recovery cylinders are not rated for R-744 pressures and will fail catastrophically if used. Verify equipment is rated for the working pressure (typically 1450-2000 PSIG for transcritical, 600-900 PSIG for subcritical). R-744-specific manifolds, hoses, and recovery equipment are required."
+    tools: ["R-744-rated manifold gauge set", "R-744-rated hoses", "R-744 recovery cylinder"]
+  - title: "Identify operating mode: subcritical or transcritical"
+    text: "Check the ambient temperature and system controller. Above ~85°F ambient most systems will be in transcritical operation; below ~75°F most systems will be in subcritical. Transcritical operation has no high-side saturation — the high-side temperature reflects gas cooler outlet, not condensing. Subcritical operation has saturation on both sides — measurement proceeds like other refrigerants."
+    tools: ["Outdoor ambient measurement", "Controller status display"]
+  - title: "Read pressures with R-744-rated manifold"
+    text: "Service ports on R-744 systems are different from standard HVAC (typically high-pressure quick-couplings or threaded fittings). The system controller is usually the primary diagnostic interface — manifold readings supplement controller data. Verify steady-state operation; CO₂ systems can have rapid pressure swings during compressor cycling that don't reflect steady-state values."
+    tools: ["R-744-rated manifold", "System controller interface"]
+  - title: "Subcritical mode: measure SH and SC normally"
+    text: "In subcritical operation R-744 has a normal saturation curve. Superheat = suction-line T − saturation T at suction pressure. Subcooling = saturation T at discharge pressure − liquid-line T. Standard procedures apply with R-744-specific PT chart values (the [PT calculator](/pt-calculator/) handles R-744 in its subcritical range, -40 to +87°F)."
+    tools: ["Contact temperature probe", "R-744 PT chart or PT calculator"]
+  - title: "Transcritical mode: superheat applies but no subcooling"
+    text: "In transcritical operation, the suction side still has saturation (evaporator operates at sub-critical temperature and pressure), so superheat measurement applies normally. The high side has no saturation — gas cooler outlet temperature and gas cooler outlet pressure are independent variables, not coupled through saturation. 'Subcooling' is not defined in transcritical operation. Optimum gas cooler outlet pressure for the ambient is what the controller manages — verify per OEM service literature."
+    tools: ["Controller diagnostic display", "OEM transcritical operation reference"]
+
+faqs:
+  - q: "Why does R-744 operate at such high pressures?"
+    a: "CO₂'s low critical temperature (87.8°F) and small molecular size produce very high vapor pressures at typical refrigeration temperatures. At 70°F R-744 saturation is 838 PSIG; at 95°F R-744 is in transcritical state with gas cooler pressures of 1300-1700 PSIG. This is the physics of the molecule — there's no way to reduce R-744 operating pressures without changing the application range. Equipment design accommodates the high pressures through thicker-walled components and higher-rated controls."
+  - q: "What's the difference between subcritical and transcritical operation?"
+    a: "Below the critical temperature (87.8°F), R-744 can condense to liquid — subcritical operation, with a normal condenser and a saturation pressure-temperature relationship on the high side. Above the critical temperature, there is no condensation possible at any pressure — transcritical operation, with a 'gas cooler' instead of a condenser and high-side pressure controlled by a valve to optimize cycle efficiency. Most US commercial CO₂ systems operate transcritically during summer ambient and subcritically during winter."
+  - q: "Can I use my regular HVAC service manifold on R-744?"
+    a: "No. Standard HVAC manifolds rated 500-800 PSI will fail catastrophically at R-744 pressures (838 PSIG saturation at 70°F, 1300-1700 PSIG transcritical operation). R-744-rated manifolds (typically 2000+ PSI working pressure) are mandatory. Same for hoses and recovery cylinders — R-744 has dedicated equipment that is not interchangeable with HFC service equipment."
+  - q: "What is gas cooler pressure and why is it controlled?"
+    a: "In transcritical operation, the 'condenser' is replaced by a 'gas cooler' — heat is rejected from the supercritical refrigerant without phase change. The outlet temperature is set by the air-side conditions, but the outlet pressure is independent and can be optimized for cycle efficiency. The optimum pressure varies with ambient and gas cooler exit temperature; typical values are 72-90 bar (1050-1300 PSIG) for moderate ambient and 95-115 bar (1380-1670 PSIG) for warm ambient. System controllers manage this via a high-pressure expansion valve."
+  - q: "Is R-744 used in residential AC?"
+    a: "Rarely in cooling-only residential AC in the US (the equipment cost is high and the transcritical operation in hot ambients reduces efficiency vs HFC alternatives). Common in residential heat pumps for water heating (heat pump water heaters with CO₂) and in some EU residential heat pumps, where the transcritical cycle's high temperature glide is well-matched to water heating. The dominant US application is commercial refrigeration (supermarket CO₂ booster systems)."
+  - q: "What's the GWP of R-744?"
+    a: "1 (defined as 1 — CO₂ is the reference for GWP). R-744 has by definition the lowest GWP of any commercial refrigerant. It's the long-term destination for many applications facing aggressive GWP phase-down — the trade-off is equipment cost (high-pressure components) and efficiency in warm climates (transcritical operation has lower efficiency than subcritical at the same temperatures)."
+  - q: "Why does subcooling appear as 0 in the transcritical operating ranges?"
+    a: "Subcooling requires a saturation temperature at the discharge pressure to subtract from the liquid-line temperature. In transcritical operation there is no saturation on the high side — no condensation occurs, the refrigerant stays in supercritical state throughout the gas cooler. 'Subcooling' as a concept doesn't apply. Gas cooler outlet temperature is the relevant high-side measurement, evaluated against the manufacturer's optimal operating envelope."
+
+faqs_END: ""
+---

@@ -67,3 +67,21 @@ export function listWhatPressureIds(): string[] {
     .filter((f) => f.endsWith(".mdx"))
     .map((f) => f.replace(/\.mdx$/, ""));
 }
+
+/**
+ * Build a map from refrigerantSlug → what-pressure id by reading each MDX
+ * file's frontmatter. Used to surface "what should X pressures be" links on
+ * per-refrigerant pages.
+ */
+export function buildWhatPressureSlugMap(): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const id of listWhatPressureIds()) {
+    const wp = loadWhatPressure(id);
+    if (wp) map.set(wp.frontmatter.refrigerantSlug, id);
+  }
+  return map;
+}
+
+export function findWhatPressureForRefrigerant(slug: string): string | null {
+  return buildWhatPressureSlugMap().get(slug) ?? null;
+}

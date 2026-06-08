@@ -1,0 +1,54 @@
+---
+slug: r-514a
+title: "R-514A Pressure Temperature Chart & Properties"
+metaTitle: "R-514A Opteon XP30 PT Chart, B1 Chiller Blend, GWP 2 — R-123 Replace"
+metaDescription: "Verified R-514A (Chemours Opteon XP30, R-1336mzz(Z)/R-1130(E) blend) PT chart. ASHRAE B1 (higher toxicity), GWP 2. Low-pressure centrifugal chiller R-123 replacement."
+introOneLiner: "Binary HFO/HCO blend — 74.7% R-1336mzz(Z) and 25.3% R-1130(E) (trans-1,2-dichloroethylene). Chemours Opteon XP30. ASHRAE B1 (higher toxicity than A1). GWP 2. Designed as R-123 replacement for low-pressure centrifugal chillers. The R-1130(E) component requires ventilation/leak-detection attention."
+
+narrative:
+  whatItIs: |
+    R-514A is a binary blend of R-1336mzz(Z) (a pure HFO with high boiling point, 74.7% mass) and R-1130(E) (trans-1,2-dichloroethylene, an HCO — hydrochloroolefin, 25.3% mass). The R-1130(E) component gives R-514A higher volumetric capacity than pure R-1336mzz(Z) would have, fitting the saturation pressure envelope of R-123 more closely. The blend was developed by Chemours specifically as a near-drop-in replacement for R-123 in low-pressure centrifugal chillers.
+
+    The B1 safety classification is a critical distinguishing feature: R-1130(E) has higher chronic toxicity than typical HVAC refrigerants. ASHRAE 34 places the blend in class B (higher toxicity) rather than class A (lower toxicity). This is a single-letter classification change with significant practical implications: refrigerant machine rooms require ventilation per ASHRAE 15 Table 8-2 with B1-appropriate leak-detection setpoints and ventilation rates. Service personnel exposure must be managed via standard industrial hygiene practices (avoid prolonged inhalation exposure during service).
+
+  whereItsUsed:
+    - Low-pressure centrifugal chillers (R-123 replacement, primary application)
+    - Some new low-pressure chiller installations
+    - Industrial process cooling at large tonnages
+
+  phaseDownStatus: |
+    R-514A is not subject to climate phase-down — GWP 2 and ODP 0 keep it below all current thresholds. The constraint on adoption is the B1 toxicity classification, which adds operational complexity vs A1 alternatives like R-1233zd(E) and R-1224yd(Z). For chiller OEMs and operators willing to manage the B1 ventilation and leak-detection requirements, R-514A provides excellent thermodynamic match to R-123; for those preferring simpler A1 service, R-1233zd(E) or R-1224yd(Z) are the alternatives.
+
+    Competitive position: R-1233zd(E) (Solstice zd, A1) currently leads in centrifugal chiller R-123 replacement. R-514A is positioned as the alternative for installations where slight efficiency advantages justify the B1 service requirements.
+
+  serviceNotes: |
+    POE and PVE oils are compatible. Mineral oil is not used. The B1 classification requires: (1) machine-room ventilation per ASHRAE 15 with refrigerant-specific design; (2) leak detection with B1-appropriate sensors at concentrations below the refrigerant concentration limit; (3) industrial hygiene practices during service (avoid prolonged direct inhalation, use of fume extraction during repairs).
+
+    R-514A is a low-pressure refrigerant — evaporator pressures can be sub-atmospheric. Leak prevention is critical for air-ingress reasons (air contamination of the system) as much as for personnel exposure. EPA Section 608 Type II or Universal certification covers R-514A service.
+
+faqs:
+  - q: "What does B1 safety classification mean in practice?"
+    a: |
+      ASHRAE 34's B class indicates higher chronic toxicity than class A. "1" indicates non-flammable. B1 refrigerants require enhanced machine-room ventilation and leak detection per ASHRAE 15 — the design refrigerant concentration limit is lower for B1 than for A1, meaning more aggressive ventilation rates and lower-setpoint sensors. R-123 itself is B1; R-514A inherits a similar classification because of the R-1130(E) component. Service personnel use standard industrial hygiene practices (respiratory protection during prolonged exposure, ventilation during repairs).
+
+  - q: "Why use R-514A instead of R-1233zd(E) for R-123 retrofit?"
+    a: |
+      Choice factors: (1) thermodynamic match — R-514A's pressure envelope is slightly closer to R-123 than R-1233zd(E)'s, meaning less compressor adjustment in retrofit; (2) capacity — R-514A delivers within 2-3% of R-123 capacity in most installations vs R-1233zd(E)'s 3-6% reduction; (3) OEM relationship — Chemours-aligned operators may prefer Opteon XP30 over Honeywell Solstice zd. The cost is the B1 toxicity classification, which requires the chiller operator to maintain the same B1 machine-room compliance they had with R-123 anyway — for an R-123 chiller already running in B1 compliance, this isn't an additional burden.
+
+  - q: "What is the R-1130(E) component?"
+    a: |
+      R-1130(E) is trans-1,2-dichloroethylene (CHCl=CHCl, the trans/E isomer), a hydrochloroolefin (HCO). It has been used as a solvent and as a refrigerant blend component. Its toxicity profile drives R-514A's B1 classification. The 25.3% mass fraction in R-514A is engineered to give the blend the right capacity match for R-123 while keeping toxicity manageable through standard industrial hygiene controls.
+
+  - q: "Is R-514A subject to phase-down?"
+    a: |
+      Not currently. GWP 2 and ODP 0 are below every climate and ozone-protection threshold. The B1 classification is the practical adoption barrier rather than regulatory phase-down. R-514A is a long-term-viable refrigerant from a regulatory standpoint.
+
+  - q: "Can a new chiller be designed for R-514A from scratch?"
+    a: |
+      Yes — several centrifugal chiller manufacturers (Trane, Carrier, York/Johnson Controls) offer R-514A-rated models. New designs incorporate the B1 ventilation and leak-detection requirements into the machine-room specification. For new construction the additional B1 infrastructure adds modest cost; for retrofit of existing R-123 machine rooms, the infrastructure typically already meets B1 because R-123 itself is B1.
+
+retrofitGuidance:
+  fromRefrigerant: r-123
+  notes: |
+    R-123 to R-514A retrofit (per Chemours Opteon XP30 documentation): recover R-123 to dedicated low-pressure recovery cylinder; flush mineral oil through 2-3 oil-change cycles; charge POE oil; replace incompatible seals; pull deep vacuum (500 microns); charge R-514A by weight to OEM-specified amount. Verify chiller performance at design conditions — R-514A typically delivers within 2-3% of R-123 capacity and similar efficiency. Machine-room B1 ventilation and leak detection should already be in place (R-123 is also B1) — verify continued compliance with refrigerant-specific concentration setpoints.
+---

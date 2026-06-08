@@ -1,51 +1,185 @@
 ---
 slug: r-1233zd-e
 title: "R-1233zd(E) Pressure Temperature Chart & Properties"
-metaTitle: "R-1233zd(E) Solstice 1233zd PT Chart, A1, GWP 1, R-123 Replacement"
-metaDescription: "R-1233zd(E) (Honeywell Solstice 1233zd / Solstice LBA) — pure HCFO. ASHRAE A1, GWP 1. Modern replacement for R-123 in low-pressure centrifugal chillers."
-introOneLiner: "Pure HCFO, (E)-1-chloro-3,3,3-trifluoro-1-propene. Branded as Honeywell Solstice 1233zd or Solstice LBA. ASHRAE A1, GWP 1, ODP 0.00034. The modern replacement for R-123 in low-pressure centrifugal chillers — near-zero environmental impact with non-flammable A1 safety class."
+metaTitle: "R-1233zd(E) PT Chart, A1 HCFO, GWP 1 — Low-Pressure Chiller R-123 Replacement"
+metaDescription: "R-1233zd(E) (trans-1-chloro-3,3,3-trifluoro-1-propene) PT chart. A1 non-flammable HCFO, GWP 1, ODP <0.001. The dominant R-123 replacement for low-pressure centrifugal chillers. Trade name Honeywell Solstice zd."
+introOneLiner: "Hydrochlorofluoroolefin (HCFO) — A1 non-flammable, GWP 1, near-zero ODP. The low-pressure replacement for R-123 in centrifugal chillers. Honeywell Solstice zd; very low operating pressures (sub-atmospheric on chiller evaporator)."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: coolprop
+    label: "CoolProp 7.2.0"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: snap
+    label: "EPA SNAP — R-1233zd(E) acceptable for chiller R-123 replacement"
+    url: "https://www.epa.gov/snap"
+  - id: montrealprotocol
+    label: "Montreal Protocol — HCFO de-minimis ODP threshold provisions"
+    url: "https://ozone.unep.org/treaties/montreal-protocol"
+  - id: ahri700
+    label: "AHRI Standard 700-2019"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: honeywellsolstice
+    label: "Honeywell Solstice zd (R-1233zd(E)) Technical Information"
+    url: "https://www.honeywell-refrigerants.com/americas/"
+  - id: trane
+    label: "Trane R-1233zd chiller equipment documentation"
+    url: "https://www.trane.com/commercial/north-america/us/en/products-systems/chillers.html"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: A1
+    context: Non-toxic, non-flammable — preserves R-123 equipment safety class for retrofit
+    sourceId: ashrae34
+  - label: Chemical formula
+    value: CF₃CH=CHCl (E)
+    context: trans-1-Chloro-3,3,3-trifluoro-1-propene (HCFO with one chlorine)
+    sourceId: ashrae34
+  - label: GWP (100-yr)
+    value: "1"
+    unit: IPCC AR5
+    context: Very low — atmospheric lifetime approximately 26 days
+    sourceId: ipccar5
+  - label: ODP
+    value: "0.00034"
+    context: Very small but non-zero (HCFO with one chlorine); below Montreal Protocol de-minimis threshold
+    sourceId: montrealprotocol
+  - label: Normal boiling point
+    value: "64.9"
+    unit: °F (18.3°C)
+    context: Higher than R-134a; very low-pressure chiller operation
+    sourceId: coolprop
+  - label: Temperature glide
+    value: "0"
+    unit: °F
+    context: Pure single-component refrigerant
+    sourceId: coolprop
+  - label: Required lubricant
+    value: POE
+    context: Polyolester typical; some chiller OEMs may specify other synthetic oils
+    sourceId: ahri700
+  - label: Trade name
+    value: Solstice zd
+    context: Honeywell brand
+    sourceId: honeywellsolstice
 
 narrative:
   whatItIs: |
-    R-1233zd(E) is pure (E)-1-chloro-3,3,3-trifluoro-1-propene — a hydrochlorofluoroolefin (HCFO) developed by Honeywell as the long-term replacement for R-123 in low-pressure centrifugal chillers. The molecule's structure (a chlorine atom and three fluorines on a propene backbone) reactive enough that atmospheric breakdown happens in weeks rather than decades, giving very low GWP (1) despite the chlorine content.
+    R-1233zd(E) is a hydrochlorofluoroolefin (HCFO) — chemically related to HFOs but with one chlorine atom in the molecular structure. The compound is trans-1-chloro-3,3,3-trifluoro-1-propene [ashrae34]. The single chlorine gives R-1233zd(E) very small but non-zero ozone-depletion potential (0.00034) — far below R-22's 0.055, below Montreal Protocol de-minimis thresholds, but technically not zero.
 
-    R-1233zd(E) targets the same application envelope as R-123 (low-pressure centrifugal chillers for large commercial cooling) with the substantive improvements: A1 (lower toxicity than R-123's B1, easier machine-room requirements), GWP 1 (vs R-123's 77), and ODP 0.00034 (effectively zero vs R-123's 0.02). It's also broadly used as a foam-blowing agent for polyurethane insulation and as the working fluid for organic Rankine cycle (ORC) waste-heat recovery systems.
+    R-1233zd(E) was developed by Honeywell as a near-drop-in replacement for R-123 in low-pressure centrifugal chillers. The pressure envelope closely matches R-123; the safety class (A1) is preserved; the GWP (1) is dramatically lower than R-123's 79.
 
   whereItsUsed:
-    - Low-pressure centrifugal chillers (large commercial cooling, district cooling) — the primary application
-    - Foam blowing agent (polyurethane insulation)
-    - Organic Rankine cycle working fluid (waste heat recovery)
-    - Heat pump applications (some commercial high-temperature heat pumps)
+    - "Low-pressure centrifugal chiller R-123 replacement (Trane, others)"
+    - "New low-pressure chiller equipment installations"
+    - "High-temperature heat pumps (some applications)"
+    - "Foam blowing agent in polyurethane insulation"
 
   phaseDownStatus: |
-    R-1233zd(E) is not phase-down-targeted. GWP 1 and ODP 0.00034 are below every regulatory threshold. The molecule is technically an HCFC (chlorine-containing) but its very short atmospheric lifetime (~26 days) means the chlorine doesn't accumulate in the stratosphere — ODP is effectively zero for practical purposes.
+    R-1233zd(E)'s very-low ODP (0.00034) is below the de-minimis threshold most regulatory frameworks apply; the refrigerant is treated as effectively zero-ODP for practical purposes [montrealprotocol]. GWP 1 places it below every regulatory threshold.
 
-    For new low-pressure centrifugal chiller installations R-1233zd(E) is the dominant choice in 2026. Equipment OEMs (Carrier, Trane, York, Daikin) have standardized on R-1233zd(E) for their low-pressure chiller product lines as R-123 production ended in 2020.
+    R-1233zd(E) faces no meaningful phase-down pressure under EU F-Gas, EPA AIM Act, or Montreal Protocol HCFC schedules. It is the long-term low-GWP destination for low-pressure centrifugal chiller applications.
 
   serviceNotes: |
-    POE oil is required. The A1 safety class simplifies machine-room requirements compared to R-123's B1 — no special toxicity ventilation; standard ASHRAE 15 ventilation suffices for most installations. Operating pressures are very similar to R-123 (low-pressure, below atmospheric at typical evaporator temperatures); equipment service procedures parallel R-123 chiller service.
+    POE oil typical for chiller applications [ahri700]. Verify against equipment OEM service literature for specific viscosity grade. A1 classification means no A2L procedures required.
+
+    R-1233zd(E) operates at very low pressures — sub-atmospheric on the evaporator side at typical chilled-water temperatures. Equipment is designed for sub-atmospheric operation with purge units to remove non-condensable atmospheric contamination.
 
 faqs:
-  - q: "What is R-1233zd(E) also called?"
-    a: "R-1233zd(E) is the ASHRAE 34 designation for the E-isomer (the more common form). Honeywell's commercial brands are Solstice 1233zd (refrigerant-grade) and Solstice LBA (Liquid Blowing Agent — foam blowing applications). The Z-isomer (R-1233zd(Z)) is a separate, less-common refrigerant for specialty applications."
+  - q: "What is R-1233zd(E) used for?"
+    a: |
+      Low-pressure centrifugal chiller R-123 replacement primarily. Trane offers R-1233zd(E) chillers (CenTraVac product line); other chiller OEMs also offer R-1233zd(E) options. Honeywell markets the refrigerant as Solstice zd [honeywellsolstice].
 
-  - q: "How does R-1233zd(E) compare to R-123?"
-    a: "Same application envelope (low-pressure centrifugal chillers), substantively better environmental and safety profile. R-1233zd(E) A1 vs R-123 B1 (easier machine-room requirements). GWP 1 vs 77 (significantly lower climate impact). ODP 0.00034 vs 0.02 (effectively zero vs measurable). Operating pressures are very similar — both are low-pressure, both operate below atmospheric at typical chiller evaporator temperatures."
+  - q: "Why is R-1233zd(E) called HCFO instead of HFO?"
+    a: |
+      HCFO = hydrochlorofluoroolefin. The "C" denotes the one chlorine atom in the molecule. R-1233zd(E)'s structure is CF₃CH=CHCl — three fluorines, one chlorine, plus hydrogen and the carbon-carbon double bond. HFOs (hydrofluoroolefins) have no chlorine; R-1234yf and R-1234ze are HFOs. The chlorine atom in R-1233zd(E) gives it the very small ODP (0.00034) that HFOs don't have.
 
-  - q: "Why is R-1233zd(E) classified as HCFC despite the very short atmospheric lifetime?"
-    a: "Strict chemical classification. R-1233zd(E) contains chlorine, which puts it in the hydrochlorofluorocarbon family by composition. But the molecule's double bond makes it reactive enough that atmospheric breakdown happens within weeks — most chlorine is released at low altitudes where it doesn't reach the stratosphere. ODP measured by accepted methods is 0.00034 — effectively zero for regulatory and practical purposes. The chemical classification reflects composition; the environmental impact reflects fate."
+  - q: "What's R-1233zd(E)'s GWP?"
+    a: |
+      1 per IPCC AR5 — very low [ipccar5]. The 26-day atmospheric lifetime drives the low GWP. R-1233zd(E) sits alongside R-744 (CO₂) as one of the lowest-GWP commercial refrigerants.
+
+  - q: "Is R-1233zd(E) ozone-depleting?"
+    a: |
+      Technically yes — ODP 0.00034 — but far below regulatory de-minimis thresholds. For practical purposes R-1233zd(E) is treated as zero-ODP. EPA SNAP has approved R-1233zd(E) for R-123 chiller replacement without ozone-depletion concerns [snap].
+
+  - q: "Is R-1233zd(E) flammable?"
+    a: |
+      No — ASHRAE class A1 (non-toxic, non-flammable) [ashrae34]. This is a primary advantage over R-1234ze (A2L) for chiller applications where A1 safety simplifies equipment-room and code compliance.
 
   - q: "What lubricant does R-1233zd(E) use?"
-    a: "Polyolester (POE) oil. Mineral oil and alkylbenzene are not miscible. POE is hygroscopic; deep vacuum matters before charging."
+    a: |
+      POE oil typically [ahri700]. Verify against equipment OEM service literature. Some chiller OEMs may specify specific viscosity grades or alternative synthetic oils for particular compressor designs.
 
-  - q: "Is R-1233zd(E) AIM Act affected?"
-    a: "No. R-1233zd(E) is not a hydrofluorocarbon (HFC); it's a HCFO. The AIM Act targets HFC consumption specifically. R-1233zd(E)'s very low GWP also places it well below the AIM Act 700 threshold even if it were in scope."
+  - q: "Can R-1233zd(E) retrofit R-123 chillers?"
+    a: |
+      Yes — R-1233zd(E) was designed as a near-drop-in R-123 replacement. The pressure envelope closely matches R-123; safety class (A1) is preserved; lubricant chemistry is compatible. Major chiller OEMs (Trane, others) have documented R-123 to R-1233zd(E) retrofit procedures.
 
-  - q: "What is the normal operating pressure of R-1233zd(E)?"
-    a: "Similar to R-123 — below atmospheric at typical chiller evaporator temperatures. Saturation at 70°F is approximately -3 PSIG (vacuum). At 100°F (typical condenser temperature): approximately 4 PSIG. The low-pressure operation is structural to the centrifugal chiller equipment design; not an indication of low charge."
+  - q: "What is Solstice zd?"
+    a: |
+      Honeywell's trade name for R-1233zd(E) [honeywellsolstice]. Honeywell is the primary commercial manufacturer; the refrigerant is supplied to multiple chiller OEMs for new equipment and retrofit applications.
 
 retrofitGuidance:
   fromRefrigerant: r-123
   notes: |
-    R-123 to R-1233zd(E) conversion is the standard end-of-life upgrade path for existing R-123 chillers. The pressure envelopes and equipment requirements are very similar; the upgrade typically involves OEM-supervised compressor and seal updates rather than wholesale equipment replacement. Specific procedures vary by chiller manufacturer; consult OEM service literature. For new installations R-1233zd(E) is the default choice for low-pressure centrifugal chiller applications.
+    R-1233zd(E) is a near-drop-in retrofit for R-123 in low-pressure centrifugal chillers. The pressure envelope closely matches R-123; safety class (A1) is preserved; lubricant (POE) compatibility is established. Standard retrofit: recover R-123, replace filter-drier, evacuate, recharge R-1233zd(E) by weight to OEM nameplate. Major chiller OEMs offer documented R-123 to R-1233zd(E) conversion procedures.
 ---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-1233zd(E) PT chart — sub-atmospheric operation on the low side">
+
+R-1233zd(E)'s PT chart shows very low pressures across the chiller operating range. At 70°F R-1233zd(E) saturation is approximately 4 PSIG (CoolProp 7.2.0); at typical chiller evaporator temperatures (35-45°F), saturation is well below atmospheric pressure — the chiller evaporator runs at vacuum.
+
+Single saturation curve (pure refrigerant, no glide). Standard 500 PSI manifold gauges have more than enough range; the operational concern is at the low end, where vacuum-rated gauges and procedures are needed.
+
+<KeyInsight tone="amber" icon="warning" title="Sub-atmospheric operation requires purge units">
+Low-pressure centrifugal chillers operating below atmospheric pressure on the evaporator face air ingress through any leak path. The chillers include purge units to remove non-condensable atmospheric contamination that accumulates over time. This is a normal feature of low-pressure chiller operation, not a fault — but service technicians need to understand the purge-unit role and operation.
+</KeyInsight>
+
+</TechSection>
+
+<TechSection icon="composition" tone="purple" title="HCFO chemistry — single chlorine, very-short atmospheric lifetime">
+
+R-1233zd(E) is a hydrochlorofluoroolefin: CF₃CH=CHCl. The carbon-carbon double bond (the "ene" / "olefin" feature) is what gives the molecule its very short atmospheric lifetime (~26 days) and resulting very low GWP (1). The single chlorine atom adds a small ozone-depletion potential (0.00034) that HFOs (without chlorine) don't have.
+
+The "E" designation refers to the trans (entgegen) geometric configuration around the double bond. The cis (zusammen, "Z") isomer R-1233zd(Z) has different physical properties and is rarely used as a standalone refrigerant.
+
+The HCFO chemistry is the modern engineering solution for low-pressure chiller applications where R-123's HCFC chemistry (ODP 0.02) needed replacement without losing the favorable pressure envelope and safety class.
+
+</TechSection>
+
+<TechSection icon="globe" tone="emerald" title="GWP 1 and effectively zero ODP — long-term regulatory positioning">
+
+R-1233zd(E) has GWP 1 (IPCC AR5) — among the very lowest of commercial refrigerants alongside R-744 (CO₂) [ipccar5]. ODP is 0.00034 — technically non-zero but below the de-minimis threshold most regulatory frameworks apply [montrealprotocol]. EPA SNAP has approved R-1233zd(E) for R-123 chiller replacement [snap].
+
+The combination of very-low GWP and effectively-zero ODP eliminates phase-down risk under all current and reasonably-foreseeable regulatory frameworks. R-1233zd(E) is structurally a long-term destination refrigerant for low-pressure chiller applications.
+
+For R-123 replacement specifically, R-1233zd(E) provides the clear path forward — operationally equivalent in equipment terms, dramatically lower environmental impact (GWP 1 vs R-123's 79, ODP 0.00034 vs R-123's 0.02).
+
+</TechSection>
+
+<TechSection icon="service" tone="blue" title="A1 safety class — easier than R-1234ze A2L for chillers">
+
+R-1233zd(E)'s A1 safety classification is a meaningful advantage over A2L alternatives for chiller applications. A1 chillers don't require sealed motors, A2L-rated leak detection, or charge limits per ASHRAE 15 A2L provisions. Equipment-room and code compliance is simpler.
+
+For chiller OEMs choosing between A1 R-1233zd(E) and A2L R-1234ze for new low-GWP equipment, R-1233zd(E)'s A1 classification often makes it the preferred choice in installations where A2L equipment-room provisions add cost or complexity. Trane has standardized R-1233zd(E) for several centrifugal chiller product lines [trane]; other chiller OEMs offer R-1233zd(E) options.
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-1233zd(E) in 2026 and beyond">
+
+R-1233zd(E) is the dominant R-123 replacement refrigerant for low-pressure centrifugal chillers. Existing R-123 chillers facing the HCFC phase-down (US R-123 production banned January 2020) can be retrofitted to R-1233zd(E) with operational equivalence. New low-pressure chiller installations from 2020+ predominantly specify R-1233zd(E).
+
+The A1 safety class is the primary differentiator from R-1234ze (A2L) for chiller applications. For installations where A2L equipment-room provisions are inconvenient or where A1 classification is required by code or insurance, R-1233zd(E) is the natural choice.
+
+Service technicians familiar with R-123 chiller service can work R-1233zd(E) with minimal procedural adjustment — same pressure envelope, same safety class, same lubricant family. The retrofit transition is among the smoothest in the chiller refrigerant landscape.
+
+</TechSection>

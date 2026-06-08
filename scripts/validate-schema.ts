@@ -43,7 +43,7 @@ const CATEGORIES: Category[] = [
   },
   {
     name: "calculator",
-    matcher: (u) => /^\/(pt-calculator|superheat-calculator|subcooling-calculator|pt-superheat-subcooling-calculator|saturation-properties-calculator|refrigerant-pt-comparison-tool|refrigerant-retrofit-compatibility-calculator)\/$/.test(u),
+    matcher: (u) => /^\/(pt-calculator|superheat-calculator|subcooling-calculator|pt-superheat-subcooling-calculator|saturation-properties-calculator|refrigerant-pt-comparison-tool|refrigerant-retrofit-compatibility-calculator|system-pressure-diagnostic-calculator|refrigerant-charge-calculator)\/$/.test(u),
     required: ["Organization", "WebSite", "Article", "WebApplication", "BreadcrumbList"],
     expected: ["FAQPage"],
   },
@@ -73,7 +73,7 @@ const CATEGORIES: Category[] = [
   },
   {
     name: "long-form guide",
-    matcher: (u) => u === "/superheat-subcooling-fundamentals/" || u === "/pt-chart-guide/",
+    matcher: (u) => u === "/superheat-subcooling-fundamentals/" || u === "/pt-chart-guide/" || u === "/high-head-pressure-causes/" || u === "/refrigerant-comparison-guide/",
     required: ["Organization", "WebSite", "TechArticle", "BreadcrumbList"],
     expected: ["FAQPage"],
   },

@@ -1,8 +1,28 @@
 {
   "slug": "r-1233zd-z",
-  "ptSource": "TODO: Honeywell datasheet for Z-isomer of R-1233zd (specialty applications)",
+  "dataStatus": "no-commercial-data-published",
+  "ptSource": "No commercial PT chart published. R-1233zd(Z) is the cis-isomer of R-1233zd and has only research-grade measurement data; no Helmholtz EOS has been published for it. The commercially-used R-1233zd refers to the (E)-isomer (Honeywell Solstice ZD).",
   "ptSourceUrl": null,
-  "verifiedBy": "TODO: cross-check against published research literature",
+  "primarySources": [
+    {
+      "type": "isomer-note",
+      "citation": "ASHRAE Standard 34-2022 distinguishes R-1233zd(E) (commercial, in Solstice ZD chillers) from R-1233zd(Z) (cis-isomer, research-only).",
+      "url": "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    },
+    {
+      "type": "isomer-equivalent",
+      "citation": "For commercial PT chart data of R-1233zd, see the (E)-isomer entry: Hulse, R.J. et al. (2012), \"Physical Properties of HCFO-1233zd(E)\", J. Chem. Eng. Data 57(12), 3581-3586. doi:10.1021/je300776s.",
+      "url": "https://pubs.acs.org/doi/10.1021/je300776s",
+      "doi": "10.1021/je300776s"
+    },
+    {
+      "type": "research-measurement",
+      "citation": "Limited measurements for R-1233zd(Z) appear in molecular-simulation and isomerization-equilibrium research literature; no commercial PT chart has been published as of 2026.",
+      "url": null
+    }
+  ],
+  "verifiedBy": "NO COMMERCIAL DATA: R-1233zd(Z) does not have a published PT chart suitable for HVAC service reference. The (Z)-isomer is research-grade only; commercial R-1233zd applications use the (E)-isomer.",
+  "wagnerEos": null,
   "physical": {
     "boilingPointC": null,
     "boilingPointF": null,

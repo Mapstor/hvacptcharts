@@ -1,0 +1,55 @@
+---
+slug: r-500
+title: "R-500 Pressure Temperature Chart & Properties"
+metaTitle: "R-500 PT Chart, CFC Azeotrope (R-12/R-152a), GWP 8077 — Banned"
+metaDescription: "R-500 (azeotropic CFC blend, 73.8/26.2 R-12/R-152a) PT chart and properties. Production banned 1996 under Montreal Protocol. Historical use in centrifugal chillers and commercial refrigeration."
+introOneLiner: "Historical azeotropic blend of R-12 (CFC) and R-152a (HFC), 73.8/26.2 by mass. ASHRAE A1, ODP 0.605, GWP 8077. Production banned in 1996 under the Montreal Protocol. Found in legacy centrifugal chillers and 60 Hz hermetic compressor applications."
+
+narrative:
+  whatItIs: |
+    R-500 is an azeotropic blend of R-12 (CCl₂F₂, CFC-12) and R-152a (CH₃CHF₂, HFC-152a) in 73.8/26.2 mass ratio. The R-12 component carries the ozone-depletion liability — production was banned in the United States on January 1, 1996 under the Montreal Protocol CFC phase-out. As a CFC-containing blend, R-500 was banned alongside pure R-12.
+
+    The original commercial logic for R-500: in the 1950s-1980s, US 60 Hz hermetic compressor manufacturers found that the same compressor design that worked at European 50 Hz with R-12 had insufficient capacity at 60 Hz with R-12 alone — the higher motor speed needed a refrigerant with slightly higher pressure to maintain capacity per displacement. R-500 (with the higher-vapor-pressure R-152a component) provided that capacity boost. The "50 Hz vs 60 Hz" framing is partly historical folklore — the real value was the capacity gain — but it remains in the literature.
+
+  whereItsUsed:
+    - Centrifugal chillers (legacy, pre-1996 installations)
+    - Commercial refrigeration in 60 Hz market hermetic compressors (legacy)
+    - Some industrial process cooling (legacy)
+    - No new equipment since 1996; service supply was always limited
+
+  phaseDownStatus: |
+    R-500 production has been banned for almost three decades. There is essentially no remaining R-500 equipment in active service — the centrifugal chillers that used it have aged out and been replaced through normal equipment-replacement cycles. Service refrigerant (reclaimed R-500) is technically available but practically nonexistent at scale.
+
+    For any remaining R-500 equipment encountered in the field, the path is full replacement with modern equipment. Direct retrofit to R-134a or R-450a (the typical CFC chiller replacements) typically requires compressor changes, expansion device changes, and seal replacements — economically equivalent to a full replacement.
+
+  serviceNotes: |
+    Mineral oil (MO) and alkylbenzene (AB) are compatible. POE is NOT compatible — R-500's CFC base is incompatible with the POE chemistry used in HFC retrofits. EPA Section 608 Type II certification covers R-500 (or Universal); recovery is required and venting has been illegal under Clean Air Act §608 since 1990.
+
+    R-500 is azeotropic (glide ~0.05°F per CoolProp at 0°C) — for service purposes treat it as a single-fluid refrigerant with no special bubble/dew handling.
+
+faqs:
+  - q: "Is R-500 still legal to use?"
+    a: |
+      Reclaimed R-500 (recovered from existing equipment, refined to specification, certified) is legal to use indefinitely in existing equipment under current EPA rules. New production has been banned in the US since January 1, 1996 under the Montreal Protocol CFC phase-out. In practice the reclaimed supply is extremely limited because so little equipment remains.
+
+  - q: "Why was R-500 banned?"
+    a: |
+      The R-12 component (73.8% of R-500) is a chlorofluorocarbon — CCl₂F₂. CFCs release chlorine atoms in the stratosphere that catalyze ozone destruction. The Montreal Protocol (1987, amended several times) mandated phase-out of all CFCs. The US implemented the CFC production ban on January 1, 1996. R-500 and other CFC-containing blends were banned alongside pure CFCs.
+
+  - q: "What replaced R-500?"
+    a: |
+      R-134a (HFC) was the primary replacement for R-500 and R-12 in centrifugal chillers and similar applications. R-450a (HFO/HFC blend, GWP 547) replaced R-134a in some applications as the next phase-down step. For new chillers, R-1234ze(E) (HFO, A2L, GWP 7) and R-514A (HFO blend, low GWP) are the modern choices. Direct retrofit of R-500 to R-134a or R-450a requires compressor or expansion-device changes in most cases.
+
+  - q: "Is R-500 an azeotrope or zeotrope?"
+    a: |
+      Azeotrope. R-500 has effectively zero temperature glide at typical operating pressures — bubble and dew points coincide. The 73.8/26.2 ratio of R-12/R-152a was chosen specifically to produce azeotropic behavior, making R-500 behave like a single-fluid refrigerant in terms of saturation handling. This was a feature of the original design — service techs could handle R-500 without the bubble/dew curve complexity of zeotropic blends.
+
+  - q: "What is the GWP of R-500?"
+    a: |
+      8077 per IPCC AR5, mass-weighted from R-12 (10,200) at 73.8% and R-152a (124) at 26.2%. The high GWP is dominated by R-12; if R-500 production had not been banned for ozone-depletion reasons, the GWP alone would still place it well above any modern phase-down threshold. By 2026 standards R-500 is unviable on multiple criteria (ODP, GWP) — the 1996 ban removed it from new equipment well before GWP became the constraining concern.
+
+retrofitGuidance:
+  fromRefrigerant: ""
+  notes: |
+    R-500 to R-134a retrofit requires compressor evaluation (capacity differences), expansion-device assessment, seal compatibility (R-500's mineral oil to R-134a's POE), and full oil change. For most legacy R-500 equipment, full equipment replacement with modern R-134a, R-450a, or R-1234ze(E) chillers is more cost-effective than retrofit. Consult ASHRAE retrofit guidance and OEM service literature before attempting retrofit on irreplaceable equipment.
+---

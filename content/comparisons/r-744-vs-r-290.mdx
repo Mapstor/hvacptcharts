@@ -1,0 +1,61 @@
+---
+slug: r-744-vs-r-290
+refrigerantA: r-744
+refrigerantB: r-290
+title: "R-744 vs R-290: Two Natural Refrigerants, Different Trade-offs"
+metaTitle: "R-744 vs R-290 — CO₂ Transcritical vs Propane A3 Charge-Limited"
+metaDescription: "R-744 vs R-290: CO₂ (very high pressure, non-flammable, transcritical) vs propane (charge-limited A3 highly flammable). Both GWP < 5. Different application classes — refrigeration vs heat pumps."
+introOneLiner: "Two natural refrigerants with very low GWP (R-744 = 1, R-290 = 3). R-744 (CO₂) requires very high-pressure equipment (838 PSIG at 70°F) with transcritical operation in warm climates — non-flammable. R-290 (propane) operates at conventional pressures (110 PSIG at 70°F) but is A3 highly flammable with strict charge limits."
+
+chooseA: "Commercial refrigeration at scale where the equipment cost of high-pressure CO₂ infrastructure is justified — supermarket booster systems, district refrigeration, large industrial cold storage. R-744 eliminates flammability concerns and clears regulatory phase-down hurdles permanently (GWP 1, no plausible future restriction)."
+
+chooseB: "Small heat pumps and commercial refrigeration where charge can be kept within A3 hydrocarbon limits (typically <150g for residential, larger for commercial with engineered controls). R-290 uses conventional pressure-range equipment and standard HVAC service practices adapted for hydrocarbon handling. Dominant in EU residential heat pumps and many small commercial refrigeration units."
+
+whenNeither: "For applications too small for R-744 economics but too large for R-290 charge limits, A2L HFC/HFO blends remain the practical choice (R-32, R-454B for residential AC; R-454C, R-455A for commercial refrigeration). For ultra-low temperature industrial applications, R-717 (ammonia) covers the largest installed base. Naturals are growing but the right application fit matters significantly."
+
+retrofitNotes: |
+  Neither R-744 nor R-290 is typically a retrofit refrigerant. Both require purpose-designed equipment due to their unique handling requirements. The decision between them is usually made for new installations.
+
+  **R-744 (CO₂) — design considerations:**
+
+  - **Very high pressures:** Standard high-side rating of 1450-2000 PSIG for transcritical systems; subcritical systems typically rated 600-900 PSIG. Standard HVAC manifold gauges (500-800 PSI) will fail catastrophically with R-744.
+  - **Transcritical operation:** Above 87.8°F (CO₂'s critical temperature), no condensation occurs. The "condenser" becomes a "gas cooler" and high-side pressure is controlled by a valve to optimize efficiency rather than being set by ambient.
+  - **Cost:** Equipment is 30-100% more expensive than HFC alternatives for the same capacity; refrigerant itself is essentially free.
+  - **Application fit:** Supermarket commercial refrigeration (booster systems handling both medium- and low-temperature cases on one refrigerant), CO₂ heat pumps for water heating, large industrial refrigeration with high-pressure infrastructure already in place.
+
+  **R-290 (propane) — design considerations:**
+
+  - **Conventional pressures:** Standard HVAC manifold gauges (500-800 PSI) handle R-290 without modification.
+  - **A3 highly flammable:** Hydrocarbon-rated equipment design required — sealed compressor compartments, intrinsically safe controls, ventilation interlocks. Brazing requires nitrogen purge AND combustible refrigerant displacement protocols.
+  - **Charge limits:** Per IEC 60335-2-40, residential applications limited to small charges (typically <150g, expanding to <500g under recent revisions for some configurations). Commercial refrigeration per IEC 60335-2-89 allows larger charges in sealed equipment. Industrial applications can use much larger charges with engineered controls.
+  - **Application fit:** Residential heat pumps (especially EU market with established R-290 equipment ecosystem), small commercial refrigeration (vending coolers, ice machines, beverage merchandisers), and some industrial process refrigeration where flammability can be managed through engineering controls.
+
+  **Choice framework for new equipment:**
+
+  - **Small residential heat pump (<5 kW):** R-290 is the dominant natural choice. Established equipment ecosystem in EU, growing in US.
+  - **Commercial refrigeration display case (single):** R-290 is typical for self-contained refrigerated cases with sealed refrigerant circuit.
+  - **Supermarket-scale refrigeration:** R-744 booster systems are the modern standard for new installations. R-290 distributed systems are an alternative.
+  - **Large industrial refrigeration:** R-717 (ammonia) often outcompetes both R-744 and R-290 for capacity and efficiency. Naturals competition rather than HFC competition.
+
+faqs:
+  - q: "Why are R-744 and R-290 both called 'natural refrigerants'?"
+    a: "Both are substances that occur in nature in their refrigerant form, distinguishing them from manufactured fluorocarbons (HFCs, HFOs). R-744 is CO₂ — directly recovered from industrial sources or atmospheric capture. R-290 is propane — extracted from natural gas or petroleum refining. Both have very low GWP (R-744 = 1 by definition, R-290 = 3) and zero ODP. The 'natural' designation positions them as long-term-viable alternatives to manufactured HFCs facing climate phase-down."
+
+  - q: "Why does R-744 require such high pressures?"
+    a: "Physics of the molecule. CO₂'s small molecular size and high vapor pressure mean saturation pressures are very high at typical refrigeration temperatures: 838 PSIG at 70°F, 1280 PSIG at the critical temperature (87.8°F). There's no way to reduce R-744 operating pressures without changing the application range — equipment design accommodates this through thicker-walled components rated for the high pressures."
+
+  - q: "What does 'transcritical' mean for R-744?"
+    a: "Above CO₂'s critical temperature (87.8°F), there is no phase distinction between liquid and vapor — CO₂ becomes a single supercritical fluid. The 'condenser' in a normal refrigeration cycle is replaced by a 'gas cooler' that removes heat from the supercritical fluid without phase change. The high-side pressure is no longer set by ambient (as it would be in subcritical condensation) but is actively controlled by a valve to optimize cycle efficiency. Most US commercial CO₂ systems operate transcritically during summer and subcritically during winter."
+
+  - q: "Why does R-290 have a charge limit?"
+    a: "A3 flammability. Propane in air at concentrations of approximately 2-10% by volume is flammable; outside that range it's too lean (under-fueled) or too rich (over-fueled) to burn. Charge limits in IEC 60335-2-40 ensure that even total refrigerant release into the smallest enclosed space served by the equipment can't reach the lower flammability limit. The recent revision (2024) allows somewhat larger charges (up to ~500g) for residential equipment with appropriate engineering controls; commercial refrigeration limits per IEC 60335-2-89 allow larger charges in sealed equipment."
+
+  - q: "Which is more efficient, R-744 or R-290?"
+    a: "Application-dependent. R-290 is more efficient than R-744 across most typical operating ranges (warm ambient, medium-temperature operation) — its thermodynamic properties (high COP, conventional pressure envelope) outperform R-744's transcritical operation in warm climates. R-744 is competitive or superior in cold ambient (Northern climates), for heat pump water heating (where the transcritical cycle's high heat-rejection temperature glide matches water heating well), and for low-temperature commercial refrigeration where the higher discharge temperatures of R-744 are tolerable. The efficiency comparison varies dramatically with application; published COP studies for specific applications are the authoritative source."
+
+  - q: "Can R-744 or R-290 be retrofitted into existing HFC equipment?"
+    a: "Generally no. R-744 requires pressure ratings that legacy HFC equipment doesn't have; retrofit would risk catastrophic component failure. R-290 requires intrinsically safe electrical components in the refrigerant space and ventilation interlocks that legacy A1 equipment doesn't have; retrofit would create a flammable-atmosphere safety violation. Both naturals require purpose-designed equipment from the start."
+
+  - q: "Are R-744 and R-290 affected by AIM Act or EU F-Gas?"
+    a: "Not directly. AIM Act targets HFCs; EU F-Gas targets HFCs and PFCs. Neither legislation phases down R-744 (a basic chemical) or R-290 (a hydrocarbon). The regulatory situation: zero phase-down risk for either natural refrigerant. The practical limits on adoption are equipment capital cost (R-744) and charge/safety limitations (R-290), not regulatory pressure on the refrigerant itself."
+---

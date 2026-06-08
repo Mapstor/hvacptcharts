@@ -203,6 +203,10 @@ async function main() {
         physical = computePhysical(info.cpIdentifier, manual);
       }
 
+      // Pass through dataStatus and primarySources from manufacturer-blends file
+      const dataStatus = manual?.dataStatus ?? (ptChart.length > 0 ? "complete" : undefined);
+      const primarySources = manual?.primarySources ?? undefined;
+
       out.push({
         slug,
         displayName: info.displayName,
@@ -228,6 +232,8 @@ async function main() {
           ptChartVerifiedAgainst: info.verifiedAgainst ?? [],
           propertiesSource: info.propertiesSource ?? "CoolProp + ASHRAE 34",
           gwpSource: info.gwpSource ?? "IPCC AR5",
+          ...(dataStatus && { dataStatus }),
+          ...(primarySources && { primarySources }),
         },
       });
 

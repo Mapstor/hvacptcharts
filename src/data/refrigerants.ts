@@ -113,12 +113,33 @@ export const RegulatoryStatus = z.object({
 });
 export type RegulatoryStatus = z.infer<typeof RegulatoryStatus>;
 
+export const PrimarySource = z.object({
+  type: z.string(),
+  citation: z.string(),
+  url: z.string().nullable().optional(),
+  doi: z.string().optional(),
+  scope: z.string().optional(),
+  note: z.string().optional(),
+});
+export type PrimarySource = z.infer<typeof PrimarySource>;
+
+export const DataStatus = z.enum([
+  "complete",
+  "published-eos-not-in-build",
+  "manufacturer-datasheet-published",
+  "historical-retired-refrigerant",
+  "no-commercial-data-published",
+]);
+export type DataStatus = z.infer<typeof DataStatus>;
+
 export const DataSource = z.object({
   ptChartSource: z.string(),
   ptChartGeneratedAt: z.string(),
   ptChartVerifiedAgainst: z.array(z.string()),
   propertiesSource: z.string(),
   gwpSource: z.string(),
+  dataStatus: DataStatus.optional(),
+  primarySources: z.array(PrimarySource).optional(),
 });
 export type DataSource = z.infer<typeof DataSource>;
 

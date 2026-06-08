@@ -1,0 +1,54 @@
+---
+slug: r-457a
+title: "R-457A Pressure Temperature Chart & Properties"
+metaTitle: "R-457A PT Chart, A2L HFO Blend, GWP 139 — R-404A/R-22 Replace"
+metaDescription: "Verified R-457A (HFO blend, 18/70/12 R-32/R-1234yf/R-152a) PT chart and properties. ASHRAE A2L mildly flammable; very low GWP 139. R-404A and R-22 commercial refrigeration replacement."
+introOneLiner: "Ternary HFC/HFO blend (18% R-32 / 70% R-1234yf / 12% R-152a). A2L mildly flammable; very low GWP (139). Designed as a low-GWP replacement for R-404A and R-22 in commercial refrigeration. Significant temperature glide (~12°F)."
+
+narrative:
+  whatItIs: |
+    R-457A is a ternary blend combining R-32 (HFC), R-1234yf (HFO), and R-152a (HFC). Mass composition: 18% R-32, 70% R-1234yf, 12% R-152a. All three components are mildly to moderately flammable; the blend is classified A2L (mildly flammable, low burning velocity). The very low GWP of 139 places it well below the EPA AIM Act 700-GWP threshold and meets EU F-Gas 150-GWP cutoff for commercial refrigeration.
+
+    R-457A targets the same application space as R-454C (R-32/R-1234yf 21.5/78.5, GWP 148) and R-455A (R-744/R-32/R-1234yf 3/21.5/75.5, GWP 148): low-GWP commercial refrigeration replacing R-404A. The presence of R-152a in R-457A distinguishes it — the 12% R-152a contributes capacity and reduces the GWP slightly, but also widens the temperature glide. R-457A has been less commonly deployed than R-454C in practice; manufacturers have generally standardized on R-454C and R-455A for new equipment.
+
+  whereItsUsed:
+    - Medium-temperature commercial refrigeration (replacing R-404A in new equipment)
+    - R-404A retrofit option for existing equipment with POE oil
+    - Some R-22 retrofit applications where low-GWP and A2L acceptability align
+
+  phaseDownStatus: |
+    R-457A's GWP of 139 makes it well-positioned for the long term. It is below the EPA AIM Act 150-GWP cutoff for low-temperature commercial refrigeration (the most aggressive threshold), meaning it remains permitted for new equipment installations in that segment. The A2L classification is the limiting factor for application breadth — A2L acceptable-use designations require equipment with sealed motors, ventilation interlocks where appropriate, and explicit A2L charge limits.
+
+    Industry direction in 2025-2030: R-454C and R-455A dominate commercial refrigeration A2L; R-457A remains commercially available as an alternative but with less momentum. For very-low-GWP applications R-744 (CO₂ transcritical) competes where the equipment investment is justified.
+
+  serviceNotes: |
+    POE oil is required; mineral oil is incompatible. The A2L classification requires service practices appropriate for mildly flammable refrigerants: brazing requires nitrogen purge (standard practice for any HFC service anyway, but enforced strictly for A2L); leak detection requires A2L-compatible electronic detectors; recovery cylinders must be rated for the refrigerant.
+
+    R-457A has substantial temperature glide (~12.5°F per CoolProp). Superheat measurement uses the dew curve; subcooling uses the bubble curve. TXV systems generally accommodate moderate glide; very-large-glide blends (>15°F) may require adjustment. EPA Section 608 Universal or appropriate class certification covers R-457A handling.
+
+faqs:
+  - q: "Why isn't R-457A as common as R-454C for R-404A replacement?"
+    a: |
+      Three reasons: (1) manufacturer alignment — Honeywell and Chemours have promoted R-454C and R-455A more heavily; R-457A doesn't have the same commercial push; (2) glide differential — R-457A has slightly more glide (12.5°F) than R-454C (~10°F), which complicates TXV behavior on some equipment; (3) field availability — supply chain for R-454C is more developed. R-457A remains a valid technical choice but captures less market share.
+
+  - q: "What's the temperature glide of R-457A?"
+    a: |
+      Approximately 12.5°F (CoolProp at 0°C). This is substantial — at low evaporator setpoints (e.g., -20°F for low-temperature commercial), the bubble-to-dew temperature difference at the evaporator inlet is ~12°F, meaning the suction-line saturation temperature differs noticeably from the evaporator-inlet saturation. Use the dew curve for superheat measurement; the dew temperature at the suction pressure is the proper boundary.
+
+  - q: "What is the GWP of R-457A?"
+    a: |
+      139 per IPCC AR5, mass-weighted from R-32 (675) at 18%, R-1234yf (4) at 70%, R-152a (124) at 12%. This is below EU F-Gas 150 cutoff and EPA AIM Act 150-GWP threshold for low-temperature commercial refrigeration. It compares favorably to R-454C (148) and R-455A (148).
+
+  - q: "Is R-457A approved for commercial refrigeration?"
+    a: |
+      Yes for new equipment installations meeting A2L charge limits and equipment design requirements. EPA SNAP rules treat R-457A as acceptable for retail food refrigeration (medium-temp), commercial ice machines, and some industrial process refrigeration. R-22 and R-404A retrofit applications require the equipment to be evaluated for A2L compatibility — older A1-rated equipment is generally NOT permitted to be retrofitted to A2L without OEM approval.
+
+  - q: "Why does R-457A include R-152a instead of going pure HFC-32/HFO-1234yf like R-454C?"
+    a: |
+      R-152a addition serves two purposes: (1) capacity tuning — R-152a's vapor pressure profile is slightly different from R-1234yf's, allowing fine-tuning of the blend's capacity at specific evaporator setpoints; (2) GWP fine-tuning — R-152a (GWP 124) is lower than R-32 (GWP 675), so adding R-152a in place of some R-32 modestly reduces overall blend GWP. The tradeoff is added complexity in the blend and the slightly different flammability characteristics of R-152a (A2) vs R-32 (A2L) — in the blend the overall classification stays A2L.
+
+retrofitGuidance:
+  fromRefrigerant: r-404a
+  notes: |
+    R-404A to R-457A retrofit: equipment must be evaluated for A2L compatibility — most legacy R-404A equipment is A1-rated and NOT approved for A2L refrigerants without OEM authorization. Where retrofit is approved: recover R-404A; replace filter-drier with HFC/HFO-compatible model; verify POE oil is in good condition (replace if degraded); pull vacuum to 500 microns held 30 minutes; charge R-457A by weight at 90-95% of original R-404A nameplate. Verify TXV operation with the ~12°F glide; adjust if necessary. Confirm capacity matches application requirements; R-457A delivers within 5-10% of R-404A capacity in most envelopes.
+---

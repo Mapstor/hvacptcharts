@@ -1,57 +1,248 @@
 ---
 slug: r-513a
 title: "R-513A Pressure Temperature Chart & Properties"
-metaTitle: "R-513A (Solstice N13) PT Chart, A1, GWP 631, R-134a Replacement"
-metaDescription: "R-513A (Honeywell Solstice N13 / Chemours Opteon XP10) — binary HFC/HFO blend. ASHRAE A1, GWP 631. Near-azeotropic. Direct R-134a replacement for chillers and medium-temperature commercial refrigeration."
-introOneLiner: "Binary HFC/HFO blend (44% R-134a / 56% R-1234yf). Branded as Honeywell Solstice N13 and Chemours Opteon XP10. ASHRAE A1, GWP 631 — designed as a direct R-134a replacement that stays non-flammable (A1) and operates at nearly-identical pressures."
+metaTitle: "R-513A PT Chart, A1 Azeotrope, GWP 631 — Opteon XP10, R-134a Retrofit"
+metaDescription: "R-513A (R-134a/R-1234yf 44/56) PT chart. A1 near-azeotrope, GWP 631 (56% lower than R-134a), Chemours Opteon XP10. Chiller drop-in retrofit for R-134a. POE oil; ~0°F glide."
+introOneLiner: "Azeotropic R-134a/R-1234yf blend (44/56 mass) marketed as Chemours Opteon XP10 — A1 safety, GWP 631 (~56% lower than R-134a), essentially zero glide. The dominant R-134a chiller drop-in retrofit."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: aimact
+    label: "EPA AIM Act — 40 CFR Part 84 Subpart B"
+    url: "https://www.epa.gov/climate-hfcs-reduction"
+    date: "Final Rule Oct 2021"
+  - id: eufgas
+    label: "EU F-Gas Regulation 517/2014 (revised 2024)"
+    url: "https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases_en"
+  - id: snap
+    label: "EPA SNAP — R-513A acceptable for chiller retrofit"
+    url: "https://www.epa.gov/snap"
+  - id: coolprop
+    label: "CoolProp 7.2.0"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: ahri700
+    label: "AHRI Standard 700-2019"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: chemoursopteon
+    label: "Chemours Opteon XP10 (R-513A) Product Data Sheet"
+    url: "https://www.chemours.com/en/products/refrigerants"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: A1
+    context: Non-toxic, non-flammable; preserves R-134a equipment safety classification
+    sourceId: ashrae34
+  - label: Composition (mass)
+    value: "44% R-134a / 56% R-1234yf"
+    unit: ±1%
+    context: Binary azeotropic HFC/HFO blend
+    sourceId: ashrae34
+  - label: GWP (100-yr)
+    value: "631"
+    unit: IPCC AR5
+    context: Approximately 56% reduction from R-134a (1430)
+    sourceId: ipccar5
+  - label: ODP
+    value: "0"
+    context: Zero-ODP HFC + HFO components
+    sourceId: ashrae34
+  - label: Normal boiling point
+    value: "−20.0"
+    unit: °F (−28.9°C)
+    context: Higher than R-410A/R-22; suited to chiller pressure envelope
+    sourceId: coolprop
+  - label: Temperature glide
+    value: "≈0"
+    unit: °F
+    context: Azeotropic — single saturation curve, no bubble/dew distinction
+    sourceId: coolprop
+  - label: Required lubricant
+    value: POE
+    context: Polyolester; same as R-134a — no oil change for retrofit
+    sourceId: ahri700
+  - label: Trade name
+    value: Opteon XP10
+    context: Chemours brand; primary commercial brand for R-513A
+    sourceId: chemoursopteon
 
 narrative:
   whatItIs: |
-    R-513A is a binary near-azeotropic blend of 44% R-134a and 56% R-1234yf by mass. The composition was engineered as the lowest-GWP non-flammable replacement for R-134a in centrifugal chillers and medium-temperature commercial refrigeration — applications where A2L safety class is operationally inconvenient and the GWP reduction matters.
+    R-513A is an azeotropic binary blend of 44% R-134a (HFC) and 56% R-1234yf (HFO) by mass [ashrae34]. The azeotropic composition produces near-zero temperature glide — the blend behaves operationally like a pure refrigerant despite being a binary mixture.
 
-    Like R-450A (a related Opteon-line blend), R-513A keeps the A1 safety class by using R-134a as the non-flammable backbone, with R-1234yf substituted to drive down the overall GWP. The result is GWP 631 — well below R-134a's 1430 and within the AIM Act 700 threshold for new equipment.
+    R-513A was developed by Chemours as a near-drop-in retrofit for R-134a centrifugal chillers and commercial refrigeration. The pressure envelope closely matches R-134a; the lubricant (POE) is the same; the safety class (A1) is preserved. The retrofit value is GWP reduction — R-513A's 631 is approximately 56% below R-134a's 1430, providing substantial climate impact reduction without equipment-level redesign.
 
   whereItsUsed:
-    - Centrifugal chillers (medium-pressure commercial cooling)
-    - Screw chillers
-    - Medium-temperature commercial refrigeration (supermarket cases)
-    - Heat pumps (some commercial applications)
-    - R-134a retrofit (direct, A1-to-A1)
+    - "R-134a centrifugal chiller retrofit (water-cooled commercial chillers)"
+    - "R-134a screw chiller retrofit"
+    - "Commercial refrigeration retrofit (display cases, beverage coolers)"
+    - "New chiller equipment installations where A1 classification is preferred over R-1234ze(E) A2L"
 
   phaseDownStatus: |
-    R-513A's GWP of 631 is below the EPA AIM Act 700 threshold for new equipment in most chiller and commercial refrigeration categories — it remains compliant for new installations under current US regulations. It does not satisfy the EU F-Gas 150 threshold; EU long-term paths use R-1234ze(E) (A2L, GWP 7), R-515A/B (A1, GWP ~290-390), or R-1234yf-dominant A2L blends.
+    R-513A's GWP of 631 is below the EPA AIM Act 700-GWP threshold for residential AC (though R-513A isn't used in residential AC). For chiller and commercial refrigeration applications, R-513A faces EU F-Gas Regulation thresholds in some categories but provides comfortable margin in others [eufgas][aimact].
 
-    For the US chiller market R-513A is positioned alongside R-450A as the primary "stay-A1" R-134a alternative. Equipment OEMs (Carrier, Trane, York, Daikin) publish equipment-specific compatibility lists; for most R-134a chiller designs R-513A is an OEM-approved fill option.
+    R-513A is a transitional refrigerant. The very-low-GWP destination for chillers is R-1234ze(E) (A2L, GWP 7), which requires A2L-rated equipment redesign. For R-134a equipment retrofit, R-513A is the dominant A1 choice; for new equipment specification, R-1234ze(E) or R-515B (A1, GWP 287) are increasingly preferred.
 
   serviceNotes: |
-    Polyolester (POE) oil is required. R-513A is near-azeotropic — temperature glide approximately 0°F (less than 0.5°F at any operating point). For all practical purposes the blend behaves as a pure refrigerant in service.
+    POE oil required — same lubricant family as R-134a, so R-134a retrofit to R-513A typically does NOT require oil change [ahri700]. The azeotropic composition (essentially zero glide) means service measurement procedures from R-134a practice apply without modification.
 
-    R-513A pressures are within ~5% of R-134a's across the operating range. For R-134a retrofits the expansion valve typically requires no adjustment and the system pressure-bearing components are pressure-rated for R-513A without modification.
+    R-513A operating pressures are within 5% of R-134a across the chiller operating range. Standard 500 PSI manifold gauges handle the envelope. A1 classification means no A2L procedures required.
 
 faqs:
-  - q: "What is R-513A also called?"
-    a: "R-513A is the ASHRAE 34 designation. Primary commercial brands are Honeywell Solstice N13 and Chemours Opteon XP10. (The Opteon XP10 brand is also used by Chemours for R-450A in some product lines — verify the specific Opteon SKU on the cylinder marking, since Opteon XP10 has historically been used for both R-450A and R-513A in different product references.)"
+  - q: "What is the normal operating pressure of R-513A?"
+    a: |
+      Very close to R-134a. At 70°F R-513A saturation is approximately 77 PSIG (CoolProp 7.2.0). Compare to R-134a at 70°F (71 PSIG) — R-513A is about 8% higher.
 
-  - q: "How does R-513A compare to R-134a?"
-    a: "Pressures within ~5% — at 70°F R-513A is 77 PSIG vs R-134a's 71 PSIG. Both are A1 non-flammable; both use POE oil; both are near-azeotropic. The substantive differences are GWP (R-513A 631 vs R-134a 1430) and the blend composition (R-513A includes R-1234yf which drives down the GWP). For most R-134a applications R-513A is a direct drop-in once the equipment OEM has certified compatibility."
+      For typical chiller operation, the pressure delta is small enough that R-134a-rated equipment handles R-513A within design tolerances. Compressor and expansion-valve adjustments are typically not required.
 
-  - q: "R-513A or R-450A for an R-134a retrofit?"
-    a: "Both are A1 binary blends with R-134a as a component; both are near-azeotropic; both target the same applications. R-513A is 44/56 R-134a/R-1234yf with GWP 631; R-450A is 42/58 R-134a/R-1234ze(E) with GWP 605. Performance is very similar. The choice depends on equipment manufacturer compatibility lists (some OEMs approve only one), distributor availability, and operating preference. Both follow the same retrofit procedure."
+  - q: "Can I retrofit R-134a to R-513A without oil change?"
+    a: |
+      Yes — both refrigerants use POE oil. The R-134a POE oil is compatible with R-513A operation. Standard retrofit procedure: recover R-134a, replace filter-drier, evacuate to 500 microns, recharge R-513A by weight to OEM nameplate.
+
+      Verify oil condition. If POE is degraded, replace as part of the retrofit. But oil family compatibility is preserved across R-134a → R-513A transition — a major retrofit advantage.
+
+  - q: "What does R-513A's GWP of 631 mean?"
+    a: |
+      A 1 kg release of R-513A traps approximately 631 times more heat over 100 years than 1 kg of CO₂ (IPCC AR5, mass-weighted from 44% R-134a × 1430 + 56% R-1234yf × 4) [ipccar5]. The 631 figure represents a ~56% reduction from R-134a's 1430.
+
+      The reduction is significant but not low enough to clear EU F-Gas thresholds for the strictest chiller categories (where R-1234ze(E) at GWP 7 or R-515B at 287 is preferred). For most R-134a retrofit applications, R-513A's GWP positioning is adequate through the late 2020s.
+
+  - q: "Does R-513A have temperature glide?"
+    a: |
+      Essentially zero — the 44/56 composition is azeotropic. Service measurement procedures from R-134a practice (single saturation curve, no dew/bubble distinction) apply directly to R-513A without modification.
+
+      This is one of R-513A's primary retrofit advantages over zeotropic alternatives — no operational training adjustment needed for service technicians.
 
   - q: "What lubricant does R-513A use?"
-    a: "Polyolester (POE) oil. Mineral oil and alkylbenzene are not miscible. POE is hygroscopic; deep vacuum and verified hold matter before charging."
+    a: |
+      Polyolester (POE) oil — same lubricant family as R-134a [ahri700]. Typical viscosity is application-specific (chillers use ISO 32 or ISO 68 depending on compressor design). No oil change required for R-134a retrofit.
 
-  - q: "Can I drop R-513A into an R-134a chiller?"
-    a: "In many cases yes, with relatively modest service work. Both use POE oil; pressures are within 5%; the expansion valve typically doesn't need adjustment for a near-azeotrope. The key requirement is the equipment OEM's R-513A compatibility certification — verify before retrofitting. Procedure: recover R-134a, verify POE in the system, replace filter-drier with POE-compatible model, pull deep vacuum, charge R-513A by weight per the system's calculated capacity."
+  - q: "What's the difference between R-513A and R-450A?"
+    a: |
+      Both are A1 azeotropic HFC/HFO blends marketed as R-134a chiller retrofits. R-513A (Chemours Opteon XP10) is R-134a/R-1234yf 44/56, GWP 631. R-450A (Honeywell Solstice N13) is R-134a/R-1234ze(E) 42/58, GWP 605.
 
-  - q: "Why is R-134a being replaced?"
-    a: "GWP. R-134a's 1430 places it above the EPA AIM Act 700 threshold for new equipment in most categories. For chillers and commercial refrigeration, R-513A and R-450A are the primary A1 (non-flammable) replacements; R-1234yf, R-1234ze(E), and R-516A are A2L alternatives with even lower GWP."
+      Performance is essentially equivalent. R-450A has slightly lower GWP and uses R-1234ze(E) instead of R-1234yf as the HFO diluent. The choice between them is typically driven by manufacturer relationship.
 
-  - q: "What is the normal operating pressure of R-513A?"
-    a: "Very close to R-134a. On a typical commercial chiller with 45°F leaving water temperature and 95°F outdoor ambient, expect roughly 35-50 PSIG suction and 130-170 PSIG discharge. Saturation at 70°F is 77 PSIG; at 100°F it's ~140 PSIG. Operating pressures depend on chiller load, condenser approach, and evaporator setpoint."
+  - q: "Is R-513A safe to handle?"
+    a: |
+      ASHRAE class A1 — non-toxic and non-flammable [ashrae34]. Standard HFC service procedures apply. No A2L-specific requirements.
+
+  - q: "Can R-513A be used in new chillers?"
+    a: |
+      Yes — Chemours and major chiller OEMs (Trane, Carrier, Johnson Controls, Daikin) offer R-513A new-equipment options. For maximum GWP reduction, new chillers increasingly specify R-1234ze(E) (A2L, GWP 7) or R-515B (A1, GWP 287); R-513A is the A1 retrofit-friendly option with moderate GWP reduction.
 
 retrofitGuidance:
   fromRefrigerant: r-134a
   notes: |
-    R-134a to R-513A is among the simpler HFC retrofits: both A1 (no safety class change), both POE (no oil change), pressures within 5% (no expansion valve adjustment typically required for near-azeotropic). Procedure: recover R-134a, verify POE in the system, replace filter-drier with POE-compatible model, pull vacuum to 500 microns held 30 minutes, charge R-513A by weight per the system's calculated capacity. The key gate is equipment OEM compatibility certification — verify R-513A is on the approved refrigerant list for the specific equipment before retrofitting.
+    R-513A retrofit of R-134a chillers: (1) Recover R-134a. (2) Replace filter-drier. (3) Inspect oil; replace if degraded, otherwise leave POE in place. (4) Evacuate to 500 microns, hold ≥30 minutes. (5) Charge R-513A by weight (typically 95-100% of R-134a nameplate). Capacity match within 3-5% of R-134a; minor compressor performance adjustment may be needed at extreme operating conditions.
 ---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-513A PT chart — single curve, azeotropic">
+
+R-513A is azeotropic — bubble and dew temperatures coincide at typical operating pressures [coolprop]. The PT chart shows a single saturation curve, identical in structure to pure refrigerant charts like R-134a or R-22.
+
+For service measurement: superheat = suction line temp − saturation temp at suction pressure; subcooling = saturation temp at discharge pressure − liquid line temp. No glide correction needed. Procedures from R-134a practice apply directly.
+
+<KeyInsight tone="emerald" icon="composition" title="Azeotropic blend = service simplicity">
+R-513A is one of the easier blends to work with in service. The azeotropic composition was deliberately engineered to deliver R-134a-like service simplicity. Technicians transitioning from R-134a to R-513A face essentially no procedural changes — same lubricant, same pressure envelope, same single-curve measurement.
+</KeyInsight>
+
+</TechSection>
+
+<TechSection icon="composition" tone="purple" title="The 44/56 R-134a/R-1234yf composition is azeotropic">
+
+R-513A combines R-134a (44%, GWP 1430, A1) and R-1234yf (56%, GWP 4, A2L) in azeotropic proportions. The 44/56 mass ratio produces a specific composition where the blend behaves like a single substance — bubble and dew points coincide at typical operating pressures.
+
+The mass-weighted GWP: 0.44 × 1430 + 0.56 × 4 = 629 + 2 = 631 [ipccar5]. The R-1234yf component dilutes the GWP substantially without significantly changing the pressure envelope from R-134a's profile.
+
+The A1 safety classification is preserved despite R-1234yf being A2L individually. The R-134a content (44%) provides enough non-flammable mass fraction to keep the blend below the A2L flammability threshold per ASHRAE 34 testing protocols.
+
+</TechSection>
+
+<TechSection icon="trending" tone="amber" title="Pressure envelope within 5-8% of R-134a">
+
+R-513A's pressure envelope closely matches R-134a — the design intent of the retrofit blend. At 70°F R-513A saturation is 77 PSIG vs R-134a's 71 PSIG (CoolProp 7.2.0) — approximately 8% higher. At 95°F, R-513A is approximately 132 PSIG vs R-134a's 124 PSIG — approximately 7% higher.
+
+The small pressure delta means R-134a-rated equipment handles R-513A within design tolerances. Compressor surge protection, expansion-valve setpoints, and accumulator design all carry over from R-134a operation without modification.
+
+For chiller applications specifically, the centrifugal compressor design is forgiving of small pressure deltas — within ±10% the compressor operates in its efficient envelope without redesign. R-513A retrofit of R-134a chillers is typically successful without compressor modification.
+
+</TechSection>
+
+<TechSection icon="globe" tone="emerald" title="GWP 631 — substantial reduction with A1 preservation">
+
+R-513A's GWP of 631 represents a 56% reduction from R-134a's 1430 — the primary value proposition of the retrofit. The reduction comes entirely from the R-1234yf component (GWP 4); the 44% R-134a content drives most of the residual GWP.
+
+For regulatory positioning: R-513A's 631 is below the EPA AIM Act 700-GWP threshold for residential AC (though R-513A isn't used in residential AC). For chiller and commercial refrigeration applications, R-513A faces EU F-Gas Regulation thresholds in some categories.
+
+The long-term low-GWP chiller destination is R-1234ze(E) (GWP 7) or R-515B (GWP 287). R-513A is a transitional refrigerant for R-134a chiller retrofit through the late 2020s; new chiller equipment increasingly specifies the lower-GWP alternatives.
+
+</TechSection>
+
+<TechSection icon="thermometer" tone="sky" title="R-513A at chiller operating temperatures">
+
+R-513A saturation values across typical chiller operating conditions:
+
+- **35°F (chilled water evaporator)** — R-513A saturation approximately 30 PSIG.
+- **45°F (chilled water reference)** — R-513A saturation approximately 40 PSIG.
+- **70°F (bench reference)** — R-513A saturation 77 PSIG.
+- **85°F (cooling tower water supply)** — R-513A saturation approximately 102 PSIG.
+- **95°F (warm cooling water condenser)** — R-513A saturation approximately 132 PSIG.
+- **105°F (extreme condenser operation)** — R-513A saturation approximately 152 PSIG.
+
+For chiller operation at typical conditions (45°F leaving chilled water, 95°F entering condenser water): expect 35-45 PSIG suction and 120-150 PSIG discharge. Very similar to R-134a operating ranges in the same equipment.
+
+</TechSection>
+
+<TechSection icon="service" tone="blue" title="R-134a to R-513A retrofit — operationally simple">
+
+The R-134a to R-513A retrofit is one of the simpler refrigerant transitions in commercial HVAC. Same safety class, same lubricant family, near-azeotropic behavior, similar pressure envelope.
+
+| Step | Action |
+| --- | --- |
+| 1. Recover | Recover R-134a per EPA Section 608. |
+| 2. Drier | Replace filter-drier (standard practice for major service). |
+| 3. Oil inspection | Inspect POE oil. Replace if degraded; otherwise leave in place. |
+| 4. Evacuate | Pull vacuum to 500 microns; hold ≥30 minutes. |
+| 5. Recharge | Charge R-513A by weight to OEM nameplate (95-100% of R-134a charge). |
+| 6. Verify | Verify chiller operation at design conditions. |
+
+Capacity match is within 3-5% of R-134a for most chiller applications. Some efficiency adjustment may be needed at extreme operating conditions but typical performance is within acceptable tolerances. The retrofit can typically be completed in standard chiller service time without major equipment downtime.
+
+</TechSection>
+
+<TechSection icon="recycle" tone="amber" title="R-134a chiller retrofit options — R-513A vs R-450A vs R-515B vs R-1234ze(E)">
+
+For R-134a chillers facing GWP-driven phase-down pressure, four retrofit and replacement paths exist:
+
+| Refrigerant | Class | GWP | Composition | Best fit |
+| --- | --- | --- | --- | --- |
+| R-513A | A1 | 631 | R-134a/R-1234yf 44/56 azeotrope | R-134a drop-in retrofit |
+| R-450A | A1 | 605 | R-134a/R-1234ze(E) 42/58 azeotrope | R-134a drop-in (Honeywell alternative) |
+| R-515B | A1 | 287 | R-1234ze(E)/R-227ea 91.1/8.9 azeotrope | New equipment, lower GWP than R-513A/R-450A |
+| R-1234ze(E) | A2L | 7 | Pure HFO | New chiller equipment, A2L design required |
+
+R-513A and R-450A are the A1 drop-in retrofits — operationally simplest, lowest equipment redesign requirement. R-515B is the lower-GWP A1 alternative for new equipment where some efficiency adjustment is acceptable. R-1234ze(E) is the very-low-GWP new-equipment destination, requiring A2L-rated chiller design.
+
+The choice typically depends on equipment age and capital availability. Existing R-134a chillers with substantial remaining life: R-513A or R-450A retrofit. Major chiller replacement decisions: R-515B (A1) or R-1234ze(E) (A2L) for long-term GWP positioning.
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-513A in 2026 and beyond">
+
+R-513A occupies the R-134a chiller retrofit niche through the late 2020s. For existing R-134a centrifugal chillers and commercial refrigeration equipment with substantial remaining service life, R-513A provides ~56% GWP reduction while preserving A1 safety classification, POE oil compatibility, and operational simplicity.
+
+For new chiller equipment, the trend is toward lower-GWP alternatives. R-515B (A1, GWP 287) is increasingly the choice for new equipment where A1 safety is required; R-1234ze(E) (A2L, GWP 7) is the long-term low-GWP destination requiring A2L-rated chiller design.
+
+For service technicians, R-513A work is operationally interchangeable with R-134a work. Same lubricant, same pressure envelope, same single-curve measurement procedures. The retrofit transition from R-134a to R-513A is the easiest of any major HFC retrofit.
+
+</TechSection>

@@ -1,61 +1,296 @@
 ---
 slug: r-22
 title: "R-22 Pressure Temperature Chart & Properties"
-metaTitle: "R-22 PT Chart, Mineral Oil, 2020 Phase-Out — Service Reference"
-metaDescription: "Verified R-22 (HCFC-22, chlorodifluoromethane) pressure-temperature chart, properties, and lubricant compatibility. Production phased out in 2020; reclaimed supply for existing equipment service only."
-introOneLiner: "Pure HCFC, chlorodifluoromethane (CHClF₂). The residential AC standard for four decades. US production banned in 2020; existing systems serviced with reclaimed or stockpiled supply."
+metaTitle: "R-22 PT Chart, HCFC, GWP 1810, ODP 0.055 — Banned 2020"
+metaDescription: "Verified R-22 (HCFC-22, chlorodifluoromethane) PT chart, GWP 1810, ODP 0.055. US production banned 1 Jan 2020 under Montreal Protocol. Mineral oil lubricant; reclaimed-only service supply."
+introOneLiner: "Pure HCFC chlorodifluoromethane — the dominant US residential AC refrigerant 1960s-2010, with virgin production banned 1 January 2020 under the Montreal Protocol HCFC schedule."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022 — Designation and Safety Classification of Refrigerants"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: montrealprotocol
+    label: "Montreal Protocol on Substances that Deplete the Ozone Layer — HCFC phase-out schedule (1992 Copenhagen Amendment)"
+    url: "https://ozone.unep.org/treaties/montreal-protocol"
+    date: "1987, amended through 2016"
+  - id: epacfr82
+    label: "EPA 40 CFR Part 82 Subpart A — Production and Consumption Controls (HCFC phase-out)"
+    url: "https://www.epa.gov/ods-phaseout"
+    date: "Final HCFC production phase-out: 1 Jan 2020"
+  - id: epasec608
+    label: "EPA Section 608 — Stationary Refrigeration and Air Conditioning Regulations (40 CFR Part 82 Subpart F)"
+    url: "https://www.epa.gov/section608"
+  - id: coolprop
+    label: "CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014) — REFPROP-compatible Helmholtz EOS"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: ahri700
+    label: "AHRI Standard 700-2019 — Specifications for Refrigerants"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: nistwebbook
+    label: "NIST Chemistry WebBook — Thermophysical properties (CAS 75-45-6)"
+    url: "https://webbook.nist.gov/chemistry/fluid/"
+  - id: accamanualT
+    label: "ACCA Manual T — Air-Side and Refrigerant-Side Diagnostics"
+    url: "https://www.acca.org/standards"
+  - id: ashraehandbook
+    label: "ASHRAE Handbook of Refrigeration 2022 — Refrigerant tables and application data"
+    url: "https://www.ashrae.org/technical-resources/ashrae-handbook"
+    date: "2022"
+  - id: chemoursfreon
+    label: "Chemours Freon 22 / Honeywell Genetron 22 Technical Information"
+    url: "https://www.chemours.com/en/products/refrigerants"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: A1
+    context: Non-toxic, non-flammable
+    sourceId: ashrae34
+  - label: Chemical formula
+    value: CHClF₂
+    context: Chlorodifluoromethane (pure HCFC, no blend)
+    sourceId: ashrae34
+  - label: ODP
+    value: "0.055"
+    context: Chlorine bearing; ozone-depleting under Montreal Protocol
+    sourceId: montrealprotocol
+  - label: GWP (100-yr)
+    value: "1810"
+    unit: IPCC AR5
+    context: High climate impact; AIM Act does not apply (HCFC, not HFC)
+    sourceId: ipccar5
+  - label: Normal boiling point
+    value: "−41.5"
+    unit: °F (−40.8°C)
+    context: At 1 atm
+    sourceId: coolprop
+  - label: Critical temperature
+    value: "205"
+    unit: °F (96.1°C)
+    context: Well above ambient — full saturation range available
+    sourceId: coolprop
+  - label: US virgin production
+    value: Banned
+    unit: 1 Jan 2020
+    context: Reclaimed and stockpiled supply only
+    sourceId: epacfr82
+  - label: Required lubricant
+    value: MO / AB
+    context: Mineral oil or alkylbenzene; POE not used in original systems
+    sourceId: ahri700
 
 narrative:
   whatItIs: |
-    R-22 is pure chlorodifluoromethane (CHClF₂) — a single-molecule hydrochlorofluorocarbon, not a blend. From the 1960s through the early 2000s it was the dominant refrigerant in US residential central air conditioning, light commercial cooling, heat pumps, and medium-temperature commercial refrigeration.
+    R-22 is pure chlorodifluoromethane (CHClF₂), a single-molecule hydrochlorofluorocarbon — not a blend, no temperature glide [ashrae34]. From the 1960s through the early 2000s it was the dominant refrigerant for US residential central air conditioning, light commercial cooling, heat pumps, and medium-temperature commercial refrigeration.
 
-    Its chlorine content gives it a non-zero ozone-depletion potential (ODP 0.055). Under the Montreal Protocol, R-22 production was phased down in stages: new equipment production banned in 2010, and virgin R-22 production banned entirely in the US on January 1, 2020. The service supply now comes from reclaimed and stockpiled material.
+    Its chlorine content gives it ozone-depletion potential of 0.055 [montrealprotocol]. Under the Montreal Protocol HCFC phase-down, US production of new R-22 equipment was banned in 2010 and virgin R-22 production was banned on 1 January 2020 [epacfr82].
 
   whereItsUsed:
-    - Existing residential central AC systems (servicing only — no new equipment since 2010)
-    - Existing commercial chillers and heat pumps
-    - Medium-temperature commercial refrigeration (legacy)
-    - Service equipment for the millions of R-22 systems still in operation
+    - "Existing residential central AC systems — service of pre-2010 installations"
+    - "Existing commercial chillers and heat pumps (legacy)"
+    - "Medium-temperature commercial refrigeration (legacy)"
+    - "Reclaimed-supply service market for the installed base still in operation"
 
   phaseDownStatus: |
-    R-22 is subject to the Montreal Protocol HCFC phase-down, not the AIM Act (which targets HFCs). Key US milestones: 2010 ban on new equipment, 2020 ban on virgin production. Reclaimed R-22 remains legal to use indefinitely under current regulations.
+    R-22 is governed by the Montreal Protocol HCFC schedule, not the AIM Act (which targets HFCs). US milestones: 2010 ban on new equipment manufacture, 1 January 2020 ban on virgin production [epacfr82]. Reclaimed R-22 remains legal to use indefinitely under current EPA Section 608 rules [epasec608].
 
-    The practical reality: R-22 prices have climbed sharply as supply tightens. Repairs to leaking R-22 systems often cost more than partial system replacement. Most contractors advise full-system replacement (with R-410A or A2L equipment) when a major component fails on a legacy R-22 system.
+    Service economics have shifted sharply since 2020 — reclaimed R-22 wholesale prices have climbed 8-15× their pre-phaseout levels. Most contractors now recommend full system replacement (R-32 or R-454B equipment) when an R-22 system faces a major component failure.
 
   serviceNotes: |
-    Mineral oil (MO) is the historical lubricant standard. Alkylbenzene (AB) oils are also compatible and were used in some 1990s-era systems. POE oil is NOT used with R-22 — POE is required only for HFC retrofits.
+    Mineral oil (MO) is the historical lubricant standard; alkylbenzene (AB) was also widely used in 1990s-era systems [ahri700]. POE oil is NOT used with R-22 in original equipment — POE is required only for HFC retrofits (R-407C, R-422D, R-438A).
 
-    EPA Section 608 certification is required to service R-22 equipment. Type II (high-pressure) or Universal certification covers R-22. Recovery is required; venting is illegal under Clean Air Act §608.
+    EPA Section 608 certification is required to service R-22 equipment; Type II (high-pressure) or Universal certification covers it [epasec608]. Recovery is mandatory; venting has been illegal under Clean Air Act §608 since 1990. Standard manifold gauges rated for 500 PSI high-side are adequate (R-22 operates well below this).
 
 faqs:
-  - q: "Is R-22 a blend?"
-    a: |
-      No. R-22 is pure chlorodifluoromethane (CHClF₂), a single-molecule HCFC. This is sometimes confused because newer refrigerants are blends, but R-22 itself has no temperature glide and no composition fractions — it is a pure substance.
-
-  - q: "Can I still buy R-22?"
-    a: |
-      Reclaimed R-22 is legal to buy and use. Virgin production was banned in the US on January 1, 2020. The supply comes from material recovered during equipment removal, processed back to specification, and resold. Prices have risen significantly as the supply tightens.
-
-  - q: "What lubricant does R-22 use?"
-    a: |
-      Mineral oil (MO) is the standard. Alkylbenzene (AB) is also compatible. Polyolester (POE) oil — required for HFC refrigerants — is NOT used with R-22 in original systems. Adding POE to a working R-22 system serves no purpose and creates contamination risk.
-
   - q: "What is the normal operating pressure of R-22?"
     a: |
-      At 95°F outdoor ambient on a properly charged residential R-22 system, expect roughly 70 PSIG suction and 250 PSIG discharge. Saturation pressure at 95°F is 181 PSIG; actual operating pressures depend on superheat, subcooling, ambient, and indoor load. See [/what-pressure-should-r22-be/](/what-pressure-should-r22-be/) for the diagnostic ranges.
+      On a 95°F outdoor day with a properly charged residential R-22 system, expect roughly 70 PSIG suction and 250 PSIG discharge. R-22 saturation pressure at 95°F is approximately 181 PSIG (CoolProp 7.2.0); actual operating values depend on superheat, subcooling, ambient, and indoor load.
 
-  - q: "Can I retrofit R-22 to R-410A?"
+  - q: "Is R-22 still legal to use?"
     a: |
-      Not as a drop-in. R-410A operates at substantially higher pressures than R-22 and requires POE oil rather than mineral oil. A true R-410A conversion requires replacing the compressor, expansion device, and possibly the indoor coil — usually more expensive than a full system replacement.
+      Yes — reclaimed R-22 remains legal to use in existing equipment indefinitely under EPA Section 608 rules. New virgin production was banned on 1 January 2020 under the Montreal Protocol HCFC schedule [epacfr82]. The service supply now comes entirely from reclaimed material (extracted from recovered equipment and refined back to specification).
 
-      For a true mid-life retrofit, the R-22 drop-in blends are R-407C, R-422D, R-438A (Honeywell Genetron MO99), and R-427A (Arkema Forane 427A). Each has tradeoffs in capacity, oil compatibility, and glide.
+  - q: "Why is R-22 so expensive now?"
+    a: |
+      Virgin production was banned in 2020, so the entire service market depends on reclaimed R-22 — a finite and shrinking supply pool. Typical wholesale prices in 2026 are roughly 8-15× the pre-phaseout (2019) baseline, and per-cylinder pricing varies sharply with seasonal demand.
+
+      The reclaim-only supply will continue to shrink as more R-22 equipment is replaced. Service decisions should account for the rising refrigerant cost — major system repairs often justify full replacement.
+
+  - q: "Can I retrofit my R-22 system to R-410A?"
+    a: |
+      No, not as a refrigerant swap. R-410A operates at roughly 60-65% higher pressures than R-22 (exceeds R-22 equipment design ratings) and requires POE oil rather than mineral oil. A real R-22-to-R-410A conversion needs new compressor, expansion device, and possibly the indoor coil — at that cost, full system replacement is typically more economical.
+
+      For systems where the equipment chassis must stay, the mineral-oil-compatible R-22 retrofit blends are R-407C, R-422D, R-438A (Honeywell MO99), and R-427A (Arkema Forane 427A).
 
   - q: "Why is R-22 being phased out?"
     a: |
-      R-22 contains chlorine, which depletes the stratospheric ozone layer when released. The Montreal Protocol (1987) mandated the phase-down of all ozone-depleting substances. R-22, as the most common HCFC, was a primary target. Replacement HFCs like R-410A have zero ODP — but their high GWP has made them in turn the target of the AIM Act phase-down.
+      R-22 contains chlorine (ODP 0.055), which depletes stratospheric ozone when released. The 1987 Montreal Protocol mandated phase-down of all ozone-depleting substances [montrealprotocol], and the 1992 Copenhagen Amendment added HCFCs including R-22 to the schedule.
+
+      The US implemented the HCFC phase-down through 40 CFR Part 82 Subpart A: 2010 ban on new equipment, 2020 ban on virgin production [epacfr82].
+
+  - q: "What lubricant does R-22 use?"
+    a: |
+      Mineral oil (MO) is the standard lubricant; alkylbenzene (AB) is also compatible and was used in some 1990s systems. POE oil — required for HFC refrigerants — is NOT used with R-22 in original systems [ahri700].
+
+      Adding POE to a working R-22 system serves no purpose and creates contamination risk if the system is later retrofitted to an HFC blend (residual mineral oil interferes with POE/HFC compatibility).
+
+  - q: "What's the difference between R-22 and Freon?"
+    a: |
+      "Freon" is a Chemours/DuPont trademark that has been applied to many fluorinated refrigerants over the decades — R-11, R-12, R-22, R-410A all carry the Freon family branding. "Freon 22" specifically refers to R-22, but the colloquial use of "Freon" as a generic refrigerant term is technically inaccurate.
+
+      Honeywell's equivalent brand is Genetron; for R-22 the product name is Genetron 22.
+
+  - q: "How long will my R-22 system last?"
+    a: |
+      Equipment lifespan depends on installation quality, climate, maintenance, and usage — typical residential R-22 systems last 15-25 years. Since virgin R-22 production stopped in 2020, equipment installed in the early 2000s is now reaching end-of-life on both equipment and refrigerant supply curves.
+
+      For systems facing major repair, the decision framework: under 10 years with no major leaks → continue service; 10-15 years with isolated leak → repair, optionally retrofit; over 15 years with compressor concern → full replacement with R-32 or R-454B equipment.
 
 retrofitGuidance:
   fromRefrigerant: ""
   notes: |
-    R-22 itself is the refrigerant being retrofitted FROM. Going to R-410A requires full equipment replacement. Going to a true drop-in (R-407C, R-422D, R-438A, R-427A) requires only a refrigerant swap and sometimes an oil change.
+    R-22 itself is the refrigerant being retrofitted FROM. Modern paths: (1) continue on reclaimed R-22 indefinitely (legal, increasingly expensive), (2) retrofit to a mineral-oil-compatible HFC blend (R-407C, R-422D, R-438A, R-427A) for a 5-10 year service bridge, or (3) full equipment replacement with R-32 / R-454B systems. New replacement equipment is typically 20-30% more efficient than R-22-era equipment.
 ---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-22 pressure-temperature chart">
+
+The PT chart above plots saturation pressure on the vertical axis against temperature on the horizontal axis. The curve is the boundary between liquid and vapor at thermodynamic equilibrium — above the line the refrigerant is vapor, below it the refrigerant is subcooled liquid, on the line the two phases coexist.
+
+R-22 is a pure refrigerant with no temperature glide, so a single saturation curve fully describes the phase boundary [ashrae34]. Read across from a measured temperature to find the saturation pressure that should appear at that point in the cycle; read up from a measured manifold pressure to find the saturation temperature.
+
+<KeyInsight tone="emerald" icon="insight" title="Pure refrigerant = simple measurement">
+R-22's pure-component chemistry is one reason it stayed dominant in field service for 60 years. No bubble/dew distinction means superheat math = suction line temp − saturation temp directly; subcooling math = saturation temp − liquid line temp directly. No glide correction needed.
+</KeyInsight>
+
+</TechSection>
+
+<TechSection icon="trending" tone="amber" title="Why R-22 operates ~60% lower than R-410A">
+
+R-22's molecular structure (one carbon atom, one chlorine, two fluorines, one hydrogen) gives it lower vapor pressure than the smaller HFC molecules in R-410A. R-22 boils at −41°F at atmospheric pressure; R-32 boils at −61°F; R-125 boils at −55°F. The lower R-22 boiling point means lower saturation pressures at any operating temperature.
+
+At a 95°F outdoor design ambient, an R-22 system runs about 181 PSIG saturation versus R-410A's 278 PSIG (CoolProp 7.2.0). On a 70°F bench-test condition the spread is 121 PSIG (R-22) versus 202 PSIG (R-410A). This is why R-22 service equipment runs the legacy 500 PSI manifold gauge standard — R-22 operating envelope simply doesn't need the 800 PSI rating R-410A demands [accamanualT].
+
+The pressure-envelope difference is why R-22 to R-410A refrigerant-only retrofit is not feasible. R-22 equipment components (compressor housings, condenser tubing, expansion valves, service ports) are rated for R-22's pressures, not R-410A's. Trying to operate R-22 equipment with R-410A would over-pressurize multiple components beyond their design ratings.
+
+</TechSection>
+
+<TechSection icon="globe" tone="amber" title="Why HCFC chemistry triggered the Montreal Protocol phase-out">
+
+R-22's chemical formula CHClF₂ includes one chlorine atom per molecule. When R-22 leaks to the atmosphere and rises to the stratosphere (15-50 km altitude), UV radiation breaks the chlorine-carbon bond. The freed chlorine atom catalyzes ozone destruction — a single chlorine atom can destroy thousands of ozone molecules before being removed from the atmosphere.
+
+This chemistry is what gives R-22 its ozone-depletion potential of 0.055 [montrealprotocol]. The reference is R-11 (a CFC with ODP defined as 1.0); R-22 destroys ozone at about 5.5% the rate of R-11 per kilogram released. CFCs like R-11, R-12, and R-13 had ODP 1.0 or higher; HCFCs like R-22 and R-123 had ODP 0.01-0.06; HFCs like R-32, R-125, and R-134a have ODP 0 (no chlorine).
+
+<KeyInsight tone="zinc" icon="globe" title="ODP zero ≠ environmentally neutral">
+Modern HFC and HFO refrigerants have ODP 0 by chemistry — no chlorine atoms. They don't deplete stratospheric ozone. They can still have very high global warming potential, which is why the post-Montreal Protocol regulatory framework (EPA AIM Act, EU F-Gas) targets HFCs based on GWP rather than ODP.
+</KeyInsight>
+
+</TechSection>
+
+<TechSection icon="climate" tone="amber" title="R-22's GWP of 1810 — why it matters less than ODP did">
+
+R-22's global warming potential is 1810 (IPCC AR5, 100-year horizon) [ipccar5]. This means a 1 kg release of R-22 traps 1,810 times more atmospheric heat over 100 years than 1 kg of CO₂. The figure is high — comparable to R-407C (1774) and R-410A (2088), all in the same HFC-era tier.
+
+For US regulatory purposes, however, R-22's GWP is not the binding constraint. R-22 was phased out under the Montreal Protocol HCFC schedule for its ozone-depletion potential (0.055), implemented as 40 CFR Part 82 Subpart A [epacfr82]. The EPA AIM Act, which targets refrigerants based on GWP, applies only to HFCs — R-22 is an HCFC and is not subject to AIM Act provisions.
+
+This regulatory distinction matters when comparing R-22's situation to that of R-410A. R-410A is phased down under AIM Act for GWP reasons; the threshold (700 GWP) sits below R-410A's 2088. R-22 had no such GWP-based cutoff — it was phased out for chlorine chemistry, full stop, and its still-considerable GWP burden continues to influence retrofit-vs-replace economics for the installed base.
+
+</TechSection>
+
+<TechSection icon="atom" tone="purple" title="Critical temperature and molar mass — why R-22 is forgiving in operation">
+
+R-22's critical temperature is 96.1°C (205°F) and its critical pressure is approximately 720 PSIA (705 PSIG) [coolprop]. The critical point sits well above any normal ambient — full saturation behavior is available across the entire residential and light commercial operating range. Subcooled liquid forms cleanly in the condenser; superheated vapor leaves the evaporator without supercritical complications.
+
+The molar mass of 86.47 g/mol puts R-22 in the middle of refrigerant weight distribution — heavier than R-32 (52 g/mol), R-410A blend average (~72.6 g/mol), and R-1234yf (114 g/mol). Volumetric refrigerating capacity scales with both vapor density and latent heat per unit mass; R-22 delivers about 35-40% less capacity than R-410A in equivalent compressor displacement. This is why R-410A equipment can use smaller compressors than R-22 for the same cooling output.
+
+For service technicians the operational implication is forgiveness: R-22's wide gap between operating pressure and critical pressure means slightly-off conditions stay safely sub-critical. Charge imbalances, high ambient days, blocked condensers — all create higher head pressure without crossing into supercritical territory.
+
+</TechSection>
+
+<TechSection icon="thermometer" tone="sky" title="Reading the common service temperatures">
+
+The quick-lookup pills above the PT chart show R-22 saturation pressures at six service-relevant temperatures. Each maps to a typical operational condition on residential or light commercial R-22 equipment that is still in active service.
+
+- **32°F (freezing)** — the iced-up evaporator temperature; if your suction sat T drops to or below freezing, suspect low charge, restricted airflow, or evaporator fouling.
+- **45°F (heat-pump heating)** — typical winter outdoor coil saturation temperature when a heat pump is in heating mode.
+- **70°F (standard reference)** — bench-test reference; R-22 saturation at 70°F is 121.4 PSIG.
+- **75°F (test reference)** — typical indoor return-air conditions.
+- **80°F (warm-weather operation)** — common condenser-saturation differential point.
+- **95°F (summer peak)** — AHRI 210/240 test condition; R-22 saturation at 95°F is approximately 181 PSIG.
+
+Compare your manifold reading to the chart value at your operating ambient. A condenser running at 181 PSIG on a 95°F day is at saturation — anything above that PSIG means saturation temperature is higher than 95°F, which indicates the condenser needs more air, has fouling, or has overcharge.
+
+</TechSection>
+
+<TechSection icon="service" tone="blue" title="Service equipment — why R-22 tools don't work for R-410A">
+
+R-22's service-equipment requirements are calibrated to its 500 PSI working envelope. Manifold gauge sets, charging hoses, and recovery cylinders all carry 500 PSI working pressure ratings. The lower envelope made R-22 easier to handle than R-410A — fewer pressure-rating concerns, no high-side bursting risk under normal service.
+
+| Equipment | R-22 (legacy standard) | R-410A (modern HFC) |
+| --- | --- | --- |
+| Manifold high-side | 500 PSI | 800 PSI |
+| Recovery cylinder | 400 PSI service / 500 PSI burst | 600 PSI service / 800 PSI burst |
+| Charging hose | 500 PSI working | 800 PSI working |
+| Service port | 1/4" SAE | 5/16" SAE |
+| Lubricant | Mineral oil or alkylbenzene | POE only |
+| Vacuum target | 500 microns | 500 microns held 30+ min (POE hygroscopic) |
+
+Using R-22-rated equipment on R-410A risks rupture and is not permitted under any HVAC service standard. The reverse direction — using R-410A-rated equipment on R-22 — works pressure-wise but the lubricant and service port differences still apply.
+
+</TechSection>
+
+<TechSection icon="lubricant" tone="blue" title="Mineral oil chemistry — simpler than POE">
+
+R-22 uses mineral oil (MO) or alkylbenzene (AB) — petroleum-derived hydrocarbon lubricants chosen for their compatibility with HCFC refrigerants [ahri700]. The non-polar mineral oil and the slightly-polar R-22 refrigerant mix well enough that oil entrained in the refrigerant flow returns reliably to the compressor crankcase.
+
+Mineral oil's chemistry is fundamentally different from the POE oils required for HFC refrigerants. POE is hygroscopic — it absorbs atmospheric moisture aggressively, requiring tight vacuum discipline (500 microns held 30+ minutes) before charging. Mineral oil is not hygroscopic; moisture in the system is still a problem but the urgency around vacuum hold is lower. R-22 service procedures from the 1970s-1990s reflect this — many older procedures specify shorter vacuum times that would be inadequate for HFC service.
+
+<KeyInsight tone="amber" icon="warning" title="Don't mix oils across the HCFC/HFC line">
+Adding POE oil to a working R-22 system serves no purpose and creates contamination risk if the system is later retrofitted to an HFC blend (residual mineral oil interferes with POE/HFC compatibility). Conversely, mineral oil in an HFC system causes immediate compressor lubrication failure because the oil won't return. Keep oils matched to refrigerant family.
+</KeyInsight>
+
+</TechSection>
+
+<TechSection icon="recycle" tone="amber" title="The Montreal Protocol HCFC phase-out timeline">
+
+R-22 was added to the Montreal Protocol's controlled substances list via the 1992 Copenhagen Amendment [montrealprotocol]. The US implementation through EPA's 40 CFR Part 82 Subpart A established a multi-stage HCFC phase-out:
+
+- **1996** — Production cap established at consumption baseline
+- **2003** — 35% reduction in production allocation
+- **2010** — Ban on new equipment manufacturing using R-22 (existing equipment continued to be serviceable)
+- **2015** — 90% reduction in production allocation
+- **2020** — Complete ban on US virgin R-22 production and import [epacfr82]
+- **2030** — Final Montreal Protocol HCFC phase-out (developed nations)
+
+The 2020 production ban was the regulatory event that shifted R-22's economics. From 2020 forward, all R-22 used to service the installed base must come from reclaimed material — recovered from end-of-life equipment, processed back to AHRI 700 purity spec, and resold [ahri700]. Service costs have risen 8-15× from 2019 baseline as reclaim supply tightens.
+
+</TechSection>
+
+<TechSection icon="recycle" tone="emerald" title="Retrofit blend taxonomy for R-22 systems">
+
+When an R-22 system needs continued service but virgin R-22 cost or supply becomes prohibitive, refrigerant-only retrofit to a mineral-oil-compatible HFC blend is an option. Four established retrofit blends serve this market, each designed to match R-22's pressure envelope while running with the original mineral oil:
+
+- **R-407C** (R-32/R-125/R-134a 23/25/52) — zeotropic, ~11°F glide, GWP 1774, broadest-application R-22 retrofit. Mineral oil compatibility variable — some R-407C deployments require POE.
+- **R-422D** (R-125/R-134a/R-600a 65.1/31.5/3.4) — Honeywell trade name MO99, designed for residential AC and heat pumps with mineral oil retention. GWP 2729.
+- **R-438A** (Honeywell MO99 alternative) — R-32/R-125/R-134a/R-600/R-601a blend, formulated for closer R-22 capacity match with mineral oil. GWP 2265.
+- **R-427A** (Arkema Forane 427A) — R-32/R-125/R-143a/R-134a quaternary blend, designed for R-22 chiller and supermarket retrofit with smaller capacity penalty than R-407C.
+
+All four are HFC blends with non-zero GWP and are themselves subject to AIM Act long-term phase-down. Retrofit buys 5-10 years of additional equipment life — useful for systems where full replacement is uneconomical or capital-deferred, but not a permanent solution.
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-22 in 2026 and beyond">
+
+The R-22 installed base in 2026 is in its end-of-life phase. Residential systems installed in the late 1990s and early 2000s are now 20-25 years old — at or beyond typical lifespan. Major component failures (compressor, condenser coil leaks, expansion valve failure) increasingly tip the repair-versus-replace economic calculation toward full replacement with new R-32 or R-454B equipment.
+
+For systems that remain viable, reclaimed R-22 supply will continue indefinitely under current EPA Section 608 rules [epasec608]. Pricing will continue to rise gradually as reclaim throughput drops with the shrinking installed base. By the late 2030s, the R-22 service market will be a small, specialty segment — comparable to today's R-12 (CFC, banned 1996) niche service economy.
+
+For new equipment decisions in 2026 there is no path back to R-22 — manufacturing ceased in 2010 and new R-22 equipment installation is not permitted. The decision tree is between R-32 (Daikin, Mitsubishi, LG, Fujitsu equipment lines) and R-454B (Carrier, Trane, Lennox lines); both A2L, both clear the AIM Act 700-GWP threshold, both deliver 20-30% efficiency improvement over R-22-era equipment.
+
+</TechSection>

@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { svgRound } from "@/lib/svg-tokens";
 
 export interface PhaseDownMilestone {
@@ -14,7 +17,7 @@ export interface PhaseDownTimelineProps {
   milestones: PhaseDownMilestone[];
   /** Render a dashed vertical line at the current date. Default true. */
   showCurrentDate?: boolean;
-  /** ISO date to use as "today" — defaults to runtime now. Pass an explicit date for testing or to render at build time. */
+  /** ISO date fallback to use as "today" during SSR before client hydrates with the actual current date. */
   asOfDate?: string;
   ariaLabel: string;
   className?: string;
@@ -40,22 +43,46 @@ export function PhaseDownTimeline({
   ariaLabel,
   className = "",
 }: PhaseDownTimelineProps) {
+  // Dynamic "today" — SSR renders with asOfDate so the markup is deterministic
+  // and matches initial client hydration (both produce the same SVG positions
+  // when yearOf() is timezone-stable, which it is). After mount, swap in the
+  // real today so the marker doesn't go stale as the build date ages.
+  const [clientToday, setClientToday] = useState<string | null>(null);
+  useEffect(() => {
+    // Intentional: one-shot post-hydration refresh of an SSR fallback value.
+    // No cascade — the effect has [] deps so it runs exactly once after the
+    // initial paint, triggering a single re-render with the live "today".
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setClientToday(new Date().toISOString().slice(0, 10));
+  }, []);
+
   if (milestones.length === 0) return null;
 
   const sorted = [...milestones].sort((a, b) => a.date.localeCompare(b.date));
   const minYear = Math.floor(yearOf(sorted[0].date));
   const maxYear = Math.ceil(yearOf(sorted[sorted.length - 1].date)) + 1;
 
-  // Include "now" in the range if showing the current-date marker
-  const now = asOfDate ?? new Date().toISOString().slice(0, 10);
+  // Include "now" in the range. Use client-computed today if available, else fall back to server-passed asOfDate.
+  const now = clientToday ?? asOfDate ?? new Date().toISOString().slice(0, 10);
   const nowYear = yearOf(now);
   const rangeMin = Math.min(minYear, Math.floor(nowYear) - 1);
   const rangeMax = Math.max(maxYear, Math.ceil(nowYear) + 1);
 
   const xScale = (year: number) => PAD_L + ((year - rangeMin) / (rangeMax - rangeMin)) * (W - PAD_L - PAD_R);
 
+  // Adaptive tick density: every year if range ≤ 12; every 5 years (aligned to multiples of 5) otherwise.
+  const spanYears = rangeMax - rangeMin;
+  const step = spanYears <= 12 ? 1 : 5;
   const years: number[] = [];
-  for (let y = rangeMin; y <= rangeMax; y += 1) years.push(y);
+  if (step === 1) {
+    for (let y = rangeMin; y <= rangeMax; y += 1) years.push(y);
+  } else {
+    // Anchor to multiples of 5 inside the range
+    const start = Math.ceil(rangeMin / 5) * 5;
+    for (let y = start; y <= rangeMax; y += 5) years.push(y);
+    if (years[0] !== rangeMin && years[0] - rangeMin >= 2) years.unshift(rangeMin);
+    if (years[years.length - 1] !== rangeMax && rangeMax - years[years.length - 1] >= 2) years.push(rangeMax);
+  }
 
   return (
     <svg
@@ -132,10 +159,18 @@ export function PhaseDownTimeline({
 }
 
 function yearOf(iso: string): number {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return Number.NaN;
-  const yearStart = new Date(d.getFullYear(), 0, 1).getTime();
-  const yearEnd = new Date(d.getFullYear() + 1, 0, 1).getTime();
-  const frac = (d.getTime() - yearStart) / (yearEnd - yearStart);
-  return d.getFullYear() + frac;
+  // Timezone-stable: parse YYYY-MM-DD components directly and compute in UTC
+  // so server (UTC) and client (any timezone) produce identical results.
+  // (`new Date("2021-01-01")` parses as UTC midnight but `.getFullYear()`
+  // returns local-time year — that mismatch causes SSR hydration errors.)
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
+  if (!m) return Number.NaN;
+  const y = Number(m[1]);
+  const mon = Number(m[2]) - 1;
+  const day = Number(m[3]);
+  const t = Date.UTC(y, mon, day);
+  const yearStart = Date.UTC(y, 0, 1);
+  const yearEnd = Date.UTC(y + 1, 0, 1);
+  const frac = (t - yearStart) / (yearEnd - yearStart);
+  return y + frac;
 }

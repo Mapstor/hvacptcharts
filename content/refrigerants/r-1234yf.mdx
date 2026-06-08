@@ -1,56 +1,198 @@
 ---
 slug: r-1234yf
 title: "R-1234yf Pressure Temperature Chart & Properties"
-metaTitle: "R-1234yf PT Chart, A2L, GWP 4, Mobile AC Standard"
-metaDescription: "Verified R-1234yf (HFO-1234yf, 2,3,3,3-tetrafluoropropene) pressure-temperature chart. ASHRAE A2L. GWP 4 (IPCC AR5). The dominant mobile AC refrigerant globally since 2014. PAG (mobile) or POE (stationary) lubricant."
-introOneLiner: "Pure HFO (2,3,3,3-tetrafluoropropene, CF₃CF=CH₂). The dominant mobile AC refrigerant globally since approximately 2014 — the engineered low-GWP replacement for R-134a. ASHRAE A2L (mildly flammable). GWP 4 (IPCC AR5) or ~0.5 (AR6). Short atmospheric lifetime (~12 days)."
+metaTitle: "R-1234yf PT Chart, A2L HFO, GWP 4 — Mobile AC Standard"
+metaDescription: "R-1234yf (2,3,3,3-tetrafluoropropene) PT chart, A2L mildly flammable, GWP 4 (IPCC AR5). Dominant mobile AC refrigerant since 2017 (EU) / 2021 (US). Pure HFO, no glide, PAG / POE lubricants."
+introOneLiner: "Pure HFO (2,3,3,3-tetrafluoropropene) — the global mobile AC standard refrigerant replacing R-134a in new vehicles. A2L mildly flammable, GWP 4, no temperature glide. Trade names Honeywell Solstice yf and Chemours Opteon YF."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022 — Designation and Safety Classification of Refrigerants"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: eumac
+    label: "EU Mobile Air Conditioning Directive 2006/40/EC — Mandated sub-150 GWP refrigerants in new MAC from 1 Jan 2017"
+    url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32006L0040"
+    date: "2006 (full ban 2017)"
+  - id: saej639
+    label: "SAE J639 — Safety standards for motor vehicle refrigerant vapor compression systems"
+    url: "https://www.sae.org/standards/content/j639_201407/"
+  - id: coolprop
+    label: "CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014)"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: aimact
+    label: "EPA AIM Act — 40 CFR Part 84 Subpart B"
+    url: "https://www.epa.gov/climate-hfcs-reduction"
+    date: "Final Rule Oct 2021"
+  - id: ahri700
+    label: "AHRI Standard 700-2019"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: honeywellsolstice
+    label: "Honeywell Solstice yf (R-1234yf) Technical Information"
+    url: "https://www.honeywell-refrigerants.com/americas/"
+  - id: chemoursopteon
+    label: "Chemours Opteon YF (R-1234yf) Product Data Sheet"
+    url: "https://www.chemours.com/en/products/refrigerants"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: A2L
+    context: Mildly flammable; low burning velocity, low heat of combustion
+    sourceId: ashrae34
+  - label: Chemical formula
+    value: CF₃CF=CH₂
+    context: 2,3,3,3-Tetrafluoropropene (pure HFO with carbon-carbon double bond)
+    sourceId: ashrae34
+  - label: GWP (100-yr)
+    value: "4"
+    unit: IPCC AR5
+    context: Very low — atmospheric lifetime only ~11 days
+    sourceId: ipccar5
+  - label: ODP
+    value: "0"
+    context: Fluorine-only HFO; no chlorine
+    sourceId: ashrae34
+  - label: Normal boiling point
+    value: "−21.1"
+    unit: °F (−29.5°C)
+    context: Similar to R-134a; matches MAC pressure envelope
+    sourceId: coolprop
+  - label: Temperature glide
+    value: "0"
+    unit: °F
+    context: Pure single-component refrigerant; no bubble/dew distinction
+    sourceId: coolprop
+  - label: Required lubricant
+    value: PAG / POE
+    context: PAG for mobile AC; POE for stationary applications
+    sourceId: ahri700
 
 narrative:
   whatItIs: |
-    R-1234yf is pure 2,3,3,3-tetrafluoropropene (CF₃CF=CH₂), a single-molecule hydrofluoroolefin (HFO). The double bond in the molecule's structure makes it reactive with atmospheric hydroxyl radicals, breaking down in roughly two weeks rather than persisting for years like the saturated HFCs.
+    R-1234yf is pure 2,3,3,3-tetrafluoropropene (CF₃CF=CH₂), a single-molecule hydrofluoroolefin (HFO) with a carbon-carbon double bond [ashrae34]. The double bond is what gives R-1234yf its very short atmospheric lifetime (~11 days) — atmospheric OH radicals attack the double bond rapidly, breaking down the molecule before it can contribute meaningful warming.
 
-    R-1234yf was developed jointly by Honeywell and DuPont/Chemours in the 2000s as the engineered low-GWP replacement for R-134a in mobile air conditioning. The blend matches R-134a's saturation pressure envelope closely (within a few PSI across the operating range), allowing vehicle OEMs to convert their AC system designs with relatively modest changes — primarily the addition of A2L-compatible safety features.
+    R-1234yf was developed jointly by Honeywell and Chemours in the late 2000s specifically as the mobile AC replacement for R-134a under the EU MAC Directive 2006/40/EC [eumac]. The 150-GWP threshold for new MAC vehicle types from 1 January 2017 made R-134a (GWP 1430) non-compliant; R-1234yf (GWP 4) was the chosen industry-standard replacement.
 
   whereItsUsed:
-    - Mobile air conditioning (passenger vehicles globally since ~2014; the dominant choice for most OEMs)
-    - Light commercial refrigeration (component in blends and standalone in some applications)
-    - Component in R-448A, R-449A, R-452A, R-452B, R-454B, R-454C, R-455A, R-457A, R-513A, R-516A blends
-    - Some industrial chiller applications
+    - "Mobile air conditioning — new light-duty vehicles globally since 2017-2021"
+    - "Component in low-GWP HFC/HFO blends — R-454B (residential AC), R-513A (chillers), R-454C / R-455A (commercial refrigeration), R-448A / R-449A (R-404A retrofits)"
+    - "Some stationary commercial refrigeration applications"
+    - "Heat pump applications in some EV thermal management systems"
 
   phaseDownStatus: |
-    R-1234yf itself is not phase-down-targeted — its GWP of 4 (IPCC AR5) or roughly 0.5 (IPCC AR6) is below every regulatory threshold. The constraint is the A2L safety class and the cost of production relative to R-134a; commercial pricing per pound has historically been ~5–10× R-134a's pre-phase-down prices.
+    R-1234yf faces no phase-down pressure — GWP 4 is below every regulatory threshold including EU F-Gas 150-GWP cap for the strictest categories [aimact][eumac]. R-1234yf is structurally a long-term destination refrigerant.
 
-    For mobile AC the transition from R-134a to R-1234yf is essentially complete in major markets — most passenger vehicles produced since approximately 2017 in the US and EU use R-1234yf. The IRS has phased the R-134a service supply down via AIM Act baselines, which has further accelerated the mobile-AC industry's standardization on R-1234yf.
+    Market position is dominant in mobile AC (most major OEMs transitioned 2017-2021) and substantial as a blend component in commercial refrigeration. Direct standalone use in stationary HVAC is limited because A2L flammability requires equipment-design accommodations and other HFO/HFC alternatives have better operational fit for some applications.
 
   serviceNotes: |
-    Mobile AC uses Polyalkylene Glycol (PAG) oil — the same lubricant family as R-134a mobile AC systems. Stationary applications use Polyolester (POE). The two are NOT interchangeable; do not cross-contaminate. PAG-and-POE specifications for R-1234yf systems are similar to R-134a but typically with tighter water content limits.
+    Mobile AC: PAG (polyalkylene glycol) oil typically PAG 46 or 100 viscosity — same lubricant family as R-134a MAC, NOT interchangeable with stationary HVAC POE [saej639]. Service ports are different from R-134a (R-1234yf uses M14 quick-disconnect to prevent cross-contamination).
 
-    A2L safety class requires: no open flames in the service area; A2L-rated recovery cylinders (yellow with red top stripe); leak detection equipment specifically rated for A2L hydrofluoroolefins; technician training on A2L handling. Mobile AC service in particular requires SAE J2843-compliant recovery and recharge equipment with refrigerant identification capability — R-1234yf and R-134a must not be cross-charged.
+    Stationary HVAC: POE oil typically. A2L safety procedures apply: nitrogen-purged brazing, A2L-rated leak detection, ignition-source isolation in the refrigerant circuit. Pressure envelope similar to R-134a; standard 500 PSI manifold gauges adequate.
 
 faqs:
-  - q: "What is the normal operating pressure of R-1234yf?"
-    a: "Very similar to R-134a — within a few PSI across the operating range. R-1234yf saturation at 70°F is ~74 PSIG; R-134a is ~71 PSIG. Mobile AC operating pressures vary substantially with compressor speed and condenser airflow but typically: suction 25–45 PSIG, discharge 150–300 PSIG depending on ambient and engine RPM. Stationary chiller and commercial refrigeration applications operate in narrower windows."
+  - q: "What is R-1234yf used for?"
+    a: |
+      Dominantly mobile air conditioning in light-duty vehicles. EU mandated R-1234yf in new MAC vehicle types from 1 January 2017 under Directive 2006/40/EC [eumac]; major US OEMs transitioned 2017-2021. R-1234yf is also a component in low-GWP HFC/HFO blends used in stationary commercial refrigeration (R-454C, R-455A, R-448A, R-449A, R-513A).
 
-  - q: "Why does R-1234yf cost so much more than R-134a?"
-    a: "Production complexity and patent licensing. R-1234yf's synthesis requires multiple specialized steps and proprietary catalysts (Honeywell and Chemours hold many of the relevant patents). The molecule is also less stable than R-134a, requiring careful handling and quality control in manufacturing. As production scaled and patents began expiring in the late 2020s, the price premium has been narrowing — but per-pound pricing remains meaningfully higher than legacy HFCs."
+  - q: "What's the GWP of R-1234yf?"
+    a: |
+      4 per IPCC AR5 — among the lowest of any commercial refrigerant [ipccar5]. The very low GWP comes from R-1234yf's short atmospheric lifetime (~11 days) — atmospheric OH radicals attack the carbon-carbon double bond rapidly, breaking down the molecule before significant warming accumulates.
 
-  - q: "How does R-1234yf compare to R-134a?"
-    a: "Saturation pressures very close (R-1234yf 74 vs R-134a 71 PSIG at 70°F). Both are non-toxic (Class A). The substantive differences: GWP (R-1234yf 4 vs R-134a 1430), atmospheric lifetime (R-1234yf ~12 days vs R-134a ~14 years), and safety class (R-1234yf A2L mildly flammable vs R-134a A1 non-flammable). For mobile AC the A2L class required revised vehicle safety standards but the lower GWP made it the regulatory path forward."
-
-  - q: "Is R-1234yf safe for cars?"
-    a: "Yes when handled per A2L procedures. The mild flammability (low burning velocity, narrow flammability range in air) is engineered around through hardware: hermetic system design, no open electrical connections in the refrigerant circuit, specific evacuation and recharge procedures. Crash safety has been studied extensively — including the controversial Daimler test results from the early 2010s — and current OEMs have addressed the engineering concerns with system design changes. EPA and global regulators have endorsed R-1234yf for mobile AC."
+  - q: "Is R-1234yf flammable?"
+    a: |
+      Yes — ASHRAE class A2L (mildly flammable with low burning velocity, ≤10 cm/s). The flammability concern triggered substantial debate before MAC industry adoption; Daimler initially resisted R-1234yf adoption (citing crash-fire concerns) but ultimately conformed. Vehicle MAC system design accommodates the A2L classification through component design and routing.
 
   - q: "What lubricant does R-1234yf use?"
-    a: "Mobile AC: Polyalkylene Glycol (PAG) oil. Stationary applications: Polyolester (POE). The two are not interchangeable. For mobile AC retrofits from R-134a, the PAG specifications differ slightly (R-1234yf systems typically use 'PAG-Y' or PAG-double-end-capped formulations) but most R-134a PAG oils are functionally compatible. Always reference the OEM service manual for the specific system."
+    a: |
+      Mobile AC: PAG oil (polyalkylene glycol), typically PAG 46 or PAG 100 viscosity grades [saej639]. The same lubricant family used with R-134a MAC; the lubricant choice was preserved to simplify the MAC industry transition. Stationary HVAC applications use POE oil.
+
+  - q: "Why did MAC industry choose R-1234yf instead of R-152a or R-744?"
+    a: |
+      R-152a (GWP 124) was an alternative but classified A2 (more flammable than A2L); harder to mitigate in confined vehicle cabin space. R-744 (CO₂, GWP 1) was an alternative but requires transcritical operation at very high pressures incompatible with existing MAC equipment designs. R-1234yf at GWP 4, A2L (manageable flammability), and pressure envelope close to R-134a was the best balance for industry transition.
 
   - q: "Can I retrofit an R-134a vehicle to R-1234yf?"
-    a: "Technically possible but not generally recommended. The pressure differences are small enough that the system would operate, but R-134a vehicles lack the A2L safety features (specific recovery equipment compatibility, leak detection, hermetic seal upgrades) that R-1234yf systems are designed around. Most major OEMs do not endorse R-134a-to-R-1234yf retrofits in vehicles originally built for R-134a; the realistic service path for legacy R-134a vehicles is continued R-134a service (with reclaimed material as supply tightens)."
+    a: |
+      Not as a refrigerant swap. R-1234yf service ports are different from R-134a (specifically designed to prevent cross-contamination), the A1-to-A2L safety class change requires vehicle-level safety design, and the PAG oil grade differs. Mobile AC retrofit is rare and economically unjustified — service existing R-134a vehicles with R-134a or replace the vehicle.
 
-  - q: "What's the atmospheric lifetime of R-1234yf?"
-    a: "Approximately 12 days. The molecule's carbon-carbon double bond reacts rapidly with atmospheric hydroxyl radicals, breaking it down to trifluoroacetic acid (TFA) which deposits via rainfall. The TFA fate has been studied for environmental and water-system impacts; current research suggests environmental concentrations remain well below thresholds of concern even at full deployment. Short atmospheric lifetime is the structural reason for R-1234yf's very low GWP."
+  - q: "What is R-1234yf trade name?"
+    a: |
+      Two primary manufacturer brands: Honeywell Solstice yf and Chemours Opteon YF [honeywellsolstice][chemoursopteon]. Both meet ASHRAE Standard 34 R-1234yf specification and AHRI Standard 700 purity requirements — they're functionally interchangeable.
 
 retrofitGuidance:
   fromRefrigerant: r-134a
   notes: |
-    Vehicle retrofits from R-134a to R-1234yf are technically possible (similar pressures, compatible PAG-family lubricants) but not generally recommended by OEMs. The realistic application is using R-1234yf in vehicles originally designed and certified for R-1234yf; legacy R-134a vehicles continue to use R-134a until end of service life. Stationary chiller and commercial refrigeration retrofits from R-134a to R-1234yf require A2L equipment certification (compressor, safety systems, electrical) — generally a full equipment replacement rather than a refrigerant swap.
+    R-1234yf is the EU- and US-mandated mobile AC refrigerant in new vehicles. Direct R-134a to R-1234yf retrofit of existing vehicles is rare — service existing R-134a vehicles with R-134a (legal indefinitely under current EPA rules) or replace the vehicle. For stationary R-134a chillers, the typical low-GWP path is R-513A / R-450A blends rather than pure R-1234yf.
 ---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-1234yf PT chart">
+
+R-1234yf's PT chart is a single saturation curve — R-1234yf is pure single-component HFO with no temperature glide [ashrae34]. Service measurement: superheat = suction line temp − saturation temp at suction pressure; subcooling = saturation temp at discharge pressure − liquid line temp. No glide correction needed.
+
+The pressure envelope is similar to R-134a — R-1234yf was engineered to deliver R-134a-comparable performance in MAC equipment. At 70°F R-1234yf saturation is approximately 74 PSIG (CoolProp 7.2.0); R-134a at 70°F is 71 PSIG. Differences are small enough that MAC equipment designed for R-134a accepts R-1234yf with appropriate safety provisions.
+
+</TechSection>
+
+<TechSection icon="composition" tone="purple" title="HFO chemistry — the carbon-carbon double bond delivers very low GWP">
+
+R-1234yf is a hydrofluoroolefin: an HFC variant with a carbon-carbon double bond (the "olefin" or "ene" part of the name). The double bond is the chemistry feature that delivers R-1234yf's very low GWP — atmospheric OH radicals attack double bonds rapidly, breaking down the molecule within days.
+
+R-1234yf atmospheric lifetime: approximately 11 days. Compare to R-134a (HFC, no double bond): approximately 14 years. The 450× shorter lifetime translates to 358× lower GWP per kg (R-1234yf: 4 vs R-134a: 1430 per IPCC AR5).
+
+<KeyInsight tone="emerald" icon="climate" title="HFO chemistry is the modern low-GWP solution">
+HFOs (R-1234yf, R-1234ze, R-1233zd) all share the carbon-carbon double bond architecture that gives them very short atmospheric lifetimes and GWP values in the single digits. The HFO chemistry is the technical solution that makes Kigali Amendment compliance achievable for the refrigeration industry — without HFOs, the only zero-GWP alternatives would be naturals (R-744, R-290, R-717) with their own constraints.
+</KeyInsight>
+
+</TechSection>
+
+<TechSection icon="trending" tone="amber" title="Pressure envelope matches R-134a — mobile AC drop-in compatibility">
+
+R-1234yf was engineered specifically to match R-134a's pressure envelope, enabling minimal-redesign retrofit of MAC equipment from R-134a to R-1234yf. At 70°F R-1234yf saturation is 74 PSIG vs R-134a's 71 PSIG (CoolProp 7.2.0) — within 5%. At 95°F outdoor ambient, R-1234yf is approximately 128 PSIG vs R-134a's 124 PSIG.
+
+The pressure-envelope match is the engineering reason the MAC industry transition from R-134a to R-1234yf was operationally smooth. Compressor designs, expansion-valve setpoints, condenser sizing all carried over with minor calibration. The major engineering changes were on the safety side (A2L flammability accommodations) and the supply side (R-1234yf availability and pricing).
+
+</TechSection>
+
+<TechSection icon="globe" tone="emerald" title="GWP 4 — among the lowest commercial refrigerants">
+
+R-1234yf's GWP of 4 (IPCC AR5) is among the lowest of any commercial refrigerant. For comparison: R-744 (CO₂) is the GWP=1 reference; R-1234yf at 4; R-1234ze at 7; R-290 (propane) at 3; R-717 (ammonia) at 0. R-1234yf sits in the same low-GWP tier as natural refrigerants.
+
+The very low GWP eliminates phase-down risk under EPA AIM Act, EU F-Gas Regulation, Kigali Amendment, and any reasonably-foreseeable future climate policy. R-1234yf is structurally a long-term destination refrigerant for applications where its A2L flammability can be managed and its pressure envelope fits the application.
+
+</TechSection>
+
+<TechSection icon="warning" tone="amber" title="A2L flammability — managed in MAC, accommodated in stationary HVAC">
+
+R-1234yf is ASHRAE class A2L — mildly flammable with low burning velocity. The flammability classification was the major industry debate during R-1234yf MAC adoption (2010-2017). Concerns focused on potential vehicle-fire scenarios from crash-induced refrigerant release into the engine compartment.
+
+Industry response: vehicle-level safety design (refrigerant routing away from high-temperature engine components, crash-resistant refrigerant lines, refrigerant detection in some applications, sealed electrical components in the refrigerant circuit). Post-adoption real-world data through 2017-2026 has not shown elevated vehicle-fire incidents from R-1234yf MAC systems.
+
+For stationary HVAC applications using R-1234yf as a standalone refrigerant or component, A2L safety procedures apply: sealed motor compressors, A2L-rated leak detection where appropriate, charge limits per ASHRAE 15.
+
+</TechSection>
+
+<TechSection icon="lubricant" tone="blue" title="PAG for mobile AC, POE for stationary — different chemistries for different applications">
+
+R-1234yf uses different lubricants depending on application. Mobile AC: PAG oil (polyalkylene glycol), typically PAG 46 or PAG 100 viscosity. Stationary HVAC: POE oil (polyolester), typical viscosity per equipment OEM specification.
+
+The PAG / POE split mirrors R-134a's split. PAG was chosen for MAC because the variable-displacement automotive compressors common in modern vehicles benefit from PAG's specific oil-return characteristics. POE serves stationary applications where the compressor designs are different.
+
+Never mix PAG and POE in a single system — the two lubricant chemistries are incompatible and produce oil-return failures and accelerated component wear. Verify lubricant grade against equipment OEM service literature before adding oil.
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-1234yf in 2026 and beyond">
+
+R-1234yf is the dominant mobile AC refrigerant globally in 2026 and the structural long-term destination for that application. New vehicle MAC installations since 2017 (EU) / 2021 (US) use R-1234yf; the installed base is growing rapidly as R-134a vehicles age out and are replaced.
+
+For stationary HVAC, R-1234yf serves primarily as a blend component in low-GWP HFC/HFO blends (R-454B, R-454C, R-455A, R-513A, R-448A, R-449A) rather than as a standalone refrigerant. The blend role is significant — R-1234yf provides the GWP-diluting component in most modern low-GWP blends across residential AC, chillers, and commercial refrigeration applications.
+
+Service supply economics are favorable. R-1234yf production capacity has scaled significantly since 2017 to meet global MAC demand; pricing has come down from initial premium levels. The pricing gap vs R-134a has narrowed considerably through 2020-2026.
+
+</TechSection>

@@ -1,0 +1,51 @@
+---
+slug: r-22-vs-r-407c
+refrigerantA: r-22
+refrigerantB: r-407c
+title: "R-22 vs R-407C: The Drop-In Retrofit That Isn't Quite"
+metaTitle: "R-22 vs R-407C — Pressures, Glide, Retrofit Procedure, Capacity"
+metaDescription: "R-22 vs R-407C comparison: ternary HFC blend designed as R-22 retrofit. POE oil required (mineral oil incompatible). ~11°F temperature glide. Capacity within 5% of R-22 at typical operating conditions."
+introOneLiner: "R-407C is a ternary HFC blend (23/25/52 R-32/R-125/R-134a) designed as an R-22 retrofit. Similar pressure envelope, similar capacity, A1 safety class — but requires POE oil instead of R-22's mineral oil, and has ~11°F temperature glide that affects TXV behavior and superheat measurement."
+
+chooseA: "Servicing existing R-22 equipment with original R-22. Reclaimed R-22 remains legal under EPA rules. The lubricant (mineral oil) and equipment design stay matched to what was originally specified. Higher refrigerant cost is the trade-off."
+
+chooseB: "Retrofitting an R-22 system where the oil-change procedure is acceptable and where the equipment owner wants to be off the increasingly-expensive reclaimed R-22 supply. R-407C delivers within 95% of R-22 capacity, operates at similar pressures, and uses commodity-priced HFC supply."
+
+whenNeither: "For systems requiring major work or 15+ years old, full system replacement with new R-32 or R-454B equipment is typically more cost-effective than R-22 service OR R-407C retrofit. New equipment delivers 20-30% efficiency improvement vs R-22-era systems and eliminates the AIM Act phase-down risk that affects R-407C too (R-407C GWP 1774, above the 700-GWP threshold for many new equipment categories)."
+
+retrofitNotes: |
+  R-22 to R-407C is the most common R-22 retrofit path when oil change is acceptable. The procedure is well-documented and the capacity match is within 5% across typical operating conditions.
+
+  **Retrofit procedure:**
+
+  1. **Recover R-22** to a dedicated R-22 recovery cylinder. Document recovered weight.
+  2. **Remove mineral oil** through 2-3 oil-change cycles. Each cycle: drain compressor crankcase, refill with POE oil of correct viscosity, run system briefly, drain again. Target residual mineral oil below 5% (verify with oil analysis if critical).
+  3. **Replace filter-drier** with HFC-compatible model (the desiccant in R-22-era driers may be incompatible with POE oil).
+  4. **Pull vacuum** to 500 microns and hold 30 minutes to verify dry, leak-tight system.
+  5. **Charge R-407C** by weight at approximately 95% of the original R-22 nameplate (R-407C is slightly more dense). For systems with significant line lengths, use the [refrigerant charge calculator](/refrigerant-charge-calculator/) to adjust for line set.
+  6. **Verify capacity** at design conditions. Expect 90-95% of original R-22 capacity at the same ambient.
+  7. **Adjust TXV** if necessary — R-407C's 11°F temperature glide may require slight adjustment for stable operation.
+
+  **Glide considerations.** R-407C has substantial temperature glide (~11°F at typical evaporator pressures). For TXV systems this generally works without modification — the TXV controls to evaporator-outlet superheat which uses the dew curve naturally. For fixed-orifice systems the glide creates more variable operation across the evaporator; capacity is reduced ~5% compared to R-22 in fixed-orifice equipment.
+
+  **Service measurement.** Use the dew curve for superheat (suction-line measurement) and the bubble curve for subcooling (liquid-line measurement). The [superheat calculator](/superheat-calculator/) and [subcooling calculator](/subcooling-calculator/) handle this automatically when R-407C is selected.
+
+faqs:
+  - q: "Can I add R-407C to a partially-charged R-22 system without recovering and recharging?"
+    a: "No. Mixing R-407C with R-22 produces a non-standard blend with unpredictable composition (R-407C is itself a blend that fractionates if charged as vapor). The mineral oil in the R-22 system is also incompatible with R-407C's required POE lubricant. Full recovery, oil change, vacuum, and recharge is mandatory for the retrofit to work reliably."
+
+  - q: "What's R-407C's GWP and why does it matter?"
+    a: "GWP 1774 (IPCC AR5) — below R-22's 1810 and below R-410A's 2088, but well above modern low-GWP A2L alternatives. Under the EPA AIM Act R-407C is restricted for many new equipment categories starting in 2025-2026. R-407C remains legal for service of existing equipment indefinitely, but for new R-22 retrofits the choice should account for the limited remaining regulatory runway of R-407C."
+
+  - q: "Why does R-407C have temperature glide while R-22 has none?"
+    a: "R-22 is a pure refrigerant (single molecule, chlorodifluoromethane) — bubble and dew points are identical. R-407C is a ternary blend of R-32, R-125, and R-134a in 23/25/52 mass proportions; the components have different vapor pressures, so the blend has bubble (saturated liquid) and dew (saturated vapor) temperatures that differ by ~11°F at typical pressures. This is normal for zeotropic blends and is accounted for in TXV-based equipment design."
+
+  - q: "Will my R-22 equipment work with R-407C?"
+    a: "Most R-22 equipment is compatible with R-407C with the oil change and filter-drier replacement described above. The pressure envelope is similar enough (R-407C is ~5-10% higher than R-22) that R-22-rated components handle it. Check the equipment OEM's R-407C retrofit guidance — some specific equipment models have published retrofit procedures or restrictions."
+
+  - q: "How much capacity will I lose with R-407C retrofit?"
+    a: "Typically 5-10%. R-407C has slightly lower volumetric capacity than R-22 at the same operating conditions. The reduction is more pronounced in fixed-orifice systems (because the glide affects evaporator behavior) than in TXV systems. For most residential and light commercial applications the capacity reduction is acceptable but worth verifying against the load."
+
+  - q: "What lubricant does R-407C use?"
+    a: "Polyolester (POE) oil. Mineral oil and alkylbenzene (AB) are incompatible. The R-22 to R-407C retrofit requires oil change as documented in the procedure above. POE oil is hygroscopic — it absorbs water aggressively — so vacuum and filter-drier replacement are critical to prevent moisture damage."
+---

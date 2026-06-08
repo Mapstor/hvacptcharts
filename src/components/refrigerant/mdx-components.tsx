@@ -11,6 +11,7 @@ import { RefrigerantCycle } from "./RefrigerantCycle";
 import { RefrigerantPhaseDown } from "./RefrigerantPhaseDown";
 import { RefrigerantGlide } from "./RefrigerantGlide";
 import { RefrigerantGWPComparison } from "./RefrigerantGWPComparison";
+import { TechSection, KeyInsight, NumberFact } from "./TechSection";
 import { getPressureAtTempF, getRefrigerant } from "@/data/refrigerants";
 
 /** Render the saturation pressure at a specific temperature, from data layer. */
@@ -35,4 +36,7 @@ export const mdxComponents = {
   RefrigerantGlide,
   RefrigerantGWPComparison,
   PressureAtTemp,
+  TechSection,
+  KeyInsight,
+  NumberFact,
 };

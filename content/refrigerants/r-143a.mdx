@@ -1,0 +1,176 @@
+---
+slug: r-143a
+title: "R-143a Pressure Temperature Chart & Properties"
+metaTitle: "R-143a PT Chart, A2L HFC Component, GWP 4470 — R-404A Constituent"
+metaDescription: "R-143a (1,1,1-trifluoroethane, CH₃CF₃) PT chart. A2L mildly flammable, GWP 4470 — the highest among mainstream HFC blend components. Primary component in R-404A (52%) and R-507A (50%)."
+introOneLiner: "Pure HFC (1,1,1-trifluoroethane, CH₃CF₃) — A2L mildly flammable, GWP 4470. Almost exclusively used as a blend component in R-404A (52%) and R-507A (50%); not used as standalone refrigerant due to flammability and very high GWP."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: coolprop
+    label: "CoolProp 7.2.0"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: aimact
+    label: "EPA AIM Act — 40 CFR Part 84 Subpart B"
+    url: "https://www.epa.gov/climate-hfcs-reduction"
+    date: "Final Rule Oct 2021"
+  - id: ahri700
+    label: "AHRI Standard 700-2019"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: nistwebbook
+    label: "NIST Chemistry WebBook — 1,1,1-Trifluoroethane (CAS 420-46-2)"
+    url: "https://webbook.nist.gov/chemistry/fluid/"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: A2L
+    context: Mildly flammable; rarely used standalone due to safety classification
+    sourceId: ashrae34
+  - label: Chemical formula
+    value: CH₃CF₃
+    context: 1,1,1-Trifluoroethane (pure HFC, single component)
+    sourceId: ashrae34
+  - label: GWP (100-yr)
+    value: "4470"
+    unit: IPCC AR5
+    context: Highest among mainstream HFC blend components
+    sourceId: ipccar5
+  - label: ODP
+    value: "0"
+    context: Fluorine-only HFC; no chlorine
+    sourceId: ashrae34
+  - label: Normal boiling point
+    value: "−53.1"
+    unit: °F (−47.3°C)
+    context: At 1 atm; similar to R-125
+    sourceId: coolprop
+  - label: Use as standalone
+    value: Almost never
+    context: A2L flammability and very high GWP make standalone use impractical
+    sourceId: ashrae34
+  - label: Component in R-404A
+    value: "52%"
+    context: Largest mass fraction in R-404A; primary GWP contributor
+    sourceId: ashrae34
+  - label: Component in R-507A
+    value: "50%"
+    context: Equal-mass component in R-507A azeotropic blend
+    sourceId: ashrae34
+
+narrative:
+  whatItIs: |
+    R-143a is 1,1,1-trifluoroethane (CH₃CF₃) — a pure HFC with A2L safety classification and the highest GWP (4470) among mainstream HFC blend components [ashrae34][ipccar5]. R-143a is essentially never used as a standalone refrigerant — its A2L flammability and very high GWP make alternatives preferable for nearly all direct refrigeration applications.
+
+    R-143a's commercial role is exclusively as a blend component. The major HFC blends using R-143a: R-404A (52% R-143a — largest mass fraction), R-507A (50%), R-428A, R-427A, R-434A. In these blends R-143a provides volumetric refrigeration capacity at low-temperature operating conditions; the flammability is suppressed by R-125 in A1 blends.
+
+  whereItsUsed:
+    - "Component in R-404A (52% mass) — primary low-temperature commercial refrigeration blend"
+    - "Component in R-507A (50%) — alternative R-502 replacement"
+    - "Component in R-427A — R-22 retrofit blend"
+    - "Component in R-434A — alternative R-22 retrofit"
+    - "Standalone use is essentially non-existent in commercial HVAC"
+
+  phaseDownStatus: |
+    R-143a faces phase-down pressure indirectly through the phase-down of HFC blends containing R-143a. R-404A (52% R-143a) and R-507A (50%) are aggressively phased down under EPA AIM Act and EU F-Gas Regulation [aimact]. As these blends are restricted for new equipment, R-143a production volumes decrease.
+
+    Modern low-GWP blends (R-454C, R-455A, R-448A, R-449A) contain little or no R-143a. The structural trajectory is away from R-143a use in commercial HVAC blend formulations.
+
+  serviceNotes: |
+    R-143a is essentially never encountered as a standalone refrigerant in field service. Service technicians work with R-143a as a component in HFC blends (primarily R-404A and R-507A); the blend behavior dominates service considerations.
+
+    POE oil compatible. Standard HFC service procedures apply when encountered in blend form [ahri700].
+
+faqs:
+  - q: "What is R-143a used for?"
+    a: |
+      Exclusively as a blend component in HFC formulations. The dominant uses: R-404A (52% R-143a) for low-temperature commercial refrigeration, R-507A (50%) as alternative R-502 replacement [ashrae34]. R-143a provides capacity in these blends; flammability is suppressed by R-125 (also a major component).
+
+  - q: "What's R-143a's GWP?"
+    a: |
+      4470 per IPCC AR5 — the highest among mainstream HFC blend components [ipccar5]. The long atmospheric lifetime (~52 years) drives the very high GWP. R-143a is the primary contributor to R-404A's GWP of 3922 — without R-143a, R-404A would have much lower GWP.
+
+  - q: "Is R-143a flammable?"
+    a: |
+      Yes — ASHRAE class A2L (mildly flammable) [ashrae34]. The flammability is part of why R-143a is never used standalone — combining A2L classification with very high GWP gives R-143a the worst of both characteristics for standalone refrigerant use.
+
+  - q: "Why is R-143a used in blends if its GWP is so high?"
+    a: |
+      For capacity at low-temperature operating conditions. R-143a's vapor pressure profile is well-suited to low-temperature commercial refrigeration applications (walk-in freezers, frozen food cases). R-404A's design used 52% R-143a content specifically to match R-502's low-temperature capacity in the same equipment.
+
+      Modern low-GWP blends achieve low-temperature capacity through different chemistry (R-32 plus R-1234yf and similar) without R-143a's very high GWP.
+
+  - q: "Can R-143a be used as a refrigerant by itself?"
+    a: |
+      Technically yes, but practically never. The A2L flammability would require A2L-rated equipment; the very high GWP (4470) is among the worst regulatory positions of any HFC. No commercial application uses R-143a standalone.
+
+  - q: "What lubricant does R-143a use?"
+    a: |
+      POE oil typically when encountered in blend form [ahri700]. Standalone R-143a (rare/nonexistent in practice) would use POE.
+
+  - q: "Is R-143a being phased out?"
+    a: |
+      Indirectly through the phase-down of R-404A and R-507A. As these blends face EPA AIM Act and EU F-Gas restrictions, R-143a production volumes decrease. Modern low-GWP blends use little or no R-143a.
+
+retrofitGuidance:
+  fromRefrigerant: ""
+  notes: |
+    R-143a is essentially never used as a standalone refrigerant. Retrofit considerations apply at the blend level (R-404A, R-507A) rather than at the R-143a component level. R-404A and R-507A retrofit paths are documented on those refrigerant pages.
+---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-143a PT chart">
+
+R-143a's PT chart is a single saturation curve. The pressure envelope is high — R-143a at 70°F is approximately 198 PSIG (CoolProp 7.2.0). The vapor pressure profile is similar to R-125 and contributes to R-404A's and R-507A's pressure characteristics.
+
+R-143a is rarely encountered as a standalone refrigerant in field service, so its standalone PT chart is primarily a reference for understanding blend behavior.
+
+</TechSection>
+
+<TechSection icon="composition" tone="purple" title="HFC chemistry — three fluorines on one carbon, three hydrogens on the other">
+
+R-143a is 1,1,1-trifluoroethane: CH₃CF₃. The asymmetric structure (three fluorines on one carbon, three hydrogens on the other) is what gives R-143a its A2L flammability — the methyl group (CH₃) provides combustible chemistry that the fully-fluorinated R-125 (CHF₂CF₃) lacks.
+
+The long atmospheric lifetime (~52 years) is the chemistry feature driving R-143a's very high GWP. The trifluoromethyl group (CF₃) is resistant to OH radical attack; the molecule persists in the atmosphere for decades.
+
+</TechSection>
+
+<TechSection icon="climate" tone="red" title="GWP 4470 — the highest of mainstream HFC blend components">
+
+R-143a's GWP of 4470 places it among the very highest of HFC refrigerants — exceeded only by some specialty PFCs (R-218 at 8830) and a few other long-lived fluorinated compounds. The very high GWP is the structural reason R-404A and R-507A (the major R-143a-containing blends) have very high overall GWPs of 3922 and 3985.
+
+In R-404A's GWP arithmetic (mass-weighted): 0.52 × 4470 + 0.44 × 3500 + 0.04 × 1430 = 2324 + 1540 + 57 = 3921. R-143a contributes 59% of R-404A's total GWP despite being only 52% of the mass — the highest per-unit-mass GWP contribution.
+
+</TechSection>
+
+<TechSection icon="recycle" tone="amber" title="R-143a in the commercial refrigeration phase-down chain">
+
+R-143a's commercial role is concentrated in R-404A and R-507A — both being aggressively phased down for new equipment under EPA AIM Act and EU F-Gas Regulation. As these blends face restrictions, R-143a production volumes decrease accordingly.
+
+The modern low-GWP commercial refrigeration alternatives (R-454C, R-455A, R-448A, R-449A) contain little or no R-143a:
+- R-448A: 0% R-143a (uses R-32 + R-125 for the A1 capacity components)
+- R-449A: 0% R-143a
+- R-454C: 0% R-143a (binary R-32/R-1234yf)
+- R-455A: 0% R-143a (ternary R-744/R-32/R-1234yf)
+
+The trajectory is structural — R-143a is being designed out of new HFC blend formulations to reduce GWP. The transition from R-404A to R-448A / R-449A retrofits and to R-454C / R-455A new equipment progressively eliminates R-143a from the commercial refrigeration refrigerant inventory.
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-143a in 2026 and beyond">
+
+R-143a's market role is shrinking as R-404A and R-507A phase down. Service supply for existing R-404A and R-507A equipment will continue indefinitely (reclaimed and ongoing production allocations), but production volumes for new R-143a-containing blends are decreasing.
+
+For service technicians, R-143a is essentially invisible — work is on R-404A or R-507A blends, never on standalone R-143a. The blend service procedures dominate.
+
+For equipment specifiers, the trajectory away from R-143a is the key trend. New commercial refrigeration equipment specifies R-454C / R-455A (no R-143a, A2L low-GWP) or R-448A / R-449A (no R-143a, A1 with moderate GWP reduction). R-143a-heavy blends like R-404A are no longer specified for new equipment installations in 2026.
+
+</TechSection>

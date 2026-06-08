@@ -28,7 +28,7 @@ export interface GWPComparisonBarProps {
 
 const W = 800;
 const ROW_H = 32;
-const PAD_T = 24;
+const PAD_T = 48; // room for up to 3 stacked threshold labels
 const PAD_B = 56;
 const PAD_L = 92; // room for refrigerant names
 const PAD_R = 80; // room for GWP value at end of bar
@@ -146,34 +146,78 @@ export function GWPComparisonBar({
         );
       })}
 
-      {/* Reference lines (drawn on top of bars) */}
-      {referenceLines.map((r, i) => {
-        if (r.value < domainMin || r.value > domainMax) return null;
-        const x = svgRound(xScale(r.value));
-        return (
-          <g key={`ref-${i}`}>
-            <line
-              x1={x}
-              y1={PAD_T}
-              x2={x}
-              y2={PAD_T + PLOT_H}
-              stroke="var(--c-accent)"
-              strokeWidth={1.25}
-              strokeDasharray="6 3"
-            />
-            <text
-              x={x}
-              y={PAD_T - 6}
-              textAnchor="middle"
-              fontSize="11"
-              fill="var(--c-accent)"
-              fontWeight={600}
-            >
-              {r.label} ({r.value})
-            </text>
-          </g>
-        );
-      })}
+      {/* Reference lines (drawn on top of bars).
+       *
+       * Labels staggered vertically when two thresholds are close enough
+       * on the log-x axis that their labels would otherwise overlap.
+       * Pre-sort by value to ensure a stable left-to-right stack order;
+       * detect collisions in pixel space; assign each colliding label
+       * to the next row (TOP_ROWS available stacking slots).
+       */}
+      {(() => {
+        const TOP_ROWS = 3;
+        const ROW_GAP = 14;
+        const COLLISION_PX = 160; // approx max label width incl. value at fontSize 10
+        const visible = referenceLines
+          .filter((r) => r.value >= domainMin && r.value <= domainMax)
+          .map((r) => ({ ...r, x: svgRound(xScale(r.value)) }))
+          .sort((a, b) => a.x - b.x);
+        type Placed = { x: number; row: number };
+        const placed: Placed[] = [];
+        const rows: number[] = visible.map((r) => {
+          for (let row = 0; row < TOP_ROWS; row++) {
+            const conflict = placed.some(
+              (p) => p.row === row && Math.abs(p.x - r.x) < COLLISION_PX,
+            );
+            if (!conflict) {
+              placed.push({ x: r.x, row });
+              return row;
+            }
+          }
+          placed.push({ x: r.x, row: TOP_ROWS - 1 });
+          return TOP_ROWS - 1;
+        });
+        return visible.map((r, i) => {
+          const row = rows[i];
+          // Row 0 = highest label slot (closest to bars); each subsequent row up by ROW_GAP.
+          const labelY = PAD_T - 6 - row * ROW_GAP;
+          return (
+            <g key={`ref-${r.label}-${r.value}`}>
+              <line
+                x1={r.x}
+                y1={PAD_T}
+                x2={r.x}
+                y2={PAD_T + PLOT_H}
+                stroke="var(--c-accent)"
+                strokeWidth={1.25}
+                strokeDasharray="6 3"
+              />
+              {/* small leader from label to top of bar area */}
+              {row > 0 ? (
+                <line
+                  x1={r.x}
+                  y1={labelY + 3}
+                  x2={r.x}
+                  y2={PAD_T - 2}
+                  stroke="var(--c-accent)"
+                  strokeWidth={0.75}
+                  strokeOpacity={0.5}
+                />
+              ) : null}
+              <text
+                x={r.x}
+                y={labelY}
+                textAnchor="middle"
+                fontSize="10"
+                fill="var(--c-accent)"
+                fontWeight={600}
+              >
+                {r.label} ({r.value})
+              </text>
+            </g>
+          );
+        });
+      })()}
 
       {/* X-axis ticks + labels */}
       <g aria-hidden="true" fill="var(--c-text)" fontSize="11">

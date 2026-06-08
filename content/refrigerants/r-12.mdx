@@ -1,46 +1,209 @@
 ---
 slug: r-12
 title: "R-12 Pressure Temperature Chart & Properties"
-metaTitle: "R-12 PT Chart, CFC, Banned 1996, Historical Reference"
-metaDescription: "R-12 (CFC-12, dichlorodifluoromethane) — pure CFC. ASHRAE A1, GWP 10900. US production banned 1996. Historical mobile AC and domestic refrigeration; reclaimed supply only."
-introOneLiner: "Pure CFC, dichlorodifluoromethane (CCl₂F₂). ASHRAE A1. GWP 10900, ODP 1.0. US production banned January 1, 1996 under the Montreal Protocol. The dominant mobile AC and domestic refrigeration refrigerant from the 1930s through 1995; reclaimed supply only for legacy equipment service."
+metaTitle: "R-12 PT Chart, CFC, A1, GWP 10900, ODP 1.0 — Banned 1996"
+metaDescription: "R-12 (dichlorodifluoromethane, CCl₂F₂) PT chart. CFC banned globally under Montreal Protocol since 1996. A1 non-flammable, GWP 10900, ODP 1.0 (reference value). Reference page for legacy R-12 service history."
+introOneLiner: "Pure CFC (dichlorodifluoromethane, CCl₂F₂) — the dominant mobile AC and household refrigerator refrigerant from the 1930s through 1995. ODP 1.0 (reference value), GWP 10900. Banned globally under Montreal Protocol since 1 January 1996."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: montrealprotocol
+    label: "Montreal Protocol on Substances that Deplete the Ozone Layer — CFC complete phase-out 1996"
+    url: "https://ozone.unep.org/treaties/montreal-protocol"
+    date: "1987, full CFC ban 1 Jan 1996 in developed countries"
+  - id: epacfr82
+    label: "EPA 40 CFR Part 82 Subpart A — CFC production and consumption ban"
+    url: "https://www.epa.gov/ods-phaseout"
+    date: "CFC production banned 1 Jan 1996"
+  - id: epasec608
+    label: "EPA Section 608 — Stationary Refrigeration and AC Regulations"
+    url: "https://www.epa.gov/section608"
+  - id: coolprop
+    label: "CoolProp 7.2.0"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: ahri700
+    label: "AHRI Standard 700-2019"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: nasaozone
+    label: "NASA Ozone Watch — Stratospheric ozone depletion measurement and history"
+    url: "https://ozonewatch.gsfc.nasa.gov/"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: A1
+    context: Non-toxic, non-flammable
+    sourceId: ashrae34
+  - label: Chemical formula
+    value: CCl₂F₂
+    context: Dichlorodifluoromethane (pure CFC, single component)
+    sourceId: ashrae34
+  - label: ODP
+    value: "1.0"
+    context: The reference value for the entire ozone-depletion potential scale
+    sourceId: montrealprotocol
+  - label: GWP (100-yr)
+    value: "10900"
+    unit: IPCC AR5
+    context: Very high — atmospheric lifetime approximately 100 years
+    sourceId: ipccar5
+  - label: Normal boiling point
+    value: "−21.6"
+    unit: °F (−29.8°C)
+    context: At 1 atm; suited to MAC, refrigerator, and chiller temperatures
+    sourceId: coolprop
+  - label: Critical temperature
+    value: "234"
+    unit: °F (112°C)
+    context: Well above ambient
+    sourceId: coolprop
+  - label: Production status
+    value: Banned globally
+    unit: 1 Jan 1996
+    context: CFC ban under Montreal Protocol; only reclaimed supply remains
+    sourceId: epacfr82
+  - label: Required lubricant
+    value: Mineral oil
+    context: Compatible with CFC chemistry; POE not used
+    sourceId: ahri700
 
 narrative:
   whatItIs: |
-    R-12 is pure dichlorodifluoromethane — a chlorofluorocarbon (CFC) developed in the 1930s as a non-toxic, non-flammable replacement for the earlier ammonia and sulfur dioxide refrigerants. R-12 was the dominant mobile air conditioning refrigerant from the 1950s through the mid-1990s and the standard for domestic refrigerators for nearly as long.
+    R-12 is pure dichlorodifluoromethane (CCl₂F₂) — a chlorofluorocarbon (CFC) that was the dominant refrigerant in mobile air conditioning, household refrigerators, and centrifugal chillers from the 1930s through the early 1990s [ashrae34]. R-12's properties — moderate pressure envelope, A1 non-flammable, single-component simplicity, high compatibility with mineral oil — made it the universal refrigerant of the post-WWII refrigeration industry.
 
-    R-12 production in the US ended January 1, 1996 under the Montreal Protocol CFC phase-out. The chlorine in R-12 catalyzes ozone destruction in the stratosphere; the GWP of 10900 (IPCC AR5) makes it among the most climate-impactful common refrigerants per pound released.
+    R-12 is the reference value for the ozone-depletion potential scale: its ODP is exactly 1.0 [montrealprotocol]. The 1985 discovery of the Antarctic ozone hole, attributed to atmospheric CFC accumulation, drove the 1987 Montreal Protocol mandate to phase out CFC production. R-12 production was completely banned in developed countries on 1 January 1996 [epacfr82].
 
   whereItsUsed:
-    - Existing pre-1996 mobile AC (declining rapidly)
-    - Existing pre-1996 domestic refrigerators (essentially all replaced by now)
-    - Some legacy commercial refrigeration (rare)
-    - Reference for refrigeration history education
+    - "Legacy mobile air conditioning — vehicles built before 1992 (US)"
+    - "Legacy household refrigerators — appliances built before 1994 (US)"
+    - "Legacy centrifugal chillers — equipment installed before mid-1990s"
+    - "Service of remaining legacy equipment (reclaimed R-12 supply only)"
+    - "Historical and reference context — defining the GWP/ODP scale"
 
   phaseDownStatus: |
-    R-12 production has been banned in the US since January 1, 1996 under the Montreal Protocol CFC phase-out (the most aggressive global environmental treaty). Reclaimed R-12 remains legal to use indefinitely for servicing pre-ban equipment, but the supply pool is essentially exhausted — most R-12 vehicles and refrigerators have been replaced through end-of-life cycles, and the reclaimed inventory has been progressively drawn down.
+    R-12 production has been completely banned in developed countries since 1 January 1996 [epacfr82]. The Montreal Protocol phase-out applies globally — developing countries followed by 2010. Only reclaimed R-12 remains legally available for service of pre-1996 equipment.
+
+    The R-12 installed base has largely aged out through normal equipment replacement cycles. Mobile AC: virtually all vehicles built before 1992 have been retired or had MAC systems retrofitted. Household refrigerators: similar attrition. Service supply is increasingly scarce; reclaimed R-12 prices reflect the very small remaining market.
 
   serviceNotes: |
-    Mineral oil (MO) is the lubricant standard. For the few remaining pre-1996 vehicles with R-12 AC, retrofit to R-134a or full system replacement are the only practical paths once a leak develops. EPA Section 608 certification is required to handle R-12; recovery is mandatory.
+    Reclaimed R-12 is legal to use indefinitely in existing equipment under EPA Section 608 rules [epasec608]. The supply chain is small and pricing reflects scarcity — typical wholesale prices in 2026 are 50-200× the 1995 baseline.
+
+    Mineral oil compatible. EPA Section 608 Type II or Universal certification required for service. R-12 service equipment is largely museum-quality at this point — 1/4" SAE service ports, low-pressure manifold gauges adequate.
 
 faqs:
   - q: "Why was R-12 banned?"
-    a: "Stratospheric ozone depletion. R-12's chlorine content makes it ozone-depleting (ODP = 1.0 — R-12 is the reference for ODP). When R-12 reaches the stratosphere, UV light cleaves the C-Cl bond, releasing chlorine atoms that catalyze ozone destruction. The 1985 discovery of the Antarctic ozone hole accelerated international action; the 1987 Montreal Protocol mandated CFC phase-out and US production ended January 1, 1996. The protocol is the most successful international environmental treaty in history."
+    a: |
+      Ozone-depletion potential. R-12 contains two chlorine atoms per molecule; UV breakdown in the stratosphere releases chlorine radicals that catalyze ozone destruction. The 1985 discovery of the Antarctic ozone hole, attributed to atmospheric CFC accumulation, drove the 1987 Montreal Protocol mandate for CFC phase-out.
 
-  - q: "Can I still get R-12?"
-    a: "Reclaimed R-12 only, and supply is essentially exhausted. Pre-1996 inventory has been drawn down through service of remaining R-12 equipment. New US production is illegal. Reclamation from end-of-life vehicles and refrigerators continues at very low volumes. Pricing per pound is dramatically higher than modern refrigerants when material is available."
+      Developed countries banned CFC production on 1 January 1996 [epacfr82]. Developing countries followed by 2010 under amended Montreal Protocol schedules.
 
-  - q: "What replaced R-12?"
-    a: "Mobile AC: R-134a (1990s through 2014) and now R-1234yf. Domestic refrigeration: R-134a (most US, 1990s-2010s) and increasingly R-600a (isobutane). Commercial refrigeration: various HFC blends in the 1990s/2000s, now transitioning to lower-GWP A2L blends and natural refrigerants. The R-12 replacement trajectory in each application sets the template that's now repeating with the AIM Act HFC phase-down — refrigerants moving toward lower environmental impact through successive generations."
+  - q: "Is R-12 still legal?"
+    a: |
+      Reclaimed R-12 is legal to use indefinitely in existing equipment under EPA Section 608 rules [epasec608]. New production has been banned in the US since 1996; supply comes entirely from reclaimed material recovered from equipment removals.
 
-  - q: "What lubricant does R-12 use?"
-    a: "Mineral oil (MO). Some alkylbenzene (AB) in later 1980s/1990s installations. R-12 mineral oil is not compatible with R-134a or any HFC refrigerant — retrofitting an R-12 system to R-134a requires oil change to PAG (mobile AC) or POE (stationary)."
+  - q: "What's R-12's GWP and ODP?"
+    a: |
+      ODP 1.0 (the reference value for the scale) and GWP 10900 per IPCC AR5 [montrealprotocol][ipccar5]. R-12 is the reference benchmark for both environmental metrics — every other refrigerant's ODP is measured relative to R-12's ozone-depletion potency.
+
+      The very high GWP (10900) means R-12 release has approximately 7.6× the climate impact per kg of R-410A (2088) and 5× the impact of R-404A (3922). R-12 is the worst possible refrigerant by GWP standards among mainstream HVAC refrigerants.
+
+  - q: "What replaced R-12 in cars?"
+    a: |
+      R-134a (HFC, GWP 1430) replaced R-12 in new vehicle MAC starting in 1992-1995 (Chrysler 1992, Ford 1993, GM 1994). The R-12 to R-134a transition required new compressor oil (mineral oil to PAG), different service ports (smaller R-134a ports), and updated MAC system designs.
+
+      R-134a was itself replaced by R-1234yf (HFO, GWP 4) in new vehicle MAC starting in 2017 (EU) and 2017-2021 (US) under EU MAC Directive 2006/40/EC and AIM Act pressure.
+
+  - q: "What replaced R-12 in household refrigerators?"
+    a: |
+      R-134a (HFC) initially, in the early 1990s. Modern household refrigerators have largely transitioned to R-600a (isobutane, hydrocarbon, GWP 3) since the 2010s. The R-12 to R-134a transition was for ozone-depletion reasons; the R-134a to R-600a transition is for GWP reduction.
+
+  - q: "Why is R-12 so expensive now?"
+    a: |
+      Reclaim-only supply for a small and shrinking market. Production has been banned since 1996; supply comes entirely from refrigerant recovered from equipment removals. The R-12 installed base is now tiny — vehicles and refrigerators built before 1995 are nearly all retired. Typical wholesale prices in 2026 are 50-200× the 1995 baseline.
+
+  - q: "Can I retrofit an R-12 system to R-134a?"
+    a: |
+      For vehicles: yes, with new compressor oil (PAG instead of mineral oil), service-port conversion (R-134a smaller ports), and sometimes compressor replacement. The retrofit was common in the late 1990s and early 2000s for R-12 vehicles that needed major AC service.
+
+      For household refrigerators: typically not — refrigerator replacement is more economical than refrigerant retrofit.
 
   - q: "Is R-12 the same as Freon?"
-    a: "'Freon' was DuPont's trademark for their refrigerant product line; Freon-12 specifically referred to R-12. Other manufacturers had their own brand names (Genetron from Honeywell/Allied, Forane from Arkema/Pennwalt). 'Freon' is often used colloquially to mean any refrigerant, but technically it was a brand. After patent expirations and the DuPont/Chemours split, the brand remains in Chemours' portfolio but is rarely used for current refrigerants."
+    a: |
+      "Freon" is a Chemours/DuPont trademark applied to many fluorinated refrigerants. R-12 was historically marketed as Freon 12 — perhaps the most famous Freon product. The colloquial use of "Freon" as a generic refrigerant term derives from R-12's market dominance in the mid-20th century.
+
+      Honeywell's equivalent brand was Genetron 12. Both manufacturers ceased R-12 production in 1996.
 
 retrofitGuidance:
   fromRefrigerant: ""
   notes: |
-    R-12 itself was the refrigerant being retrofitted FROM during the 1990s CFC phase-out. The historical R-12 to R-134a retrofit required oil change (mineral → PAG for mobile, mineral → POE for stationary), elastomer seal replacement, and verification of component pressure ratings. Most pre-1996 R-12 vehicles have been retired or retrofitted by now; remaining R-12 equipment is essentially museum-grade and not in mainstream service. New equipment installations bypass R-12 entirely.
+    R-12 itself is the refrigerant being retrofitted FROM. Vehicle MAC retrofit to R-134a was common in the late 1990s-early 2000s; remaining R-12 vehicles in service are typically classic cars where original-equipment refrigerant is preferred. Household refrigerator retrofit is uncommon — appliance replacement is more economical. Reclaimed R-12 remains legal for continued service of legacy equipment indefinitely.
 ---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-12 PT chart">
+
+R-12's PT chart is a single saturation curve (pure CFC, no glide). At 70°F R-12 saturation is approximately 70 PSIG (CoolProp 7.2.0) — coincidentally very close to R-134a (71 PSIG), which is why R-134a was the natural HFC replacement for R-12.
+
+Pressure envelope is moderate — standard 500 PSI manifold gauges (the pre-R-410A standard) handle R-12 with comfortable margin. R-12 service equipment is largely historical at this point.
+
+</TechSection>
+
+<TechSection icon="composition" tone="purple" title="CFC chemistry — two chlorines, two fluorines, no hydrogen">
+
+R-12 is dichlorodifluoromethane: CCl₂F₂. The two chlorine atoms are the chemistry feature that made R-12 ozone-depleting; the absence of hydrogen is why R-12's atmospheric lifetime is so long (~100 years).
+
+Without hydrogen, OH radical attack (the primary atmospheric breakdown mechanism for HFCs) can't break down R-12. The molecule persists in the atmosphere for a century, eventually reaching the stratosphere where UV photolysis releases the chlorine atoms that catalyze ozone destruction.
+
+The 100-year atmospheric lifetime is also what gives R-12 its very high GWP (10900). Long persistence × strong radiative forcing per molecule = very high warming impact per kg released.
+
+</TechSection>
+
+<TechSection icon="globe" tone="red" title="ODP 1.0 — R-12 is the ozone-depletion potential reference">
+
+R-12's ODP is exactly 1.0 by definition — it's the reference value against which other refrigerants' ozone-depletion potency is measured. R-22 has ODP 0.055 (5.5% of R-12's potency); R-123 has ODP 0.02; R-1233zd(E) has ODP 0.00034.
+
+The 1985 Antarctic ozone hole discovery (NASA Nimbus-7 satellite, then confirmed by ground-based Dobson spectrometer measurements) was attributed to atmospheric CFC accumulation [nasaozone]. R-12's market dominance from the 1930s through the 1980s meant it was the largest single contributor to stratospheric chlorine loading.
+
+The Montreal Protocol (1987) mandated CFC phase-out; the US implemented complete R-12 production ban on 1 January 1996 [epacfr82]. The 1996 production ban is recognized as one of the most successful global environmental agreements — atmospheric chlorine concentrations have stabilized and begun declining, with stratospheric ozone recovery projected through 2070.
+
+</TechSection>
+
+<TechSection icon="climate" tone="red" title="GWP 10900 — worst commercial refrigerant by climate impact">
+
+R-12's GWP of 10900 (IPCC AR5) is the highest among mainstream commercial refrigerants by a wide margin [ipccar5]. The very long atmospheric lifetime (100 years) drives the very high GWP — long persistence × strong radiative forcing per molecule.
+
+For comparison: R-22 (1810), R-410A (2088), R-404A (3922) — all are 2-6× lower GWP than R-12. R-12 release has 7-10× the climate impact per kg of even the worst modern mainstream HFCs.
+
+R-12's environmental impact (high ODP + very high GWP) is the defining environmental catastrophe of late-20th-century refrigerant chemistry. The Montreal Protocol's ozone-focused phase-out also dramatically reduced future climate impact — eliminating R-12 production prevented decades of additional climate burden.
+
+</TechSection>
+
+<TechSection icon="recycle" tone="amber" title="R-12 history — refrigerant universal solvent of the 20th century">
+
+R-12 was developed in 1928 by Thomas Midgley Jr. at General Motors as a non-flammable, non-toxic, low-cost refrigerant alternative to the dangerous early refrigerants (ammonia, sulfur dioxide, methyl chloride, propane). R-12 commercialization through the 1930s-1940s revolutionized refrigeration safety and availability — household refrigerators became practical mass-market appliances.
+
+By the 1950s-1970s, R-12 was the universal refrigerant: household refrigerators, freezers, commercial refrigeration, mobile AC, centrifugal chillers, aerosol propellant, foam blowing agent. The 1985 ozone hole discovery began the unraveling; the 1987 Montreal Protocol mandated phase-out; the 1996 production ban completed the transition to alternatives.
+
+The R-12 to R-134a transition (in mobile AC and household refrigerators) and R-12 to R-123/R-11 (in chillers) was the largest refrigerant industry transition in history at the time. The current R-22 to R-410A and R-410A to R-32/R-454B transitions echo the R-12 transition's scale.
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-12 in 2026 and beyond">
+
+R-12 is essentially a historical refrigerant in 2026. The installed base of R-12 equipment is tiny — household refrigerators built before 1994 have largely been replaced; vehicles built before 1992 are mostly retired classic cars; chillers from the pre-1996 era have been replaced.
+
+Service supply via reclaimed R-12 continues but pricing reflects very limited market. Typical 2026 wholesale prices are 50-200× the 1995 baseline.
+
+For the rare situations where R-12 service is needed (classic car restoration, historical chiller museum installations, specialty applications), reclaimed R-12 remains legal under EPA Section 608. EPA Type II or Universal certification required for service work.
+
+R-12's primary continuing relevance is as a historical reference — defining the GWP and ODP scales, the Montreal Protocol case study, the largest refrigerant industry transition before the modern HFC phase-down era.
+
+</TechSection>

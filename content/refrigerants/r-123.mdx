@@ -1,57 +1,197 @@
 ---
 slug: r-123
 title: "R-123 Pressure Temperature Chart & Properties"
-metaTitle: "R-123 PT Chart, B1 Toxicity, Low-Pressure Centrifugal Chillers"
-metaDescription: "R-123 (HCFC-123, 2,2-dichloro-1,1,1-trifluoroethane) — pure HCFC. ASHRAE B1 (higher toxicity). GWP 77. Low-pressure centrifugal chillers; production phased out 2020 (Montreal Protocol)."
-introOneLiner: "Pure HCFC, 2,2-dichloro-1,1,1-trifluoroethane (CHCl₂CF₃). ASHRAE B1 (higher toxicity, non-flammable). GWP 77 (low for an HCFC). Low-pressure centrifugal chiller refrigerant — virgin production banned in the US in 2020 under the Montreal Protocol HCFC phase-out; service supply now comes from reclaimed material."
+metaTitle: "R-123 PT Chart, B1 HCFC, GWP 79, ODP 0.02 — Low-Pressure Chiller"
+metaDescription: "R-123 (2,2-dichloro-1,1,1-trifluoroethane) PT chart. B1 toxic non-flammable HCFC, GWP 79, ODP 0.02. Low-pressure centrifugal chiller refrigerant; US production banned 1 January 2020."
+introOneLiner: "HCFC (2,2-dichloro-1,1,1-trifluoroethane, CHCl₂CF₃) — B1 toxic non-flammable, GWP 79, ODP 0.02. The dominant low-pressure centrifugal chiller refrigerant 1990-2020; US production banned 1 January 2020. R-1233zd(E) is the standard replacement."
+
+sources:
+  - id: ashrae34
+    label: "ASHRAE Standard 34-2022"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: ipccar5
+    label: "IPCC AR5 (2014) Working Group I, Chapter 8, Table 8.A.1"
+    url: "https://www.ipcc.ch/report/ar5/wg1/"
+    date: "2014"
+  - id: montrealprotocol
+    label: "Montreal Protocol — HCFC phase-out schedule (1992 Copenhagen Amendment)"
+    url: "https://ozone.unep.org/treaties/montreal-protocol"
+    date: "1987, amended 1992"
+  - id: epacfr82
+    label: "EPA 40 CFR Part 82 Subpart A — HCFC production phase-out (R-123 banned 1 Jan 2020)"
+    url: "https://www.epa.gov/ods-phaseout"
+    date: "R-123 production banned 1 Jan 2020"
+  - id: coolprop
+    label: "CoolProp 7.2.0"
+    url: "http://www.coolprop.org/"
+    date: "2014 (continually updated)"
+    note: "doi:10.1021/ie4033999"
+  - id: ashrae15
+    label: "ASHRAE Standard 15-2022 — B1 toxicity safety provisions"
+    url: "https://www.ashrae.org/technical-resources/standards-and-guidelines"
+    date: "2022"
+  - id: epasec608
+    label: "EPA Section 608"
+    url: "https://www.epa.gov/section608"
+  - id: ahri700
+    label: "AHRI Standard 700-2019"
+    url: "https://www.ahrinet.org/search-standards"
+    date: "2019"
+  - id: trane
+    label: "Trane CenTraVac R-123 chiller documentation"
+    url: "https://www.trane.com/commercial/north-america/us/en/products-systems/chillers.html"
+
+keyStats:
+  - label: ASHRAE safety class
+    value: B1
+    context: Higher toxicity (chronic exposure concern), non-flammable
+    sourceId: ashrae34
+  - label: Chemical formula
+    value: CHCl₂CF₃
+    context: 2,2-Dichloro-1,1,1-trifluoroethane (HCFC with two chlorines)
+    sourceId: ashrae34
+  - label: ODP
+    value: "0.02"
+    context: Lower than R-22 (0.055); subject to HCFC phase-out
+    sourceId: montrealprotocol
+  - label: GWP (100-yr)
+    value: "79"
+    unit: IPCC AR5
+    context: Low for HCFC; very low compared to HFC alternatives
+    sourceId: ipccar5
+  - label: Normal boiling point
+    value: "82.1"
+    unit: °F (27.8°C)
+    context: Higher than R-134a — very low-pressure chiller operation
+    sourceId: coolprop
+  - label: Production status
+    value: Banned (US)
+    unit: 1 Jan 2020
+    context: HCFC phase-out under Montreal Protocol; reclaimed supply only
+    sourceId: epacfr82
+  - label: Required lubricant
+    value: Mineral oil
+    context: Compatible with HCFC chemistry
+    sourceId: ahri700
+  - label: Replacement
+    value: R-1233zd(E)
+    context: HCFO replacement (A1, GWP 1, near-zero ODP)
+    sourceId: trane
 
 narrative:
   whatItIs: |
-    R-123 is pure 2,2-dichloro-1,1,1-trifluoroethane — a hydrochlorofluorocarbon developed as the long-term replacement for R-11 in low-pressure centrifugal chillers when CFCs were phased out under the Montreal Protocol in the 1990s. R-123's modest ozone-depletion potential (ODP 0.02) and very low GWP (77) made it the standard for large building cooling for two decades.
+    R-123 is 2,2-dichloro-1,1,1-trifluoroethane (CHCl₂CF₃) — a hydrochlorofluorocarbon (HCFC) with B1 safety classification and a unique application niche [ashrae34]. The two chlorine atoms give R-123 small but non-zero ODP (0.02); the molecular structure produces very low vapor pressure and a unique high boiling point (82°F) that suits low-pressure centrifugal chiller applications.
 
-    R-123 is unique among common HVAC refrigerants in being classified ASHRAE B1 — higher toxicity (Occupational Exposure Limit below 400 ppm) and non-flammable. Machine-room ventilation, leak detection, and operator certification requirements per ASHRAE Standard 15 are more stringent than for A-class refrigerants.
+    R-123 was the dominant low-pressure centrifugal chiller refrigerant from 1990 through 2020, replacing CFC R-11 in chiller equipment after the 1996 CFC phase-out. R-123's low pressure envelope (sub-atmospheric on the evaporator side at typical chiller temperatures) is well-suited to large centrifugal chiller compressor designs. US production was banned on 1 January 2020 under the Montreal Protocol HCFC schedule [epacfr82].
 
   whereItsUsed:
-    - Low-pressure centrifugal chillers (large commercial buildings, district cooling, industrial process cooling)
-    - Existing installed base (production banned 2020 for new equipment)
-    - Servicing-only with reclaimed material
+    - "Low-pressure centrifugal chillers (Trane CenTraVac, others) installed 1990-2020"
+    - "Legacy chiller equipment requiring service with reclaimed R-123"
+    - "Specialty heat-transfer applications"
+    - "Replaced in new equipment by R-1233zd(E) (A1, GWP 1, near-zero ODP)"
 
   phaseDownStatus: |
-    R-123 is under the Montreal Protocol HCFC phase-out, not the AIM Act (which targets HFCs). The US production phase-out completed January 1, 2020 — virgin R-123 is no longer manufactured. Reclaimed R-123 remains legal to use indefinitely under current regulations.
+    R-123 US production was banned on 1 January 2020 under the HCFC schedule [epacfr82]. The phase-out parallels R-22's: complete ban on new production, with reclaimed supply remaining legal for service of existing equipment under EPA Section 608 [epasec608].
 
-    For new low-pressure centrifugal chiller installations, the dominant replacement is R-1233zd(E) (Honeywell Solstice 1233zd, GWP 1) — a similar low-pressure HCFO that targets the same equipment envelope. R-514A and R-1224yd(Z) are also positioned in this niche but with smaller market share so far.
+    For existing R-123 chillers, service supply will continue via reclaimed R-123 indefinitely. The remaining R-123 chiller installed base is significant (large centrifugal chillers from the 1990s-2010s era) and will continue operating for decades. Replacement chillers increasingly specify R-1233zd(E) for new equipment.
 
   serviceNotes: |
-    Mineral oil (MO) is the standard lubricant for R-123. Alkylbenzene (AB) is also compatible. POE is NOT used with R-123 in original systems — that's an HFC requirement.
+    R-123 is B1 — higher toxicity than typical A-class refrigerants. ASHRAE Standard 15 requires specific equipment-room provisions for B1 refrigerants: leak detection, emergency ventilation, machine room exclusion zone provisions [ashrae15].
 
-    R-123's B1 toxicity classification drives strict service procedures: machine-room ventilation per ASHRAE 15 (typically 1 CFM/ft² of machinery space plus emergency purge); refrigerant leak detection sensors with manned-room alarms; full-face respirator with appropriate cartridge for any service exposing the working fluid; EPA Section 608 Type II or Universal certification mandatory; specific manufacturer training for the equipment.
+    Mineral oil compatible. Standard chiller service procedures apply with B1 toxicity precautions. EPA Section 608 Type I (for low-pressure appliances) or Universal certification required for service.
 
-    Operating pressures are below atmospheric at typical evaporator temperatures — R-123 saturation at 70°F is -3 PSIG (vacuum). This is structural to the low-pressure chiller design and is part of why R-123 is classified as "low-pressure" — the entire low side typically operates in mild vacuum.
+    R-123 operates at very low pressures — sub-atmospheric on the evaporator side at typical chiller temperatures. Equipment includes purge units to remove non-condensable atmospheric contamination from sub-atmospheric operation.
 
 faqs:
-  - q: "What does ASHRAE B1 classification mean for R-123?"
-    a: "B1 is higher toxicity (Occupational Exposure Limit below 400 ppm) and non-flammable. The toxicity classification drives the machine-room safety requirements: ventilation per ASHRAE 15, refrigerant leak detection with manned-room alarms, respirator-rated PPE for service work, restricted occupancy classification for the chiller machinery space. R-123 is the only B-class refrigerant in widespread HVAC use; the requirements are well-codified but more stringent than for A1 refrigerants."
+  - q: "What is R-123 used for?"
+    a: |
+      Low-pressure centrifugal chillers, dominantly. Trane CenTraVac was the most prominent R-123 chiller product line [trane]; other chiller OEMs also offered R-123 options. R-123 was the standard low-pressure chiller refrigerant from 1990 through 2020.
 
-  - q: "Why does R-123 operate in vacuum?"
-    a: "Low saturation pressures. R-123 saturation at typical chiller evaporator temperatures (35-45°F leaving water) is below atmospheric — typically 2-5 PSIG below ambient. This is structural to the low-pressure centrifugal chiller design and is part of why R-123 chillers are physically large relative to their capacity (the impeller and casing must be sized for the lower-density vapor). Air leaks INTO the system rather than refrigerant leaking OUT, requiring continuous purge units to evacuate non-condensables."
+      Production was banned on 1 January 2020 under the HCFC phase-out; new chiller equipment specifies R-1233zd(E) (HCFO, A1, GWP 1, near-zero ODP) as the standard R-123 replacement.
 
-  - q: "Can I still buy R-123?"
-    a: "Reclaimed R-123 only. Virgin US production ended January 1, 2020 under the Montreal Protocol HCFC phase-out. Reclaimed R-123 — recovered from end-of-life equipment, processed back to AHRI 700 specification, and resold — remains legal and available. Prices have risen substantially as the supply pool shrinks. Refrigerant management strategies for the remaining R-123 chiller installed base typically combine careful recovery during service, conversion-vs-replacement economic analysis, and consideration of HCFO replacement chillers (R-1233zd(E)) when equipment reaches end of life."
+  - q: "Why was R-123 phased out?"
+    a: |
+      Ozone-depletion potential. R-123 contains two chlorine atoms; HCFCs were added to the Montreal Protocol controlled substances list in 1992 (Copenhagen Amendment). Despite R-123's relatively low ODP (0.02), the Montreal Protocol HCFC schedule mandated complete phase-out [montrealprotocol].
+
+      US implementation through 40 CFR Part 82 Subpart A: production banned 1 January 2020 [epacfr82].
+
+  - q: "What's R-123's GWP and ODP?"
+    a: |
+      GWP 79 (IPCC AR5), ODP 0.02 [ipccar5][montrealprotocol]. The GWP is low for an HCFC and dramatically lower than HFC alternatives (R-134a 1430, R-410A 2088). The ODP is small but non-zero — triggering the Montreal Protocol phase-out despite the relatively low ozone impact per kg.
+
+  - q: "What replaced R-123?"
+    a: |
+      R-1233zd(E) (Honeywell Solstice zd) is the standard replacement [trane]. HCFO chemistry similar to R-123 but with a carbon-carbon double bond that gives very short atmospheric lifetime (26 days) and very low GWP (1). The one chlorine atom in R-1233zd(E) gives technically-non-zero ODP (0.00034) but below regulatory de-minimis thresholds.
+
+      R-1233zd(E) is operationally near-equivalent to R-123 — similar pressure envelope, similar safety class (R-1233zd(E) is A1, R-123 is B1, so R-1233zd(E) is actually safer), similar lubricant compatibility.
+
+  - q: "Is R-123 still legal?"
+    a: |
+      Reclaimed R-123 is legal to use indefinitely in existing equipment under EPA Section 608 rules [epasec608]. New production has been banned in the US since 1 January 2020 [epacfr82]. Supply comes from reclaimed material recovered from equipment removals.
+
+  - q: "Why is R-123 B1 (higher toxicity) instead of A1?"
+    a: |
+      R-123 has higher chronic toxicity than A-class refrigerants — long-term exposure produces liver effects in animal studies. ACGIH TLV is 50 ppm (8-hour TWA). The toxicity is chronic-exposure rather than acute — short refrigerant exposure during service is manageable with standard procedures, but continuous workplace exposure must be limited.
+
+      ASHRAE Standard 15 requires leak detection and equipment-room ventilation for B1 refrigerants to protect against chronic worker exposure [ashrae15].
 
   - q: "What lubricant does R-123 use?"
-    a: "Mineral oil (MO) is the standard. Alkylbenzene (AB) is also compatible. POE is NOT used with R-123 in original systems."
+    a: |
+      Mineral oil typically [ahri700]. Standard chiller mineral oil viscosity grades apply. R-123 is fully miscible with mineral oil at chiller operating temperatures.
 
-  - q: "What's replacing R-123 in new chillers?"
-    a: "R-1233zd(E) (Honeywell Solstice 1233zd, also called Solstice LBA) is the dominant replacement — a HCFO with very low GWP (1), ASHRAE A1 (lower toxicity, non-flammable, easier machine-room requirements than R-123's B1), and similar pressure envelope. R-514A and R-1224yd(Z) target the same niche with smaller market share. New low-pressure centrifugal chiller installations are predominantly R-1233zd(E)."
-
-  - q: "Is R-123 dangerous to work around?"
-    a: "The OEL (50 ppm typical for R-123) means short-term exposure should be limited and respiratory protection is appropriate during service. The vapor is denser than air and accumulates at low points; chiller pits and mechanical-room sumps should be ventilated. Acute exposure causes central nervous system effects (dizziness, drowsiness); chronic exposure raises liver toxicity concerns. The risks are well-managed in standard chiller machine-room installations with proper ventilation and detection."
-
-  - q: "What is the saturation pressure of R-123 at 70°F?"
-    a: "Approximately -3 PSIG (vacuum). R-123's saturation pressure stays below atmospheric until around 75-80°F. This is structural to the low-pressure chiller design and is normal for R-123 systems — not an indication of leakage or low charge."
+  - q: "Can I retrofit an R-123 chiller to R-1233zd(E)?"
+    a: |
+      Yes — R-1233zd(E) was designed as a near-drop-in R-123 retrofit. Trane and other chiller OEMs document R-123 to R-1233zd(E) conversion procedures. Pressure envelope is similar; safety class is improved (B1 to A1); lubricant compatibility is preserved (mineral oil works for both).
 
 retrofitGuidance:
   fromRefrigerant: ""
   notes: |
-    R-123 itself is the refrigerant being phased out. The retrofit path for existing R-123 chillers is either continued service with reclaimed R-123 (legal indefinitely under current rules) or full chiller replacement with R-1233zd(E) equipment at end of life. There is no in-place refrigerant swap from R-123 to a replacement that doesn't require chiller replacement — the equipment is purpose-built around the low-pressure refrigerant.
+    R-123 retrofit path: R-1233zd(E) (Honeywell Solstice zd) for low-pressure centrifugal chillers. Major OEMs (Trane CenTraVac, others) document conversion procedures. The retrofit preserves the R-123 chiller installed base under modern environmental regulations while improving safety class (B1 → A1) and dramatically lowering GWP (79 → 1).
 ---
+
+<TechSection icon="chart" tone="blue" title="Reading the R-123 PT chart — very low pressures, sub-atmospheric on chiller evaporator">
+
+R-123's PT chart shows very low pressures across the chiller operating range. At 70°F R-123 saturation is approximately 0 PSIG (atmospheric); at typical chiller evaporator temperatures (35-45°F), saturation is well below atmospheric — chiller evaporator runs at vacuum.
+
+Single saturation curve (pure refrigerant, no glide). The operational concern is vacuum operation and air-ingress prevention rather than high-pressure safety.
+
+</TechSection>
+
+<TechSection icon="composition" tone="purple" title="HCFC chemistry — two chlorines, three fluorines">
+
+R-123 is 2,2-dichloro-1,1,1-trifluoroethane: CHCl₂CF₃. The two chlorine atoms on one carbon and the three fluorine atoms on the other produce R-123's distinctive properties — low vapor pressure (high boiling point), B1 toxicity classification, and small but non-zero ODP.
+
+The molecular structure with chlorine content is what triggered Montreal Protocol HCFC phase-out. The hydrogen atom (the "H" in HCFC) provides atmospheric breakdown chemistry that gives HCFCs shorter atmospheric lifetime than CFCs — R-123 atmospheric lifetime is ~1.3 years vs R-12's 100 years. The shorter lifetime is why R-123's ODP (0.02) is much lower than R-12's (1.0) despite both molecules containing chlorine.
+
+</TechSection>
+
+<TechSection icon="warning" tone="amber" title="B1 toxicity — equipment-room provisions per ASHRAE 15">
+
+R-123's B1 classification reflects higher chronic toxicity than A-class refrigerants. ASHRAE Standard 15 specifies equipment-room provisions for B1 refrigerants: refrigerant leak detection, emergency exhaust ventilation, machine room exclusion zones during refrigerant release events [ashrae15].
+
+ACGIH TLV (8-hour time-weighted average exposure limit) is 50 ppm for R-123. The toxicity concern is chronic — long-term worker exposure to low concentrations can produce liver effects. Acute exposure during service is manageable with standard procedures; the concern is workplace contamination over extended operating periods.
+
+For chiller machine room design, B1 refrigerants require dedicated ventilation systems and leak detection beyond what A1 chillers need. The R-1233zd(E) replacement (A1 classification) eliminates this requirement — one reason R-1233zd(E) is the preferred replacement.
+
+</TechSection>
+
+<TechSection icon="globe" tone="emerald" title="ODP 0.02 and GWP 79 — low for an HCFC, but Montreal Protocol mandates phase-out">
+
+R-123's ODP of 0.02 is small but non-zero — much lower than R-22 (0.055) and R-12 (1.0). The Montreal Protocol HCFC schedule mandated complete phase-out despite the lower ODP because all chlorine-bearing refrigerants contribute to long-term stratospheric ozone burden.
+
+GWP 79 is low for an HCFC — much lower than HFC alternatives (R-134a 1430, R-410A 2088). R-123's environmental profile was favorable on the GWP axis but unfavorable on the ODP axis; modern policy preserves the favorable GWP positioning through R-1233zd(E) replacement (HCFO chemistry, GWP 1, near-zero ODP).
+
+</TechSection>
+
+<TechSection icon="insight" tone="emerald" title="How to think about R-123 in 2026 and beyond">
+
+R-123 occupies a defined legacy niche in 2026 — service of low-pressure centrifugal chillers installed 1990-2020. The installed base is significant (thousands of large commercial chillers in the US) and these chillers will continue operating for decades. Service supply via reclaimed R-123 will continue indefinitely.
+
+For new chiller equipment, R-1233zd(E) is the standard low-pressure replacement. The replacement provides operational equivalence (similar pressure envelope, mineral oil compatibility) with environmental and safety improvements (A1 vs B1, GWP 1 vs 79, near-zero vs 0.02 ODP).
+
+For existing R-123 chillers, the decision tree: continue on reclaimed R-123 for systems with remaining life and acceptable pricing; retrofit to R-1233zd(E) for systems where the B1 toxicity provisions are inconvenient or where major chiller refurbishment is planned anyway. Replacement decision parallels R-22 retrofit-vs-replace logic at the chiller scale.
+
+For service technicians, R-123 work requires B1 toxicity awareness — leak detection, ventilation, exclusion zones during refrigerant operations. EPA Section 608 Type I or Universal certification.
+
+</TechSection>

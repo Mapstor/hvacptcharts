@@ -1,8 +1,33 @@
 {
   "slug": "r-1224yd-z",
-  "ptSource": "TODO: AGC AMOLEA 1224yd technical data sheet",
-  "ptSourceUrl": "https://www.agc-chemicals.com/jp/en/fluorine/products/detail/amolea/",
-  "verifiedBy": "TODO: cross-check against ASHRAE 34-2022 R-1224yd(Z) designation",
+  "dataStatus": "published-eos-not-in-build",
+  "ptSource": "Published Helmholtz EOS: Akasaka & Lemmon (2023), International Journal of Thermophysics 44, 166.",
+  "ptSourceUrl": "https://link.springer.com/article/10.1007/s10765-023-03266-3",
+  "primarySources": [
+    {
+      "type": "peer-reviewed-eos",
+      "citation": "Akasaka, R. and Lemmon, E.W. (2023), \"A Helmholtz Energy Equation of State for cis-1-Chloro-2,3,3,3-tetrafluoro-1-propene [R-1224yd(Z)]\", International Journal of Thermophysics 44, 166.",
+      "doi": "10.1007/s10765-023-03266-3",
+      "url": "https://link.springer.com/article/10.1007/s10765-023-03266-3",
+      "scope": "Fundamental EOS valid from triple-point T (157.8 K) to 473 K, pressures up to 35 MPa. Includes vapor-pressure ancillary equation suitable for PT chart generation.",
+      "note": "Also implemented in NIST REFPROP 10.0 as 'R1224YDZ'."
+    },
+    {
+      "type": "measurement",
+      "citation": "Sotani, T. et al. (2022), \"Saturation vapour pressure measurements of refrigerant R1224yd(Z) from 274 K to 338 K\", International Journal of Refrigeration.",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0140700722003450",
+      "scope": "Static-method vapor pressure measurements at INRIM, 274-338 K, precision capacitance manometer (full scale 0.5 MPa). Used to validate Akasaka & Lemmon (2023) EOS."
+    },
+    {
+      "type": "manufacturer-datasheet",
+      "citation": "AGC Chemicals, \"AMOLEA 1224yd Technical Information\" (PDF).",
+      "url": "https://www.agc-chemicals.com/file/AMOLEAyd_Tech_English_D.PDF",
+      "alternativeUrl": "https://agcce.com/wp-content/uploads/2023/10/Amolea2018.pdf",
+      "scope": "Manufacturer-published PT table and P-h diagram covering the operating range. Free download from AGC Chemicals website."
+    }
+  ],
+  "verifiedBy": "TRANSCRIPTION PENDING: cannot fetch primary source PDFs from this build environment. Wagner-form coefficient transcription from Akasaka & Lemmon (2023) Table A.1 (or equivalent) required to populate ptChart.",
+  "wagnerEos": null,
   "physical": {
     "boilingPointC": 14.5,
     "boilingPointF": 58.1,

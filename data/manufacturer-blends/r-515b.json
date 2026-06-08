@@ -1,8 +1,8 @@
 {
   "slug": "r-515b",
-  "ptSource": "TODO: Honeywell Solstice N15 (R-515B) technical data sheet",
-  "ptSourceUrl": "https://www.honeywell-refrigerants.com/americas/product/solstice-n15/",
-  "verifiedBy": "TODO: cross-check against ASHRAE 34-2022 R-515B designation",
+  "ptSource": "Manufacturer datasheet: Honeywell Solstice N15 (R-515B) Technical Information",
+  "ptSourceUrl": "https://www.honeywell-refrigerants.com/americas/",
+  "verifiedBy": "DATA NOT TRANSCRIBED IN THIS BUILD: R-515B mixture syntax is not supported by the CoolProp 7.2.0 WASM build.",
   "physical": {
     "boilingPointC": -18.9,
     "boilingPointF": -2,
@@ -19,5 +19,14 @@
     "temperatureGlideF": 0,
     "hasSignificantGlide": false
   },
-  "ptChart": []
+  "ptChart": [],
+  "dataStatus": "manufacturer-datasheet-published",
+  "primarySources": [
+    {
+      "type": "manufacturer-datasheet",
+      "citation": "Honeywell International Inc., Solstice N15 (R-515B) Technical Information.",
+      "url": "https://www.honeywell-refrigerants.com/americas/",
+      "scope": "PT chart for R-515B (R-1234ze(E)/R-227ea 91.1/8.9 mass% azeotrope, A1 chiller refrigerant)."
+    }
+  ]
 }

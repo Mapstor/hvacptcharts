@@ -1,8 +1,8 @@
 {
   "slug": "r-438a",
-  "ptSource": "TODO: Honeywell Genetron MO99 technical data sheet",
-  "ptSourceUrl": "https://www.honeywell-refrigerants.com/americas/product/genetron-mo99/",
-  "verifiedBy": "TODO: cross-check against ASHRAE 34-2022 R-438A designation",
+  "ptSource": "Manufacturer datasheet: Honeywell Genetron Performax LT (R-438A) Technical Information",
+  "ptSourceUrl": "https://www.honeywell-refrigerants.com/americas/",
+  "verifiedBy": "DATA NOT TRANSCRIBED IN THIS BUILD: Honeywell's published PT chart for R-438A is not implemented in CoolProp 7.2.0's mixture library, and has not been transcribed into this site's dataset. For service work, refer to the manufacturer datasheet linked above.",
   "physical": {
     "boilingPointC": -43,
     "boilingPointF": -45.4,
@@ -19,5 +19,19 @@
     "temperatureGlideF": 12.6,
     "hasSignificantGlide": true
   },
-  "ptChart": []
+  "ptChart": [],
+  "dataStatus": "manufacturer-datasheet-published",
+  "primarySources": [
+    {
+      "type": "manufacturer-datasheet",
+      "citation": "Honeywell International Inc., Genetron Performax LT (R-438A) Technical Information / Material Data Sheet.",
+      "url": "https://www.honeywell-refrigerants.com/americas/",
+      "scope": "Published PT chart and physical property data for R-438A retrofit refrigerant."
+    },
+    {
+      "type": "standards",
+      "citation": "AHRI Standard 700-2019 Specifications for Refrigerants — R-438A specification entry.",
+      "url": "https://www.ahrinet.org/search-standards"
+    }
+  ]
 }

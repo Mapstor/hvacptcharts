@@ -1,8 +1,8 @@
 {
   "slug": "r-448a",
-  "ptSource": "TODO: Honeywell Solstice N40 (R-448A) technical data sheet",
-  "ptSourceUrl": "https://www.honeywell-refrigerants.com/americas/product/solstice-n40/",
-  "verifiedBy": "TODO: cross-check against ASHRAE 34-2022 R-448A designation",
+  "ptSource": "Manufacturer datasheet: Honeywell Solstice N40 (R-448A) PT Chart",
+  "ptSourceUrl": "https://prod-edam.honeywell.com/content/dam/honeywell-edam/pmt/oneam/en-us/refrigerants/documents/hon-ess-am-3161690-adm-tds-pt-chart-solstice-n40-a4-en.pdf",
+  "verifiedBy": "DATA NOT TRANSCRIBED IN THIS BUILD: Honeywell publishes R-448A PT chart at the URL above. The CoolProp 7.2.0 WASM build used by this site does not include R448A.mix; values would need transcription from the Honeywell PDF.",
   "physical": {
     "boilingPointC": -45.9,
     "boilingPointF": -50.6,
@@ -15,9 +15,23 @@
       "pressureKpaG": 4508
     },
     "molarMassGPerMol": 86.3,
-    "liquidDensityKgPerM3At25C": 1075.0,
+    "liquidDensityKgPerM3At25C": 1075,
     "temperatureGlideF": 11.5,
     "hasSignificantGlide": true
   },
-  "ptChart": []
+  "ptChart": [],
+  "dataStatus": "manufacturer-datasheet-published",
+  "primarySources": [
+    {
+      "type": "manufacturer-datasheet",
+      "citation": "Honeywell International Inc., Solstice N40 (R-448A) PT Chart (PDF, published technical data sheet).",
+      "url": "https://prod-edam.honeywell.com/content/dam/honeywell-edam/pmt/oneam/en-us/refrigerants/documents/hon-ess-am-3161690-adm-tds-pt-chart-solstice-n40-a4-en.pdf",
+      "scope": "Manufacturer-published PT chart with bubble and dew columns for R-448A (zeotropic HFC/HFO blend)."
+    },
+    {
+      "type": "manufacturer-physical-properties",
+      "citation": "Honeywell Solstice N40 Physical Properties brochure.",
+      "url": "https://www.honeywell-refrigerants.com/europe/wp-content/uploads/2019/10/3820_Solstice-N40_web.pdf"
+    }
+  ]
 }

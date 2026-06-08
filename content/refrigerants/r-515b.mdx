@@ -1,0 +1,61 @@
+---
+slug: r-515b
+title: "R-515B Pressure Temperature Chart & Properties"
+metaTitle: "R-515B Solstice N15 PT Chart, A1 Azeotrope, GWP 287 — R-134a Replace"
+metaDescription: "Verified R-515B (Honeywell Solstice N15, R-1234ze(E)/R-227ea 91.1/8.9) PT chart. Azeotropic blend. ASHRAE A1 (non-flammable). GWP 287 — lower than R-515A. R-134a replacement."
+introOneLiner: "Binary HFO/HFC azeotropic blend — 91.1% R-1234ze(E) and 8.9% R-227ea. Honeywell Solstice N15. ASHRAE A1 (non-flammable). GWP 287 — lower than R-515A (392) due to reduced R-227ea content. R-134a replacement for chillers and commercial refrigeration where A1 is required."
+
+narrative:
+  whatItIs: |
+    R-515B is the more aggressive GWP-reduction sibling of R-515A. Both are R-1234ze(E)/R-227ea azeotropic blends; R-515B reduces the R-227ea content to 8.9% (vs R-515A's 12%), trimming GWP from 392 to 287 — a 27% reduction. The R-227ea content stays just above the threshold needed to maintain A1 (non-flammable) classification — pushing it lower would tip the blend into A2L territory.
+
+    The pressure envelope is essentially identical to R-515A (both are dominated by R-1234ze(E)) — both can be used in the same equipment with minimal redesign. The choice between R-515A and R-515B comes down to GWP-vs-margin preference: R-515A gives modest flammability margin headroom at the cost of higher GWP; R-515B optimizes for GWP reduction while staying just within A1.
+
+    The blend is azeotropic (effectively zero temperature glide) — handled in service like a pure refrigerant with no bubble/dew distinction required.
+
+  whereItsUsed:
+    - Centrifugal chillers (R-134a replacement, modern installations)
+    - Medium-temperature commercial refrigeration (R-134a replacement where A1 is required)
+    - Heat pumps (some commercial applications)
+    - Replacement for R-515A in installations seeking maximum GWP reduction within A1 classification
+
+  phaseDownStatus: |
+    R-515B's GWP of 287 is below the EU F-Gas 750-GWP threshold for chillers and below the EPA AIM Act 700-GWP threshold for chiller equipment in the US — R-515B remains permitted for new chiller installations. For EU F-Gas 150-GWP applications (small split AC, some commercial refrigeration), R-515B is not compliant and pure R-1234ze(E) (A2L, GWP 7) is the alternative path.
+
+    Long-term trajectory: As EU F-Gas thresholds tighten further (the 2024 revision targets even lower thresholds for some applications by 2030), R-515B may face restrictions in some segments. For chillers specifically, the 750-GWP threshold provides substantial headroom for R-515B through current regulatory schedules.
+
+  serviceNotes: |
+    POE and PVE oils are compatible. Mineral oil is not used. A1 safety classification — no A2L procedures required.
+
+    Azeotropic behavior (zero glide) means R-515B is handled in service like a pure refrigerant. Single saturation temperature at any given pressure; no bubble/dew distinction needed for superheat or subcooling measurement. Charge by weight; do not partial-charge from a saturated vapor side of the cylinder (the standard rule for azeotropes and near-azeotropes).
+
+faqs:
+  - q: "Why choose R-515B over R-515A?"
+    a: |
+      Lower GWP (287 vs 392) with essentially identical performance and the same A1 safety class. R-515B replaced R-515A in many new installations as Honeywell positioned it as the further-optimized version of the same blend concept. For new equipment specifications and most retrofit work, R-515B is the preferred current choice. R-515A remains available for installations where minor differences in flammability margin (R-515A has slightly more headroom on the A2L line) are preferred.
+
+  - q: "Can R-515B be used in equipment originally designed for R-134a?"
+    a: |
+      Generally yes, with retrofit procedure. The pressure envelope is within 5-7% of R-134a; capacity is typically within 5%. Procedure: recover R-134a; replace filter-drier; pull vacuum to 500 microns; charge R-515B by weight at 90-95% of original R-134a nameplate. Verify POE oil compatibility (most R-134a chillers run POE; verify per OEM if older equipment used alkylbenzene). Capacity and efficiency typically within R-515A's ranges.
+
+  - q: "What's the temperature glide of R-515B?"
+    a: |
+      Essentially zero (azeotropic). The 91.1/8.9 R-1234ze(E)/R-227ea composition is specifically chosen for azeotropic behavior — bubble and dew points coincide at typical operating pressures. This is a service advantage: no need to choose between bubble or dew curve for saturation measurements; treat R-515B like a pure refrigerant.
+
+  - q: "What is the GWP of R-515B?"
+    a: |
+      287 per IPCC AR5, mass-weighted from R-1234ze(E) (7) at 91.1% and R-227ea (3220) at 8.9%. The R-227ea component still dominates the GWP — it's 8.9% of mass but contributes ~99% of the GWP. Further GWP reduction below R-515B requires either pushing R-227ea content lower (and crossing into A2L flammability) or moving to a different chemistry entirely (pure R-1234ze(E), R-454C, etc.).
+
+  - q: "Why does R-515B have R-227ea at all? Doesn't that defeat the low-GWP goal?"
+    a: |
+      The R-227ea is necessary to suppress the flammability of pure R-1234ze(E) — without it, the refrigerant is A2L. Adding R-227ea is a deliberate tradeoff: small amounts of high-GWP fluid (R-227ea, GWP 3220) to achieve A1 classification of the overall blend. R-515B uses the minimum R-227ea needed to stay A1; pushing lower (R-515C at 4-5% R-227ea, hypothetically) would tip into A2L territory and lose the A1 service advantage.
+
+  - q: "Is R-515B chemically stable?"
+    a: |
+      Yes for chiller service envelopes. The blend is thermally stable to chiller condensing temperatures (≤160°F) and shows good long-term stability in sealed systems with proper POE oil and dry conditions. The azeotrope is composition-stable — fractionation in service is minimal because the two components have similar vapor pressures (the basis of the azeotropic behavior).
+
+retrofitGuidance:
+  fromRefrigerant: r-134a
+  notes: |
+    R-134a to R-515B retrofit: recover R-134a to recovery cylinder; replace filter-drier with HFC/HFO-compatible model; verify POE oil is in good condition (replace if degraded or moisture-contaminated); pull vacuum to 500 microns held 30 minutes; charge R-515B by weight at 90-95% of original R-134a nameplate amount. Verify chiller capacity at design conditions — R-515B typically delivers within 2-5% of R-134a performance with similar efficiency. The azeotropic nature simplifies post-retrofit verification: standard PT-chart-based superheat and subcooling checks work without bubble/dew distinction.
+---

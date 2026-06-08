@@ -71,7 +71,12 @@ export default function ContactPage() {
 
           <h2>Email</h2>
           <p>
-            <strong>[Marko — replace this placeholder with the contact email address before launch]</strong>
+            <a
+              href="mailto:info@hvacptcharts.com"
+              className="font-semibold text-blue-700 underline decoration-blue-400 underline-offset-2 hover:text-blue-900 hover:decoration-blue-700 dark:text-blue-300 dark:decoration-blue-500 dark:hover:text-blue-100"
+            >
+              info@hvacptcharts.com
+            </a>
           </p>
           <p>
             All correspondence is reviewed by a human; expect a response within a few business days. The site
