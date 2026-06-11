@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-refrigerant-recovery-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -201,6 +203,27 @@ export default function HvacRefrigerantRecoveryGuidePage() {
             Refrigerants are ozone-depleting (CFCs/HCFCs) or high-GWP greenhouse gases (HFCs), federal regulation prohibits venting them, and the only legal disposition for refrigerant removed from a system is recovery into proper containers for reclamation or destruction.
           </KeyInsight>
 
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="GWP100 of common refrigerants (IPCC AR5) — AIM Act 700 threshold marked"
+              orientation="horizontal"
+              data={[
+                { label: "R-1234yf (A2L)", value: 4, color: "#10b981" },
+                { label: "R-744 (CO₂)", value: 1, color: "#10b981" },
+                { label: "R-290 (propane)", value: 3, color: "#10b981" },
+                { label: "R-454B (A2L)", value: 466, color: "#3b82f6" },
+                { label: "R-32 (A2L)", value: 675, color: "#3b82f6" },
+                { label: "R-134a (HFC)", value: 1430, color: "#f59e0b" },
+                { label: "R-22 (HCFC)", value: 1810, color: "#ef4444" },
+                { label: "R-410A (HFC)", value: 2088, color: "#dc2626", emphasis: true },
+                { label: "R-404A (HFC)", value: 3922, color: "#7c2d12" },
+              ]}
+              axisLabel="GWP100"
+              reference={{ value: 700, label: "AIM Act threshold", color: "#dc2626" }}
+              caption="The AIM Act requires new residential AC + heat pump equipment manufactured after January 2025 to use refrigerants with GWP ≤700. R-410A at 2,088 fails decisively; R-32 (675) and R-454B (466) replace it. Recovery prevents these high-GWP gases from venting to atmosphere."
+            />
+          </div>
+
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             For HVAC technicians and contractors, recovery is also a business necessity. Reclaimed refrigerant — produced from recovered material — supplies a meaningful and growing share of the wholesale refrigerant market as the AIM Act phase-down constrains virgin HFC production. Hudson Technologies and other major reclaimers report increasing volumes of recovered refrigerant being processed back to AHRI 700 specification and resold. See our <Link href="/refrigerant-prices-guide/" className="underline">refrigerant prices guide</Link> for how recovery + reclamation fit into the pricing tier structure.
           </p>
@@ -346,6 +369,24 @@ export default function HvacRefrigerantRecoveryGuidePage() {
           <FixCallout>
             <strong>For A2L refrigerants specifically</strong> (R-32, R-454B, R-454C, R-455A, R-1234yf, R-1234ze): no open-flame work during recovery; ventilate confined spaces; recover refrigerant fully before any brazing or soldering; use A2L-rated recovery machine; follow manufacturer&apos;s A2L safe-work practices. ASHRAE Standard 15 (Safety Standard for Refrigeration Systems) covers A2L handling requirements.
           </FixCallout>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <ProcessFlow
+              title="Recovery procedure flow — Type II residential split AC"
+              orientation="vertical"
+              steps={[
+                { number: 1, title: "Verify certification + equipment", description: "EPA 608 current (Type II/Universal). Recovery machine + cylinder within test date + below 80% fill. Scale calibrated." },
+                { number: 2, title: "Identify refrigerant + setup safety", description: "Read data plate. NEVER mix refrigerants. For A2L: use A2L-rated equipment, ventilate, remove open flames.", critical: true },
+                { number: 3, title: "LOTO + verify zero voltage", description: "Disconnect at outdoor + indoor units. Verify zero voltage at contactor with NCVT before opening valves." },
+                { number: 4, title: "Tare cylinder on scale", description: "Empty cylinder, tare to zero. Recovered weight = final − starting. Record for ticket + § 82.166 log." },
+                { number: 5, title: "Connect recovery machine", description: "Inlet to system service port (suction side typical). Outlet to cylinder. Low-loss fittings minimize refrigerant loss." },
+                { number: 6, title: "Recover to required level", description: "HFC <200 lb: pull to 0 PSIG. Larger systems: 10-15 in.Hg per EPA Table 2. Monitor manifold continuously.", critical: true },
+                { number: 7, title: "Verify completeness", description: "Shut off recovery. Watch 5 minutes for pressure rise (oil-bound refrigerant). Re-recover if pressure climbs." },
+                { number: 8, title: "Record + transport", description: "Log refrigerant type + weight + cert number on ticket. Cap cylinder, secure for DOT transport to reclaimer." },
+              ]}
+              caption="The 8-step procedure is mandatory under EPA Section 608. Skipping verification (step 7) is the most common audit finding — pressure-rise tests catch oil-bound refrigerant that would vent if you walked away early."
+            />
+          </div>
         </section>
 
         {/* SECTION 07 — Cylinder management */}

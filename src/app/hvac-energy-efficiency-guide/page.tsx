@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-energy-efficiency-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -165,6 +167,23 @@ export default function HvacEnergyEfficiencyGuidePage() {
           <KeyInsight tone="blue" title="What's actually at stake">
             HVAC accounts for 40-50% of typical residential energy bills. The difference between a properly-sized 16 SEER2 / 9.0 HSPF2 heat pump installed on tight, sealed ductwork and a poorly-sized 14 SEER2 unit on leaky ductwork can be 30-50% in annual energy cost — $800-1,500/year for a typical 2,000 sq ft home. Compounded over 15 years, that&apos;s $12,000-22,500 in lifetime energy difference. Equipment efficiency, sizing, ductwork, and maintenance all compound: getting any one wrong cuts the realized benefit substantially.
           </KeyInsight>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="SEER2 efficiency tiers — annual cooling energy use comparison (2,000 ft² home, Zone 4A)"
+              orientation="horizontal"
+              data={[
+                { label: "10 SEER (1990s, replaced)", value: 4500, sub: "kWh/yr", color: "#dc2626" },
+                { label: "13 SEER (2006 minimum)", value: 3460, sub: "kWh/yr", color: "#ef4444" },
+                { label: "14 SEER2 (2023 minimum)", value: 3120, sub: "kWh/yr", color: "#f59e0b" },
+                { label: "16 SEER2 (mainstream)", value: 2730, sub: "kWh/yr", color: "#10b981" },
+                { label: "18 SEER2 (high-eff)", value: 2425, sub: "kWh/yr", color: "#10b981" },
+                { label: "22 SEER2 (top tier)", value: 1985, sub: "kWh/yr", color: "#10b981", emphasis: true },
+              ]}
+              axisLabel="Annual cooling kWh"
+              caption="Each SEER2 step delivers real-world savings. The jump from 14 SEER2 (federal minimum) to 18 SEER2 (mainstream variable-speed) typically saves 700 kWh/year — about $100-150 at $0.15/kWh."
+            />
+          </div>
 
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             This guide explains what each efficiency metric measures, what the recent SEER2/HSPF2 transition changed, where the gap between rated and actual performance comes from, and how to evaluate heat pump vs gas furnace economics for your specific climate and electricity/gas prices. Every claim is sourced to federal regulations, AHRI test standards, or DOE/EPA technical documents.
@@ -336,6 +355,24 @@ SEER2 ≈ EER × 1.4-1.7 (variable-capacity inverter)`}</pre>
               { label: "-25°F", cells: ["0%", "0-30% (some CCHPs continue)", "1.0-1.5"] },
             ]}
           />
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Heat pump capacity vs outdoor temperature — Standard vs Cold-Climate Heat Pump"
+              orientation="vertical"
+              data={[
+                { label: "47°F", value: 100, sub: "% rated", color: "#10b981" },
+                { label: "35°F", value: 90, sub: "CCHP", color: "#10b981" },
+                { label: "17°F", value: 85, sub: "CCHP", color: "#3b82f6" },
+                { label: "5°F", value: 75, sub: "CCHP", color: "#3b82f6" },
+                { label: "-5°F", value: 65, sub: "CCHP", color: "#f59e0b" },
+                { label: "-15°F", value: 55, sub: "CCHP", color: "#ef4444" },
+              ]}
+              axisLabel="Heating capacity (% of rated)"
+              reference={{ value: 100, label: "rated capacity", color: "#16a34a" }}
+              caption="Cold-climate heat pumps (Mitsubishi Hyper-Heat, Daikin LV, Bosch BHP) maintain 55-85% capacity at low temperatures via variable-speed compressors + vapor injection. Standard heat pumps lose capacity faster — at 5°F they're at 35-45% of rated, often requiring auxiliary heat."
+            />
+          </div>
 
           <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
             Data ranges from NEEP (Northeast Energy Efficiency Partnerships) cold-climate heat pump specification and AHRI Standard 1380 test data. CCHP = Cold-Climate Heat Pump (NEEP-certified). Standard single-stage (SS) heat pumps have lockout temperatures typically 0-10°F; below that the system runs on auxiliary electric resistance with COP = 1.0.

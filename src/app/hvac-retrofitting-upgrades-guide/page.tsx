@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-retrofitting-upgrades-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -177,6 +179,23 @@ export default function HvacRetrofittingUpgradesGuidePage() {
               { label: "Envelope improvements", cells: ["IRA + IECC code + voluntary energy upgrades", "2022-ongoing: voluntary", "Pre-1990 homes; underinsulated; leaky envelopes"] },
             ]}
           />
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Refrigerant transition timeline — AIM Act phase-down (GWP100 reduction)"
+              orientation="vertical"
+              data={[
+                { label: "2010", value: 2088, sub: "R-410A intro", color: "#dc2626" },
+                { label: "2020", value: 1810, sub: "R-22 prod stops", color: "#ef4444" },
+                { label: "2024", value: 1500, sub: "AIM 60% cap", color: "#f59e0b" },
+                { label: "2025", value: 675, sub: "≤700 GWP limit (R-32)", color: "#10b981", emphasis: true },
+                { label: "2029", value: 466, sub: "AIM 30% cap (R-454B)", color: "#10b981" },
+                { label: "2036", value: 150, sub: "AIM 15% cap", color: "#10b981" },
+              ]}
+              axisLabel="Avg new equipment refrigerant GWP100"
+              caption="AIM Act mandates HFC phase-down. January 2025 was the cutover: new residential AC/heat pump manufacturing must use GWP ≤700 refrigerants. R-410A continues for service indefinitely; new equipment cannot use it. R-32 + R-454B are the primary replacements."
+            />
+          </div>
 
           <KeyInsight tone="blue" title="The retrofit decision hierarchy">
             For any equipment older than ~12 years, the retrofit decision converges to: replace with new equipment (typically A2L heat pump if climate-appropriate, or A2L AC + gas furnace where gas remains cost-competitive). For equipment 8-12 years old, the decision depends on refrigerant type (R-22 = lean toward replace; R-410A = lean toward repair) and failure mode (compressor = lean replace; capacitor = repair). For equipment under 8 years: repair almost always unless catastrophic failure. The AIM Act manufacturing transition doesn&apos;t change existing equipment economics — it only affects what&apos;s available to buy as replacement.
@@ -390,6 +409,23 @@ export default function HvacRetrofittingUpgradesGuidePage() {
               <strong>Equipment replacement (after envelope work).</strong> Run new Manual J load calc with improved envelope; resize equipment accordingly. Pre-envelope equipment was likely oversized; post-envelope equipment typically smaller (lower cost; better dehumidification).
             </li>
           </ol>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="IRA tax credit + rebate maximum amounts (per household)"
+              orientation="horizontal"
+              data={[
+                { label: "25C — Heat pump", value: 2000, sub: "$/year, 30%", color: "#10b981", emphasis: true },
+                { label: "25C — AC + furnace", value: 600, sub: "$ each", color: "#10b981" },
+                { label: "25C — Envelope total", value: 1200, sub: "$/year combined", color: "#06b6d4" },
+                { label: "25D — Geothermal/solar", value: 99999, sub: "30% NO CAP", color: "#3b82f6", emphasis: true },
+                { label: "HEEHRA — Heat pump", value: 8000, sub: "$ point-of-sale", color: "#f59e0b" },
+                { label: "HEEHRA — Total household", value: 14000, sub: "$ income-based", color: "#f59e0b" },
+                { label: "HOMES — 35% reduction", value: 8000, sub: "$ performance", color: "#a855f7" },
+              ]}
+              caption="IRA stacks multiple credit + rebate programs. Heat pump retrofit can combine 25C ($2,000 federal tax credit) + HEEHRA ($8,000 state rebate for qualifying incomes) + HOMES (performance-based). Geothermal under 25D has NO cap — 30% of any cost."
+            />
+          </div>
 
           <KeyInsight tone="blue" title="Why envelope-first matters financially">
             Air sealing + attic insulation typically pay back in 2-6 years. Equipment replacement pays back 8-15 years. By doing envelope work first: (1) Equipment replacement Manual J load is lower → smaller equipment → lower cost. (2) Operating cost on new equipment is lower (less heating + cooling needed). (3) Comfort improves immediately from envelope work; equipment improvement adds capacity + efficiency on top.

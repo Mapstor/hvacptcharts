@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-mechanical-ventilation-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -161,6 +163,22 @@ export default function HvacMechanicalVentilationGuidePage() {
             Pre-2000 US homes were leaky enough that natural infiltration (air leakage driven by wind and temperature differences) typically provided 0.5-1.0 air changes per hour (ACH) naturally — more than enough to dilute typical indoor pollutants without explicit mechanical ventilation. Energy code improvements (IECC 2009 onward) and high-performance construction (Passive House) dramatically reduced envelope leakage to 0.10-0.25 ACH natural. The same construction that saves 30-50% on heating and cooling bills also eliminates the natural ventilation path that previously kept IAQ acceptable.
           </p>
 
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Natural infiltration rate by construction era — ACH at natural conditions"
+              orientation="vertical"
+              data={[
+                { label: "Pre-1980", value: 1.0, sub: "ACHnat", color: "#10b981" },
+                { label: "1980-2000", value: 0.6, sub: "ACHnat", color: "#3b82f6" },
+                { label: "2000-2015", value: 0.3, sub: "ACHnat", color: "#f59e0b" },
+                { label: "2015+ (IECC)", value: 0.2, sub: "ACHnat", color: "#ef4444" },
+                { label: "Passive House", value: 0.05, sub: "ACHnat", color: "#dc2626", emphasis: true },
+              ]}
+              axisLabel="Natural infiltration (ACH)"
+              caption="Tight construction eliminates natural ventilation. Pre-1980 homes were leaky enough (~1.0 ACHnat) for natural IAQ; 2015+ IECC code reduces leakage 5×; Passive House 20×. Mechanical ventilation per ASHRAE 62.2 is now mandatory to maintain IAQ at modern envelope tightness."
+            />
+          </div>
+
           <KeyInsight tone="blue" title="The IAQ-vs-envelope tradeoff">
             Tight construction provides better thermal performance but worse natural IAQ. The resolution is mechanical ventilation: deliberately bring in outdoor air through a controlled location (usually filtered, possibly conditioned via ERV/HRV) rather than relying on uncontrolled infiltration. This combination — tight envelope + mechanical ventilation — provides better thermal performance AND better IAQ than leaky construction. ASHRAE 62.2 codifies the minimum mechanical ventilation rates required to compensate for the loss of natural infiltration. IRC 2021 Section M1505 references 62.2 in adopting jurisdictions.
           </KeyInsight>
@@ -269,6 +287,21 @@ beyond the bedroom count.`}</pre>
               { label: "Equipment manufacturers", cells: ["Lifebreath, Greentek, Renewaire (model overlap with ERV)", "Panasonic, Broan, Renewaire, Greenheck, many"] },
             ]}
           />
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="ERV vs HRV recovery efficiency — typical models"
+              orientation="horizontal"
+              data={[
+                { label: "HRV — Sensible recovery", value: 75, sub: "% efficient", color: "#3b82f6" },
+                { label: "HRV — Latent recovery", value: 0, sub: "no moisture transfer", color: "#71717a" },
+                { label: "ERV — Sensible recovery", value: 70, sub: "% efficient", color: "#10b981" },
+                { label: "ERV — Latent recovery", value: 55, sub: "% (Zones 2-5)", color: "#10b981", emphasis: true },
+                { label: "ERV — Latent recovery (cold)", value: 40, sub: "% (Zone 6+)", color: "#f59e0b" },
+              ]}
+              caption="ERVs (energy recovery ventilators) transfer both sensible heat AND latent moisture between airstreams; HRVs (heat recovery ventilators) only transfer sensible. ERVs win in cooling-dominant + humid climates; HRVs win in very cold climates where moisture transfer would over-humidify in winter."
+            />
+          </div>
 
           <KeyInsight tone="blue" title="Climate-zone selection rule">
             <ul className="mt-1 list-disc space-y-1 pl-5">

@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-building-automation-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -176,6 +178,20 @@ export default function HvacBuildingAutomationGuidePage() {
               { label: "BIM (Building Information Modeling)", cells: ["Digital 3D model of building + systems used in design + operation", "Not the same as BMS; some BMS integrate with BIM for asset management"] },
             ]}
           />
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <ProcessFlow
+              title="4-tier BMS reference architecture"
+              orientation="horizontal"
+              steps={[
+                { number: 1, title: "Field bus", description: "Sensors + actuators. Hardwired or BACnet/MSTP. Per-device." },
+                { number: 2, title: "Field controllers", description: "VAV, AHU, chiller PLCs. BACnet/MSTP or IP. Per equipment.", critical: true },
+                { number: 3, title: "Supervisory", description: "Building controllers + JACE. BACnet/IP Ethernet backbone." },
+                { number: 4, title: "Workstation + cloud", description: "Web UI, mobile apps, FDD, analytics. Optional cloud-connected." },
+              ]}
+              caption="The standard 4-tier BMS architecture. Lower tiers continue operating if higher tiers fail — workstation crash doesn't affect HVAC. Cybersecurity boundaries align with tier boundaries (field network isolated from internet)."
+            />
+          </div>
 
           <KeyInsight tone="blue" title="The dominant convention in 2026">
             For new commercial construction: specify BACnet/IP-based BAS with open interoperability + Project Haystack tagging. Most new commercial BAS use this approach; resist proprietary protocol lock-in. For existing building retrofits: assess what's installed (older buildings may have legacy LonWorks, Modbus, or proprietary protocols); plan migration to open standards as part of any major upgrade.
@@ -379,6 +395,21 @@ export default function HvacBuildingAutomationGuidePage() {
               { label: "FedRAMP", cells: ["Cloud security authorization for federal cloud services", "Cloud-connected BMS for federal facilities"] },
             ]}
           />
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="BMS commissioning cost ($/sq ft) by project tier"
+              orientation="horizontal"
+              data={[
+                { label: "Small commercial (single bldg)", value: 0.30, sub: "$/sf", color: "#10b981" },
+                { label: "Mid-size (multi-floor)", value: 0.80, sub: "$/sf", color: "#3b82f6" },
+                { label: "Large (campus + IT integration)", value: 1.50, sub: "$/sf", color: "#f59e0b" },
+                { label: "Healthcare / Lab (validated)", value: 3.00, sub: "$/sf", color: "#ef4444" },
+                { label: "Mission-critical (DC/100% Cx)", value: 5.00, sub: "$/sf", color: "#dc2626", emphasis: true },
+              ]}
+              caption="BMS commissioning cost scales with complexity. Small commercial is straightforward; healthcare + data center require validated commissioning per ASHRAE 202 + customer-specific protocols. Cybersecurity reviews per NIST/ISA 62443 add 10-20% to commissioning cost."
+            />
+          </div>
 
           <TechSection icon="problem" tone="amber" title="Common BMS cybersecurity vulnerabilities">
             <ul className="mt-2 list-disc space-y-1 pl-5">

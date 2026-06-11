@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-tools-equipment-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -180,6 +182,22 @@ export default function HvacToolsEquipmentGuidePage() {
             Start with refrigerant-side tools + multimeter (the core 8-10 items in the FAQ). Add safety tools (combustion analyzer + leak detector) for safety + diagnostic capability. Add specialty + commercial tools as your service mix demands. Total professional toolkit cost: $4,000-15,000 depending on tier. Build incrementally — buying everything Day 1 wastes capital on tools you may not use for 6+ months.
           </KeyInsight>
 
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="HVAC technician toolkit cost — by capability tier"
+              orientation="horizontal"
+              data={[
+                { label: "Apprentice (Day 1)", value: 2000, sub: "minimum viable", color: "#10b981" },
+                { label: "Service tech (year 1)", value: 4500, sub: "core 8 tools", color: "#3b82f6" },
+                { label: "Journeyman", value: 8000, sub: "+ diagnostic", color: "#06b6d4" },
+                { label: "Senior + commercial", value: 12000, sub: "+ commercial-grade", color: "#f59e0b" },
+                { label: "Specialty (HERS/Cx)", value: 18000, sub: "+ Blower Door + Duct Blaster", color: "#a855f7" },
+              ]}
+              axisLabel="Total toolkit cost ($)"
+              caption="Build incrementally. Apprentice tier covers 80% of residential service. Senior + commercial tier adds combustion analyzer + commercial-grade megger + advanced leak detector. Specialty tier adds RESNET-certified test equipment for commissioning + HERS rating work."
+            />
+          </div>
+
           <p className="mt-3 text-zinc-700 dark:text-zinc-300">
             For DIY/homeowner users, see Section 14 (DIY vs Professional Toolkit) — the federal EPA Section 608 requirement means homeowners cannot legally perform refrigerant-side work, even on their own equipment.
           </p>
@@ -279,6 +297,25 @@ export default function HvacToolsEquipmentGuidePage() {
               { label: "Soap solution + spray bottle", cells: ["Detects visible leaks (above ~1 oz/year)", "Free; works anywhere", "Slow; doesn't detect small leaks; only useful with system under pressure", "Generic soap solution or commercial leak detection spray"] },
             ]}
           />
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Tool calibration cadence — annual professional recommendation"
+              orientation="vertical"
+              data={[
+                { label: "Combustion analyzer", value: 12, sub: "months", color: "#dc2626", emphasis: true },
+                { label: "Manifold gauges", value: 12, sub: "months", color: "#f59e0b" },
+                { label: "Multimeter", value: 12, sub: "months", color: "#f59e0b" },
+                { label: "Anemometer", value: 12, sub: "months", color: "#f59e0b" },
+                { label: "Refrigerant scale", value: 24, sub: "months", color: "#3b82f6" },
+                { label: "Vacuum pump", value: 24, sub: "months oil change", color: "#3b82f6" },
+                { label: "Micron gauge", value: 36, sub: "months", color: "#10b981" },
+                { label: "Thermal imager", value: 60, sub: "months", color: "#10b981" },
+              ]}
+              axisLabel="Calibration interval (months)"
+              caption="Combustion analyzers MUST be calibrated annually — CO + O2 sensors drift. Other measurement tools (manifold, multimeter) calibrate annually for warranty work; less frequently for routine service. Calibration cost typically $50-200 per tool annually."
+            />
+          </div>
 
           <KeyInsight tone="blue" title="A2L compatibility matters">
             Older heated-diode leak detectors may not respond to A2L refrigerants (R-32, R-454B). Verify A2L compatibility before relying on older detectors for new R-32 / R-454B equipment work. The Inficon D-TEK Select, Bacharach H-10 PRO, and Fieldpiece SRL8 in their current versions are A2L-rated. Bacharach Informant 2 and Inficon D-TEK Stratus IR models are A2L-rated.

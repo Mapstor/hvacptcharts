@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-system-design-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -204,6 +206,21 @@ export default function HvacSystemDesignGuidePage() {
           <KeyInsight tone="blue" title="Why the order matters">
             Manual D depends on Manual J for room-by-room CFM (you can&apos;t size ductwork without knowing what each room needs). Manual S depends on Manual J for tonnage (you can&apos;t select equipment without knowing the load). Ventilation integration depends on equipment selection (for ductwork integration patterns). Controls depend on equipment type. Commissioning verifies everything against design. The cascade exists for a reason — out-of-sequence design produces internal inconsistencies that show up as system underperformance for the equipment&apos;s 15-20 year service life.
           </KeyInsight>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <ProcessFlow
+              title="ACCA design cascade — J → S → D → T (then commissioning)"
+              orientation="horizontal"
+              steps={[
+                { number: "J", title: "Load calculation", description: "Manual J: heating + cooling at design conditions." },
+                { number: "S", title: "Equipment selection", description: "Manual S: capacity match within 90-115% window.", critical: true },
+                { number: "D", title: "Ductwork design", description: "Manual D: equal-friction, TESP budget, CFM per room." },
+                { number: "T", title: "Airflow balancing", description: "Manual T: test + adjust per-room CFM at commissioning." },
+                { number: "✓", title: "Commission", description: "Verify against design intent per QI Std 5." },
+              ]}
+              caption="The ACCA design cascade — each step depends on the previous. Skipping J leads to oversized equipment. Skipping D leads to airflow problems. Skipping T leaves the system at default fan speed. Each skip compounds into the 25-40% performance gap NIST documents."
+            />
+          </div>
         </section>
 
         {/* SECTION 02 — Pre-design */}
@@ -250,6 +267,22 @@ export default function HvacSystemDesignGuidePage() {
               <li><strong>Design CFM total</strong> — for blower selection + ductwork TESP calculation</li>
             </ul>
           </KeyInsight>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Manual S equipment sizing window — 3-ton cooling load example"
+              orientation="horizontal"
+              data={[
+                { label: "Undersized (under 90%)", value: 2.5, sub: "tons", color: "#dc2626" },
+                { label: "Manual S minimum (90%)", value: 2.7, sub: "tons", color: "#10b981" },
+                { label: "Calculated load", value: 3.0, sub: "tons", color: "#16a34a", emphasis: true },
+                { label: "Manual S maximum (115%)", value: 3.45, sub: "tons", color: "#10b981" },
+                { label: "Oversized (over 115%)", value: 4.0, sub: "tons", color: "#dc2626" },
+              ]}
+              axisLabel="Equipment cooling capacity (tons)"
+              caption="Manual S requires equipment capacity to fall within 90-115% of calculated load. Smaller = capacity falls short on design days. Larger = short-cycling, poor dehumidification, accelerated wear. The window is narrow on purpose — a 4-ton AC on a 3-ton load is the most common Manual S violation in residential."
+            />
+          </div>
 
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             For quick screening + verification, use our interactive <Link href="/hvac-load-calculator/" className="underline">load calculator</Link> (7-input simplified Manual J accurate ±20%). For permit-required new construction, hire a professional with full Manual J software (Wrightsoft Right-J, EnergyGauge, Carrier HAP, Cool Calc) — see our <Link href="/hvac-load-calculation-guide/" className="underline">load calculation guide</Link> for the deep methodology.

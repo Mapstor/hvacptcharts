@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-ductless-mini-split-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -208,6 +210,24 @@ export default function HvacDuctlessMiniSplitGuidePage() {
           <FixCallout>
             <strong>The honest CCHP reality:</strong> manufacturer &quot;rated at -13°F&quot; doesn&apos;t mean &quot;heats well at -13°F.&quot; Most CCHPs at -13°F deliver 50-70% of rated capacity. Many homes will need backup heat for extreme cold events (electric resistance strip integrated, or dual-fuel with existing gas furnace). Review the manufacturer capacity curves at YOUR design temperature (typically 99% winter design DB for your area; ASHRAE 2021 Climate Data) BEFORE relying on mini-split as primary heat. The DOE Cold-Climate Heat Pump Specification (via ENERGY STAR Most Efficient) provides standardized performance comparison across manufacturers; check before purchase.
           </FixCallout>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Cold-climate mini-split heating capacity vs outdoor temperature"
+              orientation="vertical"
+              data={[
+                { label: "47°F", value: 100, sub: "% rated", color: "#10b981" },
+                { label: "35°F", value: 95, sub: "CCHP", color: "#10b981" },
+                { label: "17°F", value: 87, sub: "CCHP", color: "#3b82f6" },
+                { label: "5°F", value: 78, sub: "CCHP", color: "#3b82f6" },
+                { label: "-5°F", value: 67, sub: "CCHP", color: "#f59e0b" },
+                { label: "-13°F", value: 58, sub: "Mitsubishi H2i", color: "#ef4444", emphasis: true },
+                { label: "-22°F", value: 40, sub: "select models", color: "#dc2626" },
+              ]}
+              axisLabel="Heating capacity (% of rated)"
+              caption="Cold-climate mini-splits (Mitsubishi Hyper-Heat H2i, Daikin LV Series, Bosch BHP, Fujitsu Halcyon) maintain meaningful capacity to -13°F. Most still deliver 55-75% of rated at the test point — backup heating remains essential for extreme cold."
+            />
+          </div>
         </section>
 
         {/* SECTION 03 — Multi-zone */}
@@ -315,6 +335,24 @@ export default function HvacDuctlessMiniSplitGuidePage() {
           <p className="mt-3 text-zinc-700 dark:text-zinc-300">
             <strong>Cost framework:</strong> single-zone professional installation $1,500-4,000; multi-zone $4,000-12,000; VRF commercial $15,000-100,000+. See <Link href="/hvac-tools-equipment-guide/" className="underline">tools guide</Link> for required installation equipment.
           </p>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <ProcessFlow
+              title="Mini-split installation — 8-phase professional workflow"
+              orientation="horizontal"
+              steps={[
+                { number: 1, title: "Site survey + sizing", description: "Manual J load. Outdoor unit placement. Lineset routing." },
+                { number: 2, title: "Mount units", description: "Outdoor pad/bracket. Indoor wall stud mounting." },
+                { number: 3, title: "Run lineset + drain", description: "Insulated copper. Slope condensate.", critical: true },
+                { number: 4, title: "Electrical + wiring", description: "208/230V dedicated circuit. Communication wire." },
+                { number: 5, title: "Pressure test + evacuate", description: "Nitrogen leak check. Evacuate to 500 microns." },
+                { number: 6, title: "Charge verification", description: "Lineset adjustment per manufacturer formula." },
+                { number: 7, title: "Commission", description: "Cool + heat verification. Delta-T measurement." },
+                { number: 8, title: "Customer instruction", description: "Filter cleaning. Remote operation. Warranty." },
+              ]}
+              caption="Professional mini-split installation takes 1-2 days for single-zone; 2-4 days for multi-zone. Evacuation to 500 microns (step 5) is the most-skipped step in DIY installs — insufficient vacuum leaves moisture that degrades capacity over time."
+            />
+          </div>
         </section>
 
         {/* SECTION 07 — DIY */}

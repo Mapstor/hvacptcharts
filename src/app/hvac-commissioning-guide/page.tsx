@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-commissioning-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -193,6 +195,23 @@ export default function HvacCommissioningGuidePage() {
             NIST, Lawrence Berkeley National Laboratory, and DOE Building America research collectively document that 25-40% of residential HVAC capacity is commonly lost between equipment nameplate and registers in uncommissioned systems. A 3-ton AC commissioned correctly delivers ~3 tons at the registers; the same equipment uncommissioned often delivers 2.0-2.4 tons of effective capacity. The homeowner experiences a system that &quot;doesn&apos;t keep up,&quot; the contractor adds more cooling tonnage, costs and energy use spiral. Commissioning recovers most of the gap — typical post-commissioning improvement is 10-25% in delivered capacity and 8-20% in seasonal energy use.
           </KeyInsight>
 
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <ProcessFlow
+              title="ACCA QI Standard 5 commissioning workflow"
+              orientation="vertical"
+              steps={[
+                { number: 1, title: "Document design intent", description: "Manual J load, Manual S equipment selection, Manual D ductwork — these are the targets commissioning verifies." },
+                { number: 2, title: "Verify installation quality", description: "Equipment placement, refrigerant line set sizing, electrical, condensate drainage. Catch defects before testing." },
+                { number: 3, title: "Test ductwork integrity", description: "Duct Blaster test for leakage (≤4% per RESNET MINHERS); Blower Door for envelope (≤5 ACH50 existing, ≤3 ACH50 new).", critical: true },
+                { number: 4, title: "Verify refrigerant charge", description: "Superheat (fixed orifice) or subcooling (TXV) at design conditions. Weighed charge per Manual D adjustment if needed." },
+                { number: 5, title: "Measure + balance airflow (Manual T)", description: "Total CFM = 400 CFM/ton standard. Room-by-room balance to design CFM per Manual J. TESP within blower capability." },
+                { number: 6, title: "Verify capacity at design conditions", description: "Run system 30 min at design load. Measure supply/return DB+WB delta T. Calculate delivered capacity vs design." },
+                { number: 7, title: "Document + commission report", description: "Photos, measurements, deviations from design, customer instruction. Required for some IRA tax credits + utility rebates." },
+              ]}
+              caption="The 7-step commissioning workflow per ACCA QI Standard 5. Most residential HVAC is delivered without these steps — the gap between rated and delivered capacity is what commissioning recovers."
+            />
+          </div>
+
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             Commissioning is required by: ENERGY STAR Single-Family New Homes Program v3.2 (Whole-House Verification section); RESNET HERS rating (component of rating process); IECC 2021 R403.3.5 (duct leakage testing); IECC 2021 R402.4.1.2 (envelope blower door testing); California Title 24 (Acceptance Tests); ACCA Quality Installation Standard 5 (voluntary contractor program); some utility rebate programs. Many jurisdictions are tightening commissioning requirements over the 2024-2028 code cycle.
           </p>
@@ -360,6 +379,24 @@ export default function HvacCommissioningGuidePage() {
           <KeyInsight tone="blue" title="Expected TESP ranges by equipment type">
             For typical residential PSC-blower equipment: TESP budget 0.30-0.50 in.w.c. at design CFM. For variable-speed ECM blower equipment: TESP budget 0.50-0.80 in.w.c. Variable-speed blowers can compensate for higher TESP up to their capability, but at the cost of higher current draw and noise. Measured TESP above the budget indicates installation problems (undersized ducts, loaded filter, dirty coil, partially-closed dampers). Below the budget is generally fine — the equipment has headroom.
           </KeyInsight>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Commissioning acceptance criteria — pass/fail thresholds"
+              orientation="horizontal"
+              data={[
+                { label: "Duct leakage", value: 4, sub: "% of CFM max", color: "#10b981" },
+                { label: "Envelope (Blower Door)", value: 5, sub: "ACH50 existing", color: "#10b981" },
+                { label: "TESP (PSC blower)", value: 0.5, sub: "in.w.c. max", color: "#3b82f6" },
+                { label: "TESP (ECM blower)", value: 0.8, sub: "in.w.c. max", color: "#3b82f6" },
+                { label: "Refrigerant SH (fixed orifice)", value: 10, sub: "°F ±2", color: "#f59e0b" },
+                { label: "Refrigerant SC (TXV)", value: 10, sub: "°F ±2", color: "#f59e0b" },
+                { label: "Coil delta T (cooling)", value: 18, sub: "°F at design", color: "#06b6d4" },
+                { label: "Capacity vs design", value: 95, sub: "% min", color: "#10b981", emphasis: true },
+              ]}
+              caption="ACCA QI Standard 5 + RESNET MINHERS acceptance thresholds. Equipment meeting all thresholds delivers within ±5% of rated capacity. Failing any single threshold typically costs 5-10% of delivered capacity; failing multiple compounds toward the 25-40% performance gap NIST documents in uncommissioned systems."
+            />
+          </div>
 
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             Static pressure measurement is the single most diagnostic commissioning step — high TESP catches most installation problems before they manifest as comfort or efficiency complaints. See our <Link href="/hvac-duct-design-guide/" className="underline">duct design guide</Link> Section 5 for the TESP budget breakdown by component.

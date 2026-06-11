@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-safety-procedures-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -191,6 +193,24 @@ export default function HvacSafetyProceduresGuidePage() {
           <KeyInsight tone="blue" title="The compliance reality">
             Most HVAC technicians focus on EPA Section 608 (because it's directly cited in federal refrigerant law with substantial penalties) and the most obvious physical hazards (electrical shock, high-pressure refrigerant). The under-attended areas: hot work permits for brazing in commercial settings (often skipped, OSHA-required), confined space entry permits for service in attics or basements where oxygen displacement is possible (often skipped, OSHA-required), and combustion analysis for gas equipment (often skipped, ANSI Z21.13 + NFPA 54 referenced). For HVAC business owners, maintaining a written safety program per OSHA 1910 + employee training records is the foundation of compliance.
           </KeyInsight>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <ProcessFlow
+              title="Lockout/Tagout (LOTO) — OSHA 29 CFR 1910.147 mandatory procedure"
+              orientation="vertical"
+              steps={[
+                { number: 1, title: "Notify affected workers", description: "Anyone using or near the equipment must be informed before energy isolation." },
+                { number: 2, title: "Shut off equipment normally", description: "Use the equipment's normal stop control (thermostat, breaker switch)." },
+                { number: 3, title: "Isolate energy source", description: "Disconnect at breaker AND at outdoor equipment disconnect. Both isolation points.", critical: true },
+                { number: 4, title: "Apply lock + tag", description: "Personal padlock + tag with name + date. Each worker applies their own lock; never share." },
+                { number: 5, title: "Verify de-energization", description: "Non-contact voltage tester at equipment terminals. Cycle controls to confirm no response.", critical: true },
+                { number: 6, title: "Discharge stored energy", description: "Capacitors hold 240V for minutes after power-off. Discharge with 20kΩ resistor or insulated screwdriver." },
+                { number: 7, title: "Perform service work", description: "Now safe to open the equipment." },
+                { number: 8, title: "Reverse procedure to restore", description: "Tools clear, workers accounted, remove locks (each worker removes their own)." },
+              ]}
+              caption="The OSHA-required LOTO procedure for any commercial work on energized equipment. Capacitor discharge (step 6) is the most-skipped step — 240V residual charge has killed multiple technicians who skipped it."
+            />
+          </div>
         </section>
 
         {/* SECTION 02 — Electrical safety */}
@@ -236,6 +256,23 @@ export default function HvacSafetyProceduresGuidePage() {
             <span className="font-mono text-sm text-zinc-400">03</span>
             Refrigerant safety — pressure, asphyxiation, A2L/A3 flammability
           </h2>
+
+          <div className="mb-4 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Refrigerant safety classifications — ASHRAE 34 hazard ranking"
+              orientation="horizontal"
+              data={[
+                { label: "A1 (non-toxic, non-flammable)", value: 1, sub: "R-22, R-410A, R-134a", color: "#10b981" },
+                { label: "A2L (non-toxic, mildly flammable)", value: 3, sub: "R-32, R-454B, R-1234yf", color: "#f59e0b" },
+                { label: "A2 (non-toxic, flammable)", value: 5, sub: "rare in HVAC", color: "#ef4444" },
+                { label: "A3 (non-toxic, highly flammable)", value: 8, sub: "R-290, R-600a", color: "#dc2626" },
+                { label: "B1 (toxic, non-flammable)", value: 4, sub: "R-123", color: "#a855f7" },
+                { label: "B2L (toxic, mildly flammable)", value: 6, sub: "R-717 ammonia", color: "#7c2d12" },
+              ]}
+              axisLabel="Relative hazard level"
+              caption="ASHRAE Standard 34 classifies refrigerants by toxicity (A/B) and flammability (1/2L/2/3). A2L refrigerants (R-32, R-454B) replacing R-410A under AIM Act require modified safe-work practices: no open flames during service, ventilated work areas, A2L-rated tools."
+            />
+          </div>
 
           <ComparisonTable
             headers={["Hazard", "Safety class affected", "Mechanism", "Mitigation"]}

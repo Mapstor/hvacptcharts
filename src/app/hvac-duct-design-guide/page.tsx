@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-duct-design-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -201,6 +203,24 @@ export default function HvacDuctDesignGuidePage() {
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             The structural argument: equipment efficiency (SEER, AFUE) is rated at the equipment&apos;s nameplate airflow with zero duct losses. Real installations always have non-zero duct losses; correctly designed ducts limit those losses to a few percent. Carelessly designed ducts can compound to 30-50% effective efficiency loss — the homeowner is paying full SEER price for half SEER performance. Manual D&apos;s rigorous methodology cuts that gap to single-digit percent, which is the difference between equipment hitting its rated cost-per-BTU and not.
           </p>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Typical Total External Static Pressure (TESP) budget — 0.50 in.w.c. blower"
+              orientation="horizontal"
+              data={[
+                { label: "Supply trunk + branches", value: 0.10, sub: "in.w.c." },
+                { label: "Return trunk + grilles", value: 0.10, sub: "in.w.c." },
+                { label: "Fittings (90° elbows, takeoffs)", value: 0.08, sub: "in.w.c." },
+                { label: "Filter (MERV 8 clean)", value: 0.10, sub: "in.w.c.", emphasis: true },
+                { label: "Evaporator coil (wet)", value: 0.10, sub: "in.w.c." },
+                { label: "Reserve margin", value: 0.02, sub: "in.w.c.", color: "#10b981" },
+              ]}
+              axisLabel="Static pressure (in.w.c.)"
+              reference={{ value: 0.50, label: "blower max TESP", color: "#dc2626" }}
+              caption="Every duct system component adds friction. Filters often consume 20% of the budget alone — high-MERV filters can exceed it. The TESP budget must sum to ≤ blower rated capacity at design CFM, or airflow drops + equipment efficiency degrades."
+            />
+          </div>
         </section>
 
         {/* SECTION 02 — Manual D in the cascade */}
@@ -413,6 +433,24 @@ Trunk static @ 0.08 friction:
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             Source for friction multipliers: ACCA Manual D Appendix 5; ASHRAE Handbook of Fundamentals 2021 Chapter 21; manufacturer-published friction charts (Atco, Flexmaster, Genflex for flex; CertainTeed, Owens Corning for duct board). Manufacturer&apos;s specific values are slightly different but the relative ranking is consistent.
           </p>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Duct material friction multiplier vs galvanized smooth round (baseline = 1.0)"
+              orientation="vertical"
+              data={[
+                { label: "Galvanized round", value: 1.0, color: "#10b981" },
+                { label: "Spiral galvanized", value: 1.08, color: "#10b981" },
+                { label: "Fiberglass board", value: 1.20, color: "#3b82f6" },
+                { label: "Lined sheet metal", value: 1.40, color: "#f59e0b" },
+                { label: "Flex (taut)", value: 1.75, color: "#ef4444" },
+                { label: "Flex (sagging)", value: 2.50, color: "#dc2626" },
+              ]}
+              axisLabel="Friction multiplier"
+              reference={{ value: 1.0, label: "galvanized baseline", color: "#16a34a" }}
+              caption="Flex duct quality of installation matters enormously. Properly tensioned flex adds 75% to friction vs galvanized; sagging flex multiplies friction 2.5×, completely defeating the duct sizing calculation."
+            />
+          </div>
 
           <KeyInsight tone="blue" title="Practical material strategy">
             For residential new construction: galvanized rigid for the supply trunk and any branch run over 15 ft; short flex (5-10 ft) connections at each boot for vibration isolation and cavity-fitting flexibility. Reverse for returns — solid rigid construction throughout, with no flex except at the air-handler connection. For commercial: galvanized or spiral throughout; lined sheet metal in supply runs near occupied space if noise control matters; rigid duct board for trunk where on-site fabrication is cost-effective. Avoid: long runs of flex (over 25 ft), boots without rigid transition, flex installed compressed against framing.

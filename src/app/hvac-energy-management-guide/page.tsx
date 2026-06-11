@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-energy-management-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -181,6 +183,22 @@ export default function HvacEnergyManagementGuidePage() {
             ]}
           />
 
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <ProcessFlow
+              title="6-step energy management framework — Benchmark → Audit → Optimize → Monitor → Verify → Comply"
+              orientation="horizontal"
+              steps={[
+                { number: 1, title: "Benchmark", description: "ENERGY STAR Portfolio Manager. EUI vs peer buildings." },
+                { number: 2, title: "Audit", description: "ASHRAE 211 Level I/II/III. Identify waste." },
+                { number: 3, title: "Optimize", description: "Retrocommissioning. Capture immediate savings.", critical: true },
+                { number: 4, title: "Monitor", description: "FDD on BAS data. Catch drift over time." },
+                { number: 5, title: "Verify", description: "IPMVP M&V. Confirm savings persist." },
+                { number: 6, title: "Comply", description: "BPS reporting. NYC LL97, Boston BERDO." },
+              ]}
+              caption="Energy management is a continuous loop. Most commercial buildings benchmark + audit (steps 1-2) but skip retrocommissioning (step 3) — leaving the largest savings unrealized. Building Performance Standards (step 6) are forcing adoption of all 6 steps."
+            />
+          </div>
+
           <KeyInsight tone="blue" title="The performance gap is real">
             ASHRAE + DOE + multiple academic studies consistently find that commercial buildings perform 20-40% worse in operation than design intent. Causes include: controls drift over time, setback overrides by occupants, scheduling errors, sensor failures, equipment degradation, occupancy changes not reflected in operation, simultaneous heating + cooling, etc. Energy management captures these losses; energy efficiency improvements alone don&apos;t.
           </KeyInsight>
@@ -225,6 +243,25 @@ export default function HvacEnergyManagementGuidePage() {
           <TechSection icon="insight" tone="blue" title="How ENERGY STAR Portfolio Manager works">
             EPA + ENERGY STAR for Buildings program; free online tool at portfoliomanager.energystar.gov. Used by 50%+ of US commercial floor space. Process: (1) Create account + add building. (2) Enter floor area + use type + operating characteristics (occupants, hours, computers, etc.). (3) Enter 12 months of utility bills. (4) Tool calculates Source EUI (Energy Use Intensity) in kBtu/sq ft. (5) Compares to national database of similar buildings, controlled for size + climate + use type + occupancy. (6) Output: ENERGY STAR Score 1-100 (percentile rank). Score 75+ = ENERGY STAR Certified eligible (top 25% of peers).
           </TechSection>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Median Source EUI by commercial building type (ENERGY STAR Portfolio Manager)"
+              orientation="horizontal"
+              data={[
+                { label: "Hospital", value: 250, sub: "kBtu/sf/yr", color: "#dc2626" },
+                { label: "Office", value: 125, sub: "kBtu/sf/yr", color: "#f59e0b" },
+                { label: "Hotel", value: 120, sub: "kBtu/sf/yr", color: "#f59e0b" },
+                { label: "Retail (mall)", value: 110, sub: "kBtu/sf/yr", color: "#3b82f6" },
+                { label: "K-12 School", value: 85, sub: "kBtu/sf/yr", color: "#10b981" },
+                { label: "Multifamily HR", value: 75, sub: "kBtu/sf/yr", color: "#10b981" },
+                { label: "Multifamily LR", value: 65, sub: "kBtu/sf/yr", color: "#10b981" },
+                { label: "Warehouse", value: 45, sub: "kBtu/sf/yr", color: "#10b981" },
+              ]}
+              axisLabel="kBtu/sq ft/year"
+              caption="Median Source EUI varies dramatically by building type. ENERGY STAR Score is percentile-based — your building scores against peers of the same type. 75+ score = top 25% of peers = ENERGY STAR Certified eligible."
+            />
+          </div>
 
           <ComparisonTable
             headers={["Building type", "Median Source EUI (kBtu/sq ft/year)", "Certification threshold"]}

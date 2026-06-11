@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-load-calculation-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -197,9 +199,45 @@ export default function HvacLoadCalculationGuidePage() {
             What sensible + latent cooling capacity does this specific home need at the ASHRAE 1% design cooling condition? And what heating capacity does it need at the 99% design heating condition? Everything in a Manual J report exists to compute those two numbers with defensible accuracy. The companion <Link href="/hvac-load-calculator/" className="underline">load calculator</Link> produces both numbers from 7 inputs in a simplified Manual J methodology accurate within ±20% of a full report.
           </KeyInsight>
 
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Typical cooling load components — 2,000 ft² home in Zone 4A"
+              orientation="horizontal"
+              data={[
+                { label: "Windows (solar gain)", value: 9500, sub: "BTU/hr", color: "#f59e0b" },
+                { label: "Walls + ceiling conduction", value: 7200, sub: "BTU/hr", color: "#3b82f6" },
+                { label: "Infiltration (sensible)", value: 4100, sub: "BTU/hr", color: "#8b5cf6" },
+                { label: "Roof conduction", value: 3400, sub: "BTU/hr", color: "#10b981" },
+                { label: "People (4 occupants)", value: 1200, sub: "BTU/hr", color: "#ec4899" },
+                { label: "Equipment + lighting", value: 5000, sub: "BTU/hr", color: "#ef4444" },
+                { label: "Latent (moisture)", value: 6800, sub: "BTU/hr", color: "#06b6d4" },
+              ]}
+              axisLabel="BTU/hr"
+              caption="Windows and infiltration drive most of the cooling load. Envelope improvements (window upgrades, air sealing) shrink the largest segments and directly reduce required equipment tonnage."
+            />
+          </div>
+
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             The numbers matter because equipment is selected from AHRI-certified ratings against these specific design conditions. A 3-ton (36,000 BTU/hr) AC compressor is rated by AHRI Standard 210/240 at 95°F outdoor dry-bulb and 67°F indoor wet-bulb — those are the design conditions Manual J assumes for the &quot;A&quot; rating point. The home&apos;s actual peak cooling demand has to match the equipment&apos;s rated capacity at that design condition, or the equipment either undersizes (capacity falls short on hot days) or oversizes (short-cycles and fails to control humidity). Manual J + Manual S together exist to make that match precise.
           </p>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="ASHRAE 1% design temperatures by IECC climate zone"
+              orientation="vertical"
+              data={[
+                { label: "Zone 1A", value: 92, sub: "Miami", color: "#dc2626" },
+                { label: "Zone 2A", value: 96, sub: "Houston", color: "#ef4444" },
+                { label: "Zone 3A", value: 94, sub: "Atlanta", color: "#f59e0b" },
+                { label: "Zone 4A", value: 91, sub: "Philadelphia", color: "#10b981" },
+                { label: "Zone 5A", value: 88, sub: "Chicago", color: "#06b6d4" },
+                { label: "Zone 6A", value: 85, sub: "Minneapolis", color: "#3b82f6" },
+                { label: "Zone 7", value: 82, sub: "Duluth", color: "#8b5cf6" },
+              ]}
+              axisLabel="Cooling design DB (°F)"
+              caption="Manual J uses ASHRAE 1% design temperatures — exceeded only 1% of summer hours. Equipment sized to handle these conditions covers 99% of cooling hours. Hotter zones (1A-3A) drive larger cooling tonnage; cooler zones (5A-7) have smaller cooling loads but larger heating loads."
+            />
+          </div>
         </section>
 
         {/* SECTION 02 — Rules of thumb vs Manual J */}

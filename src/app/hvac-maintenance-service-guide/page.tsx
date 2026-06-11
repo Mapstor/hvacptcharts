@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-maintenance-service-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -197,6 +199,24 @@ export default function HvacMaintenanceServiceGuidePage() {
           <KeyInsight tone="blue" title="The compound efficiency curve">
             Without maintenance, typical residential AC loses 5-10% efficiency in year 1 (filter loading, coil debris, slight charge loss) and roughly 1-2% additional per year thereafter. After 10 years a neglected system delivers ~70-75% of its original rated efficiency. With annual maintenance, the curve flattens substantially — typical 10-year-old well-maintained system delivers 85-90% of original efficiency. ENERGY STAR documents that proper maintenance saves 5-20% on annual HVAC energy bills relative to neglected operation. For typical residential cooling+heating costs of $1,200-2,500/year, that&apos;s $60-500 in annual savings vs the $150-300/year service contract cost.
           </KeyInsight>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Realized efficiency over equipment life — maintained vs neglected"
+              orientation="vertical"
+              data={[
+                { label: "Year 1", value: 95, sub: "% rated" },
+                { label: "Year 3", value: 92, sub: "maintained" },
+                { label: "Year 5", value: 89, sub: "maintained" },
+                { label: "Year 8", value: 86, sub: "maintained" },
+                { label: "Year 10", value: 84, sub: "maintained", color: "#10b981" },
+                { label: "Year 10 (neglected)", value: 72, sub: "% rated", color: "#dc2626", emphasis: true },
+              ]}
+              axisLabel="Realized efficiency (% of rated SEER2)"
+              reference={{ value: 100, label: "nameplate rating", color: "#16a34a" }}
+              caption="ENERGY STAR documents 5-20% annual energy savings from proper maintenance vs neglected operation. The compound curve flattens with annual service; neglect accelerates degradation in years 5-10."
+            />
+          </div>
 
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             Beyond direct efficiency, maintenance catches small problems before they cascade. A weak capacitor (10% below nameplate µF) operates the compressor at lower-than-rated starting torque; the compressor draws excess current at every start and the windings age faster. Six months later the compressor fails — a $1,500-3,500 unplanned repair, when a $25 capacitor replacement at the annual visit would have prevented it. The same pattern applies to small refrigerant leaks, dirty coils, and undersized returns; identified early, they&apos;re routine fixes. Caught only when they cause equipment failure, they&apos;re expensive emergency repairs at the worst possible time (the hottest day of the summer).
@@ -619,6 +639,21 @@ export default function HvacMaintenanceServiceGuidePage() {
           <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
             Numbers are illustrative typical residential — exact savings vary by climate, equipment age, energy prices, and system condition. Service contracts pay back within 1-3 years for most households; faster for older equipment with more failure risk; slower for newer high-efficiency equipment with less degradation potential.
           </p>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <ProcessFlow
+              title="Spring AC tune-up — 14-point professional service per ACCA Standard 4"
+              orientation="horizontal"
+              steps={[
+                { number: 1, title: "Filter + coil clean", description: "Replace filter; inspect + clean indoor coil + outdoor coil." },
+                { number: 2, title: "Electrical inspection", description: "Capacitor µF test; contactor; amp draws within nameplate." },
+                { number: 3, title: "Refrigerant verify", description: "SH/SC at design conditions; charge weight if needed." },
+                { number: 4, title: "Airflow + condensate", description: "TESP measurement; condensate pan + drain line check." },
+                { number: 5, title: "Document + report", description: "Findings + recommended repairs in service log." },
+              ]}
+              caption="Annual spring AC tune-up per ACCA Standard 4 + ASHRAE 180. The 14-point inspection rolls up into 5 logical phases; typical cost $150-300 for residential; pays back via efficiency retention + early failure detection."
+            />
+          </div>
 
           <KeyInsight tone="blue" title="The non-financial argument">
             Beyond the math: maintained equipment fails less catastrophically. A neglected AC failing on a 95°F July afternoon is a very different experience from a maintained AC running smoothly. Comfort, reliability, and the absence of emergency-repair stress have value beyond the dollar math. For older residents, families with young children, or anyone with health conditions affected by heat or cold, system reliability is non-negotiable — annual maintenance is the cost of reliability.

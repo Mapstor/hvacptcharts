@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
+import { BarChart } from "@/components/svg/concepts/BarChart";
 
 const PAGE_URL = `${SITE_URL}/hvac-troubleshooting-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -194,6 +196,21 @@ export default function HvacTroubleshootingGuidePage() {
           <KeyInsight tone="blue" title="The pattern-matching shortcut">
             Once you have SH, SC, and condenser approach, the root cause is deterministic for 85% of cases. Bad part-swappers ignore this and guess; experienced techs read three numbers and know the answer within 5 minutes. Each symptom section below uses this same SH/SC/approach pattern matching.
           </KeyInsight>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <ProcessFlow
+              title="The 5-step diagnostic framework — work it in order"
+              orientation="vertical"
+              steps={[
+                { number: 1, title: "Verify the symptom firsthand", description: "Walk the equipment. Don't troubleshoot from hearsay — 'not cooling' has three different meanings." },
+                { number: 2, title: "Localize indoor vs outdoor", description: "Listen at both units. Outdoor humming + indoor silent = blower side. Both silent = power or thermostat." },
+                { number: 3, title: "Read steady-state pressures + temps", description: "Manifold gauges, 15 min runtime, record suction + liquid PSIG + line temps + WB/DB." },
+                { number: 4, title: "Convert to SH / SC / approach", description: "Superheat, subcooling, and condenser approach are the three diagnostic metrics that matter.", critical: true },
+                { number: 5, title: "Pattern-match to root cause", description: "SH↑ SC↓ = undercharge. SH↓ SC↑ = overcharge or restriction. The patterns are deterministic." },
+              ]}
+              caption="Skipping any step costs time — but skipping step 4 (the conversion) is what turns 5-minute diagnosis into 5-hour part-swapping."
+            />
+          </div>
         </section>
 
         {/* SECTION 02 — Tools needed */}
@@ -225,6 +242,24 @@ export default function HvacTroubleshootingGuidePage() {
           <FixCallout>
             <strong>Optional but high-value:</strong> a duct leakage tester (Duct Blaster) for whole-house leak quantification ($300-1500), and a combustion gas analyzer ($300-1500) if you work on gas furnaces. Both pay for themselves on the first major job.
           </FixCallout>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Fault patterns — SH + SC values by root cause (R-410A, typical residential cooling)"
+              orientation="horizontal"
+              data={[
+                { label: "Normal operation", value: 10, sub: "SH ≈10 SC ≈10", color: "#10b981" },
+                { label: "Undercharge", value: 25, sub: "SH↑ SC↓", color: "#dc2626" },
+                { label: "Overcharge", value: 3, sub: "SH↓ SC↑", color: "#ef4444" },
+                { label: "TXV stuck closed", value: 30, sub: "SH↑ SC normal", color: "#f59e0b" },
+                { label: "Dirty condenser", value: 8, sub: "SH↑ SC↑ + approach↑", color: "#a855f7" },
+                { label: "Restricted liquid line", value: 3, sub: "SH↓ SC↑ + liquid sub-cool", color: "#8b5cf6" },
+                { label: "Low indoor airflow", value: 5, sub: "SH↓ SC↑ + evap ice", color: "#3b82f6" },
+              ]}
+              axisLabel="Superheat (°F)"
+              caption="Each fault produces a distinctive SH signature. Normal R-410A residential cooling is ~10°F superheat. Deviations above or below this baseline immediately suggest a root cause (combined with SC + approach readings)."
+            />
+          </div>
         </section>
 
         {/* SECTION 03 — No cooling */}

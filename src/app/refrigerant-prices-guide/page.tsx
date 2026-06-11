@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/refrigerant-prices-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -187,6 +189,22 @@ export default function RefrigerantPricesGuidePage() {
             HFC production allowances are denominated in metric tons of CO2-equivalent (because the regulation cares about climate impact, not refrigerant mass). EPA sets a total allowance pool that drops on a schedule. Producers can use allowances to make HFCs, trade allowances among themselves, or hold them for future years (banking is limited). When the cap is set below market demand, the price clearing of allowances rises — and that price gets passed through to the wholesale price of HFCs, which producers must &quot;buy down&quot; an allowance unit for each ton of refrigerant they put on the market. This is the same mechanism that drove SO₂ allowance prices and EU Emissions Trading System prices.
           </KeyInsight>
 
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="AIM Act HFC production phase-down — % of 2011-2013 baseline"
+              orientation="vertical"
+              data={[
+                { label: "2022", value: 90, sub: "% of baseline" },
+                { label: "2024", value: 60, sub: "% of baseline", color: "#10b981" },
+                { label: "2029", value: 30, sub: "% of baseline", color: "#f59e0b" },
+                { label: "2034", value: 20, sub: "% of baseline", color: "#ef4444" },
+                { label: "2036", value: 15, sub: "% of baseline", color: "#dc2626", emphasis: true },
+              ]}
+              axisLabel="% of 2011-2013 production baseline"
+              caption="The AIM Act phase-down schedule. Each step reduces HFC supply substantially — cap-and-trade-style allowance prices have driven R-410A wholesale up significantly since 2024. R-22 reclaim (no virgin supply since 2020) shows the pattern: prices rose 8-15× pre-phaseout levels."
+            />
+          </div>
+
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             The European Union runs a parallel mechanism under EU Regulation 517/2014 (entered into force January 2015, recently superseded by EU 2024/573 in March 2024 with an accelerated schedule). The EU mechanism is technically a quota system rather than US-style allowances, but the macroeconomic effect is identical: cap supply, prices rise. Together AIM Act and EU F-Gas affect roughly 60% of global HFC consumption. The supply pressure they create propagates through global chemical supply chains to wholesale prices in every other jurisdiction.
           </p>
@@ -333,6 +351,20 @@ export default function RefrigerantPricesGuidePage() {
           <TechSection icon="insight" tone="blue" title="Tier 3 — Recycled refrigerant (a.k.a. &quot;reclaimed in field&quot;)">
             Recovered from one piece of equipment and reused (in the same equipment after service, or in another piece of equipment owned by the same end-user) without full off-site reclamation. Permitted under EPA Section 608 § 82.158 only within the same owner&apos;s equipment, and only when the refrigerant has been &quot;recycled&quot; using approved on-site equipment (filter-driers, oil separators per EPA SNAP). Not commercially traded. Lowest cost tier when feasible. Typical use: large commercial / industrial sites with their own service teams where recovery + on-site recycling + immediate reuse avoids the full reclaim supply chain. Not relevant to residential service.
           </TechSection>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Refrigerant price tier multipliers — relative to virgin baseline"
+              orientation="horizontal"
+              data={[
+                { label: "Virgin (new from feedstock)", value: 100, sub: "% baseline", color: "#dc2626" },
+                { label: "Reclaimed (AHRI 700)", value: 70, sub: "% of virgin", color: "#f59e0b" },
+                { label: "Recycled (same-owner)", value: 30, sub: "% of virgin", color: "#10b981" },
+                { label: "R-22 post-phaseout reclaim", value: 1200, sub: "% pre-phaseout", color: "#7c2d12", emphasis: true },
+              ]}
+              caption="Reclaimed refrigerant typically trades at 60-80% of virgin price. Recycled (same-owner reuse) is rarely traded commercially. R-22 post-phaseout pricing is the cautionary tale: 8-15× pre-phaseout levels as virgin supply ended in 2020 and demand persists for legacy equipment."
+            />
+          </div>
         </section>
 
         {/* SECTION 07 — Container economics */}

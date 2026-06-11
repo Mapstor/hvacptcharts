@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-indoor-air-quality-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -165,6 +167,23 @@ export default function HvacIndoorAirQualityGuidePage() {
             COVID-19 made indoor air quality a permanent public-health attention area. The pandemic accelerated several IAQ trends that had been growing: MERV 13+ filtration became the residential default (CDC recommendation), ASHRAE 62.2 mechanical ventilation adoption expanded, indoor CO₂ monitoring (as a proxy for ventilation adequacy) became consumer-grade affordable. Wildfire smoke events on the West Coast made portable HEPA air cleaners common household equipment. Real-estate listings now frequently mention IAQ features (HEPA, ERV, MERV 13+) where they once only mentioned cosmetic features. The IAQ market has matured from &quot;medical device for the chronically ill&quot; to &quot;routine residential infrastructure.&quot;
           </KeyInsight>
 
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="MERV filtration efficiency by particle size (ASHRAE 52.2)"
+              orientation="horizontal"
+              data={[
+                { label: "MERV 4 (basic)", value: 5, sub: "% efficiency 3-10µm" },
+                { label: "MERV 8 (standard)", value: 35, sub: "% 3-10µm, 0% <1µm" },
+                { label: "MERV 11", value: 65, sub: "% 1-3µm" },
+                { label: "MERV 13 (CDC rec)", value: 85, sub: "% 1-3µm; >50% <1µm", color: "#10b981", emphasis: true },
+                { label: "MERV 14", value: 90, sub: "% 0.3-1µm", color: "#10b981" },
+                { label: "MERV 16", value: 95, sub: "% 0.3-1µm", color: "#10b981" },
+                { label: "HEPA (true)", value: 99.97, sub: "% 0.3µm", color: "#3b82f6" },
+              ]}
+              caption="MERV 13+ became the CDC-recommended residential default during COVID-19 — captures viral aerosols + wildfire PM2.5. Higher MERV = higher static pressure penalty on the blower; verify your HVAC system can handle the additional TESP before upgrading filter class."
+            />
+          </div>
+
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             The health stakes are substantial. Poor IAQ contributes to asthma exacerbation (the CDC reports asthma is the most common chronic childhood disease, costing $80B+ annually in US healthcare), allergy symptoms, fatigue and reduced cognitive performance (CO₂ above 1,500 ppm measurably reduces decision-making per multiple peer-reviewed studies), respiratory infections, and cardiovascular events from PM2.5 exposure. Long-term: radon-induced lung cancer (second leading cause after smoking per EPA), formaldehyde and other VOC exposures linked to chronic disease, mold-induced respiratory inflammation. IAQ is preventive healthcare delivered through HVAC engineering.
           </p>
@@ -238,6 +257,27 @@ export default function HvacIndoorAirQualityGuidePage() {
               Required ventilation (CFM) = (0.03 × conditioned floor area in ft²) + (7.5 × number of bedrooms + 1)
             </code>
             <p className="mt-2">For a 2,000 ft² home with 3 bedrooms: 0.03 × 2000 + 7.5 × 4 = 60 + 30 = 90 CFM continuous outdoor air. Compare to typical natural infiltration: a tight 2015+ build with 0.2 ACHnat at 16,000 ft³ volume = 53 CFM natural infiltration. The 62.2 calculation indicates 90 CFM is needed; natural infiltration provides 53; mechanical ventilation must add the difference (~37 CFM continuous).</p>
+          </KeyInsight>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Indoor pollutant exposure ratios — indoor vs outdoor concentrations"
+              orientation="vertical"
+              data={[
+                { label: "Formaldehyde", value: 5, sub: "× outdoor", color: "#f59e0b" },
+                { label: "VOCs", value: 4, sub: "× outdoor", color: "#f59e0b" },
+                { label: "PM2.5 (cooking)", value: 100, sub: "× peak", color: "#dc2626", emphasis: true },
+                { label: "CO₂ (occupied)", value: 3, sub: "× ambient", color: "#3b82f6" },
+                { label: "Radon (basement)", value: 4, sub: "× outdoor", color: "#ef4444" },
+                { label: "Mold spores", value: 8, sub: "× outdoor (water damage)", color: "#a855f7" },
+              ]}
+              axisLabel="Indoor/Outdoor concentration ratio"
+              caption="EPA data shows indoor pollutants typically 2-5× outdoor concentrations; peak cooking events drive PM2.5 to 100× outdoor briefly. ASHRAE 62.2 ventilation + MERV 13 filtration + source control are the three pillars of residential IAQ."
+            />
+          </div>
+          {/* Replacement closer below */}
+          <KeyInsight tone="blue" title="The 62.2 quick reference">
+            For a 2,000 ft² 3-bedroom home, ASHRAE 62.2 requires 90 CFM continuous outdoor air; tight construction typically provides 30-50 CFM via natural infiltration; mechanical ventilation must add the rest.
           </KeyInsight>
 
           <ComparisonTable

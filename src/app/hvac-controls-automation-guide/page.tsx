@@ -13,6 +13,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { BarChart } from "@/components/svg/concepts/BarChart";
+import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-controls-automation-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
@@ -165,6 +167,22 @@ export default function HvacControlsAutomationGuidePage() {
             One specific example: a 9 HSPF2 cold-climate heat pump installed with thermostat configured to activate aux electric resistance heat on EVERY heat call (default for some thermostats) operates more like a 4-5 HSPF2 system in practice because the aux strips (COP 1.0) dominate the heating energy consumption. Same equipment, same install, wrong control = roughly 2× the expected heating bills. The fix is a 5-minute thermostat configuration change. The cost of getting it wrong: 15-20 years of doubled heating bills until a homeowner or technician investigates.
           </KeyInsight>
 
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="Thermostat capability tiers — features by class"
+              orientation="vertical"
+              data={[
+                { label: "Mechanical", value: 1, sub: "set + go", color: "#71717a" },
+                { label: "Digital (non-prog)", value: 2, sub: "+ display", color: "#3b82f6" },
+                { label: "Programmable", value: 4, sub: "+ schedule", color: "#06b6d4" },
+                { label: "Smart (WiFi)", value: 8, sub: "+ app + learning", color: "#10b981" },
+                { label: "Communicating", value: 10, sub: "+ OEM proprietary", color: "#f59e0b" },
+              ]}
+              axisLabel="Feature capability score"
+              caption="Smart thermostats (Ecobee, Nest, Honeywell T-series) offer 4-8× the capability of programmable models for similar price ($150-300). Communicating thermostats (OEM proprietary) integrate deeply with variable-capacity equipment but lock-in to manufacturer ecosystem."
+            />
+          </div>
+
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             Beyond efficiency: controls determine comfort (temperature accuracy, humidity management, zone coordination), reliability (proper staging, safety lockouts, equipment protection), and operational visibility (monitoring, alarms, energy reports). For commercial systems, controls also determine demand response capability and code compliance with ASHRAE Standard 90.1 automatic-controls requirements.
           </p>
@@ -217,6 +235,24 @@ export default function HvacControlsAutomationGuidePage() {
           <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
             Source: ENERGY STAR Certified Smart Thermostats list (energystar.gov/products/certified-products/detail/smart_thermostats). Vendor specifications current as of 2026 product lines; refer to vendor sites for latest hardware revisions and pricing.
           </p>
+
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <BarChart
+              title="HVAC communication protocols — adoption + use case"
+              orientation="horizontal"
+              data={[
+                { label: "BACnet/IP (commercial)", value: 90, sub: "% commercial BMS", color: "#3b82f6" },
+                { label: "Modbus (industrial)", value: 70, sub: "% industrial", color: "#06b6d4" },
+                { label: "Matter (residential smart)", value: 40, sub: "% new smart homes", color: "#10b981" },
+                { label: "Zigbee", value: 35, sub: "% smart sensors", color: "#f59e0b" },
+                { label: "Z-Wave", value: 25, sub: "% smart home hubs", color: "#ef4444" },
+                { label: "Thread (Matter base)", value: 30, sub: "% growing", color: "#10b981" },
+                { label: "OEM proprietary", value: 60, sub: "% communicating HVAC", color: "#a855f7" },
+              ]}
+              axisLabel="% market adoption (est.)"
+              caption="Commercial = BACnet dominant. Residential smart home = Matter + Zigbee fragmenting. OEM proprietary protocols (Carrier Infinity, Trane ComfortLink, Lennox iComfort) lock communication into manufacturer ecosystem for full variable-capacity control."
+            />
+          </div>
 
           <KeyInsight tone="blue" title="The IRA 25C tax credit on smart thermostats">
             Smart thermostats themselves don&apos;t typically qualify for IRA 25C tax credit as standalone purchases. However, when installed as part of a qualifying heat pump or HVAC equipment upgrade, the cost can be included in the credit calculation. ENERGY STAR certification is typically required. Check current IRS Form 5695 instructions and state-specific HEEHRA programs for eligibility details.
