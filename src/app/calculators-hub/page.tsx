@@ -80,6 +80,15 @@ export default function CalculatorsHubPage() {
             { href: "/refrigerant-retrofit-compatibility-calculator/", label: "Retrofit Compatibility", blurb: "Pair-comparison decision matrix: lubricant, safety class, pressure rating, glide, application overlap. Six-tier verdict from drop-in to not feasible." },
           ],
         },
+        {
+          heading: "Air-side and load calculations",
+          description: "Psychrometric, duct sizing, and Manual J load — the air-side complement to refrigerant-side calculators.",
+          items: [
+            { href: "/psychrometric-calculator/", label: "Psychrometric Calculator", blurb: "All 7 air properties from any 2 inputs (DB, WB, RH, dew point), with altitude correction. ASHRAE Handbook 2021 equations." },
+            { href: "/duct-size-calculator/", label: "Duct Size Calculator", blurb: "Round + rectangular sizing from CFM using ACCA Manual D equal-friction method. Velocity limits by application, Huebscher equivalents, altitude correction." },
+            { href: "/hvac-load-calculator/", label: "HVAC Load Calculator", blurb: "Quick Manual J — cooling tons + heating BTU/hr from 7 inputs. Component breakdown, sensible/latent split, equipment-sizing guidance." },
+          ],
+        },
       ]}
       learningPaths={[
         {

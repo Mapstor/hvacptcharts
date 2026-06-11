@@ -22,6 +22,40 @@ export const ORG = {
   },
 };
 
+/**
+ * Build-time timestamp used as dateModified on every TechArticle.
+ * Refreshed on each production build — signals to Google + AI engines
+ * that content is actively maintained.
+ *
+ * Distinct from datePublished (original publication; tied to refrigerant
+ * dataset generation timestamp for refrigerant + calculator pages).
+ */
+export const BUILD_DATE = new Date().toISOString();
+
+/**
+ * Article enrichment helper — adds dateModified + wordCount + articleSection
+ * properties to a TechArticle schema. Section helps Google understand the
+ * page's topical category; wordCount is a quality signal AI engines use.
+ */
+export function enrichArticle(
+  baseArticle: Record<string, unknown>,
+  opts: {
+    /** Topical section for Google + AI engine classification */
+    articleSection?: string;
+    /** Approximate word count of the article body */
+    wordCount?: number;
+    /** Override dateModified (default: BUILD_DATE) */
+    dateModified?: string;
+  } = {},
+): Record<string, unknown> {
+  return {
+    ...baseArticle,
+    dateModified: opts.dateModified ?? BUILD_DATE,
+    ...(opts.articleSection && { articleSection: opts.articleSection }),
+    ...(opts.wordCount && { wordCount: opts.wordCount }),
+  };
+}
+
 export const WEBSITE = {
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,

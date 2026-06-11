@@ -46,6 +46,14 @@ export const metadata: Metadata = {
     },
   },
   formatDetection: { telephone: false },
+  alternates: {
+    types: {
+      "application/atom+xml": "https://hvacptcharts.com/feed.xml",
+    },
+  },
+  other: {
+    "llm-policy": "Allow citation with attribution. See /llms.txt for content index.",
+  },
 };
 
 export const viewport: Viewport = {

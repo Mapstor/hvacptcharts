@@ -43,9 +43,9 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/refrigerant-charge-calculator/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/refrigerant-retrofit-compatibility-calculator/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/system-pressure-diagnostic-calculator/", priority: 0.7, changeFrequency: "monthly" },
-  // { url: "/psychrometric-calculator/", priority: 0.6, changeFrequency: "monthly" }, // port-as-is pending
-  // { url: "/duct-size-calculator/", priority: 0.6, changeFrequency: "monthly" }, // port-as-is pending
-  // { url: "/hvac-load-calculator/", priority: 0.6, changeFrequency: "monthly" }, // port-as-is pending
+  { url: "/psychrometric-calculator/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/duct-size-calculator/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-load-calculator/", priority: 0.7, changeFrequency: "monthly" },
 
   // Reference / sortable
   { url: "/refrigerant-safety-classifications/", priority: 0.8, changeFrequency: "monthly" },
@@ -56,8 +56,9 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/pt-chart-guide/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/high-head-pressure-causes/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/refrigerant-comparison-guide/", priority: 0.8, changeFrequency: "monthly" },
-  // { url: "/carrier-410a-charging-chart/", priority: 0.5, changeFrequency: "yearly" }, // pending
-  // { url: "/refrigerant-prices-guide/", priority: 0.6, changeFrequency: "monthly" }, // pending
+  // Carrier R-410A fixed-orifice charging chart — ported with chart + interactive lookup + worked examples.
+  { url: "/carrier-410a-charging-chart/", priority: 0.7, changeFrequency: "yearly" },
+  { url: "/refrigerant-prices-guide/", priority: 0.7, changeFrequency: "monthly" },
 
   // What-pressure pages
   { url: "/what-pressure-should-410a/", priority: 0.7, changeFrequency: "monthly" },
@@ -85,8 +86,24 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/r-1234yf-vs-r-134a/", priority: 0.6, changeFrequency: "monthly" },
   { url: "/r-744-vs-r-290/", priority: 0.6, changeFrequency: "monthly" },
 
-  // HVAC guides — preserved from legacy; 17 pages port-as-is in Phase 7.
-  // Uncomment as MDX files land in content/guides/.
+  // HVAC long-form guides — being ported one at a time with full content depth.
+  { url: "/hvac-troubleshooting-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-load-calculation-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-duct-design-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-refrigerant-recovery-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-energy-efficiency-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-commissioning-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-maintenance-service-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-indoor-air-quality-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-mechanical-ventilation-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-system-design-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-controls-automation-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-safety-procedures-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-tools-equipment-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-retrofitting-upgrades-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-energy-management-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-building-automation-guide/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/hvac-ductless-mini-split-guide/", priority: 0.7, changeFrequency: "monthly" },
   // { url: "/hvac-building-automation-guide/", priority: 0.5 },
   // { url: "/hvac-commissioning-guide/", priority: 0.6 },
   // ...
