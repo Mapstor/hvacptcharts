@@ -70,6 +70,7 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/what-pressure-should-r407c/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/what-pressure-should-r454c/", priority: 0.6, changeFrequency: "monthly" },
   { url: "/what-pressure-should-r744/", priority: 0.6, changeFrequency: "monthly" },
+  { url: "/what-pressure-should-r1234yf/", priority: 0.7, changeFrequency: "monthly" },
 
   // Comparison pages
   { url: "/r-32-vs-r-410a/", priority: 0.7, changeFrequency: "monthly" },

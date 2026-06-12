@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
 
 const PAGE_URL = `${SITE_URL}/privacy-policy/`;
-const LAST_UPDATED = "January 2025";
+const LAST_UPDATED = "June 2026";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -138,9 +138,32 @@ export default function PrivacyPage() {
 
           <h3>Analytics Services</h3>
           <p>
-            We use Google Analytics to understand website usage patterns. Google Analytics may collect information about
-            your use of our website and other websites. You can opt out of Google Analytics by installing the Google
-            Analytics opt-out browser add-on.
+            We use Google Analytics 4 (GA4), provided by Google LLC, to understand aggregate website usage patterns
+            (which pages get traffic, which calculators get used, where visitors come from). GA4 sets cookies and may
+            collect information about your interaction with our site and other sites that use Google services. By default,
+            GA4 does not log or store full IP addresses — IP data is used to derive approximate geographic location, then
+            discarded.
+          </p>
+          <p>
+            For details on how Google handles this data, see{" "}
+            <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 underline decoration-blue-400 underline-offset-2 hover:text-blue-900 hover:decoration-blue-700 dark:text-blue-300 dark:decoration-blue-500 dark:hover:text-blue-100"
+            >
+              Google&apos;s Privacy Policy
+            </a>
+            . You can opt out of GA tracking across all sites by installing the{" "}
+            <a
+              href="https://tools.google.com/dlpage/gaoptout"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 underline decoration-blue-400 underline-offset-2 hover:text-blue-900 hover:decoration-blue-700 dark:text-blue-300 dark:decoration-blue-500 dark:hover:text-blue-100"
+            >
+              Google Analytics opt-out browser add-on
+            </a>
+            , or by blocking analytics cookies through your browser settings.
           </p>
 
           <h3>Content Delivery</h3>

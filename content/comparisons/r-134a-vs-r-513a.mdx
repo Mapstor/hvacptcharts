@@ -11,7 +11,7 @@ chooseA: "Servicing existing R-134a equipment with original R-134a. Reclaimed R-
 
 chooseB: "Retrofitting an R-134a chiller for substantial GWP reduction (1430 → 631, a 56% reduction) without lubricant change, without safety class change, with minimal equipment adjustment. R-513A is one of the cleanest 'true drop-in' retrofits in the modern refrigerant landscape."
 
-whenNeither: "For new chiller equipment with maximum GWP reduction, the path is pure R-1234ze(E) (A2L, GWP 7, requires A2L-rated equipment) or R-515B (A1, GWP 287, azeotropic R-1234ze(E) blend with R-227ea). R-513A occupies the middle ground — moderate GWP reduction, A1 simplicity, true drop-in for R-134a. For lowest-GWP A1 retrofit, R-515B is the alternative."
+whenNeither: "For new chiller equipment with maximum GWP reduction, the path is pure R-1234ze(E) (A2L, AR4 GWP 7 / strict AR5 ≈1, requires A2L-rated equipment) or R-515B (A1, GWP 287, azeotropic R-1234ze(E) blend with R-227ea). R-513A occupies the middle ground — moderate GWP reduction, A1 simplicity, true drop-in for R-134a. For lowest-GWP A1 retrofit, R-515B is the alternative."
 
 retrofitNotes: |
   R-134a to R-513A is one of the simplest modern chiller retrofits. The pressure envelope is essentially identical, the lubricant is the same, the safety class is the same.
@@ -39,7 +39,7 @@ faqs:
     a: "Safety class. R-1234yf alone is A2L (mildly flammable); R-134a is A1 (non-flammable). For an A1-designed chiller, retrofitting to an A2L refrigerant requires equipment-level evaluation and often is not permitted by OEM warranty. R-513A's R-134a content (44%) is enough to suppress the blend's flammability below the A2L threshold, keeping the blend A1. The trade-off is moderate GWP reduction (56%) instead of the deeper 99% reduction R-1234yf alone would provide."
 
   - q: "What's the GWP of R-513A?"
-    a: "631 per IPCC AR5, mass-weighted from R-1234yf (4) at 56% and R-134a (1430) at 44%. The R-134a component dominates the GWP — it's 44% of the blend by mass but contributes ~99% of the GWP. Further reduction below R-513A's 631 requires either pushing R-1234yf content higher (which would tip the blend into A2L flammability) or moving to a different chemistry entirely (R-1234ze(E) for very-low-GWP A2L, R-515B for low-GWP A1)."
+    a: "631 per IPCC AR5, mass-weighted from R-1234yf (4 in the AR4 / EPA SNAP basis used for blend math; <1 under strict AR5) at 56% and R-134a (1430) at 44%. The R-134a component dominates the GWP — it's 44% of the blend by mass but contributes essentially all of the GWP. Further reduction below R-513A's 631 requires either pushing R-1234yf content higher (which would tip the blend into A2L flammability) or moving to a different chemistry entirely (R-1234ze(E) for very-low-GWP A2L, R-515B for low-GWP A1)."
 
   - q: "Does R-513A have temperature glide?"
     a: "Effectively zero — azeotropic. The 56/44 R-1234yf/R-134a composition is specifically engineered for azeotropic behavior at typical chiller operating pressures. Bubble and dew points coincide. Service measurement of superheat and subcooling can be done without distinguishing bubble vs dew curves; treat R-513A like a pure refrigerant."

@@ -13,6 +13,7 @@
     "validate-schema": "tsx scripts/validate-schema.ts"
   },
   "dependencies": {
+    "@next/third-parties": "16.2.6",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.16.0",
     "next": "16.2.6",

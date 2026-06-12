@@ -278,5 +278,145 @@
     "year": 2024,
     "url": "https://standardscatalog.ul.com/ProductDetail.aspx?productid=UL60335-2-40",
     "accessed": "2026-05-20"
+  },
+  "epa-section-609": {
+    "title": "EPA Section 609 — Refrigerant servicing of motor vehicle air conditioners (40 CFR Part 82 Subpart B): technician certification, certified equipment, refrigerant sales restriction",
+    "publisher": "US EPA",
+    "year": 2024,
+    "url": "https://www.epa.gov/mvac/section-609-certification-program",
+    "accessed": "2026-06-12"
+  },
+  "ecfr-40-cfr-82-subpart-b": {
+    "title": "40 CFR Part 82 Subpart B — Servicing of Motor Vehicle Air Conditioners (eCFR, current)",
+    "publisher": "Office of the Federal Register / US Government",
+    "year": 2024,
+    "url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-82/subpart-B",
+    "accessed": "2026-06-12"
+  },
+  "eu-mac-directive": {
+    "title": "Directive 2006/40/EC — Mobile Air Conditioning Directive (GWP <150 in new vehicle types from 2011; all new vehicles from 2017; CELEX:32006L0040)",
+    "publisher": "European Parliament and Council",
+    "year": 2006,
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32006L0040",
+    "accessed": "2026-06-12"
+  },
+  "epa-aim-act-tech-transitions": {
+    "title": "EPA Technology Transitions Final Rule (40 CFR Part 84): restricts HFCs with GWP ≥150 in newly manufactured / imported light-duty MVAC from MY 2025",
+    "publisher": "US EPA",
+    "year": 2023,
+    "url": "https://www.epa.gov/climate-hfcs-reduction/technology-transitions",
+    "accessed": "2026-06-12"
+  },
+  "epa-snap-rule-20": {
+    "title": "SNAP Rule 20 (July 2015, 80 FR 42870) — R-134a listed unacceptable for new light-duty MVAC from MY 2021 (narrow-use exemption through MY 2025)",
+    "publisher": "US EPA",
+    "year": 2015,
+    "url": "https://www.federalregister.gov/documents/2015/07/20/2015-17066/protection-of-stratospheric-ozone-change-of-listing-status-for-certain-substitutes-under-the",
+    "accessed": "2026-06-12"
+  },
+  "epa-snap-rule-24": {
+    "title": "SNAP Rule 24 (May 2022, FR doc 2022-08923) — R-1234yf acceptable in nonroad vehicle MVAC; adopts SAE J639/J1739/J2844; unique fittings for small cans (≤2 lb)",
+    "publisher": "US EPA",
+    "year": 2022,
+    "url": "https://www.federalregister.gov/documents/2022/05/26/2022-08923/protection-of-stratospheric-ozone-listing-of-substitutes-under-the-significant-new-alternatives",
+    "accessed": "2026-06-12"
+  },
+  "sae-j639": {
+    "title": "SAE J639 — Safety Standards for Motor Vehicle Refrigerant Vapor Compression Systems (defines underhood refrigerant label and unique-fitting requirement)",
+    "publisher": "SAE International",
+    "year": 2014,
+    "url": "https://www.sae.org/standards/content/j639_201407/",
+    "accessed": "2026-06-12"
+  },
+  "sae-j2843": {
+    "title": "SAE J2843 — Recovery / Recycle / Recharge Equipment for R-1234yf MVAC (anti-arcing safety, ventilation, mandatory refrigerant identification before recovery, vacuum + pressure leak check, refusal-to-recharge on leaking systems)",
+    "publisher": "SAE International",
+    "year": 2019,
+    "url": "https://www.sae.org/standards/content/j2843_201907/",
+    "accessed": "2026-06-12"
+  },
+  "sae-j2845": {
+    "title": "SAE J2845 — Technician Training for HFO-1234yf and R-744 Mobile Air Conditioning Service and Containment (pressurized leak check procedure, blower-low, detector at high sensitivity, ~4 g/yr leak threshold)",
+    "publisher": "SAE International",
+    "year": 2018,
+    "url": "https://www.sae.org/standards/content/j2845_201808/",
+    "accessed": "2026-06-12"
+  },
+  "sae-j2888": {
+    "title": "SAE J2888 — Service Hose Assemblies, Couplers, and Fittings for R-1234yf MVAC (unique service ports per SAE J639 to prevent cross-charging with R-134a)",
+    "publisher": "SAE International",
+    "year": 2018,
+    "url": "https://www.sae.org/standards/content/j2888_201801/",
+    "accessed": "2026-06-12"
+  },
+  "sae-j2912": {
+    "title": "SAE J2912 — Performance Requirements for External Refrigerant Identification Equipment for R-1234yf MVAC (USB-connected identifier paired with J2843 RRR machine workflow)",
+    "publisher": "SAE International",
+    "year": 2017,
+    "url": "https://www.sae.org/standards/content/j2912_201708/",
+    "accessed": "2026-06-12"
+  },
+  "sae-j2913": {
+    "title": "SAE J2913 — Electronic Leak Detector for R-1234yf MVAC (yf-capable, sensitivity sufficient for 4 g/yr per J2845)",
+    "publisher": "SAE International",
+    "year": 2017,
+    "url": "https://www.sae.org/standards/content/j2913_201708/",
+    "accessed": "2026-06-12"
+  },
+  "sae-j2927": {
+    "title": "SAE J2927 — Performance Requirements for Internal (built-in) Refrigerant Identification Equipment for R-1234yf MVAC (RRR-machine integral identifier)",
+    "publisher": "SAE International",
+    "year": 2017,
+    "url": "https://www.sae.org/standards/content/j2927_201708/",
+    "accessed": "2026-06-12"
+  },
+  "sae-j3030": {
+    "title": "SAE J3030 — Automotive Service R/R/R Equipment for Multiple Refrigerants (dual R-1234yf and R-134a RRR machines)",
+    "publisher": "SAE International",
+    "year": 2017,
+    "url": "https://www.sae.org/standards/content/j3030_201706/",
+    "accessed": "2026-06-12"
+  },
+  "sae-j2851": {
+    "title": "SAE J2851 — Recovery Equipment for Contaminated R-1234yf or R-134a MVAC Refrigerant (recovery-only equipment for cross-contaminated charges; recovered refrigerant goes to reclamation/destruction, not reuse)",
+    "publisher": "SAE International",
+    "year": 2016,
+    "url": "https://www.sae.org/standards/content/j2851_201602/",
+    "accessed": "2026-06-12"
+  },
+  "sae-j2844": {
+    "title": "SAE J2844 — R-1234yf Refrigerant Purity Specification and Containers",
+    "publisher": "SAE International",
+    "year": 2017,
+    "url": "https://www.sae.org/standards/content/j2844_201709/",
+    "accessed": "2026-06-12"
+  },
+  "honeywell-solstice-yf-datasheet": {
+    "title": "Honeywell Solstice yf (R-1234yf) Technical Information and Safety Data",
+    "publisher": "Honeywell / Solstice Advanced Materials (since 2025 spin-off)",
+    "year": 2024,
+    "url": "https://www.solstice.com/refrigerants/solstice-yf",
+    "accessed": "2026-06-12"
+  },
+  "macs-worldwide": {
+    "title": "Mobile Air Climate Systems Association (MACS Worldwide) — industry training, technical bulletins, and service-procedure guidance for MVAC refrigerants",
+    "publisher": "MACS Worldwide",
+    "year": 2024,
+    "url": "https://www.macsw.org/",
+    "accessed": "2026-06-12"
+  },
+  "ipcc-ar4-ch2-gwp": {
+    "title": "Climate Change 2007: The Physical Science Basis, Chapter 2 (Table 2.14, 100-yr Global Warming Potentials — IPCC AR4 basis used by EPA AIM Act and SNAP exchange values)",
+    "publisher": "IPCC AR4 Working Group I",
+    "year": 2007,
+    "url": "https://www.ipcc.ch/site/assets/uploads/2018/02/ar4-wg1-chapter2-1.pdf",
+    "accessed": "2026-06-12"
+  },
+  "sae-crp-1234": {
+    "title": "SAE Cooperative Research Program CRP1234 — Risk Assessment of HFO-1234yf in Mobile Air Conditioning (concluded yf safe for MVAC after the 2012 Daimler test concerns)",
+    "publisher": "SAE International",
+    "year": 2013,
+    "url": "https://www.sae.org/works/committeeResources.do?resourceID=569",
+    "accessed": "2026-06-12"
   }
 }

@@ -68,6 +68,7 @@ const FEATURED_PRESSURE_PAGES = [
   { href: "/what-pressure-should-r32/", label: "R-32 pressures" },
   { href: "/what-pressure-should-r454b/", label: "R-454B pressures" },
   { href: "/what-pressure-should-r134a/", label: "R-134a pressures" },
+  { href: "/what-pressure-should-r1234yf/", label: "R-1234yf pressures (mobile A/C)" },
   { href: "/what-pressure-should-r407c/", label: "R-407C pressures" },
   { href: "/what-pressure-should-r404a/", label: "R-404A pressures" },
   { href: "/what-pressure-should-r454c/", label: "R-454C pressures" },

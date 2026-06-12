@@ -314,7 +314,7 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 4,
+      "gwp100Ar5": null,
       "gwp100Ar6": 0.501,
       "atmosphericLifetimeYears": 0.029,
       "snapStatus": "Listed acceptable for mobile AC; class A2L — mildly flammable"
@@ -358,7 +358,7 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 7,
+      "gwp100Ar5": null,
       "gwp100Ar6": 1.37,
       "atmosphericLifetimeYears": 0.045,
       "snapStatus": "Listed acceptable for chillers and commercial refrigeration; class A2L"
@@ -402,7 +402,7 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 7,
+      "gwp100Ar5": null,
       "gwp100Ar6": 1.37,
       "atmosphericLifetimeYears": 0.045,
       "snapStatus": "Listed acceptable for chillers and commercial refrigeration; class A2L"

@@ -158,7 +158,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
           </p>
         </TechSection>
 
-        {generateServiceScenarios(r).map((scenario, i) => (
+        {(fm.serviceScenarios ?? generateServiceScenarios(r)).map((scenario, i) => (
           <ServiceProblem
             key={i}
             number={i + 1}
@@ -191,106 +191,126 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
             system fault.
           </p>
           <Panel title="Pressure envelope reference" icon={TableIcon}>
-            <ul className="text-sm space-y-1.5">
-              <li>
-                <strong>Saturation envelope:</strong> {r.displayName} saturation pressure
-                ranges from{" "}
-                {getPressureAtTempF(r.slug, -20)?.bubble.toFixed(0) ?? "—"} PSIG at −20°F
-                to {getPressureAtTempF(r.slug, 95)?.bubble.toFixed(0) ?? "—"} PSIG at 95°F.{" "}
-                {r.physical.critical.tempF !== null
-                  ? `Critical temperature is ${r.physical.critical.tempF.toFixed(1)}°F — above this point no saturation state exists.`
-                  : `Critical temperature is well above the service range — sub-critical operation throughout.`}
-              </li>
-              <li>
-                <strong>Equipment pressure rating:</strong>{" "}
-                {r.physical.critical.pressurePsig !== null
-                  ? `${r.displayName} critical pressure is ${r.physical.critical.pressurePsig.toFixed(0)} PSIG.`
-                  : ""}{" "}
-                Per AHRI Standard 540-2020, the high-pressure cutout switch is typically
-                set at approximately 85% of critical pressure to protect the compressor
-                from running into the near-critical regime where small temperature swings
-                produce large pressure excursions. For {r.displayName}, that&apos;s a
-                practical cutout setpoint around{" "}
-                {r.physical.critical.pressurePsig !== null
-                  ? `${(r.physical.critical.pressurePsig * 0.85).toFixed(0)} PSIG`
-                  : "the OEM nameplate value"}
-                .
-              </li>
-              <li>
-                <strong>Charging metric:</strong>{" "}
-                {r.physical.hasSignificantGlide
-                  ? `${r.displayName} is zeotropic with ${Math.abs(r.physical.temperatureGlideF).toFixed(1)}°F glide. TXV systems charge by subcooling using the bubble curve at discharge pressure; superheat measurement uses the dew curve at suction pressure. Wrong-curve selection introduces error equal to the glide value.`
-                  : `${r.displayName} is pure or near-azeotropic with minimal glide, so bubble ≡ dew on the saturation curve. Standard PT chart math applies without curve-selection concerns.`}
-              </li>
-              <li>
-                <strong>Lubricant requirement:</strong> {r.displayName} runs on{" "}
-                {r.lubricants.compatible.length > 0 ? r.lubricants.compatible.join(" / ") : "manufacturer-specified"}{" "}
-                lubricant.{" "}
-                {r.lubricants.compatible.includes("POE")
-                  ? `POE oil is hygroscopic — keep cylinder sealed, change filter-drier on every service visit, evacuate to ≤500 microns before recharging to remove residual moisture.`
-                  : r.lubricants.compatible.includes("MO")
-                    ? `Mineral oil is moisture-tolerant but limited to ${r.type.includes("hcfc") || r.type.includes("hydrocarbon") ? "the refrigerant types it&apos;s rated for" : "specific refrigerants"}.`
-                    : `Follow OEM-specified handling for the lubricant family.`}
-              </li>
-              <li>
-                <strong>Regulatory status:</strong>{" "}
-                {r.regulatoryStatus.aimActAffected
-                  ? `${r.displayName} is subject to the EPA AIM Act phase-down (40 CFR Part 84). Service supply continues from reclaimed and allocated production, with prices rising as supply tightens. Plan refrigerant cost escalation over equipment lifetime.`
-                  : `${r.displayName} is not directly affected by the AIM Act. Service supply follows normal commodity dynamics.`}
-              </li>
-            </ul>
+            {fm.envelopeBullets && fm.envelopeBullets.length > 0 ? (
+              <ul className="text-sm space-y-1.5">
+                {fm.envelopeBullets.map((b, i) => (
+                  <li key={i}>
+                    <strong>{b.label}:</strong> {b.body}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ul className="text-sm space-y-1.5">
+                <li>
+                  <strong>Saturation envelope:</strong> {r.displayName} saturation pressure
+                  ranges from{" "}
+                  {getPressureAtTempF(r.slug, -20)?.bubble.toFixed(0) ?? "—"} PSIG at −20°F
+                  to {getPressureAtTempF(r.slug, 95)?.bubble.toFixed(0) ?? "—"} PSIG at 95°F.{" "}
+                  {r.physical.critical.tempF !== null
+                    ? `Critical temperature is ${r.physical.critical.tempF.toFixed(1)}°F — above this point no saturation state exists.`
+                    : `Critical temperature is well above the service range — sub-critical operation throughout.`}
+                </li>
+                <li>
+                  <strong>Equipment pressure rating:</strong>{" "}
+                  {r.physical.critical.pressurePsig !== null
+                    ? `${r.displayName} critical pressure is ${r.physical.critical.pressurePsig.toFixed(0)} PSIG.`
+                    : ""}{" "}
+                  Per AHRI Standard 540-2020, the high-pressure cutout switch is typically
+                  set at approximately 85% of critical pressure to protect the compressor
+                  from running into the near-critical regime where small temperature swings
+                  produce large pressure excursions. For {r.displayName}, that&apos;s a
+                  practical cutout setpoint around{" "}
+                  {r.physical.critical.pressurePsig !== null
+                    ? `${(r.physical.critical.pressurePsig * 0.85).toFixed(0)} PSIG`
+                    : "the OEM nameplate value"}
+                  .
+                </li>
+                <li>
+                  <strong>Charging metric:</strong>{" "}
+                  {r.physical.hasSignificantGlide
+                    ? `${r.displayName} is zeotropic with ${Math.abs(r.physical.temperatureGlideF).toFixed(1)}°F glide. TXV systems charge by subcooling using the bubble curve at discharge pressure; superheat measurement uses the dew curve at suction pressure. Wrong-curve selection introduces error equal to the glide value.`
+                    : `${r.displayName} is pure or near-azeotropic with minimal glide, so bubble ≡ dew on the saturation curve. Standard PT chart math applies without curve-selection concerns.`}
+                </li>
+                <li>
+                  <strong>Lubricant requirement:</strong> {r.displayName} runs on{" "}
+                  {r.lubricants.compatible.length > 0 ? r.lubricants.compatible.join(" / ") : "manufacturer-specified"}{" "}
+                  lubricant.{" "}
+                  {r.lubricants.compatible.includes("POE")
+                    ? `POE oil is hygroscopic — keep cylinder sealed, change filter-drier on every service visit, evacuate to ≤500 microns before recharging to remove residual moisture.`
+                    : r.lubricants.compatible.includes("MO")
+                      ? `Mineral oil is moisture-tolerant but limited to ${r.type.includes("hcfc") || r.type.includes("hydrocarbon") ? "the refrigerant types it&apos;s rated for" : "specific refrigerants"}.`
+                      : `Follow OEM-specified handling for the lubricant family.`}
+                </li>
+                <li>
+                  <strong>Regulatory status:</strong>{" "}
+                  {r.regulatoryStatus.aimActAffected
+                    ? `${r.displayName} is subject to the EPA AIM Act phase-down (40 CFR Part 84). Service supply continues from reclaimed and allocated production, with prices rising as supply tightens. Plan refrigerant cost escalation over equipment lifetime.`
+                    : `${r.displayName} is not directly affected by the AIM Act. Service supply follows normal commodity dynamics.`}
+                </li>
+              </ul>
+            )}
           </Panel>
         </TechSection>
 
         <TechSection icon="warning" tone="amber" title={`Common ${r.displayName} measurement mistakes`}>
-          <ol className="list-decimal pl-5 text-sm space-y-1">
-            <li>
-              <strong>PSIG vs PSIA confusion.</strong> Service manifold gauges read PSIG;
-              tables sometimes use PSIA. PSIA = PSIG + 14.696. Confusing the two shifts
-              saturation lookups by ~5°F at low-side pressures.
-            </li>
-            {r.physical.hasSignificantGlide ? (
+          {fm.commonMistakes && fm.commonMistakes.length > 0 ? (
+            <ol className="list-decimal pl-5 text-sm space-y-1">
+              {fm.commonMistakes.map((m, i) => (
+                <li key={i}>
+                  <strong>{m.emphasis}</strong> {m.body}
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <ol className="list-decimal pl-5 text-sm space-y-1">
               <li>
-                <strong>Wrong curve for {r.displayName}.</strong> {r.displayName} is
-                zeotropic with {Math.abs(r.physical.temperatureGlideF).toFixed(1)}°F glide.
-                Use the dew curve at suction pressure for superheat, bubble curve at
-                discharge for subcooling. Wrong-curve selection introduces error equal to the
-                glide value.
+                <strong>PSIG vs PSIA confusion.</strong> Service manifold gauges read PSIG;
+                tables sometimes use PSIA. PSIA = PSIG + 14.696. Confusing the two shifts
+                saturation lookups by ~5°F at low-side pressures.
               </li>
-            ) : (
+              {r.physical.hasSignificantGlide ? (
+                <li>
+                  <strong>Wrong curve for {r.displayName}.</strong> {r.displayName} is
+                  zeotropic with {Math.abs(r.physical.temperatureGlideF).toFixed(1)}°F glide.
+                  Use the dew curve at suction pressure for superheat, bubble curve at
+                  discharge for subcooling. Wrong-curve selection introduces error equal to the
+                  glide value.
+                </li>
+              ) : (
+                <li>
+                  <strong>{r.displayName} has minimal glide</strong> (pure refrigerant or
+                  near-azeotrope), so bubble ≡ dew on the saturation curve. Curve selection on
+                  the PT chart doesn&apos;t matter for {r.displayName}.
+                </li>
+              )}
               <li>
-                <strong>{r.displayName} has minimal glide</strong> (pure refrigerant or
-                near-azeotrope), so bubble ≡ dew on the saturation curve. Curve selection on
-                the PT chart doesn&apos;t matter for {r.displayName}.
+                <strong>Probing temperature without insulating.</strong> Ambient air pulls the
+                reading toward room temperature, inflating apparent superheat or depressing
+                apparent subcooling.
               </li>
-            )}
-            <li>
-              <strong>Probing temperature without insulating.</strong> Ambient air pulls the
-              reading toward room temperature, inflating apparent superheat or depressing
-              apparent subcooling.
-            </li>
-            <li>
-              <strong>Reading before steady state.</strong> Allow 10-20 minutes after
-              compressor start for pressures and temperatures to stabilize.
-            </li>
-            <li>
-              <strong>Treating saturation as operating.</strong> Saturation is the
-              thermodynamic reference; operating pressure on a running system depends on
-              charge, ambient, load, superheat, and subcooling.
-            </li>
-            {r.physical.critical.tempF !== null && r.physical.critical.tempF < 150 ? (
               <li>
-                <strong>{r.displayName} has a low critical temperature</strong>
-                ({r.physical.critical.tempF.toFixed(1)}°F). Above this temperature there is
-                no saturation state — for warm-ambient applications, transcritical operation
-                or system shutdown applies. Look up{" "}
-                <Link href={`/refrigerant/${r.slug}/`} className="underline">
-                  the {r.displayName} reference page
-                </Link>{" "}
-                for transcritical guidance.
+                <strong>Reading before steady state.</strong> Allow 10-20 minutes after
+                compressor start for pressures and temperatures to stabilize.
               </li>
-            ) : null}
-          </ol>
+              <li>
+                <strong>Treating saturation as operating.</strong> Saturation is the
+                thermodynamic reference; operating pressure on a running system depends on
+                charge, ambient, load, superheat, and subcooling.
+              </li>
+              {r.physical.critical.tempF !== null && r.physical.critical.tempF < 150 ? (
+                <li>
+                  <strong>{r.displayName} has a low critical temperature</strong>
+                  ({r.physical.critical.tempF.toFixed(1)}°F). Above this temperature there is
+                  no saturation state — for warm-ambient applications, transcritical operation
+                  or system shutdown applies. Look up{" "}
+                  <Link href={`/refrigerant/${r.slug}/`} className="underline">
+                    the {r.displayName} reference page
+                  </Link>{" "}
+                  for transcritical guidance.
+                </li>
+              ) : null}
+            </ol>
+          )}
         </TechSection>
 
         <TechSection icon="book" tone="emerald" title={`When pressures fall outside ${r.displayName} normal range`}>
@@ -386,8 +406,13 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
             <li>Safety classification: ANSI/ASHRAE Standard 34-2022</li>
             <li>GWP values: IPCC AR5 (2013) Working Group I, Table 8.A.1</li>
             <li>{r.displayName} dataset record generated {r.dataSource.ptChartGeneratedAt.slice(0, 10)}</li>
-            <li>Diagnostic procedures: ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 Chapter 23</li>
-            <li>Compressor protection minimums: AHRI Standard 540-2020 (20°F hermetic, 30°F semi-hermetic return-gas superheat)</li>
+            {fm.omitStationaryFooterClaims ? null : (
+              <>
+                <li>Diagnostic procedures: ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 Chapter 23</li>
+                <li>Compressor protection minimums: AHRI Standard 540-2020 (20°F hermetic, 30°F semi-hermetic return-gas superheat)</li>
+              </>
+            )}
+            {fm.extraSources?.map((s, i) => <li key={`extra-${i}`}>{s}</li>)}
           </ul>
           <p className="mt-3">
             Operating pressure varies with charge, ambient, indoor load, airflow, and equipment condition. Use these
@@ -847,11 +872,11 @@ function buildSchema(pageUrl: string, fm: NonNullable<ReturnType<typeof loadWhat
       name: `How to interpret ${r.displayName} system pressures`,
       description: `Step-by-step diagnostic procedure for reading and interpreting ${r.displayName} suction and discharge pressures.`,
       totalTime: "PT15M",
-      tool: [
-        { "@type": "HowToTool", name: "Refrigerant manifold gauge set rated for the refrigerant" },
-        { "@type": "HowToTool", name: "Contact or clamp-on temperature probe (+/-1°F accuracy)" },
-        { "@type": "HowToTool", name: "EPA Section 608 certification (Type II or Universal)" },
-      ],
+      tool: (fm.diagnosticTools ?? [
+        "Refrigerant manifold gauge set rated for the refrigerant",
+        "Contact or clamp-on temperature probe (+/-1°F accuracy)",
+        "EPA Section 608 certification (Type II or Universal)",
+      ]).map((name) => ({ "@type": "HowToTool", name })),
       step: fm.diagnosticSteps.map((s) => ({
         "@type": "HowToStep",
         name: s.title,

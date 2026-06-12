@@ -1,9 +1,9 @@
 ---
 slug: r-1234yf
 title: "R-1234yf Pressure Temperature Chart & Properties"
-metaTitle: "R-1234yf PT Chart, A2L HFO, GWP 4 — Mobile AC Standard"
-metaDescription: "R-1234yf (2,3,3,3-tetrafluoropropene) PT chart, A2L mildly flammable, GWP 4 (IPCC AR5). Dominant mobile AC refrigerant since 2017 (EU) / 2021 (US). Pure HFO, no glide, PAG / POE lubricants."
-introOneLiner: "Pure HFO (2,3,3,3-tetrafluoropropene) — the global mobile AC standard refrigerant replacing R-134a in new vehicles. A2L mildly flammable, GWP 4, no temperature glide. Trade names Honeywell Solstice yf and Chemours Opteon YF."
+metaTitle: "R-1234yf PT Chart, A2L HFO, GWP 4 (AR4) — Mobile AC Standard"
+metaDescription: "R-1234yf (2,3,3,3-tetrafluoropropene) PT chart, A2L mildly flammable. GWP 4 (IPCC AR4 / EPA SNAP basis) — strict IPCC AR5/AR6 puts the true 100-yr GWP at <1 due to ~11-day atmospheric lifetime. Dominant mobile AC refrigerant since 2017 (EU) / 2021 (US). Pure HFO, no glide, PAG / POE lubricants."
+introOneLiner: "Pure HFO (2,3,3,3-tetrafluoropropene) — the global mobile AC standard refrigerant replacing R-134a in new vehicles. A2L mildly flammable, GWP 4 (AR4 / EPA SNAP basis; <1 per strict AR5), no temperature glide. Trade names Honeywell Solstice yf and Chemours Opteon YF."
 
 sources:
   - id: ashrae34
@@ -52,8 +52,8 @@ keyStats:
     sourceId: ashrae34
   - label: GWP (100-yr)
     value: "4"
-    unit: IPCC AR5
-    context: Very low — atmospheric lifetime only ~11 days
+    unit: IPCC AR4 / EPA SNAP basis
+    context: The widely-cited value (4) is the IPCC AR4 100-yr GWP, also the AIM Act / EPA SNAP exchange figure. Strict IPCC AR5 / AR6 puts the 100-yr GWP at <1 because R-1234yf's ~11-day atmospheric lifetime is far below the integration window. Use 4 for compliance/regulatory math; understand the true warming impact is essentially negligible.
     sourceId: ipccar5
   - label: ODP
     value: "0"
@@ -78,7 +78,7 @@ narrative:
   whatItIs: |
     R-1234yf is pure 2,3,3,3-tetrafluoropropene (CF₃CF=CH₂), a single-molecule hydrofluoroolefin (HFO) with a carbon-carbon double bond [ashrae34]. The double bond is what gives R-1234yf its very short atmospheric lifetime (~11 days) — atmospheric OH radicals attack the double bond rapidly, breaking down the molecule before it can contribute meaningful warming.
 
-    R-1234yf was developed jointly by Honeywell and Chemours in the late 2000s specifically as the mobile AC replacement for R-134a under the EU MAC Directive 2006/40/EC [eumac]. The 150-GWP threshold for new MAC vehicle types from 1 January 2017 made R-134a (GWP 1430) non-compliant; R-1234yf (GWP 4) was the chosen industry-standard replacement.
+    R-1234yf was developed jointly by Honeywell and Chemours in the late 2000s specifically as the mobile AC replacement for R-134a under the EU MAC Directive 2006/40/EC [eumac]. The 150-GWP threshold for new MAC vehicle types from 1 January 2017 made R-134a (GWP 1430) non-compliant; R-1234yf — cited as GWP 4 under the IPCC AR4 basis EPA SNAP uses, and below 1 under the strict IPCC AR5/AR6 100-year window — was the chosen industry-standard replacement.
 
   whereItsUsed:
     - "Mobile air conditioning — new light-duty vehicles globally since 2017-2021"
@@ -87,7 +87,7 @@ narrative:
     - "Heat pump applications in some EV thermal management systems"
 
   phaseDownStatus: |
-    R-1234yf faces no phase-down pressure — GWP 4 is below every regulatory threshold including EU F-Gas 150-GWP cap for the strictest categories [aimact][eumac]. R-1234yf is structurally a long-term destination refrigerant.
+    R-1234yf faces no phase-down pressure — under any reasonable GWP basis (4 per AR4 / EPA SNAP, <1 per AR5/AR6) the value sits below every regulatory threshold including the EU F-Gas 150-GWP cap for the strictest categories [aimact][eumac]. R-1234yf is structurally a long-term destination refrigerant.
 
     Market position is dominant in mobile AC (most major OEMs transitioned 2017-2021) and substantial as a blend component in commercial refrigeration. Direct standalone use in stationary HVAC is limited because A2L flammability requires equipment-design accommodations and other HFO/HFC alternatives have better operational fit for some applications.
 
@@ -103,7 +103,7 @@ faqs:
 
   - q: "What's the GWP of R-1234yf?"
     a: |
-      4 per IPCC AR5 — among the lowest of any commercial refrigerant [ipccar5]. The very low GWP comes from R-1234yf's short atmospheric lifetime (~11 days) — atmospheric OH radicals attack the carbon-carbon double bond rapidly, breaking down the molecule before significant warming accumulates.
+      The widely-cited figure is **4** — but that's the IPCC AR4 100-yr GWP, which the EPA AIM Act and SNAP exchange-value framework use, and which Honeywell, Chemours and every manufacturer datasheet cite [ipccar5]. The strict IPCC AR5 / AR6 100-yr GWP is **less than 1**. The disagreement is real: R-1234yf's atmospheric lifetime is only ~11 days, which is far below the integration window IPCC's later assessments use for a precise 100-yr figure. Practically, both numbers are below every regulatory threshold, so the operational answer is "negligible". For compliance and reporting, cite 4 (the standardized exchange value). For the underlying climate impact, the figure is essentially zero.
 
   - q: "Is R-1234yf flammable?"
     a: |
@@ -115,7 +115,7 @@ faqs:
 
   - q: "Why did MAC industry choose R-1234yf instead of R-152a or R-744?"
     a: |
-      R-152a (GWP 124) was an alternative but classified A2 (more flammable than A2L); harder to mitigate in confined vehicle cabin space. R-744 (CO₂, GWP 1) was an alternative but requires transcritical operation at very high pressures incompatible with existing MAC equipment designs. R-1234yf at GWP 4, A2L (manageable flammability), and pressure envelope close to R-134a was the best balance for industry transition.
+      R-152a (GWP 124) was an alternative but classified A2 (more flammable than A2L); harder to mitigate in confined vehicle cabin space. R-744 (CO₂, GWP 1) was an alternative but requires transcritical operation at very high pressures incompatible with existing MAC equipment designs. R-1234yf at AR4-basis GWP 4 (and AR5 basis <1), A2L (manageable flammability), and pressure envelope close to R-134a was the best balance for industry transition.
 
   - q: "Can I retrofit an R-134a vehicle to R-1234yf?"
     a: |
@@ -143,7 +143,7 @@ The pressure envelope is similar to R-134a — R-1234yf was engineered to delive
 
 R-1234yf is a hydrofluoroolefin: an HFC variant with a carbon-carbon double bond (the "olefin" or "ene" part of the name). The double bond is the chemistry feature that delivers R-1234yf's very low GWP — atmospheric OH radicals attack double bonds rapidly, breaking down the molecule within days.
 
-R-1234yf atmospheric lifetime: approximately 11 days. Compare to R-134a (HFC, no double bond): approximately 14 years. The 450× shorter lifetime translates to 358× lower GWP per kg (R-1234yf: 4 vs R-134a: 1430 per IPCC AR5).
+R-1234yf atmospheric lifetime: approximately 11 days. Compare to R-134a (HFC, no double bond): approximately 14 years. The 450× shorter lifetime translates to a GWP gap that exceeds 350× by any IPCC reckoning — R-1234yf is reported as 4 per AR4 (the EPA SNAP exchange figure) and below 1 per strict AR5/AR6, against R-134a at 1430 (AR5) [ipccar5].
 
 <KeyInsight tone="emerald" icon="climate" title="HFO chemistry is the modern low-GWP solution">
 HFOs (R-1234yf, R-1234ze, R-1233zd) all share the carbon-carbon double bond architecture that gives them very short atmospheric lifetimes and GWP values in the single digits. The HFO chemistry is the technical solution that makes Kigali Amendment compliance achievable for the refrigeration industry — without HFOs, the only zero-GWP alternatives would be naturals (R-744, R-290, R-717) with their own constraints.
@@ -159,9 +159,9 @@ The pressure-envelope match is the engineering reason the MAC industry transitio
 
 </TechSection>
 
-<TechSection icon="globe" tone="emerald" title="GWP 4 — among the lowest commercial refrigerants">
+<TechSection icon="globe" tone="emerald" title="GWP — among the lowest commercial refrigerants, with two numbers to know">
 
-R-1234yf's GWP of 4 (IPCC AR5) is among the lowest of any commercial refrigerant. For comparison: R-744 (CO₂) is the GWP=1 reference; R-1234yf at 4; R-1234ze at 7; R-290 (propane) at 3; R-717 (ammonia) at 0. R-1234yf sits in the same low-GWP tier as natural refrigerants.
+R-1234yf's GWP is reported as **4 under the IPCC AR4 100-yr basis** — the figure EPA SNAP, the AIM Act exchange-value table, and every manufacturer datasheet (Honeywell Solstice yf, Chemours Opteon YF) use. Under the **strict IPCC AR5 / AR6 100-yr basis** the value is **less than 1**, because R-1234yf's ~11-day atmospheric lifetime is well below the integration window AR5 and AR6 use for a precise figure. Both readings agree on the substance: R-1234yf belongs to the lowest-impact tier alongside R-744 (CO₂, GWP 1) and R-290 (propane, AR5 GWP 3). For compliance and reporting use 4; for honest climate-impact discussion use the AR5 value.
 
 The very low GWP eliminates phase-down risk under EPA AIM Act, EU F-Gas Regulation, Kigali Amendment, and any reasonably-foreseeable future climate policy. R-1234yf is structurally a long-term destination refrigerant for applications where its A2L flammability can be managed and its pressure envelope fits the application.
 

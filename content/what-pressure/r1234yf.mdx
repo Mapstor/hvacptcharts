@@ -1,0 +1,212 @@
+---
+id: r1234yf
+refrigerantSlug: r-1234yf
+title: "What Should R-1234yf Pressures Be?"
+metaTitle: "R-1234yf Normal Operating Pressures — Mobile A/C Service Reference (95°F, Idle vs Highway)"
+metaDescription: "Typical R-1234yf suction and discharge pressure ranges for mobile A/C service, indexed by ambient × engine RPM. ~300 PSIG high side at 100°F+ idle is normal. EPA Section 609 / SAE J2843 procedures."
+introOneLiner: "Typical R-1234yf suction and discharge pressures for mobile-A/C (MVAC) service, indexed by ambient temperature AND engine RPM (idle vs ~1,500–2,000 RPM). Pressures swing with compressor speed and condenser airflow — a normal 95°F-ambient idle reading is roughly 30–50 PSIG suction / 200–300 PSIG discharge. Always identify the refrigerant (per SAE J2843/J2912) BEFORE connecting any other equipment."
+
+operatingRangesSource: "Manufacturer and industry service literature for R-1234yf-equipped light-duty vehicles (Honeywell Solstice yf, Chemours Opteon YF technical materials; MACS Worldwide training materials). Ranges are indicative — always verify against the vehicle's service data and the OEM underhood label."
+
+operatingRanges:
+  - ambientF: 75
+    application: "75°F ambient, idle (~700 RPM), max A/C"
+    suctionPsigLow: 25
+    suctionPsigHigh: 40
+    dischargePsigLow: 130
+    dischargePsigHigh: 200
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [5, 15]
+  - ambientF: 75
+    application: "75°F ambient, ~1,500–2,000 RPM"
+    suctionPsigLow: 22
+    suctionPsigHigh: 38
+    dischargePsigLow: 120
+    dischargePsigHigh: 180
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [5, 15]
+  - ambientF: 95
+    application: "95°F ambient, idle, max A/C"
+    suctionPsigLow: 30
+    suctionPsigHigh: 50
+    dischargePsigLow: 200
+    dischargePsigHigh: 300
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [5, 15]
+  - ambientF: 95
+    application: "95°F ambient, ~1,500–2,000 RPM"
+    suctionPsigLow: 25
+    suctionPsigHigh: 45
+    dischargePsigLow: 170
+    dischargePsigHigh: 250
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [5, 15]
+  - ambientF: 110
+    application: "110°F+ ambient, idle (hot-climate extreme)"
+    suctionPsigLow: 35
+    suctionPsigHigh: 55
+    dischargePsigLow: 280
+    dischargePsigHigh: 375
+    superheatTargetF: [5, 15]
+    subcoolingTargetF: [5, 15]
+
+narrativeIntro: |
+  R-1234yf is the global standard refrigerant for new-vehicle mobile A/C — replacing R-134a in EU new vehicle types from 1 January 2017 (Directive 2006/40/EC), and in most US light-duty vehicles by model year 2021 under the EPA Technology Transitions rule (40 CFR Part 84). Pressures look very similar to R-134a on a gauge — the saturation curves actually cross in the service envelope: R-1234yf is slightly higher than R-134a at evaporator temperatures, slightly lower at condenser temperatures. The takeaway is that "R-1234yf runs lower pressures than R-134a" as a blanket claim is a common-but-wrong shortcut. ~300 PSIG high side at 100°F+ ambient idle is NORMAL on a properly-charged yf system — not a fault.
+
+  Two MVAC-specific service rules dominate the procedure:
+
+  First, MVAC is governed by **EPA Section 609** (40 CFR Part 82 Subpart B) — not Section 608, which governs stationary HVAC. Section 609 mandates technician certification and certified equipment (SAE J2843 R/R/R machines, J2912 or J2927 refrigerant identifiers, J2888 unique-coupler hoses, J2913 leak detectors, J2845 service procedures) for servicing for compensation.
+
+  Second, charge is set **by weight to the underhood label specification** — not to a subcooling target. Superheat and subcooling on this page are diagnostic aids, not charging targets. Variable-displacement automotive compressors (now standard) hold low-side pressure nearly constant (~28–35 PSIG) across load, so a normal-looking suction does NOT confirm correct charge on a variable-displacement system.
+
+serviceScenarios:
+  - title: "Properly-charged R-1234yf MVAC at 95°F ambient, engine idling"
+    scenario: "Late-model vehicle (post-2017 yf-equipped), engine idling, A/C set to MAX, blower on HIGH, doors open for cabin-load relief. 95°F outdoor dry-bulb. Underhood SAE J639 label confirms R-1234yf. Customer reports A/C works fine — you're confirming charge before a different repair."
+    measured:
+      - { label: "Low side (suction)", value: "32 PSIG", side: low }
+      - { label: "Suction line temp", value: "42°F", side: low }
+      - { label: "High side (discharge)", value: "250 PSIG", side: high }
+      - { label: "Liquid line temp", value: "143°F", side: high }
+      - { label: "Center-vent air", value: "42°F" }
+    lookups:
+      - { input: "32 PSIG", output: "~35°F sat", note: "R-1234yf evaporator (CoolProp 7.2.0)" }
+      - { input: "250 PSIG", output: "~148°F sat", note: "R-1234yf condenser at idle (no road air)" }
+    derived:
+      - { formula: "Suction-line SH = 42°F − 35°F ≈ 7°F", verdict: ok, note: "diagnostic; SH 5–15°F typical for yf MVAC" }
+      - { formula: "Liquid-line SC = 148°F − 143°F ≈ 5°F", verdict: ok, note: "diagnostic; yf MVAC charge is by weight, not by SC" }
+      - { formula: "Center-vent ΔT = 95°F − 42°F = 53°F cooling", verdict: ok }
+    verdict:
+      status: ok
+      title: Normal — high head pressure at idle is the airflow story, not a fault
+      body: "On a properly-charged R-1234yf system at 95°F ambient and idle, head pressures in the 200–300 PSIG range are normal — the limit is condenser airflow, not refrigerant overcharge. At ~1,500–2,000 RPM with better condenser airflow you'd see the head pressure drop to ~170–250 PSIG. The 300+ PSIG high side that Phoenix techs see on 100°F+ days is also normal. Pressure alone does not confirm charge on yf MVAC — the underhood label spec, by weight, is the charging authority."
+  - title: "Undercharged R-1234yf — slow leak fingerprint"
+    scenario: "Same vehicle, six months later. Customer reports the A/C runs but isn't cold anymore. 95°F outdoor ambient, idle, A/C MAX, blower HIGH. You connect after verifying the underhood label and a J2912/J2927 refrigerant identifier purity check (yf > 98%, pass)."
+    measured:
+      - { label: "Low side (suction)", value: "18 PSIG", side: low }
+      - { label: "Suction line temp", value: "75°F", side: low }
+      - { label: "High side (discharge)", value: "175 PSIG", side: high }
+      - { label: "Liquid line temp", value: "112°F", side: high }
+      - { label: "Center-vent air", value: "70°F" }
+      - { label: "LP cutout cycling", value: "yes", side: low }
+    lookups:
+      - { input: "18 PSIG", output: "~17°F sat", note: "well below MVAC evaporator target" }
+      - { input: "175 PSIG", output: "~123°F sat", note: "depressed for the ambient" }
+    derived:
+      - { formula: "Suction-line SH = 75°F − 17°F ≈ 58°F", verdict: bad, note: "very high — vapor-only past the evaporator" }
+      - { formula: "Liquid-line SC ≈ 123°F − 112°F ≈ 11°F", verdict: warn, note: "looks 'in range' but the receiver is starved" }
+      - { formula: "Center-vent ΔT = 95°F − 70°F = 25°F cooling", verdict: bad, note: "weak; system can't pull cabin temp down" }
+    verdict:
+      status: bad
+      title: Undercharge — find the leak, do not top off
+      body: "Classic undercharge: both pressures depressed for the ambient, very high suction-line superheat (vapor-only past the evaporator), weak cabin cooling, low-pressure cutout cycling. SAE J2843 R/R/R machines refuse to recharge a leaking system by design — the fix is leak detection (SAE J2913 electronic detector at high sensitivity, ~4 g/yr threshold per J2845), repair, evacuate, and recharge BY WEIGHT to the underhood label spec. Note that R-1234yf systems are tighter by design (SAE J2842 evaporator-leakage requirements), so 'just top it off' is even less acceptable than it was on R-134a service."
+    fix: "Recover all refrigerant with a J2843 (yf-only) or J3030 (dual yf/134a) R/R/R machine into a J2844-compliant yf cylinder. Find and repair the leak (J2913 electronic detector; UV dye must be SAE J2297-certified yf-compatible). Evacuate to ≤500 microns and verify hold. Recharge by weight to the underhood label spec — Section 609 applies."
+  - title: "Cross-contamination — somebody added R-134a to the yf system"
+    scenario: "Customer reports a recent shop visit elsewhere; A/C performance has been off ever since. 95°F outdoor, idle, A/C MAX. You verify the underhood label says R-1234yf, then connect a SAE J2912 (external) refrigerant identifier BEFORE any other equipment — best practice and a J2843-machine workflow requirement when integrated J2927 identifier flags a purity warning."
+    measured:
+      - { label: "Identifier purity", value: "yf 71% / R-134a 26% / air 3%", side: low }
+      - { label: "Low side (suction)", value: "29 PSIG", side: low }
+      - { label: "High side (discharge)", value: "210 PSIG", side: high }
+      - { label: "Center-vent air", value: "58°F" }
+    lookups:
+      - { input: "29 PSIG", output: "no clean lookup — mixed refrigerant has no pure saturation curve", note: "do not use PT math on contaminated charge" }
+      - { input: "210 PSIG", output: "no clean lookup", note: "same — mixed-fluid saturation behavior is not on the yf PT chart" }
+    derived:
+      - { formula: "Refrigerant identifier verdict: cross-contaminated (yf below SAE J2844 purity spec)", verdict: bad }
+    verdict:
+      status: bad
+      title: Cross-contaminated charge — recover to a contaminated cylinder, do NOT put this in your yf tank
+      body: "A J2843 yf-only R/R/R machine will refuse to recover this charge into a pure-yf storage tank — by design — because doing so contaminates the entire shop supply. The contaminated mixture is sent for reclamation or destruction, not reuse. This is the most common yf-specific service problem and the structural reason for the unique J2888 service-coupler dimensions (per SAE J639): the couplers were designed to prevent exactly this scenario."
+    fix: "Recover the contaminated charge into a SAE J2851 contaminated-recovery unit, into a dedicated mixed-refrigerant cylinder for reclamation. Do NOT recover into your pure-yf storage tank. Replace the receiver/drier. Evacuate to ≤500 microns and verify hold. Recharge by weight to the underhood label spec with pure yf from a J2844-compliant cylinder. Section 609 applies. If the previous shop is identifiable, document for any small-claims or licensure follow-up — adding R-134a to a yf system isn't just bad practice, it's a regulatory violation."
+
+envelopeBullets:
+  - label: Saturation envelope
+    body: "R-1234yf saturation pressures (CoolProp 7.2.0) span 38 PSIG at 40°F (typical evaporator) to ~250 PSIG at 148°F (typical condenser saturation under idle airflow constraint at 95°F ambient). Critical point is 202°F / 476 PSIG — well above any service envelope, so MVAC operation is always sub-critical."
+  - label: Equipment pressure rating
+    body: "MVAC high-side protection is the OEM high-pressure cutoff and variable-displacement compressor control — not an AHRI 540 stationary cutout. Service gauges rated for R-134a-class pressures (500 PSI) are adequate from a pressure-rating standpoint. The hard constraint is cross-contamination, not pressure: gauges and hoses must be yf-dedicated with SAE J2888 unique-dimension couplers, per the SAE J639 service-port requirement. Never use R-134a manifolds on a yf system or vice versa."
+  - label: Charging metric
+    body: "MVAC systems are charged BY WEIGHT to the underhood SAE J639 label specification — recover, evacuate, weigh-in to label, period. Superheat and subcooling are diagnostic aids only. This is the most common error new-to-MVAC techs carry over from stationary HVAC: a normal-looking low side does NOT confirm correct charge on a modern variable-displacement compressor system."
+  - label: Lubricant requirement
+    body: "PAG oil (polyalkylene glycol) at the OEM-specified yf-specific viscosity grade — usually PAG 46 or PAG 100. PAG for legacy R-134a is NOT interchangeable with yf PAG by default — follow compressor OEM spec. Hybrid and EV electric compressors use POE (polyolester) for dielectric strength: never put PAG in an electric-compressor system. Lubricant identification is part of the underhood label."
+  - label: Regulatory status (MVAC)
+    body: "R-1234yf is the AIM-compliant substitute, NOT a refrigerant subject to phase-down. Servicing falls under EPA Section 609 (40 CFR Part 82 Subpart B): technician certification + certified J2843 R/R/R equipment required when servicing for compensation. R-134a remains legal indefinitely for service of pre-yf vehicles. The EPA AIM Act Technology Transitions rule (40 CFR Part 84, 2023) restricts new HFCs with GWP ≥150 in MY 2025+ light-duty MVAC — making yf the operative new-vehicle standard."
+
+commonMistakes:
+  - emphasis: "Assuming yf 'runs much lower pressure than R-134a.'"
+    body: "It doesn't. The R-1234yf and R-134a saturation curves nearly overlap in the service envelope and actually cross: yf is slightly HIGHER at low/evaporator temperatures and slightly LOWER at high/condenser temperatures. Net effect on gauges: low side reads close to or a touch above an equivalent R-134a system; high side reads close to or slightly below. ~300 PSIG high side at 100°F+ ambient idle is NORMAL on yf, not a fault."
+  - emphasis: "Trusting pressure alone to confirm charge on a variable-displacement system."
+    body: "Modern MVAC compressors are variable-displacement; they hold the low side at the design setpoint (~28–35 PSIG) across a wide range of cabin loads. A normal-looking suction does NOT mean the charge is correct. Charge MVAC by weight to the underhood label, not by gauge feel."
+  - emphasis: "Topping a yf system with R-134a (or vice versa)."
+    body: "Illegal under EPA Section 609 and a regulatory violation. Contaminates the shop's recovery cylinders and triggers a J2851 contaminated-recovery procedure plus reclamation/destruction. The unique SAE J2888 service-coupler dimensions were designed to prevent this — do not work around them with adapters."
+  - emphasis: "Connecting your manifold BEFORE identifying the refrigerant."
+    body: "SAE J2843 R/R/R machines require a refrigerant-identifier purity check (J2912 external or J2927 built-in) before recovery — and protect your storage tank from contamination if the charge fails the check. Identify first, connect second. This is the structural defense against the cross-contamination scenario above."
+  - emphasis: "Using R-134a service equipment on a yf system."
+    body: "R-1234yf service ports use unique SAE J2888 / J639 coupler dimensions that won't accept R-134a hoses by design. If you find a vehicle where someone has worked around this with adapters, treat the charge as suspect and identify before any recovery. Cross-contamination is the most common yf service problem and the reason every component of the yf service chain is yf-dedicated."
+  - emphasis: "PAG vs POE confusion on hybrid/EV electric compressors."
+    body: "Mobile-A/C compressors driven by belt off the engine use PAG (yf-specific viscosity grade). Electric-driven compressors in hybrids and EVs use POE for dielectric strength — PAG in an electric compressor will reduce the motor windings' insulation resistance and damage the compressor. Always check the underhood lubricant identifier label before adding oil."
+  - emphasis: "Quoting 'GWP 4' as the strict IPCC AR5 value."
+    body: "GWP 4 is the IPCC AR4 100-yr value and the EPA SNAP / AIM Act exchange figure — that's what you cite for compliance and reporting. The strict IPCC AR5/AR6 100-yr GWP for R-1234yf is <1 because the ~11-day atmospheric lifetime is far below the integration window. Both readings agree on the substance: yf belongs to the lowest-impact tier."
+
+omitStationaryFooterClaims: true
+
+diagnosticTools:
+  - "Refrigerant manifold gauge set, R-1234yf-dedicated with SAE J2888 couplers"
+  - "SAE J2912 (external) or J2927 (built-in to RRR machine) refrigerant identifier"
+  - "SAE J2913 electronic leak detector (yf-capable, ~4 g/yr sensitivity per J2845)"
+  - "SAE J2843 R/R/R machine (yf-only) or J3030 (dual yf/134a)"
+  - "Contact or clamp-on temperature probe (±1°F)"
+  - "EPA Section 609 technician certification + employer certification of recovery equipment (40 CFR Part 82 Subpart B)"
+
+diagnosticSteps:
+  - title: "Verify the refrigerant — underhood label THEN refrigerant identifier"
+    text: "Read the SAE J639 underhood refrigerant label to confirm the OEM filled the system with R-1234yf and to record the charge weight specification. Then connect a SAE J2912 external refrigerant identifier (or use a J2843 R/R/R machine with built-in J2927 identifier) before any other equipment touches the service ports. A purity check below ~98% yf flags a cross-contamination problem (see scenario 3) and protects your recovery tank. This step is legally embedded in the J2843 machine workflow and is the structural defense against shop-wide contamination."
+    tools: ["SAE J639 underhood label (visual)", "SAE J2912 external or J2927 built-in refrigerant identifier"]
+  - title: "Record ambient temperature and engine state; perform static-pressure check"
+    text: "Record outdoor dry-bulb at the vehicle (not in direct sun, not at the radiator outlet). With the engine OFF and the system equilibrated ≥30 minutes, both gauges read saturation pressure at ambient temperature — e.g., 70°F static ≈ 74 PSIG (CoolProp 7.2.0). If the static pressure is well below saturation-at-ambient, the charge is critically low or the system holds vapor only. This check requires no engine running and is the first triage."
+    tools: ["Outdoor dry-bulb thermometer", "Static-pressure manifold reading"]
+  - title: "Connect yf-dedicated manifold, run engine + A/C, take readings at idle AND at 1,500–2,000 RPM"
+    text: "Connect the R-1234yf manifold (SAE J2888 couplers, yf-dedicated) — never a R-134a manifold via adapter. Start the engine, set A/C MAX with blower HIGH and doors open for cabin-load relief. After 5–10 minutes of stabilization, take readings at idle (~700 RPM) and again at a held ~1,500–2,000 RPM. The two readings together tell you about the condenser airflow regime: at idle the head pressure is airflow-limited; at higher RPM with better fan and ram airflow, head pressure drops 20–30%."
+    tools: ["R-1234yf manifold gauge set, J2888 couplers", "Tachometer (vehicle cluster or scan tool)"]
+  - title: "Compare to the operating-range table BY AMBIENT × RPM; interpret the variable-displacement caveat"
+    text: "Look up the row in the operating-range table that matches your ambient and engine state. ~300 PSIG high side at 100°F+ ambient idle is NORMAL. If both pressures are depressed for the ambient, suspect undercharge — but verify with a refrigerant identifier first to rule out cross-contamination. If the low side reads normal but the cabin cooling is weak, suspect that the variable-displacement compressor is masking an undercharge — confirm by recovery and weigh-in vs underhood label spec."
+    tools: ["Operating-range table on this page", "Underhood SAE J639 label (charge weight spec)"]
+  - title: "Charge corrections by weight only — never top off by pressure feel"
+    text: "If charge correction is needed, recover all refrigerant to a SAE J2844-compliant yf cylinder using a J2843 (yf-only) or J3030 (dual-refrigerant) R/R/R machine. Replace the receiver/drier on every leak-repair service. Evacuate to ≤500 microns and verify hold. Recharge by weight to the underhood label spec, exact ±0.1 oz. Section 609 applies to all service for compensation."
+    tools: ["J2843 or J3030 R/R/R machine", "Calibrated charge scale (0.1 oz)", "Section 609-certified technician"]
+
+faqs:
+  - q: "What's the normal R-1234yf operating pressure at 95°F ambient?"
+    a: |
+      Depends on engine state. At idle (~700 RPM, no road air), expect 30–50 PSIG suction and 200–300 PSIG discharge. At ~1,500–2,000 RPM with better condenser airflow, the head drops to 170–250 PSIG. The wide discharge range at idle reflects the condenser airflow constraint: with the engine just idling and only the cooling fan moving air across the condenser, head pressure rises substantially compared to highway driving. ~300 PSIG high side on a hot day at idle is normal, not a fault.
+  - q: "How do R-1234yf pressures compare to R-134a?"
+    a: |
+      Closer than the marketing claim "R-1234yf has a lower pressure envelope" suggests. The saturation curves actually cross in the service envelope — yf is slightly HIGHER than R-134a at low/evaporator temperatures (about +3 PSIG at 70°F: 74 vs 71) and slightly LOWER at high/condenser temperatures (about −10 PSIG at 130°F: 195 vs 205). Net effect on gauges: low side reads close to or a touch above an equivalent R-134a system; high side reads close to or slightly below. Do not use pressure alone to identify which refrigerant is in the system — read the underhood SAE J639 label and use a SAE J2912 or J2927 refrigerant identifier.
+  - q: "Is R-1234yf flammable?"
+    a: |
+      Yes — ASHRAE class A2L (mildly flammable with low burning velocity ≤10 cm/s). Lower flammability limit is 6.2% by volume in air; upper limit 12.3%; autoignition temperature 405°C (761°F). Honeywell flammability testing concluded that a typical static discharge does not have sufficient energy to ignite yf vapor. Service practice: no open flame in the work area, keep the vapor concentration below 25% of LFL with ventilation, and use SAE J2913 electronic detectors. Combustion or decomposition products include hydrogen fluoride (HF) — basis for the no-open-flame rule. The 2012 Daimler crash-test concerns were re-evaluated under the SAE Cooperative Research Program CRP1234, which concluded the refrigerant safe for use in MVAC.
+  - q: "Can I use R-134a equipment or refrigerant in a yf system (or vice versa)?"
+    a: |
+      No. R-1234yf service ports use unique SAE J2888 coupler dimensions — required by SAE J639 specifically to prevent cross-charging. R-1234yf service requires a SAE J2843 (yf-only) or J3030 (dual yf/134a) R/R/R machine — R-134a machines cannot be cross-used. Adding R-134a to a yf system is illegal under EPA Section 609 and contaminates the charge: the recovery requires a SAE J2851 contaminated-recovery unit, and the mixed refrigerant is sent for reclamation or destruction (it cannot be reused). The unique-coupler design is the structural defense against this.
+  - q: "Why did cars switch from R-134a to R-1234yf?"
+    a: |
+      The EU Mobile Air Conditioning Directive 2006/40/EC drove the transition: refrigerants with GWP >150 banned in new MAC vehicle types from 1 January 2011, and in all new vehicles from 1 January 2017 (passenger cars + light commercial). R-134a (GWP 1430 per AR5) is non-compliant; R-1234yf (GWP 4 per AR4 / EPA SNAP exchange basis; <1 per strict AR5) is the chosen industry-standard replacement. In the US, the trajectory followed via A/C refrigerant credits under the MY2017–2025 Light-Duty GHG rule (77 FR 62624), then via the EPA AIM Act Technology Transitions rule (40 CFR Part 84, 2023) restricting HFCs with GWP ≥150 in newly manufactured / imported light-duty MVAC from MY 2025. Most major US OEMs had already transitioned by the early 2020s; per Chemours, R-1234yf is in 95% of new US cars currently for sale.
+  - q: "What oil does a yf system use?"
+    a: |
+      PAG (polyalkylene glycol) for belt-driven compressors — usually a yf-specific viscosity grade (PAG 46 or PAG 100). Legacy R-134a PAG is NOT a drop-in substitute; follow the compressor OEM spec. **Hybrid and EV electric-compressor systems use POE (polyolester) instead, for dielectric strength** — PAG in an electric compressor reduces motor-winding insulation resistance and damages the compressor. Always read the underhood lubricant label. Mineral oil is not compatible with yf in either configuration.
+  - q: "What's the static-pressure check tell me?"
+    a: |
+      With engine OFF and the system equalized for ≥30 minutes, both gauges read the saturation pressure at ambient temperature. At 70°F that's 74 PSIG; at 80°F that's 89 PSIG; at 90°F that's 106 PSIG; at 95°F that's 115 PSIG (CoolProp 7.2.0). If your static pressure is well below saturation-at-ambient, the charge is critically low or the system holds vapor only. The static-pressure check requires no engine running and is the fastest first-triage step — especially useful when the customer reports "no cooling" and you want to rule out a totally empty system before connecting any recovery equipment.
+  - q: "Do I need certification to service yf?"
+    a: |
+      For servicing for compensation, yes — EPA Section 609 technician certification (40 CFR Part 82 Subpart B) is required, the same certification path as R-134a MVAC service. The recovery equipment must also be EPA-certified (J2843 yf-only or J3030 dual yf/134a R/R/R machines). For purchasing R-1234yf in small cans (≤2 lb), SNAP Rule 24 (May 2022, FR 2022-08923) adopted unique small-can fitting requirements — buyers of larger containers must hold Section 609 certification.
+  - q: "Is R-1234yf only used in cars?"
+    a: |
+      Mostly. The dominant application is light-duty mobile A/C. SNAP Rule 24 (2022) extended yf acceptability to nonroad vehicle MVAC. SNAP Rule 27 (proposed October/November 2025; supplemental proposal 2026) would extend yf to retrofit light/medium-duty MVAC, new buses, and heavy-duty on-highway — status remains "proposed" as of June 2026, not final. Beyond automotive, R-1234yf is a major component in stationary low-GWP blends — R-454B (residential AC), R-454C (commercial refrigeration), R-455A, R-448A, R-449A, R-513A — but as a standalone stationary refrigerant it's uncommon.
+
+extraSources:
+  - "MVAC service procedures and equipment requirements: SAE J639 (refrigerant labeling + unique fittings), J2843 (R/R/R machines for yf), J2845 (technician training, leak-check procedure), J2888 (hoses/couplers), J2912 (external refrigerant identifier), J2913 (electronic leak detector), J2927 (built-in identifier), J3030 (dual yf/134a R/R/R), J2851 (contaminated-refrigerant recovery), J2844 (refrigerant purity / cylinders)"
+  - "MVAC regulation: EPA Section 609 / 40 CFR Part 82 Subpart B (servicing certification + equipment); EU Mobile Air Conditioning Directive 2006/40/EC (CELEX:32006L0040, drove the transition); EPA AIM Act Technology Transitions rule (40 CFR Part 84, 2023) restricting GWP ≥150 in MY 2025+ light-duty MVAC; SNAP Rule 20 (2015, 80 FR 42870) listing R-134a unacceptable in new light-duty MVAC; SNAP Rule 24 (2022, FR 2022-08923) extending yf acceptability to nonroad vehicles + small-can fittings"
+  - "GWP: IPCC AR4 (2007) Working Group I Chapter 2 Table 2.14 (the AR4 100-yr basis = 4, used by EPA SNAP / AIM Act); IPCC AR5 (2013) Working Group I Chapter 8 Table 8.A.1; IPCC AR6 (2021) Working Group I Chapter 7 Supplementary Material (strict AR5/AR6 reading <1 due to ~11-day atmospheric lifetime)"
+  - "Manufacturer technical literature: Honeywell Solstice yf (R-1234yf) product information; Chemours Opteon YF product data sheet (Chemours reports ~95% of new US cars filled with R-1234yf currently). Note: Honeywell spun off Solstice Advanced Materials in 2025 — current product literature carries the Solstice brand"
+  - "MACS Worldwide industry training and bulletins for mobile-A/C service-procedure guidance"
+  - "Safety: SAE Cooperative Research Program CRP1234 (concluded yf safe for use in MVAC after the 2012 Daimler vehicle-test concerns); Honeywell SDS (combustion/decomposition products include hydrogen fluoride — basis for no-open-flame rule during service)"
+---

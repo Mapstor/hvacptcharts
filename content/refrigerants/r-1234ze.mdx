@@ -1,9 +1,9 @@
 ---
 slug: r-1234ze
 title: "R-1234ze Pressure Temperature Chart & Properties"
-metaTitle: "R-1234ze PT Chart, A2L HFO, GWP 7 — Chiller and Heat Pump Refrigerant"
-metaDescription: "R-1234ze (1,3,3,3-tetrafluoropropene E-isomer) PT chart, A2L mildly flammable, GWP 7. Pure HFO for centrifugal chillers and high-temp heat pumps. Honeywell Solstice ze; lower pressure than R-134a."
-introOneLiner: "Pure HFO (E-isomer of 1,3,3,3-tetrafluoropropene, CHF=CHCF₃) — chiller and heat pump refrigerant with GWP 7, A2L safety. Honeywell Solstice ze. Lower pressure envelope than R-134a; well-suited to centrifugal chiller designs."
+metaTitle: "R-1234ze PT Chart, A2L HFO, GWP 7 (AR4) — Chiller and Heat Pump Refrigerant"
+metaDescription: "R-1234ze (1,3,3,3-tetrafluoropropene E-isomer) PT chart, A2L mildly flammable. GWP 7 (IPCC AR4 / EPA SNAP basis); strict IPCC AR5/AR6 puts the true 100-yr GWP near 1 due to ~16-day atmospheric lifetime. Pure HFO for centrifugal chillers and high-temp heat pumps. Honeywell Solstice ze; lower pressure than R-134a."
+introOneLiner: "Pure HFO (E-isomer of 1,3,3,3-tetrafluoropropene, CHF=CHCF₃) — chiller and heat pump refrigerant. AR4-basis GWP 7 (the figure EPA SNAP and Honeywell datasheets cite); strict IPCC AR5/AR6 ≈ 1. A2L safety class. Honeywell Solstice ze. Lower pressure envelope than R-134a; well-suited to centrifugal chiller designs."
 
 sources:
   - id: ashrae34
@@ -48,8 +48,8 @@ keyStats:
     sourceId: ashrae34
   - label: GWP (100-yr)
     value: "7"
-    unit: IPCC AR5
-    context: Very low — atmospheric lifetime approximately 16 days
+    unit: IPCC AR4 / EPA SNAP basis
+    context: The widely-cited value (7) is the IPCC AR4 100-yr GWP, also the AIM Act / EPA SNAP exchange figure and the number Honeywell Solstice ze literature uses. Strict IPCC AR5 / AR6 puts the 100-yr GWP near 1 because R-1234ze's ~16-day atmospheric lifetime is far below the integration window. Use 7 for compliance/regulatory math; understand the true warming impact is negligible.
     sourceId: ipccar5
   - label: ODP
     value: "0"
@@ -88,7 +88,7 @@ narrative:
     - "Foam blowing agent in polyurethane insulation"
 
   phaseDownStatus: |
-    R-1234ze faces no phase-down pressure — GWP 7 is below every regulatory threshold including EU F-Gas 150-GWP cap [aimact][eufgas]. R-1234ze is structurally a long-term destination refrigerant.
+    R-1234ze faces no phase-down pressure — under any reasonable GWP basis (7 per AR4 / EPA SNAP, ≈1 per AR5/AR6) the value sits below every regulatory threshold including the EU F-Gas 150-GWP cap [aimact][eufgas]. R-1234ze is structurally a long-term destination refrigerant.
 
     Market position is dominant in new centrifugal chiller installations in EU markets and growing in US chiller market. R-1234ze is increasingly the chiller industry's choice for very-low-GWP new-equipment specification.
 
@@ -104,7 +104,7 @@ faqs:
 
   - q: "What's the difference between R-1234yf and R-1234ze?"
     a: |
-      Both are pure HFOs with very low GWP (4 and 7 respectively per IPCC AR5). R-1234yf (2,3,3,3-tetrafluoropropene) is used dominantly in mobile AC with pressure envelope similar to R-134a. R-1234ze (1,3,3,3-tetrafluoropropene, E-isomer) is used in chillers with lower pressure envelope better matched to centrifugal compressor designs.
+      Both are pure HFOs with very low GWP — commonly cited as 4 (R-1234yf) and 7 (R-1234ze) under the IPCC AR4 / EPA SNAP exchange basis, and below 1 to about 1 respectively under strict IPCC AR5/AR6. R-1234yf (2,3,3,3-tetrafluoropropene) is used dominantly in mobile AC with pressure envelope similar to R-134a. R-1234ze (1,3,3,3-tetrafluoropropene, E-isomer) is used in chillers with lower pressure envelope better matched to centrifugal compressor designs.
 
       Isomer differences in molecular structure produce different pressure profiles despite similar chemical compositions.
 
@@ -114,7 +114,7 @@ faqs:
 
   - q: "What's the GWP of R-1234ze?"
     a: |
-      7 per IPCC AR5 — very low [ipccar5]. The short atmospheric lifetime (~16 days) drives the low GWP. R-1234ze sits in the same low-GWP tier as R-1234yf (4), R-290 propane (3), and R-744 CO₂ (1).
+      The widely-cited figure is **7** — the IPCC AR4 100-yr GWP, which is also the AIM Act / EPA SNAP exchange figure and what Honeywell Solstice ze literature cites [ipccar5]. The strict IPCC AR5 / AR6 100-yr GWP is **around 1** because R-1234ze's ~16-day atmospheric lifetime is far below the integration window IPCC's later assessments use for a precise figure. For compliance and reporting, cite 7. For the underlying climate impact, the figure is essentially negligible. R-1234ze sits in the same lowest-impact tier as R-1234yf, R-290 propane, and R-744 CO₂.
 
   - q: "What lubricant does R-1234ze use?"
     a: |
@@ -162,9 +162,9 @@ For service technicians, R-1234ze pressures stay comfortably within standard 500
 
 </TechSection>
 
-<TechSection icon="globe" tone="emerald" title="GWP 7 — very low, long-term regulatory positioning is strong">
+<TechSection icon="globe" tone="emerald" title="GWP — very low, long-term regulatory positioning is strong">
 
-R-1234ze's GWP of 7 (IPCC AR5) places it in the very-low tier alongside R-1234yf (4), R-290 (3), and R-744 (1). The very-low GWP eliminates phase-down risk under EPA AIM Act, EU F-Gas Regulation, and Kigali Amendment.
+R-1234ze's GWP is reported as **7 under the IPCC AR4 100-yr basis** (the figure EPA SNAP, the AIM Act exchange-value table, and Honeywell Solstice ze literature cite) and **near 1 under strict IPCC AR5 / AR6** because the ~16-day atmospheric lifetime is far below the integration window. Either way, R-1234ze sits in the lowest-impact tier alongside R-1234yf (AR4 GWP 4), R-290 propane (AR5 GWP 3), and R-744 CO₂ (GWP 1). The very-low GWP eliminates phase-down risk under EPA AIM Act, EU F-Gas Regulation, and Kigali Amendment.
 
 For chiller industry positioning, R-1234ze is the long-term low-GWP destination for new equipment installations. EU chiller installations increasingly specify R-1234ze for compliance with tightening F-Gas thresholds; US chiller installations are following the same trajectory through the 2020s.
 
