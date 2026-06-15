@@ -198,7 +198,8 @@ export function RefrigerantCharge() {
           Reference: R-410A baseline oz/ft by liquid-line OD
         </summary>
         <div className="border-t border-zinc-200 px-4 py-3 dark:border-zinc-800">
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-xs uppercase tracking-wide text-zinc-500">
                 <th className="py-1 pr-3">OD</th>
@@ -216,6 +217,7 @@ export function RefrigerantCharge() {
               ))}
             </tbody>
           </table>
+          </div>
           <p className="mt-3 text-[11px] text-zinc-500">
             Baseline values calculated from Type L copper IDs × CoolProp 7.2.0 R-410A
             saturated-liquid density at 100°F (64.24 lb/ft³). For other

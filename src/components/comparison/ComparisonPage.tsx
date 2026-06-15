@@ -1,5 +1,44 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
+
+/**
+ * Minimal inline-markdown renderer for retrofitNotes etc. — handles
+ * `[label](url)` (link), `**bold**`, and `*emphasis*`. Anything else
+ * passes through as plain text. Intentionally NOT a full Markdown parser;
+ * for that we'd reach for next-mdx-remote on the body content.
+ *
+ * Internal URLs (starting with /) become Next.js <Link>; external use <a>.
+ */
+function renderInline(text: string): React.ReactNode[] {
+  // Pattern matches [label](url) | **bold** | *em*  — in that priority order
+  const re = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*|\*([^*]+)\*/g;
+  const parts: React.ReactNode[] = [];
+  let i = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > i) parts.push(text.slice(i, m.index));
+    if (m[1] !== undefined && m[2] !== undefined) {
+      const label = m[1];
+      const href = m[2];
+      const isInternal = href.startsWith("/") && !href.startsWith("//");
+      parts.push(
+        isInternal ? (
+          <Link key={parts.length} href={href} className="underline">{label}</Link>
+        ) : (
+          <a key={parts.length} href={href} className="underline break-all" target="_blank" rel="noopener noreferrer">{label}</a>
+        ),
+      );
+    } else if (m[3] !== undefined) {
+      parts.push(<strong key={parts.length}>{m[3]}</strong>);
+    } else if (m[4] !== undefined) {
+      parts.push(<em key={parts.length}>{m[4]}</em>);
+    }
+    i = m.index + m[0].length;
+  }
+  if (i < text.length) parts.push(text.slice(i));
+  return parts.map((p, idx) => typeof p === "string" ? <Fragment key={idx}>{p}</Fragment> : p);
+}
 import { getRefrigerant, getPressureAtTempF, type Refrigerant } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
@@ -178,7 +217,7 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
         <section className="mb-10">
           <h2 className="mb-3 text-xl font-semibold">Retrofit and transition</h2>
           <div className="prose prose-zinc max-w-none dark:prose-invert">
-            {fm.retrofitNotes.split(/\n\s*\n/).map((p, i) => <p key={i}>{p.trim()}</p>)}
+            {fm.retrofitNotes.split(/\n\s*\n/).map((p, i) => <p key={i}>{renderInline(p.trim())}</p>)}
           </div>
         </section>
 
@@ -256,7 +295,7 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
                     {f.q}
                   </summary>
                   <div className="prose prose-sm prose-zinc mt-3 max-w-none dark:prose-invert">
-                    {f.a.split(/\n\s*\n/).map((p, j) => <p key={j}>{p.trim()}</p>)}
+                    {f.a.split(/\n\s*\n/).map((p, j) => <p key={j}>{renderInline(p.trim())}</p>)}
                   </div>
                 </details>
               ))}

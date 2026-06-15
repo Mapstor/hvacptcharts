@@ -309,7 +309,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                 </div>
               </div>
             </div>
-            <p className="mt-3 text-xs text-zinc-500">
+            <p className="mt-3 break-words text-xs text-zinc-500">
               Saturation values from {r.dataSource.ptChartSource}. Operating pressure on a running system differs —
               {whatPressureId ? (
                 <>
@@ -1132,14 +1132,14 @@ function ProvenanceFooter({ r }: { r: Refrigerant }) {
         <ScrollText className="h-3.5 w-3.5" /> Data sources &amp; provenance
       </h2>
       <dl className="mt-3 grid gap-2 sm:grid-cols-2">
-        <div>
+        <div className="min-w-0">
           <dt className="font-semibold text-zinc-700 dark:text-zinc-300">PT chart</dt>
-          <dd>{r.dataSource.ptChartSource}</dd>
+          <dd className="break-all">{r.dataSource.ptChartSource}</dd>
         </div>
         {r.dataSource.ptChartVerifiedAgainst.length > 0 ? (
-          <div>
+          <div className="min-w-0">
             <dt className="font-semibold text-zinc-700 dark:text-zinc-300">Cross-checked against</dt>
-            <dd>{r.dataSource.ptChartVerifiedAgainst.join("; ")}</dd>
+            <dd className="break-all">{r.dataSource.ptChartVerifiedAgainst.join("; ")}</dd>
           </div>
         ) : null}
         <div>

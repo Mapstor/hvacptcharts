@@ -418,5 +418,47 @@
     "year": 2013,
     "url": "https://www.sae.org/works/committeeResources.do?resourceID=569",
     "accessed": "2026-06-12"
+  },
+  "chemours-opteon-xp40-retrofit": {
+    "title": "Chemours Opteon XP40 (R-449A) Retrofit Guidelines for R-404A/R-507 Systems — composition, glide, cycle performance vs R-404A (Tables 1-5), set-point conversion tables, retrofit procedure",
+    "publisher": "The Chemours Company",
+    "year": 2024,
+    "url": "https://www.opteon.com/en/products/refrigerants/xp40",
+    "accessed": "2026-06-12"
+  },
+  "chemours-opteon-xp40-thermo": {
+    "title": "Chemours Opteon XP40 (R-449A) Thermodynamic Properties — molecular weight, critical point, NBP, bubble/dew saturation tables (Table 7); NIST REFPROP-based with Chemours interaction parameters",
+    "publisher": "The Chemours Company",
+    "year": 2024,
+    "url": "https://www.opteon.com/en/-/media/files/opteon/opteon-xp40-thermodynamic-properties-eng.pdf",
+    "accessed": "2026-06-12"
+  },
+  "epa-tech-transitions-2026-reconsideration": {
+    "title": "EPA Technology Transitions Reconsideration / 2026 Final Revision — raises new-equipment GWP threshold for retail food remote condensing units and supermarket systems to 1,400 effective 2026 through 2032; 150/300 thereafter; explicitly cites R-448A and R-449A as continued options. Cold storage remains capped at 700 GWP.",
+    "publisher": "US EPA",
+    "year": 2026,
+    "url": "https://www.epa.gov/climate-hfcs-reduction/technology-transitions",
+    "accessed": "2026-06-12"
+  },
+  "epa-ttrr-docket-2025-0005": {
+    "title": "EPA-HQ-OAR-2025-0005 — Technology Transitions Reconsideration Rule docket (proposed October 2025; finalized 2026)",
+    "publisher": "US EPA / regulations.gov",
+    "year": 2025,
+    "url": "https://www.regulations.gov/docket/EPA-HQ-OAR-2025-0005",
+    "accessed": "2026-06-12"
+  },
+  "epa-snap-retail-food": {
+    "title": "EPA SNAP Listings for Retail Food Refrigeration — R-449A and related HFC/HFO blend acceptable use determinations for supermarket systems, remote condensing units, processing and dispensing equipment",
+    "publisher": "US EPA",
+    "year": 2024,
+    "url": "https://www.epa.gov/snap/substitutes-retail-food-refrigeration",
+    "accessed": "2026-06-12"
+  },
+  "ashrae-15-2022": {
+    "title": "ANSI/ASHRAE Standard 15-2022 — Safety Standard for Refrigeration Systems (charge limits, machine-room ventilation, leak detection requirements)",
+    "publisher": "ASHRAE",
+    "year": 2022,
+    "url": "https://www.ashrae.org/technical-resources/standards-and-guidelines",
+    "accessed": "2026-06-12"
   }
 }

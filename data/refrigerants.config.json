@@ -1792,7 +1792,7 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 1397,
+      "gwp100Ar5": 1282,
       "gwp100Ar6": 1430,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for commercial refrigeration; R-404A and R-22 replacement"

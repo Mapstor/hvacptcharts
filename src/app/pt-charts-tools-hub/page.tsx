@@ -55,7 +55,7 @@ export default function PTChartsToolsHubPage() {
           situation: "Operating pressure reference for a service call",
           href: "/what-pressure-should-410a/",
           toolLabel: "What pressure should X be?",
-          reasoning: "Per-refrigerant operating pressure ranges with diagnostic procedure (R-410A, R-22, R-32, R-454B, R-454C, R-134a, R-1234yf mobile A/C, R-404a, R-407c, R-744).",
+          reasoning: "Per-refrigerant operating pressure ranges with diagnostic procedure (R-410A, R-22, R-32, R-454B, R-454C, R-134a, R-1234yf mobile A/C, R-449A Opteon XP40 retrofit, R-404a, R-407c, R-744).",
         },
         {
           situation: "Looking up GWP for AIM Act compliance",
@@ -91,6 +91,7 @@ export default function PTChartsToolsHubPage() {
             { href: "/what-pressure-should-410a/", label: "R-410A operating pressures", blurb: "Operating pressure ranges + A1-vs-A2L handling distinction." },
             { href: "/what-pressure-should-r32/", label: "R-32 operating pressures", blurb: "A2L-specific operating ranges with handling notes." },
             { href: "/what-pressure-should-r1234yf/", label: "R-1234yf operating pressures (mobile A/C)", blurb: "Indexed by ambient × engine RPM. EPA Section 609, SAE J2843, cross-contamination scenario." },
+            { href: "/what-pressure-should-r449a/", label: "R-449A operating pressures (Opteon XP40 retrofit)", blurb: "Commercial refrigeration retrofit from R-404A. Dew/bubble glide rule, phantom-undercharge scenario, 2026 EPA Tech Transitions threshold." },
           ],
         },
         {

@@ -218,7 +218,7 @@ export function NavMenu() {
         onClick={() => setDrawerOpen(true)}
         aria-label="Open navigation menu"
         aria-expanded={drawerOpen}
-        className="flex h-9 w-9 items-center justify-center rounded-md text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900 md:hidden"
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900 md:hidden"
       >
         <Menu className="h-5 w-5" />
       </button>
