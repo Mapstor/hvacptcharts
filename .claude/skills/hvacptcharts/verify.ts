@@ -55,5 +55,34 @@ export function verifyAgainstAnchors(refrigerants: Refrigerant[]): { ok: boolean
     }
   }
 
+  // Contiguity invariant (Task 2, 2026-07): every refrigerant with a PT chart
+  // must have entries at every 1°F step between its own [min, max] tempF. Prior
+  // versions silently dropped 5-25-row gaps mid-range on zeotropic blends when
+  // CoolProp's mixture solver failed to converge; the generator now interpolates
+  // across those gaps and marks each filled point. This check makes sure future
+  // regressions surface as build failures.
+  //
+  // Non-verified statuses (published-eos-not-in-build, manufacturer-datasheet-
+  // published, historical-retired-refrigerant, no-commercial-data-published)
+  // are allowed to have empty ptCharts by design — the page renders a source
+  // notice instead. We only enforce contiguity when there's a chart at all.
+  for (const r of refrigerants) {
+    if (r.ptChart.length === 0) continue;
+    const temps = new Set(r.ptChart.map((p) => p.tempF));
+    const min = Math.min(...r.ptChart.map((p) => p.tempF));
+    const max = Math.max(...r.ptChart.map((p) => p.tempF));
+    const missing: number[] = [];
+    for (let t = min; t <= max; t++) if (!temps.has(t)) missing.push(t);
+    if (missing.length > 0) {
+      const preview = missing.length <= 8
+        ? missing.join(", ")
+        : `${missing.slice(0, 6).join(", ")}, … (+${missing.length - 6} more)`;
+      errors.push(
+        `${r.slug}: ${missing.length} missing 1°F row(s) inside chart range ${min}–${max}°F: ${preview}. ` +
+          `Middle-of-range gaps must be filled by generatePtChart interpolation; empty leading/trailing ranges are fine.`,
+      );
+    }
+  }
+
   return { ok: errors.length === 0, errors };
 }

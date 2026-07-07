@@ -9,7 +9,7 @@ const SLUG = "r-22-vs-r-454b";
 export const metadata: Metadata = pageMetadata({
   title: "R-22 vs R-454B — Pressures, GWP, Safety Class, Equipment Replacement",
   description:
-    "R-22 vs R-454B: HCFC pure (banned 2020) vs HFC/HFO A2L blend (modern). 60% higher pressures, different lubricants, different safety classes. Full equipment replacement only.",
+    "R-22 vs R-454B: HCFC pure (production banned 2020) vs HFC/HFO A2L blend (modern). 60% higher pressures, different lubricants, different safety classes. Full equipment replacement only.",
   path: `/${SLUG}/`,
 });
 

@@ -64,34 +64,74 @@ function trivial(propName, fluid) {
 }
 
 function generatePtChart(identifier) {
-  const points = [];
   const tMin = trivial("Tmin", identifier) ?? 0;
   const tCrit = trivial("Tcrit", identifier); // null for blends (no single critical point)
 
+  // Pass 1: query CoolProp at every 1°F; collect (tempF, pBubPa, pDewPa) triples
+  // where the call succeeded. For zeotropic .mix identifiers (R-407C, R-410A,
+  // R-507A, etc.) the mixture Helmholtz solver periodically fails to converge
+  // in the middle of the operating range even though it converges above AND
+  // below — leaving 5-25-row middle-of-range holes that used to just drop
+  // rows from the output (Task 2, 2026-07). We now record valid points and
+  // interpolate the gaps in pass 2.
+  const raw = [];
   for (let tempF = TEMP_F_MIN; tempF <= TEMP_F_MAX; tempF += TEMP_F_STEP) {
     const tempK = fToK(tempF);
-    if (tMin && tempK < tMin) continue;
-    if (tCrit && tempK >= tCrit) continue;
-
+    if (tMin && tempK < tMin) { raw.push({ tempF, tempK, valid: false }); continue; }
+    if (tCrit && tempK >= tCrit) { raw.push({ tempF, tempK, valid: false }); continue; }
     const pBub = safePropsSI("P", "T", tempK, "Q", 0, identifier);
     const pDew = safePropsSI("P", "T", tempK, "Q", 1, identifier);
-    if (pBub === null || pDew === null) continue; // skip, never fabricate
+    if (pBub === null || pDew === null) { raw.push({ tempF, tempK, valid: false }); continue; }
+    raw.push({ tempF, tempK, valid: true, pBub, pDew });
+  }
 
+  // Pass 2: linearly interpolate MIDDLE-OF-RANGE gaps between the last valid
+  // point before the gap and the first valid point after. Leading gaps (below
+  // the lowest valid temp) and trailing gaps (above the highest valid temp,
+  // i.e. approaching the critical locus) stay dropped — extrapolation past a
+  // phase-envelope discontinuity would fabricate values.
+  const validIndices = raw.map((r, i) => (r.valid ? i : -1)).filter((i) => i >= 0);
+  if (validIndices.length === 0) return [];
+  const firstValid = validIndices[0];
+  const lastValid = validIndices[validIndices.length - 1];
+
+  const points = [];
+  for (let i = firstValid; i <= lastValid; i++) {
+    const r = raw[i];
+    let pBub, pDew, interpolated = false;
+    if (r.valid) {
+      pBub = r.pBub;
+      pDew = r.pDew;
+    } else {
+      // Find surrounding valid neighbors
+      let before = i - 1;
+      while (before >= 0 && !raw[before].valid) before--;
+      let after = i + 1;
+      while (after < raw.length && !raw[after].valid) after++;
+      if (before < 0 || after >= raw.length) continue; // safety
+      const b = raw[before];
+      const a = raw[after];
+      const frac = (r.tempF - b.tempF) / (a.tempF - b.tempF);
+      pBub = b.pBub + (a.pBub - b.pBub) * frac;
+      pDew = b.pDew + (a.pDew - b.pDew) * frac;
+      interpolated = true;
+    }
     const bubPsig = paToPsig(pBub);
     const dewPsig = paToPsig(pDew);
     const bubKpag = paToKpag(pBub);
     const dewKpag = paToKpag(pDew);
-
-    points.push({
-      tempF,
-      tempC: round(kToC(tempK), 1),
+    const point = {
+      tempF: r.tempF,
+      tempC: round(kToC(r.tempK), 1),
       bubblePsig: round(bubPsig, 2),
       dewPsig: round(dewPsig, 2),
       bubbleKpag: round(bubKpag, 1),
       dewKpag: round(dewKpag, 1),
       displayPsig: round((bubPsig + dewPsig) / 2, 2),
       displayKpag: round((bubKpag + dewKpag) / 2, 1),
-    });
+    };
+    if (interpolated) point.interpolated = true;
+    points.push(point);
   }
   return points;
 }

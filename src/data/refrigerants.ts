@@ -35,6 +35,14 @@ export const PTPoint = z.object({
   /** Mean of bubble + dew for single-column display. */
   displayPsig: z.number(),
   displayKpag: z.number(),
+  /**
+   * True when this point was linearly interpolated across a middle-of-range
+   * CoolProp convergence gap rather than computed directly. Introduced by
+   * Task 2 (2026-07) to close the 5-25-row holes in zeotropic blends
+   * (R-407C 131–138°F, R-410A 107–116°F, R-407F 119–139°F, etc.). See
+   * scripts/generate-refrigerant-data.mjs generatePtChart pass 2.
+   */
+  interpolated: z.boolean().optional(),
 });
 export type PTPoint = z.infer<typeof PTPoint>;
 

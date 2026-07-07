@@ -1988,7 +1988,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R11",
-      "ptChartGeneratedAt": "2026-06-12T11:19:28.092Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:23.979Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R11)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -2956,7 +2956,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 Ethylene",
-      "ptChartGeneratedAt": "2026-06-12T11:19:28.211Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:24.103Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (Ethylene)",
         "NIST WebBook (Ethylene)",
@@ -4956,7 +4956,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R12",
-      "ptChartGeneratedAt": "2026-06-12T11:19:28.466Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:24.362Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R12)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -5036,7 +5036,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Published Helmholtz EOS: Akasaka & Lemmon (2023), International Journal of Thermophysics 44, 166.",
-      "ptChartGeneratedAt": "2026-06-12T11:19:28.468Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:24.364Z",
       "ptChartVerifiedAgainst": [
         "AGC AMOLEA 1224yd technical datasheet"
       ],
@@ -7056,7 +7056,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R123",
-      "ptChartGeneratedAt": "2026-06-12T11:19:28.814Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:24.720Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R123)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -9053,7 +9053,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1233zd(E)",
-      "ptChartGeneratedAt": "2026-06-12T11:19:29.065Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:24.972Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1233zd(E))",
         "Honeywell Solstice LBA technical datasheet"
@@ -9124,7 +9124,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "No commercial PT chart published. R-1233zd(Z) is the cis-isomer of R-1233zd and has only research-grade measurement data; no Helmholtz EOS has been published for it. The commercially-used R-1233zd refers to the (E)-isomer (Honeywell Solstice ZD).",
-      "ptChartGeneratedAt": "2026-06-12T11:19:29.066Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:24.974Z",
       "ptChartVerifiedAgainst": [
         "Manufacturer datasheet (pending)"
       ],
@@ -11136,7 +11136,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234yf",
-      "ptChartGeneratedAt": "2026-06-12T11:19:29.323Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:25.241Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234yf)",
         "Chemours Opteon YF datasheet"
@@ -13133,7 +13133,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234ze(E)",
-      "ptChartGeneratedAt": "2026-06-12T11:19:29.631Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:25.566Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234ze(E))",
         "Honeywell Solstice ze datasheet"
@@ -15126,7 +15126,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234ze(E)",
-      "ptChartGeneratedAt": "2026-06-12T11:19:29.946Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:25.897Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234ze(E))",
         "Honeywell Solstice ze datasheet"
@@ -16393,7 +16393,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234ze(Z)",
-      "ptChartGeneratedAt": "2026-06-12T11:19:30.138Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:26.090Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234ze(Z))"
       ],
@@ -18378,7 +18378,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R124",
-      "ptChartGeneratedAt": "2026-06-12T11:19:30.391Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:26.355Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R124)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -20370,7 +20370,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R125",
-      "ptChartGeneratedAt": "2026-06-12T11:19:30.676Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:26.644Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R125)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -22359,7 +22359,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 Propylene",
-      "ptChartGeneratedAt": "2026-06-12T11:19:30.930Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:26.899Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (Propylene)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -23681,7 +23681,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R13",
-      "ptChartGeneratedAt": "2026-06-12T11:19:31.094Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:27.067Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R13)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -23764,7 +23764,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Published Helmholtz EOS: Tanaka et al. (2020), J. Chem. Eng. Data 65(2)",
-      "ptChartGeneratedAt": "2026-06-12T11:19:31.095Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:27.068Z",
       "ptChartVerifiedAgainst": [
         "Chemours Opteon 1100 technical datasheet"
       ],
@@ -25783,7 +25783,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R134a",
-      "ptChartGeneratedAt": "2026-06-12T11:19:31.386Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:27.356Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R134a)",
         "ASHRAE Handbook of Refrigeration 2022",
@@ -27766,7 +27766,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R143a",
-      "ptChartGeneratedAt": "2026-06-12T11:19:31.636Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:27.611Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R143a)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -29753,7 +29753,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R152a",
-      "ptChartGeneratedAt": "2026-06-12T11:19:31.955Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:27.938Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R152a)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -31737,7 +31737,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R218",
-      "ptChartGeneratedAt": "2026-06-12T11:19:32.207Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:28.187Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R218)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -33743,7 +33743,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R22",
-      "ptChartGeneratedAt": "2026-06-12T11:19:32.467Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:28.447Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R22)",
         "Arkema Forane 22 PT chart",
@@ -35547,7 +35547,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R236EA",
-      "ptChartGeneratedAt": "2026-06-12T11:19:32.701Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:28.732Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R236EA)"
       ],
@@ -37533,7 +37533,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R236FA",
-      "ptChartGeneratedAt": "2026-06-12T11:19:32.944Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:28.988Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R236FA)"
       ],
@@ -39527,7 +39527,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R245fa",
-      "ptChartGeneratedAt": "2026-06-12T11:19:33.255Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:29.306Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R245fa)",
         "Honeywell Genetron 245fa datasheet"
@@ -41522,7 +41522,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 Propane",
-      "ptChartGeneratedAt": "2026-06-12T11:19:33.537Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:29.593Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (Propane)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -43519,7 +43519,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R32",
-      "ptChartGeneratedAt": "2026-06-12T11:19:33.786Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:29.843Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R32)",
         "Arkema Forane 32 datasheet",
@@ -45398,7 +45398,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R365MFC",
-      "ptChartGeneratedAt": "2026-06-12T11:19:34.005Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:30.071Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R365MFC)"
       ],
@@ -47417,7 +47417,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R404A.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:19:36.270Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:32.468Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R404A.mix)",
         "Arkema Forane 404A PT chart",
@@ -49426,7 +49426,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R407A.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:19:38.576Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:34.867Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R407A.mix)",
         "Arkema Forane 407A datasheet"
@@ -51240,6 +51240,94 @@
         "displayKpag": 2231.8
       },
       {
+        "tempF": 131,
+        "tempC": 55,
+        "bubblePsig": 345.34,
+        "dewPsig": 311.17,
+        "bubbleKpag": 2381,
+        "dewKpag": 2145.4,
+        "displayPsig": 328.25,
+        "displayKpag": 2263.2,
+        "interpolated": true
+      },
+      {
+        "tempF": 132,
+        "tempC": 55.6,
+        "bubblePsig": 349.94,
+        "dewPsig": 315.68,
+        "bubbleKpag": 2412.7,
+        "dewKpag": 2176.6,
+        "displayPsig": 332.81,
+        "displayKpag": 2294.7,
+        "interpolated": true
+      },
+      {
+        "tempF": 133,
+        "tempC": 56.1,
+        "bubblePsig": 354.54,
+        "dewPsig": 320.2,
+        "bubbleKpag": 2444.5,
+        "dewKpag": 2207.7,
+        "displayPsig": 337.37,
+        "displayKpag": 2326.1,
+        "interpolated": true
+      },
+      {
+        "tempF": 134,
+        "tempC": 56.7,
+        "bubblePsig": 359.14,
+        "dewPsig": 324.72,
+        "bubbleKpag": 2476.2,
+        "dewKpag": 2238.8,
+        "displayPsig": 341.93,
+        "displayKpag": 2357.5,
+        "interpolated": true
+      },
+      {
+        "tempF": 135,
+        "tempC": 57.2,
+        "bubblePsig": 363.74,
+        "dewPsig": 329.23,
+        "bubbleKpag": 2507.9,
+        "dewKpag": 2270,
+        "displayPsig": 346.49,
+        "displayKpag": 2388.9,
+        "interpolated": true
+      },
+      {
+        "tempF": 136,
+        "tempC": 57.8,
+        "bubblePsig": 368.34,
+        "dewPsig": 333.75,
+        "bubbleKpag": 2539.6,
+        "dewKpag": 2301.1,
+        "displayPsig": 351.05,
+        "displayKpag": 2420.4,
+        "interpolated": true
+      },
+      {
+        "tempF": 137,
+        "tempC": 58.3,
+        "bubblePsig": 372.94,
+        "dewPsig": 338.27,
+        "bubbleKpag": 2571.3,
+        "dewKpag": 2332.3,
+        "displayPsig": 355.6,
+        "displayKpag": 2451.8,
+        "interpolated": true
+      },
+      {
+        "tempF": 138,
+        "tempC": 58.9,
+        "bubblePsig": 377.54,
+        "dewPsig": 342.79,
+        "bubbleKpag": 2603,
+        "dewKpag": 2363.4,
+        "displayPsig": 360.16,
+        "displayKpag": 2483.2,
+        "interpolated": true
+      },
+      {
         "tempF": 139,
         "tempC": 59.4,
         "bubblePsig": 382.14,
@@ -51362,7 +51450,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R407C.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:19:41.021Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:37.373Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R407C.mix)",
         "Arkema Forane 407C PT chart",
@@ -53049,6 +53137,237 @@
         "displayKpag": 2100.4
       },
       {
+        "tempF": 119,
+        "tempC": 48.3,
+        "bubblePsig": 325.12,
+        "dewPsig": 293.65,
+        "bubbleKpag": 2241.6,
+        "dewKpag": 2024.6,
+        "displayPsig": 309.38,
+        "displayKpag": 2133.1,
+        "interpolated": true
+      },
+      {
+        "tempF": 120,
+        "tempC": 48.9,
+        "bubblePsig": 329.9,
+        "dewPsig": 298.35,
+        "bubbleKpag": 2274.6,
+        "dewKpag": 2057.1,
+        "displayPsig": 314.12,
+        "displayKpag": 2165.8,
+        "interpolated": true
+      },
+      {
+        "tempF": 121,
+        "tempC": 49.4,
+        "bubblePsig": 334.67,
+        "dewPsig": 303.06,
+        "bubbleKpag": 2307.5,
+        "dewKpag": 2089.5,
+        "displayPsig": 318.86,
+        "displayKpag": 2198.5,
+        "interpolated": true
+      },
+      {
+        "tempF": 122,
+        "tempC": 50,
+        "bubblePsig": 339.45,
+        "dewPsig": 307.76,
+        "bubbleKpag": 2340.4,
+        "dewKpag": 2121.9,
+        "displayPsig": 323.6,
+        "displayKpag": 2231.2,
+        "interpolated": true
+      },
+      {
+        "tempF": 123,
+        "tempC": 50.6,
+        "bubblePsig": 344.23,
+        "dewPsig": 312.46,
+        "bubbleKpag": 2373.4,
+        "dewKpag": 2154.4,
+        "displayPsig": 328.34,
+        "displayKpag": 2263.9,
+        "interpolated": true
+      },
+      {
+        "tempF": 124,
+        "tempC": 51.1,
+        "bubblePsig": 349,
+        "dewPsig": 317.17,
+        "bubbleKpag": 2406.3,
+        "dewKpag": 2186.8,
+        "displayPsig": 333.08,
+        "displayKpag": 2296.5,
+        "interpolated": true
+      },
+      {
+        "tempF": 125,
+        "tempC": 51.7,
+        "bubblePsig": 353.78,
+        "dewPsig": 321.87,
+        "bubbleKpag": 2439.2,
+        "dewKpag": 2219.2,
+        "displayPsig": 337.82,
+        "displayKpag": 2329.2,
+        "interpolated": true
+      },
+      {
+        "tempF": 126,
+        "tempC": 52.2,
+        "bubblePsig": 358.56,
+        "dewPsig": 326.57,
+        "bubbleKpag": 2472.2,
+        "dewKpag": 2251.6,
+        "displayPsig": 342.56,
+        "displayKpag": 2361.9,
+        "interpolated": true
+      },
+      {
+        "tempF": 127,
+        "tempC": 52.8,
+        "bubblePsig": 363.33,
+        "dewPsig": 331.28,
+        "bubbleKpag": 2505.1,
+        "dewKpag": 2284.1,
+        "displayPsig": 347.3,
+        "displayKpag": 2394.6,
+        "interpolated": true
+      },
+      {
+        "tempF": 128,
+        "tempC": 53.3,
+        "bubblePsig": 368.11,
+        "dewPsig": 335.98,
+        "bubbleKpag": 2538,
+        "dewKpag": 2316.5,
+        "displayPsig": 352.04,
+        "displayKpag": 2427.3,
+        "interpolated": true
+      },
+      {
+        "tempF": 129,
+        "tempC": 53.9,
+        "bubblePsig": 372.89,
+        "dewPsig": 340.68,
+        "bubbleKpag": 2571,
+        "dewKpag": 2348.9,
+        "displayPsig": 356.78,
+        "displayKpag": 2459.9,
+        "interpolated": true
+      },
+      {
+        "tempF": 130,
+        "tempC": 54.4,
+        "bubblePsig": 377.66,
+        "dewPsig": 345.39,
+        "bubbleKpag": 2603.9,
+        "dewKpag": 2381.4,
+        "displayPsig": 361.52,
+        "displayKpag": 2492.6,
+        "interpolated": true
+      },
+      {
+        "tempF": 131,
+        "tempC": 55,
+        "bubblePsig": 382.44,
+        "dewPsig": 350.09,
+        "bubbleKpag": 2636.8,
+        "dewKpag": 2413.8,
+        "displayPsig": 366.26,
+        "displayKpag": 2525.3,
+        "interpolated": true
+      },
+      {
+        "tempF": 132,
+        "tempC": 55.6,
+        "bubblePsig": 387.22,
+        "dewPsig": 354.79,
+        "bubbleKpag": 2669.8,
+        "dewKpag": 2446.2,
+        "displayPsig": 371,
+        "displayKpag": 2558,
+        "interpolated": true
+      },
+      {
+        "tempF": 133,
+        "tempC": 56.1,
+        "bubblePsig": 391.99,
+        "dewPsig": 359.5,
+        "bubbleKpag": 2702.7,
+        "dewKpag": 2478.6,
+        "displayPsig": 375.74,
+        "displayKpag": 2590.7,
+        "interpolated": true
+      },
+      {
+        "tempF": 134,
+        "tempC": 56.7,
+        "bubblePsig": 396.77,
+        "dewPsig": 364.2,
+        "bubbleKpag": 2735.6,
+        "dewKpag": 2511.1,
+        "displayPsig": 380.48,
+        "displayKpag": 2623.4,
+        "interpolated": true
+      },
+      {
+        "tempF": 135,
+        "tempC": 57.2,
+        "bubblePsig": 401.55,
+        "dewPsig": 368.9,
+        "bubbleKpag": 2768.6,
+        "dewKpag": 2543.5,
+        "displayPsig": 385.23,
+        "displayKpag": 2656,
+        "interpolated": true
+      },
+      {
+        "tempF": 136,
+        "tempC": 57.8,
+        "bubblePsig": 406.32,
+        "dewPsig": 373.61,
+        "bubbleKpag": 2801.5,
+        "dewKpag": 2575.9,
+        "displayPsig": 389.97,
+        "displayKpag": 2688.7,
+        "interpolated": true
+      },
+      {
+        "tempF": 137,
+        "tempC": 58.3,
+        "bubblePsig": 411.1,
+        "dewPsig": 378.31,
+        "bubbleKpag": 2834.4,
+        "dewKpag": 2608.4,
+        "displayPsig": 394.71,
+        "displayKpag": 2721.4,
+        "interpolated": true
+      },
+      {
+        "tempF": 138,
+        "tempC": 58.9,
+        "bubblePsig": 415.88,
+        "dewPsig": 383.01,
+        "bubbleKpag": 2867.4,
+        "dewKpag": 2640.8,
+        "displayPsig": 399.45,
+        "displayKpag": 2754.1,
+        "interpolated": true
+      },
+      {
+        "tempF": 139,
+        "tempC": 59.4,
+        "bubblePsig": 420.65,
+        "dewPsig": 387.72,
+        "bubbleKpag": 2900.3,
+        "dewKpag": 2673.2,
+        "displayPsig": 404.19,
+        "displayKpag": 2786.8,
+        "interpolated": true
+      },
+      {
         "tempF": 140,
         "tempC": 60,
         "bubblePsig": 425.43,
@@ -53161,7 +53480,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R407F.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:19:43.617Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:40.895Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R407F.mix)",
         "Honeywell Genetron Performax LT datasheet"
@@ -54738,6 +55057,83 @@
         "displayKpag": 2386.8
       },
       {
+        "tempF": 107,
+        "tempC": 41.7,
+        "bubblePsig": 351.73,
+        "dewPsig": 350.69,
+        "bubbleKpag": 2425.1,
+        "dewKpag": 2418,
+        "displayPsig": 351.21,
+        "displayKpag": 2421.5,
+        "interpolated": true
+      },
+      {
+        "tempF": 108,
+        "tempC": 42.2,
+        "bubblePsig": 356.76,
+        "dewPsig": 355.72,
+        "bubbleKpag": 2459.8,
+        "dewKpag": 2452.6,
+        "displayPsig": 356.24,
+        "displayKpag": 2456.2,
+        "interpolated": true
+      },
+      {
+        "tempF": 109,
+        "tempC": 42.8,
+        "bubblePsig": 361.8,
+        "dewPsig": 360.75,
+        "bubbleKpag": 2494.5,
+        "dewKpag": 2487.3,
+        "displayPsig": 361.28,
+        "displayKpag": 2490.9,
+        "interpolated": true
+      },
+      {
+        "tempF": 110,
+        "tempC": 43.3,
+        "bubblePsig": 366.84,
+        "dewPsig": 365.78,
+        "bubbleKpag": 2529.3,
+        "dewKpag": 2522,
+        "displayPsig": 366.31,
+        "displayKpag": 2525.6,
+        "interpolated": true
+      },
+      {
+        "tempF": 111,
+        "tempC": 43.9,
+        "bubblePsig": 371.87,
+        "dewPsig": 370.81,
+        "bubbleKpag": 2564,
+        "dewKpag": 2556.7,
+        "displayPsig": 371.34,
+        "displayKpag": 2560.3,
+        "interpolated": true
+      },
+      {
+        "tempF": 112,
+        "tempC": 44.4,
+        "bubblePsig": 376.91,
+        "dewPsig": 375.84,
+        "bubbleKpag": 2598.7,
+        "dewKpag": 2591.4,
+        "displayPsig": 376.38,
+        "displayKpag": 2595,
+        "interpolated": true
+      },
+      {
+        "tempF": 113,
+        "tempC": 45,
+        "bubblePsig": 381.95,
+        "dewPsig": 380.87,
+        "bubbleKpag": 2633.4,
+        "dewKpag": 2626,
+        "displayPsig": 381.41,
+        "displayKpag": 2629.7,
+        "interpolated": true
+      },
+      {
         "tempF": 114,
         "tempC": 45.6,
         "bubblePsig": 386.99,
@@ -54756,6 +55152,17 @@
         "dewKpag": 2697,
         "displayPsig": 391.71,
         "displayKpag": 2700.8
+      },
+      {
+        "tempF": 116,
+        "tempC": 46.7,
+        "bubblePsig": 397.6,
+        "dewPsig": 396.51,
+        "bubbleKpag": 2741.4,
+        "dewKpag": 2733.9,
+        "displayPsig": 397.06,
+        "displayKpag": 2737.6,
+        "interpolated": true
       },
       {
         "tempF": 117,
@@ -55100,7 +55507,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R410A.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:19:44.688Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:42.072Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R410A.mix)",
         "Arkema Forane 410A PT chart",
@@ -57108,7 +57515,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R417A.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:19:47.080Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:44.591Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R417A.mix)"
       ],
@@ -59108,7 +59515,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R421A.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:19:48.178Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:45.695Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R421A.mix)"
       ],
@@ -61032,6 +61439,83 @@
         "displayKpag": 2891
       },
       {
+        "tempF": 143,
+        "tempC": 61.7,
+        "bubblePsig": 427.94,
+        "dewPsig": 421.67,
+        "bubbleKpag": 2950.5,
+        "dewKpag": 2907.3,
+        "displayPsig": 424.8,
+        "displayKpag": 2928.9,
+        "interpolated": true
+      },
+      {
+        "tempF": 144,
+        "tempC": 62.2,
+        "bubblePsig": 433.37,
+        "dewPsig": 427.22,
+        "bubbleKpag": 2988,
+        "dewKpag": 2945.6,
+        "displayPsig": 430.3,
+        "displayKpag": 2966.8,
+        "interpolated": true
+      },
+      {
+        "tempF": 145,
+        "tempC": 62.8,
+        "bubblePsig": 438.8,
+        "dewPsig": 432.78,
+        "bubbleKpag": 3025.4,
+        "dewKpag": 2983.9,
+        "displayPsig": 435.79,
+        "displayKpag": 3004.7,
+        "interpolated": true
+      },
+      {
+        "tempF": 146,
+        "tempC": 63.3,
+        "bubblePsig": 444.23,
+        "dewPsig": 438.34,
+        "bubbleKpag": 3062.9,
+        "dewKpag": 3022.2,
+        "displayPsig": 441.28,
+        "displayKpag": 3042.6,
+        "interpolated": true
+      },
+      {
+        "tempF": 147,
+        "tempC": 63.9,
+        "bubblePsig": 449.66,
+        "dewPsig": 443.89,
+        "bubbleKpag": 3100.3,
+        "dewKpag": 3060.5,
+        "displayPsig": 446.78,
+        "displayKpag": 3080.4,
+        "interpolated": true
+      },
+      {
+        "tempF": 148,
+        "tempC": 64.4,
+        "bubblePsig": 455.1,
+        "dewPsig": 449.45,
+        "bubbleKpag": 3137.8,
+        "dewKpag": 3098.8,
+        "displayPsig": 452.27,
+        "displayKpag": 3118.3,
+        "interpolated": true
+      },
+      {
+        "tempF": 149,
+        "tempC": 65,
+        "bubblePsig": 460.53,
+        "dewPsig": 455,
+        "bubbleKpag": 3175.2,
+        "dewKpag": 3137.1,
+        "displayPsig": 457.77,
+        "displayKpag": 3156.2,
+        "interpolated": true
+      },
+      {
         "tempF": 150,
         "tempC": 65.6,
         "bubblePsig": 465.96,
@@ -61044,7 +61528,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R422A.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:19:50.517Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:48.121Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R422A.mix)"
       ],
@@ -63043,7 +63527,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R422B.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:19:52.877Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:50.571Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R422B.mix)"
       ],
@@ -65047,7 +65531,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R422D.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:19:55.231Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:53.007Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R422D.mix)",
         "Chemours ISCEON MO29 datasheet"
@@ -67057,7 +67541,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R427A.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:20:01.190Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:59.208Z",
       "ptChartVerifiedAgainst": [
         "Arkema Forane 427A technical datasheet"
       ],
@@ -67159,7 +67643,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Manufacturer datasheet: Honeywell Genetron Performax LT (R-438A) Technical Information",
-      "ptChartGeneratedAt": "2026-06-12T11:20:01.192Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:59.210Z",
       "ptChartVerifiedAgainst": [
         "Honeywell Genetron MO99 technical datasheet"
       ],
@@ -67278,7 +67762,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Manufacturer datasheet: Honeywell Solstice N40 (R-448A) PT Chart",
-      "ptChartGeneratedAt": "2026-06-12T11:20:01.193Z",
+      "ptChartGeneratedAt": "2026-07-07T15:45:59.211Z",
       "ptChartVerifiedAgainst": [
         "Honeywell Solstice N40 PT chart 2023",
         "ASHRAE Standard 34-2022 Designation R-448A"
@@ -69305,7 +69789,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R449A.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:20:07.027Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:05.045Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R449A.mix)",
         "Chemours Opteon XP40 datasheet"
@@ -69398,7 +69882,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Manufacturer datasheet: Chemours Opteon XP10 (R-450A) Technical Information",
-      "ptChartGeneratedAt": "2026-06-12T11:20:07.028Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:05.046Z",
       "ptChartVerifiedAgainst": [
         "Chemours Opteon XP10 PT chart"
       ],
@@ -71416,7 +71900,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R452A.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:20:09.372Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:07.479Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R452A.mix)",
         "Chemours Opteon XP44 datasheet"
@@ -73192,6 +73676,204 @@
         "displayKpag": 2984.5
       },
       {
+        "tempF": 128,
+        "tempC": 53.3,
+        "bubblePsig": 444.19,
+        "dewPsig": 433.91,
+        "bubbleKpag": 3062.6,
+        "dewKpag": 2991.7,
+        "displayPsig": 439.05,
+        "displayKpag": 3027.2,
+        "interpolated": true
+      },
+      {
+        "tempF": 129,
+        "tempC": 53.9,
+        "bubblePsig": 450.38,
+        "dewPsig": 440.1,
+        "bubbleKpag": 3105.3,
+        "dewKpag": 3034.4,
+        "displayPsig": 445.24,
+        "displayKpag": 3069.8,
+        "interpolated": true
+      },
+      {
+        "tempF": 130,
+        "tempC": 54.4,
+        "bubblePsig": 456.57,
+        "dewPsig": 446.29,
+        "bubbleKpag": 3147.9,
+        "dewKpag": 3077.1,
+        "displayPsig": 451.43,
+        "displayKpag": 3112.5,
+        "interpolated": true
+      },
+      {
+        "tempF": 131,
+        "tempC": 55,
+        "bubblePsig": 462.75,
+        "dewPsig": 452.48,
+        "bubbleKpag": 3190.6,
+        "dewKpag": 3119.8,
+        "displayPsig": 457.62,
+        "displayKpag": 3155.2,
+        "interpolated": true
+      },
+      {
+        "tempF": 132,
+        "tempC": 55.6,
+        "bubblePsig": 468.94,
+        "dewPsig": 458.67,
+        "bubbleKpag": 3233.2,
+        "dewKpag": 3162.4,
+        "displayPsig": 463.81,
+        "displayKpag": 3197.8,
+        "interpolated": true
+      },
+      {
+        "tempF": 133,
+        "tempC": 56.1,
+        "bubblePsig": 475.12,
+        "dewPsig": 464.86,
+        "bubbleKpag": 3275.9,
+        "dewKpag": 3205.1,
+        "displayPsig": 469.99,
+        "displayKpag": 3240.5,
+        "interpolated": true
+      },
+      {
+        "tempF": 134,
+        "tempC": 56.7,
+        "bubblePsig": 481.31,
+        "dewPsig": 471.05,
+        "bubbleKpag": 3318.5,
+        "dewKpag": 3247.8,
+        "displayPsig": 476.18,
+        "displayKpag": 3283.2,
+        "interpolated": true
+      },
+      {
+        "tempF": 135,
+        "tempC": 57.2,
+        "bubblePsig": 487.5,
+        "dewPsig": 477.24,
+        "bubbleKpag": 3361.2,
+        "dewKpag": 3290.5,
+        "displayPsig": 482.37,
+        "displayKpag": 3325.8,
+        "interpolated": true
+      },
+      {
+        "tempF": 136,
+        "tempC": 57.8,
+        "bubblePsig": 493.68,
+        "dewPsig": 483.43,
+        "bubbleKpag": 3403.8,
+        "dewKpag": 3333.1,
+        "displayPsig": 488.56,
+        "displayKpag": 3368.5,
+        "interpolated": true
+      },
+      {
+        "tempF": 137,
+        "tempC": 58.3,
+        "bubblePsig": 499.87,
+        "dewPsig": 489.62,
+        "bubbleKpag": 3446.5,
+        "dewKpag": 3375.8,
+        "displayPsig": 494.75,
+        "displayKpag": 3411.1,
+        "interpolated": true
+      },
+      {
+        "tempF": 138,
+        "tempC": 58.9,
+        "bubblePsig": 506.05,
+        "dewPsig": 495.81,
+        "bubbleKpag": 3489.1,
+        "dewKpag": 3418.5,
+        "displayPsig": 500.93,
+        "displayKpag": 3453.8,
+        "interpolated": true
+      },
+      {
+        "tempF": 139,
+        "tempC": 59.4,
+        "bubblePsig": 512.24,
+        "dewPsig": 502,
+        "bubbleKpag": 3531.8,
+        "dewKpag": 3461.2,
+        "displayPsig": 507.12,
+        "displayKpag": 3496.5,
+        "interpolated": true
+      },
+      {
+        "tempF": 140,
+        "tempC": 60,
+        "bubblePsig": 518.43,
+        "dewPsig": 508.19,
+        "bubbleKpag": 3574.4,
+        "dewKpag": 3503.9,
+        "displayPsig": 513.31,
+        "displayKpag": 3539.1,
+        "interpolated": true
+      },
+      {
+        "tempF": 141,
+        "tempC": 60.6,
+        "bubblePsig": 524.61,
+        "dewPsig": 514.38,
+        "bubbleKpag": 3617.1,
+        "dewKpag": 3546.5,
+        "displayPsig": 519.5,
+        "displayKpag": 3581.8,
+        "interpolated": true
+      },
+      {
+        "tempF": 142,
+        "tempC": 61.1,
+        "bubblePsig": 530.8,
+        "dewPsig": 520.57,
+        "bubbleKpag": 3659.7,
+        "dewKpag": 3589.2,
+        "displayPsig": 525.69,
+        "displayKpag": 3624.5,
+        "interpolated": true
+      },
+      {
+        "tempF": 143,
+        "tempC": 61.7,
+        "bubblePsig": 536.99,
+        "dewPsig": 526.76,
+        "bubbleKpag": 3702.4,
+        "dewKpag": 3631.9,
+        "displayPsig": 531.87,
+        "displayKpag": 3667.1,
+        "interpolated": true
+      },
+      {
+        "tempF": 144,
+        "tempC": 62.2,
+        "bubblePsig": 543.17,
+        "dewPsig": 532.95,
+        "bubbleKpag": 3745,
+        "dewKpag": 3674.6,
+        "displayPsig": 538.06,
+        "displayKpag": 3709.8,
+        "interpolated": true
+      },
+      {
+        "tempF": 145,
+        "tempC": 62.8,
+        "bubblePsig": 549.36,
+        "dewPsig": 539.14,
+        "bubbleKpag": 3787.7,
+        "dewKpag": 3717.2,
+        "displayPsig": 544.25,
+        "displayKpag": 3752.5,
+        "interpolated": true
+      },
+      {
         "tempF": 146,
         "tempC": 63.3,
         "bubblePsig": 555.54,
@@ -73244,7 +73926,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R32[0.81813]&R1234yf[0.14484]&R125[0.03704]",
-      "ptChartGeneratedAt": "2026-06-12T11:20:11.741Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:09.854Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R452B composition)",
         "Chemours Opteon XL55 datasheet"
@@ -75090,7 +75772,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R454B.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:20:12.800Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:10.907Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R454B.mix)",
         "Chemours Opteon XL41 datasheet",
@@ -77093,7 +77775,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R32[0.37514]&R1234yf[0.62486]",
-      "ptChartGeneratedAt": "2026-06-12T11:20:13.945Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:12.060Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R454C composition)",
         "Chemours Opteon XL20 datasheet"
@@ -79098,7 +79780,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::CarbonDioxide[0.05962]&R32[0.36141]&R1234yf[0.57897]",
-      "ptChartGeneratedAt": "2026-06-12T11:20:16.456Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:14.568Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R455A composition)",
         "Honeywell Solstice L40X datasheet"
@@ -81096,7 +81778,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R32[0.30312]&R152a[0.15916]&R1234yf[0.53772]",
-      "ptChartGeneratedAt": "2026-06-12T11:20:18.771Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:16.932Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R457A composition)"
       ],
@@ -83089,7 +83771,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R500.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:20:19.959Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:18.137Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R500.mix)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -85086,7 +85768,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R502.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:20:23.184Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:21.337Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R502.mix)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -85167,7 +85849,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Historical refrigerant — retired per Montreal Protocol (CFC-13 component banned)",
-      "ptChartGeneratedAt": "2026-06-12T11:20:23.185Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:21.339Z",
       "ptChartVerifiedAgainst": [
         "ASHRAE Handbook of Refrigeration 2022 (historical tables)"
       ],
@@ -86963,6 +87645,94 @@
         "displayKpag": 2411.8
       },
       {
+        "tempF": 128,
+        "tempC": 53.3,
+        "bubblePsig": 354.69,
+        "dewPsig": 354.41,
+        "bubbleKpag": 2445.5,
+        "dewKpag": 2443.6,
+        "displayPsig": 354.55,
+        "displayKpag": 2444.5,
+        "interpolated": true
+      },
+      {
+        "tempF": 129,
+        "tempC": 53.9,
+        "bubblePsig": 359.44,
+        "dewPsig": 359.16,
+        "bubbleKpag": 2478.2,
+        "dewKpag": 2476.3,
+        "displayPsig": 359.3,
+        "displayKpag": 2477.3,
+        "interpolated": true
+      },
+      {
+        "tempF": 130,
+        "tempC": 54.4,
+        "bubblePsig": 364.19,
+        "dewPsig": 363.91,
+        "bubbleKpag": 2511,
+        "dewKpag": 2509.1,
+        "displayPsig": 364.05,
+        "displayKpag": 2510,
+        "interpolated": true
+      },
+      {
+        "tempF": 131,
+        "tempC": 55,
+        "bubblePsig": 368.94,
+        "dewPsig": 368.66,
+        "bubbleKpag": 2543.8,
+        "dewKpag": 2541.8,
+        "displayPsig": 368.8,
+        "displayKpag": 2542.8,
+        "interpolated": true
+      },
+      {
+        "tempF": 132,
+        "tempC": 55.6,
+        "bubblePsig": 373.69,
+        "dewPsig": 373.41,
+        "bubbleKpag": 2576.5,
+        "dewKpag": 2574.6,
+        "displayPsig": 373.55,
+        "displayKpag": 2575.5,
+        "interpolated": true
+      },
+      {
+        "tempF": 133,
+        "tempC": 56.1,
+        "bubblePsig": 378.44,
+        "dewPsig": 378.16,
+        "bubbleKpag": 2609.3,
+        "dewKpag": 2607.3,
+        "displayPsig": 378.3,
+        "displayKpag": 2608.3,
+        "interpolated": true
+      },
+      {
+        "tempF": 134,
+        "tempC": 56.7,
+        "bubblePsig": 383.19,
+        "dewPsig": 382.91,
+        "bubbleKpag": 2642,
+        "dewKpag": 2640.1,
+        "displayPsig": 383.05,
+        "displayKpag": 2641.1,
+        "interpolated": true
+      },
+      {
+        "tempF": 135,
+        "tempC": 57.2,
+        "bubblePsig": 387.95,
+        "dewPsig": 387.66,
+        "bubbleKpag": 2674.8,
+        "dewKpag": 2672.8,
+        "displayPsig": 387.8,
+        "displayKpag": 2673.8,
+        "interpolated": true
+      },
+      {
         "tempF": 136,
         "tempC": 57.8,
         "bubblePsig": 392.7,
@@ -87095,7 +87865,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R507A.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:20:24.206Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:22.352Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R507A.mix)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -89105,7 +89875,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R513A.mix",
-      "ptChartGeneratedAt": "2026-06-12T11:20:25.204Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:23.356Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R513A.mix)",
         "Chemours Opteon XP10 datasheet"
@@ -89194,7 +89964,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Manufacturer datasheet: Chemours Opteon XP30 (R-514A) Technical Information",
-      "ptChartGeneratedAt": "2026-06-12T11:20:25.205Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:23.357Z",
       "ptChartVerifiedAgainst": [
         "Chemours Opteon XP30 technical datasheet"
       ],
@@ -89290,7 +90060,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Manufacturer datasheet: Honeywell Solstice 515A Technical Information",
-      "ptChartGeneratedAt": "2026-06-12T11:20:25.206Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:23.358Z",
       "ptChartVerifiedAgainst": [
         "Honeywell Solstice 515A technical datasheet"
       ],
@@ -89386,7 +90156,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Manufacturer datasheet: Honeywell Solstice N15 (R-515B) Technical Information",
-      "ptChartGeneratedAt": "2026-06-12T11:20:25.206Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:23.358Z",
       "ptChartVerifiedAgainst": [
         "Honeywell Solstice N15 technical datasheet"
       ],
@@ -91391,7 +92161,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R1234yf[0.69711]&R134a[0.08545]&R152a[0.21744]",
-      "ptChartGeneratedAt": "2026-06-12T11:20:27.433Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:25.588Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R516A composition)",
         "ASHRAE Standard 34-2022"
@@ -93385,7 +94155,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 IsoButane",
-      "ptChartGeneratedAt": "2026-06-12T11:20:27.733Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:25.883Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (IsoButane)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -95372,7 +96142,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 Ammonia",
-      "ptChartGeneratedAt": "2026-06-12T11:20:28.087Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:26.240Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (Ammonia)",
         "ASHRAE Handbook of Refrigeration 2022",
@@ -96732,7 +97502,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 CarbonDioxide",
-      "ptChartGeneratedAt": "2026-06-12T11:20:28.272Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:26.435Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (CarbonDioxide)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -98709,7 +99479,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 RC318",
-      "ptChartGeneratedAt": "2026-06-12T11:20:28.523Z",
+      "ptChartGeneratedAt": "2026-07-07T15:46:26.689Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (RC318)",
         "ASHRAE Handbook of Refrigeration 2022"

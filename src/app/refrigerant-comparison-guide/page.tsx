@@ -357,7 +357,8 @@ export default function ComparisonGuidePage() {
           <p>
             <strong>Montreal Protocol (1987, amended).</strong> International treaty mandating phase-out of
             ozone-depleting substances. US implementation through the Clean Air Act Section 605/606. CFC production
-            banned 1996. HCFC production phase-out: R-141b banned 2003; R-22 banned 2020; R-123 banned 2020. The
+            banned 1996. HCFC production phase-out: R-141b production banned 2003; R-22 production banned 2020
+            (reclaimed R-22 remains legal for servicing existing equipment); R-123 production banned 2020. The
             Montreal Protocol&apos;s Kigali Amendment (2016, US ratified 2022) extends to HFC phase-down.
           </p>
           <p>
@@ -532,7 +533,7 @@ export default function ComparisonGuidePage() {
           <ComparisonTable
             title="Centrifugal chillers (R-134a and R-123 transition)"
             rows={["r-123", "r-134a", "r-513a", "r-450a", "r-515b", "r-1234ze", "r-1233zd-e"]}
-            caption="R-123 (banned 2020) and R-134a are the historical chiller refrigerants. R-513A and R-450A are A1 retrofits for R-134a. R-1234ze(E) and R-1233zd(E) are very-low-GWP next-generation choices (A2L and A1 respectively)."
+            caption="R-123 (production banned 2020) and R-134a are the historical chiller refrigerants. R-513A and R-450A are A1 retrofits for R-134a. R-1234ze(E) and R-1233zd(E) are very-low-GWP next-generation choices (A2L and A1 respectively)."
           />
 
           <ComparisonTable

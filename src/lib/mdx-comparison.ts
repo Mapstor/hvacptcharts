@@ -16,6 +16,20 @@ export const ComparisonFrontmatter = z.object({
   chooseB: z.string(),
   whenNeither: z.string().optional(),
   retrofitNotes: z.string(),
+  /**
+   * Whether A → B is a plausible field retrofit. When absent, the template
+   * derives a default from safety class + lubricant compatibility (see
+   * deriveRetrofitFeasibility in ComparisonPage.tsx). Set explicitly in
+   * frontmatter to override the derivation for edge cases.
+   *
+   * When false, the page renders a "Why direct retrofit isn't possible"
+   * section explaining the specific barriers, instead of the "Standard
+   * transition procedure" recipe — which would otherwise walk a
+   * technician through steps 1–8 for a swap that step 7 then reveals is
+   * impossible. (Task 2, 2026-07: user flagged r-410a-vs-r-454b as the
+   * canonical example of the inconsistency.)
+   */
+  retrofitFeasible: z.boolean().optional(),
   faqs: z.array(FAQ).optional().default([]),
 });
 export type ComparisonFrontmatter = z.infer<typeof ComparisonFrontmatter>;

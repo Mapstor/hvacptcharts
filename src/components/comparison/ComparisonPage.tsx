@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Fragment } from "react";
-import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
+import { Activity, AlertTriangle, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
 
 /**
  * Minimal inline-markdown renderer for retrofitNotes etc. — handles
@@ -77,6 +77,7 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
     );
   }
 
+  const retrofitFeasible = fm.retrofitFeasible ?? deriveRetrofitFeasibility(a, b);
   const pageUrl = `${SITE_URL}/${fm.slug}/`;
   const schemaGraph = buildSchema(pageUrl, fm, a, b);
 
@@ -225,9 +226,15 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
           <RegulatoryContext a={a} b={b} />
         </TechSection>
 
-        <TechSection icon="service" tone="amber" title={`Standard transition procedure — ${a.displayName} → ${b.displayName}`}>
-          <TransitionProcedure a={a} b={b} />
-        </TechSection>
+        {retrofitFeasible ? (
+          <TechSection icon="service" tone="amber" title={`Standard transition procedure — ${a.displayName} → ${b.displayName}`}>
+            <TransitionProcedure a={a} b={b} />
+          </TechSection>
+        ) : (
+          <TechSection icon="warning" tone="red" title={`Why ${a.displayName} → ${b.displayName} isn't a direct retrofit`}>
+            <RetrofitNotFeasible a={a} b={b} />
+          </TechSection>
+        )}
 
         <TechSection icon="climate" tone="emerald" title={`Lifecycle and operational context`}>
           <LifecycleContext a={a} b={b} />
@@ -803,6 +810,123 @@ function TransitionProcedure({ a, b }: { a: Refrigerant; b: Refrigerant }) {
           re-rating typically required.
         </KeyInsight>
       ) : null}
+    </div>
+  );
+}
+
+/**
+ * Default derivation for whether A → B is a plausible field retrofit.
+ * MDX frontmatter can override with `retrofitFeasible: true|false`.
+ *
+ * Not feasible when either:
+ *  - Safety class jumps A1 → A2L/A3/B (equipment must be re-certified per
+ *    UL 60335-2-40; no field bridge for this).
+ *  - 95°F saturation pressure delta ≥ 25% (exceeds component design margins
+ *    on compressor, TXV, condenser, service valves).
+ *
+ * Lubricant mismatch is NOT a feasibility blocker on its own — it's a
+ * procedural step (drain, flush, replace filter-drier, refill with the new
+ * lubricant family). R-22 → R-407C is a working retrofit despite MO → POE.
+ * The barriers-list on the NotFeasible section still calls it out where
+ * applicable so the reader sees the full cost picture.
+ */
+function deriveRetrofitFeasibility(a: Refrigerant, b: Refrigerant): boolean {
+  const aIsA1 = a.safetyClass === "A1";
+  const bIsA2LOrHigher =
+    b.safetyClass.startsWith("A2") ||
+    b.safetyClass.startsWith("A3") ||
+    b.safetyClass.startsWith("B");
+  const safetyClassIncrease = aIsA1 && bIsA2LOrHigher;
+  const p95a = getPressureAtTempF(a.slug, 95)?.bubble ?? 0;
+  const p95b = getPressureAtTempF(b.slug, 95)?.bubble ?? 0;
+  const pressDeltaPercent = p95a > 0 ? Math.abs((p95b - p95a) / p95a) * 100 : Infinity;
+  return !safetyClassIncrease && pressDeltaPercent < 25;
+}
+
+function RetrofitNotFeasible({ a, b }: { a: Refrigerant; b: Refrigerant }) {
+  const sameLube = a.lubricants.compatible.some((l) => b.lubricants.compatible.includes(l));
+  const aIsA1 = a.safetyClass === "A1";
+  const bIsA2LOrHigher =
+    b.safetyClass.startsWith("A2") ||
+    b.safetyClass.startsWith("A3") ||
+    b.safetyClass.startsWith("B");
+  const safetyClassIncrease = aIsA1 && bIsA2LOrHigher;
+  const p95a = getPressureAtTempF(a.slug, 95)?.bubble ?? 0;
+  const p95b = getPressureAtTempF(b.slug, 95)?.bubble ?? 0;
+  const pressDeltaPercent = p95a > 0 ? ((p95b - p95a) / p95a) * 100 : 0;
+  const largePressureDelta = Math.abs(pressDeltaPercent) >= 25;
+
+  const barriers: React.ReactNode[] = [];
+  if (safetyClassIncrease) {
+    barriers.push(
+      <li key="safety">
+        <strong>ASHRAE safety class change ({a.safetyClass} → {b.safetyClass}).</strong>{" "}
+        {b.displayName} requires equipment certified to UL/IEC 60335-2-40 for
+        {" "}{b.safetyClass}: sealed electrical, room-volume charge limits, and (on
+        larger systems) integrated leak detection. Field retrofit of {a.safetyClass}
+        -only equipment is not permitted; new equipment must ship with the
+        {" "}{b.safetyClass} certification from the factory.
+      </li>,
+    );
+  }
+  if (!sameLube) {
+    barriers.push(
+      <li key="lube">
+        <strong>Lubricant families don&apos;t overlap.</strong>{" "}
+        {a.displayName} runs on {a.lubricants.compatible.join(" / ") || "—"};{" "}
+        {b.displayName} requires {b.lubricants.compatible.join(" / ") || "—"}. Mixing
+        families (mineral oil with POE, for example) produces oil-return failure in
+        the evaporator within hours of operation, so a service-time swap requires a
+        full oil change, system flush, and driver replacement — service labor that
+        typically approaches new-equipment cost on residential-scale systems.
+      </li>,
+    );
+  }
+  if (largePressureDelta) {
+    barriers.push(
+      <li key="pressure">
+        <strong>Saturation pressure delta {pressDeltaPercent > 0 ? "+" : ""}
+        {pressDeltaPercent.toFixed(0)}% at 95°F.</strong>{" "}
+        Compressor, TXV, condenser, and service-valve ratings are engineered around
+        {" "}{a.displayName}&apos;s envelope ({p95a.toFixed(0)} PSIG at 95°F);
+        running {b.displayName} ({p95b.toFixed(0)} PSIG) at this delta exceeds the
+        design margins on multiple components. Retrofitting means re-rating hardware,
+        not just changing charge.
+      </li>,
+    );
+  }
+  if (barriers.length === 0) {
+    barriers.push(
+      <li key="other">
+        This pair was flagged as non-retrofit in the source data — usually for
+        application-class reasons (mobile AC vs stationary, industrial vs
+        commercial) rather than any single measurable barrier. The refrigerants
+        themselves may be chemically similar, but the equipment classes don&apos;t
+        overlap.
+      </li>,
+    );
+  }
+
+  return (
+    <div className="space-y-3">
+      <p>
+        {a.displayName} → {b.displayName} is a full equipment-replacement decision,
+        not a service-time swap. The barriers below are structural — equipment
+        certification, oil chemistry, pressure ratings — so no field checklist can
+        bridge them. The realistic path is to continue servicing existing
+        {" "}{a.displayName} equipment through its useful life, then install new
+        {" "}{b.displayName}-rated equipment at end-of-life.
+      </p>
+      <Panel title="Specific barriers for this pair" icon={AlertTriangle}>
+        <ul className="list-disc pl-5 text-sm space-y-2">{barriers}</ul>
+      </Panel>
+      <p className="text-xs text-zinc-500 dark:text-zinc-400">
+        Set <code className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-[10px] dark:bg-zinc-800">retrofitFeasible: true</code>
+        {" "}in the comparison MDX frontmatter to override this derivation for pairs
+        where a specialized retrofit path exists (e.g. same-family same-class
+        low-glide swaps that the safety-class rule flags but the trade practice
+        supports).
+      </p>
     </div>
   );
 }
