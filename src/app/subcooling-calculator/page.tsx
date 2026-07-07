@@ -14,7 +14,7 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
-import { SITE_URL } from "@/lib/schema/shared";
+import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
@@ -57,12 +57,12 @@ const FAQS = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Subcooling Calculator — HVAC Liquid-Line Subcooling with Bubble-Curve Math",
   description:
     "Free subcooling calculator for 50+ HVAC refrigerants with correct bubble-curve handling for zeotropic blends. TXV charging targets, 10 worked service problems for residential AC, commercial refrigeration, chillers, heat pumps. Sourced from CoolProp 7.2.0.",
-  alternates: { canonical: `${SITE_URL}/subcooling-calculator/` },
-};
+  path: "/subcooling-calculator/",
+});
 
 export default function SubcoolingCalculatorPage() {
   return (

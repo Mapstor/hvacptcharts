@@ -38,7 +38,8 @@ function renderInline(text: string): React.ReactNode[] {
 }
 import { getRefrigerant, getPressureAtTempF, type Refrigerant } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import type { Metadata } from "next";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import {
   ComparisonTable,
@@ -945,17 +946,19 @@ function buildSchema(pageUrl: string, fm: NonNullable<ReturnType<typeof loadWhat
   return graph;
 }
 
-export function buildWhatPressureMetadata(id: string) {
+export function buildWhatPressureMetadata(id: string): Metadata {
+  const path = `/what-pressure-should-${id}/`;
   const mdx = loadWhatPressure(id);
   if (!mdx) {
-    return {
+    return pageMetadata({
       title: `What Pressure Should ${id.toUpperCase()} Be?`,
       description: "Operating pressure reference for HVAC refrigerants.",
-    };
+      path,
+    });
   }
-  return {
+  return pageMetadata({
     title: mdx.frontmatter.metaTitle ?? mdx.frontmatter.title,
     description: mdx.frontmatter.metaDescription ?? mdx.frontmatter.introOneLiner,
-    alternates: { canonical: `${SITE_URL}/what-pressure-should-${id}/` },
-  };
+    path,
+  });
 }

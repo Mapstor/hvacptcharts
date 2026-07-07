@@ -14,7 +14,7 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
-import { SITE_URL } from "@/lib/schema/shared";
+import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
@@ -57,12 +57,12 @@ const FAQS = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Superheat Calculator — HVAC Suction-Line Superheat with Dew-Curve Math",
   description:
     "Bidirectional superheat calculator for 50+ HVAC refrigerants with correct dew-curve handling for zeotropic blends (R-407C, R-454C, R-455A). ACCA Manual T target table, 10 worked service problems, AHRI 540 compressor minimums, sourced from CoolProp 7.2.0 saturation data.",
-  alternates: { canonical: `${SITE_URL}/superheat-calculator/` },
-};
+  path: "/superheat-calculator/",
+});
 
 export default function SuperheatCalculatorPage() {
   return (

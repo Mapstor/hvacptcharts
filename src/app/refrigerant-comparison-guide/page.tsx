@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { getRefrigerant, getPressureAtTempF, refrigerants } from "@/data/refrigerants";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 
 const PAGE_URL = `${SITE_URL}/refrigerant-comparison-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Refrigerant Comparison Guide — Frameworks, Decisions, Trade-offs",
   description:
     "Framework for comparing HVAC refrigerants across thermodynamics, safety class, environmental impact, regulation, and field practice. Decision logic for residential AC, commercial refrigeration, chillers, and naturals.",
-  alternates: { canonical: PAGE_URL },
-};
+  path: "/refrigerant-comparison-guide/",
+});
 
 const FAQS = [
   {

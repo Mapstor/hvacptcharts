@@ -14,7 +14,7 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
-import { SITE_URL } from "@/lib/schema/shared";
+import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
@@ -49,12 +49,12 @@ const FAQS = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Refrigerant PT Comparison Tool — Overlay PT Charts for Retrofit & New Equipment",
   description:
     "Overlay saturation pressure-temperature curves for 2-4 HVAC refrigerants on one chart. Visual comparison for retrofit (R-22 → R-407C, R-454C), new-equipment specification (R-32 vs R-410A vs R-454B), commercial low-GWP transitions (R-404A → R-448A → R-454C), and mobile AC (R-134a vs R-1234yf). CoolProp 7.2.0 sourced.",
-  alternates: { canonical: `${SITE_URL}/refrigerant-pt-comparison-tool/` },
-};
+  path: "/refrigerant-pt-comparison-tool/",
+});
 
 export default function ComparisonToolPage() {
   return (

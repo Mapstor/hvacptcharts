@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 
 const PAGE_URL = `${SITE_URL}/terms-of-service/`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Terms of Service",
   description: "Terms of service for HVAC PT Charts: what the site is, what it isn't, disclaimers, intellectual property.",
-  alternates: { canonical: PAGE_URL },
-};
+  path: "/terms-of-service/",
+});
 
 export default function TermsPage() {
   return (

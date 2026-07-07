@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 
 const PAGE_URL = `${SITE_URL}/privacy-policy/`;
 const LAST_UPDATED = "June 2026";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy",
   description:
     "Privacy policy for HVAC PT Charts. What we collect, how we use it, advertising via Raptive, your rights and choices.",
-  alternates: { canonical: PAGE_URL },
-};
+  path: "/privacy-policy/",
+});
 
 export default function PrivacyPage() {
   return (

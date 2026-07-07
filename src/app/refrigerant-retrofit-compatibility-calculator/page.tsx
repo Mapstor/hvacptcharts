@@ -14,7 +14,7 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
-import { SITE_URL } from "@/lib/schema/shared";
+import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
@@ -49,12 +49,12 @@ const FAQS = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Refrigerant Retrofit Compatibility Calculator",
   description:
     "Evaluate refrigerant retrofit feasibility from any existing refrigerant to any target. Five-criterion analysis: lubricant, safety class, pressure, glide, application. Verdict from 'drop-in' to 'not feasible' with specific recommendations.",
-  alternates: { canonical: `${SITE_URL}/refrigerant-retrofit-compatibility-calculator/` },
-};
+  path: "/refrigerant-retrofit-compatibility-calculator/",
+});
 
 export default function RetrofitCompatibilityCalculatorPage() {
   return (

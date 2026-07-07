@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 
 const PAGE_URL = `${SITE_URL}/contact-us/`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact HVAC PT Charts",
   description: "How to get in touch with HVAC PT Charts — corrections, data questions, suggestions.",
-  alternates: { canonical: PAGE_URL },
-};
+  path: "/contact-us/",
+});
 
 export default function ContactPage() {
   return (

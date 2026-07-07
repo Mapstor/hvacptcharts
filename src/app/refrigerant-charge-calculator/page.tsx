@@ -14,7 +14,7 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
-import { SITE_URL } from "@/lib/schema/shared";
+import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
@@ -53,12 +53,12 @@ const FAQS = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Refrigerant Charge Calculator — Line-Set Length Adjustment",
   description:
     "Compute the line-set adjustment to nameplate charge for residential and commercial split systems. Per-foot oz values from CoolProp liquid density at 100°F. Supports R-410A, R-22, R-32, R-454B, R-134a, R-407C, R-404A, R-290, R-744, and 50+ other refrigerants.",
-  alternates: { canonical: `${SITE_URL}/refrigerant-charge-calculator/` },
-};
+  path: "/refrigerant-charge-calculator/",
+});
 
 export default function RefrigerantChargeCalculatorPage() {
   return (

@@ -14,7 +14,7 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
-import { SITE_URL } from "@/lib/schema/shared";
+import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
@@ -53,12 +53,12 @@ const FAQS = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Saturation Properties Calculator — Bubble, Dew, Critical Point, NBP",
   description:
     "Refrigerant saturation property reference for 50+ HVAC refrigerants. Bubble and dew pressures at any temperature, critical point, triple point, normal boiling point, molar mass. Sourced from CoolProp 7.2.0 with NIST REFPROP-compatible Helmholtz EOS.",
-  alternates: { canonical: `${SITE_URL}/saturation-properties-calculator/` },
-};
+  path: "/saturation-properties-calculator/",
+});
 
 export default function SaturationPropertiesPage() {
   return (

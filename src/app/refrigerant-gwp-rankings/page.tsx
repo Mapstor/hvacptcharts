@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { refrigerants } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { GwpTable } from "@/components/reference/GwpTable";
 
 const PAGE_URL = `${SITE_URL}/refrigerant-gwp-rankings/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Refrigerant GWP Rankings — IPCC AR5 100-Year Values",
   description:
     "Sortable table of HVAC refrigerant Global Warming Potential values per IPCC AR5 (and AR6 where different). Filter by type, safety class, or GWP bucket. Includes EU F-Gas and AIM Act threshold markers.",
-  alternates: { canonical: PAGE_URL },
-};
+  path: "/refrigerant-gwp-rankings/",
+});
 
 function buildSchema() {
   return [

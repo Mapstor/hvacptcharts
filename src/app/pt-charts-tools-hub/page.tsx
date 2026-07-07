@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { refrigerants } from "@/data/refrigerants";
 import { HubPage } from "@/components/hub/HubPage";
-import { SITE_URL } from "@/lib/schema/shared";
+import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 const POPULAR_SLUGS = ["r-410a", "r-22", "r-134a", "r-32", "r-404a", "r-454b", "r-407c", "r-1234yf"];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "PT Charts & Reference Tools — All 61 Refrigerants",
   description:
     "Saturation pressure-temperature charts for 61 HVAC refrigerants, plus comparison tools, operating-pressure references, and the sortable safety / GWP reference tables.",
-  alternates: { canonical: `${SITE_URL}/pt-charts-tools-hub/` },
-};
+  path: "/pt-charts-tools-hub/",
+  ogType: "website",
+});
 
 export default function PTChartsToolsHubPage() {
   const popularItems = POPULAR_SLUGS.map((slug) => {

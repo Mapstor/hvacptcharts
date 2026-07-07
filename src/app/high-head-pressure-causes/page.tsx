@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,12 +19,12 @@ import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 const PAGE_URL = `${SITE_URL}/high-head-pressure-causes/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "High Head Pressure Causes — HVAC Diagnostic Decision Tree (8 Root Causes)",
   description:
     "Diagnostic decision tree for high-side (head) pressure problems on HVAC systems. Eight root causes — condenser fouling, overcharge, non-condensables, restriction, high ambient, compressor wear — with diagnostic procedures, service problems, and SVG decision flow. Sourced from ACCA Manual T, ASHRAE Handbook of Refrigeration 2022.",
-  alternates: { canonical: PAGE_URL },
-};
+  path: "/high-head-pressure-causes/",
+});
 
 const STEPS = [
   {

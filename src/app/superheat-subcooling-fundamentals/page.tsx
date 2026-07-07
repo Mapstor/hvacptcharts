@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,12 +19,12 @@ import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 const PAGE_URL = `${SITE_URL}/superheat-subcooling-fundamentals/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Superheat & Subcooling Fundamentals — HVAC Reference Guide",
   description:
     "Complete reference on superheat and subcooling for HVAC technicians: what they are, how to measure them, target values by system type, diagnostic patterns with worked examples, and common pitfalls. Sourced from ACCA Manual T, ASHRAE Handbook of Refrigeration 2022, and AHRI Standard 540.",
-  alternates: { canonical: PAGE_URL },
-};
+  path: "/superheat-subcooling-fundamentals/",
+});
 
 const FAQS = [
   {

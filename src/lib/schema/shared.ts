@@ -3,7 +3,10 @@
  * Per docs/spec/06-SCHEMA_INVENTORY.md §Shared entities.
  */
 
+import type { Metadata } from "next";
+
 export const SITE_URL = "https://hvacptcharts.com";
+export const SITE_NAME = "HVAC PT Charts";
 
 export const ORG = {
   "@type": "Organization",
@@ -53,6 +56,73 @@ export function enrichArticle(
     dateModified: opts.dateModified ?? BUILD_DATE,
     ...(opts.articleSection && { articleSection: opts.articleSection }),
     ...(opts.wordCount && { wordCount: opts.wordCount }),
+  };
+}
+
+/**
+ * Per-page metadata helper — the fix for the openGraph/twitter inheritance
+ * trap. Setting only `metadata.title/description/canonical` in a page.tsx
+ * causes openGraph.title / og:url / og:description / twitter:* to inherit
+ * from the root layout (i.e. every page emits the homepage OG tags). Next.js
+ * does NOT auto-mirror `metadata.title` into `metadata.openGraph.title` when
+ * the parent layout has an explicit openGraph block — that trap is why 46
+ * pages leaked homepage OG. See refrigerant/[slug]/page.tsx code comment.
+ *
+ * Task 1 (2026-07): use everywhere except the homepage (deliberate inherit)
+ * and the refrigerant [slug] template + 22 pages that had bespoke separate
+ * og/twitter copy — those are handled in Task 3 alongside the CTR rewrite.
+ *
+ * `title.absolute` explicitly overrides the root layout's `title.template`
+ * so the returned title is the exact string passed in — no " | HVAC PT
+ * Charts" suffix. Sitename appears as `og:site_name` instead.
+ */
+export interface PageMetadataInput {
+  /** Page title — used verbatim (no template suffix). Aim ≤60 rendered chars. */
+  title: string;
+  /** Meta description. Aim 150-160 chars for SERP display. */
+  description: string;
+  /** Absolute path from origin. Must start and end with "/". Example: "/pt-calculator/". */
+  path: string;
+  /** OpenGraph type. Defaults to "article"; use "website" for hubs and homepage-like pages. */
+  ogType?: "website" | "article";
+  /** OG image path or URL. Defaults to the Next.js metadata route "/opengraph-image". */
+  ogImage?: string;
+  /** Twitter image path or URL. Defaults to the Next.js metadata route "/twitter-image". */
+  twitterImage?: string;
+  /** Set true to noindex/nofollow (e.g. internal preview routes). */
+  noIndex?: boolean;
+}
+
+export function pageMetadata(input: PageMetadataInput): Metadata {
+  if (!input.path.startsWith("/") || !input.path.endsWith("/")) {
+    throw new Error(
+      `pageMetadata: path must start and end with "/", got "${input.path}". ` +
+        `Site uses trailingSlash: true so paths are always "/foo/" form.`,
+    );
+  }
+  const url = `${SITE_URL}${input.path}`;
+  const ogImage = input.ogImage ?? "/opengraph-image";
+  const twitterImage = input.twitterImage ?? "/twitter-image";
+  return {
+    title: { absolute: input.title },
+    description: input.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: input.title,
+      description: input.description,
+      url,
+      type: input.ogType ?? "article",
+      siteName: SITE_NAME,
+      locale: "en_US",
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: input.title,
+      description: input.description,
+      images: [twitterImage],
+    },
+    ...(input.noIndex ? { robots: { index: false, follow: false } } : {}),
   };
 }
 

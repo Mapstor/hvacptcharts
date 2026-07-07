@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { refrigerants } from "@/data/refrigerants";
 import { HubPage } from "@/components/hub/HubPage";
-import { SITE_URL } from "@/lib/schema/shared";
+import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "HVAC Calculators — Superheat, Subcooling, PT, Comparison, Diagnostic",
   description:
     "Free HVAC calculators built on verified CoolProp 7.2.0 saturation data: superheat (dew curve), subcooling (bubble curve), PT lookup, combined diagnostic, charge calculator, retrofit compatibility, comparison tool, saturation properties. Imperial and metric units, mobile-friendly, no signup.",
-  alternates: { canonical: `${SITE_URL}/calculators-hub/` },
-};
+  path: "/calculators-hub/",
+  ogType: "website",
+});
 
 export default function CalculatorsHubPage() {
   return (

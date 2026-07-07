@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Table as TableIcon } from "lucide-react";
 import { refrigerants } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { SafetyClassTable } from "@/components/reference/SafetyClassTable";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
@@ -12,12 +12,12 @@ import { Panel } from "@/components/calculators/shared/ServiceProblem";
 const PAGE_URL = `${SITE_URL}/refrigerant-safety-classifications/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Refrigerant Safety Classifications — ASHRAE 34",
   description:
     "Searchable table of every common HVAC refrigerant classified per ANSI/ASHRAE Standard 34-2022. A1, A2L, A2, A3, B1, B2L explained with the full table of 61 refrigerants.",
-  alternates: { canonical: PAGE_URL },
-};
+  path: "/refrigerant-safety-classifications/",
+});
 
 function buildSchema() {
   return [

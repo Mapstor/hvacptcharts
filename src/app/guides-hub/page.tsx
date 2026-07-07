@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { refrigerants } from "@/data/refrigerants";
 import { HubPage } from "@/components/hub/HubPage";
-import { SITE_URL } from "@/lib/schema/shared";
+import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "HVAC Guides — Refrigerant, Charging, and System References",
   description:
     "Reference guides for HVAC professionals: PT chart reading, superheat and subcooling fundamentals, refrigerant comparisons, safety classification, and regulatory context.",
-  alternates: { canonical: `${SITE_URL}/guides-hub/` },
-};
+  path: "/guides-hub/",
+  ogType: "website",
+});
 
 export default function GuidesHubPage() {
   return (

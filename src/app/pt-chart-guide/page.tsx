@@ -17,19 +17,19 @@ import {
   Waves,
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { getPressureAtTempF, getRefrigerant, refrigerants } from "@/data/refrigerants";
 import { RefrigerantPTCurve } from "@/components/refrigerant/RefrigerantPTCurve";
 
 const PAGE_URL = `${SITE_URL}/pt-chart-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "How to Read a PT Chart — HVAC Reference",
   description:
     "Field-tech guide to refrigerant pressure-temperature charts: what they show, how to read bubble vs dew columns, what temperature glide means, why some charts truncate above the critical point.",
-  alternates: { canonical: PAGE_URL },
-};
+  path: "/pt-chart-guide/",
+});
 
 const FAQS = [
   {

@@ -3,19 +3,19 @@ import Link from "next/link";
 import { Table as TableIcon } from "lucide-react";
 import { refrigerants } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 
 const PAGE_URL = `${SITE_URL}/about-us/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About HVAC PT Charts",
   description:
     "About HVAC PT Charts: a field reference for HVAC professionals with verified pressure-temperature data for 61 refrigerants, calculators for daily service work, and structural guarantees that the data is correct.",
-  alternates: { canonical: PAGE_URL },
-};
+  path: "/about-us/",
+});
 
 export default function AboutPage() {
   return (

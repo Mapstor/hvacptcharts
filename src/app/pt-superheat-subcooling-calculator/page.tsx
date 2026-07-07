@@ -14,7 +14,7 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
-import { SITE_URL } from "@/lib/schema/shared";
+import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
@@ -53,12 +53,12 @@ const FAQS = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Combined PT, Superheat & Subcooling Calculator — Eight-Pattern Diagnostic",
   description:
     "Free combined HVAC diagnostic calculator for 50+ refrigerants. Enter both suction and liquid line readings; get SH, SC, and the eight-pattern root cause matrix (undercharge, overcharge, restriction, fouling, TXV failure, non-condensables). Correct dew/bubble curve math for zeotropic blends. Sourced from ACCA Manual T and ASHRAE Handbook of Refrigeration 2022.",
-  alternates: { canonical: `${SITE_URL}/pt-superheat-subcooling-calculator/` },
-};
+  path: "/pt-superheat-subcooling-calculator/",
+});
 
 export default function CombinedCalculatorPage() {
   return (

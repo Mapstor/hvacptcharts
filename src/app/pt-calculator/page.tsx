@@ -15,7 +15,7 @@ import {
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { RefrigerantGlide } from "@/components/refrigerant/RefrigerantGlide";
-import { SITE_URL } from "@/lib/schema/shared";
+import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
@@ -54,12 +54,12 @@ const FAQS = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "PT Calculator — Refrigerant Saturation Pressure & Temperature Lookup",
   description:
     "Bidirectional pressure-temperature calculator for 50+ HVAC refrigerants with bubble/dew handling for zeotropic blends. Verified CoolProp 7.2.0 data, worked examples for residential AC, commercial refrigeration, chillers, mobile AC, transcritical CO2.",
-  alternates: { canonical: `${SITE_URL}/pt-calculator/` },
-};
+  path: "/pt-calculator/",
+});
 
 export default function PtCalculatorPage() {
   return (
