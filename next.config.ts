@@ -52,6 +52,11 @@ const nextConfig: NextConfig = {
       // ── /refrigerant/ index: WP had a list of all 61; our homepage hosts the browser
       { source: "/refrigerant", destination: "/", statusCode: 301 },
 
+      // ── Stray /r-410a/ URL (never a real page — audit found leftover
+      // external inbound links pointing here). Redirect to the canonical
+      // refrigerant detail page.
+      { source: "/r-410a", destination: "/refrigerant/r-410a/", statusCode: 301 },
+
       // /refrigerant-prices-guide/ — PORTED (regulatory + market mechanics, no spot prices)
       // Carrier 410A charging chart: PORTED — page now lives at the canonical
       // URL with chart table, R-410A pressure cross-reference, 3 worked
@@ -78,8 +83,23 @@ const nextConfig: NextConfig = {
       // /hvac-energy-management-guide/ — PORTED (auditing + benchmarking + RCx + FDD + M&V + BPS)
       // /hvac-building-automation-guide/ — PORTED (commercial BMS architecture + Guideline 36 + cybersecurity)
 
-      // ── WordPress cruft: author archive page, no SEO value
-      { source: "/author/infohvacptcharts-com", destination: "/", statusCode: 301 },
+      // ── WordPress cruft (Task 5, 2026-07): sitemap variants, taxonomy
+      // archives, and author archives all redirect to the appropriate live
+      // destination. Wildcards catch every WP-generated URL pattern that
+      // Google indexed during the WordPress era so we don't leak equity
+      // through soft-404s during the recrawl window.
+      // /wp-sitemap*.xml matches /wp-sitemap.xml and every numbered
+      // sub-sitemap (wp-sitemap-posts-1.xml, wp-sitemap-taxonomies-cat-1.xml,
+      // etc.); all go to the canonical Next.js sitemap.
+      // Named-param+regex form is what path-to-regexp v6 accepts — plain
+      // `:rest*` is rejected because the * modifier requires a `/` prefix.
+      { source: "/wp-sitemap:rest(.*)", destination: "/sitemap.xml", statusCode: 301 },
+      { source: "/category/:path*", destination: "/", statusCode: 301 },
+      { source: "/tag/:path*", destination: "/", statusCode: 301 },
+      { source: "/author/:path*", destination: "/", statusCode: 301 },
+      // WP feeds — the site's Atom feed lives at /feed.xml.
+      { source: "/feed", destination: "/feed.xml", statusCode: 301 },
+      { source: "/feed/", destination: "/feed.xml", statusCode: 301 },
 
       // ──────────────────────────────────────────────────────────────────
       // External (ads.txt) — Raptive serves the authoritative file on

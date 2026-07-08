@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm run verify-data && next build && pnpm run verify-metadata",
+    "build": "pnpm run verify-redirects && pnpm run verify-data && next build && pnpm run verify-metadata",
     "start": "next start",
     "lint": "eslint",
     "generate-data": "node scripts/generate-refrigerant-data.mjs",
     "generate-data:python": "python3 scripts/generate-refrigerant-data.py",
     "verify-data": "tsx scripts/run-verify.ts",
     "verify-metadata": "tsx scripts/verify-metadata.ts",
+    "verify-redirects": "tsx scripts/verify-redirects.ts",
     "validate-schema": "tsx scripts/validate-schema.ts"
   },
   "dependencies": {

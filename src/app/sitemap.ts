@@ -118,11 +118,19 @@ const STATIC_PAGES: StaticEntry[] = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  // Task 5, 2026-07: use the refrigerant dataset generation timestamp as the
+  // static-page "last content change" hint rather than build time. The dataset
+  // regen is the largest content-affecting event on the site; static pages
+  // usually change together with (or trail) a data regen. Google treats
+  // sitemap lastModified as a hint, not a claim of individual-page changes,
+  // so tying it to a real content event is more truthful than build time.
+  const staticLastMod = new Date(
+    refrigerants[0]?.dataSource.ptChartGeneratedAt ?? Date.now(),
+  );
 
   const staticEntries = STATIC_PAGES.map((p) => ({
     url: `${BASE_URL}${p.url}`,
-    lastModified: now,
+    lastModified: staticLastMod,
     changeFrequency: p.changeFrequency,
     priority: p.priority,
   }));
