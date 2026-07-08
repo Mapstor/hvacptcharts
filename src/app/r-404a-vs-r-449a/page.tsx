@@ -7,10 +7,10 @@ import { pageMetadata } from "@/lib/schema/shared";
 const SLUG = "r-404a-vs-r-449a";
 
 export const metadata: Metadata = pageMetadata({
-  title: "R-404A vs R-449A — Pressures, Glide, Retrofit, GWP Reduction",
+  title: "R404A vs R449A: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R-404A vs R-449A for commercial refrigeration: quaternary HFC blend retrofit for R-404A with 65% GWP reduction (1397 vs 3922). Same POE oil; ~10°F glide.",
-  path: `/${SLUG}/`,
+    "R404A vs R449A for commercial refrigeration: R449A is the HFO/HFC quaternary retrofit. Same POE oil, 9.5°F glide, GWP cut 67% (3922→1282). Standard retrofit.",
+  path: "/r-404a-vs-r-449a/",
 });
 
 export default function R404AvsR449APage() {

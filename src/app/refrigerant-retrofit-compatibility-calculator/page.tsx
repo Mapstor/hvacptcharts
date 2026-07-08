@@ -50,9 +50,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Refrigerant Retrofit Compatibility Calculator",
+  title: "Retrofit Compatibility Calculator: Any Refrigerant Pair (Free)",
   description:
-    "Evaluate refrigerant retrofit feasibility from any existing refrigerant to any target. Five-criterion analysis: lubricant, safety class, pressure, glide, application. Verdict from 'drop-in' to 'not feasible' with specific recommendations.",
+    "5-criterion retrofit compatibility check for any refrigerant pair: lubricant, safety class, pressure, glide, and application match with drop-in verdict.",
   path: "/refrigerant-retrofit-compatibility-calculator/",
 });
 

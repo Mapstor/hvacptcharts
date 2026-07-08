@@ -58,9 +58,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Superheat Calculator — HVAC Suction-Line Superheat with Dew-Curve Math",
+  title: "Superheat Calculator: For Any Refrigerant (+ Target Chart)",
   description:
-    "Bidirectional superheat calculator for 50+ HVAC refrigerants with correct dew-curve handling for zeotropic blends (R-407C, R-454C, R-455A). ACCA Manual T target table, 10 worked service problems, AHRI 540 compressor minimums, sourced from CoolProp 7.2.0 saturation data.",
+    "Free superheat calculator for 50+ refrigerants with dew-curve math for blends. Suction PSIG + line temp → superheat, ACCA Manual T targets, diagnostics.",
   path: "/superheat-calculator/",
 });
 

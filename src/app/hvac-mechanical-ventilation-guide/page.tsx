@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, Wind, Droplet, AlertTriangle, ShieldCheck, ListChecks, FileCheck, Filter, Thermometer, Gauge, Snowflake, Sun } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-mechanical-ventilation-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Mechanical Ventilation Guide — ASHRAE 62.2 Sizing, ERV vs HRV, Climate Strategy, Installation",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Ventilation Guide: ASHRAE 62.2, ERV vs HRV (Free 101)",
   description:
-    "Complete residential mechanical ventilation guide: ASHRAE Standard 62.2 detailed sizing calculation, the 4 ventilation strategy types (exhaust-only, supply-only, balanced, balanced with heat/energy recovery), ERV vs HRV technology deep-dive, heat-exchanger types (fixed-plate, rotary, polymer membrane), local exhaust for kitchens and bathrooms, make-up air for high-CFM range hoods, ductwork integration with central HVAC, climate-zone strategy, commissioning + balancing, maintenance schedule, IECC + IRC requirements, IRA tax credit eligibility, and ROI analysis. Sourced from ASHRAE Standards 62.2 + 84, AHRI Standard 1060, HVI Certification Program, IRC 2021 M1505, IECC 2021 R403.6.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "Mechanical Ventilation Guide — ASHRAE 62.2 + ERV vs HRV + Climate Strategy",
-    description: "ASHRAE 62.2 detailed sizing, ERV/HRV selection, ductwork integration, commissioning. Companion to the IAQ guide.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Mechanical Ventilation Guide — ASHRAE 62.2 + ERV/HRV",
-    description: "Complete residential ventilation methodology with primary sourcing.",
-    images: ["/twitter-image"],
-  },
-};
+    "ASHRAE 62.2 mechanical ventilation sizing, ERV vs HRV selection by climate zone, installation, and controls. Companion to the load calculation guide.",
+  path: "/hvac-mechanical-ventilation-guide/",
+});
 
 const FAQS = [
   {

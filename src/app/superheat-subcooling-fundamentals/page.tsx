@@ -20,9 +20,9 @@ const PAGE_URL = `${SITE_URL}/superheat-subcooling-fundamentals/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
-  title: "Superheat & Subcooling Fundamentals — HVAC Reference Guide",
+  title: "Superheat And Subcooling Explained: What Are They In HVAC? (Guide)",
   description:
-    "Complete reference on superheat and subcooling for HVAC technicians: what they are, how to measure them, target values by system type, diagnostic patterns with worked examples, and common pitfalls. Sourced from ACCA Manual T, ASHRAE Handbook of Refrigeration 2022, and AHRI Standard 540.",
+    "What superheat and subcooling mean, how to measure both, target ranges by metering-device type (TXV 8–15°F SH), and the 4-pattern diagnostic matrix.",
   path: "/superheat-subcooling-fundamentals/",
 });
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, Sun, Snowflake, Home, Users, AlertTriangle, BookOpen, ListChecks, Gauge } from "lucide-react";
 import { refrigerants } from "@/data/refrigerants";
-import { SITE_URL } from "@/lib/schema/shared";
+import { SITE_URL, pageMetadata } from "@/lib/schema/shared";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { HvacLoadCalculator } from "@/components/calculators/HvacLoadCalculator";
 import {
@@ -19,26 +19,12 @@ import { calculateLoad } from "@/lib/load-calc";
 const PAGE_URL = `${SITE_URL}/hvac-load-calculator/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Load Calculator — Manual J-Style Cooling & Heating BTU/hr by Climate Zone",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Load Calculator: Manual J Cooling & Heating Load (Free)",
   description:
-    "Compute residential cooling tons and heating BTU/hr from floor area, climate zone, construction era, window area, and occupancy. Component breakdown (walls, windows, roof, infiltration, people, equipment), sensible-vs-latent split, equipment-sizing guidance with oversizing warnings. Quick Manual J estimate within ±20% of full report.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Load Calculator — Cooling Tons + Heating BTU/hr by Climate Zone",
-    description:
-      "Quick Manual J residential load estimate. Component breakdown, sensible/latent split, equipment sizing with oversizing warnings.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Load Calculator — Quick Manual J Estimate",
-    description: "Residential cooling tons + heating BTU/hr from 7 inputs. Component breakdown, sizing guidance.",
-    images: ["/twitter-image"],
-  },
-};
+    "Free HVAC load calculator: enter climate zone, area, orientation, and construction; get Manual J cooling and heating load with equipment sizing guidance.",
+  path: "/hvac-load-calculator/",
+});
 
 const r0 = (n: number) => (Number.isFinite(n) ? Math.round(n).toLocaleString() : "—");
 const r2 = (n: number) => (Number.isFinite(n) ? n.toFixed(2) : "—");

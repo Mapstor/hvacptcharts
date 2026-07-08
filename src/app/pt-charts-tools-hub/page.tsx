@@ -8,9 +8,9 @@ const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().t
 const POPULAR_SLUGS = ["r-410a", "r-22", "r-134a", "r-32", "r-404a", "r-454b", "r-407c", "r-1234yf"];
 
 export const metadata: Metadata = pageMetadata({
-  title: "PT Charts & Reference Tools — All 61 Refrigerants",
+  title: "PT Charts For 61 Refrigerants: Tables, Tools, PDFs (Free)",
   description:
-    "Saturation pressure-temperature charts for 61 HVAC refrigerants, plus comparison tools, operating-pressure references, and the sortable safety / GWP reference tables.",
+    "Saturation PT charts for 61 HVAC refrigerants, plus overlay comparison tool, operating-pressure references, and sortable ASHRAE 34 safety and GWP tables.",
   path: "/pt-charts-tools-hub/",
   ogType: "website",
 });

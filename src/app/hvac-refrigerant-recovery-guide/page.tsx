@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, AlertTriangle, BookOpen, ShieldCheck, ListChecks, FileCheck, Wrench, Droplet, Zap, Flame } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-refrigerant-recovery-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "Refrigerant Recovery Guide — EPA Section 608 Procedure, Equipment, Certification, and A2L Handling",
+export const metadata: Metadata = pageMetadata({
+  title: "Refrigerant Recovery Guide: EPA 608 Steps + A2L Safety (Free 101)",
   description:
-    "Complete guide to refrigerant recovery under EPA Section 608: certification levels (Type I/II/III/Universal), recovery vs recycling vs reclamation, required equipment per AHRI 740, recovery procedures by equipment type, evacuation level requirements per 40 CFR § 82.156, recovery cylinder management, recordkeeping (40 CFR § 82.166), penalty exposure, and A2L flammability handling. Sourced from EPA Section 608 final rules, AHRI 700 and 740, ASHRAE Standard 15.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "Refrigerant Recovery Guide — EPA Section 608 Compliance + Procedures + A2L Safety",
-    description: "Full EPA 608 procedure, equipment, certification levels, recordkeeping, penalties, and A2L handling for the AIM Act transition.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Refrigerant Recovery Guide — EPA 608, Procedures, A2L Safety",
-    description: "Sourced from 40 CFR Part 82, AHRI standards. Covers certification, equipment, procedure, and A2L transition.",
-    images: ["/twitter-image"],
-  },
-};
+    "EPA Section 608 refrigerant recovery procedure step by step, plus A2L handling and cylinder safety. Applies to R22, R410A, R454B, R32 service work.",
+  path: "/hvac-refrigerant-recovery-guide/",
+});
 
 const FAQS = [
   {

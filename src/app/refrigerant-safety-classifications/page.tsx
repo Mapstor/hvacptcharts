@@ -13,9 +13,9 @@ const PAGE_URL = `${SITE_URL}/refrigerant-safety-classifications/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
-  title: "Refrigerant Safety Classifications — ASHRAE 34",
+  title: "Refrigerant Safety Classes: A1, A2L, A3, B1 Explained (ASHRAE 34)",
   description:
-    "Searchable table of every common HVAC refrigerant classified per ANSI/ASHRAE Standard 34-2022. A1, A2L, A2, A3, B1, B2L explained with the full table of 61 refrigerants.",
+    "ASHRAE 34-2022 classifications for 61 refrigerants in one sortable table: toxicity, flammability, and charge-limit implications under UL 60335-2-40.",
   path: "/refrigerant-safety-classifications/",
 });
 

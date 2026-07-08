@@ -8,6 +8,99 @@ import type { Metadata } from "next";
 export const SITE_URL = "https://hvacptcharts.com";
 export const SITE_NAME = "HVAC PT Charts";
 
+/**
+ * SEO-facing name: unhyphenated designation for titles/descriptions/H1s.
+ * "R-410A" → "R410A", "R-1234ze(E)" → "R1234ze(E)", "R-744" → "R744".
+ * Body prose, schema, and dataset displayNames keep the hyphenated form.
+ * See Task 3 §0 (2026-07): the assertion in scripts/verify-metadata.ts
+ * rejects "R-\d" patterns in SERP surfaces exactly to force this.
+ *
+ * Special-case: ASHRAE "cyclic" designations carry a "C" prefix before the
+ * number (R-C318 is a cyclobutane). The dataset stores those with the
+ * lowercase "c" in the displayName, but the SERP-facing form is uppercase
+ * ("RC318"). This regex uppercases any leading letters between "R-" and
+ * the first digit so the fix also applies to any future R-Cxxx entries
+ * added to the dataset — no per-slug allowlist required.
+ */
+export function seoName(displayName: string): string {
+  return displayName.replace(
+    /^R-([a-z]+)?/,
+    (_match, letters) => "R" + (letters ? letters.toUpperCase() : ""),
+  );
+}
+
+/**
+ * Trade / common name annotations for the four natural refrigerants where
+ * "R744 (CO2)" etc. still fits the ≤68-char title budget. Everything else
+ * uses the bare seoName.
+ */
+export const COMMON_NAME: Record<string, string> = {
+  "r-744": "CO2",
+  "r-290": "Propane",
+  "r-600a": "Isobutane",
+  "r-717": "Ammonia",
+};
+
+/**
+ * Refrigerant page metadata generator. Task 3 (2026-07) makes the 61
+ * refrigerant page titles/descriptions fully deterministic from the dataset
+ * so future refrigerants added to the config auto-get compliant SERP
+ * surfaces without hand-editing MDX. Common-name variant is appended when
+ * the fluid appears in COMMON_NAME AND the combined title still fits.
+ *
+ * MDX may still provide `metaDescription` as an escape hatch for curated
+ * copy on specific fluids (r-516a is the seed case).
+ */
+export interface RefrigerantMetadataInput {
+  slug: string;
+  displayName: string;
+  minTempF: number;
+  maxTempF: number;
+  pressure70F: number | null;
+  /** MDX override — used verbatim when present, ignored otherwise. */
+  metaDescriptionOverride?: string;
+}
+
+export function buildRefrigerantMetadata(input: RefrigerantMetadataInput): {
+  title: string;
+  description: string;
+  h1: string;
+} {
+  const seo = seoName(input.displayName);
+  const common = COMMON_NAME[input.slug];
+
+  const baseTitle = common
+    ? `${seo} (${common}) PT Chart: Full °F/PSIG Table (Free PDF Printable)`
+    : `${seo} PT Chart: Full °F/PSIG Table (Free PDF Printable)`;
+  // If the "Printable" tail pushes us past 68c (long designations like
+  // R1336mzz(Z)), drop that word for the short variant. Common-name form
+  // always gets the shorter variant to stay in budget.
+  const title = baseTitle.length <= 68
+    ? baseTitle
+    : common
+      ? `${seo} (${common}) PT Chart: Full °F/PSIG Table (Free PDF)`
+      : `${seo} PT Chart: Full °F/PSIG Table (Free PDF)`;
+
+  const h1 = common ? `${seo} (${common}) PT Chart` : `${seo} PT Chart`;
+
+  // r-22 gets the phase-down nuance instead of the chart-vocab tail so
+  // reclaim-legal techs don't read the description as "all use banned".
+  // Everything else uses the mechanical "1°F steps" pattern with an
+  // anchored 70°F saturation value from the dataset.
+  let description: string;
+  if (input.metaDescriptionOverride) {
+    description = input.metaDescriptionOverride;
+  } else if (input.slug === "r-22") {
+    description = `Complete ${seo} saturation pressure-temperature chart from ${input.minTempF} to ${input.maxTempF}°F in 1°F steps. Production banned 2020 — reclaimed supply legal for service.`;
+  } else if (input.pressure70F !== null) {
+    description = `${seo} saturation pressure-temperature chart, 1°F steps from ${input.minTempF} to ${input.maxTempF}°F. 70°F = ${input.pressure70F.toFixed(1)} PSIG. Interactive lookup, °C/kPa toggle, free printable PDF.`;
+  } else {
+    description = `Complete ${seo} saturation pressure-temperature chart, 1°F steps from ${input.minTempF} to ${input.maxTempF}°F. Free interactive lookup with °C/kPa toggle, printable shop PDF table.`;
+  }
+
+  return { title, description, h1 };
+}
+
 export const ORG = {
   "@type": "Organization",
   "@id": `${SITE_URL}/#organization`,

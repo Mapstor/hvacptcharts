@@ -55,9 +55,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "PT Calculator — Refrigerant Saturation Pressure & Temperature Lookup",
+  title: "HVAC PT Calculator: Calculate Pressure And Temperature (61 Refrigerants)",
   description:
-    "Bidirectional pressure-temperature calculator for 50+ HVAC refrigerants with bubble/dew handling for zeotropic blends. Verified CoolProp 7.2.0 data, worked examples for residential AC, commercial refrigeration, chillers, mobile AC, transcritical CO2.",
+    "Instant saturation lookup for 61 refrigerants: temperature → PSIG or pressure → °F, bubble/dew handled for blends. 70°F R410A = 201.8 PSIG saturation.",
   path: "/pt-calculator/",
 });
 

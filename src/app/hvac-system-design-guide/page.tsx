@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, Gauge, Wind, Wrench, ListChecks, FileCheck, AlertTriangle, Thermometer, Droplet, Snowflake, Sun, Zap, ShieldCheck } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-system-design-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC System Design Guide — Complete Manual J → S → D → T Process from Load to Commissioning",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC System Design: Manual J → S → D → T Process (Free 101)",
   description:
-    "Complete residential HVAC system design methodology: the full ACCA design cascade (Manual J load calculation → Manual S equipment selection → Manual D ductwork → Manual T commissioning), refrigerant selection under AIM Act, distribution-type choice (ducted vs ductless vs hybrid), ASHRAE 62.2 ventilation integration, zoning + controls, IAQ integration, code compliance, and the design decision matrices that determine the right system for a specific home. Sourced from ACCA Manuals J + S + D + T + QI 5, ASHRAE Handbook of Fundamentals 2021, ASHRAE Standards 62.2 + 90.2 + 111, AHRI Standards 210/240, IRC 2021, IECC 2021, EPA AIM Act + Section 608.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC System Design Guide — Manual J → S → D → T Complete Process",
-    description: "Complete design cascade with cross-reference to all calculators and component guides.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC System Design Guide — Complete Design Cascade",
-    description: "The full ACCA Manual J → S → D → T process. Capstone reference for residential HVAC design.",
-    images: ["/twitter-image"],
-  },
-};
+    "Full ACCA design cascade: Manual J load → S equipment → D duct → T airflow verification. The design workflow behind properly-sized residential HVAC.",
+  path: "/hvac-system-design-guide/",
+});
 
 const FAQS = [
   {

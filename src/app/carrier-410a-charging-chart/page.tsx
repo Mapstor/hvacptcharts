@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, Wind, Thermometer, Gauge, ListChecks, AlertTriangle, Wrench, BookOpen } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants, getRefrigerant, getPressureAtTempF } from "@/data/refrigerants";
 import {
   FixCallout,
@@ -19,26 +19,12 @@ const PAGE_URL = `${SITE_URL}/carrier-410a-charging-chart/`;
 const R410A = getRefrigerant("r-410a");
 const PUBLISHED = R410A?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "Carrier R-410A Charging Chart — Target Superheat by Outdoor & Wet-Bulb (with PSIG Reference)",
+export const metadata: Metadata = pageMetadata({
+  title: "Carrier R410A Charging Chart: Superheat By WB & Outdoor Temp",
   description:
-    "The Carrier R-410A fixed-orifice charging chart: target superheat at every outdoor dry-bulb × indoor wet-bulb combination, plus the matching R-410A saturation pressures so you can verify charge in one visit. Step-by-step procedure, three worked examples, common-error diagnosis, and an interactive lookup.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "Carrier R-410A Charging Chart — Target Superheat by Outdoor & Wet-Bulb",
-    description:
-      "Fixed-orifice charging chart, R-410A pressure cross-reference, step-by-step procedure, worked examples, and an interactive WB×OD lookup.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Carrier R-410A Charging Chart — Fixed-Orifice Superheat Targets",
-    description: "Target superheat by outdoor & wet-bulb, with R-410A PSIG reference and worked examples.",
-    images: ["/twitter-image"],
-  },
-};
+    "Carrier R410A fixed-orifice charging chart: target superheat at every outdoor DB × indoor WB combination, matching R410A saturation, plus worked examples.",
+  path: "/carrier-410a-charging-chart/",
+});
 
 // Carrier R-410A fixed-orifice superheat chart values.
 // Source: Carrier Service Bulletin "R-410A Charging — Fixed Orifice Devices"
@@ -246,7 +232,7 @@ export default function CarrierChargingChartPage() {
 
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            The Carrier R-410A Charging Chart — Target Superheat for Every Fixed-Orifice Operating Condition
+            Carrier R410A Charging Chart: Target Superheat by Fixed-Orifice Ambient
           </h1>
           <p className="mt-4 text-lg text-zinc-700 dark:text-zinc-300">
             A complete walk-through of Carrier&apos;s fixed-orifice R-410A target-superheat chart: the chart itself, the R-410A saturation pressures it implies (so you know what to see on the manifold), three worked field examples, the full charging procedure, common-error diagnostics, and an interactive lookup. Every pressure value below comes from CoolProp 7.2.0 saturation data for R-410A; nothing is approximated or generic.

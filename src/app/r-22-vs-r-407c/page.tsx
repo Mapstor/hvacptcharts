@@ -7,10 +7,10 @@ import { pageMetadata } from "@/lib/schema/shared";
 const SLUG = "r-22-vs-r-407c";
 
 export const metadata: Metadata = pageMetadata({
-  title: "R-22 vs R-407C — Pressures, Glide, Retrofit Procedure, Capacity",
+  title: "R22 vs R407C: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R-22 vs R-407C: ternary HFC blend designed as R-22 retrofit. POE oil required (mineral oil incompatible). ~11°F temperature glide. Capacity within 5% of R-22 at typical conditions.",
-  path: `/${SLUG}/`,
+    "R22 vs R407C: R407C is the classic R22 retrofit HFC blend, ~11°F glide, pressures within 5% of R22. Standard retrofit — but POE oil required (MO incompatible).",
+  path: "/r-22-vs-r-407c/",
 });
 
 export default function R22vsR407CPage() {

@@ -7,10 +7,10 @@ import { pageMetadata } from "@/lib/schema/shared";
 const SLUG = "r-22-vs-r-32";
 
 export const metadata: Metadata = pageMetadata({
-  title: "R-22 vs R-32 — Lubricant, Safety Class, Pressure, Capacity",
+  title: "R22 vs R32: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R-22 vs R-32: HCFC pure (production banned 2020) vs HFC pure (modern A2L). Different lubricants, different safety classes, R-32 ~70% higher pressure. Full replacement only — no retrofit path.",
-  path: `/${SLUG}/`,
+    "R22 vs R32: HCFC A1 with MO (production banned 2020) vs modern HFC A2L with POE. R32 runs ~70% higher pressure — full A2L equipment replacement, no field retrofit.",
+  path: "/r-22-vs-r-32/",
 });
 
 export default function R22vsR32Page() {

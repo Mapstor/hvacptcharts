@@ -20,9 +20,9 @@ const PAGE_URL = `${SITE_URL}/high-head-pressure-causes/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
-  title: "High Head Pressure Causes — HVAC Diagnostic Decision Tree (8 Root Causes)",
+  title: "High Head Pressure Causes: 8-Cause HVAC Diagnostic Tree",
   description:
-    "Diagnostic decision tree for high-side (head) pressure problems on HVAC systems. Eight root causes — condenser fouling, overcharge, non-condensables, restriction, high ambient, compressor wear — with diagnostic procedures, service problems, and SVG decision flow. Sourced from ACCA Manual T, ASHRAE Handbook of Refrigeration 2022.",
+    "8 root causes of HVAC high head pressure: condenser fouling, overcharge, non-condensables, restriction, high ambient, compressor wear. Diagnostic decision tree.",
   path: "/high-head-pressure-causes/",
 });
 

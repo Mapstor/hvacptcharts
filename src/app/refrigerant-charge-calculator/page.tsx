@@ -54,9 +54,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Refrigerant Charge Calculator — Line-Set Length Adjustment",
+  title: "Refrigerant Charge Calculator: How Much Freon Do I Need? (61 Types)",
   description:
-    "Compute the line-set adjustment to nameplate charge for residential and commercial split systems. Per-foot oz values from CoolProp liquid density at 100°F. Supports R-410A, R-22, R-32, R-454B, R-134a, R-407C, R-404A, R-290, R-744, and 50+ other refrigerants.",
+    "Nameplate charge + line-set length → total charge. Per-foot ounces from CoolProp liquid density at 100°F for R410A, R454B, R32, R22, R404A and more.",
   path: "/refrigerant-charge-calculator/",
 });
 

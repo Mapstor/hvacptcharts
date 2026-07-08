@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, Gauge, Wrench, Calendar, ListChecks, AlertTriangle, ShieldCheck, Wind, Thermometer, Filter, Zap, FileCheck } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-maintenance-service-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Maintenance & Service Guide — Seasonal Schedule, Annual Tune-Up Checklist, Filter Strategy, ROI Math",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Maintenance Guide: Tune-Ups, Filters, ROI (Free 101)",
   description:
-    "Complete HVAC maintenance guide: spring AC + fall furnace seasonal schedule, the 14-point annual professional tune-up checklist, MERV filter strategy by climate and household, refrigerant-side verification, combustion safety inspection, electrical checks (capacitors + contactors + motor amps), control system calibration, equipment-specific maintenance for heat pumps and ductless mini-splits, A2L safety considerations, service contract evaluation, and ROI math showing typical maintenance payback. Sourced from ACCA Standard 4 + Quality Maintenance Standard 6, ASHRAE Standards 180 + 62.2 + 52.2, EPA Section 608, NFPA 54, OSHA 1910.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Maintenance Guide — Seasonal Schedule + Annual Tune-Up + Filter Strategy + ROI",
-    description: "ACCA Standard 4 + ASHRAE 180 sourced maintenance protocol. Seasonal checklist, professional tune-up scope, equipment-specific guidance.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Maintenance & Service Guide — Schedule + Checklist + ROI",
-    description: "Seasonal schedule, 14-point tune-up checklist, filter strategy, A2L safety.",
-    images: ["/twitter-image"],
-  },
-};
+    "Seasonal HVAC maintenance schedule and 14-point tune-up checklist. Filter strategy by MERV, service ROI math, and OEM warranty requirements.",
+  path: "/hvac-maintenance-service-guide/",
+});
 
 const FAQS = [
   {

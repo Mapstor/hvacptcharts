@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, AlertTriangle, ShieldCheck, ListChecks, FileCheck, Wrench, Flame, Zap, Wind, Thermometer, Gauge, Snowflake, Droplet, Cpu } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-ductless-mini-split-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "Ductless Mini-Split & VRF Guide — Cold-Climate Heat Pumps, A2L Transition, IRA Tax Credits",
+export const metadata: Metadata = pageMetadata({
+  title: "Ductless Mini-Split Guide: Cold-Climate, A2L, VRF (Free 101)",
   description:
-    "Complete ductless mini-split + variable refrigerant flow (VRF) reference: 5-type taxonomy (single-zone, multi-zone, ducted mini-split, ceiling cassette, floor-mount), cold-climate mini-split deep dive (Mitsubishi Hyper-Heat, Daikin LV, Bosch BHP, Fujitsu Halcyon ratings to -13°F to -15°F), multi-zone branch box architecture + sizing pitfalls, commercial VRF systems (Mitsubishi City Multi, Daikin VRV, LG Multi V, Samsung DVM, Toshiba), Manual J sizing methodology, refrigerant lineset length + lift limits, electrical service + circuit sizing, condensate drainage, A2L refrigerant charge limits per ASHRAE 15, full brand vendor comparison (14 manufacturers), DIY mini-splits with explicit EPA 608 caveats (MrCool, Pioneer, Senville), common installation failures, IRA Section 25C $2,000 heat pump credit qualification, cost framework, maintenance specifics. Sourced from AHRI 210/240 + 1230, ASHRAE 15 + 34 + 90.2, EPA Section 608 + AIM Act, UL 60335-2-40, IRS 25C, ENERGY STAR.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "Ductless Mini-Split & VRF Guide — Cold-Climate, A2L, Multi-Zone, IRA Credits",
-    description: "Complete mini-split + VRF reference with brand comparison, cold-climate capability, IRA tax credit qualification.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Ductless Mini-Split & VRF Guide — Professional Reference",
-    description: "5-type taxonomy + cold-climate + multi-zone + VRF + brand lineup + IRA credits.",
-    images: ["/twitter-image"],
-  },
-};
+    "Ductless mini-split and VRF systems for residential and light commercial: cold-climate heat pump performance, A2L transition, and IRA tax credit qualifying models.",
+  path: "/hvac-ductless-mini-split-guide/",
+});
 
 const FAQS = [
   {

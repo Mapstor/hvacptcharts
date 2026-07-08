@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, AlertTriangle, ShieldCheck, ListChecks, FileCheck, Wrench, Zap, Wind, Gauge, BarChart3, TrendingUp, LineChart, Building2, Calculator } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-energy-management-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Energy Management Guide — Auditing, Benchmarking, RCx, FDD, M&V, Building Performance Standards",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Energy Management: Auditing, FDD, M&V, BPS (Free 101)",
   description:
-    "Complete energy management methodology for HVAC operations: ASHRAE Standard 211 audit framework (Level I/II/III), ENERGY STAR Portfolio Manager benchmarking per Standard 105, utility rate structure (kWh + kW + TOU + demand charges + ratchets), retrocommissioning + monitoring-based commissioning (MBCx), fault detection + diagnostics (FDD), measurement + verification per IPMVP (Options A/B/C/D), submetering + advanced metering, demand response programs, the rated-vs-operational performance gap, ASHRAE Standard 100 + ISO 50001 frameworks, Building Performance Standards (NYC Local Law 97, Boston BERDO, Seattle BAPS, Washington CBPS, Maryland BEPS), energy data analysis methodology. Sourced from ASHRAE, IPMVP, ENERGY STAR, ISO 50001, DOE FEMP.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Energy Management Guide — Auditing + Benchmarking + RCx + FDD + M&V + BPS",
-    description: "Complete operational energy management methodology — distinct from equipment efficiency.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Energy Management Guide — Operations + Verification + Compliance",
-    description: "ASHRAE audit framework, IPMVP M&V, Building Performance Standards.",
-    images: ["/twitter-image"],
-  },
-};
+    "HVAC energy auditing, benchmarking, retro-commissioning, fault detection, M&V, and building performance standards — the full facility-level program.",
+  path: "/hvac-energy-management-guide/",
+});
 
 const FAQS = [
   {

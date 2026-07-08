@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, AlertTriangle, ShieldCheck, ListChecks, FileCheck, Wrench, Flame, Zap, Wind, Thermometer, Gauge, Droplet, Eye } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-tools-equipment-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Tools & Equipment Guide — Manifolds, Vacuum Pumps, Recovery, Combustion Analyzers, Service Truck",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Tools & Equipment Guide: Manifolds, Vacuum, Recovery (Free 101)",
   description:
-    "Complete HVAC technician toolkit guide: 13 tool categories (manifold gauges + micron gauges + vacuum pumps + recovery machines + leak detectors + combustion analyzers + multimeters + clamp meters + anemometers + manometers + brazing equipment + thermal imagers + PPE), specifications + AHRI 740 + AHRI 1380 + EPA 608 + OSHA requirements, A2L-compatible equipment, brand lineups (Fieldpiece, Yellow Jacket, Fluke, Robinair, Bacharach, Testo, Inficon, FLIR, TSI, Energy Conservatory, JB Industries, NAVAC), service truck outfitting tiers, DIY vs professional toolkit matrix, calibration requirements. Sourced from EPA, AHRI, ASHRAE, OSHA, and manufacturer specifications.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Tools & Equipment Guide — Complete Professional Toolkit + Selection Criteria",
-    description: "13 tool categories, AHRI + EPA + OSHA specifications, A2L-compatible equipment, service truck outfitting tiers.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Tools & Equipment Guide — Professional Toolkit Reference",
-    description: "13 tool categories with specifications, brand lineups, and EPA 608 + AHRI compliance.",
-    images: ["/twitter-image"],
-  },
-};
+    "13 HVAC tool categories with brand lineups: manifolds, vacuum pumps, recovery, combustion analyzers, service-truck kit. EPA 608 + AHRI 740 compliance.",
+  path: "/hvac-tools-equipment-guide/",
+});
 
 const FAQS = [
   {

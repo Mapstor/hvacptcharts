@@ -9,9 +9,9 @@ const PAGE_URL = `${SITE_URL}/refrigerant-comparison-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
-  title: "Refrigerant Comparison Guide — Frameworks, Decisions, Trade-offs",
+  title: "Refrigerant Comparison Guide: 5-Axis Decision Framework",
   description:
-    "Framework for comparing HVAC refrigerants across thermodynamics, safety class, environmental impact, regulation, and field practice. Decision logic for residential AC, commercial refrigeration, chillers, and naturals.",
+    "Framework for comparing HVAC refrigerants across thermodynamics, safety class, environmental impact, regulation, and field practice — with decision logic.",
   path: "/refrigerant-comparison-guide/",
 });
 

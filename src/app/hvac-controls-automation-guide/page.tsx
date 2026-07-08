@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, Gauge, Wind, Wrench, ListChecks, FileCheck, AlertTriangle, Thermometer, Zap, Snowflake, Sun, ShieldCheck } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-controls-automation-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Controls & Automation Guide — Thermostats, Zoning, Building Automation, Smart Home Integration",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Controls Guide: Thermostats, Zoning, BAS (Free 101)",
   description:
-    "Complete residential and small-commercial HVAC controls guide: thermostat taxonomy (basic, programmable, smart, communicating), smart thermostat comparison (Ecobee, Nest, Honeywell, Mysa), heat pump balance-point + aux heat configuration, multi-zone system design, building automation systems (BAS) for commercial, communication protocols (BACnet, Modbus, KNX, Matter, Zigbee, Z-Wave), smart home integration, utility demand-response programs, commissioning, common control failures, and future trends. Sourced from ANSI/ASHRAE Standard 135 (BACnet), ASHRAE Standard 90.1, ASHRAE Guideline 36, IECC 2021 R403.1, ENERGY STAR Smart Thermostat criteria, CTA-2045 modular communications.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Controls & Automation Guide — Thermostats + Zoning + BAS + Smart Home",
-    description: "Complete controls + automation methodology with primary-source citations throughout.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Controls & Automation Guide — Thermostats, Zoning, BAS",
-    description: "Smart thermostat selection + heat pump config + BAS protocols.",
-    images: ["/twitter-image"],
-  },
-};
+    "HVAC controls landscape: thermostats, zoning, building automation systems, and Matter smart-home integration. What to specify at each system scale.",
+  path: "/hvac-controls-automation-guide/",
+});
 
 const FAQS = [
   {

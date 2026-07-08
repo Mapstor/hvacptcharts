@@ -50,9 +50,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Refrigerant PT Comparison Tool — Overlay PT Charts for Retrofit & New Equipment",
+  title: "Refrigerant PT Comparison Tool: Overlay 2–4 Curves (Free)",
   description:
-    "Overlay saturation pressure-temperature curves for 2-4 HVAC refrigerants on one chart. Visual comparison for retrofit (R-22 → R-407C, R-454C), new-equipment specification (R-32 vs R-410A vs R-454B), commercial low-GWP transitions (R-404A → R-448A → R-454C), and mobile AC (R-134a vs R-1234yf). CoolProp 7.2.0 sourced.",
+    "Overlay saturation PT curves for 2 to 4 refrigerants on one chart. Useful for R22 retrofit, R410A phase-down (R32 vs R454B), and R404A commercial transitions.",
   path: "/refrigerant-pt-comparison-tool/",
 });
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, Wind, Droplet, AlertTriangle, ShieldCheck, ListChecks, FileCheck, Filter, Thermometer, Gauge, Sun } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-indoor-air-quality-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Indoor Air Quality Guide — Pollutants, ASHRAE 62.2 Ventilation, MERV/HEPA Filtration, Humidity & Radon Control",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Indoor Air Quality: MERV, HEPA, Radon, Humidity (Free 101)",
   description:
-    "Complete residential indoor air quality guide: the 5 pollutant categories (particulate, gaseous, biological, biocidal, thermal), the 3-pillar IAQ strategy (source control + ventilation + filtration), ASHRAE 62.2 mechanical ventilation requirements, MERV vs HEPA vs alternative filtration, humidity control for IAQ, radon testing and mitigation per EPA protocol, mold prevention, CO life safety, indoor air monitoring, wildfire smoke and COVID-era IAQ considerations, code requirements, and common IAQ misconceptions. Sourced from ASHRAE Standards 62.2 + 52.2, EPA Indoor Air Quality programs, CDC + WHO guidance, IRC 2021 + IECC 2021, OSHA exposure limits.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Indoor Air Quality Guide — Pollutants + ASHRAE 62.2 + Filtration + Humidity + Radon",
-    description: "Complete IAQ methodology: source control, ventilation, filtration, humidity, radon, mold, CO. ASHRAE 62.2 + EPA sourcing throughout.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Indoor Air Quality Guide — Pollutants, Ventilation, Filtration",
-    description: "ASHRAE 62.2 + EPA + CDC sourced IAQ methodology.",
-    images: ["/twitter-image"],
-  },
-};
+    "5 pollutant categories, MERV/HEPA filter selection, ASHRAE 62.2 ventilation, humidity control, and radon mitigation for HVAC-connected IAQ programs.",
+  path: "/hvac-indoor-air-quality-guide/",
+});
 
 const FAQS = [
   {

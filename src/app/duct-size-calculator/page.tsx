@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, Gauge, ListChecks, Mountain, AlertTriangle } from "lucide-react";
 import { refrigerants } from "@/data/refrigerants";
-import { SITE_URL } from "@/lib/schema/shared";
+import { SITE_URL, pageMetadata } from "@/lib/schema/shared";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { DuctSizeCalculator } from "@/components/calculators/DuctSizeCalculator";
 import {
@@ -28,26 +28,12 @@ import {
 const PAGE_URL = `${SITE_URL}/duct-size-calculator/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "Duct Size Calculator — Round + Rectangular Sizing from CFM (ACCA Manual D Equal-Friction Method)",
+export const metadata: Metadata = pageMetadata({
+  title: "Duct Size Calculator: Round & Rectangular From CFM (Manual D)",
   description:
-    "Calculate round duct diameter from CFM and friction rate using the ACCA Manual D equal-friction method, plus Huebscher rectangular equivalents. Three worked examples (3-ton residential trunk, branch run, commercial supply), velocity limits, altitude correction, common errors, full sourcing.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "Duct Size Calculator — Round + Rectangular Sizing from CFM (ACCA Manual D)",
-    description:
-      "Equal-friction duct sizing with Huebscher round⇔rectangular, velocity limits by application, altitude correction, and 3 worked examples.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Duct Size Calculator — ACCA Manual D Equal-Friction Method",
-    description: "CFM → round duct diameter + rectangular equivalents, with velocity limits and altitude correction.",
-    images: ["/twitter-image"],
-  },
-};
+    "Free HVAC duct size calculator: enter CFM and get diameter or width×height using the ACCA Manual D equal-friction method. Includes friction rate reference.",
+  path: "/duct-size-calculator/",
+});
 
 const r2 = (n: number) => (Number.isFinite(n) ? n.toFixed(2) : "—");
 const r1 = (n: number) => (Number.isFinite(n) ? n.toFixed(1) : "—");

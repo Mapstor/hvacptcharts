@@ -9,9 +9,9 @@ const PAGE_URL = `${SITE_URL}/refrigerant-gwp-rankings/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
-  title: "Refrigerant GWP Rankings — IPCC AR5 100-Year Values",
+  title: "Refrigerant GWP Rankings: All 61 Compared (AR5 & AR6)",
   description:
-    "Sortable table of HVAC refrigerant Global Warming Potential values per IPCC AR5 (and AR6 where different). Filter by type, safety class, or GWP bucket. Includes EU F-Gas and AIM Act threshold markers.",
+    "Sortable GWP table for 61 refrigerants from R744 (GWP 1) to R404A (3922). AIM Act 700 and EU F-Gas 150 thresholds marked. AR5 vs AR6 side by side.",
   path: "/refrigerant-gwp-rankings/",
 });
 

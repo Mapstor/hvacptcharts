@@ -54,9 +54,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Combined PT, Superheat & Subcooling Calculator — Eight-Pattern Diagnostic",
+  title: "Superheat & Subcooling Calculator: Low & High Side (Any Refrigerant)",
   description:
-    "Free combined HVAC diagnostic calculator for 50+ refrigerants. Enter both suction and liquid line readings; get SH, SC, and the eight-pattern root cause matrix (undercharge, overcharge, restriction, fouling, TXV failure, non-condensables). Correct dew/bubble curve math for zeotropic blends. Sourced from ACCA Manual T and ASHRAE Handbook of Refrigeration 2022.",
+    "Enter both sides: suction + liquid PSIG and line temps → SH, SC, and an 8-pattern charge diagnosis (undercharge, overcharge, airflow, metering).",
   path: "/pt-superheat-subcooling-calculator/",
 });
 

@@ -25,9 +25,9 @@ const PAGE_URL = `${SITE_URL}/pt-chart-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
-  title: "How to Read a PT Chart — HVAC Reference",
+  title: "PT Chart Guide: How To Read A PT Chart Like A Pro (7 Key Points)",
   description:
-    "Field-tech guide to refrigerant pressure-temperature charts: what they show, how to read bubble vs dew columns, what temperature glide means, why some charts truncate above the critical point.",
+    "Reading pressure-temperature charts step by step: gauge PSIG vs absolute, bubble vs dew for blends, glide, and the superheat/subcooling workflow.",
   path: "/pt-chart-guide/",
 });
 

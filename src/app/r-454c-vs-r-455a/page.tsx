@@ -7,10 +7,10 @@ import { pageMetadata } from "@/lib/schema/shared";
 const SLUG = "r-454c-vs-r-455a";
 
 export const metadata: Metadata = pageMetadata({
-  title: "R-454C vs R-455A — Same GWP, Different Glide, Different Pressure",
+  title: "R454C vs R455A: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R-454C vs R-455A: both A2L commercial refrigeration blends with GWP 148. R-455A has more glide (22°F vs 14°F) and higher pressures due to 3% R-744 content.",
-  path: `/${SLUG}/`,
+    "R454C vs R455A for commercial refrigeration: both A2L, both GWP 148. R455A has 22°F glide vs R454C's 14°F, and higher pressures from 3% R744 content.",
+  path: "/r-454c-vs-r-455a/",
 });
 
 export default function R454CvsR455APage() {

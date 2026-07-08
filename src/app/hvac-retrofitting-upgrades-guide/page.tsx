@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, AlertTriangle, ShieldCheck, ListChecks, FileCheck, Wrench, Flame, Zap, Wind, Thermometer, Gauge, Snowflake, ArrowUpRight, Calculator } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-retrofitting-upgrades-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Retrofitting & Upgrades Guide — R-22 + A2L Transition, Heat Pump Conversion, IRA Tax Credits",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Retrofit Guide: R22 Phase-Out, A2L, Heat Pumps (Free 101)",
   description:
-    "Complete HVAC retrofit + upgrade reference: R-22 phase-out reality (EPA Section 605/606 + retrofit chemistry honest assessment), AIM Act + R-410A → A2L manufacturing transition January 2025 (40 CFR Part 84), heat pump retrofit (fuel transition + cold climate + dual-fuel + electrical service), efficiency upgrades (SEER2/HSPF2/AFUE2 per 10 CFR Part 430), envelope-first methodology, repair vs replace decision framework (age + refrigerant + failure type + 50%/85% rule), IRA 25C/25D tax credits + HEEHRA/HOMES rebates per IRS guidance, ASHRAE 30-year equipment service life data, cost + payback framework. Sourced from EPA, IRS, ASHRAE 90.2, DOE 10 CFR Part 430, ENERGY STAR.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Retrofitting & Upgrades Guide — R-22 Phase-Out + A2L Transition + Heat Pump + IRA Credits",
-    description: "R-22 retrofit reality, A2L transition, heat pump conversion, SEER2 upgrades, IRA tax credits, repair vs replace decision matrix.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Retrofitting & Upgrades Guide — Decision Matrix + IRA Credits",
-    description: "Complete retrofit methodology + repair vs replace framework.",
-    images: ["/twitter-image"],
-  },
-};
+    "R22 phase-out planning, A2L equipment transition, heat pump conversion economics, IRA tax credits, and the repair-vs-replace decision framework.",
+  path: "/hvac-retrofitting-upgrades-guide/",
+});
 
 const FAQS = [
   {
@@ -146,7 +133,7 @@ export default function HvacRetrofittingUpgradesGuidePage() {
 
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            HVAC Retrofitting & Upgrades Guide — R-22 Phase-Out, R-410A → A2L Transition, Heat Pump Conversion, SEER2 Efficiency, IRA Tax Credits, and Repair vs Replace Decision Matrix
+            HVAC Retrofitting & Upgrades Guide — R22 Phase-Out, R410A → A2L Transition, Heat Pump Conversion, SEER2 Efficiency, IRA Tax Credits, and Repair vs Replace Decision Matrix
           </h1>
           <p className="mt-4 text-lg text-zinc-700 dark:text-zinc-300">
             Complete HVAC retrofit + upgrade reference covering three concurrent transitions reshaping residential and commercial HVAC: the R-22 phase-out reality (EPA Section 605/606 + honest assessment of &quot;drop-in&quot; retrofit chemistry), the AIM Act R-410A → A2L manufacturing transition that took effect January 1, 2025 (40 CFR Part 84 — and the critical fact that existing R-410A equipment is NOT A2L-convertible), and the gas-to-electric heat pump conversion driven by IRA incentives + cold-climate heat pump technology. Plus efficiency upgrade economics (SEER2/HSPF2/AFUE2 per 10 CFR Part 430), envelope-first retrofit methodology per BPI/ENERGY STAR, the complete repair-vs-replace decision framework (age + refrigerant + failure type + 50% rule), full IRA Section 25C ($2,000 heat pump credit + $1,200 envelope cap) + Section 25D (30% uncapped for geothermal) + HEEHRA point-of-sale rebates + HOMES performance rebates per IRS guidance, ASHRAE service life benchmarks for 10 equipment categories, common retrofit failures + lessons learned, and a complete cost + payback methodology framework. Sourced throughout from EPA, IRS, ASHRAE 90.2, DOE 10 CFR Part 430, AHRI, ENERGY STAR.

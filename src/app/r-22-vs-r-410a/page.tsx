@@ -7,10 +7,10 @@ import { pageMetadata } from "@/lib/schema/shared";
 const SLUG = "r-22-vs-r-410a";
 
 export const metadata: Metadata = pageMetadata({
-  title: "R-22 vs R-410A — Pressures, Lubricant, Retrofit Reality, Cost",
+  title: "R22 vs R410A: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "Direct comparison of R-22 and R-410A for residential AC: PT curves, lubricant compatibility, why retrofit isn't a drop-in, and how to decide between continued R-22 service and full system replacement.",
-  path: `/${SLUG}/`,
+    "R22 vs R410A for residential AC: R410A pressures ~65% higher, MO→POE oil change required, R22 production banned 2020 (reclaimed legal for service). Replacement only.",
+  path: "/r-22-vs-r-410a/",
 });
 
 export default function R22vsR410APage() {

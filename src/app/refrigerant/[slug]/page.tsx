@@ -37,7 +37,7 @@ import { loadRefrigerantMdx } from "@/lib/mdx";
 import { findComparisonsForRefrigerant, type ComparisonSummary } from "@/lib/mdx-comparison";
 import { findWhatPressureForRefrigerant } from "@/lib/mdx-what-pressure";
 import { buildRefrigerantSchema } from "@/lib/schema/refrigerant";
-import { SITE_URL } from "@/lib/schema/shared";
+import { SITE_URL, buildRefrigerantMetadata, pageMetadata, seoName, COMMON_NAME } from "@/lib/schema/shared";
 
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
@@ -62,32 +62,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const r = getRefrigerant(slug);
   if (!r) return { title: "Refrigerant not found" };
   const mdx = loadRefrigerantMdx(slug);
-  const title = mdx?.frontmatter.metaTitle ?? `${r.displayName} PT Chart, Properties & Operating Pressures`;
-  const description =
-    mdx?.frontmatter.metaDescription ??
-    `Verified saturation pressure-temperature data for ${r.displayName} from -40°F to 150°F. ASHRAE safety class ${r.safetyClass}. Generated from ${r.dataSource.ptChartSource}.`;
-  const canonical = `${SITE_URL}/refrigerant/${r.slug}/`;
-  return {
+  const p70 = getPressureAtTempF(slug, 70)?.bubble ?? null;
+  const chart = r.ptChart;
+  const minTempF = chart.length > 0 ? Math.min(...chart.map((p) => p.tempF)) : -40;
+  const maxTempF = chart.length > 0 ? Math.max(...chart.map((p) => p.tempF)) : 150;
+  const { title, description } = buildRefrigerantMetadata({
+    slug,
+    displayName: r.displayName,
+    minTempF,
+    maxTempF,
+    pressure70F: p70,
+    metaDescriptionOverride: mdx?.frontmatter.metaDescription,
+  });
+  return pageMetadata({
     title,
     description,
-    alternates: { canonical },
-    // Explicitly include images: when openGraph is set per-page, Next.js
-    // does NOT merge with layout defaults, so the auto-detected
-    // /opengraph-image must be referenced explicitly here.
-    openGraph: {
-      title,
-      description,
-      url: canonical,
-      type: "article",
-      images: ["/opengraph-image"],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ["/twitter-image"],
-    },
-  };
+    path: `/refrigerant/${r.slug}/`,
+    ogType: "article",
+  });
 }
 
 export default async function RefrigerantPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -131,8 +123,11 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
             </div>
 
             <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-              {r.displayName}
+              {COMMON_NAME[slug] ? `${seoName(r.displayName)} (${COMMON_NAME[slug]}) PT Chart` : `${seoName(r.displayName)} PT Chart`}
             </h1>
+            <p className="mt-1 text-sm font-mono text-zinc-500 dark:text-zinc-400">
+              {r.displayName}{COMMON_NAME[slug] ? ` · ${COMMON_NAME[slug]}` : ""}
+            </p>
 
             <div className="mt-4 flex flex-wrap items-center gap-2">
               <SafetyClassChip safetyClass={r.safetyClass} size="md" />

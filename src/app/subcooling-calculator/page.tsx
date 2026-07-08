@@ -58,9 +58,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Subcooling Calculator — HVAC Liquid-Line Subcooling with Bubble-Curve Math",
+  title: "Subcooling Calculator: What Should Subcooling Be? (61 Refrigerants)",
   description:
-    "Free subcooling calculator for 50+ HVAC refrigerants with correct bubble-curve handling for zeotropic blends. TXV charging targets, 10 worked service problems for residential AC, commercial refrigeration, chillers, heat pumps. Sourced from CoolProp 7.2.0.",
+    "Liquid PSIG + line temp → subcooling with overcharge/undercharge reading. TXV target 8–12°F. Works for all common refrigerants including blends with glide.",
   path: "/subcooling-calculator/",
 });
 

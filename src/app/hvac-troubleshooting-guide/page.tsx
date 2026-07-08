@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, AlertTriangle, BookOpen, Gauge, ListChecks, Wrench, Zap, Droplet, Thermometer, Wind } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,26 +19,12 @@ import { BarChart } from "@/components/svg/concepts/BarChart";
 const PAGE_URL = `${SITE_URL}/hvac-troubleshooting-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "Complete HVAC Troubleshooting Guide — Decision Trees for Cooling, Heating, Airflow & Efficiency Failures",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Troubleshooting Guide: Diagnose Any Fault Fast (Free 101)",
   description:
-    "Diagnostic decision trees for the 10 most common HVAC failures: no cooling, no heating, insufficient capacity, short cycling, frozen evaporator, strange noises, water leaks, high utility bills. Cause hierarchy ordered by frequency, quick DIY checks, service-level procedures, and when to escalate. Sourced from ACCA Manual T, EPA 608, ASHRAE Handbook of Refrigeration.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Troubleshooting Guide — Diagnostic Decision Trees for Common Failures",
-    description:
-      "Decision trees for 10 HVAC symptom categories with cause hierarchies, quick checks, service-level diagnostics, and escalation logic.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Complete HVAC Troubleshooting Guide — 10 Symptom Decision Trees",
-    description: "Cause hierarchy + diagnostic procedure for the 10 most common HVAC failures.",
-    images: ["/twitter-image"],
-  },
-};
+    "Decision trees for HVAC cooling, heating, airflow, and efficiency faults. Symptom → likely cause → verification test → fix. Sourced diagnostic procedures.",
+  path: "/hvac-troubleshooting-guide/",
+});
 
 const FAQS = [
   {

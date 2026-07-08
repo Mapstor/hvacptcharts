@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, Sun, Snowflake, Home, Users, AlertTriangle, ListChecks, Gauge, Wind, Thermometer, FileCheck } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-load-calculation-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Load Calculation Guide — Manual J Explained, Climate Zones to Equipment Sizing",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Load Calculation Guide: Manual J Step By Step (Free 101)",
   description:
-    "Complete guide to Manual J residential load calculation: the 8 load components, block vs room-by-room methods, climate zone design conditions, envelope inputs (U-values, fenestration, infiltration), sensible/latent split, the Manual S equipment-sizing sequence, code requirements, and DIY vs professional decision logic. Sourced from ACCA Manual J 8th edition, ASHRAE Handbook of Fundamentals 2021, IECC 2021, and IRC 2021.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Load Calculation Guide — Manual J Explained Top to Bottom",
-    description: "How Manual J residential load calculation works, from climate zones through equipment selection. Cross-references the interactive load calculator.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Load Calculation Guide — Manual J Explained",
-    description: "Complete Manual J methodology + climate zones + sizing sequence. Companion to the interactive load calculator.",
-    images: ["/twitter-image"],
-  },
-};
+    "ACCA Manual J explained end-to-end: envelope, climate zone, orientation, internal gains, and equipment sizing. Companion to the HVAC load calculator.",
+  path: "/hvac-load-calculation-guide/",
+});
 
 const FAQS = [
   {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, Wind, Gauge, ListChecks, AlertTriangle, FileCheck, ShieldCheck, Wrench, Layers } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-duct-design-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Duct Design Guide — Manual D Explained, System Topology to Static Pressure Budgeting",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Duct Design Guide: Manual D, Sizing, Static Pressure (Free 101)",
   description:
-    "Complete guide to residential and small-commercial HVAC duct design: ACCA Manual D methodology, six system topologies, sizing methods (equal-friction, static-regain, constant-velocity), total external static pressure budgeting, fitting equivalent lengths, material selection (galvanized vs flex vs duct board), SMACNA leakage classes, IECC insulation requirements, common installation failures. Sourced from ACCA Manual D 3rd edition, SMACNA HVAC Duct Construction Standards, ASHRAE Handbook of Fundamentals 2021 Chapter 21, IRC 2021, and IECC 2021.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Duct Design Guide — Manual D, System Topology, Static Pressure",
-    description: "Complete Manual D methodology + 6 topologies + materials + sealing + balancing. Companion to the duct size calculator.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Duct Design Guide — Manual D Explained",
-    description: "System topology, sizing methods, TESP budgeting, material selection. Companion to the duct calculator.",
-    images: ["/twitter-image"],
-  },
-};
+    "ACCA Manual D duct design walkthrough: equal-friction method, sizing, static pressure budget, fittings, sealing per IECC. Companion to the duct size calculator.",
+  path: "/hvac-duct-design-guide/",
+});
 
 const FAQS = [
   {

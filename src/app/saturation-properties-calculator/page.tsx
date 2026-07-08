@@ -54,9 +54,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Saturation Properties Calculator — Bubble, Dew, Critical Point, NBP",
+  title: "HVAC Saturation Calculator: Saturation Temp And Pressure (Easy)",
   description:
-    "Refrigerant saturation property reference for 50+ HVAC refrigerants. Bubble and dew pressures at any temperature, critical point, triple point, normal boiling point, molar mass. Sourced from CoolProp 7.2.0 with NIST REFPROP-compatible Helmholtz EOS.",
+    "Full saturation state at any temperature or pressure for 50+ refrigerants: density, enthalpy, entropy, latent heat. CoolProp 7.2.0, bubble and dew for blends.",
   path: "/saturation-properties-calculator/",
 });
 

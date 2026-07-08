@@ -7,10 +7,10 @@ import { pageMetadata } from "@/lib/schema/shared";
 const SLUG = "r-744-vs-r-290";
 
 export const metadata: Metadata = pageMetadata({
-  title: "R-744 vs R-290 — CO₂ Transcritical vs Propane A3 Charge-Limited",
+  title: "R744 vs R290: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R-744 vs R-290: CO₂ (very high pressure, non-flammable, transcritical) vs propane (charge-limited A3 highly flammable). Both GWP < 5. Different application classes.",
-  path: `/${SLUG}/`,
+    "R744 vs R290 naturals: R744 (CO2, GWP 1, non-flammable, transcritical) vs R290 (propane, GWP 3, A3 charge-limited). Different application classes — not swaps.",
+  path: "/r-744-vs-r-290/",
 });
 
 export default function R744vsR290Page() {

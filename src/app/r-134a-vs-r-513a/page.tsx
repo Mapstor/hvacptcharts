@@ -7,10 +7,10 @@ import { pageMetadata } from "@/lib/schema/shared";
 const SLUG = "r-134a-vs-r-513a";
 
 export const metadata: Metadata = pageMetadata({
-  title: "R-134a vs R-513A — Pressures, GWP Reduction, A1 Drop-In",
+  title: "R134a vs R513A: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R-134a vs R-513A: azeotropic R-1234yf/R-134a blend designed as R-134a drop-in. 56% GWP reduction (631 vs 1430). Same A1, same POE oil, similar pressure envelope.",
-  path: `/${SLUG}/`,
+    "R134a vs R513A: R513A is the azeotropic R1234yf/R134a blend designed as R134a drop-in. Same A1, same POE oil, similar pressures. GWP cut 56% (1430→631).",
+  path: "/r-134a-vs-r-513a/",
 });
 
 export default function R134AvsR513APage() {

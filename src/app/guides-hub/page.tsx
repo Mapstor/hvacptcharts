@@ -6,9 +6,9 @@ import { pageMetadata } from "@/lib/schema/shared";
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
-  title: "HVAC Guides — Refrigerant, Charging, and System References",
+  title: "HVAC Guides: Commissioning, Safety, Troubleshooting (Free)",
   description:
-    "Reference guides for HVAC professionals: PT chart reading, superheat and subcooling fundamentals, refrigerant comparisons, safety classification, and regulatory context.",
+    "Sourced HVAC field guides: PT chart reading, superheat and subcooling fundamentals, refrigerant comparisons, ASHRAE 34 safety, AIM Act regulatory context.",
   path: "/guides-hub/",
   ogType: "website",
 });

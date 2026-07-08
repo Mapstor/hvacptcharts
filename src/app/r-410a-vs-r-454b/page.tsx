@@ -7,10 +7,10 @@ import { pageMetadata } from "@/lib/schema/shared";
 const SLUG = "r-410a-vs-r-454b";
 
 export const metadata: Metadata = pageMetadata({
-  title: "R-410A vs R-454B — Residential AC Phase-Down Decision",
+  title: "R410A vs R454B: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "Direct comparison of R-410A (legacy) and R-454B (replacement) for residential AC. PT curves overlaid, side-by-side properties, A1-to-A2L safety class change, retrofit reality.",
-  path: `/${SLUG}/`,
+    "R410A vs R454B for residential AC: pressures within 5%, POE oil unchanged, GWP cut 78% (2088→466). A1→A2L means new A2L equipment — no field retrofit path.",
+  path: "/r-410a-vs-r-454b/",
 });
 
 export default function R410AvsR454BPage() {

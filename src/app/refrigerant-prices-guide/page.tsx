@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, AlertTriangle, BookOpen, DollarSign, ListChecks, TrendingUp, ShieldCheck, ScrollText } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/refrigerant-prices-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "Why Refrigerant Prices Keep Rising — AIM Act, EU F-Gas, and the Three-Tier Pricing Structure",
+export const metadata: Metadata = pageMetadata({
+  title: "Refrigerant Prices Guide: Why Costs Keep Rising (AIM Act, F-Gas)",
   description:
-    "How the AIM Act HFC phase-down, EU F-Gas Regulation, and the virgin/reclaimed/recycled tier structure determine refrigerant prices. Historical R-22 case study, pricing-driver framework for R-410A and R-32, container-size economics, recharge service-quote interpretation. Sourced from 40 CFR Part 84, EU 517/2014, AHRI 700, and Hudson Technologies SEC filings.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "Why Refrigerant Prices Keep Rising — The AIM Act + EU F-Gas Mechanics",
-    description: "Regulatory + market mechanics that determine refrigerant prices. Historical case studies, per-refrigerant analysis, recharge-quote framework. Primary-source citations throughout.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Why Refrigerant Prices Keep Rising — AIM Act + EU F-Gas Explained",
-    description: "Regulatory mechanics, three-tier pricing, recharge-quote interpretation. Sourced throughout.",
-    images: ["/twitter-image"],
-  },
-};
+    "How AIM Act phase-down, EU F-Gas Regulation, and the virgin/reclaimed/recycled tier structure determine refrigerant prices. R22 case study plus per-fluid analysis.",
+  path: "/refrigerant-prices-guide/",
+});
 
 const FAQS = [
   {

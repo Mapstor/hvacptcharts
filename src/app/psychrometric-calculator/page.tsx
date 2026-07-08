@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, Droplet, Wind, BookOpen, ListChecks, Mountain, Gauge } from "lucide-react";
 import { refrigerants } from "@/data/refrigerants";
-import { SITE_URL } from "@/lib/schema/shared";
+import { SITE_URL, pageMetadata } from "@/lib/schema/shared";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { PsychrometricCalculator } from "@/components/calculators/PsychrometricCalculator";
 import {
@@ -22,26 +22,12 @@ import {
 const PAGE_URL = `${SITE_URL}/psychrometric-calculator/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "Psychrometric Calculator — 7 Air Properties from Any 2 Inputs (ASHRAE + Altitude Correction)",
+export const metadata: Metadata = pageMetadata({
+  title: "Psychrometric Calculator: Dry-Bulb, Wet-Bulb, Dew Point, RH (+ Altitude)",
   description:
-    "Compute dry-bulb, wet-bulb, dew point, relative humidity, humidity ratio, enthalpy, and specific volume from any 2 inputs. ASHRAE Handbook 2021 equations with altitude correction. Three worked examples, common-error diagnostics, and the full psychrometric framework HVAC pros use for load, comfort, and condensation analysis.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "Psychrometric Calculator — 7 Air Properties from Any 2 Inputs (ASHRAE)",
-    description:
-      "Free ASHRAE-equation psychrometric calculator with altitude correction, worked examples, and the conceptual framework for HVAC load and comfort analysis.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Psychrometric Calculator — ASHRAE Equations, All 7 Air Properties",
-    description: "Compute the full air-property state from any 2 inputs, with altitude correction and worked examples.",
-    images: ["/twitter-image"],
-  },
-};
+    "DB + WB or DB + RH → dew point, humidity ratio, grains, enthalpy, specific volume. ASHRAE equations with altitude correction and worked examples.",
+  path: "/psychrometric-calculator/",
+});
 
 const r2 = (n: number) => (Number.isFinite(n) ? n.toFixed(2) : "—");
 const r1 = (n: number) => (Number.isFinite(n) ? n.toFixed(1) : "—");

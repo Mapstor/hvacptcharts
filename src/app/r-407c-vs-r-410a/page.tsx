@@ -7,10 +7,10 @@ import { pageMetadata } from "@/lib/schema/shared";
 const SLUG = "r-407c-vs-r-410a";
 
 export const metadata: Metadata = pageMetadata({
-  title: "R-407C vs R-410A — R-22 Retrofit vs New Equipment Standard",
+  title: "R407C vs R410A: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R-407C vs R-410A: R-407C is the R-22 retrofit HFC blend (~11°F glide); R-410A is the HFC blend designed for new equipment with ~60% higher pressures. Different equipment classes.",
-  path: `/${SLUG}/`,
+    "R407C vs R410A: R407C is the R22 retrofit HFC blend (~11°F glide); R410A is new-equipment HFC. At 130°F: R410A 478 vs R407C 341 PSIG. Different equipment classes.",
+  path: "/r-407c-vs-r-410a/",
 });
 
 export default function R407CvsR410APage() {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, AlertTriangle, ShieldCheck, ListChecks, FileCheck, Wrench, Flame, Zap, Wind, Thermometer, Snowflake, Droplet } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-safety-procedures-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Safety Procedures Guide — Electrical, Refrigerant, Gas, Hot Work, A2L Handling, and PPE Requirements",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Safety Guide: Electrical, Refrigerant, A2L, PPE (Free 101)",
   description:
-    "Complete HVAC safety procedures guide: OSHA 29 CFR 1910 framework, lockout/tagout (1910.147), electrical safety + arc flash + PPE per NFPA 70E, refrigerant safety (high pressure + asphyxiation + A2L flammability per ASHRAE 15 + EPA Section 608), gas + carbon monoxide safety per NFPA 54, hot work brazing/cutting (1910.252), working at heights + ladders, permit-required confined spaces (1910.146), PPE requirements (1910.132-138), consumer safety (CO alarm placement + gas leak response), emergency procedures, training + certification. Sourced from OSHA, NFPA, ASHRAE, EPA, UL.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Safety Procedures Guide — Complete OSHA + EPA + NFPA + ASHRAE Compliance",
-    description: "Electrical + refrigerant + gas + hot work + A2L + PPE + consumer safety. Sourced from OSHA, NFPA, ASHRAE, EPA throughout.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Safety Procedures Guide — OSHA + EPA + NFPA Sourced",
-    description: "Complete safety methodology for HVAC service work.",
-    images: ["/twitter-image"],
-  },
-};
+    "HVAC safety procedures for electrical, refrigerant, gas, hot work, and A2L handling: OSHA + LOTO + PPE requirements with equipment-specific worked scenarios.",
+  path: "/hvac-safety-procedures-guide/",
+});
 
 const FAQS = [
   {

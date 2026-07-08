@@ -7,10 +7,10 @@ import { pageMetadata } from "@/lib/schema/shared";
 const SLUG = "r-1234yf-vs-r-134a";
 
 export const metadata: Metadata = pageMetadata({
-  title: "R-1234yf vs R-134a — Mobile AC, Pressures, GWP 4 (AR4) vs 1430",
+  title: "R1234yf vs R134a: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R-1234yf vs R-134a: HFO replacement for R-134a in mobile AC and some chillers. A2L vs A1; R-1234yf GWP 4 (AR4 / EPA SNAP basis; <1 per strict AR5) vs R-134a 1430. Similar pressure envelope.",
-  path: `/${SLUG}/`,
+    "R1234yf vs R134a for mobile AC: A2L HFO replacement (GWP 4) for the legacy A1 HFC (GWP 1430). Similar pressure envelope, 99.7% GWP cut. Fleet-transition driver.",
+  path: "/r-1234yf-vs-r-134a/",
 });
 
 export default function R1234yfvsR134APage() {

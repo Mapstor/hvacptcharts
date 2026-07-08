@@ -58,9 +58,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "System Pressure Diagnostic Calculator — Multi-Input HVAC Fault Finder",
+  title: "System Pressure Diagnostic: 8-Input HVAC Fault Finder (Free)",
   description:
-    "Free multi-input HVAC diagnostic calculator for 50+ refrigerants. Enter ambient, return air, suction P/T, liquid P/T, and system type; get superheat, subcooling, condenser & evaporator approach, plus severity-ranked diagnostic flags with evidence and ordered recommendations. Built on ACCA Manual T, ASHRAE Handbook of Refrigeration 2022, and AHRI Standard 540.",
+    "Enter ambient, return air, suction and liquid P/T, system type: get superheat, subcooling, condenser and evaporator approach with severity-ranked findings.",
   path: "/system-pressure-diagnostic-calculator/",
 });
 

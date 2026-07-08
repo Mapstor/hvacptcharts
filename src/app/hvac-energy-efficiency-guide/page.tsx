@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, Gauge, Sun, Snowflake, DollarSign, TrendingUp, ListChecks, Zap, Wind, FileCheck } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-energy-efficiency-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Energy Efficiency Guide — SEER2, HSPF2, AFUE Explained + Heat Pump vs Furnace Economics + IRA Tax Credits",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Efficiency Guide: SEER2, HSPF2, AFUE, Heat Pumps (Free 101)",
   description:
-    "Complete HVAC efficiency guide: SEER2 and HSPF2 (DOE's 2023 metric updates), AFUE for gas furnaces, EER/COP instantaneous metrics, climate-dependent heat pump performance, the rated-vs-actual gap, variable-capacity vs single-stage tradeoffs, sizing and duct impact on real-world efficiency, ENERGY STAR criteria, IRA 25C tax credits and HOMES/HEEHRA rebates. Sourced from 10 CFR Part 430, AHRI Standards 210/240 and 1380, IRS 25C, ENERGY STAR program criteria.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Energy Efficiency Guide — SEER2, HSPF2, AFUE + Heat Pump Economics",
-    description: "DOE 2023 metric transition + heat pump vs furnace economics + IRA tax credits. Sourced from federal standards.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Energy Efficiency Guide — SEER2, HSPF2, AFUE",
-    description: "Complete efficiency metrics + heat pump economics + IRA tax credits.",
-    images: ["/twitter-image"],
-  },
-};
+    "SEER2, HSPF2, AFUE explained with heat pump vs furnace economics and IRA tax credit math. What efficiency ratings actually mean for HVAC operating cost.",
+  path: "/hvac-energy-efficiency-guide/",
+});
 
 const FAQS = [
   {

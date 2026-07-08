@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, Gauge, Wind, ListChecks, FileCheck, ShieldCheck, AlertTriangle, Wrench, Thermometer } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-commissioning-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Commissioning Guide — Manual T, Duct Testing, Blower Door, and Quality Installation Verification",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Commissioning Guide: Manual T, Ducts, Blower (Free 101)",
   description:
-    "Complete HVAC commissioning guide: ACCA Quality Installation Standard 5 framework, Manual T airflow balancing, refrigerant-side verification (superheat + subcooling at design conditions), Duct Blaster + Pressure Pan + Blower Door testing, IECC R403.3.5 leakage requirements, ENERGY STAR Whole-House Verification, HERS rater integration, documentation requirements, and common commissioning failures. Sourced from ACCA Manual T + QI Standard 5, ASHRAE Standard 111, NEBB/AABC/TABB procedures, IECC 2021 R402+R403, ENERGY STAR Program Requirements.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Commissioning Guide — Manual T + Duct Testing + Blower Door + QI Verification",
-    description: "Verification layer that closes the loop on Manual J + S + D installation quality.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Commissioning Guide — Manual T + Duct + Blower Door Testing",
-    description: "ACCA QI Standard verification procedures with primary-source citations.",
-    images: ["/twitter-image"],
-  },
-};
+    "Step-by-step HVAC commissioning per ACCA QI Standard 5: Manual T airflow, refrigerant verification, duct + blower-door testing, IECC leakage limits.",
+  path: "/hvac-commissioning-guide/",
+});
 
 const FAQS = [
   {

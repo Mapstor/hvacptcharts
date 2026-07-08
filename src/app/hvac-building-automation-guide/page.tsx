@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, AlertTriangle, ShieldCheck, ListChecks, FileCheck, Wrench, Zap, Wind, Gauge, BarChart3, Building2, Network, Cpu, Cloud } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -19,25 +19,12 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 const PAGE_URL = `${SITE_URL}/hvac-building-automation-guide/`;
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
-export const metadata: Metadata = {
-  title: "HVAC Building Automation Guide — Commercial BMS Architecture, ASHRAE Guideline 36, Cybersecurity",
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC Building Automation: BMS, Guideline 36, Analytics (Free 101)",
   description:
-    "Complete commercial BMS/BAS reference: 4-tier system architecture (field bus → controllers → supervisors → workstations), ASHRAE Guideline 36 high-performance sequences of operation, points list methodology + Project Haystack tagging, system integration with lighting + security + fire + elevator + EMS, commercial BMS vendor architecture deep dive (Johnson Controls Metasys + OpenBlue, Honeywell + Niagara, Siemens Desigo, Schneider Electric EcoStruxure, Carrier Automated Logic, Trane Tracer, Distech, Reliable Controls, KMC, Delta Controls), cybersecurity per NIST CSF + NIST SP 800-82 + ISA/IEC 62443, cloud-connected BAS + IoT architecture, BMS RFP + procurement process, operator training + competency, BMS-as-a-Service models, smart building + digital twin trends. Sourced from ASHRAE, NIST, ISA, AHRI.",
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: "HVAC Building Automation Guide — Commercial BMS Architecture + Cybersecurity + Cloud",
-    description: "Distinct from residential controls — covers commercial BMS implementation, ASHRAE Guideline 36, cybersecurity.",
-    url: PAGE_URL,
-    type: "article",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HVAC Building Automation Guide — Commercial BMS Implementation",
-    description: "Architecture + Guideline 36 + Project Haystack + cybersecurity + RFP methodology.",
-    images: ["/twitter-image"],
-  },
-};
+    "Commercial building management systems (BMS): architecture, ASHRAE Guideline 36 sequences, analytics, and cybersecurity for HVAC-integrated buildings.",
+  path: "/hvac-building-automation-guide/",
+});
 
 const FAQS = [
   {
