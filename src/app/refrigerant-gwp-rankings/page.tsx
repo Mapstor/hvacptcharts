@@ -42,6 +42,8 @@ function buildSchema() {
       url: PAGE_URL,
       license: "https://creativecommons.org/licenses/by/4.0/",
       creator: { "@id": `${SITE_URL}/#organization` },
+      datePublished: PUBLISHED,
+      dateModified: PUBLISHED,
       isAccessibleForFree: true,
       citation: [
         "IPCC AR5 Working Group I (2013), Climate Change 2013: The Physical Science Basis, Table 8.A.1",

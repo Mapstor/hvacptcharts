@@ -48,7 +48,7 @@ export function buildCalculatorSchema({
       "@type": "WebApplication",
       "@id": `${pageUrl}#application`,
       name,
-      applicationCategory: "EngineeringApplication",
+      applicationCategory: "UtilitiesApplication",
       operatingSystem: "Web browser (any)",
       url: pageUrl,
       browserRequirements: "Requires JavaScript enabled",

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm run verify-redirects && pnpm run verify-data && next build && pnpm run verify-metadata",
+    "build": "pnpm run verify-redirects && pnpm run verify-data && mkdir -p .next && rm -f .next/git-dates-log.jsonl && next build && pnpm run verify-metadata && pnpm run validate-schema",
     "start": "next start",
     "lint": "eslint",
     "generate-data": "node scripts/generate-refrigerant-data.mjs",

@@ -102,6 +102,7 @@ export function buildRefrigerantSchema(r: Refrigerant, faqs: FAQ[]): object[] {
       url: pageUrl,
       license: "https://creativecommons.org/licenses/by/4.0/",
       creator: { "@id": `${SITE_URL}/#organization` },
+      measurementTechnique: "CoolProp 7.2.0 Helmholtz EOS / manufacturer datasheets",
       datePublished: r.dataSource.ptChartGeneratedAt,
       dateModified: r.dataSource.ptChartGeneratedAt,
       keywords: [

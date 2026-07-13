@@ -3,7 +3,8 @@ import Link from "next/link";
 import { Activity, Wind, Thermometer, Gauge, ListChecks, AlertTriangle, Wrench, BookOpen } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { refrigerants, getRefrigerant, getPressureAtTempF } from "@/data/refrigerants";
+import { getFileGitDates } from "@/lib/git-dates";
+import { getRefrigerant, getPressureAtTempF } from "@/data/refrigerants";
 import {
   FixCallout,
   Lookups,
@@ -17,7 +18,7 @@ import { CarrierChargingLookup } from "@/components/calculators/CarrierChargingL
 
 const PAGE_URL = `${SITE_URL}/carrier-410a-charging-chart/`;
 const R410A = getRefrigerant("r-410a");
-const PUBLISHED = R410A?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
+const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/carrier-410a-charging-chart/page.tsx");
 
 export const metadata: Metadata = pageMetadata({
   title: "Carrier R410A Charging Chart: Superheat By WB & Outdoor Temp",
@@ -139,7 +140,7 @@ function buildSchema(): object[] {
       url: PAGE_URL,
       mainEntityOfPage: PAGE_URL,
       datePublished: PUBLISHED,
-      dateModified: PUBLISHED,
+      dateModified: MODIFIED,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       isPartOf: { "@id": `${SITE_URL}/#website` },

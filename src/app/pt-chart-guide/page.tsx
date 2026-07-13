@@ -18,11 +18,12 @@ import {
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
+import { getFileGitDates } from "@/lib/git-dates";
 import { getPressureAtTempF, getRefrigerant, refrigerants } from "@/data/refrigerants";
 import { RefrigerantPTCurve } from "@/components/refrigerant/RefrigerantPTCurve";
 
 const PAGE_URL = `${SITE_URL}/pt-chart-guide/`;
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
+const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/pt-chart-guide/page.tsx");
 
 export const metadata: Metadata = pageMetadata({
   title: "PT Chart Guide: How To Read A PT Chart Like A Pro (7 Key Points)",
@@ -108,7 +109,7 @@ function buildSchema() {
       proficiencyLevel: "Beginner",
       url: PAGE_URL,
       datePublished: PUBLISHED,
-      dateModified: PUBLISHED,
+      dateModified: MODIFIED,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: PAGE_URL,

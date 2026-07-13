@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { refrigerants } from "@/data/refrigerants";
+import { getFileGitDates } from "@/lib/git-dates";
 import {
   ComparisonTable,
   Derived,
@@ -17,7 +17,7 @@ import {
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 
 const PAGE_URL = `${SITE_URL}/high-head-pressure-causes/`;
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
+const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/high-head-pressure-causes/page.tsx");
 
 export const metadata: Metadata = pageMetadata({
   title: "High Head Pressure Causes: 8-Cause HVAC Diagnostic Tree",
@@ -109,7 +109,7 @@ function buildSchema() {
       proficiencyLevel: "Beginner to Intermediate",
       url: PAGE_URL,
       datePublished: PUBLISHED,
-      dateModified: PUBLISHED,
+      dateModified: MODIFIED,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: PAGE_URL,

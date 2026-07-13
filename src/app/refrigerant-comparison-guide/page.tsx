@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
+import { getFileGitDates } from "@/lib/git-dates";
 import { getRefrigerant, getPressureAtTempF, refrigerants } from "@/data/refrigerants";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 
 const PAGE_URL = `${SITE_URL}/refrigerant-comparison-guide/`;
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
+const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/refrigerant-comparison-guide/page.tsx");
 
 export const metadata: Metadata = pageMetadata({
   title: "Refrigerant Comparison Guide: 5-Axis Decision Framework",
@@ -123,7 +124,7 @@ function buildSchema() {
       dependencies: "Familiarity with vapor-compression refrigeration; helpful but not required: experience with manifold gauge service.",
       url: PAGE_URL,
       datePublished: PUBLISHED,
-      dateModified: PUBLISHED,
+      dateModified: MODIFIED,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: PAGE_URL,

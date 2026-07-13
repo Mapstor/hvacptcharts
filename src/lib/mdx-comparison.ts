@@ -11,6 +11,11 @@ export const ComparisonFrontmatter = z.object({
   title: z.string(),
   metaTitle: z.string().optional(),
   metaDescription: z.string().optional(),
+  /**
+   * Original publication date (ISO 8601, YYYY-MM-DD accepted). Backfilled
+   * from the file's git first-commit date. TechArticle datePublished.
+   */
+  datePublished: z.string(),
   introOneLiner: z.string(),
   chooseA: z.string(),
   chooseB: z.string(),

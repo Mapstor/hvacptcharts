@@ -1,19 +1,21 @@
 import type { MetadataRoute } from "next";
 import { refrigerants } from "@/data/refrigerants";
+import { getFileGitDates } from "@/lib/git-dates";
 
 /**
  * Sitemap generated at build time. Per docs/spec/03-SITEMAP_MIGRATION.md.
  *
- * Only includes URLs that actually return 200 in the current build. Pages
- * still planned (the 17 HVAC guides, /carrier-410a-charging-chart/,
- * /refrigerant-prices-guide/, etc.) are deliberately commented out below —
- * adding them to the sitemap before they exist would put 404s in front of
- * crawlers. Uncomment as pages land.
+ * Only includes URLs that actually return 200 in the current build.
  *
  * Refrigerant page lastModified comes from the data layer
  * (r.dataSource.ptChartGeneratedAt) — when the dataset is regenerated, every
  * refrigerant URL gets a new lastModified, which Google's crawl scheduler
  * respects.
+ *
+ * Guide and comparison URLs derive lastModified from the git log of their
+ * content file (page.tsx for guides, .mdx for comparisons). This matches the
+ * TechArticle dateModified emitted on the same pages, so the sitemap and the
+ * JSON-LD tell Google the same story about freshness.
  */
 
 const BASE_URL = "https://hvacptcharts.com";
@@ -22,6 +24,8 @@ interface StaticEntry {
   url: string;
   priority: number;
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+  /** Path (relative to repo root) whose git log drives lastModified. */
+  sourceFile?: string;
 }
 
 const STATIC_PAGES: StaticEntry[] = [
@@ -117,26 +121,45 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/terms-of-service/", priority: 0.2, changeFrequency: "yearly" },
 ];
 
+/**
+ * Given a sitemap URL path, return the repo-relative file whose git log
+ * drives lastModified. Comparison pages are MDX; everything else is the
+ * page.tsx that renders that route. Called at build time only.
+ */
+function inferSourceFile(url: string): string {
+  // Comparison pages: /r-32-vs-r-410a/ → content/comparisons/r-32-vs-r-410a.mdx
+  if (/^\/r-[a-z0-9-]+-vs-r-[a-z0-9-]+\/$/.test(url)) {
+    const slug = url.slice(1, -1);
+    return `content/comparisons/${slug}.mdx`;
+  }
+  if (url === "/") return "src/app/page.tsx";
+  return `src/app${url}page.tsx`;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Task 5, 2026-07: use the refrigerant dataset generation timestamp as the
-  // static-page "last content change" hint rather than build time. The dataset
-  // regen is the largest content-affecting event on the site; static pages
-  // usually change together with (or trail) a data regen. Google treats
-  // sitemap lastModified as a hint, not a claim of individual-page changes,
-  // so tying it to a real content event is more truthful than build time.
-  const staticLastMod = new Date(
+  const datasetGeneratedAt = new Date(
     refrigerants[0]?.dataSource.ptChartGeneratedAt ?? Date.now(),
   );
 
-  const staticEntries = STATIC_PAGES.map((p) => ({
-    url: `${BASE_URL}${p.url}`,
-    lastModified: staticLastMod,
-    changeFrequency: p.changeFrequency,
-    priority: p.priority,
-  }));
+  const staticEntries = STATIC_PAGES.map((p) => {
+    const src = p.sourceFile ?? inferSourceFile(p.url);
+    let lastModified: Date;
+    try {
+      lastModified = new Date(getFileGitDates(src).modified);
+    } catch {
+      // File resolution failed (e.g. dynamic route with no direct source);
+      // fall back to dataset-regen timestamp so the entry still ships.
+      lastModified = datasetGeneratedAt;
+    }
+    return {
+      url: `${BASE_URL}${p.url}`,
+      lastModified,
+      changeFrequency: p.changeFrequency,
+      priority: p.priority,
+    };
+  });
 
   const refrigerantEntries = refrigerants.map((r) => {
-    // Tier-1 high-traffic refrigerants get a higher priority weight.
     const tier1 = ["r-22", "r-410a", "r-134a", "r-32", "r-404a", "r-454b", "r-407c", "r-1234yf", "r-1234ze", "r-744", "r-717", "r-290", "r-600a", "r-123"];
     const priority = tier1.includes(r.slug) ? 0.85 : 0.6;
     return {

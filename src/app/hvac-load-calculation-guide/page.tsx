@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Activity, BookOpen, Sun, Snowflake, Home, Users, AlertTriangle, ListChecks, Gauge, Wind, Thermometer, FileCheck } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { refrigerants } from "@/data/refrigerants";
+import { getFileGitDates } from "@/lib/git-dates";
 import {
   ComparisonTable,
   FixCallout,
@@ -17,7 +17,7 @@ import { BarChart } from "@/components/svg/concepts/BarChart";
 import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-load-calculation-guide/`;
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
+const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/hvac-load-calculation-guide/page.tsx");
 
 export const metadata: Metadata = pageMetadata({
   title: "HVAC Load Calculation Guide: Manual J Step By Step (Free 101)",
@@ -75,7 +75,7 @@ function buildSchema(): object[] {
       url: PAGE_URL,
       mainEntityOfPage: PAGE_URL,
       datePublished: PUBLISHED,
-      dateModified: PUBLISHED,
+      dateModified: MODIFIED,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       isPartOf: { "@id": `${SITE_URL}/#website` },

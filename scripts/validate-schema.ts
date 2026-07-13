@@ -4,19 +4,26 @@
  *
  * Walks every prerendered HTML file in .next/server/app, extracts every
  * <script type="application/ld+json"> block, parses the @graph, and checks
- * that required entity types per page category are present.
+ * both structural shape and required entity types per page category.
  *
- * Per docs/spec/06-SCHEMA_INVENTORY.md §Required entities per page type.
+ * Two checks:
+ *  1. Structural (zod). Each script tag must parse to
+ *     { "@context": "https://schema.org", "@graph": [ …entities ] } and each
+ *     entity must have a string "@type". Article / TechArticle / Dataset
+ *     must carry ISO 8601 datePublished + dateModified. Invalid = build fail.
+ *  2. Presence-per-category. Refrigerant pages must have Dataset, calculators
+ *     must have WebApplication, guides must have TechArticle, etc.
+ *     Per docs/spec/06-SCHEMA_INVENTORY.md §Required entities per page type.
  *
- * Categorizes "required" (must be present — script exits non-zero) versus
- * "expected" (warning only — typically editorial-dependent like FAQPage on
- * refrigerant pages without per-refrigerant MDX yet).
+ * "Required" entities cause a non-zero exit; "expected" ones (editorial-
+ * dependent, e.g. FAQPage) log warnings.
  *
- * Run after `pnpm build`:
- *   pnpm run validate-schema
+ * Run as part of `pnpm build`:
+ *   next build && pnpm run validate-schema
  */
 import fs from "node:fs";
 import path from "node:path";
+import { z } from "zod";
 
 const ROOT = path.resolve(process.cwd());
 const BUILD_DIR = path.join(ROOT, ".next", "server", "app");
@@ -56,7 +63,8 @@ const CATEGORIES: Category[] = [
   {
     name: "comparison",
     matcher: (u) => /^\/r-[a-z0-9-]+-vs-r-[a-z0-9-]+\/$/.test(u),
-    required: ["Organization", "WebSite", "Article", "BreadcrumbList"],
+    // Comparisons emit TechArticle (subtype of Article).
+    required: ["Organization", "WebSite", "TechArticle", "BreadcrumbList"],
     expected: ["FAQPage"],
   },
   {
@@ -129,33 +137,100 @@ function urlFromHtmlPath(filepath: string): string {
   return url;
 }
 
-function extractSchemas(html: string): Array<{ "@type": string; [k: string]: unknown }> {
-  const out: Array<{ "@type": string; [k: string]: unknown }> = [];
-  const regex = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
-  let match: RegExpExecArray | null;
-  while ((match = regex.exec(html)) !== null) {
-    const raw = match[1].replace(/\\u003c/g, "<");
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:?\d{2})?)?$/;
+
+const Entity = z
+  .object({
+    "@type": z.string().min(1, "@type is required and must be a non-empty string"),
+    "@id": z.string().url().optional(),
+  })
+  .passthrough();
+
+const Graph = z.object({
+  "@context": z.literal("https://schema.org"),
+  "@graph": z.array(Entity).min(1, "@graph must contain at least one entity"),
+});
+
+const DATE_TYPES = new Set(["Article", "TechArticle", "Dataset"]);
+
+interface StructuralError {
+  url: string;
+  message: string;
+}
+
+function validateStructural(
+  url: string,
+  scripts: string[],
+): { entities: Array<{ "@type": string; [k: string]: unknown }>; errors: StructuralError[] } {
+  const errors: StructuralError[] = [];
+  const entities: Array<{ "@type": string; [k: string]: unknown }> = [];
+
+  for (const raw of scripts) {
+    let parsed: unknown;
     try {
-      const parsed = JSON.parse(raw);
-      const collect = (node: unknown): void => {
-        if (Array.isArray(node)) node.forEach(collect);
-        else if (node && typeof node === "object") {
-          const obj = node as Record<string, unknown>;
-          if (obj["@type"] && typeof obj["@type"] === "string") {
-            out.push(obj as { "@type": string; [k: string]: unknown });
-          }
-          if (Array.isArray(obj["@graph"])) (obj["@graph"] as unknown[]).forEach(collect);
-          if (obj.mainEntity) collect(obj.mainEntity);
-          if (obj.potentialAction) collect(obj.potentialAction);
-          if (Array.isArray(obj.itemListElement)) (obj.itemListElement as unknown[]).forEach(collect);
-        }
-      };
-      collect(parsed);
+      parsed = JSON.parse(raw);
     } catch (e) {
-      console.error(`  ! JSON parse failed: ${(e as Error).message}`);
+      errors.push({ url, message: `JSON parse failed: ${(e as Error).message}` });
+      continue;
+    }
+    const parseResult = Graph.safeParse(parsed);
+    if (!parseResult.success) {
+      const issues = parseResult.error.issues
+        .map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`)
+        .join("; ");
+      errors.push({ url, message: `schema shape invalid: ${issues}` });
+      continue;
+    }
+    for (const ent of parseResult.data["@graph"]) {
+      entities.push(ent);
+      if (DATE_TYPES.has(ent["@type"])) {
+        const dp = ent["datePublished"];
+        const dm = ent["dateModified"];
+        if (typeof dp !== "string" || !ISO_DATE.test(dp)) {
+          errors.push({
+            url,
+            message: `${ent["@type"]} @id=${ent["@id"] ?? "(none)"} datePublished missing or not ISO 8601 (got ${JSON.stringify(dp)})`,
+          });
+        }
+        if (typeof dm !== "string" || !ISO_DATE.test(dm)) {
+          errors.push({
+            url,
+            message: `${ent["@type"]} @id=${ent["@id"] ?? "(none)"} dateModified missing or not ISO 8601 (got ${JSON.stringify(dm)})`,
+          });
+        }
+      }
     }
   }
-  return out;
+  return { entities, errors };
+}
+
+function extractSchemas(html: string, url: string): { entities: Array<{ "@type": string; [k: string]: unknown }>; structuralErrors: StructuralError[] } {
+  const regex = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
+  const rawScripts: string[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(html)) !== null) {
+    rawScripts.push(match[1].replace(/\\u003c/g, "<"));
+  }
+
+  const { entities: rootEntities, errors: structuralErrors } = validateStructural(url, rawScripts);
+
+  const flat: Array<{ "@type": string; [k: string]: unknown }> = [];
+  const collect = (node: unknown): void => {
+    if (Array.isArray(node)) node.forEach(collect);
+    else if (node && typeof node === "object") {
+      const obj = node as Record<string, unknown>;
+      if (obj["@type"] && typeof obj["@type"] === "string") {
+        flat.push(obj as { "@type": string; [k: string]: unknown });
+      }
+      if (Array.isArray(obj["@graph"])) (obj["@graph"] as unknown[]).forEach(collect);
+      if (obj.mainEntity) collect(obj.mainEntity);
+      if (obj.potentialAction) collect(obj.potentialAction);
+      if (Array.isArray(obj.itemListElement)) (obj.itemListElement as unknown[]).forEach(collect);
+    }
+  };
+  rootEntities.forEach(collect);
+
+  return { entities: flat, structuralErrors };
 }
 
 function validate(): { ok: boolean; errors: string[]; warnings: string[]; visited: number; skipped: number } {
@@ -178,8 +253,11 @@ function validate(): { ok: boolean; errors: string[]; warnings: string[]; visite
     }
     visited++;
     const html = fs.readFileSync(file, "utf8");
-    const schemas = extractSchemas(html);
-    const types = new Set(schemas.map((s) => s["@type"]));
+    const { entities, structuralErrors } = extractSchemas(html, url);
+    for (const se of structuralErrors) {
+      errors.push(`${se.url} [${cat.name}] structural: ${se.message}`);
+    }
+    const types = new Set(entities.map((s) => s["@type"]));
 
     for (const req of cat.required) {
       if (!types.has(req)) {
@@ -218,4 +296,57 @@ if (!ok) {
   process.exit(1);
 }
 
-console.log("OK  All required schema entities present across all pages.");
+console.log("OK  All required schema entities present across all pages.\n");
+
+// ─────────────────────────────────────────────────────────────────────
+// git-dates fallback audit
+//
+// src/lib/git-dates.ts appends one JSONL entry per call to this log during
+// the build. Aggregate here so a Vercel build with a shallow clone can't
+// silently ship "dateModified = build time" to Google. Fail the build if
+// >50% of dated files fell back — the shallow-clone footgun is common
+// enough that we want a hard stop, not just a warning.
+// ─────────────────────────────────────────────────────────────────────
+
+const GIT_DATES_LOG = path.join(ROOT, ".next", "git-dates-log.jsonl");
+if (fs.existsSync(GIT_DATES_LOG)) {
+  const seen = new Map<string, { fallback: boolean; shallow: boolean }>();
+  for (const line of fs.readFileSync(GIT_DATES_LOG, "utf8").split("\n")) {
+    if (!line) continue;
+    try {
+      const e = JSON.parse(line) as { file: string; fallback: boolean; shallow: boolean };
+      seen.set(e.file, { fallback: e.fallback, shallow: e.shallow });
+    } catch {
+      // skip malformed line — atomic-write race would leave a partial JSON
+    }
+  }
+  try { fs.unlinkSync(GIT_DATES_LOG); } catch { /* ignore */ }
+
+  const total = seen.size;
+  const fallbackFiles = [...seen.entries()].filter(([, v]) => v.fallback).map(([f]) => f).sort();
+  const anyShallow = [...seen.values()].some((v) => v.shallow);
+  const fallbackRate = total > 0 ? (fallbackFiles.length / total) * 100 : 0;
+  const critical = fallbackRate > 50;
+
+  if (fallbackFiles.length > 0 || anyShallow) {
+    const bar = "=".repeat(80);
+    const fn = critical ? console.error : console.warn;
+    fn(bar);
+    fn(`[git-dates] ${critical ? "BUILD-FAILING" : "WARNING"}: ${fallbackFiles.length}/${total} dated files fell back to filesystem mtime (${fallbackRate.toFixed(0)}%).`);
+    if (anyShallow) {
+      fn(`[git-dates] Repository is SHALLOW ('git rev-parse --is-shallow-repository' = true).`);
+      fn(`[git-dates] git log lacks history, so dateModified reflects checkout time, not authoring time.`);
+    }
+    if (fallbackFiles.length > 0) {
+      fn(`[git-dates] Affected files:`);
+      for (const f of fallbackFiles.slice(0, 25)) fn(`[git-dates]   - ${f}`);
+      if (fallbackFiles.length > 25) fn(`[git-dates]   ...and ${fallbackFiles.length - 25} more`);
+    }
+    fn(`[git-dates] Fix — Vercel: Project Settings > Git > uncheck 'Shallow Clone'.`);
+    fn(`[git-dates] Fix — GitHub Actions: actions/checkout@v4 with 'fetch-depth: 0'.`);
+    fn(bar);
+    if (critical) process.exit(1);
+  } else {
+    console.log(`[git-dates] OK — ${total} dated files, all resolved via git log.`);
+  }
+}

@@ -42,6 +42,7 @@ function renderInline(text: string): React.ReactNode[] {
 import { getRefrigerant, getPressureAtTempF, type Refrigerant } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { getFileGitDates } from "@/lib/git-dates";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { TypeChip } from "@/components/refrigerant/TypeChip";
 import { PTCurveOverlay } from "@/components/svg/PTCurveOverlay";
@@ -1014,17 +1015,18 @@ function LifecycleContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
 }
 
 function buildSchema(pageUrl: string, fm: ComparisonFrontmatter, a: Refrigerant, b: Refrigerant): object[] {
+  const { modified } = getFileGitDates(`content/comparisons/${fm.slug}.mdx`);
   const graph: object[] = [
     ORG,
     WEBSITE,
     {
-      "@type": "Article",
+      "@type": "TechArticle",
       "@id": `${pageUrl}#article`,
       headline: fm.title,
       description: fm.metaDescription ?? fm.introOneLiner,
       url: pageUrl,
-      datePublished: a.dataSource.ptChartGeneratedAt,
-      dateModified: a.dataSource.ptChartGeneratedAt,
+      datePublished: fm.datePublished,
+      dateModified: modified,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: pageUrl,

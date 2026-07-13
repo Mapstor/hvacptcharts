@@ -46,6 +46,8 @@ function buildSchema() {
       url: PAGE_URL,
       license: "https://creativecommons.org/licenses/by/4.0/",
       creator: { "@id": `${SITE_URL}/#organization` },
+      datePublished: PUBLISHED,
+      dateModified: PUBLISHED,
       isAccessibleForFree: true,
       citation: [
         "ANSI/ASHRAE Standard 34-2022: Designation and Safety Classification of Refrigerants",
