@@ -432,6 +432,32 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
             <h3 className="text-sm font-semibold">Subcooling Calculator</h3>
             <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Liquid PSIG + line °F → subcooling.</p>
           </Link>
+          <Link href="/low-suction-pressure/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+            <h3 className="text-sm font-semibold">Low suction pressure</h3>
+            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Diagnostic tree — undercharge, restriction, airflow patterns.</p>
+          </Link>
+          <Link href="/ac-low-side-pressure-too-high/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+            <h3 className="text-sm font-semibold">AC low side pressure too high</h3>
+            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Overcharge, TXV overfeed, restricted evap airflow.</p>
+          </Link>
+          {r.slug === "r-410a" ? (
+            <>
+              <Link href="/r410a-superheat-chart/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+                <h3 className="text-sm font-semibold">R-410A superheat chart</h3>
+                <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Fixed-orifice target SH by WB × DB.</p>
+              </Link>
+              <Link href="/r410a-charging-chart/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+                <h3 className="text-sm font-semibold">R-410A charging chart</h3>
+                <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">TXV subcooling + fixed-orifice SH on one page.</p>
+              </Link>
+            </>
+          ) : null}
+          {r.slug === "r-22" ? (
+            <Link href="/r22-superheat-chart/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+              <h3 className="text-sm font-semibold">R-22 superheat chart</h3>
+              <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Fixed-orifice target SH by WB × DB.</p>
+            </Link>
+          ) : null}
         </section>
 
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">

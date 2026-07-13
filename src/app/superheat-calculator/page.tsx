@@ -116,6 +116,13 @@ export default function SuperheatCalculatorPage() {
         { href: "/pt-superheat-subcooling-calculator/", label: "Combined PT / SH / SC", blurb: "All three measurements on one form with pattern-matching diagnostic banner." },
         { href: "/pt-calculator/", label: "PT Calculator", blurb: "Raw saturation-pressure lookup for any refrigerant." },
         { href: "/system-pressure-diagnostic-calculator/", label: "System Diagnostic", blurb: "Pattern matcher for high/low pressure × high/low SH/SC fingerprints." },
+        { href: "/target-superheat-chart/", label: "Target Superheat Chart", blurb: "Fixed-orifice target lookup by indoor WB × outdoor DB. Refrigerant-independent method." },
+        { href: "/r410a-superheat-chart/", label: "R-410A Superheat Chart", blurb: "Target matrix + R-410A saturation quick table for fixed-orifice residential AC." },
+        { href: "/r22-superheat-chart/", label: "R-22 Superheat Chart", blurb: "Target matrix + R-22 saturation quick table for legacy fixed-orifice service." },
+        { href: "/high-suction-low-head-pressure/", label: "High Suction Low Head", blurb: "Diagnostic tree for the specific pattern where both pressures converge — internal leakage." },
+        { href: "/ac-low-side-pressure-too-high/", label: "AC Low Side Pressure Too High", blurb: "Diagnostic tree for suction above normal. Overcharge is the most common cause." },
+        { href: "/low-suction-pressure/", label: "Low Suction Pressure", blurb: "Broad diagnostic tree for suction below normal — undercharge, restriction, or airflow." },
+        { href: "/ac-compressor-short-cycling/", label: "AC Compressor Short Cycling", blurb: "Cycling patterns and their root causes on residential and automotive systems." },
         { href: "/refrigerant/r-410a/", label: "R-410A reference", blurb: "Full PT chart, operating pressures, and lubricant guidance for the dominant residential AC refrigerant." },
       ]}
       faqs={FAQS}

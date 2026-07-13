@@ -117,6 +117,9 @@ export default function SubcoolingCalculatorPage() {
         { href: "/pt-calculator/", label: "PT Calculator", blurb: "Raw saturation lookup for any refrigerant." },
         { href: "/high-head-pressure-causes/", label: "High head pressure causes", blurb: "High SC often signals a condenser-side condition. Diagnostic decision tree." },
         { href: "/system-pressure-diagnostic-calculator/", label: "System Diagnostic", blurb: "Pattern matcher for high/low pressure × high/low SH/SC fingerprints." },
+        { href: "/overcharged-ac-symptoms/", label: "Overcharged AC Symptoms", blurb: "8 signs of too much refrigerant — high SC is the definitive fingerprint." },
+        { href: "/r410a-charging-chart/", label: "R-410A Charging Chart", blurb: "TXV subcooling target + fixed-orifice superheat matrix on one page." },
+        { href: "/high-suction-low-head-pressure/", label: "High Suction Low Head", blurb: "Diagnostic tree for the specific converging-pressure pattern." },
       ]}
       faqs={FAQS}
       bodySections={<RichContent />}

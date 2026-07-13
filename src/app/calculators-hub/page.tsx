@@ -90,6 +90,16 @@ export default function CalculatorsHubPage() {
             { href: "/hvac-load-calculator/", label: "HVAC Load Calculator", blurb: "Quick Manual J — cooling tons + heating BTU/hr from 7 inputs. Component breakdown, sensible/latent split, equipment-sizing guidance." },
           ],
         },
+        {
+          heading: "Charging charts (fixed-orifice, TXV)",
+          description: "Static reference charts for the two dominant charging methods. Chart pages are lookup artifacts; the calculators above compute from live inputs.",
+          items: [
+            { href: "/target-superheat-chart/", label: "Target Superheat Chart", blurb: "Universal fixed-orifice target lookup by indoor WB × outdoor DB. Refrigerant-independent method." },
+            { href: "/r410a-superheat-chart/", label: "R-410A Superheat Chart", blurb: "Full 14 × 13 target matrix + R-410A evap saturation quick table." },
+            { href: "/r22-superheat-chart/", label: "R-22 Superheat Chart", blurb: "Target matrix + R-22 evap saturation quick table for legacy fixed-orifice service." },
+            { href: "/r410a-charging-chart/", label: "R-410A Charging Chart", blurb: "TXV subcooling method + fixed-orifice superheat method on one page." },
+          ],
+        },
       ]}
       learningPaths={[
         {

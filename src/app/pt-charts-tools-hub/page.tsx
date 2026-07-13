@@ -88,11 +88,21 @@ export default function PTChartsToolsHubPage() {
           items: [
             { href: "/refrigerant-pt-comparison-tool/", label: "PT Comparison Tool", blurb: "Overlay 2-4 refrigerants on one chart. Useful for retrofit feasibility scans." },
             { href: "/r-32-vs-r-410a/", label: "R-32 vs R-410A", blurb: "Side-by-side written comparison, the residential AC phase-down decision." },
+            { href: "/r-12-vs-r-134a/", label: "R-12 vs R-134a", blurb: "Classic CFC to HFC retrofit — oil change, seal update, 80–90% charge rule." },
             { href: "/what-pressure-should-r22/", label: "R-22 operating pressures", blurb: "Operating pressure ranges by ambient + diagnostic HowTo guide." },
             { href: "/what-pressure-should-410a/", label: "R-410A operating pressures", blurb: "Operating pressure ranges + A1-vs-A2L handling distinction." },
             { href: "/what-pressure-should-r32/", label: "R-32 operating pressures", blurb: "A2L-specific operating ranges with handling notes." },
             { href: "/what-pressure-should-r1234yf/", label: "R-1234yf operating pressures (mobile A/C)", blurb: "Indexed by ambient × engine RPM. EPA Section 609, SAE J2843, cross-contamination scenario." },
             { href: "/what-pressure-should-r449a/", label: "R-449A operating pressures (Opteon XP40 retrofit)", blurb: "Commercial refrigeration retrofit from R-404A. Dew/bubble glide rule, phantom-undercharge scenario, 2026 EPA Tech Transitions threshold." },
+          ],
+        },
+        {
+          heading: "Charging charts",
+          items: [
+            { href: "/target-superheat-chart/", label: "Target Superheat Chart", blurb: "Universal fixed-orifice target lookup by indoor WB × outdoor DB." },
+            { href: "/r410a-superheat-chart/", label: "R-410A Superheat Chart", blurb: "Full matrix + R-410A saturation quick table." },
+            { href: "/r22-superheat-chart/", label: "R-22 Superheat Chart", blurb: "Matrix + R-22 saturation quick table for legacy service." },
+            { href: "/r410a-charging-chart/", label: "R-410A Charging Chart", blurb: "TXV subcooling method + fixed-orifice superheat method." },
           ],
         },
         {

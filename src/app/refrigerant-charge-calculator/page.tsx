@@ -128,6 +128,9 @@ export default function RefrigerantChargeCalculatorPage() {
         { href: "/subcooling-calculator/", label: "Subcooling Calculator", blurb: "TXV/EXV systems: primary charging-verification metric." },
         { href: "/system-pressure-diagnostic-calculator/", label: "System Pressure Diagnostic", blurb: "Full-system multi-input diagnostic after charging." },
         { href: "/refrigerant-retrofit-compatibility-calculator/", label: "Retrofit Compatibility", blurb: "When changing refrigerants, evaluate compatibility before applying the charge adjustment." },
+        { href: "/overcharged-ac-symptoms/", label: "Overcharged AC Symptoms", blurb: "8 signs an install went past nameplate — verify subcooling before adding refrigerant." },
+        { href: "/ac-compressor-short-cycling/", label: "AC Compressor Short Cycling", blurb: "Pressure-switch trips often trace back to charge; diagnose before adjusting." },
+        { href: "/r410a-charging-chart/", label: "R-410A Charging Chart", blurb: "Two-method charging: TXV subcooling vs fixed-orifice superheat." },
       ]}
       faqs={FAQS}
       bodySections={<RichContent />}

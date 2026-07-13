@@ -59,8 +59,17 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/superheat-subcooling-fundamentals/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/pt-chart-guide/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/high-head-pressure-causes/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/high-suction-low-head-pressure/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/ac-low-side-pressure-too-high/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/low-suction-pressure/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/ac-compressor-short-cycling/", priority: 0.7, changeFrequency: "monthly" },
+  { url: "/overcharged-ac-symptoms/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/refrigerant-comparison-guide/", priority: 0.8, changeFrequency: "monthly" },
-  // Carrier R-410A fixed-orifice charging chart — ported with chart + interactive lookup + worked examples.
+  // Charging charts — universal target-superheat + R-410A / R-22 fluid-specific + two-method R-410A chart.
+  { url: "/target-superheat-chart/", priority: 0.7, changeFrequency: "yearly" },
+  { url: "/r410a-superheat-chart/", priority: 0.8, changeFrequency: "yearly" },
+  { url: "/r22-superheat-chart/", priority: 0.7, changeFrequency: "yearly" },
+  { url: "/r410a-charging-chart/", priority: 0.8, changeFrequency: "yearly" },
   { url: "/carrier-410a-charging-chart/", priority: 0.7, changeFrequency: "yearly" },
   { url: "/refrigerant-prices-guide/", priority: 0.7, changeFrequency: "monthly" },
 
@@ -91,6 +100,7 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/r-22-vs-r-454b/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/r-1234yf-vs-r-134a/", priority: 0.6, changeFrequency: "monthly" },
   { url: "/r-744-vs-r-290/", priority: 0.6, changeFrequency: "monthly" },
+  { url: "/r-12-vs-r-134a/", priority: 0.7, changeFrequency: "yearly" },
 
   // HVAC long-form guides — being ported one at a time with full content depth.
   { url: "/hvac-troubleshooting-guide/", priority: 0.7, changeFrequency: "monthly" },

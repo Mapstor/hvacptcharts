@@ -134,7 +134,8 @@ export default function FundamentalsPage() {
         <nav className="mb-10 rounded-md border border-zinc-200 bg-zinc-50/40 p-4 text-sm dark:border-zinc-800 dark:bg-zinc-900/30" aria-label="Table of contents">
           <h2 className="text-xs font-semibold uppercase tracking-wide text-zinc-500">Sections</h2>
           <ol className="mt-2 list-decimal space-y-1 pl-5">
-            <li><a href="#what" className="hover:underline">What superheat and subcooling are</a></li>
+            <li><a href="#superheat" className="hover:underline">What is superheat in HVAC?</a></li>
+            <li><a href="#subcooling" className="hover:underline">What is subcooling in HVAC?</a></li>
             <li><a href="#measure" className="hover:underline">How to measure in the field</a></li>
             <li><a href="#targets" className="hover:underline">Target values by system type</a></li>
             <li><a href="#patterns" className="hover:underline">Diagnostic patterns</a></li>
@@ -144,8 +145,8 @@ export default function FundamentalsPage() {
           </ol>
         </nav>
 
-        <section id="what" className="mb-10">
-          <TechSection icon="thermometer" tone="blue" title="1. What superheat and subcooling are">
+        <section id="superheat" className="mb-10">
+          <TechSection icon="thermometer" tone="blue" title="1. What is superheat in HVAC?">
             <p>
               <strong>Superheat</strong> is the temperature of refrigerant vapor above its
               saturation temperature at the same pressure. It is measured on the suction line.
@@ -153,16 +154,27 @@ export default function FundamentalsPage() {
               corresponding to the suction pressure is 45°F, superheat = 60 − 45 = 15°F.
             </p>
             <p>
+              Positive superheat means the refrigerant has fully boiled — the evaporator absorbed
+              enough heat to vaporize all liquid, plus a margin of extra heat that pushes vapor
+              temperature above saturation. Zero or negative superheat means liquid is reaching
+              the compressor (slugging), which damages valves and bearings.
+            </p>
+          </TechSection>
+        </section>
+
+        <section id="subcooling" className="mb-10">
+          <TechSection icon="thermometer" tone="blue" title="2. What is subcooling in HVAC?">
+            <p>
               <strong>Subcooling</strong> is the temperature of liquid refrigerant below its
               saturation temperature at the same pressure. It is measured on the liquid line.
               If the liquid at the condenser outlet reads 100°F and the saturation temperature
               corresponding to the discharge pressure is 112°F, subcooling = 112 − 100 = 12°F.
             </p>
             <p>
-              Both are non-negative on a working system. Negative superheat means liquid is
-              reaching the compressor (slugging); negative subcooling means vapor is forming in
-              the liquid line (flash gas at the metering device). Both are damaging conditions
-              that require immediate diagnosis.
+              Positive subcooling means the condenser did more than convert vapor to liquid — it
+              cooled that liquid below the saturation point, giving a margin against flash-gas
+              formation upstream of the metering device. Zero or negative subcooling means vapor
+              is forming in the liquid line (flash gas), which reduces evaporator capacity.
             </p>
             <PtSaturationDiagram />
             <p className="text-xs text-zinc-500 dark:text-zinc-400">
@@ -175,7 +187,7 @@ export default function FundamentalsPage() {
         </section>
 
         <section id="measure" className="mb-10">
-          <TechSection icon="gauge" tone="purple" title="2. How to measure superheat and subcooling in the field">
+          <TechSection icon="gauge" tone="purple" title="3. How to measure superheat and subcooling in the field">
             <p><strong>For superheat:</strong></p>
             <ol className="list-decimal pl-5 text-sm space-y-1">
               <li>Connect the manifold gauge to the suction service port. Read suction pressure in PSIG.</li>
@@ -201,7 +213,7 @@ export default function FundamentalsPage() {
         </section>
 
         <section id="targets" className="mb-10">
-          <TechSection icon="data" tone="emerald" title="3. Target values by system type">
+          <TechSection icon="data" tone="emerald" title="4. Target values by system type">
             <Panel title="Target SH and SC by system type" icon={TableIcon}>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -240,7 +252,7 @@ export default function FundamentalsPage() {
         </section>
 
         <section id="patterns" className="mb-10">
-          <TechSection icon="warning" tone="amber" title="4. Diagnostic patterns — what each combination means">
+          <TechSection icon="warning" tone="amber" title="5. Diagnostic patterns — what each combination means">
             <p>
               Four common SH × SC patterns, each pointing to a different root cause family.
               These are the foundation of refrigerant-side diagnostic work and underpin the
@@ -278,7 +290,7 @@ export default function FundamentalsPage() {
         </section>
 
         <section id="scenarios" className="mb-10">
-          <TechSection icon="service" tone="amber" title="5. Worked service scenarios">
+          <TechSection icon="service" tone="amber" title="6. Worked service scenarios">
             <p>
               Five field scenarios showing how SH and SC together drive service decisions.
               Each maps measured readings to a diagnostic verdict and specific service action.
@@ -481,7 +493,7 @@ export default function FundamentalsPage() {
         </section>
 
         <section id="pitfalls" className="mb-10">
-          <TechSection icon="warning" tone="amber" title="6. Common pitfalls">
+          <TechSection icon="warning" tone="amber" title="7. Common pitfalls">
             <ol className="list-decimal pl-5 text-sm space-y-1">
               <li>
                 <strong>Probing without insulation.</strong> Ambient air at the probe location
@@ -520,6 +532,21 @@ export default function FundamentalsPage() {
               </li>
             </ol>
           </TechSection>
+        </section>
+
+        <section className="mb-10 grid gap-3 sm:grid-cols-3">
+          <Link href="/target-superheat-chart/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+            <h3 className="text-sm font-semibold">Target Superheat Chart</h3>
+            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Refrigerant-independent target lookup by WB × DB.</p>
+          </Link>
+          <Link href="/r410a-superheat-chart/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+            <h3 className="text-sm font-semibold">R-410A Superheat Chart</h3>
+            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">R-410A target matrix + evap saturation table.</p>
+          </Link>
+          <Link href="/overcharged-ac-symptoms/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+            <h3 className="text-sm font-semibold">Overcharged AC Symptoms</h3>
+            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">8 signs — high SC is the definitive fingerprint.</p>
+          </Link>
         </section>
 
         <section id="faq" className="mb-10">

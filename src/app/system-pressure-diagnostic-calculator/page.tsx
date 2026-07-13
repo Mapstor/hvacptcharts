@@ -117,6 +117,9 @@ export default function SystemPressureDiagnosticPage() {
         { href: "/superheat-calculator/", label: "Superheat Calculator", blurb: "Suction-side measurement alone." },
         { href: "/subcooling-calculator/", label: "Subcooling Calculator", blurb: "Liquid-side measurement alone." },
         { href: "/high-head-pressure-causes/", label: "High Head Pressure Causes", blurb: "Decision-tree narrative behind condenser-side flags." },
+        { href: "/high-suction-low-head-pressure/", label: "High Suction Low Head", blurb: "The internal-leakage signature — converging pressures diagnostic." },
+        { href: "/low-suction-pressure/", label: "Low Suction Pressure", blurb: "Broad tree for suction below normal — undercharge, restriction, airflow." },
+        { href: "/ac-compressor-short-cycling/", label: "Short Cycling", blurb: "Pressure-switch trips and control faults that cycle the compressor." },
         { href: "/superheat-subcooling-fundamentals/", label: "SH/SC Fundamentals", blurb: "Conceptual basis for the diagnostic patterns." },
       ]}
       faqs={FAQS}

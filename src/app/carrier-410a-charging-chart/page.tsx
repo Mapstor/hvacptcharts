@@ -680,6 +680,14 @@ export default function CarrierChargingChartPage() {
               <div className="flex items-center gap-2 font-semibold"><BookOpen className="h-4 w-4 text-blue-600" /> SH &amp; SC fundamentals</div>
               <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Conceptual framework: what these numbers mean and why.</p>
             </Link>
+            <Link href="/r410a-charging-chart/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+              <div className="flex items-center gap-2 font-semibold"><BookOpen className="h-4 w-4 text-blue-600" /> R-410A charging chart (universal)</div>
+              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Two-method: TXV subcooling and fixed-orifice superheat.</p>
+            </Link>
+            <Link href="/r410a-superheat-chart/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+              <div className="flex items-center gap-2 font-semibold"><BookOpen className="h-4 w-4 text-blue-600" /> R-410A superheat chart</div>
+              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Full target-superheat matrix (14 × 13) with the formula.</p>
+            </Link>
           </div>
         </section>
       </article>

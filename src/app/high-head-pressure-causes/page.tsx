@@ -472,6 +472,18 @@ export default function HighHeadPressurePage() {
             <h3 className="text-sm font-semibold">System Pressure Diagnostic</h3>
             <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Multi-input synthesis with approach temperatures.</p>
           </Link>
+          <Link href="/high-suction-low-head-pressure/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+            <h3 className="text-sm font-semibold">High Suction Low Head Pressure</h3>
+            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">The opposite signature — internal leakage, TXV overfeed, reversing valve.</p>
+          </Link>
+          <Link href="/overcharged-ac-symptoms/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+            <h3 className="text-sm font-semibold">Overcharged AC Symptoms</h3>
+            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">8 signs of too much refrigerant — overcharge is the top cause of high head.</p>
+          </Link>
+          <Link href="/ac-compressor-short-cycling/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+            <h3 className="text-sm font-semibold">AC Compressor Short Cycling</h3>
+            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">High head pressure cutout trips are a leading short-cycling cause.</p>
+          </Link>
         </section>
 
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">

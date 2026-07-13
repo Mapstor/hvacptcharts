@@ -574,6 +574,10 @@ export default function ComparisonGuidePage() {
             <h3 className="text-sm font-semibold">Safety Class Index</h3>
             <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">All 61 refrigerants sorted by ASHRAE class with phase-down status.</p>
           </Link>
+          <Link href="/r-12-vs-r-134a/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+            <h3 className="text-sm font-semibold">R-12 vs R-134a</h3>
+            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Classic CFC to HFC retrofit — oil change, seal update, 80–90% charge rule.</p>
+          </Link>
         </section>
 
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">

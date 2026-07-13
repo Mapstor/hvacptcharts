@@ -1070,6 +1070,18 @@ function RelatedResources({
             sub="5-axis framework"
           />
           <ResourceLink href="/superheat-subcooling-fundamentals/" label="SH/SC fundamentals" />
+          {slug === "r-410a" ? (
+            <>
+              <ResourceLink href="/r410a-superheat-chart/" label="R-410A superheat chart" sub="Target SH by WB × DB matrix" />
+              <ResourceLink href="/r410a-charging-chart/" label="R-410A charging chart" sub="Subcooling + superheat methods" />
+            </>
+          ) : null}
+          {slug === "r-22" ? (
+            <ResourceLink href="/r22-superheat-chart/" label="R-22 superheat chart" sub="Target SH by WB × DB matrix" />
+          ) : null}
+          {slug === "r-12" || slug === "r-134a" ? (
+            <ResourceLink href="/r-12-vs-r-134a/" label="R-12 vs R-134a" sub="Retrofit path, oil change, charge rule" />
+          ) : null}
         </ResourceGroup>
       </div>
     </Section>
