@@ -135,6 +135,13 @@ export const DataStatus = z.enum([
   "complete",
   "published-eos-not-in-build",
   "manufacturer-datasheet-published",
+  // "manufacturer-datasheet" — reserved for Wave 1.6b: PT chart transcribed
+  // from a manufacturer datasheet at the datasheet's native resolution
+  // (typically 5°F on Honeywell Solstice / Genetron tables). buildRefrigerant-
+  // Metadata's branch 2 renders the SERP surface with datasheet-attributed
+  // copy when this status is set. Not used by any current fluid; adding the
+  // enum entry so the future data-layer PR doesn't require a schema change.
+  "manufacturer-datasheet",
   "historical-retired-refrigerant",
   "no-commercial-data-published",
 ]);
@@ -150,6 +157,40 @@ export const DataSource = z.object({
   primarySources: z.array(PrimarySource).optional(),
 });
 export type DataSource = z.infer<typeof DataSource>;
+
+/* ─────────────── PT TABLE (datasheet-native storage) ─────────────── */
+
+/**
+ * A single row from a manufacturer-published PT table stored at native
+ * resolution. The datasheets that feed this format are pressure-indexed
+ * with irregular pressure steps (Honeywell Solstice N40, Chemours ISCEON
+ * MO99), so the row primary key is `psig` rather than a temperature.
+ *
+ * Wave 1.6b (2026-07): populated for r-448a and r-438a from the published
+ * Honeywell / Chemours PT tables. Storage is native — no interpolation to
+ * 1°F temperature-indexed points at rest. Runtime lookups (getPressureAtTempF)
+ * interpolate linearly between adjacent rows and mark the result as
+ * interpolated-from-published in the UI.
+ */
+export const PTTableRow = z.object({
+  psig: z.number(),
+  bubbleF: z.number(),
+  dewF: z.number(),
+});
+export type PTTableRow = z.infer<typeof PTTableRow>;
+
+/**
+ * Datasheet-provenance metadata carried alongside a ptTable. Absent for
+ * fluids whose PT data comes from CoolProp or from an empty ptChart.
+ */
+export const PrimaryDatasheet = z.object({
+  manufacturer: z.string(),
+  tradeName: z.string().optional(),
+  publicationDate: z.string().optional(),
+  url: z.string().url().optional(),
+  resolution: z.string(),
+});
+export type PrimaryDatasheet = z.infer<typeof PrimaryDatasheet>;
 
 /* ─────────────── REFRIGERANT ─────────────── */
 
@@ -173,6 +214,15 @@ export const Refrigerant = z.object({
   replaces: z.array(z.string()).nullable(),
   regulatoryStatus: RegulatoryStatus,
   ptChart: z.array(PTPoint),
+  /**
+   * Datasheet-resolution native PT table. Optional; populated only for
+   * fluids whose PT data is transcribed from a manufacturer datasheet at
+   * that datasheet's native pressure-indexed resolution (r-448a, r-438a
+   * as of Wave 1.6b). When present, dataSource.dataStatus is
+   * "manufacturer-datasheet" and primaryDatasheet carries the attribution.
+   */
+  ptTable: z.array(PTTableRow).optional(),
+  primaryDatasheet: PrimaryDatasheet.optional(),
   dataSource: DataSource,
 });
 export type Refrigerant = z.infer<typeof Refrigerant>;
@@ -197,33 +247,80 @@ export function hasCriticalPoint(r: Refrigerant): boolean {
 }
 
 export function hasPTData(r: Refrigerant): boolean {
-  return r.ptChart.length > 0;
+  return r.ptChart.length > 0 || (r.ptTable !== undefined && r.ptTable.length > 0);
 }
 
 /**
- * Linear interpolation lookup of bubble/dew PSIG at any temperature in the
- * refrigerant's PT chart range. Returns null if the temperature is outside the
- * available range or if the refrigerant has no PT data.
+ * Linear interpolation lookup of bubble/dew PSIG at any temperature.
+ *
+ * Two data paths, in priority order:
+ *   1. `ptChart` — the CoolProp-generated 1°F-step temperature-indexed
+ *      chart. Standard lookup: find bracketing rows by tempF, interpolate.
+ *   2. `ptTable` — datasheet-native pressure-indexed table (irregular
+ *      steps). Reached only when ptChart is empty. Lookup finds
+ *      bracketing rows whose {bubbleF, dewF} span the target tempF and
+ *      interpolates psig linearly. Because bubbleF and dewF differ per
+ *      row (zeotropic blend), the bracket search runs independently for
+ *      each side and the returned pair may draw from different row-pairs.
+ *
+ * Returns null when the temperature is outside the available range or
+ * the fluid has no PT data at all.
  */
 export function getPressureAtTempF(
   slug: string,
   tempF: number
 ): { bubble: number; dew: number } | null {
   const r = getRefrigerant(slug);
-  if (!r || r.ptChart.length === 0) return null;
-  const sorted = [...r.ptChart].sort((a, b) => a.tempF - b.tempF);
-  if (tempF < sorted[0].tempF || tempF > sorted[sorted.length - 1].tempF) return null;
-  for (let i = 0; i < sorted.length - 1; i++) {
-    const a = sorted[i];
-    const b = sorted[i + 1];
-    if (a.tempF <= tempF && tempF <= b.tempF) {
-      const t = (tempF - a.tempF) / (b.tempF - a.tempF);
-      return {
-        bubble: a.bubblePsig + t * (b.bubblePsig - a.bubblePsig),
-        dew: a.dewPsig + t * (b.dewPsig - a.dewPsig),
-      };
+  if (!r) return null;
+
+  // Path 1 — temperature-indexed chart (CoolProp fluids)
+  if (r.ptChart.length > 0) {
+    const sorted = [...r.ptChart].sort((a, b) => a.tempF - b.tempF);
+    if (tempF < sorted[0].tempF || tempF > sorted[sorted.length - 1].tempF) return null;
+    for (let i = 0; i < sorted.length - 1; i++) {
+      const a = sorted[i];
+      const b = sorted[i + 1];
+      if (a.tempF <= tempF && tempF <= b.tempF) {
+        const t = (tempF - a.tempF) / (b.tempF - a.tempF);
+        return {
+          bubble: a.bubblePsig + t * (b.bubblePsig - a.bubblePsig),
+          dew: a.dewPsig + t * (b.dewPsig - a.dewPsig),
+        };
+      }
     }
+    return null;
   }
+
+  // Path 2 — pressure-indexed datasheet table (Wave 1.6b transcriptions)
+  if (r.ptTable && r.ptTable.length > 0) {
+    const rows = [...r.ptTable].sort((a, b) => a.psig - b.psig);
+    // Independently search bubble side and dew side; each row's bubbleF /
+    // dewF is monotonic in psig for zeotropic blends. If tempF sits inside
+    // both ranges, we interpolate psig for each side and return the pair.
+    const interpSide = (side: "bubble" | "dew"): number | null => {
+      const key = side === "bubble" ? "bubbleF" : "dewF";
+      const first = rows[0][key];
+      const last = rows[rows.length - 1][key];
+      if (tempF < Math.min(first, last) || tempF > Math.max(first, last)) return null;
+      for (let i = 0; i < rows.length - 1; i++) {
+        const a = rows[i];
+        const b = rows[i + 1];
+        const aT = a[key];
+        const bT = b[key];
+        if ((aT <= tempF && tempF <= bT) || (bT <= tempF && tempF <= aT)) {
+          if (bT === aT) return a.psig;
+          const t = (tempF - aT) / (bT - aT);
+          return a.psig + t * (b.psig - a.psig);
+        }
+      }
+      return null;
+    };
+    const bubble = interpSide("bubble");
+    const dew = interpSide("dew");
+    if (bubble === null || dew === null) return null;
+    return { bubble, dew };
+  }
+
   return null;
 }
 

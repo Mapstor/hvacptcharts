@@ -1,0 +1,49 @@
+---
+slug: r-404a-vs-r-452a
+refrigerantA: r-404a
+refrigerantB: r-452a
+title: "R404A vs R452A: Transport Refrigeration Retrofit Path"
+metaTitle: "R404A vs R452A: Transport Refrigeration Retrofit"
+metaDescription: "R404A vs R452A: transport refrigeration retrofit. Chemours Opteon XP44 cuts GWP 45% (3922→2140), keeps POE oil. Lower discharge temp, similar suction."
+datePublished: "2026-07-14"
+introOneLiner: "R-452A (Chemours Opteon XP44, Honeywell Solstice L40X) is the transport-refrigeration-focused R-404A retrofit — same A1 safety class, same POE lubricant, similar 40°F saturation pressure (91.7 vs 86.9 PSIG bubble, ~5% higher), and 45% lower GWP (2140 vs 3922 IPCC AR5). The engineering angle that sold R-452A into transport applications is lower discharge temperature at high compression ratios, which matters more on the intermittent-high-load duty cycles of refrigerated trailers and containers than on stationary MT/LT commercial refrigeration."
+
+retrofitFeasible: true
+
+chooseA: "Existing R-404A commercial refrigeration equipment during its remaining service life. Reclaimed R-404A remains legal to service existing equipment under EPA Section 608, though the AIM Act phase-down (40 CFR Part 84) restricts new equipment above certain GWP thresholds and virgin R-404A supply is tightening. Service supply from reclaim will persist through the late 2020s and into the 2030s but at rising cost."
+
+chooseB: "Retrofits of R-404A equipment, particularly in refrigerated transport applications (trailers, intermodal containers, truck-mounted refrigeration). R-452A was engineered specifically for this class: keeps the POE lubricant so no oil change is required, keeps A1 safety so no equipment recertification, matches the R-404A pressure envelope closely enough to reuse existing compressors and expansion devices, and delivers meaningfully lower discharge temperatures at the high compression ratios seen in transport duty cycles. Adopted by major transport-refrigeration OEMs (Carrier Transicold, Thermo King) as a factory refrigerant on some new units and as a certified retrofit on existing units."
+
+whenNeither: "For new stationary commercial refrigeration equipment (walk-in coolers, refrigerated display cases, supermarket refrigeration), an A1 R-448A or R-449A retrofit (65% GWP reduction, similar service properties) or an A2L R-454C / R-455A next-generation blend (95%+ GWP reduction, requires A2L-certified equipment) is the appropriate direction. R-452A's 45% GWP reduction is engineered for transport applications where compression-ratio and discharge-temperature considerations matter more than absolute GWP; on stationary equipment where GWP is the primary driver, the tighter alternatives are the better fit."
+
+retrofitNotes: |
+  R-404A → R-452A is a well-documented service retrofit in the transport-refrigeration segment. Both refrigerants are HFC/HFO blends (R-452A adds R-1234yf to an R-32 / R-125 backbone), both are ASHRAE A1, and both use polyol ester (POE) lubricant. No oil change, no elastomer swap, no safety recertification.
+
+  The pressure envelope difference is small: R-452A runs about 5–6% higher than R-404A at typical commercial-refrigeration operating temperatures (91.7 vs 86.9 PSIG bubble at 40°F saturation). Component pressure ratings designed for R-404A accommodate this. Charge amount is typically the same weight as the original R-404A charge — verify against the specific equipment's OEM retrofit bulletin (Carrier Transicold and Thermo King publish per-model retrofit procedures).
+
+  Glide is the one property that changes materially: R-404A is nearly azeotropic (~0.9°F glide), so single-curve saturation works for service work; R-452A is zeotropic (~7°F glide), so superheat must be measured against the dew curve at the evaporator outlet. Using the bubble curve for SH on R-452A would err by roughly the glide magnitude — a real-world error that shows up as apparent-undercharge readings.
+
+  The value proposition on transport applications is the lower discharge temperature at high compression ratios. Transport refrigeration units run intermittent high-load duty cycles (pull-down from ambient after loading, fighting off-cycle warming) where R-404A discharge temperatures push up against compressor material limits. R-452A's HFO content shifts the compression path enough to keep discharge lower under the same load, extending compressor life on these duty cycles. On stationary MT/LT refrigeration with steadier duty cycles, this benefit is smaller and the higher-GWP-reduction blends (R-448A, R-449A, R-454C) are usually preferred.
+
+  Filter-drier replacement is standard practice on any refrigerant change and is required by EPA Section 608 procedures for the retrofit. Pressure-test with dry nitrogen, evacuate to 500 microns held ≥30 minutes, and charge R-452A to the same weight as the original R-404A specification.
+
+faqs:
+  - q: "What is R-452A?"
+    a: "A zeotropic HFC/HFO blend of R-32, R-125, and R-1234yf, marketed as Chemours Opteon XP44 or Honeywell Solstice L40X. Designed as an R-404A retrofit with 45% lower GWP (2140 vs 3922 IPCC AR5), maintaining A1 safety class and POE lubricant compatibility. Primary application is refrigerated transport (trailers, containers, truck units)."
+  - q: "Is R-452A a drop-in replacement for R-404A?"
+    a: "Effectively yes for retrofits — same POE oil, same A1 safety, similar pressure envelope (within ~6%), same charge weight in most equipment. The one procedural change is glide handling: R-452A has ~7°F glide vs R-404A's near-azeotropic behavior, so superheat measurements must use the dew curve at the evaporator outlet. Otherwise the standard retrofit procedure (recover, replace filter-drier, evacuate, recharge to nameplate weight) applies without modification."
+  - q: "Why is R-452A preferred over R-448A / R-449A in transport refrigeration?"
+    a: "Lower discharge temperature at high compression ratios. Transport refrigeration operates on intermittent high-load duty cycles (initial pull-down, off-cycle recovery, ambient extremes) that stress compressor materials. R-452A's blend chemistry produces lower discharge temperatures at those operating points than R-448A or R-449A, which matters more for compressor longevity in transport than for stationary MT/LT commercial refrigeration where duty cycles are more stable. R-448A / R-449A are the leading choices for stationary equipment where the discharge-temperature benefit doesn't dominate."
+  - q: "What GWP reduction does R-452A deliver vs R-404A?"
+    a: "45% — R-452A at GWP 2140 (IPCC AR5) vs R-404A at 3922. That's smaller than R-448A (1387, 65% reduction) or R-449A (1282, 67% reduction), but the trade-off is that R-452A specifically targets the transport-refrigeration duty cycle where compressor discharge-temperature margin drives service life. For stationary equipment where GWP reduction is the primary driver, R-448A / R-449A are usually the better fit."
+  - q: "Does R-452A work with mineral oil?"
+    a: "No. R-452A is designed for polyol ester (POE) lubricant, the same lubricant used with R-404A. Mineral oil (MO) or alkylbenzene (AB) is not miscible with HFC/HFO blends and will produce oil-return failure within hours of operation. This is a shared property with the other AIM-Act-driven replacements (R-448A, R-449A) — the R-404A → next-generation path avoids the oil-change complication that R-22 → R-407C required."
+  - q: "Is R-452A A2L or A1?"
+    a: "A1 (lower toxicity, non-flammable). The small R-1234yf fraction in the blend doesn't push R-452A into the A2L range under ASHRAE 34 classification. Equipment safety certification for R-404A remains valid; no additional A2L-specific ventilation, gas detection, or charge limits apply."
+---
+
+## R-404A vs R-452A: transport refrigeration's engineered retrofit
+
+R-452A is one of several R-404A retrofit refrigerants that reached the market as the AIM Act phase-down tightened. Where R-448A (Honeywell Solstice N40) and R-449A (Chemours Opteon XP40) targeted stationary MT/LT commercial refrigeration with higher GWP reduction, R-452A was engineered specifically for refrigerated transport applications where the compressor operating envelope demands different priorities.
+
+The 45% GWP cut (3922 → 2140) is modest compared to the 65% reduction from R-448A or R-449A. But R-452A's compression-path chemistry produces lower discharge temperatures under transport-refrigeration duty cycles — the pull-down loads and intermittent operation that push R-404A discharge into material-limit territory. In stationary refrigeration where the duty cycle is steadier, that benefit is smaller and the tighter-GWP alternatives are usually preferred.

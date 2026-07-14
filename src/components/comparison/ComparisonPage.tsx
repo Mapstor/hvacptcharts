@@ -61,6 +61,40 @@ import type { ComparisonFrontmatter } from "@/lib/mdx-comparison";
 
 const SERIES_COLORS = ["var(--c-bubble)", "var(--c-safe-a3)"];
 
+/**
+ * Build a temperature-indexed sample of PTPoints for a fluid whose PT data
+ * comes from a native pressure-indexed ptTable (r-448a, r-438a as of
+ * Wave 1.6b). Used only for the overlay visualization — storage stays
+ * native pressure-indexed; this helper produces runtime-interpolated
+ * points at ~2°F spacing across the fluid's covered temperature range so
+ * the curve renders alongside CoolProp fluids without visual gaps.
+ */
+function ptTableToPointsForOverlay(r: Refrigerant): Refrigerant["ptChart"] {
+  const table = r.ptTable;
+  if (!table || table.length === 0) return [];
+  const bubbleTemps = table.map((row) => row.bubbleF);
+  const dewTemps = table.map((row) => row.dewF);
+  const tMin = Math.ceil(Math.max(Math.min(...bubbleTemps), Math.min(...dewTemps)));
+  const tMax = Math.floor(Math.min(Math.max(...bubbleTemps), Math.max(...dewTemps)));
+  const out: Refrigerant["ptChart"] = [];
+  for (let t = tMin; t <= tMax; t += 2) {
+    const p = getPressureAtTempF(r.slug, t);
+    if (!p) continue;
+    const tempC = ((t - 32) * 5) / 9;
+    out.push({
+      tempF: t,
+      tempC: Math.round(tempC * 10) / 10,
+      bubblePsig: p.bubble,
+      dewPsig: p.dew,
+      bubbleKpag: p.bubble * 6.89476,
+      dewKpag: p.dew * 6.89476,
+      displayPsig: p.bubble,
+      displayKpag: p.bubble * 6.89476,
+    });
+  }
+  return out;
+}
+
 export interface ComparisonPageProps {
   fm: ComparisonFrontmatter;
   body?: string; // reserved for future MDX-body embedding
@@ -82,12 +116,24 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
   const pageUrl = `${SITE_URL}/${fm.slug}/`;
   const schemaGraph = buildSchema(pageUrl, fm, a, b);
 
-  const overlayData = [a, b].map((r, i) => ({
-    name: r.displayName,
-    points: r.ptChart,
-    hasGlide: r.physical.hasSignificantGlide,
-    color: SERIES_COLORS[i],
-  })).filter((d) => d.points.length > 0);
+  // Overlay data path:
+  //   - CoolProp fluids ship a temperature-indexed ptChart at 1°F steps — use directly.
+  //   - Datasheet fluids (Wave 1.6b: r-448a, r-438a) ship a pressure-indexed
+  //     ptTable at native resolution. Build a temperature-indexed sample
+  //     for the overlay only (runtime interpolation via ptTable is permitted
+  //     for rendering per the transcription spec; storage stays native).
+  const overlayData = [a, b].map((r, i) => {
+    let points = r.ptChart;
+    if (points.length === 0 && r.ptTable && r.ptTable.length > 0) {
+      points = ptTableToPointsForOverlay(r);
+    }
+    return {
+      name: r.displayName,
+      points,
+      hasGlide: r.physical.hasSignificantGlide,
+      color: SERIES_COLORS[i],
+    };
+  }).filter((d) => d.points.length > 0);
 
   return (
     <>
@@ -185,8 +231,12 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
                 />
                 <PropRow
                   label="Temp glide"
-                  valueA={`${a.physical.temperatureGlideF.toFixed(2)}°F`}
-                  valueB={`${b.physical.temperatureGlideF.toFixed(2)}°F`}
+                  // Glide is a magnitude (|dew − bubble|); the dataset's
+                  // sign convention is authoring-order dependent and a
+                  // negative value on-page reads as a data error to any
+                  // service tech. Always render |glide|.
+                  valueA={`${Math.abs(a.physical.temperatureGlideF).toFixed(2)}°F`}
+                  valueB={`${Math.abs(b.physical.temperatureGlideF).toFixed(2)}°F`}
                 />
                 <PropRow
                   label="AIM Act affected"
@@ -358,7 +408,7 @@ function RefrigerantSummary({ r, color }: { r: Refrigerant; color: string }) {
         <dt className="text-zinc-500">Lubricant</dt>
         <dd className="font-mono">{r.lubricants.compatible.join(", ")}</dd>
         <dt className="text-zinc-500">Glide @ 0°C</dt>
-        <dd className="font-mono">{r.physical.temperatureGlideF.toFixed(1)}°F</dd>
+        <dd className="font-mono">{Math.abs(r.physical.temperatureGlideF).toFixed(1)}°F</dd>
       </dl>
     </div>
   );

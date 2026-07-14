@@ -101,6 +101,15 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/r-1234yf-vs-r-134a/", priority: 0.6, changeFrequency: "monthly" },
   { url: "/r-744-vs-r-290/", priority: 0.6, changeFrequency: "monthly" },
   { url: "/r-12-vs-r-134a/", priority: 0.7, changeFrequency: "yearly" },
+  // Wave 1.6 — four KW-validated comparisons.
+  { url: "/r-290-vs-r-600a/", priority: 0.7, changeFrequency: "yearly" },
+  { url: "/r-454b-vs-r-454c/", priority: 0.7, changeFrequency: "yearly" },
+  { url: "/r-404a-vs-r-452a/", priority: 0.7, changeFrequency: "yearly" },
+  { url: "/r-134a-vs-r-1234ze/", priority: 0.7, changeFrequency: "yearly" },
+  // Wave 1.6b — three MO99 / N40 / XP40 comparisons enabled by manufacturer PT transcription.
+  { url: "/r-22-vs-r-438a/", priority: 0.7, changeFrequency: "yearly" },
+  { url: "/r-448a-vs-r-449a/", priority: 0.7, changeFrequency: "yearly" },
+  { url: "/r-404a-vs-r-448a/", priority: 0.7, changeFrequency: "yearly" },
 
   // HVAC long-form guides — being ported one at a time with full content depth.
   { url: "/hvac-troubleshooting-guide/", priority: 0.7, changeFrequency: "monthly" },

@@ -1,0 +1,47 @@
+---
+slug: r-454b-vs-r-454c
+refrigerantA: r-454b
+refrigerantB: r-454c
+title: "R454B vs R454C: Same Components, Different Applications"
+metaTitle: "R454B vs R454C: The Two A2L Blends Compared (GWP, Glide)"
+metaDescription: "R454B vs R454C: same R32/R1234yf components, different ratios. R454B GWP 466 (residential AC); R454C GWP 148 with 13.9°F glide (LT commercial)."
+datePublished: "2026-07-14"
+introOneLiner: "R-454B and R-454C are both A2L blends of the same two components — R-32 (difluoromethane) and R-1234yf (2,3,3,3-tetrafluoropropene) — but in wildly different mass fractions. R-454B is 68.9/31.1 R-32/R-1234yf (residential AC replacement for R-410A, GWP 466, glide 2.3°F); R-454C is 21.5/78.5 (low-temperature commercial refrigeration, GWP 148, glide 13.9°F). Same ASHRAE 34 400-series designation family, same components, opposite ends of the R-32 / R-1234yf spectrum, opposite application classes."
+
+retrofitFeasible: false
+
+chooseA: "New residential and light-commercial AC equipment as the R-410A replacement. R-454B has near-azeotropic behavior (2.3°F glide), pressure envelope within a few percent of R-410A across the residential AC operating range, and GWP 466 (well under the 700 threshold for new residential AC equipment). Carrier's Puron Advance branding is the largest OEM adoption path. Requires A2L-certified equipment per UL 60335-2-40 and IEC 60335-2-40 — sealed motor circuits, charge limits per room volume, A2L-rated leak detection on larger installations."
+
+chooseB: "New low-temperature commercial refrigeration equipment as the R-404A / R-448A / R-449A next-generation replacement. R-454C's much higher R-1234yf content brings GWP down to 148 (well under the EU F-Gas 150 threshold and comfortably under any AIM Act sector cap), at the cost of substantial temperature glide (13.9°F). The zeotropic behavior requires TXV/EEV metering with careful superheat measurement on the dew curve — bubble-curve SH calculation would err by the full glide magnitude."
+
+whenNeither: "For medium-temperature commercial refrigeration where the R-454C glide is too large for the equipment class, R-455A (R-32/CO₂/R-1234yf, GWP 148, similar glide profile) or R-448A/R-449A (higher GWP but more manageable ~11°F glide, A1 safety class) are the alternatives. For residential AC where A2L classification isn't yet acceptable (some jurisdictions phasing in A2L certification), continued R-410A service through 2030s reclaimed supply is the interim option — but the AIM Act phase-down makes this a shrinking window."
+
+retrofitNotes: |
+  R-454B and R-454C are not retrofit candidates for each other in either direction. The pressure envelope gap is substantial — R-454B at 40°F evaporator saturation is 112.0 PSIG (bubble) / 107.0 PSIG (dew); R-454C at the same temperature is 82.4 PSIG (bubble) / 61.5 PSIG (dew). Neither ratio is close enough for a common metering-device orifice to handle both, and the compressor displacement sizing differs materially.
+
+  More fundamentally, they're designed for different application classes. R-454B replaces R-410A in residential AC where evaporator saturation runs around 40°F (roughly 45°F return-air with 5–15°F superheat) and condenser saturation runs 115–130°F. R-454C replaces R-404A in low-temperature commercial refrigeration where evaporator saturation runs -20 to 0°F for frozen-goods walk-ins. Different pressure envelopes, different capacity requirements, different equipment topologies.
+
+  Both refrigerants use POE lubricant and A2L-certified equipment per UL 60335-2-40 / IEC 60335-2-40. That's the shared property. Everything else about the equipment design flows from the different evaporator and condenser operating points.
+
+  If the question is "which A2L blend replaces R-410A in residential AC?", the answer is R-454B (or R-32 in some OEM lines). If the question is "which A2L blend replaces R-404A in LT commercial refrigeration?", the answer is R-454C or R-455A. The two never compete for the same equipment slot.
+
+faqs:
+  - q: "Why are R-454B and R-454C so different if they share the same components?"
+    a: "The 21.5/78.5 R-32/R-1234yf ratio in R-454C compared to R-454B's 68.9/31.1 flips the dominant component. R-32 (pure) is a moderate-glide-free HFC with GWP 675, high vapor pressure, and no glide. R-1234yf is a HFO with GWP < 1, low vapor pressure, and no glide by itself. When blended in near-equal proportions there's little glide; when one component dominates by 68% or 78% mass, the mixture behaves close to that component with the small fraction of the other producing the glide seen in the blend. R-454B is R-32-dominant (behaves like R-32 with some R-1234yf character); R-454C is R-1234yf-dominant (behaves like R-1234yf with some R-32 character). Different components dominating produces different pressure envelopes and glide."
+  - q: "Are R-454B and R-454C interchangeable?"
+    a: "No. Different pressure envelopes (roughly 35% pressure difference at 40°F evaporator saturation), different glide characteristics (2.3°F vs 13.9°F), different equipment designs, different application classes. Equipment designed for one cannot operate on the other. This is a common misunderstanding driven by the shared '454' designation family — the family indicates ASHRAE 34 zeotropic-blend numbering, not any interchangeability."
+  - q: "Which has lower GWP?"
+    a: "R-454C at 148 (IPCC AR5) — well under the EU F-Gas 150 threshold and comfortably under the AIM Act 300 GWP cap for new commercial refrigeration. R-454B at 466 is well under the residential AC threshold (700) but doesn't meet the tighter thresholds applicable to commercial refrigeration. This split matches their application-class targets: residential AC has a higher GWP allowance than LT commercial refrigeration."
+  - q: "Do both refrigerants require A2L-certified equipment?"
+    a: "Yes, both are ASHRAE class A2L (lower toxicity, mildly flammable) under Standard 34. Equipment for either must comply with UL 60335-2-40 / IEC 60335-2-40: sealed motor circuits, charge limits computed from installation room volume, appropriate ventilation, and (on larger charges) A2L-rated leak detection. Field retrofit of A1-only equipment to either A2L blend is generally not possible — the safety certification requires factory-level engineering of the refrigerant circuit and electrical components."
+  - q: "Why not just use R-32 alone for residential AC?"
+    a: "Pure R-32 is used in residential AC in some markets — most notably Daikin's global R-32 lineup and other Asian-market equipment. R-454B exists as an alternative for OEMs (particularly Carrier) that wanted lower GWP than pure R-32 (466 vs 675) with a similar pressure envelope. The choice between R-32 and R-454B for residential AC is now largely OEM preference; both refrigerants are AIM Act-compliant for new residential AC production."
+  - q: "How does R-454C compare to R-455A for LT commercial refrigeration?"
+    a: "Both are A2L blends targeting the same LT commercial refrigeration market with GWP well under 150. R-454C is R-32/R-1234yf (21.5/78.5, glide 13.9°F); R-455A is R-32/CO₂/R-1234yf (21.5/3/75.5, glide ~22°F, with CO₂ as the low-boiling glide-inducer). See our r-454c-vs-r-455a comparison for the direct head-to-head — the choice comes down to whether the CO₂ content and larger glide are acceptable for the specific equipment design."
+---
+
+## R-454B vs R-454C: same components, opposite application classes
+
+The 400-series ASHRAE 34 designations run sequentially as blends are certified, so R-454A / R-454B / R-454C are all HFC/HFO blends but with different mass-fraction recipes of the same components. R-454B and R-454C in particular are both binary R-32 / R-1234yf blends, and the split between them — 68.9/31.1 for R-454B, 21.5/78.5 for R-454C — is the largest single design decision separating them.
+
+R-32 dominates R-454B's thermodynamic behavior: pressure envelope close to R-410A, small glide, higher volumetric capacity. R-1234yf dominates R-454C's behavior: lower pressures, large glide from the small R-32 fraction, matched to commercial-refrigeration compressor sizing. Neither is a substitute for the other; they're two distinct products with a shared blend recipe framework.

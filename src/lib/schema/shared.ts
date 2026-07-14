@@ -30,15 +30,17 @@ export function seoName(displayName: string): string {
 }
 
 /**
- * Trade / common name annotations for the four natural refrigerants where
- * "R744 (CO2)" etc. still fits the ≤68-char title budget. Everything else
- * uses the bare seoName.
+ * Trade / common name annotations for fluids whose non-ASHRAE name dominates
+ * search volume enough that including it in title / H1 pays for the char
+ * budget spent. Four naturals plus MO99 (DuPont/Chemours trade name for
+ * R-438A — MO99 is the primary query form and has been for a decade).
  */
 export const COMMON_NAME: Record<string, string> = {
   "r-744": "CO2",
   "r-290": "Propane",
   "r-600a": "Isobutane",
   "r-717": "Ammonia",
+  "r-438a": "MO99",
 };
 
 /**
@@ -48,8 +50,29 @@ export const COMMON_NAME: Record<string, string> = {
  * surfaces without hand-editing MDX. Common-name variant is appended when
  * the fluid appears in COMMON_NAME AND the combined title still fits.
  *
+ * Three branches on the title / description shape, driven by dataset state:
+ *
+ *   1. `hasPtData === false` — the fluid has no ptChart in this build.
+ *      Do NOT promise a PT chart at the SERP surface (Wave 1.6 fix). Ships
+ *      a "Refrigerant Reference" title + a description that highlights
+ *      properties + safety + GWP instead of a chart the page can't render.
+ *      Applies automatically to every fluid whose ptChart is empty; the
+ *      moment ptChart is populated the fluid flips to branch 2 or 3 with
+ *      no other edit needed.
+ *
+ *   2. `hasPtData === true && dataStatus === "manufacturer-datasheet"` —
+ *      Wave 1.6b territory. The PT table is transcribed from a manufacturer
+ *      datasheet at the datasheet's native resolution (5°F on the Honeywell
+ *      Solstice / Genetron tables, coarser on some others). Do NOT claim
+ *      "1°F steps" — that would be a fabricated interpolation. Title cites
+ *      the manufacturer's product name; description states the source.
+ *
+ *   3. `hasPtData === true` and everything else — full CoolProp-generated
+ *      1°F chart. Existing behavior, unchanged.
+ *
  * MDX may still provide `metaDescription` as an escape hatch for curated
- * copy on specific fluids (r-516a is the seed case).
+ * copy on specific fluids (r-516a is the seed case). It always wins over
+ * any generated description regardless of branch.
  */
 export interface RefrigerantMetadataInput {
   slug: string;
@@ -57,6 +80,40 @@ export interface RefrigerantMetadataInput {
   minTempF: number;
   maxTempF: number;
   pressure70F: number | null;
+  /**
+   * True when the fluid has a rendered PT chart on-page. Drives the branch
+   * selection so an empty-ptChart fluid can't ship "Complete... chart" copy.
+   */
+  hasPtData: boolean;
+  /**
+   * Dataset provenance flag. When "manufacturer-datasheet" and hasPtData is
+   * true, the fluid ships datasheet-resolution PT copy (branch 2). Undefined
+   * for CoolProp-generated fluids.
+   */
+  dataStatus?: string;
+  /** ASHRAE safety class — used in the empty-ptChart description one-liner. */
+  safetyClass?: string;
+  /** IPCC AR5 100-year GWP — the one number in the empty-ptChart description. */
+  gwp100Ar5?: number | null;
+  /**
+   * Primary datasheet attribution — used in the datasheet-resolution branch
+   * title/description. When Wave 1.6b transcribes a fluid, populate this so
+   * the SERP surface flips from "Refrigerant Reference" to the datasheet-
+   * table form.
+   */
+  primaryDatasheet?: {
+    manufacturer: string;
+    tradeName?: string;
+    /** Fixed step in °F if the datasheet publishes at a regular interval. */
+    resolutionStepF?: number;
+    /**
+     * Free-form resolution label — used when the datasheet publishes at
+     * irregular steps and a single-number step doesn't apply. Wave 1.6b's
+     * Solstice N40 and Freon MO99 tables both set this to
+     * "native pressure-indexed, irregular steps".
+     */
+    resolution?: string;
+  } | null;
   /** MDX override — used verbatim when present, ignored otherwise. */
   metaDescriptionOverride?: string;
 }
@@ -68,20 +125,54 @@ export function buildRefrigerantMetadata(input: RefrigerantMetadataInput): {
 } {
   const seo = seoName(input.displayName);
   const common = COMMON_NAME[input.slug];
+  const commonPrefix = common ? `${seo} (${common})` : seo;
 
-  const baseTitle = common
-    ? `${seo} (${common}) PT Chart: Full °F/PSIG Table (Free PDF Printable)`
-    : `${seo} PT Chart: Full °F/PSIG Table (Free PDF Printable)`;
+  // ── Branch 1 — empty ptChart. Honest reference copy; no chart promised. ──
+  if (!input.hasPtData) {
+    const title = `${commonPrefix} Refrigerant Reference: Properties, GWP, Safety`;
+    const h1 = `${commonPrefix} Refrigerant Reference`;
+    let description: string;
+    if (input.metaDescriptionOverride) {
+      description = input.metaDescriptionOverride;
+    } else if (input.gwp100Ar5 != null && input.safetyClass) {
+      description = `${commonPrefix} refrigerant reference: ASHRAE ${input.safetyClass}, GWP ${input.gwp100Ar5} (AR5). Properties, safety-class detail, regulatory context, and retrofit or replacement paths.`;
+    } else if (input.safetyClass) {
+      description = `${commonPrefix} refrigerant reference: ASHRAE ${input.safetyClass}. Physical properties, safety classification, ODP context, and retrofit paths per current regulatory status.`;
+    } else {
+      description = `${commonPrefix} refrigerant reference: physical properties, ASHRAE safety classification, environmental and regulatory context, and retrofit / replacement paths in a printable format.`;
+    }
+    return { title, description, h1 };
+  }
+
+  // ── Branch 2 — datasheet-resolution PT chart. Wave 1.6b territory. ──
+  if (input.dataStatus === "manufacturer-datasheet" && input.primaryDatasheet) {
+    const ds = input.primaryDatasheet;
+    const tradePart = ds.tradeName ? `: ${ds.tradeName} Table` : ": Datasheet Table";
+    const manuPart = ` (${ds.manufacturer} Data)`;
+    const title = `${commonPrefix} PT Chart${tradePart}${manuPart}`;
+    const h1 = `${commonPrefix} PT Chart`;
+    let description: string;
+    if (input.metaDescriptionOverride) {
+      description = input.metaDescriptionOverride;
+    } else {
+      const step = ds.resolutionStepF
+        ? `${ds.resolutionStepF}°F resolution`
+        : ds.resolution ?? "native resolution";
+      description = `${seo} PT table from ${ds.manufacturer}'s ${ds.tradeName ?? "published"} datasheet — ${step}, not interpolated. Properties, ASHRAE class, retrofit context.`;
+    }
+    return { title, description, h1 };
+  }
+
+  // ── Branch 3 — CoolProp full 1°F chart. Existing behavior. ──
+  const baseTitle = `${commonPrefix} PT Chart: Full °F/PSIG Table (Free PDF Printable)`;
   // If the "Printable" tail pushes us past 68c (long designations like
-  // R1336mzz(Z)), drop that word for the short variant. Common-name form
-  // always gets the shorter variant to stay in budget.
+  // R1336mzz(Z)), drop that word. Common-name form always gets the shorter
+  // variant to stay in budget.
   const title = baseTitle.length <= 68
     ? baseTitle
-    : common
-      ? `${seo} (${common}) PT Chart: Full °F/PSIG Table (Free PDF)`
-      : `${seo} PT Chart: Full °F/PSIG Table (Free PDF)`;
+    : `${commonPrefix} PT Chart: Full °F/PSIG Table (Free PDF)`;
 
-  const h1 = common ? `${seo} (${common}) PT Chart` : `${seo} PT Chart`;
+  const h1 = `${commonPrefix} PT Chart`;
 
   // r-22 gets the phase-down nuance instead of the chart-vocab tail so
   // reclaim-legal techs don't read the description as "all use banned".

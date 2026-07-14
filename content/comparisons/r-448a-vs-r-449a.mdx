@@ -1,0 +1,54 @@
+---
+slug: r-448a-vs-r-449a
+refrigerantA: r-448a
+refrigerantB: r-449a
+title: "R448A vs R449A: N40 and XP40 Head to Head"
+metaTitle: "R448A vs R449A: The Two R404A Retrofits Compared"
+metaDescription: "R448A vs R449A: two A1 R404A retrofits — Honeywell N40 (GWP 1387) vs Chemours XP40 (GWP 1282). Same POE oil; near-identical pressures at service temps."
+datePublished: "2026-07-14"
+introOneLiner: "R-448A (Honeywell Solstice N40) and R-449A (Chemours Opteon XP40) are the two dominant A1 next-generation retrofits for R-404A in medium- and low-temperature commercial refrigeration. Both are HFC/HFO blends with similar GWP (1387 vs 1282), similar pressure envelopes, similar temperature glide, POE-compatible lubricant, and A1 safety class. They are peer alternatives — not source-and-target of each other — so the choice between them is driven by manufacturer preference, service supply, and OEM-approval status, rather than a technical retrofit path from one to the other."
+
+retrofitFeasible: false
+
+chooseA: "Sites and OEMs standardized on the Honeywell supply chain. R-448A is Honeywell's Solstice N40, delivered from Honeywell's manufacturing footprint. The R-448A PT chart is published in the Solstice N40 Technical Data Sheet (Publication 3820, September 2019), and equipment OEMs that have qualified Solstice N40 for their platforms (major commercial refrigeration manufacturers) publish charging procedures against that datasheet."
+
+chooseB: "Sites and OEMs standardized on the Chemours supply chain. R-449A is Chemours Opteon XP40, delivered from Chemours's manufacturing footprint. OEM approvals and service supply mirror Honeywell's N40 in most markets — the two products compete head-to-head. Chemours publishes XP40 technical data with the same performance envelope and retrofit procedure. Refrigerant reclaim programs for both are established."
+
+whenNeither: "For sites that want lower GWP than the two 1300-range HFC/HFO A1 blends: R-454C (GWP 148) or R-455A (GWP 148) are the A2L path for low-temperature commercial refrigeration where the A2L safety class + IEC 60335-2-40 compliance is acceptable. For R-404A retrofits in transport refrigeration specifically, R-452A (Opteon XP44 / Solstice L40X) targets that duty cycle with the discharge-temperature advantage documented on our r-404a-vs-r-452a page. For R-404A → next-generation A1 retrofits on stationary MT/LT commercial refrigeration, R-448A and R-449A are the two dominant choices; the decision typically comes down to OEM approval and local reclaim availability."
+
+retrofitNotes: |
+  R-448A and R-449A are peer alternatives for the R-404A → next-generation retrofit path, not source-and-target of each other. There is no service-time retrofit BETWEEN the two — a site converting an R-448A installation to R-449A (or vice versa) would follow the same procedure as any HFC blend change (recover, replace filter-drier, evacuate, recharge). The blends are close enough thermodynamically that equipment sizing and controls don't need adjustment for such a swap, but the reason to switch would be supply-chain rather than technical.
+
+  On the retrofit-from-R-404A side, both blends follow the same general procedure. Both use POE lubricant (the R-404A → next-generation switches carry the POE oil forward — no oil-change complication like the R-22 → HFC retrofit family has). Both are A1 safety class, so no safety recertification. Both have zeotropic behavior with roughly 11°F glide, so superheat measurement must use the dew curve at the evaporator outlet. Both drop into R-404A service equipment (compressors, TXVs, filter-driers) without component replacement in the typical case.
+
+  The differences that matter for the site-level decision are second-order:
+
+  - **GWP**: R-449A slightly lower (1282 vs 1387 IPCC AR5). Both are below the 1500 threshold that some EU F-Gas quotas key on; the ~100-point difference is a marginal argument in either direction.
+  - **Composition**: R-448A is 26/26/21/7/20 R-32/R-125/R-134a/R-1234ze(E)/R-1234yf (5 components); R-449A is 24.3/24.7/25.7/25.3 R-32/R-125/R-134a/R-1234yf (4 components). The R-1234ze content in R-448A is the compositional distinction.
+  - **Manufacturer**: R-448A = Honeywell (Solstice N40). R-449A = Chemours (Opteon XP40). Site standardization on one supply chain is often the deciding factor.
+  - **OEM approvals**: Both are widely approved by major commercial refrigeration OEMs (Hussmann, Heatcraft, Kysor, Bitzer, Copeland). Individual model families sometimes have one blend qualified before the other; check the equipment's service literature for approved refrigerants before choosing.
+
+  For pressure envelope comparison at service temperatures, both blends run within a couple of PSIG of each other across the operating range. At 40°F saturation (a typical medium-temp evaporator), R-448A bubble is approximately 89 PSIG and dew is approximately 72 PSIG; R-449A is 87.4 PSIG bubble and 71.6 PSIG dew (from CoolProp). Roughly 2 PSIG separation on both sides — well within service-envelope tolerance for equipment designed for either blend.
+
+  The `not feasible` flag on this page reflects the peer-alternatives framing: there is no service-time retrofit procedure that converts one product to the other, because there is no engineering reason to prefer one over the other on an already-operating system. Both are direction targets from R-404A, not from each other.
+
+faqs:
+  - q: "Which is better, R-448A or R-449A?"
+    a: "For most stationary medium-temperature and low-temperature commercial refrigeration retrofits from R-404A, either is a valid choice — the two blends are close enough on GWP, pressure envelope, glide, safety class, and lubricant compatibility that the decision usually reduces to (a) OEM approval for the specific equipment model, (b) local reclaim and supply availability, and (c) site-level standardization on the Honeywell or Chemours supply chain. R-449A has a marginally lower GWP (1282 vs 1387); the difference is small enough to be a tiebreaker rather than a driver."
+  - q: "Can I switch a system from R-448A to R-449A (or vice versa)?"
+    a: "Yes, but the procedure isn't a 'retrofit' in the R-404A → next-generation sense — it's a same-family blend change. Recover the existing charge, replace the filter-drier (standard practice on any refrigerant change), evacuate to 500 microns, and charge with the new blend to nameplate weight. No oil change (both use POE), no safety recertification (both A1), no equipment component swap. The reason to switch would be supply-chain or OEM approval change, not thermodynamic."
+  - q: "Do R-448A and R-449A have the same composition?"
+    a: "No — they're peer alternatives from different manufacturers with different compositions. R-448A is R-32/R-125/R-134a/R-1234ze(E)/R-1234yf at 26/26/21/7/20 mass fractions (five components; Honeywell). R-449A is R-32/R-125/R-134a/R-1234yf at 24.3/24.7/25.7/25.3 (four components; Chemours). The R-1234ze content in R-448A is the compositional distinction. Both blends have similar thermodynamic behavior despite the different recipes because R-1234yf and R-1234ze(E) have similar refrigerant properties in these proportions."
+  - q: "What is the glide for R-448A and R-449A?"
+    a: "Both blends have approximately 11°F temperature glide at 0°C saturation (both are ASHRAE 34 400-series zeotropic blends). Service work must use the dew curve at the evaporator outlet for superheat calculation — using the bubble curve would introduce an error equal to the glide, roughly 11°F. Subcooling on the liquid line uses the bubble curve as usual. The site's calculators handle this automatically."
+  - q: "Which R-404A retrofit is more common, R-448A or R-449A?"
+    a: "Market share fluctuates by region and time. Both blends have significant install bases in North America and Europe. Some OEMs (Hussmann, Heatcraft) have historically favored one supplier; site owners often standardize on their equipment OEM's default. In the AIM Act phase-down timeline, both are AIM-Act-affected but sit well below the immediate GWP cutoffs that would drive further phase-down — meaning both remain viable retrofit choices through the late 2020s and into the 2030s, with the eventual next-step being A2L (R-454C / R-455A) rather than yet another A1 blend."
+  - q: "Do R-448A and R-449A both use POE oil?"
+    a: "Yes — both are polyol ester (POE) lubricant systems, matching R-404A's POE requirement. The R-404A → R-448A / R-449A retrofit skips the oil change complication that R-22 → HFC blends require. Filter-drier replacement is standard practice for any refrigerant change; check the drier is rated for HFC service and POE-compatible."
+---
+
+## R-448A vs R-449A: peer alternatives, not source and target
+
+The R-404A retrofit market split cleanly around 2015-2017 between two competing A1 HFC/HFO blends: Honeywell's Solstice N40 (R-448A) and Chemours's Opteon XP40 (R-449A). Both target the same commercial refrigeration application space, both deliver approximately 65% GWP reduction vs R-404A, both preserve A1 safety and POE lubricant compatibility, and both retrofit R-404A equipment without component replacement in the typical case.
+
+Because the two blends are close on every technical axis that matters for the retrofit decision, the choice between them reduces to supply-chain standardization, OEM approval status for the specific equipment being serviced, and local reclaim / distributor availability. There is no meaningful service-time retrofit path FROM one TO the other — they are peer targets from R-404A, not source-target of each other.

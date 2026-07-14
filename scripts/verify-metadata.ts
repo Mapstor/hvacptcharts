@@ -30,6 +30,16 @@ import { readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import * as cheerio from "cheerio";
 
+// Load the refrigerant dataset once at build time so the SERP-promise
+// assertion (below) can check ptChart presence per slug without walking the
+// full site again.
+const refrigerantsRaw = JSON.parse(
+  readFileSync(join(process.cwd(), "data", "refrigerants.json"), "utf8"),
+) as Array<{ slug: string; ptChart: unknown[] }>;
+const EMPTY_PT_CHART_SLUGS = new Set<string>(
+  refrigerantsRaw.filter((r) => r.ptChart.length === 0).map((r) => r.slug),
+);
+
 const ROOT = process.cwd();
 const HTML_ROOT = join(ROOT, ".next", "server", "app");
 const REPORT_DIR = join(ROOT, "reports");
@@ -58,7 +68,11 @@ interface HeadTermRule {
 const HEAD_TERM_RULES: HeadTermRule[] = [
   {
     match: (r) => r.startsWith("/refrigerant/"),
-    headTerms: () => ["PT Chart"],
+    // Refrigerant pages accept either heading form: "PT Chart" for fluids
+    // with data, "Refrigerant Reference" for empty-ptChart fluids routed to
+    // the honest reference-form surface (Wave 1.6). buildRefrigerantMetadata
+    // picks between them from ptChart.length.
+    headTerms: () => ["PT Chart", "Refrigerant Reference"],
   },
   {
     match: (r) => r.startsWith("/what-pressure-should-"),
@@ -245,6 +259,27 @@ function main() {
     }
     if (hyphenRe.test(r.h1)) {
       hardFailures.push(`${r.route}: H1 contains hyphenated designation "R-\\d": ${r.h1}`);
+    }
+
+    // (h) SERP promise integrity — any refrigerant page whose description
+    // promises a "Complete ... chart" must have a non-empty ptChart in the
+    // dataset. Wave 1.6 added this after r-438a and r-448a shipped with
+    // "Complete R438A saturation pressure-temperature chart" as their
+    // meta description while the on-page PT table was empty (broken SERP
+    // promise). The empty-ptChart branch of buildRefrigerantMetadata now
+    // routes those fluids to a "Refrigerant Reference" surface instead;
+    // this assertion prevents that class of drift from returning.
+    const refrigerantMatch = r.route.match(/^\/refrigerant\/([a-z0-9-]+)\/$/);
+    if (refrigerantMatch) {
+      const slug = refrigerantMatch[1];
+      const promisesChart =
+        r.description.includes("Complete") && r.description.includes("chart");
+      if (promisesChart && EMPTY_PT_CHART_SLUGS.has(slug)) {
+        hardFailures.push(
+          `${r.route}: description promises "Complete ... chart" but ${slug} has empty ptChart in data/refrigerants.json. ` +
+            `Route the fluid through buildRefrigerantMetadata's empty-ptChart branch or transcribe the manufacturer datasheet.`,
+        );
+      }
     }
   }
 

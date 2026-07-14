@@ -1,0 +1,59 @@
+---
+slug: r-404a-vs-r-448a
+refrigerantA: r-404a
+refrigerantB: r-448a
+title: "R404A vs R448A: The Solstice N40 Retrofit Path"
+metaTitle: "R404A vs R448A: Solstice N40 Retrofit Compared"
+metaDescription: "R404A vs R448A: Solstice N40 retrofit cuts GWP 65% (3922→1387), keeps A1+POE, similar pressures at service temps. Zeotropic ~11°F glide vs R404A near-azeotropic."
+datePublished: "2026-07-14"
+introOneLiner: "R-448A (Honeywell Solstice N40) is one of two dominant next-generation A1 retrofits for R-404A in medium- and low-temperature commercial refrigeration (the other is R-449A / Chemours Opteon XP40, covered in a separate comparison). N40 cuts GWP by approximately 65% relative to R-404A (1387 vs 3922 IPCC AR5), preserves A1 safety class and POE lubricant compatibility, matches R-404A's pressure envelope closely enough for equipment reuse, and shifts service behavior on one axis: zeotropic ~11°F temperature glide vs R-404A's near-azeotropic behavior. Honeywell's Solstice N40 Technical Data Sheet (Publication 3820, September 2019) is the authoritative datasheet and the source of the PT chart used on the R-448A reference page."
+
+retrofitFeasible: true
+
+chooseA: "Servicing existing R-404A equipment through remaining service life. Reclaimed R-404A remains legal under EPA Section 608 through the AIM Act phase-down; service supply continues from reclaim streams even as virgin allocation tightens. The economic trade-off is rising R-404A cost against retrofit labor + refrigerant cost. On equipment with 3+ years of remaining service life, running through with reclaimed R-404A is often the cost-optimal path — particularly given R-404A's operational maturity (mature service infrastructure, well-understood equipment behavior, established reclaim market)."
+
+chooseB: "Retrofitting an existing R-404A system when GWP reduction is a driver (AIM Act phase-down compliance, EU F-Gas quota positioning, corporate sustainability commitments), or when reclaimed R-404A supply becomes constrained. Solstice N40 delivers 65% GWP reduction while keeping the R-404A retrofit friction low: same A1 safety class (no equipment recertification), same POE lubricant (no oil change), similar pressure envelope (compressor + expansion device generally reuse), similar cooling capacity per Honeywell's approved-OEM equipment tests. N40 has been qualified by major global equipment and component manufacturers per the Solstice N40 Technical Data Sheet."
+
+whenNeither: "For new equipment installations at very-low-GWP targets (below 150 GWP for EU F-Gas), the A2L blends R-454C or R-455A are the direction — both at 148 GWP, with the A2L safety class requiring IEC 60335-2-40 equipment certification. For transport refrigeration retrofits where compressor discharge temperature at high compression ratios matters more than absolute GWP reduction, R-452A (Opteon XP44 / Solstice L40X) is the class-specific choice. For stationary MT/LT commercial refrigeration where A1 safety is required and 65% GWP reduction is sufficient, R-448A or R-449A are the two dominant options (see the r-448a-vs-r-449a peer comparison)."
+
+retrofitNotes: |
+  R-404A → R-448A follows the standard next-generation HFC retrofit procedure. The advantages that make N40 a lower-friction retrofit than the R-22 → HFC family:
+
+  **Oil**. Both refrigerants use polyol ester (POE) lubricant. The R-404A → R-448A retrofit skips the oil change entirely — the existing POE stays in place. Filter-drier replacement is standard for any refrigerant change, but the flush-and-refill sequence that mineral-oil systems require doesn't apply here.
+
+  **Safety class**. Both R-404A and R-448A are ASHRAE 34 class A1 (lower toxicity, non-flammable). No equipment recertification, no ventilation upgrade, no leak-detection retrofit — the safety envelope stays the same. This is the property that separates N40 from the A2L blends (R-454C / R-455A) which would require full IEC 60335-2-40 compliance.
+
+  **Pressure envelope**. R-404A is near-azeotropic (approximately 1°F glide) with 40°F saturation at approximately 87 PSIG bubble / 85 PSIG dew. R-448A at the same temperature is approximately 89 PSIG bubble / 72 PSIG dew — bubble pressures within 2 PSIG, but the ~11°F glide spreads the dew side substantially. Compressor and TXV sizing for R-404A generally accommodate R-448A without replacement; check the equipment OEM's approved-refrigerant list for the specific model.
+
+  **Glide handling — the one operational change**. R-404A is near-azeotropic, so service techs treat single-curve saturation as adequate. R-448A is zeotropic with roughly 11°F glide, so superheat measurement must use the dew curve at the evaporator outlet. Using the bubble curve for SH on R-448A would introduce an error equal to the glide (~11°F) — showing as apparent-undercharge readings and driving techs to over-charge the system. The site's superheat calculator handles the dew-curve selection automatically for zeotropic blends.
+
+  **Charge amount**. The typical retrofit charges R-448A to the same weight as the original R-404A specification, with fine adjustment via subcooling on the liquid line. Verify against the equipment OEM's specific retrofit bulletin — Honeywell publishes per-model retrofit procedures for major commercial refrigeration equipment.
+
+  **Filter-drier and elastomeric seals**. Replace the filter-drier during retrofit (standard practice). Elastomeric seal replacement is not typically required for R-404A → R-448A because both refrigerants have similar swell characteristics on the seals used in HFC systems — this contrasts with the R-22 → HFC family where the different swell profile drives seal replacement as a matter of course.
+
+  **Discharge temperature and capacity**. Honeywell's published data (Solstice N40 Technical Data Sheet) states 5-15% lower energy consumption and increased capacity vs R-404A. Actual field performance depends on system design, operating conditions, and OEM tuning; Honeywell notes major global equipment and component manufacturers have approved N40 for use in R-404A retrofits.
+
+  **Not recommended for**. Same caveat as the broader HFC blend family: not suited for centrifugal compressor systems or chillers with flooded evaporators.
+
+faqs:
+  - q: "Is R-448A a drop-in replacement for R-404A?"
+    a: "Close, but the standard retrofit procedure applies: recover R-404A, replace filter-drier, evacuate to 500 microns, and charge R-448A to nameplate weight. Both use POE oil (no oil change), both are A1 (no safety recertification), and the pressure envelope matches closely enough that compressor and expansion device typically don't need replacement. The one operational change is glide handling — R-448A has ~11°F glide vs R-404A's near-azeotropic behavior, so superheat must be measured using the dew curve at the evaporator outlet."
+  - q: "How much GWP reduction does R-448A deliver vs R-404A?"
+    a: "Approximately 65% — R-448A at 1387 (IPCC AR5) vs R-404A at 3922. Per the Honeywell Solstice N40 Technical Data Sheet, the reduction is documented as '68% lower than R-404A' using slightly different GWP accounting, with 5-15% lower energy consumption and increased capacity in Honeywell's approved-OEM test conditions."
+  - q: "Do R-404A and R-448A use the same expansion valve?"
+    a: "Usually yes. The pressure envelope match is close enough that R-404A-rated TXVs typically accommodate R-448A operation without replacement, though the ~11°F glide vs R-404A's near-azeotropic behavior may require minor set-point adjustment. Fixed-orifice systems (piston, capillary tube) can retrofit similarly. Check the equipment OEM's approved-refrigerant list and specific retrofit bulletins."
+  - q: "What is Solstice N40?"
+    a: "Solstice N40 is Honeywell's trade name for R-448A. Marketed as a next-generation retrofit blend for R-404A/R-507 and other high-GWP HFC blends in low- and medium-temperature commercial refrigeration. The composition per the Solstice N40 Technical Data Sheet is 26/26/21/7/20 mass fractions of R-32/R-125/R-134a/R-1234ze(E)/R-1234yf — a five-component HFC/HFO blend. GWP 1387 (IPCC AR5), A1 safety class."
+  - q: "R-448A or R-449A for R-404A retrofit?"
+    a: "Both are dominant A1 choices with similar GWP (1387 vs 1282), similar pressure envelopes, similar glide, and shared POE + A1 properties. The decision typically reduces to OEM approval for the specific equipment model, local supply-chain preference (Honeywell vs Chemours), and site-level standardization. See our r-448a-vs-r-449a peer comparison for the direct head-to-head."
+  - q: "Can R-448A be used in centrifugal chillers?"
+    a: "No — Honeywell's Solstice N40 documentation targets DX (direct expansion) commercial refrigeration; centrifugal compressor systems and chillers with flooded evaporators are outside the approved application range. This constraint is shared across the HFC/HFO blend family."
+---
+
+## R-404A vs R-448A: the 65% GWP cut with A1 preserved
+
+R-404A dominated low- and medium-temperature commercial refrigeration from the 1990s through the 2010s. As the AIM Act phase-down (40 CFR Part 84) tightened HFC allocations and the EU F-Gas Regulation drove down GWP thresholds, R-404A's 3922 GWP made continued use in new equipment increasingly untenable.
+
+R-448A (Honeywell Solstice N40) is one of two dominant next-generation retrofit blends developed for that market — the other is R-449A (Chemours Opteon XP40). N40 targets the same commercial refrigeration application space as R-404A with 65% GWP reduction, A1 safety class preserved, POE lubricant carried forward, and pressure envelope close enough for equipment reuse. The one operational change is glide handling: R-448A's ~11°F temperature glide requires dew-curve superheat measurement, unlike R-404A's near-azeotropic single-curve behavior.
+
+The Honeywell Solstice N40 Technical Data Sheet (Publication 3820, September 2019) is the authoritative source for the datasheet PT chart, composition, physical properties, and application guidance. The R-448A reference page on this site reproduces the native pressure-indexed PT table from that datasheet.

@@ -1,0 +1,51 @@
+---
+slug: r-134a-vs-r-1234ze
+refrigerantA: r-134a
+refrigerantB: r-1234ze
+title: "R134a vs R1234ze(E): Chillers and the HFO Capacity Trade-off"
+metaTitle: "R134a vs R1234ze(E): Chiller Alternative Compared"
+metaDescription: "R134a vs R1234ze(E) for chillers: R1234ze runs 22.2 PSIG at 40°F evap vs R134a's 35.0 — 37% lower pressure requires larger displacement to match capacity."
+datePublished: "2026-07-14"
+introOneLiner: "R-1234ze(E) is the HFO chiller alternative to R-134a — GWP < 1 (AR5 in the 6–7 range, effectively zero over any policy horizon), A2L rather than A1, and a saturation pressure envelope substantially below R-134a's. At 40°F evaporator saturation R-1234ze reads 22.2 PSIG vs R-134a's 35.0 PSIG (a 37% lower pressure, which industry literature translates to roughly 25% lower volumetric capacity on the same displacement — see body). That capacity delta drives the equipment-resizing implication that separates R-1234ze from a straightforward drop-in retrofit."
+
+retrofitFeasible: false
+
+chooseA: "Existing R-134a chillers, centrifugal and screw, being serviced with the original refrigerant. Reclaimed R-134a supply remains available under EPA Section 608 through the AIM Act phase-down, though virgin production is capped and prices are trending upward. The mature service infrastructure (POE oil, existing gauges, R-134a-specific gauges standard for chiller work) means R-134a service work continues without operational friction as long as reclaim supply holds."
+
+chooseB: "New chiller equipment engineered for R-1234ze(E) — Trane, York, Daikin, and Carrier all offer R-1234ze chiller lines targeting AIM Act and EU F-Gas compliance. R-1234ze provides essentially zero GWP with A2L safety classification (mildly flammable — requires A2L-certified equipment per UL 60335-2-40, machine-room ventilation, and leak-detection compliance for larger charges). The lower volumetric capacity requires larger compressor displacement or higher-speed operation to match a given cooling capacity, which chiller OEMs handle at the equipment-design level."
+
+whenNeither: "For chiller applications requiring lower-GWP A1 (non-flammable) service — where A2L machine-room certification and leak detection add cost or aren't feasible — R-513A (R-1234yf/R-134a 56/44 azeotropic blend, GWP 631, A1, POE-compatible) is the leading drop-in retrofit for R-134a. See our r-134a-vs-r-513a comparison for that head-to-head. For applications where the R-134a → R-1234ze migration is happening at end-of-equipment-life, R-1234ze new equipment with the appropriate displacement upsize is the direct path."
+
+retrofitNotes: |
+  R-134a → R-1234ze(E) is not a service-time drop-in retrofit. The pressure envelope gap is too large for a common compressor + expansion device to serve both refrigerants: at 40°F evaporator saturation, R-1234ze runs 22.2 PSIG bubble vs R-134a's 35.0 PSIG (a 37% difference), and at 130°F condensing saturation the gap is similar in magnitude. That pressure delta drives a comparable volumetric-capacity difference — the exact ratio depends on latent heat, specific volume, and compression efficiency, and industry-published figures from Chemours Opteon 1234ze and Honeywell Solstice ze technical literature typically cite R-1234ze at roughly 25% lower volumetric capacity than R-134a on the same displacement at similar operating conditions.
+
+  Equipment implication: to match a given cooling capacity on R-1234ze, the compressor needs about 33% more displacement (or equivalent speed increase) than the R-134a version. Chiller OEMs deliver this at the equipment-design level — the R-1234ze product line uses a differently-specified compressor than the R-134a version of the same nominal capacity. Field retrofit of an R-134a chiller to R-1234ze without compressor and expansion-device changes produces a capacity-limited system that runs the compressor at a higher pressure ratio to compensate, which stresses the equipment and doesn't recover the nameplate capacity.
+
+  Safety classification changes from A1 (R-134a) to A2L (R-1234ze). This adds equipment requirements per UL 60335-2-40 and ASHRAE 15: machine-room ventilation, appropriate leak detection sized to charge, and (in some jurisdictions) enhanced worker training on A2L handling. New R-1234ze chillers ship with these features integrated; field retrofit of an A1-only chiller to A2L is generally not feasible.
+
+  Lubricant compatibility is a shared property: both refrigerants use POE lubricant, and both are compatible with the polyvinyl ether (PVE) alternative used by some manufacturers. So oil doesn't drive the retrofit-infeasibility conclusion — the pressure envelope and safety class do.
+
+  For chiller applications where R-134a's replacement is happening at end-of-equipment-life, the direct path is new R-1234ze equipment with appropriately-sized compressor. For applications where reservicing existing R-134a chillers is the priority, reclaimed R-134a remains available, or R-513A (an A1 R-134a drop-in) provides a smaller GWP reduction (631 vs 1430) without the equipment-resize implication.
+
+faqs:
+  - q: "Is R-1234ze a drop-in replacement for R-134a?"
+    a: "No. The pressure envelope gap (roughly 37% lower saturation pressure at 40°F evaporator) is large enough that compressor displacement and expansion device sizing don't overlap. Industry literature reports R-1234ze at roughly 25% lower volumetric capacity than R-134a on the same displacement — matching a given cooling capacity requires larger compressor displacement or higher-speed operation. Also, R-1234ze is A2L (mildly flammable) while R-134a is A1, so field retrofit isn't safety-certified. Chiller OEMs deliver R-1234ze as new equipment with the appropriate compressor sizing built in."
+  - q: "What is the GWP of R-1234ze?"
+    a: "Less than 1 on both IPCC AR5 and AR6 — the atmospheric lifetime of R-1234ze(E) is short enough that its 100-year global warming potential rounds to essentially zero over regulatory horizons. Different sources give different values in the 1–7 range depending on measurement methodology and time-horizon convention, but for AIM Act / EU F-Gas compliance R-1234ze is treated as a zero-GWP alternative. R-134a has GWP 1430 (AR5)."
+  - q: "What is R-1234ze used for?"
+    a: "Primarily large centrifugal and screw chillers, with some use in industrial refrigeration and food-service refrigeration. Trane, York, Daikin, and Carrier ship R-1234ze chiller lines for commercial and industrial cooling applications where AIM Act or EU F-Gas GWP compliance is the driver. R-1234ze doesn't fit residential AC or automotive AC because the pressure envelope is too low for those application classes' compressor designs."
+  - q: "Is R-1234ze safe to use?"
+    a: "R-1234ze(E) is ASHRAE class A2L — lower toxicity, mildly flammable (with a specific 10 cm/s burning velocity threshold). It's safer than A3 hydrocarbons (R-290, R-600a) but requires A2L-appropriate handling: no open ignition sources during service, A2L-rated recovery equipment, appropriate ventilation, and equipment certified to UL 60335-2-40 / IEC 60335-2-40. Machine-room installations of R-1234ze chillers include leak detection and mechanical ventilation sized to the charge. The safety class is manageable but is a substantive change from R-134a's A1 non-flammable operation."
+  - q: "Why doesn't R-1234ze work in automotive AC (which uses R-1234yf)?"
+    a: "R-1234ze(E) and R-1234yf are different HFO isomers with different thermodynamic properties. R-1234yf has higher vapor pressure closer to R-134a's envelope, which suits automotive AC compressors sized for R-134a. R-1234ze's much lower pressure envelope doesn't fit those compressors. Both are A2L, both have GWP < 1, but they're not interchangeable — R-1234yf for automotive AC (mandated on new light vehicles in EU and US), R-1234ze for stationary chillers."
+  - q: "What is the capacity difference between R-134a and R-1234ze?"
+    a: "Industry literature from Chemours and Honeywell reports R-1234ze at approximately 25% lower volumetric capacity than R-134a on the same compressor displacement at typical chiller operating conditions. That figure varies with specific evaporator and condenser temperatures — the underlying pressure envelope difference (roughly 37% at 40°F evaporator saturation from the site's dataset) drives it, but the exact capacity ratio depends on latent heat and specific volume at operating conditions. New R-1234ze chiller equipment uses larger compressor displacement to match the nameplate capacity of the R-134a predecessor."
+---
+
+## R-134a vs R-1234ze(E): the honest capacity trade-off in chiller migration
+
+R-1234ze is one of the AIM Act-compliant paths for the R-134a chiller market — essentially zero GWP, mature manufacturer support (Chemours Opteon, Honeywell Solstice), and shipping in new equipment lines from every major chiller OEM. The trade-off that separates it from a straightforward drop-in retrofit is the pressure envelope: R-1234ze runs substantially lower pressures than R-134a at the same saturation temperature, which reduces the volumetric capacity a given compressor can deliver.
+
+Chiller OEMs handle this by shipping R-1234ze equipment with larger compressor displacement or higher-speed operation, matching the nameplate capacity of the R-134a predecessor. Field retrofit of an R-134a chiller to R-1234ze without compressor changes produces a capacity-limited system — the compressor runs at a higher pressure ratio to try to compensate, and the equipment doesn't recover its original capacity. That's the equipment-resizing implication that makes R-1234ze a new-equipment path rather than a service retrofit.
+
+For customers wanting a lower-friction R-134a replacement with A1 safety preserved and no equipment resize, R-513A (an A1 R-1234yf/R-134a azeotropic blend, GWP 631) is the direct drop-in option. See our R-134a vs R-513A comparison for that head-to-head. R-1234ze and R-513A represent two different paths for the R-134a chiller market: R-1234ze for greenfield installs and equipment refresh with maximum GWP reduction; R-513A for retrofits and service work where equipment continuity matters.

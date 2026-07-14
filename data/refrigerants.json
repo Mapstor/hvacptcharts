@@ -1988,7 +1988,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R11",
-      "ptChartGeneratedAt": "2026-07-07T15:45:23.979Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:56.106Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R11)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -2956,7 +2956,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 Ethylene",
-      "ptChartGeneratedAt": "2026-07-07T15:45:24.103Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:56.254Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (Ethylene)",
         "NIST WebBook (Ethylene)",
@@ -4956,7 +4956,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R12",
-      "ptChartGeneratedAt": "2026-07-07T15:45:24.362Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:56.526Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R12)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -5036,7 +5036,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Published Helmholtz EOS: Akasaka & Lemmon (2023), International Journal of Thermophysics 44, 166.",
-      "ptChartGeneratedAt": "2026-07-07T15:45:24.364Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:56.526Z",
       "ptChartVerifiedAgainst": [
         "AGC AMOLEA 1224yd technical datasheet"
       ],
@@ -7056,7 +7056,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R123",
-      "ptChartGeneratedAt": "2026-07-07T15:45:24.720Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:56.959Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R123)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -9053,7 +9053,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1233zd(E)",
-      "ptChartGeneratedAt": "2026-07-07T15:45:24.972Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:57.215Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1233zd(E))",
         "Honeywell Solstice LBA technical datasheet"
@@ -9124,7 +9124,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "No commercial PT chart published. R-1233zd(Z) is the cis-isomer of R-1233zd and has only research-grade measurement data; no Helmholtz EOS has been published for it. The commercially-used R-1233zd refers to the (E)-isomer (Honeywell Solstice ZD).",
-      "ptChartGeneratedAt": "2026-07-07T15:45:24.974Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:57.217Z",
       "ptChartVerifiedAgainst": [
         "Manufacturer datasheet (pending)"
       ],
@@ -11136,7 +11136,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234yf",
-      "ptChartGeneratedAt": "2026-07-07T15:45:25.241Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:57.482Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234yf)",
         "Chemours Opteon YF datasheet"
@@ -13133,7 +13133,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234ze(E)",
-      "ptChartGeneratedAt": "2026-07-07T15:45:25.566Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:57.805Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234ze(E))",
         "Honeywell Solstice ze datasheet"
@@ -15126,7 +15126,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234ze(E)",
-      "ptChartGeneratedAt": "2026-07-07T15:45:25.897Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:58.148Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234ze(E))",
         "Honeywell Solstice ze datasheet"
@@ -16393,7 +16393,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R1234ze(Z)",
-      "ptChartGeneratedAt": "2026-07-07T15:45:26.090Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:58.350Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R1234ze(Z))"
       ],
@@ -18378,7 +18378,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R124",
-      "ptChartGeneratedAt": "2026-07-07T15:45:26.355Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:58.605Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R124)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -20370,7 +20370,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R125",
-      "ptChartGeneratedAt": "2026-07-07T15:45:26.644Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:58.893Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R125)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -22359,7 +22359,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 Propylene",
-      "ptChartGeneratedAt": "2026-07-07T15:45:26.899Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:59.154Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (Propylene)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -23681,7 +23681,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R13",
-      "ptChartGeneratedAt": "2026-07-07T15:45:27.067Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:59.330Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R13)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -23764,7 +23764,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Published Helmholtz EOS: Tanaka et al. (2020), J. Chem. Eng. Data 65(2)",
-      "ptChartGeneratedAt": "2026-07-07T15:45:27.068Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:59.331Z",
       "ptChartVerifiedAgainst": [
         "Chemours Opteon 1100 technical datasheet"
       ],
@@ -25783,7 +25783,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R134a",
-      "ptChartGeneratedAt": "2026-07-07T15:45:27.356Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:59.627Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R134a)",
         "ASHRAE Handbook of Refrigeration 2022",
@@ -27766,7 +27766,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R143a",
-      "ptChartGeneratedAt": "2026-07-07T15:45:27.611Z",
+      "ptChartGeneratedAt": "2026-07-14T13:41:59.888Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R143a)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -29753,7 +29753,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R152a",
-      "ptChartGeneratedAt": "2026-07-07T15:45:27.938Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:00.217Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R152a)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -31737,7 +31737,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R218",
-      "ptChartGeneratedAt": "2026-07-07T15:45:28.187Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:00.485Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R218)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -33743,7 +33743,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R22",
-      "ptChartGeneratedAt": "2026-07-07T15:45:28.447Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:00.750Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R22)",
         "Arkema Forane 22 PT chart",
@@ -35547,7 +35547,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R236EA",
-      "ptChartGeneratedAt": "2026-07-07T15:45:28.732Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:00.993Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R236EA)"
       ],
@@ -37533,7 +37533,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R236FA",
-      "ptChartGeneratedAt": "2026-07-07T15:45:28.988Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:01.268Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R236FA)"
       ],
@@ -39527,7 +39527,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R245fa",
-      "ptChartGeneratedAt": "2026-07-07T15:45:29.306Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:01.601Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R245fa)",
         "Honeywell Genetron 245fa datasheet"
@@ -41522,7 +41522,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 Propane",
-      "ptChartGeneratedAt": "2026-07-07T15:45:29.593Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:01.887Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (Propane)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -43519,7 +43519,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R32",
-      "ptChartGeneratedAt": "2026-07-07T15:45:29.843Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:02.148Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R32)",
         "Arkema Forane 32 datasheet",
@@ -45398,7 +45398,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R365MFC",
-      "ptChartGeneratedAt": "2026-07-07T15:45:30.071Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:02.415Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R365MFC)"
       ],
@@ -47417,7 +47417,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R404A.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:45:32.468Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:04.887Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R404A.mix)",
         "Arkema Forane 404A PT chart",
@@ -49426,7 +49426,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R407A.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:45:34.867Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:07.307Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R407A.mix)",
         "Arkema Forane 407A datasheet"
@@ -51450,7 +51450,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R407C.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:45:37.373Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:10.076Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R407C.mix)",
         "Arkema Forane 407C PT chart",
@@ -53480,7 +53480,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R407F.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:45:40.895Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:12.906Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R407F.mix)",
         "Honeywell Genetron Performax LT datasheet"
@@ -55507,7 +55507,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R410A.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:45:42.072Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:14.034Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R410A.mix)",
         "Arkema Forane 410A PT chart",
@@ -57515,7 +57515,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R417A.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:45:44.591Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:16.500Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R417A.mix)"
       ],
@@ -59515,7 +59515,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R421A.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:45:45.695Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:17.632Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R421A.mix)"
       ],
@@ -61528,7 +61528,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R422A.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:45:48.121Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:20.340Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R422A.mix)"
       ],
@@ -63527,7 +63527,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R422B.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:45:50.571Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:22.798Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R422B.mix)"
       ],
@@ -65531,7 +65531,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R422D.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:45:53.007Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:25.245Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R422D.mix)",
         "Chemours ISCEON MO29 datasheet"
@@ -67541,7 +67541,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R427A.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:45:59.208Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:31.545Z",
       "ptChartVerifiedAgainst": [
         "Arkema Forane 427A technical datasheet"
       ],
@@ -67556,17 +67556,23 @@
     "altSpellings": [
       "R438A",
       "438A",
-      "Genetron MO99"
+      "MO99",
+      "Freon MO99",
+      "ISCEON MO99"
     ],
-    "chemicalName": "Five-component HFC blend with hydrocarbons",
+    "chemicalName": "Quinary HFC blend with hydrocarbons",
     "chemicalFormula": "R-32/R-125/R-134a/R-600/R-601a (8.5/45/44.2/1.7/0.6)",
     "ashraeNumber": "R-438A",
     "type": "hfc-blend",
     "safetyClass": "A1",
     "tradeNames": [
       {
-        "name": "Genetron MO99",
-        "manufacturer": "Honeywell"
+        "name": "Freon MO99",
+        "manufacturer": "Chemours"
+      },
+      {
+        "name": "ISCEON MO99",
+        "manufacturer": "DuPont (historical; brand transferred to Chemours 2015)"
       }
     ],
     "composition": [
@@ -67592,19 +67598,19 @@
       }
     ],
     "physical": {
-      "boilingPointC": -43,
-      "boilingPointF": -45.4,
+      "boilingPointC": -42.3,
+      "boilingPointF": -44.2,
       "critical": {
-        "tempC": 84.5,
-        "tempF": 184.1,
-        "pressurePsia": 599,
-        "pressurePsig": 584,
-        "pressureKpaA": 4127,
-        "pressureKpaG": 4026
+        "tempC": null,
+        "tempF": null,
+        "pressurePsia": null,
+        "pressurePsig": null,
+        "pressureKpaA": null,
+        "pressureKpaG": null
       },
       "molarMassGPerMol": 99.1,
-      "liquidDensityKgPerM3At25C": 1153,
-      "temperatureGlideF": 12.6,
+      "liquidDensityKgPerM3At25C": 1147,
+      "temperatureGlideF": 11.2,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -67621,7 +67627,7 @@
         "POE"
       ],
       "incompatible": [],
-      "notes": "Hydrocarbon components aid miscibility with mineral oil. Marketed by Honeywell as a 'no oil change' R-22 retrofit."
+      "notes": "Hydrocarbon components aid miscibility with mineral oil. Marketed by Chemours (Freon MO99, originally DuPont ISCEON MO99) as an R-22 retrofit compatible with existing mineral oil or alkylbenzene in most systems — no oil change required for the majority of retrofits per the Chemours Freon MO99 Retrofit Guidelines. Some complex systems (liquid receivers, screw compressors, Trane 3-D or Danfoss SM scroll compressors) require ~20% POE addition."
     },
     "applications": [
       "R-22 retrofit (commercial AC, refrigeration)",
@@ -67641,26 +67647,552 @@
       "snapApproved": true
     },
     "ptChart": [],
+    "ptTable": [
+      {
+        "psig": -6,
+        "bubbleF": -63,
+        "dewF": -51.5
+      },
+      {
+        "psig": -5,
+        "bubbleF": -59.3,
+        "dewF": -47.8
+      },
+      {
+        "psig": -4,
+        "bubbleF": -55.8,
+        "dewF": -44.5
+      },
+      {
+        "psig": -3,
+        "bubbleF": -52.6,
+        "dewF": -41.3
+      },
+      {
+        "psig": -2,
+        "bubbleF": -49.6,
+        "dewF": -38.4
+      },
+      {
+        "psig": -1,
+        "bubbleF": -46.8,
+        "dewF": -35.6
+      },
+      {
+        "psig": 0,
+        "bubbleF": -44.2,
+        "dewF": -33
+      },
+      {
+        "psig": 1,
+        "bubbleF": -41.7,
+        "dewF": -30.6
+      },
+      {
+        "psig": 2,
+        "bubbleF": -39.3,
+        "dewF": -28.2
+      },
+      {
+        "psig": 3,
+        "bubbleF": -37,
+        "dewF": -26
+      },
+      {
+        "psig": 4,
+        "bubbleF": -34.8,
+        "dewF": -23.9
+      },
+      {
+        "psig": 5,
+        "bubbleF": -32.7,
+        "dewF": -21.8
+      },
+      {
+        "psig": 6,
+        "bubbleF": -30.7,
+        "dewF": -19.8
+      },
+      {
+        "psig": 7,
+        "bubbleF": -28.8,
+        "dewF": -18
+      },
+      {
+        "psig": 8,
+        "bubbleF": -26.9,
+        "dewF": -16.1
+      },
+      {
+        "psig": 9,
+        "bubbleF": -25.1,
+        "dewF": -14.4
+      },
+      {
+        "psig": 10,
+        "bubbleF": -23.4,
+        "dewF": -12.6
+      },
+      {
+        "psig": 12,
+        "bubbleF": -20.1,
+        "dewF": -9.4
+      },
+      {
+        "psig": 14,
+        "bubbleF": -16.9,
+        "dewF": -6.3
+      },
+      {
+        "psig": 16,
+        "bubbleF": -13.9,
+        "dewF": -3.4
+      },
+      {
+        "psig": 18,
+        "bubbleF": -11.1,
+        "dewF": -0.6
+      },
+      {
+        "psig": 20,
+        "bubbleF": -8.4,
+        "dewF": 2
+      },
+      {
+        "psig": 22,
+        "bubbleF": -5.8,
+        "dewF": 4.6
+      },
+      {
+        "psig": 24,
+        "bubbleF": -3.4,
+        "dewF": 7
+      },
+      {
+        "psig": 26,
+        "bubbleF": -1,
+        "dewF": 9.3
+      },
+      {
+        "psig": 28,
+        "bubbleF": 1.3,
+        "dewF": 11.6
+      },
+      {
+        "psig": 30,
+        "bubbleF": 3.5,
+        "dewF": 13.7
+      },
+      {
+        "psig": 32,
+        "bubbleF": 5.7,
+        "dewF": 15.8
+      },
+      {
+        "psig": 34,
+        "bubbleF": 7.7,
+        "dewF": 17.8
+      },
+      {
+        "psig": 36,
+        "bubbleF": 9.7,
+        "dewF": 19.8
+      },
+      {
+        "psig": 38,
+        "bubbleF": 11.7,
+        "dewF": 21.7
+      },
+      {
+        "psig": 40,
+        "bubbleF": 13.6,
+        "dewF": 23.5
+      },
+      {
+        "psig": 42,
+        "bubbleF": 15.4,
+        "dewF": 25.3
+      },
+      {
+        "psig": 44,
+        "bubbleF": 17.2,
+        "dewF": 27.1
+      },
+      {
+        "psig": 46,
+        "bubbleF": 18.9,
+        "dewF": 28.8
+      },
+      {
+        "psig": 48,
+        "bubbleF": 20.6,
+        "dewF": 30.4
+      },
+      {
+        "psig": 50,
+        "bubbleF": 22.3,
+        "dewF": 32.1
+      },
+      {
+        "psig": 52,
+        "bubbleF": 23.9,
+        "dewF": 33.7
+      },
+      {
+        "psig": 54,
+        "bubbleF": 25.5,
+        "dewF": 35.2
+      },
+      {
+        "psig": 56,
+        "bubbleF": 27,
+        "dewF": 36.7
+      },
+      {
+        "psig": 58,
+        "bubbleF": 28.6,
+        "dewF": 38.2
+      },
+      {
+        "psig": 60,
+        "bubbleF": 30.1,
+        "dewF": 39.6
+      },
+      {
+        "psig": 62,
+        "bubbleF": 31.5,
+        "dewF": 41.1
+      },
+      {
+        "psig": 64,
+        "bubbleF": 32.9,
+        "dewF": 42.5
+      },
+      {
+        "psig": 66,
+        "bubbleF": 34.3,
+        "dewF": 43.8
+      },
+      {
+        "psig": 68,
+        "bubbleF": 35.7,
+        "dewF": 45.2
+      },
+      {
+        "psig": 70,
+        "bubbleF": 37.1,
+        "dewF": 46.5
+      },
+      {
+        "psig": 75,
+        "bubbleF": 40.3,
+        "dewF": 49.7
+      },
+      {
+        "psig": 80,
+        "bubbleF": 43.5,
+        "dewF": 52.7
+      },
+      {
+        "psig": 85,
+        "bubbleF": 46.5,
+        "dewF": 55.7
+      },
+      {
+        "psig": 90,
+        "bubbleF": 49.4,
+        "dewF": 58.5
+      },
+      {
+        "psig": 95,
+        "bubbleF": 52.2,
+        "dewF": 61.2
+      },
+      {
+        "psig": 100,
+        "bubbleF": 54.9,
+        "dewF": 63.9
+      },
+      {
+        "psig": 105,
+        "bubbleF": 57.5,
+        "dewF": 66.4
+      },
+      {
+        "psig": 110,
+        "bubbleF": 60.1,
+        "dewF": 68.9
+      },
+      {
+        "psig": 115,
+        "bubbleF": 62.6,
+        "dewF": 71.3
+      },
+      {
+        "psig": 120,
+        "bubbleF": 65,
+        "dewF": 73.6
+      },
+      {
+        "psig": 125,
+        "bubbleF": 67.3,
+        "dewF": 75.9
+      },
+      {
+        "psig": 130,
+        "bubbleF": 69.6,
+        "dewF": 78.1
+      },
+      {
+        "psig": 135,
+        "bubbleF": 71.8,
+        "dewF": 80.3
+      },
+      {
+        "psig": 140,
+        "bubbleF": 73.9,
+        "dewF": 82.4
+      },
+      {
+        "psig": 145,
+        "bubbleF": 76,
+        "dewF": 84.4
+      },
+      {
+        "psig": 150,
+        "bubbleF": 78.1,
+        "dewF": 86.4
+      },
+      {
+        "psig": 155,
+        "bubbleF": 80.1,
+        "dewF": 88.4
+      },
+      {
+        "psig": 160,
+        "bubbleF": 82.1,
+        "dewF": 90.3
+      },
+      {
+        "psig": 165,
+        "bubbleF": 84,
+        "dewF": 92.1
+      },
+      {
+        "psig": 170,
+        "bubbleF": 85.9,
+        "dewF": 94
+      },
+      {
+        "psig": 175,
+        "bubbleF": 87.8,
+        "dewF": 95.8
+      },
+      {
+        "psig": 180,
+        "bubbleF": 89.6,
+        "dewF": 97.5
+      },
+      {
+        "psig": 185,
+        "bubbleF": 91.4,
+        "dewF": 99.2
+      },
+      {
+        "psig": 190,
+        "bubbleF": 93.1,
+        "dewF": 100.9
+      },
+      {
+        "psig": 195,
+        "bubbleF": 94.8,
+        "dewF": 102.6
+      },
+      {
+        "psig": 200,
+        "bubbleF": 96.5,
+        "dewF": 104.2
+      },
+      {
+        "psig": 205,
+        "bubbleF": 98.2,
+        "dewF": 105.8
+      },
+      {
+        "psig": 210,
+        "bubbleF": 99.8,
+        "dewF": 107.4
+      },
+      {
+        "psig": 215,
+        "bubbleF": 101.4,
+        "dewF": 108.9
+      },
+      {
+        "psig": 220,
+        "bubbleF": 103,
+        "dewF": 110.5
+      },
+      {
+        "psig": 225,
+        "bubbleF": 104.6,
+        "dewF": 112
+      },
+      {
+        "psig": 230,
+        "bubbleF": 106.1,
+        "dewF": 113.4
+      },
+      {
+        "psig": 235,
+        "bubbleF": 107.6,
+        "dewF": 114.9
+      },
+      {
+        "psig": 240,
+        "bubbleF": 109.1,
+        "dewF": 116.3
+      },
+      {
+        "psig": 245,
+        "bubbleF": 110.5,
+        "dewF": 117.7
+      },
+      {
+        "psig": 250,
+        "bubbleF": 112,
+        "dewF": 119.1
+      },
+      {
+        "psig": 255,
+        "bubbleF": 113.4,
+        "dewF": 120.5
+      },
+      {
+        "psig": 260,
+        "bubbleF": 114.8,
+        "dewF": 121.8
+      },
+      {
+        "psig": 265,
+        "bubbleF": 116.2,
+        "dewF": 123.1
+      },
+      {
+        "psig": 270,
+        "bubbleF": 117.6,
+        "dewF": 124.4
+      },
+      {
+        "psig": 275,
+        "bubbleF": 118.9,
+        "dewF": 125.7
+      },
+      {
+        "psig": 280,
+        "bubbleF": 120.3,
+        "dewF": 127
+      },
+      {
+        "psig": 285,
+        "bubbleF": 121.6,
+        "dewF": 128.3
+      },
+      {
+        "psig": 290,
+        "bubbleF": 122.9,
+        "dewF": 129.5
+      },
+      {
+        "psig": 295,
+        "bubbleF": 124.2,
+        "dewF": 130.7
+      },
+      {
+        "psig": 300,
+        "bubbleF": 125.4,
+        "dewF": 131.9
+      },
+      {
+        "psig": 310,
+        "bubbleF": 127.9,
+        "dewF": 134.3
+      },
+      {
+        "psig": 320,
+        "bubbleF": 130.4,
+        "dewF": 136.6
+      },
+      {
+        "psig": 330,
+        "bubbleF": 132.7,
+        "dewF": 138.9
+      },
+      {
+        "psig": 340,
+        "bubbleF": 135.1,
+        "dewF": 141.1
+      },
+      {
+        "psig": 350,
+        "bubbleF": 137.4,
+        "dewF": 143.3
+      },
+      {
+        "psig": 360,
+        "bubbleF": 139.6,
+        "dewF": 145.4
+      },
+      {
+        "psig": 370,
+        "bubbleF": 141.8,
+        "dewF": 147.5
+      },
+      {
+        "psig": 380,
+        "bubbleF": 143.9,
+        "dewF": 149.5
+      },
+      {
+        "psig": 390,
+        "bubbleF": 146.1,
+        "dewF": 151.5
+      },
+      {
+        "psig": 400,
+        "bubbleF": 148.1,
+        "dewF": 153.4
+      }
+    ],
+    "primaryDatasheet": {
+      "manufacturer": "Chemours",
+      "tradeName": "Freon MO99",
+      "publicationDate": "2009-09",
+      "url": "https://www.chemours.com/en/brands-and-products/freon-refrigerants/freon-mo99",
+      "resolution": "native pressure-indexed, irregular steps"
+    },
     "dataSource": {
-      "ptChartSource": "Manufacturer datasheet: Honeywell Genetron Performax LT (R-438A) Technical Information",
-      "ptChartGeneratedAt": "2026-07-07T15:45:59.210Z",
+      "ptChartSource": "DuPont ISCEON® MO99™ (R-438A) Pressure-Temperature Chart, Publication K-22220-1 (September 2009). Same table reproduced as Appendix B of the Chemours Freon™ MO99 Refrigerant Retrofit Guidelines, Publication C-10862 (August 2016).",
+      "ptChartGeneratedAt": "2026-07-14T13:42:31.547Z",
       "ptChartVerifiedAgainst": [
-        "Honeywell Genetron MO99 technical datasheet"
+        "Chemours Freon MO99 Retrofit Guidelines C-10862 (Aug 2016)",
+        "DuPont ISCEON MO99 PT Chart K-22220-1 (Sep 2009)"
       ],
-      "propertiesSource": "Honeywell Genetron MO99 datasheet + ASHRAE Standard 34-2022",
+      "propertiesSource": "Chemours Freon MO99 Retrofit Guidelines Table 2 (REFPROP 9.0) + ASHRAE Standard 34-2022",
       "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
-      "dataStatus": "manufacturer-datasheet-published",
+      "dataStatus": "manufacturer-datasheet",
       "primarySources": [
         {
           "type": "manufacturer-datasheet",
-          "citation": "Honeywell International Inc., Genetron Performax LT (R-438A) Technical Information / Material Data Sheet.",
-          "url": "https://www.honeywell-refrigerants.com/americas/",
-          "scope": "Published PT chart and physical property data for R-438A retrofit refrigerant."
+          "citation": "DuPont Fluorochemicals, ISCEON® MO99™ (R-438A) Pressure-Temperature Chart, Publication K-22220-1, September 2009. The MO99 brand transferred to Chemours in 2015 and is now marketed as Freon™ MO99; the 2009 PT chart remains the authoritative published data source.",
+          "url": "https://www.chemours.com/en/brands-and-products/freon-refrigerants/freon-mo99",
+          "scope": "Pressure-indexed table with saturated R-22 temperature column and R-438A bubble/dew columns for direct comparison. Range: -6 to 400 psig."
         },
         {
-          "type": "standards",
-          "citation": "AHRI Standard 700-2019 Specifications for Refrigerants — R-438A specification entry.",
-          "url": "https://www.ahrinet.org/search-standards"
+          "type": "manufacturer-retrofit-guidelines",
+          "citation": "The Chemours Company FC, LLC, Freon™ MO99 Refrigerant (R-438A) Retrofit Guidelines, Publication C-10862, August 2016.",
+          "url": "https://www.chemours.com/en/brands-and-products/freon-refrigerants/freon-mo99",
+          "scope": "Composition (Table 3: 8.5/45/44.2/1.7/0.6 R-32/R-125/R-134a/R-600/R-601a), physical properties (Table 2, computed with REFPROP 9.0), retrofit procedure, and PT chart reproduced as Appendix B."
         }
       ]
     }
@@ -67760,27 +68292,311 @@
       "snapApproved": true
     },
     "ptChart": [],
+    "ptTable": [
+      {
+        "psig": 0,
+        "bubbleF": -51,
+        "dewF": -39.9
+      },
+      {
+        "psig": 1,
+        "bubbleF": -48.6,
+        "dewF": -37.5
+      },
+      {
+        "psig": 2,
+        "bubbleF": -46.2,
+        "dewF": -35.2
+      },
+      {
+        "psig": 3,
+        "bubbleF": -44,
+        "dewF": -32.9
+      },
+      {
+        "psig": 4,
+        "bubbleF": -41.9,
+        "dewF": -30.8
+      },
+      {
+        "psig": 5,
+        "bubbleF": -39.8,
+        "dewF": -28.8
+      },
+      {
+        "psig": 6,
+        "bubbleF": -37.8,
+        "dewF": -26.9
+      },
+      {
+        "psig": 7,
+        "bubbleF": -35.9,
+        "dewF": -25
+      },
+      {
+        "psig": 8,
+        "bubbleF": -34.1,
+        "dewF": -23.2
+      },
+      {
+        "psig": 9,
+        "bubbleF": -32.4,
+        "dewF": -21.4
+      },
+      {
+        "psig": 10,
+        "bubbleF": -30.6,
+        "dewF": -19.7
+      },
+      {
+        "psig": 11,
+        "bubbleF": -29,
+        "dewF": -18.1
+      },
+      {
+        "psig": 12,
+        "bubbleF": -27.4,
+        "dewF": -16.5
+      },
+      {
+        "psig": 13,
+        "bubbleF": -25.8,
+        "dewF": -15
+      },
+      {
+        "psig": 14,
+        "bubbleF": -24.3,
+        "dewF": -13.5
+      },
+      {
+        "psig": 16,
+        "bubbleF": -21.4,
+        "dewF": -10.6
+      },
+      {
+        "psig": 18,
+        "bubbleF": -18.6,
+        "dewF": -7.8
+      },
+      {
+        "psig": 20,
+        "bubbleF": -16,
+        "dewF": -5.2
+      },
+      {
+        "psig": 22,
+        "bubbleF": -13.5,
+        "dewF": -2.7
+      },
+      {
+        "psig": 24,
+        "bubbleF": -11,
+        "dewF": -0.3
+      },
+      {
+        "psig": 26,
+        "bubbleF": -8.7,
+        "dewF": 2
+      },
+      {
+        "psig": 28,
+        "bubbleF": -6.5,
+        "dewF": 4.2
+      },
+      {
+        "psig": 29,
+        "bubbleF": -5.4,
+        "dewF": 5.3
+      },
+      {
+        "psig": 31,
+        "bubbleF": -3.3,
+        "dewF": 7.4
+      },
+      {
+        "psig": 34,
+        "bubbleF": -0.2,
+        "dewF": 10.4
+      },
+      {
+        "psig": 37,
+        "bubbleF": 2.7,
+        "dewF": 13.3
+      },
+      {
+        "psig": 40,
+        "bubbleF": 5.5,
+        "dewF": 16
+      },
+      {
+        "psig": 43,
+        "bubbleF": 8.2,
+        "dewF": 18.7
+      },
+      {
+        "psig": 46,
+        "bubbleF": 10.8,
+        "dewF": 21.2
+      },
+      {
+        "psig": 49,
+        "bubbleF": 13.2,
+        "dewF": 23.7
+      },
+      {
+        "psig": 52,
+        "bubbleF": 15.6,
+        "dewF": 26
+      },
+      {
+        "psig": 55,
+        "bubbleF": 17.9,
+        "dewF": 28.3
+      },
+      {
+        "psig": 59,
+        "bubbleF": 20.9,
+        "dewF": 31.2
+      },
+      {
+        "psig": 63,
+        "bubbleF": 23.8,
+        "dewF": 34
+      },
+      {
+        "psig": 67,
+        "bubbleF": 26.5,
+        "dewF": 36.7
+      },
+      {
+        "psig": 83,
+        "bubbleF": 36.5,
+        "dewF": 46.6
+      },
+      {
+        "psig": 101,
+        "bubbleF": 46.5,
+        "dewF": 56.3
+      },
+      {
+        "psig": 121,
+        "bubbleF": 56.2,
+        "dewF": 65.9
+      },
+      {
+        "psig": 142,
+        "bubbleF": 65.4,
+        "dewF": 74.9
+      },
+      {
+        "psig": 154,
+        "bubbleF": 70.2,
+        "dewF": 79.6
+      },
+      {
+        "psig": 167,
+        "bubbleF": 75.1,
+        "dewF": 84.4
+      },
+      {
+        "psig": 181,
+        "bubbleF": 80.2,
+        "dewF": 89.3
+      },
+      {
+        "psig": 196,
+        "bubbleF": 85.3,
+        "dewF": 94.3
+      },
+      {
+        "psig": 212,
+        "bubbleF": 90.5,
+        "dewF": 99.3
+      },
+      {
+        "psig": 229,
+        "bubbleF": 95.7,
+        "dewF": 104.3
+      },
+      {
+        "psig": 246,
+        "bubbleF": 100.7,
+        "dewF": 109.1
+      },
+      {
+        "psig": 264,
+        "bubbleF": 105.6,
+        "dewF": 113.9
+      },
+      {
+        "psig": 284,
+        "bubbleF": 110.9,
+        "dewF": 119
+      },
+      {
+        "psig": 304,
+        "bubbleF": 115.9,
+        "dewF": 123.8
+      },
+      {
+        "psig": 325,
+        "bubbleF": 121,
+        "dewF": 128.6
+      },
+      {
+        "psig": 348,
+        "bubbleF": 126.2,
+        "dewF": 133.6
+      },
+      {
+        "psig": 349,
+        "bubbleF": 126.4,
+        "dewF": 133.8
+      },
+      {
+        "psig": 372,
+        "bubbleF": 131.4,
+        "dewF": 138.5
+      },
+      {
+        "psig": 397,
+        "bubbleF": 136.6,
+        "dewF": 143.4
+      },
+      {
+        "psig": 423,
+        "bubbleF": 141.8,
+        "dewF": 148.3
+      },
+      {
+        "psig": 450,
+        "bubbleF": 146.9,
+        "dewF": 153
+      }
+    ],
+    "primaryDatasheet": {
+      "manufacturer": "Honeywell",
+      "tradeName": "Solstice N40",
+      "publicationDate": "2019-09",
+      "url": "https://www.honeywell-refrigerants.com/europe/wp-content/uploads/2019/10/3820_Solstice-N40_web.pdf",
+      "resolution": "native pressure-indexed, irregular steps"
+    },
     "dataSource": {
-      "ptChartSource": "Manufacturer datasheet: Honeywell Solstice N40 (R-448A) PT Chart",
-      "ptChartGeneratedAt": "2026-07-07T15:45:59.211Z",
+      "ptChartSource": "Honeywell Solstice® N40 (R-448A) Technical Data Sheet (Publication 3820, September 2019), pressure-temperature table, page 2",
+      "ptChartGeneratedAt": "2026-07-14T13:42:31.547Z",
       "ptChartVerifiedAgainst": [
         "Honeywell Solstice N40 PT chart 2023",
         "ASHRAE Standard 34-2022 Designation R-448A"
       ],
       "propertiesSource": "Honeywell Solstice N40 datasheet + ASHRAE Standard 34-2022",
       "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
-      "dataStatus": "manufacturer-datasheet-published",
+      "dataStatus": "manufacturer-datasheet",
       "primarySources": [
         {
           "type": "manufacturer-datasheet",
-          "citation": "Honeywell International Inc., Solstice N40 (R-448A) PT Chart (PDF, published technical data sheet).",
-          "url": "https://prod-edam.honeywell.com/content/dam/honeywell-edam/pmt/oneam/en-us/refrigerants/documents/hon-ess-am-3161690-adm-tds-pt-chart-solstice-n40-a4-en.pdf",
-          "scope": "Manufacturer-published PT chart with bubble and dew columns for R-448A (zeotropic HFC/HFO blend)."
-        },
-        {
-          "type": "manufacturer-physical-properties",
-          "citation": "Honeywell Solstice N40 Physical Properties brochure.",
-          "url": "https://www.honeywell-refrigerants.com/europe/wp-content/uploads/2019/10/3820_Solstice-N40_web.pdf"
+          "citation": "Honeywell International Inc., Solstice® N40 (R-448A) Technical Data Sheet, Publication 3820, September 2019 (pressure-temperature table, page 2).",
+          "url": "https://www.honeywell-refrigerants.com/europe/wp-content/uploads/2019/10/3820_Solstice-N40_web.pdf",
+          "scope": "Manufacturer-published PT chart with bubble and dew columns for R-448A (zeotropic HFC/HFO blend), plus physical properties table."
         }
       ]
     }
@@ -69789,7 +70605,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R449A.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:46:05.045Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:37.877Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R449A.mix)",
         "Chemours Opteon XP40 datasheet"
@@ -69882,7 +70698,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Manufacturer datasheet: Chemours Opteon XP10 (R-450A) Technical Information",
-      "ptChartGeneratedAt": "2026-07-07T15:46:05.046Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:37.880Z",
       "ptChartVerifiedAgainst": [
         "Chemours Opteon XP10 PT chart"
       ],
@@ -71900,7 +72716,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R452A.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:46:07.479Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:40.432Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R452A.mix)",
         "Chemours Opteon XP44 datasheet"
@@ -73926,7 +74742,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R32[0.81813]&R1234yf[0.14484]&R125[0.03704]",
-      "ptChartGeneratedAt": "2026-07-07T15:46:09.854Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:42.907Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R452B composition)",
         "Chemours Opteon XL55 datasheet"
@@ -75772,7 +76588,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R454B.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:46:10.907Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:44.152Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R454B.mix)",
         "Chemours Opteon XL41 datasheet",
@@ -77775,7 +78591,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R32[0.37514]&R1234yf[0.62486]",
-      "ptChartGeneratedAt": "2026-07-07T15:46:12.060Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:45.436Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R454C composition)",
         "Chemours Opteon XL20 datasheet"
@@ -79780,7 +80596,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::CarbonDioxide[0.05962]&R32[0.36141]&R1234yf[0.57897]",
-      "ptChartGeneratedAt": "2026-07-07T15:46:14.568Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:48.083Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R455A composition)",
         "Honeywell Solstice L40X datasheet"
@@ -81778,7 +82594,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R32[0.30312]&R152a[0.15916]&R1234yf[0.53772]",
-      "ptChartGeneratedAt": "2026-07-07T15:46:16.932Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:50.573Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R457A composition)"
       ],
@@ -83771,7 +84587,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R500.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:46:18.137Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:51.809Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R500.mix)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -85768,7 +86584,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R502.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:46:21.337Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:55.258Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R502.mix)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -85849,7 +86665,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Historical refrigerant — retired per Montreal Protocol (CFC-13 component banned)",
-      "ptChartGeneratedAt": "2026-07-07T15:46:21.339Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:55.260Z",
       "ptChartVerifiedAgainst": [
         "ASHRAE Handbook of Refrigeration 2022 (historical tables)"
       ],
@@ -87865,7 +88681,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R507A.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:46:22.352Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:56.332Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R507A.mix)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -89875,7 +90691,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 R513A.mix",
-      "ptChartGeneratedAt": "2026-07-07T15:46:23.356Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:57.344Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (R513A.mix)",
         "Chemours Opteon XP10 datasheet"
@@ -89964,7 +90780,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Manufacturer datasheet: Chemours Opteon XP30 (R-514A) Technical Information",
-      "ptChartGeneratedAt": "2026-07-07T15:46:23.357Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:57.345Z",
       "ptChartVerifiedAgainst": [
         "Chemours Opteon XP30 technical datasheet"
       ],
@@ -90060,7 +90876,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Manufacturer datasheet: Honeywell Solstice 515A Technical Information",
-      "ptChartGeneratedAt": "2026-07-07T15:46:23.358Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:57.346Z",
       "ptChartVerifiedAgainst": [
         "Honeywell Solstice 515A technical datasheet"
       ],
@@ -90156,7 +90972,7 @@
     "ptChart": [],
     "dataSource": {
       "ptChartSource": "Manufacturer datasheet: Honeywell Solstice N15 (R-515B) Technical Information",
-      "ptChartGeneratedAt": "2026-07-07T15:46:23.358Z",
+      "ptChartGeneratedAt": "2026-07-14T13:42:57.347Z",
       "ptChartVerifiedAgainst": [
         "Honeywell Solstice N15 technical datasheet"
       ],
@@ -92161,7 +92977,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 HEOS::R1234yf[0.69711]&R134a[0.08545]&R152a[0.21744]",
-      "ptChartGeneratedAt": "2026-07-07T15:46:25.588Z",
+      "ptChartGeneratedAt": "2026-07-14T13:43:00.126Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (HEOS R516A composition)",
         "ASHRAE Standard 34-2022"
@@ -94155,7 +94971,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 IsoButane",
-      "ptChartGeneratedAt": "2026-07-07T15:46:25.883Z",
+      "ptChartGeneratedAt": "2026-07-14T13:43:00.476Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (IsoButane)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -96142,7 +96958,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 Ammonia",
-      "ptChartGeneratedAt": "2026-07-07T15:46:26.240Z",
+      "ptChartGeneratedAt": "2026-07-14T13:43:00.922Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (Ammonia)",
         "ASHRAE Handbook of Refrigeration 2022",
@@ -97502,7 +98318,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 CarbonDioxide",
-      "ptChartGeneratedAt": "2026-07-07T15:46:26.435Z",
+      "ptChartGeneratedAt": "2026-07-14T13:43:01.141Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (CarbonDioxide)",
         "ASHRAE Handbook of Refrigeration 2022"
@@ -99479,7 +100295,7 @@
     ],
     "dataSource": {
       "ptChartSource": "CoolProp 7.2.0 RC318",
-      "ptChartGeneratedAt": "2026-07-07T15:46:26.689Z",
+      "ptChartGeneratedAt": "2026-07-14T13:43:01.433Z",
       "ptChartVerifiedAgainst": [
         "CoolProp 7.2.0 (RC318)",
         "ASHRAE Handbook of Refrigeration 2022"

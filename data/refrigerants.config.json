@@ -1676,8 +1676,8 @@
   },
   "r-438a": {
     "displayName": "R-438A",
-    "altSpellings": ["R438A", "438A", "Genetron MO99"],
-    "chemicalName": "Five-component HFC blend with hydrocarbons",
+    "altSpellings": ["R438A", "438A", "MO99", "Freon MO99", "ISCEON MO99"],
+    "chemicalName": "Quinary HFC blend with hydrocarbons",
     "chemicalFormula": "R-32/R-125/R-134a/R-600/R-601a (8.5/45/44.2/1.7/0.6)",
     "ashraeNumber": "R-438A",
     "type": "hfc-blend",
@@ -1685,7 +1685,8 @@
     "strategy": "manual",
     "cpIdentifier": null,
     "tradeNames": [
-      { "name": "Genetron MO99", "manufacturer": "Honeywell" }
+      { "name": "Freon MO99", "manufacturer": "Chemours" },
+      { "name": "ISCEON MO99", "manufacturer": "DuPont (historical; brand transferred to Chemours 2015)" }
     ],
     "composition": [
       { "component": "R-32",    "massFraction": 0.085 },
@@ -1704,7 +1705,7 @@
     "lubricants": {
       "compatible": ["MO", "AB", "POE"],
       "incompatible": [],
-      "notes": "Hydrocarbon components aid miscibility with mineral oil. Marketed by Honeywell as a 'no oil change' R-22 retrofit."
+      "notes": "Hydrocarbon components aid miscibility with mineral oil. Marketed by Chemours (Freon MO99, originally DuPont ISCEON MO99) as an R-22 retrofit compatible with existing mineral oil or alkylbenzene in most systems — no oil change required for the majority of retrofits per the Chemours Freon MO99 Retrofit Guidelines. Some complex systems (liquid receivers, screw compressors, Trane 3-D or Danfoss SM scroll compressors) require ~20% POE addition."
     },
     "applications": [
       "R-22 retrofit (commercial AC, refrigeration)",
@@ -1718,9 +1719,9 @@
       "aimActAffected": true,
       "snapApproved": true
     },
-    "verifiedAgainst": ["Honeywell Genetron MO99 technical datasheet"],
+    "verifiedAgainst": ["Chemours Freon MO99 Retrofit Guidelines C-10862 (Aug 2016)", "DuPont ISCEON MO99 PT Chart K-22220-1 (Sep 2009)"],
     "gwpSource": "IPCC AR5 Table 8.A.1 (composition-weighted)",
-    "propertiesSource": "Honeywell Genetron MO99 datasheet + ASHRAE Standard 34-2022"
+    "propertiesSource": "Chemours Freon MO99 Retrofit Guidelines Table 2 (REFPROP 9.0) + ASHRAE Standard 34-2022"
   },
   "r-448a": {
     "displayName": "R-448A",

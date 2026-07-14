@@ -1,0 +1,47 @@
+---
+slug: r-290-vs-r-600a
+refrigerantA: r-290
+refrigerantB: r-600a
+title: "R290 vs R600a: Propane and Isobutane in HVAC Service"
+metaTitle: "R290 vs R600a: Propane vs Isobutane Compared (Pressure, Use)"
+metaDescription: "R290 vs R600a: propane runs 63.9 PSIG at 40°F evap, isobutane 11.9 PSIG — a 5.4× ratio. Both A3 (flammable); different applications, never interchangeable."
+datePublished: "2026-07-14"
+introOneLiner: "R-290 (propane) and R-600a (isobutane) are both natural hydrocarbon refrigerants with essentially zero GWP and no ODP, but they sit at opposite ends of the operating envelope. R-290 saturation at 40°F is 63.9 PSIG; R-600a at the same temperature is 11.9 PSIG — a 5.4× ratio that reflects propane's much higher vapor pressure. Both are ASHRAE class A3 (higher flammability), so equipment and handling are governed by A3 charge limits per IEC 60335-2-40, but they serve different applications: R-290 in commercial refrigeration and heat pumps, R-600a in small domestic appliances."
+
+retrofitFeasible: false
+
+chooseA: "Commercial refrigeration (self-contained cases, walk-in coolers, standalone units with hermetic circuits), heat pumps in R-290-designed equipment, industrial refrigeration in propane-rated circuits. R-290 has pressures similar to R-22 (~90–95% at typical operating conditions) which historically made it a retrofit candidate for R-22 systems, though A1 → A3 safety-class flip generally rules that out in practice. Charge limits per ASHRAE 15 and IEC 60335-2-40 typically 150–500 g for consumer-facing self-contained equipment."
+
+chooseB: "Small hermetic domestic refrigeration (household refrigerators, freezers, wine coolers, small commercial reach-ins). R-600a is the dominant refrigerant in domestic refrigerators globally — Europe adopted it in the 1990s and it now covers most of the world's new domestic refrigerator production. Very low pressures suit small-capacity single-evaporator systems with capillary-tube metering. Charge limits per IEC 60335-2-24 typically 150 g maximum for household refrigerators."
+
+whenNeither: "For applications requiring A1 non-flammable operation, or charges above the A3 charge-limit thresholds (roughly 500 g for R-290 in occupied spaces, 150 g for R-600a in domestic appliances), an A2L HFC/HFO blend (R-454C for LT commercial refrigeration, R-455A for MT, R-513A for chillers) or a natural refrigerant with different safety profile (R-744 CO₂ for supermarket refrigeration, R-717 ammonia for industrial refrigeration) is the appropriate path. Neither R-290 nor R-600a is suitable for applications requiring large-charge circuits in occupied spaces without engineered ventilation, gas detection, and A3-rated equipment."
+
+retrofitNotes: |
+  R-290 and R-600a are not retrofit candidates for each other. The pressure gap alone — R-290 running roughly 5× R-600a saturation pressure at typical service temperatures — is enough that component pressure ratings, compressor displacement, and expansion-device sizing don't overlap. Both are also matched to distinct application classes at the equipment-design level, not just refrigerant selection.
+
+  R-290 systems use hermetic reciprocating or scroll compressors sized for propane's higher volumetric capacity; R-600a systems use much smaller hermetic reciprocating compressors sized for isobutane's low-pressure, low-capacity operating point. Component swap in either direction produces immediate failure or non-operation, not a graceful degradation.
+
+  Both refrigerants are miscible with mineral oil (MO), alkylbenzene (AB), and polyalphaolefin (PAO) synthetic oils. That's a shared property, but not enough to bridge the pressure and displacement mismatch.
+
+  When a system is being converted between application classes — say, a small commercial cooler being redesigned from a domestic-refrigerator platform — a full equipment redesign is required, not a refrigerant swap. In that redesign, R-290 is the typical choice for commercial applications above the ~150 g R-600a charge limit.
+
+faqs:
+  - q: "Are R-290 and R-600a interchangeable?"
+    a: "No. The pressures differ by roughly 5× at typical operating temperatures — R-290 at 40°F saturation is 63.9 PSIG, R-600a at the same temp is 11.9 PSIG. That means completely different compressor displacement, component pressure ratings, and expansion-device sizing. Equipment designed for one refrigerant cannot operate on the other."
+  - q: "Are R-290 and R-600a safe for domestic use?"
+    a: "Both are ASHRAE class A3 (higher flammability, lower toxicity). Domestic and small commercial equipment using these refrigerants must comply with charge-limit standards: IEC 60335-2-24 for household refrigerators (typically 150 g maximum for R-600a), and IEC 60335-2-40 / ASHRAE 15 for other applications. Within charge limits and with properly-designed hermetic equipment, both refrigerants are used safely in millions of installations globally."
+  - q: "Why is R-600a used in home refrigerators instead of R-290?"
+    a: "Two reasons: R-600a's lower pressure suits the small hermetic compressors used in domestic refrigerators (typical evaporator temperatures of -20 to 5°F correspond to R-600a suction pressures of roughly 0 to 7 PSIG). And R-600a's charge limit under IEC 60335-2-24 aligns well with the ~50–150 g charge sizes used in domestic units. R-290 would work thermodynamically but the higher pressure requires larger, more expensive compressors and heavier tubing, and the applications where R-290's capacity is useful (commercial reach-ins, walk-ins) tolerate its higher A3 charge limit under IEC 60335-2-40."
+  - q: "Can R-290 replace R-22 in older residential AC systems?"
+    a: "Not as a service retrofit. R-290 has been used experimentally as an R-22 pressure match (the two refrigerants have similar saturation curves across the residential AC operating envelope), but the A1 → A3 safety-class flip requires equipment recertification (hermetic sealing, charge limits, ignition-source elimination) that a field retrofit can't achieve on equipment designed for A1 service. New-equipment R-290 residential AC does exist in some markets (particularly for heat pumps) but is engineered from the ground up for A3 operation."
+  - q: "What are typical R-290 and R-600a charge sizes?"
+    a: "R-290 in commercial refrigeration: 150–500 g typical for self-contained cases, up to ~5 kg in engineered systems with A3-rated equipment and gas detection. R-600a in domestic refrigerators: 30–150 g typical, with 150 g the IEC 60335-2-24 maximum for household equipment. Both are much smaller than HFC systems of comparable capacity because hydrocarbons have higher latent heat per unit mass."
+  - q: "What lubricants do R-290 and R-600a use?"
+    a: "Both are miscible with mineral oil (MO), alkylbenzene (AB), and polyalphaolefin (PAO). Most equipment ships with MO or AB. Neither refrigerant requires the polyol ester (POE) oils that HFC systems use, which is an operational simplification for equipment manufacturers and service technicians."
+---
+
+## R-290 vs R-600a: two hydrocarbons at opposite ends of the pressure envelope
+
+Both R-290 (propane, C₃H₈) and R-600a (isobutane, C₄H₁₀) are natural refrigerants with essentially zero GWP (IPCC AR5 lists both at 3) and zero ODP. Both are ASHRAE class A3 — higher flammability, lower toxicity — which means charge limits under IEC 60335-2-40 (for R-290 in commercial applications) or IEC 60335-2-24 (for R-600a in domestic refrigeration) govern their equipment design.
+
+Beyond that shared classification, they operate in different regimes. The pressure gap alone — 5.4× at 40°F evaporator saturation — matches them to different equipment classes, and that equipment-class split is why they never appear as interchangeable choices for the same application.

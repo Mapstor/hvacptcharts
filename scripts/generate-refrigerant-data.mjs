@@ -246,6 +246,12 @@ async function main() {
       // Pass through dataStatus and primarySources from manufacturer-blends file
       const dataStatus = manual?.dataStatus ?? (ptChart.length > 0 ? "complete" : undefined);
       const primarySources = manual?.primarySources ?? undefined;
+      // Wave 1.6b (2026-07): datasheet-native pressure-indexed table + its
+      // provenance metadata pass through untouched from the manual JSON.
+      // These fields are only populated for fluids whose PT data comes
+      // from a manufacturer datasheet at native resolution (r-448a, r-438a).
+      const ptTable = manual?.ptTable ?? undefined;
+      const primaryDatasheet = manual?.primaryDatasheet ?? undefined;
 
       out.push({
         slug,
@@ -266,6 +272,8 @@ async function main() {
         replaces: info.replaces ?? null,
         regulatoryStatus: info.regulatoryStatus,
         ptChart,
+        ...(ptTable && { ptTable }),
+        ...(primaryDatasheet && { primaryDatasheet }),
         dataSource: {
           ptChartSource: ptSource,
           ptChartGeneratedAt: new Date().toISOString(),
