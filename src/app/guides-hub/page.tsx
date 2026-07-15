@@ -144,10 +144,20 @@ export default function GuidesHubPage() {
           ],
         },
         {
-          heading: "Diagnostics & charging",
+          heading: "Diagnostic decision trees",
+          items: [
+            { href: "/high-head-pressure-causes/", label: "High Head Pressure — Causes & Diagnosis", blurb: "8-root-cause decision tree for high-side pressure problems. Condenser airflow first, then subcooling check, then restriction. Pairs with the system pressure diagnostic calculator." },
+            { href: "/high-suction-low-head-pressure/", label: "High Suction + Low Head Pressure", blurb: "The specific converging-pressure signature — compressor valve leakage, TXV overfeed, reversing valve leak-through, belt slip. 8 branches with expected R-410A / R-22 gauge signatures." },
+            { href: "/ac-low-side-pressure-too-high/", label: "AC Low Side Pressure Too High", blurb: "Overcharge is #1; TXV overfeed, restricted evaporator airflow, variable-displacement compressor behavior for automotive. R-410A + R-134a + R-1234yf gauge signatures." },
+            { href: "/low-suction-pressure/", label: "Low Suction Pressure", blurb: "Broad tree for suction below normal — undercharge, restriction, low airflow, evaporator fouling, TXV under-feed. R-410A + R-22 signatures with SH/SC tie-breakers." },
+            { href: "/ac-compressor-short-cycling/", label: "AC Compressor Short Cycling", blurb: "Primary-source-grounded: Honeywell CPH convention (3 CPH default), Copeland scroll 3-minute minimum, oil-foam mechanism per AE17-1262 R2, automotive CCOT behavior." },
+            { href: "/overcharged-ac-symptoms/", label: "Overcharged AC Symptoms", blurb: "8 signs of too much refrigerant — high head + high SC as the definitive fingerprint, plus elevated amps, poor cooling, flooded suction, low SH, knocking, HP-switch trips." },
+          ],
+        },
+        {
+          heading: "Troubleshooting & charging references",
           items: [
             { href: "/hvac-troubleshooting-guide/", label: "Complete HVAC Troubleshooting Guide", blurb: "Decision trees for 10 symptom categories (no cooling, no heating, insufficient capacity, short cycling, frozen evaporator, water leaks, high bills, strange noises). Cause hierarchies + service-level diagnostics + escalation logic." },
-            { href: "/high-head-pressure-causes/", label: "High Head Pressure — Causes & Diagnosis", blurb: "8-root-cause decision tree for high-side pressure problems. Pairs with the system pressure diagnostic calculator." },
             { href: "/carrier-410a-charging-chart/", label: "Carrier R-410A Charging Chart", blurb: "Fixed-orifice target-superheat chart with R-410A pressure cross-reference, three worked examples, step-by-step procedure, and an interactive WB×OD lookup." },
           ],
         },

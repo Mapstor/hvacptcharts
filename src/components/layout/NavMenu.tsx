@@ -51,6 +51,17 @@ const NAV: NavGroup[] = [
           { href: "/#find", label: "Browse all 61 refrigerants →" },
         ],
       },
+      // Adding a third section triggers the DesktopDropdown `isWide` layout
+      // (640px, 3-col) — same pattern the Guides group already uses.
+      {
+        title: "Charging charts",
+        items: [
+          { href: "/target-superheat-chart/", label: "Target superheat chart" },
+          { href: "/r410a-superheat-chart/", label: "R-410A superheat" },
+          { href: "/r22-superheat-chart/", label: "R-22 superheat" },
+          { href: "/r410a-charging-chart/", label: "R-410A charging chart" },
+        ],
+      },
     ],
   },
   {
@@ -75,6 +86,33 @@ const NAV: NavGroup[] = [
           { href: "/saturation-properties-calculator/", label: "Saturation properties" },
           { href: "/refrigerant-pt-comparison-tool/", label: "PT comparison tool" },
           { href: "/refrigerant-retrofit-compatibility-calculator/", label: "Retrofit compatibility" },
+        ],
+      },
+    ],
+  },
+  {
+    // NEW top-level group, positioned between Calculators and Guides.
+    // 2 sections × (4 + 2) items → isWide=false → 420px 2-col dropdown.
+    // At 360px the mobile drawer just gets one more expandable group; no
+    // overflow (drawer already handles arbitrary length via overflow-y-auto).
+    label: "Diagnostics",
+    hubHref: "/guides-hub/",
+    hubLabel: "See all diagnostics on the guides hub",
+    sections: [
+      {
+        title: "Pressure signatures",
+        items: [
+          { href: "/high-head-pressure-causes/", label: "High head pressure" },
+          { href: "/high-suction-low-head-pressure/", label: "High suction / low head" },
+          { href: "/low-suction-pressure/", label: "Low suction pressure" },
+          { href: "/ac-low-side-pressure-too-high/", label: "AC low side too high" },
+        ],
+      },
+      {
+        title: "Symptoms & modes",
+        items: [
+          { href: "/overcharged-ac-symptoms/", label: "Overcharged AC symptoms" },
+          { href: "/ac-compressor-short-cycling/", label: "AC compressor short cycling" },
         ],
       },
     ],
