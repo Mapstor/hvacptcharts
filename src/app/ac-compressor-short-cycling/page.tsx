@@ -7,6 +7,8 @@ import { getFileGitDates } from "@/lib/git-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
+import { CycleTimelineDiagram } from "@/components/diagrams/CycleTimelineDiagram";
+import { OilFoamMechanismDiagram } from "@/components/diagrams/OilFoamMechanismDiagram";
 
 const PAGE_URL = `${SITE_URL}/ac-compressor-short-cycling/`;
 const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/ac-compressor-short-cycling/page.tsx");
@@ -222,6 +224,8 @@ export default function AcCompressorShortCyclingPage() {
           A compressor at 50% cooling load normally cycles about 3 times per hour on a high-efficiency residential system — that is the Honeywell cycle-rate convention, not a fault. Below that — cycles every few minutes, or run times under Copeland&apos;s 3-minute scroll minimum — is short cycling, and it kills compressors through oil loss, not wear.
         </KeyInsight>
 
+        <CycleTimelineDiagram normalCph={3} shortCycleSeconds={90} minRunMinutes={3} />
+
         <TechSection icon="book" tone="blue" title="What counts as short cycling? (Normal cycle rates vs a problem)">
           <p>
             &quot;Cycle rate&quot; is a thermostat setting expressed in cycles per hour (CPH) — Honeywell&apos;s convention defines it as the maximum number of system cycles per hour with the load at 50%. The recommended default is 3 CPH for high-efficiency residential systems; typical forced-air heat sits closer to 5 CPH. So an AC compressor cycling roughly every 20 minutes on a partial-load day is by design, not a symptom.
@@ -241,6 +245,7 @@ export default function AcCompressorShortCyclingPage() {
           <p>
             Copeland&apos;s Application Engineering Bulletin AE17-1262 R2 (June 2024) — titled &quot;Compressor Short Cycling: An Unrecognized Problem&quot; — describes the physical mechanism in blunt terms. Each start rapidly drops suction and crankcase pressure. As pressure falls, the saturation temperature of the oil-refrigerant mixture in the crankcase falls with it. The refrigerant dissolved in the oil then flashes into foam and vapor, and a large share of the crankcase oil is pumped out of the compressor with the discharge gas.
           </p>
+          <OilFoamMechanismDiagram />
           <p>
             Adequate run time reverses the loss: as the system stabilizes and mass flow settles, oil migrates back through the suction line to the crankcase. Short runs strand oil in the evaporator, suction line, receiver, and any accumulator or oil trap the geometry has. Repeated over days to weeks, the crankcase runs dry.
           </p>

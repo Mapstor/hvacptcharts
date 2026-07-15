@@ -31,9 +31,17 @@ import path from "node:path";
 const REPO_ROOT = path.resolve(process.cwd());
 
 // Files added in Wave 1 that must be free of numeric PSIG literals.
+// Extended in the B4 SVG exemplar (2026-07-15) to cover the two new
+// diagram components in src/components/diagrams/. Neither carries a
+// PSIG value in its current form, but the guard covers them
+// prophylactically: any future diagram that surfaces a pressure value
+// must route through fmtPsigBubble/fmtPsigDew like the other Wave 1
+// authoring paths.
 const WAVE_1_ALLOWLIST = [
   "src/lib/pressure-format.ts",
   "src/components/calculators/ChargingChartMatrix.tsx",
+  "src/components/diagrams/CycleTimelineDiagram.tsx",
+  "src/components/diagrams/OilFoamMechanismDiagram.tsx",
   "src/app/target-superheat-chart/page.tsx",
   "src/app/r410a-superheat-chart/page.tsx",
   "src/app/r22-superheat-chart/page.tsx",
