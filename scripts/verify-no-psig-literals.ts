@@ -37,11 +37,23 @@ const REPO_ROOT = path.resolve(process.cwd());
 // prophylactically: any future diagram that surfaces a pressure value
 // must route through fmtPsigBubble/fmtPsigDew like the other Wave 1
 // authoring paths.
+//
+// Extended again in the Tier 1 SVG rollout (2026-07-16) to cover the
+// three new cylinder components + SystemGaugesDiagram + the gauge
+// operating-points constants file. The gauge diagram and constants file
+// legitimately reference PSIG in JSDoc prose; the regex ignores
+// designations like "R-410A" but flags bare "119 PSIG" — the JSDoc
+// comments have been written to describe pressures without literals.
 const WAVE_1_ALLOWLIST = [
   "src/lib/pressure-format.ts",
   "src/components/calculators/ChargingChartMatrix.tsx",
   "src/components/diagrams/CycleTimelineDiagram.tsx",
   "src/components/diagrams/OilFoamMechanismDiagram.tsx",
+  "src/components/diagrams/RefrigerantCylinderDiagram.tsx",
+  "src/components/diagrams/RefrigerantCylinderStory.tsx",
+  "src/components/diagrams/CylinderComparisonRow.tsx",
+  "src/components/diagrams/SystemGaugesDiagram.tsx",
+  "src/data/gauge-operating-points.ts",
   "src/app/target-superheat-chart/page.tsx",
   "src/app/r410a-superheat-chart/page.tsx",
   "src/app/r22-superheat-chart/page.tsx",

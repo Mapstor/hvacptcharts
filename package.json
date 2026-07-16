@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm run verify-redirects && pnpm run verify-data && pnpm run verify-no-psig-literals && mkdir -p .next && rm -f .next/git-dates-log.jsonl && next build && pnpm run verify-metadata && pnpm run validate-schema",
+    "build": "pnpm run verify-redirects && pnpm run verify-data && pnpm run verify-gauge-operating-points && pnpm run verify-no-psig-literals && pnpm run verify-no-overlay && mkdir -p .next && rm -f .next/git-dates-log.jsonl && next build && pnpm run verify-metadata && pnpm run validate-schema",
     "start": "next start",
     "lint": "eslint",
     "generate-data": "node scripts/generate-refrigerant-data.mjs",
@@ -13,6 +13,8 @@
     "verify-metadata": "tsx scripts/verify-metadata.ts",
     "verify-redirects": "tsx scripts/verify-redirects.ts",
     "verify-no-psig-literals": "tsx scripts/verify-no-psig-literals.ts",
+    "verify-no-overlay": "tsx scripts/verify-no-overlay.ts",
+    "verify-gauge-operating-points": "tsx scripts/verify-gauge-operating-points.ts",
     "validate-schema": "tsx scripts/validate-schema.ts"
   },
   "dependencies": {

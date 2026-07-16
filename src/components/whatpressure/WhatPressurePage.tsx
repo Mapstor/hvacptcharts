@@ -39,7 +39,7 @@ function renderInline(text: string): React.ReactNode[] {
 import { getRefrigerant, getPressureAtTempF, type Refrigerant } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { Metadata } from "next";
-import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
+import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import {
   ComparisonTable,
@@ -53,6 +53,8 @@ import {
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { loadWhatPressure } from "@/lib/mdx-what-pressure";
+import { SystemGaugesDiagram } from "@/components/diagrams/SystemGaugesDiagram";
+import { getGaugeOperatingPoint } from "@/data/gauge-operating-points";
 
 export interface WhatPressurePageProps {
   id: string;
@@ -68,6 +70,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
 
   const pageUrl = `${SITE_URL}/what-pressure-should-${id}/`;
   const schemaGraph = buildSchema(pageUrl, fm, r);
+  const gaugePoint = getGaugeOperatingPoint(r.slug);
 
   return (
     <>
@@ -131,6 +134,19 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
           </div>
           <p className="mt-2 text-xs text-zinc-500">Source: {fm.operatingRangesSource}</p>
         </section>
+
+        {gaugePoint ? (
+          <section className="mb-10">
+            <h2 className="mb-3 text-xl font-semibold">Design-point view</h2>
+            <SystemGaugesDiagram
+              slug={r.slug}
+              evapTempF={gaugePoint.evapTempF}
+              condTempF={gaugePoint.condTempF}
+              contextLabel={gaugePoint.contextLabel}
+              altDutyNote={gaugePoint.altDutyNote}
+            />
+          </section>
+        ) : null}
 
         {fm.narrativeIntro ? (
           <section className="prose prose-zinc mb-10 max-w-none dark:prose-invert">
@@ -927,6 +943,7 @@ function buildSchema(pageUrl: string, fm: NonNullable<ReturnType<typeof loadWhat
       mainEntityOfPage: pageUrl,
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": `${SITE_URL}/refrigerant/${r.slug}/#refrigerant` },
+      citation: [AHRI_GUIDELINE_N_CITATION],
     },
     {
       "@type": "HowTo",

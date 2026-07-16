@@ -41,11 +41,12 @@ function renderInline(text: string): React.ReactNode[] {
 }
 import { getRefrigerant, getPressureAtTempF, type Refrigerant } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
+import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
 import { getFileGitDates } from "@/lib/git-dates";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { TypeChip } from "@/components/refrigerant/TypeChip";
 import { PTCurveOverlay } from "@/components/svg/PTCurveOverlay";
+import { CylinderComparisonRow } from "@/components/diagrams/CylinderComparisonRow";
 import {
   ComparisonTable as DiffComparisonTable,
   Derived,
@@ -150,6 +151,7 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{fm.title}</h1>
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">{fm.introOneLiner}</p>
+          <CylinderComparisonRow slugA={a.slug} slugB={b.slug} />
         </header>
 
         <section className="mb-10 grid gap-4 sm:grid-cols-2">
@@ -1085,6 +1087,7 @@ function buildSchema(pageUrl: string, fm: ComparisonFrontmatter, a: Refrigerant,
         { "@id": `${SITE_URL}/refrigerant/${a.slug}/#refrigerant` },
         { "@id": `${SITE_URL}/refrigerant/${b.slug}/#refrigerant` },
       ],
+      citation: [AHRI_GUIDELINE_N_CITATION],
     },
   ];
 

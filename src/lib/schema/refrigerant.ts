@@ -9,7 +9,7 @@
 
 import type { Refrigerant } from "@/data/refrigerants";
 import type { FAQ } from "@/lib/mdx";
-import { ORG, SITE_URL, WEBSITE } from "./shared";
+import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE } from "./shared";
 
 function oneLineDescription(r: Refrigerant): string {
   const compositionPart =
@@ -79,6 +79,7 @@ export function buildRefrigerantSchema(r: Refrigerant, faqs: FAQ[]): object[] {
       about: { "@id": `${pageUrl}#refrigerant` },
       isPartOf: { "@id": `${SITE_URL}/#website` },
       inLanguage: "en-US",
+      citation: [AHRI_GUIDELINE_N_CITATION],
     },
     {
       "@type": "DefinedTerm",

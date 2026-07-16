@@ -460,5 +460,12 @@
     "year": 2022,
     "url": "https://www.ashrae.org/technical-resources/standards-and-guidelines",
     "accessed": "2026-06-12"
+  },
+  "ahri-guideline-n-2017": {
+    "title": "AHRI Guideline N-2017: Assignment of Refrigerant Container Colors",
+    "publisher": "Air-Conditioning, Heating, and Refrigeration Institute (AHRI)",
+    "year": 2017,
+    "url": "https://www.ahrinet.org/system/files/2023-06/AHRI_Guideline_N_2017.pdf",
+    "accessed": "2026-07-15"
   }
 }

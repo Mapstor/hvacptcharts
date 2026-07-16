@@ -46,6 +46,7 @@ import { RefrigerantPTCurve } from "@/components/refrigerant/RefrigerantPTCurve"
 import { PTDataTable } from "@/components/refrigerant/PTDataTable";
 import { PTDatasheetTable } from "@/components/refrigerant/PTDatasheetTable";
 import { QuickPTLookup } from "@/components/refrigerant/QuickPTLookup";
+import { RefrigerantCylinderStory } from "@/components/diagrams/RefrigerantCylinderStory";
 import { RefrigerantCycle } from "@/components/refrigerant/RefrigerantCycle";
 import { RefrigerantPhaseDown } from "@/components/refrigerant/RefrigerantPhaseDown";
 import { RefrigerantGlide } from "@/components/refrigerant/RefrigerantGlide";
@@ -167,6 +168,9 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                 </span>
               ) : null}
             </div>
+
+            {/* Cylinder story — full-width row below chip row 2, identical desktop + mobile. */}
+            <RefrigerantCylinderStory slug={slug} />
 
             <div className="mt-4 inline-flex items-center gap-2 rounded-md border border-zinc-200 bg-white/80 px-3 py-1.5 text-sm font-mono backdrop-blur dark:border-zinc-700 dark:bg-zinc-950/80">
               <Atom className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />

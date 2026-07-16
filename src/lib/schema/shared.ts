@@ -276,6 +276,24 @@ export function pageMetadata(input: PageMetadataInput): Metadata {
   };
 }
 
+/**
+ * Shared citation for AHRI Guideline N-2017 — added to any Article schema
+ * whose page renders the RefrigerantCylinderStory, CylinderComparisonRow,
+ * or SystemGaugesDiagram (all of which surface the AHRI Guideline N cylinder
+ * color / flammability band convention). Referenced by ID from data/sources.json
+ * so the URL is single-sourced.
+ */
+export const AHRI_GUIDELINE_N_CITATION = {
+  "@type": "CreativeWork",
+  name: "AHRI Guideline N-2017: Assignment of Refrigerant Container Colors",
+  url: "https://www.ahrinet.org/system/files/2023-06/AHRI_Guideline_N_2017.pdf",
+  publisher: {
+    "@type": "Organization",
+    name: "Air-Conditioning, Heating, and Refrigeration Institute (AHRI)",
+  },
+  datePublished: "2017",
+};
+
 export const WEBSITE = {
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
