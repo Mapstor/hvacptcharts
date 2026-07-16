@@ -6,6 +6,7 @@ import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { getFileGitDates } from "@/lib/git-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { GaugeSignatureDiagram } from "@/components/diagrams/GaugeSignatureDiagram";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 
 const PAGE_URL = `${SITE_URL}/ac-low-side-pressure-too-high/`;
@@ -156,6 +157,15 @@ export default function AcLowSidePressureTooHighPage() {
         <KeyInsight tone="blue" icon="insight" title="Answer, in two sentences">
           Most commonly overcharge — confirmed by high subcooling (&gt;15°F residential, &gt;20°F automotive). If subcooling is normal, suspect restricted evaporator airflow or TXV overfeed. On R-410A residential at 40°F evap, normal suction is around {R410A_40F} PSIG at saturation; on R-134a auto, {R134A_40F} PSIG at 40°F evap.
         </KeyInsight>
+
+        <GaugeSignatureDiagram
+          slug="r-410a"
+          normalEvapTempF={40}
+          normalCondTempF={105}
+          faultLow="up"
+          faultHigh="normal-to-up"
+          faultLabel="Low-side elevated, head normal to slightly elevated"
+        />
 
         <TechSection icon="data" tone="purple" title="Diagnostic branches — 8 causes">
           <p>

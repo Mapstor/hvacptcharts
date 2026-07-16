@@ -6,6 +6,7 @@ import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { getFileGitDates } from "@/lib/git-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { GaugeSignatureDiagram } from "@/components/diagrams/GaugeSignatureDiagram";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 
 const PAGE_URL = `${SITE_URL}/low-suction-pressure/`;
@@ -155,6 +156,15 @@ export default function LowSuctionPressurePage() {
         <KeyInsight tone="blue" icon="insight" title="Answer, in two sentences">
           Low suction usually means undercharge (fingerprint: high SH + low SC), restriction (fingerprint: high SH + high SC + cold-spot downstream of filter-drier), or reduced airflow (fingerprint: high SH + frozen coil). On R-410A, saturation at 40°F evap is {R410A_40F} PSIG; sustained readings well below that with high SH warrant working through the 8 branches below.
         </KeyInsight>
+
+        <GaugeSignatureDiagram
+          slug="r-410a"
+          normalEvapTempF={40}
+          normalCondTempF={105}
+          faultLow="down"
+          faultHigh="normal-to-down"
+          faultLabel="Low suction with slightly depressed head — undercharge / restriction / low-airflow family"
+        />
 
         <TechSection icon="warning" tone="amber" title="Scope — read before diagnosing">
           <p>This page treats low suction pressure broadly, regardless of what head is doing. Two adjacent problems live on separate pages:</p>

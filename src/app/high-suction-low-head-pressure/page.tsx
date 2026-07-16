@@ -7,6 +7,7 @@ import { getFileGitDates } from "@/lib/git-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
+import { GaugeSignatureDiagram } from "@/components/diagrams/GaugeSignatureDiagram";
 
 const PAGE_URL = `${SITE_URL}/high-suction-low-head-pressure/`;
 const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/high-suction-low-head-pressure/page.tsx");
@@ -160,6 +161,15 @@ export default function HighSuctionLowHeadPressurePage() {
         <KeyInsight tone="blue" icon="insight" title="Answer, in two sentences">
           High suction + low head pressure points to internal leakage between the sides (compressor valve failure, TXV overfeed, reversing valve leak-through) or to reduced compressor mass flow (belt slip, motor issue). On R-410A at 40°F evap, normal suction is around {R410A_40F_EVAP} PSIG — well above that with head below normal points to one of the eight causes below.
         </KeyInsight>
+
+        <GaugeSignatureDiagram
+          slug="r-410a"
+          normalEvapTempF={40}
+          normalCondTempF={105}
+          faultLow="up"
+          faultHigh="down"
+          faultLabel="Suction high, head low — compression fault signature"
+        />
 
         <TechSection icon="warning" tone="amber" title="Scope of this page — read before diagnosing">
           <p>

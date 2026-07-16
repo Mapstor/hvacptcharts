@@ -6,6 +6,8 @@ import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { getFileGitDates } from "@/lib/git-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { GaugeSignatureDiagram } from "@/components/diagrams/GaugeSignatureDiagram";
+import { FloodedCondenserDiagram } from "@/components/diagrams/FloodedCondenserDiagram";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 
 const PAGE_URL = `${SITE_URL}/overcharged-ac-symptoms/`;
@@ -158,6 +160,15 @@ export default function OverchargedAcSymptomsPage() {
           The primary fingerprint is high subcooling (&gt;15°F on a TXV residential AC vs 8–12°F normal), combined with elevated discharge pressure. On R-410A residential at 130°F condensing sat = {R410A_130F} PSIG; overcharged systems climb toward that. Discharge alone can be raised by dirty condensers or non-condensables — SC is the tie-breaker.
         </KeyInsight>
 
+        <GaugeSignatureDiagram
+          slug="r-410a"
+          normalEvapTempF={40}
+          normalCondTempF={105}
+          faultLow="up"
+          faultHigh="up"
+          faultLabel="Both sides elevated — overcharge signature"
+        />
+
         <TechSection icon="data" tone="purple" title="8 signs of overcharge">
           <p>
             The signs vary in reliability. Signs 1 and 2 (high head + high SC together) are the definitive combined fingerprint. Signs 3–8 confirm but can also result from other issues; don&apos;t diagnose overcharge from any single sign in isolation.
@@ -171,6 +182,7 @@ export default function OverchargedAcSymptomsPage() {
               </Panel>
             ))}
           </div>
+          <FloodedCondenserDiagram />
         </TechSection>
 
         <TechSection icon="service" tone="emerald" title="Diagnostic procedure">

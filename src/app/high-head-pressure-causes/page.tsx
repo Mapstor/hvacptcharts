@@ -15,6 +15,8 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { GaugeSignatureDiagram } from "@/components/diagrams/GaugeSignatureDiagram";
+import { BlockedCondenserDiagram } from "@/components/diagrams/BlockedCondenserDiagram";
 
 const PAGE_URL = `${SITE_URL}/high-head-pressure-causes/`;
 const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/high-head-pressure-causes/page.tsx");
@@ -210,6 +212,15 @@ export default function HighHeadPressurePage() {
           </KeyInsight>
         </TechSection>
 
+        <GaugeSignatureDiagram
+          slug="r-410a"
+          normalEvapTempF={40}
+          normalCondTempF={105}
+          faultLow="normal"
+          faultHigh="up"
+          faultLabel="High-side elevated, suction near normal — airflow / overcharge / non-condensable family"
+        />
+
         <TechSection icon="data" tone="purple" title="Cause frequency — where to start the diagnostic">
           <p>
             Field-service data shows high head pressure cases cluster heavily in the first two
@@ -223,6 +234,7 @@ export default function HighHeadPressurePage() {
             majority of cases — always check airflow first. Sources: ACCA Service Industry
             Survey 2020, manufacturer service-call analytics.
           </p>
+          <BlockedCondenserDiagram />
         </TechSection>
 
         <TechSection icon="composition" tone="emerald" title="Diagnostic decision flow">
