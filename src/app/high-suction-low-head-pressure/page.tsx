@@ -17,6 +17,21 @@ const R410A_40F_EVAP = fmtPsigBubble("r-410a", 40);
 const R22_40F_EVAP = fmtPsigBubble("r-22", 40);
 const R410A_95F_SAT = fmtPsigBubble("r-410a", 95);
 const R22_95F_SAT = fmtPsigBubble("r-22", 95);
+const R22_50F_SAT = fmtPsigBubble("r-22", 50);
+const R22_80F_SAT = fmtPsigBubble("r-22", 80);
+
+const SOURCES: readonly { name: string; publisher: string; url: string | null }[] = [
+  {
+    name: "Sporlan (Parker) Bulletin 10-11 — Thermostatic Expansion Valves: Installing and Servicing (June 2011)",
+    publisher: "Parker Hannifin / Sporlan Division",
+    url: "https://www.parker.com/content/dam/Parker-com/Literature/Sporlan/Sporlan-pdf-files/Sporlan-pdf-010/10-11.pdf",
+  },
+  {
+    name: "Sporlan Form 10-143 — 12 Solutions for Fixing Common TEV Problems",
+    publisher: "Parker Hannifin / Sporlan Division",
+    url: "https://www.parker.com/content/dam/Parker-com/Literature/Sporlan/Sporlan-pdf-files/Sporlan-pdf-010/10-143.pdf",
+  },
+];
 
 export const metadata: Metadata = pageMetadata({
   title: "High Suction Low Head Pressure: Causes & Fixes (HVAC Tree)",
@@ -42,7 +57,7 @@ const BRANCHES = [
   {
     title: "TXV overfeeding or stuck open",
     signature: `Suction high (well above the ${R410A_40F_EVAP} PSIG norm at 40°F evap on R-410A), superheat near zero or slightly negative, discharge low.`,
-    body: "The TXV is passing more refrigerant than the evaporator can boil, flooding the coil and pushing liquid down the suction line. Suction pressure elevates because the evaporator is fully wet and running near liquid saturation; discharge stays low because the compressor is pumping liquid (poor volumetric efficiency) rather than vapor. Diagnostic: measured SH < 5°F is the primary fingerprint; if the valve is stuck open, warming the sensing bulb doesn't change flow. Fix: TXV replacement or, on some units, adjustment.",
+    body: "The TXV is passing more refrigerant than the evaporator can boil, flooding the coil and pushing liquid down the suction line. Suction pressure elevates because the evaporator is fully wet and running near liquid saturation; discharge stays low because the compressor is pumping liquid (poor volumetric efficiency) rather than vapor. Diagnostic: measured SH < 5°F is the primary fingerprint; if the valve is stuck open, warming the sensing bulb doesn't change flow. Sporlan Bulletin 10-11 section B enumerates the overfeed failure modes as a family: an oversized valve for the actual load, a bulb-strap that has slipped loose so the sensor reads pipe temperature instead of suction gas, a moisture freeze-up at the port that holds the valve open once ice bridges the seat, an equalizer line kink or blockage on external-equalized valves, and lost element charge that leaves the valve unable to close. Each mode presents the same manifold signature; the discriminator is the SH reading and the physical inspection of the bulb, strap, and equalizer. Form 10-143's procedural rule is bulb-first: verify the strap tension, contact position (4–5 o'clock on the suction line just outside the evaporator), and insulation before touching the valve. Sporlan's field data shows that bulb-installation errors and airflow errors both produce the low-SH/high-suction fingerprint that mimics valve failure — adjusting or replacing the valve without fixing the bulb guarantees the comeback. Fix, in order: bulb strap and insulation, airflow at nameplate CFM, then valve replacement only after those clear.",
   },
   {
     title: "Reversing valve leak-through (heat pump only)",
@@ -116,6 +131,12 @@ function buildSchema() {
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: PAGE_URL,
       isPartOf: { "@id": `${SITE_URL}/#website` },
+      citation: SOURCES.map((s) => ({
+        "@type": "CreativeWork",
+        name: s.name,
+        publisher: s.publisher,
+        ...(s.url ? { url: s.url } : {}),
+      })),
     },
     {
       "@type": "FAQPage",
@@ -171,6 +192,18 @@ export default function HighSuctionLowHeadPressurePage() {
           faultLabel="Suction high, head low — compression fault signature"
         />
 
+        <TechSection icon="insight" tone="blue" title="Why this signature converges the gauges">
+          <p>
+            The compressor is the mechanical divider that keeps the low side low and the high side high. Every fault on this page attacks that division in one of two ways: gas leaks across the divide inside the compressor or between-side valves (compressor discharge valves, reversing valve, an overfed TXV that lets liquid back-feed through the coil), or the compressor spins too slowly to hold the divide (belt slip, motor issue). Either way, the two sides bleed toward each other and settle closer together than the load and ambient predict.
+          </p>
+          <p>
+            That&apos;s why SH and SC are the discriminators on this page, not the raw pressures alone. Suction near R-410A 40°F saturation ({R410A_40F_EVAP} PSIG) with SH near zero fingerprints a TXV flooding the coil; suction above that with SH normal fingerprints leakage through the compressor rather than into the evaporator. Discharge depressed with SC normal points at reduced mass flow; discharge depressed with SC elevated (18°F+) points at the rare overcharge-plus-restriction combo. The gauges alone can&apos;t tell the four apart — SH and SC do.
+          </p>
+          <p>
+            Before running the diagnostic tree, run the <em>pumped-down capacity test</em>: close the liquid line service valve and time how long the low side takes to fall to a set point. On a healthy compressor the low side crashes quickly; on a valve-leaking compressor it drifts down because high-side gas is bleeding back. Combined with the running signature, this test isolates compressor failure from external causes before you crack a single flare. See the <Link href="/superheat-calculator/" className="underline">Superheat Calculator</Link> and <Link href="/subcooling-calculator/" className="underline">Subcooling Calculator</Link> for the SH/SC arithmetic.
+          </p>
+        </TechSection>
+
         <TechSection icon="warning" tone="amber" title="Scope of this page — read before diagnosing">
           <p>
             This page treats the SPECIFIC pattern of suction ABOVE normal combined with discharge BELOW normal. Two adjacent problems live on separate pages:
@@ -195,6 +228,35 @@ export default function HighSuctionLowHeadPressurePage() {
                 </div>
               </Panel>
             ))}
+          </div>
+        </TechSection>
+
+        <TechSection icon="data" tone="purple" title="Worked scenario — R-22 residential AC with compression fault">
+          <p>
+            Three panels walk the diagnostic from raw gauge readings through SH/SC to a verdict. PSIG references render through the site&apos;s helpers so every saturation number stays anchored to the R-22 dataset.
+          </p>
+          <div className="mt-4 space-y-4">
+            <Panel title="A. Measured" icon={ListChecks}>
+              <div className="text-sm space-y-2">
+                <p>
+                  A 3-ton R-22 residential AC on a 90°F day. Manifold reads suction well above the {R22_40F_EVAP} PSIG 40°F evap reference — closer to the {R22_50F_SAT} PSIG value that would correspond to 50°F saturation. Discharge sits below the {R22_95F_SAT} PSIG 95°F condenser reference, closer to the {R22_80F_SAT} PSIG 80°F sat line. Compressor amps 8 A against 12 A FLA. Supply-air ΔT 12°F (nameplate 18–22°F).
+                </p>
+              </div>
+            </Panel>
+            <Panel title="B. PT + SH + SC" icon={ListChecks}>
+              <div className="text-sm space-y-2">
+                <p>
+                  Suction saturation ≈ 50°F. Suction line at compressor 58°F → SH ≈ 8°F (low-normal, not the near-zero of a flooding TXV). Liquid line 88°F, condenser saturation ≈ 80°F → SC ≈ –8°F (impossible; liquid line is warmer than saturation, meaning the condenser is not fully condensing). Both pressures have converged toward each other, SH is low but not zero, SC is negative — the fingerprint pattern for compressor valve leakage rather than TXV overfeed.
+                </p>
+              </div>
+            </Panel>
+            <Panel title="C. Verdict + confirmation" icon={ListChecks}>
+              <div className="text-sm space-y-2">
+                <p>
+                  Kill power at the disconnect and start a timer. High side drops to low side in 22 seconds. Per FAQ 6 on this page, a healthy hermetic equalizes over 3–10 minutes through the metering device; sub-30-second equalization is diagnostic for internal leakage. Verdict: replace compressor. Verify by pulling the compressor and inspecting the discharge valve reeds; recover the R-22 to EPA 608 requirements first.
+                </p>
+              </div>
+            </Panel>
           </div>
         </TechSection>
 
@@ -243,11 +305,22 @@ export default function HighSuctionLowHeadPressurePage() {
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">
           <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300"><BookOpen className="mr-1 inline h-3.5 w-3.5" />Sources</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
-            <li>ACCA Manual T — charging targets and target-superheat formula.</li>
+            {SOURCES.map((s, i) => (
+              <li key={i}>
+                {s.url ? (
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="underline break-words">
+                    {s.name}
+                  </a>
+                ) : (
+                  s.name
+                )}
+              </li>
+            ))}
+            <li>ACCA technician charging references (name-only).</li>
             <li>ASHRAE Handbook of Refrigeration 2022 — compressor mechanics and TXV behavior.</li>
             <li>CoolProp 7.2.0 — R-410A and R-22 PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Expected pressure signatures derived at build time from the dataset.</p>
+          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Facts on this page are paraphrased from the linked sources; direct sentences are not reproduced. PSIG values render through the site&apos;s pressure-format helpers so a dataset regeneration updates the prose automatically.</p>
         </footer>
       </article>
     </>

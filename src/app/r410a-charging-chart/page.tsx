@@ -16,6 +16,14 @@ const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/r4
 // Liquid-line saturation temperatures for the subcooling method.
 const COND_TEMPS_F = [95, 100, 105, 110, 115, 120, 125, 130];
 
+const SOURCES: readonly { name: string; publisher: string; url: string | null }[] = [
+  {
+    name: "Bryan Orr, \"What Should My Superheat Be?\" — HVAC School",
+    publisher: "HVAC School",
+    url: "http://www.hvacrschool.com/what-should-my-superheat-be/",
+  },
+];
+
 export const metadata: Metadata = pageMetadata({
   title: "R410A Charging Chart: Subcooling & Superheat Targets (Free)",
   description:
@@ -72,6 +80,12 @@ function buildSchema() {
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: PAGE_URL,
       isPartOf: { "@id": `${SITE_URL}/#website` },
+      citation: SOURCES.map((s) => ({
+        "@type": "CreativeWork",
+        name: s.name,
+        publisher: s.publisher,
+        ...(s.url ? { url: s.url } : {}),
+      })),
     },
     {
       "@type": "FAQPage",
@@ -144,14 +158,17 @@ export default function R410aChargingChartPage() {
             </div>
           </Panel>
           <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">
-            <strong>Nameplate governs.</strong> General 8–12°F target is a starting point — the equipment&apos;s OEM charging label supersedes it, and some manufacturers spec a DB-indexed target (e.g. 8°F at 65°F outdoor, 12°F at 105°F outdoor). Never charge past the label spec.
+            <strong>Nameplate governs.</strong> General 8–12°F target is a starting point — the equipment&apos;s OEM charging label supersedes it, and some manufacturers spec a DB-indexed target (e.g. 8°F at 65°F outdoor, 12°F at 105°F outdoor). Never charge past the label spec. HVAC School frames the underlying rule mechanically: on TXV / EEV metering the valve throttles to hold SH near its adjustment setpoint, so SH tells you the valve is working, not the charge — subcooling is the charging indicator, and the OEM&apos;s SC target governs what &quot;charged correctly&quot; means for that equipment.
+          </p>
+          <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">
+            The 95°F outdoor DB reference in the table above is the AHRI Standard 210/240 cooling rating condition, which is why residential AC subcooling targets and OEM charging charts center on the same anchor. If you&apos;re charging on a day materially warmer or cooler than 95°F outdoor, the target may shift by DB per the OEM&apos;s chart; always cross-check the equipment label for DB-adjusted targets.
           </p>
         </section>
 
         <section className="mb-10">
           <h2 className="mb-3 text-xl font-semibold">Method 2 — Target superheat (fixed-orifice / piston)</h2>
           <p className="mb-4 text-sm text-zinc-700 dark:text-zinc-300">
-            On fixed-orifice systems, use the target-superheat method. Look up target SH by indoor WB and outdoor DB, then match measured SH at the suction line.
+            On fixed-orifice systems (piston, capillary), the metering device doesn&apos;t regulate — charge sets superheat directly. HVAC School&apos;s rule is that on fixed-orifice equipment SH IS the charging indicator: add refrigerant, SH falls; remove refrigerant, SH rises. That&apos;s why the target-superheat method applies here and only here. Look up target SH by indoor WB and outdoor DB, then match measured SH at the suction line.
           </p>
           <ChargingChartMatrix
             label="R-410A target superheat (fixed-orifice)"
@@ -162,6 +179,15 @@ export default function R410aChargingChartPage() {
             Compact matrix (6 × 6). The full 14 × 13 matrix lives on the <Link href="/r410a-superheat-chart/" className="underline">R-410A Superheat Chart</Link> page.
           </p>
         </section>
+
+        <TechSection icon="insight" tone="blue" title="Weight-based charging — the primary method, SH / SC verifies">
+          <p>
+            Weight is the primary charging method for a new install or a post-recovery recharge. Post-vacuum, charge to nameplate weight with a calibrated scale, then verify by measuring SC (TXV / EEV) or SH (fixed-orifice) at steady state. On residential AC the two should land close to the OEM target if the charge is right — if they don&apos;t, something else is going on (measurement error, system fault, or the wrong nameplate). Don&apos;t charge to gauge feel or sight glass alone; both are unreliable indicators that routinely land systems overcharged.
+          </p>
+          <p>
+            Overcharge correction on either method requires refrigerant recovery under EPA Section 608 certification — recover into an evacuated cylinder, don&apos;t vent, and don&apos;t attempt to &quot;burn off&quot; excess by running the system without cooling load.
+          </p>
+        </TechSection>
 
         <TechSection icon="service" tone="emerald" title="Field procedure — either method">
           <Panel title="Charge-verification steps" icon={ListChecks}>
@@ -237,11 +263,24 @@ export default function R410aChargingChartPage() {
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">
           <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300"><BookOpen className="mr-1 inline h-3.5 w-3.5" />Sources</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
-            <li>ACCA Manual T — target-superheat formula.</li>
+            {SOURCES.map((s, i) => (
+              <li key={i}>
+                {s.url ? (
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="underline break-words">
+                    {s.name}
+                  </a>
+                ) : (
+                  s.name
+                )}
+              </li>
+            ))}
+            <li>ACCA technician charging references (name-only).</li>
             <li>OEM (Carrier / Trane / Lennox / Goodman / Rheem) residential AC installation manuals — subcooling and superheat targets.</li>
+            <li>AHRI Standard 210/240 — 95°F outdoor dry-bulb cooling rating condition.</li>
+            <li>EPA 40 CFR Part 82 Subpart F — Section 608 recovery certification.</li>
             <li>CoolProp 7.2.0 — R-410A PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. All PSIG values derived at build from the dataset.</p>
+          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Facts on this page are paraphrased from the linked sources; direct sentences are not reproduced. All PSIG values derived at build from the dataset.</p>
         </footer>
       </article>
     </>

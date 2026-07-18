@@ -18,6 +18,19 @@ const R410A_120F = fmtPsigBubble("r-410a", 120);
 const R134A_130F = fmtPsigBubble("r-134a", 130);
 const R1234YF_130F = fmtPsigBubble("r-1234yf", 130);
 
+const SOURCES: readonly { name: string; publisher: string; url: string | null }[] = [
+  {
+    name: "Sporlan (Parker) Bulletin 10-11 — Thermostatic Expansion Valves: Installing and Servicing (June 2011)",
+    publisher: "Parker Hannifin / Sporlan Division",
+    url: "https://www.parker.com/content/dam/Parker-com/Literature/Sporlan/Sporlan-pdf-files/Sporlan-pdf-010/10-11.pdf",
+  },
+  {
+    name: "Bryan Orr, \"What Should My Superheat Be?\" — HVAC School",
+    publisher: "HVAC School",
+    url: "http://www.hvacrschool.com/what-should-my-superheat-be/",
+  },
+];
+
 export const metadata: Metadata = pageMetadata({
   title: "Overcharged AC Symptoms: 8 Signs Of Too Much Refrigerant",
   description:
@@ -34,7 +47,7 @@ const SIGNS = [
   },
   {
     title: "High subcooling — the definitive diagnostic",
-    body: "Subcooling (saturation temp at condensing minus liquid line temp) is the tie-breaker between overcharge and other high-head causes. Normal SC on a TXV residential AC: 8–12°F. Overcharge: >15°F, often 20°F+. Excess refrigerant sits liquid in the condenser bottom, subcooling further before entering the metering device. If SC is high AND head is high, overcharge is confirmed.",
+    body: "Subcooling (saturation temp at condensing minus liquid line temp) is the tie-breaker between overcharge and other high-head causes. Normal SC on a TXV residential AC: 8–12°F. Overcharge: >15°F, often 20°F+. Excess refrigerant sits liquid in the condenser bottom, subcooling further before entering the metering device. If SC is high AND head is high, overcharge is confirmed. The reservoir physics behind that SC number matters for the diagnosis. On a TXV system, the valve throttles to hold superheat at its adjustment setpoint regardless of charge — so a moderate overcharge doesn't immediately show up on the evaporator side. The excess refrigerant has nowhere to boil (the evaporator load hasn't changed), so it stacks up as liquid in the condenser bottom and receiver. SC rises because more of the condenser sits full of liquid, sensibly cooling below saturation. Sporlan Bulletin 10-11's discussion of TEV response covers exactly this reservoir behavior: the valve absorbs charge deviation up to the point where the receiver is full, then the condensing pressure and SC both climb sharply — the \"sudden overcharge\" fingerprint techs see on the manifold is often the tail end of a slow drift.",
   },
   {
     title: "Elevated compressor amp draw",
@@ -114,6 +127,12 @@ function buildSchema() {
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: PAGE_URL,
       isPartOf: { "@id": `${SITE_URL}/#website` },
+      citation: SOURCES.map((s) => ({
+        "@type": "CreativeWork",
+        name: s.name,
+        publisher: s.publisher,
+        ...(s.url ? { url: s.url } : {}),
+      })),
     },
     {
       "@type": "FAQPage",
@@ -200,6 +219,27 @@ export default function OverchargedAcSymptomsPage() {
           </Panel>
         </TechSection>
 
+        <TechSection icon="warning" tone="purple" title="Fixed-orifice vs TXV — the most misdiagnosed thing about overcharge">
+          <p>
+            HVAC School frames the fixed-orifice-vs-TXV distinction as the single most misdiagnosed part of overcharge diagnosis, and the reason is mechanical. The two metering styles respond to added refrigerant in fundamentally different ways, and the diagnostic fingerprint on the manifold is different in each case.
+          </p>
+          <p>
+            On a fixed-orifice system (piston, capillary tube), the metering device passes whatever the pressure differential lets through — it doesn&apos;t regulate. Overcharge slams both gauges up: suction climbs because the coil floods, head climbs because the condenser fills, and superheat drops because on fixed-orifice equipment the charge itself sets the operating SH. All three symptoms present within minutes of the added mass, and the diagnosis reads clearly on the gauges alone.
+          </p>
+          <p>
+            On a TXV or EEV system, the valve actively holds SH near its adjustment setpoint by throttling — so overcharge doesn&apos;t touch SH the way it does on fixed-orifice. Suction can look near-normal for hours because the valve compensates on the low side. Head does rise (the excess refrigerant still fills the condenser), but a moderate head rise can be mistaken for a hot-day operating point rather than an overcharge signature. Subcooling is the only reliable early indicator on TXV: SC climbs as the receiver fills, and once it&apos;s past nameplate spec (8–12°F) the system is overcharged even if suction hasn&apos;t moved yet. The reservoir behavior detailed in Sign 2 above is why SC leads the other symptoms on a TXV system.
+          </p>
+        </TechSection>
+
+        <TechSection icon="insight" tone="blue" title="Why SC blows out nonlinearly with overcharge weight">
+          <p>
+            The relationship between charge weight and measured SC isn&apos;t linear. Small overcharges (a few ounces above nameplate) buffer through the receiver with SC changing only 1–3°F. Once the receiver is at capacity, additional refrigerant has nowhere to sit as vapor and no reservoir to hide in — every additional ounce shows up as backing up the condenser tube volume, and SC climbs several °F per ounce added. This is why FAQ 2&apos;s number (5 oz over on a 4-lb nameplate → SC drift from 10°F to 15°F+) reads as such a large SC change for such a small weight change: the 5-oz point is past the receiver&apos;s buffer capacity, on the steep part of the curve.
+          </p>
+          <p>
+            The diagnostic implication is directional. If you measure SC = 12°F on an unfamiliar system with unknown charge history, you don&apos;t yet know if you&apos;re 5 oz under a well-charged setup or 3 oz over an under-designed one — the curve is nearly flat there. If you measure SC = 20°F, the system is definitely on the steep part of the curve past the receiver buffer, and even a small recovery (1–2 oz) will move SC noticeably. That&apos;s why the recovery procedure on this page is recover-then-remeasure in 1–2 oz increments rather than &quot;recover N ounces and call it done&quot; — the response curve is where the diagnostic power lives.
+          </p>
+        </TechSection>
+
         <TechSection icon="warning" tone="amber" title="Automotive AC context">
           <p>
             Automotive R-134a and R-1234yf systems use similar diagnostics but different charging methods. Cars charge by nameplate weight (per the under-hood label), not by SC target. Overcharge symptoms are the same — high side well above expected, low side slightly elevated. Realistic 95°F-ambient service point: R-134a condensing at ~130°F sat = {R134A_130F} PSIG; R-1234yf equivalent = {R1234YF_130F} PSIG. Modern variable-displacement compressors mask suction-side symptoms because they modulate to hold low-side stable — high-side pressure is the main indicator on those systems.
@@ -251,12 +291,23 @@ export default function OverchargedAcSymptomsPage() {
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">
           <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300"><BookOpen className="mr-1 inline h-3.5 w-3.5" />Sources</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
+            {SOURCES.map((s, i) => (
+              <li key={i}>
+                {s.url ? (
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="underline break-words">
+                    {s.name}
+                  </a>
+                ) : (
+                  s.name
+                )}
+              </li>
+            ))}
             <li>ACCA Manual T — subcooling target charging methodology.</li>
             <li>EPA 40 CFR Part 82 Subpart F — Section 608 recovery certification.</li>
             <li>SAE J2843 — automotive AC service standards.</li>
             <li>CoolProp 7.2.0 — R-410A, R-134a, R-1234yf PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Pressure values derived at build from the dataset.</p>
+          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Facts on this page are paraphrased from the linked sources; direct sentences are not reproduced. PSIG values render through the site&apos;s pressure-format helpers so a dataset regeneration updates the prose automatically.</p>
         </footer>
       </article>
     </>

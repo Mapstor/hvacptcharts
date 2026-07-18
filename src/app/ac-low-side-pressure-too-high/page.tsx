@@ -18,6 +18,19 @@ const R134A_130F = fmtPsigBubble("r-134a", 130);
 const R1234YF_40F = fmtPsigBubble("r-1234yf", 40);
 const R1234YF_130F = fmtPsigBubble("r-1234yf", 130);
 
+const SOURCES: readonly { name: string; publisher: string; url: string | null }[] = [
+  {
+    name: "Sporlan (Parker) Bulletin 10-11 — Thermostatic Expansion Valves: Installing and Servicing (June 2011)",
+    publisher: "Parker Hannifin / Sporlan Division",
+    url: "https://www.parker.com/content/dam/Parker-com/Literature/Sporlan/Sporlan-pdf-files/Sporlan-pdf-010/10-11.pdf",
+  },
+  {
+    name: "Sporlan Form 10-143 — 12 Solutions for Fixing Common TEV Problems",
+    publisher: "Parker Hannifin / Sporlan Division",
+    url: "https://www.parker.com/content/dam/Parker-com/Literature/Sporlan/Sporlan-pdf-files/Sporlan-pdf-010/10-143.pdf",
+  },
+];
+
 export const metadata: Metadata = pageMetadata({
   title: "AC Low Side Pressure Too High: Causes & Fixes (All Systems)",
   description:
@@ -39,7 +52,7 @@ const BRANCHES = [
   {
     title: "TXV overfeed or stuck open",
     signature: `Suction elevated significantly; superheat measured at suction line very low (<5°F) or negative; discharge may be normal or slightly low.`,
-    body: "The TXV passes more refrigerant than the evaporator can boil. Coil floods, suction stays elevated, superheat drops to zero. On automotive AC with expansion valves, this is often a stuck-open valve or a failed sensing bulb. Fix: verify TXV bulb is properly attached to suction line (should be at 4–5 o'clock position, insulated); replace valve if internally failed.",
+    body: "The TXV passes more refrigerant than the evaporator can boil. Coil floods, suction stays elevated, superheat drops to zero. On automotive AC with expansion valves, this is often a stuck-open valve or a failed sensing bulb. Sporlan Bulletin 10-11 section B groups the overfeed causes as one family: valve oversized for the actual load, bulb-strap slipped so the sensor reads pipe metal instead of suction gas, moisture-freeze at the port holding the seat open once ice bridges it, an equalizer-line kink on external-equalized valves, and a lost element charge that leaves the valve unable to close. On the manifold they look identical; SH and bulb inspection are the only discriminators. Form 10-143's rule for this branch is airflow-first, bulb-second, valve-last: nameplate CFM at the evaporator gets verified before any wrench touches the strap, because airflow shortfalls produce the same low-SH/high-suction signature and mask the actual defect. Fix, in order: verify airflow, then bulb strap and insulation (4–5 o'clock position on the suction line), then valve replacement only after those clear.",
   },
   {
     title: "High indoor load (transient, not a fault)",
@@ -112,6 +125,12 @@ function buildSchema() {
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: PAGE_URL,
       isPartOf: { "@id": `${SITE_URL}/#website` },
+      citation: SOURCES.map((s) => ({
+        "@type": "CreativeWork",
+        name: s.name,
+        publisher: s.publisher,
+        ...(s.url ? { url: s.url } : {}),
+      })),
     },
     {
       "@type": "FAQPage",
@@ -167,6 +186,15 @@ export default function AcLowSidePressureTooHighPage() {
           faultLabel="Low-side elevated, head normal to slightly elevated"
         />
 
+        <TechSection icon="insight" tone="blue" title="Target subcooling — the primary overcharge fingerprint">
+          <p>
+            The target-subcooling approach reframes the overcharge diagnosis: instead of asking &quot;is suction too high,&quot; ask &quot;does the liquid line&apos;s subcooling match the OEM&apos;s target?&quot; Residential targets sit in the 8–12°F band; a reading of 18°F+ with elevated suction is diagnostic for overcharge regardless of the actual suction number. The reason SC dominates on this branch is that the condenser is the reservoir — extra refrigerant lives there, backs up above the receiver, and shows up as extra sensible cooling on the liquid line before it shows up anywhere else.
+          </p>
+          <p>
+            The recovery procedure is recover-then-remeasure, not recover-to-a-number. Pull 1–2 oz through the recovery machine, let the system settle for 5–10 minutes, re-read SC and suction. Repeat until SC lands in the OEM band. Automotive systems use OEM-specific SC targets (typically 20°F on R-134a variable-displacement systems); recover in the same disciplined increments. Weighing the recovered mass against nameplate weight gives a second check — if the recovery total is much larger than the nameplate delta implies, another fault (contamination, second charge, wrong refrigerant) is in play.
+          </p>
+        </TechSection>
+
         <TechSection icon="data" tone="purple" title="Diagnostic branches — 8 causes">
           <p>
             Match your measured suction and subcooling to the closest signature. Automotive-specific behavior lives in branch 5 (variable-displacement compressors). All dataset PSIG values from CoolProp 7.2.0.
@@ -189,6 +217,9 @@ export default function AcLowSidePressureTooHighPage() {
           </p>
           <p>
             R-134a and R-1234yf saturation curves cross in the automotive service envelope — R-1234yf is slightly higher than R-134a at evaporator temps (R-1234yf 40°F = {R1234YF_40F} PSIG vs R-134a 40°F = {R134A_40F} PSIG), slightly lower at condenser temps (R-1234yf 130°F = {R1234YF_130F} vs R-134a 130°F = {R134A_130F} PSIG). Cross-contamination diagnostic must include a refrigerant identifier per SAE J2843 before service.
+          </p>
+          <p>
+            SAE J2843&apos;s identifier requirement isn&apos;t just a hose-connection rule — cross-contamination between R-134a and R-1234yf is the failure mode the identifier is meant to catch, and it produces exactly the confused low-side reading this page investigates. A system charged with R-1234yf but partially topped-off with R-134a (or vice-versa) reads suction values that don&apos;t match either refrigerant&apos;s saturation curve, because the blend behaves as neither pure fluid. Identifier before service on any late-model automotive AC; if the identifier flags mixed refrigerant, recover and recharge with the correct pure fluid rather than attempting to diagnose the mixed-blend signature.
           </p>
         </TechSection>
 
@@ -245,11 +276,22 @@ export default function AcLowSidePressureTooHighPage() {
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">
           <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300"><BookOpen className="mr-1 inline h-3.5 w-3.5" />Sources</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
-            <li>ACCA Manual T — charging targets.</li>
-            <li>SAE J2843 / J2912 — automotive AC service standards.</li>
+            {SOURCES.map((s, i) => (
+              <li key={i}>
+                {s.url ? (
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="underline break-words">
+                    {s.name}
+                  </a>
+                ) : (
+                  s.name
+                )}
+              </li>
+            ))}
+            <li>ACCA technician charging references (name-only).</li>
+            <li>SAE J2843 / J2912 — automotive AC service standards; refrigerant identifier requirements.</li>
             <li>CoolProp 7.2.0 — R-410A, R-134a, R-1234yf PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Expected pressure signatures derived at build time from the dataset.</p>
+          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Facts on this page are paraphrased from the linked sources; direct sentences are not reproduced. PSIG values render through the site&apos;s pressure-format helpers so a dataset regeneration updates the prose automatically.</p>
         </footer>
       </article>
     </>

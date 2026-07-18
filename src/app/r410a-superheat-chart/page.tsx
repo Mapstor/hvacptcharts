@@ -17,6 +17,19 @@ const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/r4
 // fmtPsigBubble at render time; no PSIG literals in this source.
 const EVAP_TEMPS_F = [35, 40, 45, 50, 55];
 
+const SOURCES: readonly { name: string; publisher: string; url: string | null }[] = [
+  {
+    name: "Bryan Orr, \"What Should My Superheat Be?\" — HVAC School",
+    publisher: "HVAC School",
+    url: "http://www.hvacrschool.com/what-should-my-superheat-be/",
+  },
+  {
+    name: "\"Target Superheat\" — AC Service Tech",
+    publisher: "AC Service Tech",
+    url: "https://www.acservicetech.com/posts/target-superheat",
+  },
+];
+
 export const metadata: Metadata = pageMetadata({
   title: "R410A Superheat Chart: Target Superheat By WB & Outdoor Temp",
   description:
@@ -69,6 +82,12 @@ function buildSchema() {
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: PAGE_URL,
       isPartOf: { "@id": `${SITE_URL}/#website` },
+      citation: SOURCES.map((s) => ({
+        "@type": "CreativeWork",
+        name: s.name,
+        publisher: s.publisher,
+        ...(s.url ? { url: s.url } : {}),
+      })),
     },
     {
       "@type": "FAQPage",
@@ -146,12 +165,33 @@ export default function R410aSuperheatChartPage() {
           </Panel>
         </TechSection>
 
+        <TechSection icon="book" tone="blue" title="Where this R-410A chart comes from — the short version">
+          <p>
+            The R-410A target values in the matrix above come from the same formula used for every fixed-orifice residential refrigerant — the R-410A specialization is just that we pair the target with an R-410A saturation quick table so you don&apos;t need a separate PT chart in hand. The formula itself, TSH = ((3 × WB) − 80 − DB) / 2, has a looser history than &quot;spec&quot; suggests: its precise origin was never recorded, and it survives because it&apos;s close enough in the heart of the chart where most residential charging happens.
+          </p>
+          <p>
+            The best account is recounted by HVAC School, who put the question to Wayne Pendergast, keeper of several published versions of the chart. The story traces to Carrier: a residential AC charged perfectly by weight on the lab bench, then run across a matrix of indoor and outdoor conditions with resulting superheat plotted at each point. That empirical plot — not a derived equation — is the ancestor of every target superheat chart in the trade, including this R-410A one. Treat as an industry account, not audited history. The formula came later; HVAC School describes it as &quot;likely reverse engineered&quot; from the chart. AC Service Tech&apos;s coverage concurs that the formula &quot;may not match exactly&quot; the chart it approximates: the small discrepancies near the middle widen substantially toward the corners, enough that the formula stops being trustworthy exactly where charging is most delicate.
+          </p>
+          <p>
+            That&apos;s why this page blanks target cells below 5°F. The sub-5°F corners are where published charts themselves go blank and where the formula&apos;s fit is least trustworthy — charging by superheat simply isn&apos;t reliable there. The universal <Link href="/target-superheat-chart/" className="underline">target superheat chart page</Link> carries the full origin account.
+          </p>
+        </TechSection>
+
+        <TechSection icon="book" tone="purple" title="Fixed-orifice only — the mechanism behind the rule">
+          <p>
+            The chart applies to fixed-orifice R-410A metering (pistons, capillary tubes) and to nothing else. The mechanism is clean: on a fixed-orifice system, superheat is what the charge produces — add refrigerant and SH falls, remove and SH rises, so SH IS the charging indicator. On an R-410A TXV or EEV system, the valve actively holds SH near a fixed setpoint by throttling; SH tells you the valve is working, not the charge. HVAC School&apos;s fixed-orifice-only rule reduces to that distinction: charge a system whose SH responds to charge by SH, and one whose SC responds to charge by SC. For the TXV / EEV side of R-410A charging, see the <Link href="/r410a-charging-chart/" className="underline">R-410A charging chart</Link>.
+          </p>
+        </TechSection>
+
         <TechSection icon="gauge" tone="emerald" title="Reading your gauges">
           <p>
             On a properly-charged R-410A residential AC at the 95°F rating condition with 64°F indoor WB, the evaporator runs around 40°F saturation ({fmtPsigBubble(SLUG, 40)} PSIG). The manifold at the low-side service port reads slightly higher than this due to superheat pickup on the suction line between the coil and the port. Measured suction-line temperature minus 40°F is your measured superheat; match against the 8.5°F target from the matrix.
           </p>
           <p>
             At a warmer 105°F outdoor day the condenser saturation climbs into the 115–120°F range ({fmtPsigBubble(SLUG, 120)} PSIG), the evaporator can hold at ~40°F saturation with adequate airflow, and the target superheat drops (target at 64°F WB / 105°F DB = 3.5°F — see the &quot;—&quot; footnote if the matrix blanks a cell). Charge decisions still follow the same procedure; the SH target just shifts.
+          </p>
+          <p>
+            The 95°F outdoor DB reference isn&apos;t arbitrary — it&apos;s the AHRI Standard 210/240 cooling rating condition, which is why residential AC specs and OEM charging charts center on the same anchor. If you&apos;re charging on a day materially warmer or cooler than 95°F outdoor, the target shifts along the DB axis but the matrix accounts for it directly. If your climate parks you chronically at sub-5°F targets (dry-air regions with warm outdoor DB), AC Service Tech&apos;s guidance is to consider a TXV conversion or an accumulator on the suction line — either restores enough operating margin to charge with confidence.
           </p>
         </TechSection>
 
@@ -206,11 +246,23 @@ export default function R410aSuperheatChartPage() {
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">
           <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300"><BookOpen className="mr-1 inline h-3.5 w-3.5" />Sources</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
-            <li>ACCA Manual T — the target-superheat formula.</li>
-            <li>Carrier, Trane, Lennox, Rheem residential AC installation manuals — fixed-orifice charging bulletins.</li>
+            {SOURCES.map((s, i) => (
+              <li key={i}>
+                {s.url ? (
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="underline break-words">
+                    {s.name}
+                  </a>
+                ) : (
+                  s.name
+                )}
+              </li>
+            ))}
+            <li>ACCA technician charging references (name-only).</li>
+            <li>Carrier, Trane, Lennox, Rheem residential AC installation manuals — R-410A fixed-orifice charging bulletins.</li>
+            <li>AHRI Standard 210/240 — 95°F outdoor dry-bulb cooling rating condition.</li>
             <li>CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014) — R-410A PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Every PSIG value on this page is derived at build time from the dataset.</p>
+          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. The provenance section paraphrases HVAC School&apos;s recounted account and AC Service Tech&apos;s edge-behavior characterization; direct sentences are not reproduced. Every PSIG value on this page is derived at build time from the dataset.</p>
         </footer>
       </article>
     </>
