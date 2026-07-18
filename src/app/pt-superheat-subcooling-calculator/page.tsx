@@ -15,6 +15,7 @@ import {
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
+import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
@@ -114,7 +115,12 @@ export default function CombinedCalculatorPage() {
         { href: "/high-head-pressure-causes/", label: "High head pressure causes", blurb: "Decision tree for high SC / high discharge pressure cases." },
       ]}
       faqs={FAQS}
-      bodySections={<RichContent />}
+      bodySections={
+        <>
+          <MeasurementDiagram variant="both" />
+          <RichContent />
+        </>
+      }
     >
       <CombinedCalculator />
     </CalculatorShell>

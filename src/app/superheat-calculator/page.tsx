@@ -15,6 +15,7 @@ import {
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
+import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
@@ -126,7 +127,12 @@ export default function SuperheatCalculatorPage() {
         { href: "/refrigerant/r-410a/", label: "R-410A reference", blurb: "Full PT chart, operating pressures, and lubricant guidance for the dominant residential AC refrigerant." },
       ]}
       faqs={FAQS}
-      bodySections={<RichContent />}
+      bodySections={
+        <>
+          <MeasurementDiagram variant="superheat" />
+          <RichContent />
+        </>
+      }
     >
       <SuperheatCalculator />
     </CalculatorShell>

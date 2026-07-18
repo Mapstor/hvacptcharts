@@ -15,6 +15,7 @@ import {
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
+import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
@@ -122,7 +123,12 @@ export default function SubcoolingCalculatorPage() {
         { href: "/high-suction-low-head-pressure/", label: "High Suction Low Head", blurb: "Diagnostic tree for the specific converging-pressure pattern." },
       ]}
       faqs={FAQS}
-      bodySections={<RichContent />}
+      bodySections={
+        <>
+          <MeasurementDiagram variant="subcooling" />
+          <RichContent />
+        </>
+      }
     >
       <SubcoolingCalculator />
     </CalculatorShell>

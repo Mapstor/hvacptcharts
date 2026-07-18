@@ -15,6 +15,7 @@ import {
   VerdictBanner,
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
+import { SuperheatSubcoolingConceptDiagram } from "@/components/diagrams/SuperheatSubcoolingConceptDiagram";
 
 const PAGE_URL = `${SITE_URL}/superheat-subcooling-fundamentals/`;
 const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/superheat-subcooling-fundamentals/page.tsx");
@@ -147,6 +148,7 @@ export default function FundamentalsPage() {
 
         <section id="superheat" className="mb-10">
           <TechSection icon="thermometer" tone="blue" title="1. What is superheat in HVAC?">
+            <SuperheatSubcoolingConceptDiagram />
             <p>
               <strong>Superheat</strong> is the temperature of refrigerant vapor above its
               saturation temperature at the same pressure. It is measured on the suction line.

@@ -7,6 +7,7 @@ import { getFileGitDates } from "@/lib/git-dates";
 import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatrix";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
+import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
 
 const PAGE_URL = `${SITE_URL}/target-superheat-chart/`;
 const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/target-superheat-chart/page.tsx");
@@ -131,6 +132,8 @@ export default function TargetSuperheatChartPage() {
         <KeyInsight tone="blue" icon="insight" title="Answer, in one line">
           Target Superheat (°F) = ((3 × Indoor WB in °F) − 80 − Outdoor DB in °F) / 2. Applies to fixed-orifice systems only. Below 5°F, the target is not reliable.
         </KeyInsight>
+
+        <MeasurementDiagram variant="superheat" />
 
         <section className="mt-8 mb-10">
           <h2 className="mb-3 text-xl font-semibold">Interactive lookup and matrix</h2>

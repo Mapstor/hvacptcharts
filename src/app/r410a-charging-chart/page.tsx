@@ -8,6 +8,7 @@ import { fmtPsigBubble } from "@/lib/pressure-format";
 import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatrix";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
+import { TwoMethodForkDiagram } from "@/components/diagrams/TwoMethodForkDiagram";
 
 const SLUG = "r-410a";
 const PAGE_URL = `${SITE_URL}/r410a-charging-chart/`;
@@ -131,6 +132,8 @@ export default function R410aChargingChartPage() {
         <KeyInsight tone="blue" icon="insight" title="Answer, in one line">
           TXV/EEV → subcooling 8–12°F on the liquid line. Fixed-orifice → target superheat by WB × DB. Wrong method on wrong system = wrong charge.
         </KeyInsight>
+
+        <TwoMethodForkDiagram />
 
         <section id="subcooling-chart" className="mt-8 mb-10">
           <h2 className="mb-3 text-xl font-semibold">Method 1 — Subcooling (TXV / EEV)</h2>

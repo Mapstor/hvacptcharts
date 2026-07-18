@@ -8,6 +8,7 @@ import { fmtPsigBubble } from "@/lib/pressure-format";
 import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatrix";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
+import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
 
 const SLUG = "r-22";
 const PAGE_URL = `${SITE_URL}/r22-superheat-chart/`;
@@ -131,6 +132,8 @@ export default function R22SuperheatChartPage() {
         <KeyInsight tone="blue" icon="insight" title="Answer, in one line">
           Target SH = ((3 × Indoor WB) − 80 − Outdoor DB) / 2. Same formula as any fixed-orifice fluid. At 64°F WB / 95°F DB the target is 8.5°F.
         </KeyInsight>
+
+        <MeasurementDiagram variant="superheat" />
 
         <section className="mt-8 mb-10">
           <h2 className="mb-3 text-xl font-semibold">Interactive lookup and matrix</h2>
