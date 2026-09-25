@@ -180,7 +180,7 @@ export default function HighSuctionLowHeadPressurePage() {
           </p>
         </header>
 
-        <KeyInsight tone="blue" icon="insight" title="Answer, in two sentences">
+        <KeyInsight tone="blue" icon="insight" title="Short answer">
           High suction + low head pressure points to internal leakage between the sides (compressor valve failure, TXV overfeed, reversing valve leak-through) or to reduced compressor mass flow (belt slip, motor issue). On R-410A at 40°F evap, normal suction is around {R410A_40F_EVAP} PSIG — well above that with head below normal points to one of the eight causes below.
         </KeyInsight>
 
@@ -317,11 +317,10 @@ export default function HighSuctionLowHeadPressurePage() {
                 )}
               </li>
             ))}
-            <li>ACCA technician charging references (name-only).</li>
+            <li>ACCA technician charging references.</li>
             <li>ASHRAE Handbook of Refrigeration 2022 — compressor mechanics and TXV behavior.</li>
             <li>CoolProp 7.2.0 — R-410A and R-22 PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Facts on this page are paraphrased from the linked sources; direct sentences are not reproduced. PSIG values render through the site&apos;s pressure-format helpers so a dataset regeneration updates the prose automatically.</p>
         </footer>
       </article>
     </>

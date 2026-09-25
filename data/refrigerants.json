@@ -11207,7 +11207,7 @@
       "incompatible": [
         "MO"
       ],
-      "notes": "Long-term low-GWP replacement for R-134a in chillers, heat pumps, and commercial refrigeration. Same molecule as the explicit E-isomer page; this slug preserves a legacy URL."
+      "notes": "Long-term low-GWP replacement for R-134a in chillers, heat pumps, and commercial refrigeration."
     },
     "applications": [
       "Centrifugal chillers (low-pressure / large-tonnage)",

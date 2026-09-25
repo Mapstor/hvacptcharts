@@ -30,7 +30,7 @@ export default function PTChartsToolsHubPage() {
       path="pt-charts-tools-hub"
       title="PT Charts & Reference Tools"
       introHeadline={`Verified pressure-temperature data for ${refrigerants.length} refrigerants, plus the sortable reference tables and comparison tools.`}
-      introBody="All saturation data generated from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS, or transcribed from named manufacturer datasheets (Honeywell, Chemours, Arkema, AGC). The full chart for each refrigerant is downloadable as CSV or JSON under CC BY 4.0. Bubble and dew curves for zeotropic blends are computed independently; safety classifications come from ANSI/ASHRAE Standard 34-2022 and are stored as Zod-validated enums so the wrong class can't be displayed."
+      introBody="All saturation data generated from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS, or transcribed from named manufacturer datasheets (Honeywell, Chemours, Arkema, AGC). The full chart for each refrigerant is downloadable as CSV or JSON under CC BY 4.0. Bubble and dew curves for zeotropic blends are computed independently; safety classifications come from ANSI/ASHRAE Standard 34-2022 and are stored as fixed values so the wrong class can't be displayed."
       route="/pt-charts-tools-hub/"
       scenarios={[
         {
@@ -125,7 +125,7 @@ export default function PTChartsToolsHubPage() {
 
 The PT chart is generated from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), a REFPROP-compatible Helmholtz EOS implementation. For 11 manufacturer-blend refrigerants not in CoolProp's reference library (R-448A, R-450A, R-1336mzz(Z), R-454C in blended-data mode, etc.), PT values come directly from the named manufacturer datasheets (Honeywell Solstice / Genetron, Chemours Opteon, Arkema Forane, AGC AMOLEA).
 
-Every value is validated against a Zod schema at build time. Safety class is a typed enum — it's structurally impossible to render the wrong class for a refrigerant once the enum value is set correctly. PT values below the critical pressure are guaranteed to be non-negative; values above the critical temperature truncate rather than extrapolate.`,
+Every value is checked against reference values at build time. Safety class is stored as a fixed value — it's structurally impossible to render the wrong class for a refrigerant. PT values below the critical pressure are guaranteed to be non-negative; values above the critical temperature truncate rather than extrapolate.`,
         },
         {
           heading: "Data verification policy",
@@ -133,7 +133,7 @@ Every value is validated against a Zod schema at build time. Safety class is a t
 
 (1) Source-level: CoolProp values are REFPROP-compatible (NIST Standard Reference Database 23, the canonical thermodynamic property database for refrigerants). Manufacturer-blend values are transcribed from named manufacturer datasheets with the publication date and URL recorded per refrigerant.
 
-(2) Schema-level: every refrigerant record passes a Zod schema validation at build time. PT values must be numbers (not strings or null). Safety class must be one of the enumerated ASHRAE 34 classes (A1, A2L, A2, A3, B1, B2L, B2, B3). GWP must be a non-negative number or null (null indicates no published value). Type must match the enumerated refrigerant family.
+(2) Structure-level: every refrigerant record is validated at build time. PT values must be numbers (not text or blank). Safety class must be one of the ASHRAE 34 classes (A1, A2L, A2, A3, B1, B2L, B2, B3). GWP must be a non-negative number or blank (blank indicates no published value). Type must match a known refrigerant family.
 
 (3) Cross-check: PT values cross-checked against AHRI Standard 700-2019 specifications where available. Critical-point values cross-checked against NIST REFPROP 10.0. GWP values cross-checked between IPCC AR5 and AR6 with both shown where they differ meaningfully.
 
@@ -145,7 +145,7 @@ The previous WordPress version of this site shipped with approximately 25,000 fa
 
 Common use cases for the downloads: integrating refrigerant data into custom HVAC software, building training materials, populating equipment-OEM-specific charging tables, academic research on refrigerant transitions, and verifying calculations against the verified dataset.
 
-For bulk access to all 61 refrigerants in a single file, the master dataset is available at /api/refrigerants.json (also CC BY 4.0).`,
+Every PT chart page has CSV and JSON downloads at /data/refrigerant/<slug>/json and /csv (also CC BY 4.0).`,
         },
         {
           heading: "Refrigerant families overview",
@@ -215,13 +215,13 @@ If you encounter a refrigerant not in the dataset, check the equipment OEM servi
         },
         {
           q: "Can I integrate this data into my own software?",
-          a: `Yes — the dataset is CC BY 4.0 licensed. CSV and JSON downloads are available from each refrigerant detail page; bulk access via /api/refrigerants.json.
+          a: `Yes — the dataset is CC BY 4.0 licensed. CSV and JSON downloads are available from each refrigerant detail page at /data/refrigerant/<slug>/json and /csv.
 
 Common integrations: HVAC service apps, training simulators, equipment OEM internal tooling, academic research, building energy modeling software. Attribution to hvacptcharts.com and the underlying source (CoolProp citation, manufacturer datasheet citation) is required per CC BY 4.0; commercial use is permitted.`,
         },
         {
           q: "What about the JSON schema for the dataset?",
-          a: `Each refrigerant record follows a strict Zod-validated schema covering: slug, displayName, ASHRAE designation, type (HCFC/HFC/HFO/blend/natural), safety classification (A1/A2L/A2/A3/B1/B2L/B2/B3), composition (mass fractions for blends), physical properties (boiling point, critical temperature/pressure, glide), environmental data (GWP per AR5/AR6, ODP, atmospheric lifetime, SNAP status), lubricant compatibility arrays, applications, replacement options, replaces (legacy refrigerants this one replaces), regulatory status (AIM Act affected, EU F-Gas status), PT chart (array of 191 temperature/pressure points), and dataSource provenance (PT chart source, generation date, verified-against references). The schema definition lives at src/data/refrigerants.ts and is the source of truth for both validation and TypeScript types.`,
+          a: `Each refrigerant record follows a strict, validated structure covering: slug, displayName, ASHRAE designation, type (HCFC/HFC/HFO/blend/natural), safety classification (A1/A2L/A2/A3/B1/B2L/B2/B3), composition (mass fractions for blends), physical properties (boiling point, critical temperature/pressure, glide), environmental data (GWP per AR5/AR6, ODP, atmospheric lifetime, SNAP status), lubricant compatibility, applications, replacement options, replaces (legacy refrigerants this one replaces), regulatory status (AIM Act affected, EU F-Gas status), PT chart (array of 191 temperature/pressure points), and data-source provenance (PT chart source, verification date, verified-against references). The same structure is enforced on every value in the downloadable dataset, so what you download matches exactly what the site displays.`,
         },
       ]}
       crosslinks={[

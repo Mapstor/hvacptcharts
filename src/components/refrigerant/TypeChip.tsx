@@ -22,6 +22,12 @@ const TYPE_TONE: Record<RefrigerantType, string> = {
   natural: "bg-teal-100 text-teal-900 dark:bg-teal-900/30 dark:text-teal-200",
 };
 
+/** Display label for a refrigerant type — the single source of truth for the
+ *  human-facing label (never render the lowercase enum value). */
+export function typeLabel(type: RefrigerantType): string {
+  return TYPE_LABEL[type];
+}
+
 export function TypeChip({ type, className = "" }: { type: RefrigerantType; className?: string }) {
   return (
     <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ${TYPE_TONE[type]} ${className}`}>

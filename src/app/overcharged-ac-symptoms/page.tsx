@@ -176,7 +176,7 @@ export default function OverchargedAcSymptomsPage() {
           </p>
         </header>
 
-        <KeyInsight tone="blue" icon="insight" title="Answer, in two sentences">
+        <KeyInsight tone="blue" icon="insight" title="Short answer">
           The primary fingerprint is high subcooling (&gt;15°F on a TXV residential AC vs 8–12°F normal), combined with elevated discharge pressure. On R-410A residential at 130°F condensing sat = {R410A_130F} PSIG; overcharged systems climb toward that. Discharge alone can be raised by dirty condensers or non-condensables — SC is the tie-breaker.
         </KeyInsight>
 
@@ -308,7 +308,6 @@ export default function OverchargedAcSymptomsPage() {
             <li>SAE J2843 — automotive AC service standards.</li>
             <li>CoolProp 7.2.0 — R-410A, R-134a, R-1234yf PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Facts on this page are paraphrased from the linked sources; direct sentences are not reproduced. PSIG values render through the site&apos;s pressure-format helpers so a dataset regeneration updates the prose automatically.</p>
         </footer>
       </article>
     </>

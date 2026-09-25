@@ -65,8 +65,8 @@ export default function ContactPage() {
           <h2>Suggestions and additions</h2>
           <p>
             Calculators, refrigerants, or reference data the field tech world wants that the site doesn&apos;t cover
-            yet: send a note. The data layer is set up so adding a new refrigerant is a config + regeneration + MDX
-            commit, not a re-architecture.
+            yet: send a note. The data layer is set up so adding a new refrigerant is a routine data update, not a
+            re-architecture.
           </p>
 
           <h2>Email</h2>

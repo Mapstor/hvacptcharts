@@ -668,7 +668,7 @@ export default function CarrierChargingChartPage() {
               <strong>What this page is not:</strong> not a substitute for the specific equipment&apos;s installation manual or data-plate-stamped charging instructions. When the OEM chart for the unit being serviced is available (typically on a sticker inside the access panel or in the installation manual PDF), use that chart instead — it&apos;s tuned to that specific coil, orifice, and system design.
             </p>
             <p className="mt-3 text-xs text-zinc-500">
-              Page generated: {PUBLISHED.slice(0, 10)}. PT data source: {R410A.dataSource.ptChartSource}. Last verified against the R-410A saturation envelope by our build-time anchor-value checker.
+              PT data source: {R410A.dataSource.ptChartSource}. Values are checked against the R-410A saturation envelope by an automated anchor-value check.
             </p>
           </div>
         </section>

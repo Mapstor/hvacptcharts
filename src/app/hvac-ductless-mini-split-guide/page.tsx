@@ -149,7 +149,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 01 — Taxonomy */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">01</span>
             Mini-split taxonomy — 5 system types
           </h2>
 
@@ -172,7 +171,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 02 — Cold-climate */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">02</span>
             Cold-climate mini-splits — actual low-temperature capability
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -218,7 +216,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 03 — Multi-zone */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">03</span>
             Multi-zone systems — branch box architecture + sizing pitfalls
           </h2>
 
@@ -251,7 +248,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 04 — Sizing */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">04</span>
             Sizing methodology — Manual J still required
           </h2>
 
@@ -272,7 +268,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 05 — VRF */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">05</span>
             Variable Refrigerant Flow (VRF) — commercial scale
           </h2>
 
@@ -297,7 +292,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 06 — Installation */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">06</span>
             Installation methodology — what professional installation includes
           </h2>
 
@@ -343,7 +337,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 07 — DIY */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">07</span>
             DIY mini-splits — capabilities and honest caveats
           </h2>
 
@@ -369,7 +362,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 08 — Refrigerants */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">08</span>
             Refrigerant types + A2L transition
           </h2>
 
@@ -392,7 +384,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 09 — Brand comparison */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">09</span>
             Brand vendor comparison
           </h2>
 
@@ -425,7 +416,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 10 — Common failures */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">10</span>
             Common installation failures
           </h2>
 
@@ -446,7 +436,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 11 — Maintenance */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">11</span>
             Mini-split-specific maintenance
           </h2>
 
@@ -467,7 +456,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 12 — FAQ */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">12</span>
             Frequently asked
           </h2>
           <div className="space-y-3">
@@ -488,7 +476,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         {/* SECTION 13 — Sources */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">13</span>
             Sources and verification
           </h2>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-5 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-300">
@@ -521,9 +508,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
             </p>
             <p className="mt-3">
               <strong>What this page does not include:</strong> Specific equipment pricing (highly regional; check 3 contractors minimum). Specific contractor recommendations (use AHRI dealer locator + state contractor licensing). Tool-specific configuration guides (consult manufacturer documentation). Detailed Manual J load calculations (use our load calculator or contractor with ACCA QI certification).
-            </p>
-            <p className="mt-3 text-xs text-zinc-500">
-              Page generated: {PUBLISHED.slice(0, 10)}.
             </p>
           </div>
         </section>

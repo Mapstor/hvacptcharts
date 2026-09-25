@@ -131,7 +131,7 @@ export default function TargetSuperheatChartPage() {
           </p>
         </header>
 
-        <KeyInsight tone="blue" icon="insight" title="Answer, in one line">
+        <KeyInsight tone="blue" icon="insight" title="Short answer">
           Target Superheat (°F) = ((3 × Indoor WB in °F) − 80 − Outdoor DB in °F) / 2. Applies to fixed-orifice systems only. Below 5°F, the target is not reliable.
         </KeyInsight>
 
@@ -280,7 +280,6 @@ export default function TargetSuperheatChartPage() {
             <li>ASHRAE Handbook of Fundamentals — psychrometric calculations and load-condition definitions.</li>
             <li>AHRI Standard 210/240 — 95°F outdoor dry-bulb cooling rating condition.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. The provenance section paraphrases HVAC School&apos;s recounted account and AC Service Tech&apos;s edge-behavior characterization; direct sentences are not reproduced. The fluid-specific companion pages pair the target with PT-chart values generated at build from the CoolProp dataset.</p>
         </footer>
       </article>
     </>

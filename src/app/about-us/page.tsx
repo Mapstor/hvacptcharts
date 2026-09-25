@@ -150,9 +150,9 @@ export default function AboutPage() {
                     </td>
                     <td className="py-1.5 font-mono tabular-nums">~50</td>
                     <td className="py-1.5 text-xs">
-                      Generator script computes saturation pressures at every °F from −40
+                      Saturation pressures are computed with CoolProp at every °F from −40
                       to 150 (or the refrigerant&apos;s critical temperature, whichever is
-                      lower). Output written to a committed JSON file.
+                      lower).
                     </td>
                   </tr>
                   <tr>
@@ -177,51 +177,48 @@ export default function AboutPage() {
             </div>
           </Panel>
           <p>
-            A build-time verifier cross-checks the data against anchor values (R-22 =
-            121.44 PSIG at 70°F, R-410A = 201.76 PSIG at 70°F, etc.). If any anchor
-            drifts more than ±5%, or if any saturation pressure exceeds the critical
-            pressure (physically impossible), the build fails. Direct edits to the
-            generated JSON are a code smell — the fix belongs in the source config or
-            the manufacturer-blend skeleton, and the data is regenerated.
+            Values are computed with the open-source CoolProp library (version shown on
+            each chart) or transcribed from the manufacturer&apos;s published PT chart,
+            and the build checks them against reference values (R-22 = 121.44 PSIG at
+            70°F, R-410A = 201.76 PSIG at 70°F, etc.). If any value drifts more than ±5%,
+            or if any saturation pressure exceeds the critical pressure (physically
+            impossible), the build fails and the page is never published.
           </p>
         </TechSection>
 
-        <TechSection icon="shield" tone="emerald" title="Structural guarantees, not careful prose">
+        <TechSection icon="shield" tone="emerald" title="How the data stays correct">
           <p>
-            The data layer is Zod-validated at build time. Safety class is a typed enum;
-            it&apos;s structurally impossible to render the wrong class for a refrigerant
-            once the enum value is set correctly. Per-refrigerant prose lives in MDX
-            files separate from templates — templates render structure and data only, so
-            there is no path for refrigerant-A copy to accidentally appear on
-            refrigerant-B&apos;s page.
+            Every safety classification is stored as a fixed value that the page can only
+            display, never guess — so a refrigerant can&apos;t be shown with the wrong
+            class. The reference numbers on each page are pulled directly from the
+            verified dataset, and the writing for one refrigerant can never appear on
+            another refrigerant&apos;s page.
           </p>
           <Panel title="What the structure guarantees" icon={TableIcon}>
             <ul className="list-disc pl-5 text-sm space-y-1">
               <li>
                 <strong>No fabricated PT values.</strong> Every saturation pressure comes
-                from the data layer (CoolProp or named manufacturer datasheet). Refusal
-                is structural: when source data isn&apos;t available, the page shows an
-                honest disclosure naming the missing source, not a guess.
+                from CoolProp or a named manufacturer datasheet. When source data
+                isn&apos;t available, the page shows an honest disclosure naming the
+                missing source, not a guess.
               </li>
               <li>
-                <strong>No template-swap copy.</strong> Refrigerant-specific prose lives
-                only in per-refrigerant MDX. Templates can&apos;t print
-                refrigerant-specific copy from the dataset layer.
+                <strong>No mixed-up copy.</strong> The writing specific to one
+                refrigerant appears only on that refrigerant&apos;s page.
               </li>
               <li>
-                <strong>Safety class is structural.</strong> Zod enum + dedicated
-                component. R-32 cannot accidentally display A1; the data layer says A2L
-                and the component renders the correct chip.
+                <strong>Safety class can&apos;t be misdisplayed.</strong> R-32 always
+                shows A2L; the classification is fixed in the verified dataset and simply
+                rendered, never inferred.
               </li>
               <li>
-                <strong>Every claim has a source.</strong> Source registry in the repo;
-                inline citations on each refrigerant page; provenance footer on every
-                page.
+                <strong>Every claim has a source.</strong> Inline citations on each
+                refrigerant page and a provenance footer on every page.
               </li>
               <li>
-                <strong>Anchor verifier blocks the build.</strong> If PT data drifts
-                outside ±5% of anchored reference values, or if any saturation pressure
-                exceeds the critical pressure, the build fails before deploy.
+                <strong>The build blocks bad data.</strong> If PT data drifts outside
+                ±5% of reference values, or if any saturation pressure exceeds the
+                critical pressure, the build fails before anything is published.
               </li>
             </ul>
           </Panel>
@@ -229,12 +226,12 @@ export default function AboutPage() {
 
         <TechSection icon="composition" tone="amber" title="Editorial principles">
           <p>
-            Per-refrigerant prose is written in MDX files — one per refrigerant —
-            separate from the page templates. Templates render the structural sections
-            (PT chart, properties grid, comparison cards) from the data layer; MDX
-            provides the narrative context (history, applications, retrofit guidance,
-            service notes). A page without MDX renders honestly: data sections appear,
-            narrative sections are omitted — no substituted boilerplate.
+            The structural sections of each page — PT chart, properties grid, comparison
+            cards — are drawn from the verified dataset, while the written context
+            (history, applications, retrofit guidance, service notes) is authored
+            separately for each refrigerant. When that written context hasn&apos;t been
+            completed for a refrigerant, the data sections still appear and the narrative
+            sections are simply omitted — never filled with boilerplate.
           </p>
           <Panel title="House style rules" icon={TableIcon}>
             <ol className="list-decimal pl-5 text-sm space-y-1">
@@ -266,13 +263,15 @@ export default function AboutPage() {
             values (CoolProp citation, manufacturer datasheet citation).
           </p>
           <p>
-            The site itself is a Next.js 16 application, statically generated. Source
-            data is committed to git; the calculator math is open in the page bundles.
-            For bulk programmatic access, the master dataset is available at{" "}
+            Every PT chart page has CSV and JSON downloads — at{" "}
             <code className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-xs dark:bg-zinc-800">
-              /api/refrigerants.json
+              /data/refrigerant/&lt;slug&gt;/json
             </code>{" "}
-            (also CC BY 4.0).
+            and{" "}
+            <code className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-xs dark:bg-zinc-800">
+              /csv
+            </code>{" "}
+            — all released under CC BY 4.0.
           </p>
         </TechSection>
 

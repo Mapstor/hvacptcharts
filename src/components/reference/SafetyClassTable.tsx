@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { refrigerants, type Refrigerant, type SafetyClass, type RefrigerantType } from "@/data/refrigerants";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
+import { typeLabel } from "@/components/refrigerant/TypeChip";
 
 type SortKey = "displayName" | "safetyClass" | "type" | "gwp";
 type SortDir = "asc" | "desc";
@@ -134,7 +135,7 @@ export function SafetyClassTable() {
                     {r.displayName}
                   </Link>
                 </td>
-                <td className="px-3 py-2 text-zinc-600 dark:text-zinc-400 text-xs uppercase">{r.type.replace("-", " ")}</td>
+                <td className="px-3 py-2 text-zinc-600 dark:text-zinc-400 text-xs uppercase">{typeLabel(r.type)}</td>
                 <td className="px-3 py-2">
                   <SafetyClassChip safetyClass={r.safetyClass} size="sm" />
                 </td>

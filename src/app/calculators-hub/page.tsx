@@ -16,7 +16,7 @@ export default function CalculatorsHubPage() {
       path="calculators-hub"
       title="HVAC Calculators"
       introHeadline="Free calculators for HVAC field work. Built on the verified refrigerant dataset — same source as the PT charts."
-      introBody="Each calculator reads from the same Zod-validated saturation data that drives the chart pages. Bubble vs dew curves are handled correctly for zeotropic blends. Fixed-orifice target superheat follows the standard field-approximation formula for charging charts (per California Title 24 Reference Appendix RA3.2); other targets and ranges cite ASHRAE Handbook of Refrigeration 2022 and equipment-specific manufacturer literature (Carrier, Trane, Lennox, Daikin, Goodman). Nine calculators total, each with worked service problems, reference tables, and SVG diagnostic visualizations."
+      introBody="Each calculator reads from the same verified saturation data that drives the chart pages. Bubble vs dew curves are handled correctly for zeotropic blends. Fixed-orifice target superheat follows the standard field-approximation formula for charging charts (per California Title 24 Reference Appendix RA3.2); other targets and ranges cite ASHRAE Handbook of Refrigeration 2022 and equipment-specific manufacturer literature (Carrier, Trane, Lennox, Daikin, Goodman). Nine calculators total, each with worked service problems, reference tables, and SVG diagnostic visualizations."
       route="/calculators-hub/"
       scenarios={[
         {
@@ -126,7 +126,7 @@ export default function CalculatorsHubPage() {
           heading: "Why these calculators",
           body: `HVAC service measurements are inherently quantitative — superheat, subcooling, condenser approach, and refrigerant charge all reduce to PT chart lookups plus arithmetic. The calculators on this site formalize that arithmetic with verified saturation data so the only thing a technician needs to bring to the field is accurate pressure and temperature readings.
 
-The previous WordPress version of this site shipped with approximately 25,000 fabricated quantitative errors — PT values wrong by 2-15×, some above critical pressure (physically impossible), several A2L/A3/B2L refrigerants classified as "A1 non-flammable" (safety-critical misclassifications). The current rebuild was structured specifically to make those failure modes impossible: every value comes from CoolProp 7.2.0 or a cited manufacturer datasheet, safety class is a Zod enum (impossible to display the wrong class), and any input outside the valid chart range returns "out of range" instead of an extrapolated number.
+The previous WordPress version of this site shipped with approximately 25,000 fabricated quantitative errors — PT values wrong by 2-15×, some above critical pressure (physically impossible), several A2L/A3/B2L refrigerants classified as "A1 non-flammable" (safety-critical misclassifications). The current rebuild was structured specifically to make those failure modes impossible: every value comes from CoolProp 7.2.0 or a cited manufacturer datasheet, safety class is stored as a fixed value (impossible to display the wrong class), and any input outside the valid chart range returns "out of range" instead of an extrapolated number.
 
 This means the calculators here are deliberately less "smart" than some competitors — they refuse to guess. That's the feature, not a bug.`,
         },
@@ -156,7 +156,7 @@ For these, refer to the specific equipment OEM, your distributor, and your own f
           heading: "How the calculators have evolved",
           body: `The first version of these calculators shipped on WordPress with approximately 25,000 fabricated quantitative errors — PT values wrong by 2-15× across the dataset, several values physically impossible (above critical pressure), and safety-critical misclassifications (A2L/A3/B2L refrigerants labeled "A1 non-flammable"). That version of the site was technically a calculator but structurally a liability — a technician trusting the numbers risked equipment damage or safety incidents.
 
-The current rebuild started from the data layer. Every refrigerant property comes from a primary source (CoolProp 7.2.0 / NIST REFPROP / manufacturer datasheet); every value passes Zod schema validation at build time; safety class is a typed enum so the wrong class cannot be displayed; values outside the valid range return "out of range" instead of an extrapolated fabrication. The calculator code then sits on top of this verified data layer with minimal computation — usually just unit conversion, interpolation between adjacent data points, and pattern-matched diagnostic logic from ACCA Manual T.
+The current rebuild started from the data. Every refrigerant property comes from a primary source (CoolProp 7.2.0 / NIST REFPROP / manufacturer datasheet); every value is validated at build time; safety class is stored as a fixed value so the wrong class cannot be displayed; values outside the valid range return "out of range" instead of an extrapolated fabrication. The calculator code then sits on top of this verified data layer with minimal computation — usually just unit conversion, interpolation between adjacent data points, and pattern-matched diagnostic logic from ACCA Manual T.
 
 This means the calculators are deliberately "thin" — they do less than some competitors but the small amount they do is verifiable. Each calculator page lists every source feeding into the calculation. The downloadable refrigerant dataset under CC BY 4.0 is the same dataset the calculators read from, so independent verification is possible.
 
@@ -202,9 +202,9 @@ The underlying refrigerant dataset is licensed CC BY 4.0 and downloadable as CSV
         },
         {
           q: "How can I report a calculation error or data issue?",
-          a: `Open an issue on the project repository or email the maintainer. Include the refrigerant slug, the input values you used, the calculator output you received, and the expected output with its source citation (CoolProp, ACCA Manual T, ASHRAE, manufacturer datasheet — whichever you're cross-checking against).
+          a: `Email the maintainer through the contact page. Include the refrigerant (for example r-410a), the input values you used, the calculator output you received, and the expected output with its source citation (CoolProp, ACCA Manual T, ASHRAE, manufacturer datasheet — whichever you're cross-checking against).
 
-Verified errors are corrected immediately. The verification audit history (when the data layer last regenerated, what changed) is published in the site's commit log for transparency.`,
+When an error is confirmed, the data is corrected and the site is rebuilt so the fix goes live.`,
         },
       ]}
       crosslinks={[

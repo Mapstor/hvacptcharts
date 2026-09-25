@@ -41,6 +41,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import type { Metadata } from "next";
 import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
+import { typeLabel } from "@/components/refrigerant/TypeChip";
 import {
   ComparisonTable,
   Derived,
@@ -217,7 +218,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
               <table className="w-full text-sm">
                 <tbody>
                   <PropertyRow label="Safety class" value={r.safetyClass} />
-                  <PropertyRow label="Type" value={r.type.replace(/-/g, " ")} />
+                  <PropertyRow label="Type" value={typeLabel(r.type)} />
                   <PropertyRow label="GWP (IPCC AR5, 100-yr)" value={r.environmental.gwp100Ar5 !== null ? String(r.environmental.gwp100Ar5) : "—"} />
                   <PropertyRow label="ODP" value={r.environmental.odp !== null ? String(r.environmental.odp) : "—"} />
                   <PropertyRow label="Normal boiling point" value={r.physical.boilingPointF !== null ? `${r.physical.boilingPointF.toFixed(1)}°F` : "—"} />
@@ -426,8 +427,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
         <section className="mb-10">
           <h2 className="mb-3 text-xl font-semibold">Diagnostic procedure</h2>
           <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400">
-            Step-by-step procedure to interpret {r.displayName} pressure readings on a service call. Emitted as
-            HowTo structured data for search-engine rich results.
+            Step-by-step procedure to interpret {r.displayName} pressure readings on a service call.
           </p>
           <ol className="space-y-4">
             {fm.diagnosticSteps.map((step, i) => (
@@ -516,7 +516,6 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
             <li>Saturation pressures: CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS</li>
             <li>Safety classification: ANSI/ASHRAE Standard 34-2022</li>
             <li>GWP values: IPCC AR5 (2013) Working Group I, Table 8.A.1</li>
-            <li>{r.displayName} dataset record generated {r.dataSource.ptChartGeneratedAt.slice(0, 10)}</li>
             {fm.omitStationaryFooterClaims ? null : (
               <li>Diagnostic procedures: ASHRAE Handbook — Refrigeration (2022), Chapter 23</li>
             )}

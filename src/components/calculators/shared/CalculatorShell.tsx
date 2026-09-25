@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { contentDates, longDate, UpdatedLine } from "@/lib/content-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import type { FAQ } from "@/lib/mdx";
 import { buildCalculatorSchema, type CalculatorSchemaInput } from "@/lib/schema/calculator";
 
@@ -144,7 +144,7 @@ export function CalculatorShell({
           <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Data sources & provenance</h2>
           <p className="mt-2">
             All saturation calculations use the verified refrigerant dataset (CoolProp 7.2.0, HEOS backend +
-            named manufacturer datasheets for unmodeled blends). Last regenerated {longDate(updated)}.
+            named manufacturer datasheets for unmodeled blends).
           </p>
           <p className="mt-3">
             This calculator is provided as a reference. Always verify pressure values against the equipment data

@@ -131,7 +131,7 @@ export default function R410aChargingChartPage() {
           </p>
         </header>
 
-        <KeyInsight tone="blue" icon="insight" title="Answer, in one line">
+        <KeyInsight tone="blue" icon="insight" title="Short answer">
           TXV/EEV → subcooling 8–12°F on the liquid line. Fixed-orifice → target superheat by WB × DB. Wrong method on wrong system = wrong charge.
         </KeyInsight>
 
@@ -285,7 +285,6 @@ export default function R410aChargingChartPage() {
             <li>EPA 40 CFR Part 82 Subpart F — Section 608 recovery certification.</li>
             <li>CoolProp 7.2.0 — R-410A PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Facts on this page are paraphrased from the linked sources; direct sentences are not reproduced. All PSIG values derived at build from the dataset.</p>
         </footer>
       </article>
     </>

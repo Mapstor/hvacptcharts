@@ -174,7 +174,7 @@ export default function AcLowSidePressureTooHighPage() {
           </p>
         </header>
 
-        <KeyInsight tone="blue" icon="insight" title="Answer, in two sentences">
+        <KeyInsight tone="blue" icon="insight" title="Short answer">
           Most commonly overcharge — confirmed by high subcooling (&gt;15°F residential, &gt;20°F automotive). If subcooling is normal, suspect restricted evaporator airflow or TXV overfeed. On R-410A residential at 40°F evap, normal suction is around {R410A_40F} PSIG at saturation; on R-134a auto, {R134A_40F} PSIG at 40°F evap.
         </KeyInsight>
 
@@ -288,11 +288,10 @@ export default function AcLowSidePressureTooHighPage() {
                 )}
               </li>
             ))}
-            <li>ACCA technician charging references (name-only).</li>
+            <li>ACCA technician charging references.</li>
             <li>SAE J2843 / J2912 — automotive AC service standards; refrigerant identifier requirements.</li>
             <li>CoolProp 7.2.0 — R-410A, R-134a, R-1234yf PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Facts on this page are paraphrased from the linked sources; direct sentences are not reproduced. PSIG values render through the site&apos;s pressure-format helpers so a dataset regeneration updates the prose automatically.</p>
         </footer>
       </article>
     </>

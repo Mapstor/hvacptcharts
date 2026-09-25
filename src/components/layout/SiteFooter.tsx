@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { refrigerants } from "@/data/refrigerants";
 
 const FOOTER_NAV: Array<{ heading: string; items: Array<{ href: string; label: string }> }> = [
   {
@@ -40,7 +39,6 @@ const FOOTER_NAV: Array<{ heading: string; items: Array<{ href: string; label: s
 ];
 
 export function SiteFooter() {
-  const generated = refrigerants[0]?.dataSource.ptChartGeneratedAt.slice(0, 10) ?? "";
   const year = new Date().getFullYear();
   return (
     <footer className="mt-16 border-t border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950">
@@ -65,7 +63,7 @@ export function SiteFooter() {
           <p>
             Pressure-temperature data and saturation calculations on this site are derived from{" "}
             <a href="http://www.coolprop.org/" className="underline" rel="nofollow">CoolProp 7.2.0</a> (REFPROP-compatible
-            Helmholtz EOS) and named manufacturer datasheets. Last regenerated {generated}. Released under{" "}
+            Helmholtz EOS) and named manufacturer datasheets. Released under{" "}
             <a href="https://creativecommons.org/licenses/by/4.0/" className="underline" rel="nofollow">CC BY 4.0</a>.
           </p>
           <p className="mt-3">

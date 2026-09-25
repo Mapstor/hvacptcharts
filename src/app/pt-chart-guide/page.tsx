@@ -451,12 +451,12 @@ export default function PtChartGuidePage() {
             </p>
             <p>
               Verification policy: every value is recorded in <code>data/refrigerants.json</code> (the generated data
-              layer), validated against a Zod schema at build time, and cross-checked against AHRI 700 specifications
+              layer), validated against a strict schema at build time, and cross-checked against AHRI 700 specifications
               where applicable. The previous WordPress version of this site shipped with approximately 25,000
               fabricated quantitative errors including PT values wrong by 2-15×, some above critical pressure (a
               physical impossibility), and several A2L / A3 / B2L refrigerants classified as &quot;A1
               non-flammable&quot;. The current rebuild was structured specifically to make those failure modes
-              impossible: refrigerant data comes from primary sources, safety class is a Zod enum, and any value
+              impossible: refrigerant data comes from primary sources, safety class is a fixed, validated value, and any value
               outside the chart range returns &quot;out of range&quot; rather than an extrapolated number.
             </p>
           </Prose>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Compass, Lightbulb, ScrollText, type LucideIcon } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { contentDates, longDate, UpdatedLine } from "@/lib/content-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
 
 export interface HubItem {
@@ -280,7 +280,7 @@ export function HubPage({
             {sourcesNote ?? `All saturation values and refrigerant properties come from the verified dataset: CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Safety classifications per ANSI/ASHRAE Standard 34-2022. GWP per IPCC AR5 (2013). Operating ranges and diagnostic procedures per ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022, and equipment manufacturer service literature.`}
           </p>
           <p className="mt-3">
-            Last regenerated {longDate(updated)}. All pages and data are licensed for
+            All pages and data are licensed for
             free reference use; verification against equipment manufacturer literature is the
             responsibility of the user.
           </p>

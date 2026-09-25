@@ -155,7 +155,7 @@ export default function HomePage() {
               </Link>
               <ul className="ml-auto flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-zinc-600 dark:text-zinc-400">
                 <li className="flex items-center gap-1"><Database className="h-3 w-3 text-blue-600 dark:text-blue-400" /> CoolProp 7.2.0</li>
-                <li className="flex items-center gap-1"><ShieldCheck className="h-3 w-3 text-emerald-600 dark:text-emerald-400" /> Zod-validated</li>
+                <li className="flex items-center gap-1"><ShieldCheck className="h-3 w-3 text-emerald-600 dark:text-emerald-400" /> Validated data</li>
                 <li className="flex items-center gap-1"><EyeOff className="h-3 w-3 text-purple-600 dark:text-purple-400" /> No signup</li>
                 <li className="flex items-center gap-1"><Download className="h-3 w-3 text-amber-600 dark:text-amber-400" /> CC BY 4.0</li>
               </ul>
@@ -293,7 +293,7 @@ export default function HomePage() {
               icon={<GitCompareArrows className="h-5 w-5" />}
               accent="emerald"
               title="One source of truth"
-              body="Every chart, every calculator, every comparison reads from the same Zod-validated refrigerant record. No copies, no drift."
+              body="Every chart, every calculator, every comparison reads from the same validated refrigerant record. No copies, no drift."
             />
             <FeatureCard
               icon={<ShieldCheck className="h-5 w-5" />}

@@ -254,7 +254,7 @@ Refrigerated transport (Carrier Transicold, Thermo King), ice rinks (R-744/R-717
         },
         {
           q: "Can I cite these guides in technical reports or training materials?",
-          a: `Yes. The guides and underlying dataset are licensed CC BY 4.0 — free to cite, redistribute, and adapt with attribution. Cite as: "hvacptcharts.com [page URL], accessed [date]" along with the relevant primary source attribution shown on the page (CoolProp, ACCA Manual T, ASHRAE Handbook, etc.) for the specific claim being referenced.
+          a: `Yes. The guides and underlying dataset are licensed CC BY 4.0 — free to cite, redistribute, and adapt with attribution. Cite as: "hvacptcharts.com [page URL], accessed [Date]" along with the relevant primary source attribution shown on the page (CoolProp, ACCA Manual T, ASHRAE Handbook, etc.) for the specific claim being referenced.
 
 For the underlying refrigerant dataset, CSV/JSON downloads are available from each refrigerant detail page with the same CC BY 4.0 license.`,
         },

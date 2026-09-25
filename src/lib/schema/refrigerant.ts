@@ -47,6 +47,15 @@ function chemNoun(r: Refrigerant): string {
   return r.chemicalName.length < 60 ? r.chemicalName.toLowerCase() : "refrigerant";
 }
 
+/**
+ * Remove bare inline citation keys (e.g. " [ipccar5]") from plain text bound
+ * for JSON-LD. Structured-data text has no anchors, so the numbered links used
+ * on the visible page can't be emitted here — the key is simply dropped.
+ */
+function stripCitationKeys(text: string): string {
+  return text.replace(/ ?\[[a-z][a-z0-9]{2,}\]/g, "");
+}
+
 function datasetDescription(r: Refrigerant): string {
   const range =
     r.ptChart.length > 0
@@ -139,8 +148,8 @@ export function buildRefrigerantSchema(r: Refrigerant, faqs: FAQ[]): object[] {
       "@id": `${pageUrl}#faq`,
       mainEntity: faqs.map(({ q, a }) => ({
         "@type": "Question",
-        name: q,
-        acceptedAnswer: { "@type": "Answer", text: a },
+        name: stripCitationKeys(q),
+        acceptedAnswer: { "@type": "Answer", text: stripCitationKeys(a) },
       })),
     });
   }

@@ -131,7 +131,7 @@ export default function R22SuperheatChartPage() {
           </p>
         </header>
 
-        <KeyInsight tone="blue" icon="insight" title="Answer, in one line">
+        <KeyInsight tone="blue" icon="insight" title="Short answer">
           Target SH = ((3 × Indoor WB) − 80 − Outdoor DB) / 2. Same formula as any fixed-orifice fluid. At 64°F WB / 95°F DB the target is 9°F.
         </KeyInsight>
 
@@ -265,7 +265,6 @@ export default function R22SuperheatChartPage() {
             <li>AHRI Standard 210/240 — 95°F outdoor dry-bulb cooling rating condition.</li>
             <li>CoolProp 7.2.0 — R-22 PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. The provenance section paraphrases HVAC School&apos;s recounted account and AC Service Tech&apos;s edge-behavior characterization; direct sentences are not reproduced. PSIG values derived at build from the dataset.</p>
         </footer>
       </article>
     </>

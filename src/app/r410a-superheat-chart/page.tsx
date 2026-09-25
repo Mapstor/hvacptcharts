@@ -133,7 +133,7 @@ export default function R410aSuperheatChartPage() {
           </p>
         </header>
 
-        <KeyInsight tone="blue" icon="insight" title="Answer, in one line">
+        <KeyInsight tone="blue" icon="insight" title="Short answer">
           Target SH = ((3 × Indoor WB) − 80 − Outdoor DB) / 2. At 64°F WB / 95°F DB the target is 9°F. Fixed-orifice only — TXV systems charge by subcooling.
         </KeyInsight>
 
@@ -267,7 +267,6 @@ export default function R410aSuperheatChartPage() {
             <li>AHRI Standard 210/240 — 95°F outdoor dry-bulb cooling rating condition.</li>
             <li>CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014) — R-410A PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. The provenance section paraphrases HVAC School&apos;s recounted account and AC Service Tech&apos;s edge-behavior characterization; direct sentences are not reproduced. Every PSIG value on this page is derived at build time from the dataset.</p>
         </footer>
       </article>
     </>

@@ -464,7 +464,7 @@ export default function SafetyClassificationsPage() {
             <li>IIAR standards (industrial ammonia refrigeration — B2L handling)</li>
           </ul>
           <p className="mt-3">
-            Classifications are stored as a Zod-validated enum on each refrigerant record (<code>r.safetyClass</code>). The
+            Classifications are stored as a validated, fixed set of values on each refrigerant record (<code>r.safetyClass</code>). The
             rendering on this page and across the site reads that field directly — it is structurally impossible to render
             the wrong class for a refrigerant once the enum value is set correctly.
           </p>

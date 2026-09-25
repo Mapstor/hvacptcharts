@@ -1,0 +1,27 @@
+[
+  {
+    "pattern": "slug",
+    "contains": "refrigerant/<slug>/json",
+    "reason": "Reader-facing documentation of the real machine-readable download URL template (/data/refrigerant/<slug>/json and /csv). The <slug> token is the visible placeholder for a refrigerant identifier (e.g. r-410a), not developer jargon."
+  },
+  {
+    "pattern": "slug",
+    "contains": "migration slug",
+    "reason": "HVAC failure-mode term: a liquid refrigerant slug driven by off-cycle refrigerant migration (see the section title 'Refrigerant migration or liquid slugging on start'), not a URL slug."
+  },
+  {
+    "pattern": "slug",
+    "contains": "/refrigerant/[slug]/ uses",
+    "reason": "Developer-facing tools hub documenting the canonical refrigerant URL pattern /refrigerant/[slug]/ so integrators can build links; the bracketed token is the documented URL variable."
+  },
+  {
+    "pattern": "slug",
+    "contains": "structure covering: slug",
+    "reason": "Developer-facing tools hub documenting the JSON record field names (slug, displayName, ...) of the CC BY 4.0 dataset download."
+  },
+  {
+    "pattern": "bare-citation-key",
+    "contains": "/refrigerant/[slug]/ uses",
+    "reason": "False positive: [slug] here is the documented URL-pattern variable on the developer tools hub, not an inline citation key."
+  }
+]

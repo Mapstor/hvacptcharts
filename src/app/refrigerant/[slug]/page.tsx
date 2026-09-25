@@ -110,6 +110,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
   const mdx = loadRefrigerantMdx(slug);
   const faqs = mdx?.frontmatter.faqs ?? [];
   const schema = buildRefrigerantSchema(r, faqs);
+  const srcIdx = citationIndex(mdx?.frontmatter.sources);
 
   // Quick-lookup strip — service-relevant temperatures spanning evaporator
   // (low side AC, refrigeration), comfort/test, and condensing conditions.
@@ -253,13 +254,13 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                       <dd className="flex items-baseline gap-1 text-right">
                         <span className="font-mono text-sm font-semibold">{k.value}</span>
                         {k.unit ? <span className="text-[10px] text-zinc-500">{k.unit}</span> : null}
-                        {k.sourceId ? (
+                        {k.sourceId && srcIdx.get(k.sourceId) ? (
                           <a
                             href={`#src-${k.sourceId}`}
                             className="text-[10px] text-blue-600 hover:underline dark:text-blue-400"
-                            aria-label={`Source: ${k.sourceId}`}
+                            aria-label={`Source ${srcIdx.get(k.sourceId)}`}
                           >
-                            [src]
+                            [{srcIdx.get(k.sourceId)}]
                           </a>
                         ) : null}
                       </dd>
@@ -528,7 +529,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
           >
             <div className="rounded-xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-950">
               <div className="prose prose-zinc max-w-none dark:prose-invert">
-                {paragraphs(mdx.frontmatter.narrative.whatItIs)}
+                {paragraphs(mdx.frontmatter.narrative.whatItIs, mdx.frontmatter.sources)}
               </div>
             </div>
 
@@ -541,7 +542,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                   {(mdx.frontmatter.narrative.whereItsUsed ?? []).map((u, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
                       <ArrowRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                      <span>{u}</span>
+                      <span>{citeInline(u, citationIndex(mdx.frontmatter.sources))}</span>
                     </li>
                   ))}
                 </ul>
@@ -554,7 +555,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                   <Recycle className="h-3.5 w-3.5" /> Regulatory &amp; phase-down status
                 </h3>
                 <div className="prose prose-sm prose-zinc mt-3 max-w-none dark:prose-invert">
-                  {paragraphs(mdx.frontmatter.narrative.phaseDownStatus)}
+                  {paragraphs(mdx.frontmatter.narrative.phaseDownStatus, mdx.frontmatter.sources)}
                 </div>
               </div>
             ) : null}
@@ -565,7 +566,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                   <Lightbulb className="h-3.5 w-3.5" /> Service notes
                 </h3>
                 <div className="prose prose-sm prose-zinc mt-3 max-w-none dark:prose-invert">
-                  {paragraphs(mdx.frontmatter.narrative.serviceNotes)}
+                  {paragraphs(mdx.frontmatter.narrative.serviceNotes, mdx.frontmatter.sources)}
                 </div>
               </div>
             ) : null}
@@ -654,7 +655,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
         {/* ───────────────── MDX body ───────────────── */}
         {mdx && mdx.body.length > 0 ? (
           <section className="prose prose-zinc mb-10 max-w-none dark:prose-invert">
-            <MDXRemote source={mdx.body} components={mdxComponents as never} />
+            <MDXRemote source={preprocessCitations(mdx.body, mdx.frontmatter.sources)} components={mdxComponents as never} />
           </section>
         ) : null}
 
@@ -677,7 +678,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                     <span>{f.q}</span>
                   </summary>
                   <div className="prose prose-sm prose-zinc mt-3 max-w-none pl-5 dark:prose-invert">
-                    {paragraphs(f.a)}
+                    {paragraphs(f.a, mdx?.frontmatter.sources)}
                   </div>
                 </details>
               ))}
@@ -759,21 +760,84 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
 
 /* ────────────────────── helper components ────────────────────── */
 
-function paragraphs(text: string) {
-  return text.split(/\n\s*\n/).map((p, i) => <p key={i}>{p.trim()}</p>);
+/**
+ * Build id → 1-based citation number from the page's `sources` frontmatter.
+ * Matches the numbering rendered in the "Sources & citations" list ([i+1],
+ * anchored at id="src-{id}").
+ */
+function citationIndex(sources?: { id: string }[]): Map<string, number> {
+  const m = new Map<string, number>();
+  (sources ?? []).forEach((s, i) => m.set(s.id, i + 1));
+  return m;
+}
+
+/**
+ * Render inline prose, turning bare citation markers into numbered superscript
+ * links: `[ashrae34]` → a linked `[3]` pointing at #src-ashrae34. A marker whose
+ * id has no matching source entry is dropped (with the space before it), so no
+ * bare key ever reaches the page.
+ */
+function citeInline(text: string, idx: Map<string, number>): React.ReactNode[] {
+  const parts: React.ReactNode[] = [];
+  const re = / ?\[([A-Za-z][A-Za-z0-9]*)\]/g;
+  let last = 0;
+  let key = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text)) !== null) {
+    const id = m[1];
+    const n = idx.get(id);
+    const isCitationKey = n !== undefined || /^[a-z][a-z0-9]{2,}$/.test(id);
+    if (!isCitationKey) continue; // leave non-citation brackets (e.g. "[CO2]") intact
+    parts.push(text.slice(last, m.index)); // text before the marker (drops the leading space we matched)
+    if (n !== undefined) {
+      parts.push(
+        <sup key={`c${key++}`} className="ml-0.5">
+          <a href={`#src-${id}`} className="text-xs text-blue-700 hover:underline dark:text-blue-300">[{n}]</a>
+        </sup>,
+      );
+    }
+    // orphan (citation-shaped id with no source): render nothing.
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
+
+function paragraphs(text: string, sources?: { id: string }[]) {
+  const idx = citationIndex(sources);
+  return text.split(/\n\s*\n/).map((p, i) => <p key={i}>{citeInline(p.trim(), idx)}</p>);
+}
+
+/**
+ * Preprocess an MDX body string before MDXRemote: convert inline `[id]`
+ * citation markers to numbered superscript links (for ids in the page's
+ * `sources` list) or strip them (orphan citation-shaped keys). Non-citation
+ * brackets are left intact.
+ */
+function preprocessCitations(body: string, sources?: { id: string }[]): string {
+  const idx = citationIndex(sources);
+  return body.replace(/ ?\[([A-Za-z][A-Za-z0-9]*)\]/g, (full, id: string) => {
+    const n = idx.get(id);
+    if (n !== undefined) {
+      return `<sup className="ml-0.5 text-xs"><a href="#src-${id}" className="text-blue-700 dark:text-blue-300 no-underline hover:underline">[${n}]</a></sup>`;
+    }
+    if (/^[a-z][a-z0-9]{2,}$/.test(id)) return ""; // orphan citation key
+    return full; // non-citation bracket (e.g. "[CO2]")
+  });
 }
 
 function Section({
   id,
   icon,
   title,
-  number,
   children,
 }: {
   id: string;
   icon: React.ReactNode;
   title: string;
-  number: string;
+  /** Legacy section-number prop — accepted but no longer rendered (numbers
+   *  dropped site-wide to avoid gaps when sections conditionally hide). */
+  number?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -782,10 +846,7 @@ function Section({
         <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
           {icon}
         </span>
-        <div>
-          <div className="text-xs font-mono text-zinc-500">{number}</div>
-          <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
-        </div>
+        <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
       </div>
       {children}
     </section>
@@ -1201,10 +1262,12 @@ function ProvenanceFooter({ r }: { r: Refrigerant }) {
           <dt className="font-semibold text-zinc-700 dark:text-zinc-300">Properties</dt>
           <dd>{r.dataSource.propertiesSource}</dd>
         </div>
-        <div>
-          <dt className="font-semibold text-zinc-700 dark:text-zinc-300">GWP</dt>
-          <dd>{r.dataSource.gwpSource}</dd>
-        </div>
+        {r.dataSource.gwpSource !== "Pending source citation" ? (
+          <div>
+            <dt className="font-semibold text-zinc-700 dark:text-zinc-300">GWP</dt>
+            <dd>{r.dataSource.gwpSource}</dd>
+          </div>
+        ) : null}
         <div>
           <dt className="font-semibold text-zinc-700 dark:text-zinc-300">Generated</dt>
           <dd>{generated}</dd>
@@ -1238,7 +1301,7 @@ function NoPtChartNotice({ status, ptChartSource, primarySources, displayName }:
   switch (status) {
     case "published-eos-not-in-build":
       tone = "amber";
-      title = "No PT chart in this build — published primary source exists";
+      title = `A pressure–temperature table for ${displayName} isn't published on this site yet — a published primary source exists`;
       body = (
         <>
           A published Helmholtz equation of state exists for {displayName} (cited below), but
@@ -1251,7 +1314,7 @@ function NoPtChartNotice({ status, ptChartSource, primarySources, displayName }:
       break;
     case "manufacturer-datasheet-published":
       tone = "amber";
-      title = "No PT chart in this build — see manufacturer datasheet";
+      title = `A pressure–temperature table for ${displayName} isn't published on this site yet — see the manufacturer datasheet`;
       body = (
         <>
           {displayName} has a published PT chart in its manufacturer&apos;s technical
@@ -1286,11 +1349,11 @@ function NoPtChartNotice({ status, ptChartSource, primarySources, displayName }:
       break;
     default:
       tone = "amber";
-      title = "PT chart not available in this build";
+      title = `A pressure–temperature table for ${displayName} isn't published on this site yet`;
       body = (
         <>
-          PT data is not available for {displayName} in this build. The site never
-          fabricates values to fill gaps. Refer to the primary source below.
+          A pressure–temperature table for {displayName} isn&apos;t published on this site
+          yet. The site never fabricates values to fill gaps; refer to the primary source below.
         </>
       );
   }

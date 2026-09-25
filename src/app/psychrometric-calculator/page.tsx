@@ -186,7 +186,7 @@ const BodySections = (
       </p>
       <pre className="my-3 overflow-x-auto rounded-lg border border-zinc-200 bg-zinc-50 p-3 text-xs dark:border-zinc-800 dark:bg-zinc-900">
 {`P(altitude) = 101.325 × (1 − 2.25577×10⁻⁵ × elevation_meters)^5.2559   [kPa]
-            = 14.696 × (1 − 6.8755×10⁻⁶ × elevation_feet)^5.2559     [psia]`}
+            = 14.696 × (1 − 6.8755×10⁻⁶ × elevation_feet)^5.2559     (psia)`}
       </pre>
 
       <ComparisonTable

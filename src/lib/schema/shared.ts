@@ -52,7 +52,7 @@ export const COMMON_NAME: Record<string, string> = {
  *
  * Three branches on the title / description shape, driven by dataset state:
  *
- *   1. `hasPtData === false` — the fluid has no ptChart in this build.
+ *   1. `hasPtData === false` — the fluid has no ptChart in the dataset.
  *      Do NOT promise a PT chart at the SERP surface (Wave 1.6 fix). Ships
  *      a "Refrigerant Reference" title + a description that highlights
  *      properties + safety + GWP instead of a chart the page can't render.

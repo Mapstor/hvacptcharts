@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { refrigerants, type Refrigerant, type SafetyClass, type RefrigerantType } from "@/data/refrigerants";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
+import { typeLabel } from "@/components/refrigerant/TypeChip";
 
 type SortKey = "displayName" | "gwpAr5" | "gwpAr6" | "odp" | "safetyClass" | "type";
 type SortDir = "asc" | "desc";
@@ -133,7 +134,7 @@ export function GwpTable() {
                     {r.displayName}
                   </Link>
                 </td>
-                <td className="px-3 py-2 text-zinc-600 dark:text-zinc-400 text-xs uppercase">{r.type.replace("-", " ")}</td>
+                <td className="px-3 py-2 text-zinc-600 dark:text-zinc-400 text-xs">{typeLabel(r.type)}</td>
                 <td className="px-3 py-2"><SafetyClassChip safetyClass={r.safetyClass} size="sm" /></td>
                 <td className="px-3 py-2 text-right font-mono">{r.environmental.odp === null ? "—" : r.environmental.odp}</td>
                 <td className="px-3 py-2 text-right font-mono font-semibold">

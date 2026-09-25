@@ -21,7 +21,7 @@ const R22_30F = fmtPsigBubble("r-22", 30);
  * Primary sources referenced by prose on this page. Rendered as the visible
  * Sources block AND as the TechArticle citation[] JSON-LD payload — single
  * source of truth so the two can never drift. url === null means "cite by
- * name only" (paywalled or standards-name-only). Pattern mirrors B4 short-
+ * name only" (paywalled or a bare standards name). Pattern mirrors B4 short-
  * cycling.
  */
 const SOURCES: readonly { name: string; publisher: string; url: string | null }[] = [
@@ -193,7 +193,7 @@ export default function LowSuctionPressurePage() {
           </p>
         </header>
 
-        <KeyInsight tone="blue" icon="insight" title="Answer, in two sentences">
+        <KeyInsight tone="blue" icon="insight" title="Short answer">
           Low suction usually means undercharge (fingerprint: high SH + low SC), restriction (fingerprint: high SH + high SC + cold-spot downstream of filter-drier), or reduced airflow (fingerprint: high SH + frozen coil). On R-410A, saturation at 40°F evap is {R410A_40F} PSIG; sustained readings well below that with high SH warrant working through the 8 branches below.
         </KeyInsight>
 
@@ -304,12 +304,11 @@ export default function LowSuctionPressurePage() {
                 )}
               </li>
             ))}
-            <li>ACCA technician charging references (name-only).</li>
+            <li>ACCA technician charging references.</li>
             <li>ASHRAE Handbook of Refrigeration 2022 — TXV behavior and evaporator design.</li>
             <li>EPA 40 CFR Part 82 Subpart F — Section 608 leak-repair requirements before recharge.</li>
             <li>CoolProp 7.2.0 — R-410A and R-22 PT chart values.</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Facts on this page are paraphrased from the linked sources; direct sentences are not reproduced. PSIG values render through the site&apos;s pressure-format helpers so a dataset regeneration updates the prose automatically.</p>
         </footer>
       </article>
     </>

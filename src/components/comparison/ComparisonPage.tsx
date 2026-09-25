@@ -44,7 +44,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
 import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
-import { TypeChip } from "@/components/refrigerant/TypeChip";
+import { TypeChip, typeLabel } from "@/components/refrigerant/TypeChip";
 import { PTCurveOverlay } from "@/components/svg/PTCurveOverlay";
 import { CylinderComparisonRow } from "@/components/diagrams/CylinderComparisonRow";
 import {
@@ -212,7 +212,7 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
                 </tr>
               </thead>
               <tbody>
-                <PropRow label="Type" valueA={a.type.replace("-", " ")} valueB={b.type.replace("-", " ")} />
+                <PropRow label="Type" valueA={typeLabel(a.type)} valueB={typeLabel(b.type)} />
                 <PropRow label="ASHRAE class" valueA={a.safetyClass} valueB={b.safetyClass} />
                 <PropRow
                   label="Composition"
@@ -384,7 +384,6 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
             <li>Regulatory context: EPA AIM Act (40 CFR Part 84), EU F-Gas Regulation 517/2014 + 2024/573, Kigali Amendment to Montreal Protocol</li>
             <li>{a.displayName}: {a.dataSource.ptChartSource}</li>
             <li>{b.displayName}: {b.dataSource.ptChartSource}</li>
-            <li>Records generated {a.dataSource.ptChartGeneratedAt.slice(0, 10)}</li>
           </ul>
         </footer>
       </article>
@@ -974,13 +973,6 @@ function RetrofitNotFeasible({ a, b }: { a: Refrigerant; b: Refrigerant }) {
       <Panel title="Specific barriers for this pair" icon={AlertTriangle}>
         <ul className="list-disc pl-5 text-sm space-y-2">{barriers}</ul>
       </Panel>
-      <p className="text-xs text-zinc-500 dark:text-zinc-400">
-        Set <code className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-[10px] dark:bg-zinc-800">retrofitFeasible: true</code>
-        {" "}in the comparison MDX frontmatter to override this derivation for pairs
-        where a specialized retrofit path exists (e.g. same-family same-class
-        low-glide swaps that the safety-class rule flags but the trade practice
-        supports).
-      </p>
     </div>
   );
 }

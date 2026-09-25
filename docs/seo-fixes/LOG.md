@@ -390,3 +390,80 @@ pass (`verify-redirects` 41/41). Curl results:
 - Lint of changed files (`next.config.ts`, `scripts/verify-redirects.ts`): clean.
 
 **Not pushed** (per instructions).
+
+---
+
+## 2026-09-25 — Fix 5B/18: remove developer/generator-facing text from rendered pages [no-date]
+
+**Problem:** prose written for the build system leaked to readers and into JSON-LD —
+provenance notes ("Page generated…", "Last regenerated", "Records generated", "Emitted
+as HowTo…"), implementation jargon ("Zod-validated", "MDX commit", "data generator",
+"retrofitFeasible", "(name-only)", "02-AUDIT"), bare citation keys (`[ipccar5]`),
+lowercase type enums ("hfo pure"), empty-state boilerplate ("No peer-comparison group is
+defined", "Pending source citation"), "in this build", "Answer, in two sentences", and a
+stale `/api/refrigerants.json` reference. Where a sentence carried real information it was
+rewritten for readers, not deleted.
+
+**Changes (no page dates bump — mechanical text cleanup, hence `[no-date]`):**
+- **Citations → numbered links.** `citeInline`/`paragraphs` turn ` [id]` markers into
+  `<sup><a href="#src-{id}">[n]</a></sup>` against each page's own `sources:` list;
+  `preprocessCitations(mdx.body, sources)` applies the same transform to the raw MDX body
+  before `<MDXRemote>` (the 768-hit root cause); FAQ answers now pass `sources` too.
+  Orphan (no-source) keys render nothing — **there are none: every key resolves to a
+  source.** JSON-LD FAQ `Question.name`/`Answer.text` strip keys via `stripCitationKeys`
+  (structured data has no anchors).
+- **Type labels centralised.** `typeLabel()` in `TypeChip.tsx` is the single map from enum
+  → display label; `GwpTable` and the phase-down empty-state now use it (no more
+  "hfo pure"). `refrigerant-prices-guide` keyword capitalised.
+- **Reworded to true, reader-facing wording:** "Zod-validated" → "Validated data" /
+  "validated against a strict schema" / "a fixed, validated value" (home, pt-chart-guide,
+  safety-classifications); "data generator" → "not published on this site yet"
+  (saturation-properties ×2); carrier "Page generated: …" line dropped (date is now the
+  Updated line); contact-us "config + regeneration + MDX commit" → "a routine data update";
+  RefrigerantCycle/RefrigerantPhaseDown "in this build" → "isn't published on this site
+  yet" / "documented … yet"; `schema/shared.ts` no-PT wording confirmed clean (only a
+  JSDoc comment reworded).
+- **Empty states:** GWP no-peer-group branch `return null`; gwpSource row hidden when
+  "Pending source citation" (done in Fix 5-prep alongside `/api/…` → real
+  `/data/refrigerant/<slug>/json` + `/csv` downloads).
+- **New build gate `scripts/verify-no-generator-text.ts`** (cheerio over every prerendered
+  `.html`: visible text, `<title>`, meta description, and JSON-LD string values;
+  case-sensitive banned patterns; prints file + 80-char snippet). Allowlist
+  `scripts/generator-text-allowlist.json` (5 entries, each with a reason): the
+  `/data/refrigerant/<slug>/…` download template, the documented `/refrigerant/[slug]/`
+  URL pattern and JSON field-name list on the tools hub, and the HVAC term "migration
+  slug" (liquid slugging). Wired into `pnpm build` after verify-content-dates.
+
+**Before → after (raw gate hits over prerendered HTML; before = HEAD without this fix):**
+
+| pattern | before | after |
+|---|---:|---:|
+| bare-citation-key | 768 | 0 (1 allowlisted `[slug]` URL var) |
+| [Rr]egenerated | 151 | 0 |
+| lowercase-type-label | 55 | 0 |
+| in this build | 35 | 0 |
+| [Rr]ecords? generated | 32 | 0 |
+| MDX | 16 | 0 |
+| peer-comparison group | 15 | 0 |
+| Zod | 14 | 0 |
+| Page generated | 13 | 0 |
+| Emitted as HowTo | 11 | 0 |
+| frontmatter | 10 | 0 |
+| retrofitFeasible | 10 | 0 |
+| Answer, in (one\|two) | 9 | 0 |
+| /api/refrigerants.json | 3 | 0 |
+| data generator / name-only / paraphrases | 3 each | 0 |
+| project repo / Pending source citation | 2 each | 0 |
+| code smell / preserves a legacy URL / 02-AUDIT | 1 each | 0 |
+| slug | 5 | 0 disallowed (6 allowlisted, legit) |
+| **total disallowed** | **1163** | **0** |
+
+**Citation keys with no matching source:** none — all resolve to a `sources:` entry.
+
+**Verified:** build exit 0; all gates pass incl. verify-content-dates (133/133) and
+verify-no-generator-text (0 disallowed, 7 allowlisted); validate-schema, verify-metadata,
+run-verify (61 refrigerants + 6 datasheet anchors), verify-redirects (43/43) green; eslint
+0 errors. Curl (`next start`): Updated line + footer (©, disclaimer, "CC BY 4.0"; no "Last
+regenerated") + sitemap lastmod + one JSON-LD `dateModified` confirmed on
+`/refrigerant/r-410a/`, `/r22-superheat-chart/`, `/r-32-vs-r-410a/`,
+`/what-pressure-should-r404a/`; homepage has no Updated line. **Not pushed.**

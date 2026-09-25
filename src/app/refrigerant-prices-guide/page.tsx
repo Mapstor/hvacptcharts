@@ -93,7 +93,7 @@ function buildSchema(): object[] {
         "aim act prices",
         "r-410a price 2026",
         "r-22 price 2026",
-        "hfc phase-down pricing",
+        "HFC phase-down pricing",
         "reclaimed refrigerant",
         "eu f-gas pricing",
       ],
@@ -153,7 +153,7 @@ export default function RefrigerantPricesGuidePage() {
               <strong>What we publish:</strong> the regulatory and market mechanics that determine refrigerant prices, sourced from primary documents (AIM Act statute, EPA implementing regulations, EU F-Gas regulation, AHRI 700 specification, SEC filings of publicly-traded refrigerant producers and reclaimers). Historical price multipliers from the R-22 phaseout case (documented in EPA Section 608 economic analyses). Per-refrigerant categorization by regulatory exposure. Container-size and grade-tier economics. A framework for interpreting a service quote.
             </p>
             <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">
-              <strong>What we don&apos;t publish:</strong> current per-cylinder spot prices. Refrigerant wholesale and retail prices change weekly with allowance market clearing, seasonal demand, regional supply, container size, and grade. A static guide that quotes <em>&quot;$X-Y per 25 lb cylinder&quot;</em> goes stale within months and becomes misleading to a buyer. We don&apos;t have a live distributor data feed to keep such a table current, so we don&apos;t publish one. The audit of the previous WordPress version of this page (see <code>02-AUDIT.md</code> in the project repo) explicitly flagged the prior price table as unsourced fabrication; we are not repeating that error.
+              <strong>What we don&apos;t publish:</strong> current per-cylinder spot prices. Refrigerant wholesale and retail prices change weekly with allowance market clearing, seasonal demand, regional supply, container size, and grade. A static guide that quotes <em>&quot;$X-Y per 25 lb cylinder&quot;</em> goes stale within months and becomes misleading to a buyer. We don&apos;t have a live distributor data feed to keep such a table current, so we don&apos;t publish one. An earlier version of this page carried an unsourced price table; we removed it rather than publish figures we can&apos;t keep accurate.
             </p>
             <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">
               <strong>How to get current spot prices:</strong> contact a distributor directly. Section 13 lists named US distributors that publish current pricing in their contractor portals. For trade-press surveys, ACHR News publishes an annual refrigerant pricing survey in their January/February editions (achrnews.com). For reclaimed pricing trends, Hudson Technologies (NASDAQ: HDSN) publishes refrigerant segment data in quarterly 10-Q and annual 10-K SEC filings.

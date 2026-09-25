@@ -181,7 +181,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 01 — Why recovery is mandatory */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">01</span>
             Why refrigerant recovery is federal law
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -224,7 +223,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 02 — Certification levels */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">02</span>
             EPA Section 608 certification — the four types
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -253,7 +251,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 03 — Recovery vs recycling vs reclamation */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">03</span>
             Recovery vs recycling vs reclamation — the legal distinctions
           </h2>
 
@@ -277,7 +274,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 04 — Equipment */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">04</span>
             Required recovery equipment — AHRI Standard 740
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -306,7 +302,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 05 — Evacuation levels */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">05</span>
             Required evacuation levels per 40 CFR § 82.156(b)
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -338,7 +333,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 06 — Recovery procedure */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">06</span>
             Recovery procedure — step-by-step for a Type II residential split AC
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -384,7 +378,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 07 — Cylinder management */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">07</span>
             Recovery cylinder management
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -405,7 +398,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 08 — Recordkeeping */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">08</span>
             Recordkeeping requirements (40 CFR § 82.166)
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -432,7 +424,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 09 — A2L safety */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">09</span>
             A2L refrigerant safety (the AIM Act transition)
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -463,7 +454,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 10 — Common errors */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">10</span>
             Common errors and how to avoid them
           </h2>
 
@@ -495,7 +485,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 11 — Penalties */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">11</span>
             Penalty exposure for Section 608 violations
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -528,7 +517,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 12 — Disposition */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">12</span>
             What happens after recovery — disposition pathways
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -555,7 +543,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 13 — FAQ */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">13</span>
             Frequently asked
           </h2>
           <div className="space-y-3">
@@ -576,7 +563,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 14 — Sources */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">14</span>
             Sources and verification
           </h2>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-5 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-300">
@@ -603,9 +589,6 @@ export default function HvacRefrigerantRecoveryGuidePage() {
             </p>
             <p className="mt-3">
               <strong>What this page does not include:</strong> specific EPA training organization recommendations (multiple approved providers — see epa.gov/section608 for current list). Specific reclaimer pricing or distributor terms (varies by region and contractor relationship). Legal opinions for specific jurisdictions or enforcement situations (consult environmental counsel). For training, take an EPA 608-approved course; for compliance questions, contact your EPA Region office.
-            </p>
-            <p className="mt-3 text-xs text-zinc-500">
-              Page generated: {PUBLISHED.slice(0, 10)}.
             </p>
           </div>
         </section>

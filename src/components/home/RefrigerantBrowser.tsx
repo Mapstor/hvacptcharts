@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { refrigerants, type RefrigerantType, type SafetyClass } from "@/data/refrigerants";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
+import { typeLabel } from "@/components/refrigerant/TypeChip";
 
 const TYPE_OPTIONS: Array<{ id: RefrigerantType | "all"; label: string }> = [
   { id: "all", label: "All types" },
@@ -129,7 +130,7 @@ export function RefrigerantBrowser() {
               </div>
               <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400 truncate">{r.chemicalName}</p>
               <p className="mt-1 text-xs text-zinc-500">
-                {r.type.replace("-", " ")} · GWP {r.environmental.gwp100Ar5 ?? "—"}
+                {typeLabel(r.type)} · GWP {r.environmental.gwp100Ar5 ?? "—"}
               </p>
             </Link>
           </li>

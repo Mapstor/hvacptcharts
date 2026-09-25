@@ -221,7 +221,7 @@ export default function AcCompressorShortCyclingPage() {
           </p>
         </header>
 
-        <KeyInsight tone="blue" icon="insight" title="Answer, in two sentences">
+        <KeyInsight tone="blue" icon="insight" title="Short answer">
           A compressor at 50% cooling load normally cycles about 3 times per hour on a high-efficiency residential system — that is the Honeywell cycle-rate convention, not a fault. Below that — cycles every few minutes, or run times under Copeland&apos;s 3-minute scroll minimum — is short cycling, and it kills compressors through oil loss, not wear.
         </KeyInsight>
 
@@ -391,7 +391,6 @@ export default function AcCompressorShortCyclingPage() {
             <li>EPA 40 CFR Part 82 Subpart F (Section 608) — leak-repair and recovery certification cited in scenario B; EPA Section 609 — motor-vehicle A/C service cited in scenario C and in the automotive FAQ.</li>
             <li>SAE J2843 — automotive R-1234yf service standard (refrigerant identifier requirement cited in scenario C).</li>
           </ul>
-          <p className="mt-3">Page generated: {PUBLISHED.slice(0, 10)}. Facts on this page are paraphrased from the linked sources; direct sentences are not reproduced. PSIG values render through the site&apos;s pressure-format helpers so a dataset regeneration updates the prose automatically.</p>
         </footer>
       </article>
     </>

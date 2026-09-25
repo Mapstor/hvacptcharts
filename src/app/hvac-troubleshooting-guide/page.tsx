@@ -167,7 +167,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 01 — Diagnostic framework */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">01</span>
             The 5-step diagnostic framework (used for every symptom)
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -205,7 +204,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 02 — Tools needed */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">02</span>
             Tools you need for HVAC diagnosis
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -254,7 +252,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 03 — No cooling */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">03</span>
             Symptom: No cooling at all
           </h2>
           <p className="mb-4 text-zinc-700 dark:text-zinc-300">
@@ -296,7 +293,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 04 — No heating */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">04</span>
             Symptom: No heating
           </h2>
           <p className="mb-4 text-zinc-700 dark:text-zinc-300">
@@ -328,7 +324,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 05 — Insufficient capacity */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">05</span>
             Symptom: Runs but doesn&apos;t cool/heat enough (insufficient capacity)
           </h2>
           <p className="mb-4 text-zinc-700 dark:text-zinc-300">
@@ -376,7 +371,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 06 — Short cycling */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">06</span>
             Symptom: Short cycling (compressor on-off-on-off)
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -404,7 +398,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 07 — Frozen evaporator */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">07</span>
             Symptom: Frozen evaporator coil
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -437,7 +430,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 08 — Strange noises */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">08</span>
             Symptom: Strange noises
           </h2>
 
@@ -459,7 +451,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 09 — Water leaks */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">09</span>
             Symptom: Water leaks
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -477,7 +468,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 10 — High utility bills */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">10</span>
             Symptom: Sky-high utility bills (efficiency drop)
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
@@ -500,7 +490,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 11 — DIY vs pro */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">11</span>
             DIY vs professional — where to draw the line
           </h2>
 
@@ -530,7 +519,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 12 — Safety */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">12</span>
             Safety: refrigerant, electrical, gas
           </h2>
 
@@ -550,7 +538,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 13 — FAQ */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">13</span>
             Frequently asked
           </h2>
           <div className="space-y-3">
@@ -569,7 +556,6 @@ export default function HvacTroubleshootingGuidePage() {
         {/* SECTION 14 — Sources */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">14</span>
             Sources and verification
           </h2>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-5 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-300">
@@ -587,9 +573,6 @@ export default function HvacTroubleshootingGuidePage() {
             </p>
             <p className="mt-3">
               <strong>What this guide is not:</strong> a substitute for hands-on training, EPA Section 608 certification, or local code-compliance review. Refrigerant work in the US requires Section 608 certification by federal law. Many local jurisdictions require a licensed HVAC contractor for any work beyond filter replacement and visible-surface cleaning.
-            </p>
-            <p className="mt-3 text-xs text-zinc-500">
-              Page generated: {PUBLISHED.slice(0, 10)}.
             </p>
           </div>
         </section>

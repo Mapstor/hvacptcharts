@@ -35,7 +35,7 @@ const FAQS = [
   },
   {
     q: "What about density, enthalpy, and entropy?",
-    a: "Liquid density, vapor density, and enthalpy of vaporization come from CoolProp for pure refrigerants and predefined blends, but require an extension to the data generator that isn't shipped yet. For now, use the refrigerant's detail page to find its CoolProp identifier, then query CoolProp directly (Python or via the JS WASM wrapper). The data shown here covers saturation P-T and reference properties (critical point, normal boiling point, molar mass).",
+    a: "Liquid density, vapor density, and enthalpy of vaporization come from CoolProp for pure refrigerants and predefined blends, but aren't published on this site yet. For now, use the refrigerant's detail page to find its CoolProp identifier, then query CoolProp directly (Python or via the JS WASM wrapper). The data shown here covers saturation P-T and reference properties (critical point, normal boiling point, molar mass).",
   },
   {
     q: "What's the difference between absolute and gauge pressure?",

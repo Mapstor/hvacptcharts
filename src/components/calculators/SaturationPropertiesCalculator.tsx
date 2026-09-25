@@ -123,7 +123,7 @@ export function SaturationPropertiesCalculator({ initialSlug = "r-410a" }: { ini
         <summary className="cursor-pointer font-medium text-zinc-700 dark:text-zinc-300">About density and enthalpy</summary>
         <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
           Liquid density, vapor density, and enthalpy of vaporization are available from CoolProp for pure refrigerants
-          but require an extension to the data generator. Pending that work, this calculator returns saturation
+          but aren&apos;t published on this site yet. For now, this calculator returns saturation
           pressures and the reference properties stored in the dataset. For enthalpy and density today, query CoolProp
           directly with the refrigerant identifier shown on the refrigerant&apos;s detail page.
         </p>

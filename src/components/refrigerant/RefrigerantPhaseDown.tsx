@@ -1,5 +1,6 @@
 import { Info } from "lucide-react";
 import { getRefrigerant } from "@/data/refrigerants";
+import { typeLabel } from "@/components/refrigerant/TypeChip";
 import { PhaseDownTimeline } from "@/components/svg/PhaseDownTimeline";
 import { getMilestonesForSlug } from "@/data/phase-down-milestones";
 
@@ -82,7 +83,7 @@ function NoMilestonesNotice({ slug }: { slug: string }) {
     category = "pending-documentation";
     reason = (
       <>
-        <strong>No phase-down milestones documented for {r.displayName} in this build.</strong>{" "}
+        <strong>No phase-down milestones are documented for {r.displayName} yet.</strong>{" "}
         This may mean: (a) no regulatory phase-down currently published; (b) the refrigerant has
         local regulatory schedules not yet transcribed into the site dataset; or (c) it is a
         specialty refrigerant outside the main regulatory frameworks. For authoritative current
@@ -108,7 +109,7 @@ function NoMilestonesNotice({ slug }: { slug: string }) {
             {gwp !== null ? `GWP (AR5) ${gwp}` : "GWP not published"} ·{" "}
             {odp !== null ? `ODP ${odp}` : "ODP not published"} ·{" "}
             {aimAct ? "AIM Act affected" : "Not AIM Act-affected"} ·{" "}
-            type: {type}
+            type: {typeLabel(type)}
           </div>
         </div>
       </div>

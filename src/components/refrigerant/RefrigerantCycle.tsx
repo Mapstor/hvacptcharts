@@ -79,9 +79,10 @@ function CycleNotApplicable({
     case "no-pt-data":
       body = (
         <>
-          <strong>No cycle diagram can be drawn for {r.displayName}.</strong> The PT chart for
-          this refrigerant is not in this build (see the &quot;Saturation pressure-temperature
-          curve&quot; section above for the primary source citation). Without saturation data,
+          <strong>No cycle diagram can be drawn for {r.displayName}.</strong> A
+          pressure–temperature table for this refrigerant isn&apos;t published on this site yet
+          (see the &quot;Saturation pressure-temperature curve&quot; section above for the
+          primary source citation). Without saturation data,
           the suction and discharge points of the cycle cannot be computed without fabrication.
         </>
       );
