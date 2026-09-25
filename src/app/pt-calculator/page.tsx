@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
-import { refrigerants, getRefrigerant, getPressureAtTempF } from "@/data/refrigerants";
+import { refrigerants, getRefrigerant, getPressureAtTempF, satPressure, satTemp } from "@/data/refrigerants";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { PtCalculator } from "@/components/calculators/PtCalculator";
 import {
@@ -18,6 +18,52 @@ import { RefrigerantGlide } from "@/components/refrigerant/RefrigerantGlide";
 import { pageMetadata } from "@/lib/schema/shared";
 
 const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
+
+/* ── Computed reference-table data (no typed pressures) ─────────────────── */
+
+// Quick-reference: saturation PSIG at these temps for these fluids, computed
+// live from the dataset via satPressure (bubble/dew for zeotropic blends).
+const QUICK_REF_TEMPS = [32, 45, 70, 95, 120];
+const QUICK_REF_SLUGS = [
+  "r-22", "r-410a", "r-32", "r-454b", "r-134a", "r-404a",
+  "r-407c", "r-454c", "r-744", "r-290", "r-717",
+];
+
+// Operating-pressure ranges, computed with the same method as the
+// /what-pressure-should-*/ pages: residential AC = dew(38–45°F evap) suction,
+// bubble(ambient+15…+25) head; commercial refrigeration = dew(evap±3) suction,
+// bubble(ambient+15…+30) head. Rows whose method isn't defined yet (chillers,
+// heat pump, transcritical CO2, mobile MVAC) are intentionally omitted — see
+// OPERATING_DROPPED below.
+type OpRow = { slug: string; application: string; model: "res" | "com"; evaporatorF?: number; ambientF: number };
+const OPERATING_ROWS: OpRow[] = [
+  { slug: "r-410a", application: "Residential AC, 95°F ambient", model: "res", ambientF: 95 },
+  { slug: "r-32", application: "Residential AC, 95°F ambient", model: "res", ambientF: 95 },
+  { slug: "r-454b", application: "Residential AC, 95°F ambient", model: "res", ambientF: 95 },
+  { slug: "r-22", application: "Residential AC (legacy), 95°F ambient", model: "res", ambientF: 95 },
+  { slug: "r-407c", application: "R-22 retrofit AC, 95°F ambient", model: "res", ambientF: 95 },
+  { slug: "r-404a", application: "Low-temp commercial, −20°F evap, 95°F ambient", model: "com", evaporatorF: -20, ambientF: 95 },
+  { slug: "r-448a", application: "Low-temp commercial retrofit, −20°F evap, 95°F ambient", model: "com", evaporatorF: -20, ambientF: 95 },
+  { slug: "r-454c", application: "Low-temp commercial, −20°F evap, 95°F ambient", model: "com", evaporatorF: -20, ambientF: 95 },
+];
+const OPERATING_DROPPED =
+  "R-744 (sub-critical + transcritical CO₂), R-290 heat pump, R-717 (ammonia) industrial, R-134a and R-513A chillers, and R-1234yf mobile A/C are omitted — their operating-pressure method isn't defined in the dataset-computed model yet.";
+
+/** Compute a whole-PSIG suction/head range for one row, or null if out of range. */
+function computeOpRange(row: OpRow): { suction: string; discharge: string } | null {
+  const sucLoT = row.model === "res" ? 38 : (row.evaporatorF as number) - 3;
+  const sucHiT = row.model === "res" ? 45 : (row.evaporatorF as number) + 3;
+  const headHiOff = row.model === "res" ? 25 : 30;
+  const sLo = satPressure(row.slug, sucLoT, "dew");
+  const sHi = satPressure(row.slug, sucHiT, "dew");
+  const dLo = satPressure(row.slug, row.ambientF + 15, "bubble");
+  const dHi = satPressure(row.slug, row.ambientF + headHiOff, "bubble");
+  if (sLo === null || sHi === null || dLo === null || dHi === null) return null;
+  return {
+    suction: `${Math.round(sLo)}-${Math.round(sHi)}`,
+    discharge: `${Math.round(dLo)}-${Math.round(dHi)}`,
+  };
+}
 
 const FAQS = [
   {
@@ -50,7 +96,7 @@ const FAQS = [
   },
   {
     q: "Can I use the calculator for retrofit decisions?",
-    a: "Yes — the PT calculator is useful for understanding the pressure envelope of candidate retrofit refrigerants relative to the original equipment design. Compare R-22 saturation values to R-407C bubble/dew values to see the retrofit pressure delta. Compare R-410A to R-32 saturation to confirm the small 5-8% pressure increase that R-32 introduces. For pair comparisons with full retrofit guidance, use the refrigerant comparison and retrofit compatibility tools.",
+    a: "Yes — the PT calculator is useful for understanding the pressure envelope of candidate retrofit refrigerants relative to the original equipment design. Compare R-22 saturation values to R-407C bubble/dew values to see the retrofit pressure delta. Compare R-410A to R-32 saturation to confirm the small (~2%) pressure increase that R-32 introduces. For pair comparisons with full retrofit guidance, use the refrigerant comparison and retrofit compatibility tools.",
   },
 ];
 
@@ -102,8 +148,7 @@ export default function PtCalculatorPage() {
           "P_sat = f(T)  or  T_sat = f(P)\n\nLinear interpolation between adjacent 1°F data points in the refrigerant's PT chart. For zeotropic blends, both bubble (saturated liquid) and dew (saturated vapor) curves are interpolated independently.",
         sourceCitation:
           "Saturation pressures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. For the 11 manufacturer-blend refrigerants not in CoolProp's reference library (R-448A, R-450A, R-1336mzz(Z), R-454C blended-data-mode, etc.), values come from the named manufacturer PT charts cited on each refrigerant's detail page. Cross-checked against AHRI Standard 700-2019 refrigerant specifications.",
-        workedExample:
-          "R-410A at 70°F: CoolProp returns P_bubble = 201.76 PSIG, P_dew = 201.07 PSIG (0.7 PSI glide — near-azeotropic).\n\nR-407C at 70°F: CoolProp returns P_bubble = 140.52 PSIG, P_dew = 117.29 PSIG (23 PSI glide — significant zeotrope).\n\nR-744 (CO2) at 70°F: P_sat = 838.13 PSIG. Above 87.8°F (the critical point) no saturation state exists and the chart truncates.\n\nR-32 at 95°F: 296 PSIG saturation. R-410A at 95°F: 278 PSIG. The 5-8 percent R-32 pressure premium over R-410A is consistent across the operating envelope.",
+        workedExample: `R-410A at 70°F: CoolProp returns P_bubble = 201.76 PSIG, P_dew = 201.07 PSIG (0.7 PSI glide — near-azeotropic).\n\nR-407C at 70°F: CoolProp returns P_bubble = 140.52 PSIG, P_dew = 117.29 PSIG (23 PSI glide — significant zeotrope).\n\nR-744 (CO2) at 70°F: P_sat = 838.13 PSIG. Above 87.8°F (the critical point) no saturation state exists and the chart truncates.\n\nR-32 at 95°F: ${satPressure("r-32", 95, "bubble")!.toFixed(1)} PSIG saturation. R-410A at 95°F: ${satPressure("r-410a", 95, "bubble")!.toFixed(1)} PSIG. R-32 runs about ${Math.round(((satPressure("r-32", 95, "bubble")! / satPressure("r-410a", 95, "bubble")!) - 1) * 100)}% higher than R-410A, consistent across the operating envelope.`,
       }}
       relatedTools={[
         { href: "/superheat-calculator/", label: "Superheat Calculator", blurb: "Suction-line PSIG plus measured °F to superheat, with diagnostic context." },
@@ -123,6 +168,34 @@ export default function PtCalculatorPage() {
 /* ──────────────────────── Body content ──────────────────────── */
 
 function RichContent() {
+  // ── Saturation temperatures for the worked examples, computed live from the
+  // CoolProp dataset. Curve rule: dew = suction/vapor side (superheat), bubble =
+  // liquid side (subcooling). No typed saturation temperatures below.
+  const e1EvapSat = satTemp("r-410a", 130, "dew")!; //     evap sat (superheat ref)
+  const e1CondSat = satTemp("r-410a", 380, "bubble")!; //  cond sat (subcooling ref)
+  const e2EvapSat = satTemp("r-410a", 100, "dew")!;
+  const e2CondSat = satTemp("r-410a", 320, "bubble")!;
+  const e3EvapSat = satTemp("r-410a", 160, "dew")!;
+  const e3CondSat = satTemp("r-410a", 480, "bubble")!;
+  const e4EvapDew = satTemp("r-454c", 7, "dew")!; //       evap outlet (superheat)
+  const e4EvapBub = satTemp("r-454c", 7, "bubble")!; //    evap inlet (reference)
+  const e4CondBub = satTemp("r-454c", 200, "bubble")!; //  cond outlet (subcooling)
+  const e4CondDew = satTemp("r-454c", 200, "dew")!; //     cond inlet (reference)
+  const e4ShDew = 5 - e4EvapDew; //        actual superheat (correct dew curve)
+  const e4ShBubWrong = 5 - e4EvapBub; //   wrong-curve contrast (bubble)
+  const e7EvapSat = satTemp("r-134a", 38, "dew")!;
+  const e7CondSat = satTemp("r-134a", 152, "bubble")!;
+  const e8EvapSat = satTemp("r-1234yf", 35, "dew")!;
+  const e8CondSat = satTemp("r-1234yf", 235, "bubble")!;
+  const e8R134aLo = satTemp("r-134a", 35, "dew")!;
+  const e8R134aHi = satTemp("r-134a", 235, "bubble")!;
+  const e9MtSat = satTemp("r-744", 290, "dew"); //         sub-critical MT evap
+  const e9LtSat = satTemp("r-744", 40, "dew"); //          below −40°F chart floor → null
+  const e10EvapSat = satTemp("r-410a", 70, "dew")!;
+  const e10CondSat = satTemp("r-410a", 320, "bubble")!;
+  const f1 = (n: number) => n.toFixed(1);
+  const f0 = (n: number) => n.toFixed(0);
+  const neg = (n: number) => (n < 0 ? `−${f1(-n)}` : f1(n)); // render minus sign nicely
   return (
     <>
       <TechSection icon="chart" tone="blue" title="What the PT calculator actually computes">
@@ -219,16 +292,16 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "130 PSIG", output: "45°F sat", note: "evaporator saturation" },
-              { input: "380 PSIG", output: "111°F sat", note: "condenser saturation" },
+              { input: "130 PSIG", output: `${f1(e1EvapSat)}°F sat`, note: "evaporator saturation" },
+              { input: "380 PSIG", output: `${f1(e1CondSat)}°F sat`, note: "condenser saturation" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat = 60°F − 45°F = 15°F", verdict: "ok", note: "in target 8-15°F" },
-              { formula: "Subcooling = 111°F − 100°F = 11°F", verdict: "ok", note: "in target 8-12°F" },
+              { formula: `Superheat = 60°F − ${f1(e1EvapSat)}°F = ${f1(60 - e1EvapSat)}°F`, verdict: "ok", note: "in target 8-15°F" },
+              { formula: `Subcooling = ${f1(e1CondSat)}°F − 100°F = ${f1(e1CondSat - 100)}°F`, verdict: "ok", note: "top of 8-12°F target" },
             ]}
           />
         </Panel>
@@ -257,16 +330,16 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "100 PSIG", output: "31°F sat", note: "evaporator saturation" },
-              { input: "320 PSIG", output: "99°F sat", note: "condenser saturation" },
+              { input: "100 PSIG", output: `${f1(e2EvapSat)}°F sat`, note: "evaporator saturation" },
+              { input: "320 PSIG", output: `${f1(e2CondSat)}°F sat`, note: "condenser saturation" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat = 65°F − 31°F = 34°F", verdict: "bad", note: "high — should be 8-15°F" },
-              { formula: "Subcooling = 99°F − 105°F = −6°F", verdict: "bad", note: "negative — flash gas in liquid line" },
+              { formula: `Superheat = 65°F − ${f1(e2EvapSat)}°F = ${f1(65 - e2EvapSat)}°F`, verdict: "bad", note: "high — should be 8-15°F" },
+              { formula: `Subcooling = ${f1(e2CondSat)}°F − 105°F = ${neg(e2CondSat - 105)}°F`, verdict: "bad", note: "negative — flash gas in liquid line" },
             ]}
           />
         </Panel>
@@ -301,23 +374,23 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "160 PSIG", output: "55°F sat", note: "evaporator saturation" },
-              { input: "480 PSIG", output: "130°F sat", note: "condenser saturation" },
+              { input: "160 PSIG", output: `${f1(e3EvapSat)}°F sat`, note: "evaporator saturation" },
+              { input: "480 PSIG", output: `${f1(e3CondSat)}°F sat`, note: "condenser saturation" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat = 55°F − 55°F = 0°F", verdict: "bad", note: "zero — slugging risk to compressor" },
-              { formula: "Subcooling = 130°F − 90°F = 40°F", verdict: "bad", note: "very high — excess liquid in condenser" },
+              { formula: `Superheat = 55°F − ${f1(e3EvapSat)}°F = ${neg(55 - e3EvapSat)}°F`, verdict: "bad", note: "negative — liquid floodback / slugging risk" },
+              { formula: `Subcooling = ${f1(e3CondSat)}°F − 90°F = ${f1(e3CondSat - 90)}°F`, verdict: "bad", note: "very high — excess liquid in condenser" },
             ]}
           />
         </Panel>
         <VerdictBanner status="bad" title="Overcharge — liquid is reaching the compressor">
-          Zero superheat with 40°F subcooling is the classic overcharge fingerprint. Excess
+          Negative superheat with 40°F subcooling is the classic overcharge fingerprint. Excess
           refrigerant backs up in the condenser (high subcooling) and saturated liquid
-          reaches the compressor suction (zero superheat); continued operation risks valve
+          reaches the compressor suction (negative superheat); continued operation risks valve
           damage or hydraulic lock.
         </VerdictBanner>
         <FixCallout>
@@ -345,26 +418,27 @@ function RichContent() {
         <Panel title="PT chart lookup (R-454C — dual curves)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "7 PSIG dew", output: "−20°F sat", note: "evap outlet — use for superheat" },
-              { input: "7 PSIG bubble", output: "−34°F sat", note: "evap inlet — reference only" },
-              { input: "200 PSIG bubble", output: "88°F sat", note: "cond outlet — use for subcooling" },
-              { input: "200 PSIG dew", output: "74°F sat", note: "cond inlet — reference only" },
+              { input: "7 PSIG dew", output: `${neg(e4EvapDew)}°F sat`, note: "evap outlet — use for superheat" },
+              { input: "7 PSIG bubble", output: `${neg(e4EvapBub)}°F sat`, note: "evap inlet — reference only" },
+              { input: "200 PSIG bubble", output: `${f1(e4CondBub)}°F sat`, note: "cond outlet — use for subcooling" },
+              { input: "200 PSIG dew", output: `${f1(e4CondDew)}°F sat`, note: "cond inlet — reference only" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat (dew) = 5°F − (−20°F) = 25°F", verdict: "warn", note: "high end of 10-20°F target" },
-              { formula: "Subcooling check: 95°F liquid vs 88°F bubble = −7°F", verdict: "bad", note: "liquid warmer than saturation — no subcooling" },
+              { formula: `Superheat (dew) = 5°F − (${neg(e4EvapDew)}°F) = ${f1(e4ShDew)}°F`, verdict: "warn", note: "above 10-20°F target" },
+              { formula: `Subcooling check: 95°F liquid vs ${f1(e4CondBub)}°F bubble = ${neg(e4CondBub - 95)}°F`, verdict: "bad", note: "liquid warmer than saturation — no subcooling" },
             ]}
           />
         </Panel>
         <VerdictBanner status="bad" title="Insufficient subcooling — condenser-side issue">
           Liquid line warmer than the bubble at discharge means the condenser is not
           subcooling — likely undercharge or restricted condenser airflow. Using the wrong
-          (bubble) curve for superheat would have computed 39°F instead of the actual 25°F,
-          a 14°F error equal to the glide that would drive wrong charging decisions.
+          (bubble) curve for superheat would have computed {f1(e4ShBubWrong)}°F instead of the
+          actual {f1(e4ShDew)}°F, a {f0(e4ShBubWrong - e4ShDew)}°F error equal to the glide that
+          would drive wrong charging decisions.
         </VerdictBanner>
         <FixCallout>
           Verify condenser fan operation, clean the coil, then check refrigerant charge by
@@ -383,14 +457,14 @@ function RichContent() {
           <ComparisonTable
             headers={["Refrigerant", "40°F", "70°F", "95°F", "Δ vs R-22"]}
             rows={[
-              { label: "R-22 (pure)", cells: ["69", "121", "181", "baseline"] },
-              { label: "R-407C bubble", cells: ["80", "141", "215", "+16-19%"], tone: "delta" },
-              { label: "R-407C dew", cells: ["63", "117", "180", "≈ R-22"], tone: "delta" },
+              { label: "R-22 (pure)", cells: [f0(satPressure("r-22", 40, "bubble")!), f0(satPressure("r-22", 70, "bubble")!), f0(satPressure("r-22", 95, "bubble")!), "baseline"] },
+              { label: "R-407C bubble", cells: [f0(satPressure("r-407c", 40, "bubble")!), f0(satPressure("r-407c", 70, "bubble")!), f0(satPressure("r-407c", 95, "bubble")!), "+15-17%"], tone: "delta" },
+              { label: "R-407C dew", cells: [f0(satPressure("r-407c", 40, "dew")!), f0(satPressure("r-407c", 70, "dew")!), f0(satPressure("r-407c", 95, "dew")!), "≈ R-22"], tone: "delta" },
             ]}
           />
         </Panel>
         <VerdictBanner status="info" title="Compatible retrofit — standard procedure applies">
-          R-407C bubble runs 16-19% above R-22; dew is essentially equal. Standard 500 PSI
+          R-407C bubble runs 15-17% above R-22; dew is essentially equal. Standard 500 PSI
           manifold gauges handle both refrigerants, and the difference matters mainly for
           service measurement: dew curve for superheat, bubble curve for subcooling on
           R-407C (R-22 has a single curve).
@@ -413,13 +487,13 @@ function RichContent() {
           <ComparisonTable
             headers={["Refrigerant", "40°F", "70°F", "95°F", "Δ vs R-410A"]}
             rows={[
-              { label: "R-410A (near-azeotrope)", cells: ["119", "202", "278", "baseline"] },
-              { label: "R-32 (pure)", cells: ["124", "206", "296", "+4-6%"], tone: "delta" },
+              { label: "R-410A (near-azeotrope)", cells: [f0(satPressure("r-410a", 40, "bubble")!), f0(satPressure("r-410a", 70, "bubble")!), f0(satPressure("r-410a", 95, "bubble")!), "baseline"] },
+              { label: "R-32 (pure)", cells: [f0(satPressure("r-32", 40, "bubble")!), f0(satPressure("r-32", 70, "bubble")!), f0(satPressure("r-32", 95, "bubble")!), "+2%"], tone: "delta" },
             ]}
           />
         </Panel>
         <VerdictBanner status="info" title="Yes — R-410A tools handle R-32 without modification">
-          Pressure delta is only 4-6% across the residential operating range, well inside
+          Pressure delta is only about 2% across the residential operating range, well inside
           the safety margin of R-410A-rated equipment (800 PSI gauges, hoses, recovery
           cylinders). The design changes for R-32 are flammability-related (A2L sealed
           motors, charge limits), not pressure ratings.
@@ -450,17 +524,17 @@ function RichContent() {
         <Panel title="PT chart lookup (R-134a)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "38 PSIG", output: "47°F sat", note: "evaporator saturation" },
-              { input: "152 PSIG", output: "113°F sat", note: "condenser saturation" },
+              { input: "38 PSIG", output: `${f1(e7EvapSat)}°F sat`, note: "evaporator saturation" },
+              { input: "152 PSIG", output: `${f1(e7CondSat)}°F sat`, note: "condenser saturation" },
             ]}
           />
         </Panel>
         <Panel title="Derived approach values" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Evap approach = 47°F − 45°F = 2°F", verdict: "ok", note: "target 2-5°F" },
-              { formula: "Cond approach = 113°F − 95°F = 18°F", verdict: "bad", note: "high — should be 5-10°F water-cooled" },
-              { formula: "Subcooling = 113°F − 95°F = 18°F", verdict: "warn", note: "high — consistent with cond approach" },
+              { formula: `Evap approach = 45°F − ${f1(e7EvapSat)}°F = ${f1(45 - e7EvapSat)}°F`, verdict: "ok", note: "target 2-5°F" },
+              { formula: `Cond approach = ${f1(e7CondSat)}°F − 95°F = ${f1(e7CondSat - 95)}°F`, verdict: "bad", note: "high — should be 5-10°F water-cooled" },
+              { formula: `Subcooling = ${f1(e7CondSat)}°F − 95°F = ${f1(e7CondSat - 95)}°F`, verdict: "warn", note: "high — consistent with cond approach" },
             ]}
           />
         </Panel>
@@ -496,24 +570,24 @@ function RichContent() {
         <Panel title="PT chart lookup (R-1234yf)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "35 PSIG", output: "39°F sat", note: "evaporator saturation" },
-              { input: "235 PSIG", output: "136°F sat", note: "condenser saturation" },
+              { input: "35 PSIG", output: `${f1(e8EvapSat)}°F sat`, note: "evaporator saturation" },
+              { input: "235 PSIG", output: `${f1(e8CondSat)}°F sat`, note: "condenser saturation" },
             ]}
           />
         </Panel>
         <Panel title="Interpretation" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Cabin air ≈ evap sat + 1-3°F ≈ 40°F", verdict: "ok", note: "appropriate cabin cooling" },
-              { formula: "Cond above ambient = 136°F − 100°F = 36°F", verdict: "ok", note: "typical stationary vehicle" },
+              { formula: `Cabin air ≈ evap sat (${f1(e8EvapSat)}°F) + 1-3°F ≈ ${f0(e8EvapSat + 3)}°F`, verdict: "ok", note: "appropriate cabin cooling" },
+              { formula: `Cond above ambient = ${f1(e8CondSat)}°F − 100°F = ${f1(e8CondSat - 100)}°F`, verdict: "ok", note: "high side, but typical for stationary idle" },
             ]}
           />
         </Panel>
         <VerdictBanner status="ok" title="Normal hot-day stationary MAC operation">
           Pressures and saturation temperatures fit typical hot-ambient stationary
           conditions. R-1234yf was engineered to preserve R-134a&apos;s pressure envelope
-          (R-134a at 35 PSIG = 41°F; at 235 PSIG = 144°F), so existing MAC service
-          procedures and equipment work without modification.
+          (R-134a at 35 PSIG = {f0(e8R134aLo)}°F; at 235 PSIG = {f0(e8R134aHi)}°F), so existing
+          MAC service procedures and equipment work without modification.
         </VerdictBanner>
         <FixCallout>
           If the customer wants more cabin cooling at idle, advise that road speed (more
@@ -542,8 +616,8 @@ function RichContent() {
         <Panel title="PT chart lookup (R-744)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "290 PSIG", output: "0°F sat", note: "MT evaporator — sub-critical" },
-              { input: "40 PSIG", output: "−50°F sat", note: "LT evaporator — sub-critical" },
+              { input: "290 PSIG", output: e9MtSat === null ? "out of range" : `${neg(e9MtSat)}°F sat`, note: "MT evaporator — sub-critical" },
+              { input: "40 PSIG", output: e9LtSat === null ? "out of range (below −40°F chart floor)" : `${neg(e9LtSat)}°F sat`, note: "LT evaporator — below the −40°F chart floor" },
               { input: "1350 PSIG", output: "out of range", note: "no saturation above 87.8°F critical point" },
             ]}
           />
@@ -581,23 +655,23 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A — reversed cycle)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "70 PSIG", output: "14°F sat", note: "outdoor coil — now the evaporator" },
-              { input: "320 PSIG", output: "99°F sat", note: "indoor coil — now the condenser" },
+              { input: "70 PSIG", output: `${f1(e10EvapSat)}°F sat`, note: "outdoor coil — now the evaporator" },
+              { input: "320 PSIG", output: `${f1(e10CondSat)}°F sat`, note: "indoor coil — now the condenser" },
             ]}
           />
         </Panel>
         <Panel title="Interpretation" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Outdoor coil = 30°F − 14°F = 16°F below ambient", verdict: "ok", note: "normal heating-mode evaporator" },
-              { formula: "Indoor coil = 99°F − 70°F = 29°F above return", verdict: "ok", note: "the temperature lift" },
+              { formula: `Outdoor coil = 30°F − ${f1(e10EvapSat)}°F = ${f1(30 - e10EvapSat)}°F below ambient`, verdict: "ok", note: "normal heating-mode evaporator" },
+              { formula: `Indoor coil = ${f1(e10CondSat)}°F − 70°F = ${f1(e10CondSat - 70)}°F above return`, verdict: "ok", note: "the temperature lift" },
             ]}
           />
         </Panel>
         <VerdictBanner status="ok" title="Normal heat-pump heating-mode operation">
-          Outdoor coil saturation must run below ambient to absorb heat — 14°F below
-          freezing means frost on the outdoor coil is expected, managed by defrost cycles.
-          Indoor coil 29°F above return air delivers a supply temperature around 95-100°F,
+          Outdoor coil saturation must run below ambient to absorb heat — {f1(e10EvapSat)}°F,
+          below freezing, means frost on the outdoor coil is expected, managed by defrost cycles.
+          Indoor coil {f1(e10CondSat - 70)}°F above return air delivers a supply temperature around 95-100°F,
           cooler than gas-furnace heat but normal for heat pumps.
         </VerdictBanner>
         <FixCallout>
@@ -630,28 +704,28 @@ function RichContent() {
               </tr>
             </thead>
             <tbody>
-              <tr><td>R-410A</td><td>Residential AC, 95°F ambient</td><td className="text-right">120-140</td><td className="text-right">350-400</td></tr>
-              <tr><td>R-32</td><td>Residential AC, 95°F ambient</td><td className="text-right">130-145</td><td className="text-right">360-410</td></tr>
-              <tr><td>R-454B</td><td>Residential AC, 95°F ambient</td><td className="text-right">115-135</td><td className="text-right">340-385</td></tr>
-              <tr><td>R-22</td><td>Residential AC (legacy), 95°F</td><td className="text-right">65-80</td><td className="text-right">240-290</td></tr>
-              <tr><td>R-407C</td><td>R-22 retrofit AC, 95°F</td><td className="text-right">70-90</td><td className="text-right">280-330</td></tr>
-              <tr><td>R-404A</td><td>Low-temp commercial, neg twenty evap</td><td className="text-right">15-25</td><td className="text-right">250-290</td></tr>
-              <tr><td>R-448A</td><td>Low-temp commercial retrofit</td><td className="text-right">13-20</td><td className="text-right">230-270</td></tr>
-              <tr><td>R-454C</td><td>Low-temp commercial new</td><td className="text-right">5-12</td><td className="text-right">220-260</td></tr>
-              <tr><td>R-134a</td><td>Centrifugal chiller, 45°F evap</td><td className="text-right">35-45</td><td className="text-right">145-180</td></tr>
-              <tr><td>R-513A</td><td>Chiller retrofit, 45°F evap</td><td className="text-right">38-48</td><td className="text-right">155-190</td></tr>
-              <tr><td>R-1234yf</td><td>Mobile AC, 100°F ambient</td><td className="text-right">30-45</td><td className="text-right">220-260</td></tr>
-              <tr><td>R-744 (sub-critical)</td><td>Cold-ambient CO2 refrigeration</td><td className="text-right">200-500</td><td className="text-right">600-900</td></tr>
-              <tr><td>R-744 (transcritical)</td><td>Warm-ambient CO2 refrigeration</td><td className="text-right">290-470</td><td className="text-right">1100-1700</td></tr>
-              <tr><td>R-290</td><td>Heat pump, 95°F ambient</td><td className="text-right">70-90</td><td className="text-right">200-260</td></tr>
-              <tr><td>R-717</td><td>Industrial low-temp, neg twenty evap</td><td className="text-right">4-8</td><td className="text-right">165-200</td></tr>
+              {OPERATING_ROWS.map((row) => {
+                const rr = getRefrigerant(row.slug);
+                const range = computeOpRange(row);
+                if (!rr || !range) return null;
+                return (
+                  <tr key={row.slug}>
+                    <td>{rr.displayName}</td>
+                    <td>{row.application}</td>
+                    <td className="text-right">{range.suction}</td>
+                    <td className="text-right">{range.discharge}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Source: ASHRAE Handbook of Refrigeration 2022, ACCA Manual T, equipment OEM service
-          literature. Actual operating ranges vary by equipment design and operating
-          conditions.
+          Suction and head are computed from the CoolProp-verified PT dataset (dew and bubble
+          saturation via satPressure, rounded to whole PSIG): residential = dew pressure of a
+          38–45°F evaporator with head 15–25°F above ambient; commercial = dew pressure within
+          ±3°F of the listed evaporator with head 15–30°F above ambient. Actual gauge readings
+          vary with charge, load, and equipment condition. {OPERATING_DROPPED}
         </p>
       </TechSection>
 
@@ -678,24 +752,35 @@ function RichContent() {
               </tr>
             </thead>
             <tbody>
-              <tr><td>R-22</td><td className="text-right">58</td><td className="text-right">76</td><td className="text-right">121</td><td className="text-right">181</td><td className="text-right">260</td></tr>
-              <tr><td>R-410A</td><td className="text-right">102</td><td className="text-right">130</td><td className="text-right">202</td><td className="text-right">278</td><td className="text-right">380</td></tr>
-              <tr><td>R-32</td><td className="text-right">110</td><td className="text-right">142</td><td className="text-right">206</td><td className="text-right">296</td><td className="text-right">410</td></tr>
-              <tr><td>R-454B</td><td className="text-right">99</td><td className="text-right">128</td><td className="text-right">190/184</td><td className="text-right">262/256</td><td className="text-right">360/350</td></tr>
-              <tr><td>R-134a</td><td className="text-right">28</td><td className="text-right">40</td><td className="text-right">71</td><td className="text-right">124</td><td className="text-right">187</td></tr>
-              <tr><td>R-404A</td><td className="text-right">73</td><td className="text-right">97</td><td className="text-right">148</td><td className="text-right">232</td><td className="text-right">332</td></tr>
-              <tr><td>R-407C</td><td className="text-right">53/43</td><td className="text-right">75/63</td><td className="text-right">141/117</td><td className="text-right">215/180</td><td className="text-right">305/258</td></tr>
-              <tr><td>R-454C</td><td className="text-right">30/22</td><td className="text-right">47/35</td><td className="text-right">141/112</td><td className="text-right">220/185</td><td className="text-right">305/255</td></tr>
-              <tr><td>R-744 (CO2)</td><td className="text-right">491</td><td className="text-right">595</td><td className="text-right">838</td><td className="text-right">transcritical</td><td className="text-right">transcritical</td></tr>
-              <tr><td>R-290</td><td className="text-right">56</td><td className="text-right">74</td><td className="text-right">110</td><td className="text-right">175</td><td className="text-right">250</td></tr>
-              <tr><td>R-717 (NH3)</td><td className="text-right">47</td><td className="text-right">62</td><td className="text-right">114</td><td className="text-right">181</td><td className="text-right">270</td></tr>
+              {QUICK_REF_SLUGS.map((slug) => {
+                const rr = getRefrigerant(slug);
+                if (!rr) return null;
+                const glide = rr.physical.hasSignificantGlide;
+                return (
+                  <tr key={slug}>
+                    <td>{rr.displayName}</td>
+                    {QUICK_REF_TEMPS.map((t) => {
+                      const bub = satPressure(slug, t, "bubble");
+                      const dew = satPressure(slug, t, "dew");
+                      const cell =
+                        bub === null
+                          ? "transcritical"
+                          : glide && dew !== null
+                            ? `${Math.round(bub)}/${Math.round(dew)}`
+                            : `${Math.round(bub)}`;
+                      return <td key={t} className="text-right">{cell}</td>;
+                    })}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Use this table for quick mental reference. For exact values at any temperature, use
-          the calculator above. Source: CoolProp 7.2.0; values verified against AHRI Standard
-          700-2019 specifications.
+          Computed live from the CoolProp 7.2.0 PT dataset via satPressure() — bubble
+          (saturated liquid) shown for pures; bubble/dew for zeotropic blends; “transcritical”
+          where the temperature is above the fluid&apos;s critical point. For exact values at
+          any temperature, use the calculator above.
         </p>
         <SaturationAt95FBars />
         <p className="text-xs text-zinc-500 dark:text-zinc-400">

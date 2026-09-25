@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
-import { refrigerants, getRefrigerant } from "@/data/refrigerants";
+import { refrigerants, getRefrigerant, satTemp } from "@/data/refrigerants";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { SubcoolingCalculator } from "@/components/calculators/SubcoolingCalculator";
 import {
@@ -66,6 +66,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function SubcoolingCalculatorPage() {
+  // Saturation temperature computed from the dataset (bubble = liquid side for subcooling).
+  const workedSat = satTemp("r-410a", 380, "bubble")!;
   return (
     <CalculatorShell
       schema={{
@@ -109,8 +111,7 @@ export default function SubcoolingCalculatorPage() {
           "Subcooling (°F) = T_sat(P_liquid) − T_liquid_line\n\nT_sat is read off the BUBBLE curve at the measured liquid pressure for zeotropic blends. For pure refrigerants and azeotropes, bubble ≡ dew, so the curve choice is moot.",
         sourceCitation:
           "Saturation temperatures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Target subcooling per equipment manufacturer service literature (Carrier, Trane, Lennox, Daikin, Goodman), ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 (Chapter 23), and ASHRAE HVAC Systems & Equipment 2024 (Chapter 43, chillers).",
-        workedExample:
-          "R-410A residential AC TXV system, 95°F outdoor:\n  Liquid pressure: 380 PSIG\n  Liquid-line temperature: 100°F\n  Saturation temperature at 380 PSIG: 111°F (CoolProp 7.2.0)\n  Subcooling = 111 − 100 = 11°F\n\nWithin the typical 8-12°F TXV target range. TXV systems are charged BY subcooling — adjust refrigerant in 1-2 oz increments until SC lands on target (usually 10°F).",
+        workedExample: `R-410A residential AC TXV system, 95°F outdoor:\n  Liquid pressure: 380 PSIG\n  Liquid-line temperature: 100°F\n  Saturation temperature at 380 PSIG: ${workedSat.toFixed(1)}°F (CoolProp 7.2.0)\n  Subcooling = ${workedSat.toFixed(1)} − 100 = ${(workedSat - 100).toFixed(1)}°F\n\nAt the top of the typical 8-12°F TXV target range. TXV systems are charged BY subcooling — adjust refrigerant in 1-2 oz increments until SC lands on target (usually 10°F).`,
       }}
       relatedTools={[
         { href: "/superheat-calculator/", label: "Superheat Calculator", blurb: "Suction-line companion. Together they pin down a system's charge state." },
@@ -138,6 +139,26 @@ export default function SubcoolingCalculatorPage() {
 /* ──────────────────────── Body content ──────────────────────── */
 
 function RichContent() {
+  // ── Saturation temps for the worked examples, computed from the dataset ──
+  // Subcooling is on the liquid line → BUBBLE curve.
+  // Superheat cross-checks are on the suction/vapor line → DEW curve.
+  const t = {
+    r410a380: satTemp("r-410a", 380, "bubble")!, // ex1 cond sat
+    r410a130dew: satTemp("r-410a", 130, "dew")!, // ex1 evap sat (SH)
+    r410a320: satTemp("r-410a", 320, "bubble")!, // ex2 cond sat
+    r410a100dew: satTemp("r-410a", 100, "dew")!, // ex2 evap sat (SH)
+    r410a440: satTemp("r-410a", 440, "bubble")!, // ex3 cond sat
+    r410a420: satTemp("r-410a", 420, "bubble")!, // ex4 cond sat
+    r407c320b: satTemp("r-407c", 320, "bubble")!, // ex5 cond outlet (correct)
+    r407c320d: satTemp("r-407c", 320, "dew")!, // ex5 cond inlet (wrong for SC)
+    r454c200b: satTemp("r-454c", 200, "bubble")!, // ex6 cond outlet (correct)
+    r454c200d: satTemp("r-454c", 200, "dew")!, // ex6 cond inlet (wrong for SC)
+    r134a152: satTemp("r-134a", 152, "bubble")!, // ex7 cond sat
+    r410a395: satTemp("r-410a", 395, "bubble")!, // ex8 outdoor coil sat
+    r32395: satTemp("r-32", 395, "bubble")!, // ex9 outdoor coil sat
+    r744_1350: satTemp("r-744", 1350, "bubble"), // ex10 → null (transcritical)
+  };
+  const f1 = (n: number) => n.toFixed(1);
   return (
     <>
       <TechSection icon="thermometer" tone="blue" title="What subcooling is and why it matters">
@@ -265,22 +286,23 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "380 PSIG", output: "111°F sat", note: "condenser saturation" },
-              { input: "130 PSIG", output: "45°F sat", note: "evap saturation (for SH cross-check)" },
+              { input: "380 PSIG", output: `${f1(t.r410a380)}°F sat`, note: "condenser saturation" },
+              { input: "130 PSIG", output: `${f1(t.r410a130dew)}°F sat`, note: "evap saturation (for SH cross-check)" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Subcooling = 111°F − 100°F = 11°F", verdict: "ok", note: "matches 10°F target ±1°F" },
-              { formula: "Superheat = 60°F − 45°F = 15°F", verdict: "ok", note: "TXV in 8-15°F range" },
+              { formula: `Subcooling = ${f1(t.r410a380)}°F − 100°F = ${f1(t.r410a380 - 100)}°F`, verdict: "ok", note: "top of 8-12°F band (10°F target)" },
+              { formula: `Superheat = 60°F − ${f1(t.r410a130dew)}°F = ${f1(60 - t.r410a130dew)}°F`, verdict: "ok", note: "TXV in 8-15°F range" },
             ]}
           />
         </Panel>
         <VerdictBanner status="ok" title="Properly charged — TXV operating">
-          Subcooling matches the 10°F nameplate target within tolerance; superheat
-          cross-check confirms TXV is regulating. No further service action.
+          Subcooling sits at the top of the 8-12°F band ({f1(t.r410a380 - 100)}°F vs the 10°F
+          nameplate target) — acceptable and within field tolerance; the superheat
+          cross-check confirms the TXV is regulating. No further service action.
         </VerdictBanner>
       </ServiceProblem>
 
@@ -303,16 +325,16 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "320 PSIG", output: "99°F sat", note: "condenser saturation" },
-              { input: "100 PSIG", output: "31°F sat", note: "evap saturation" },
+              { input: "320 PSIG", output: `${f1(t.r410a320)}°F sat`, note: "condenser saturation" },
+              { input: "100 PSIG", output: `${f1(t.r410a100dew)}°F sat`, note: "evap saturation" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Subcooling = 99°F − 108°F = −9°F", verdict: "bad", note: "negative — liquid line warmer than saturation" },
-              { formula: "Superheat = 75°F − 31°F = 44°F", verdict: "bad", note: "very high — confirms undercharge" },
+              { formula: `Subcooling = ${f1(t.r410a320)}°F − 108°F = ${f1(t.r410a320 - 108)}°F`, verdict: "bad", note: "negative — liquid line warmer than saturation" },
+              { formula: `Superheat = 75°F − ${f1(t.r410a100dew)}°F = ${f1(75 - t.r410a100dew)}°F`, verdict: "bad", note: "very high — confirms undercharge" },
             ]}
           />
         </Panel>
@@ -350,25 +372,26 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "440 PSIG", output: "120°F sat", note: "condenser saturation (very high)" },
+              { input: "440 PSIG", output: `${f1(t.r410a440)}°F sat`, note: "condenser saturation (very high)" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Subcooling = 120°F − 98°F = 22°F", verdict: "bad", note: "very high" },
-              { formula: "Condenser approach = 120°F − 115°F = 5°F", verdict: "info", note: "approach is normal — fouling NOT the cause" },
-              { formula: "Cond above ambient = 120°F − 95°F = 25°F", verdict: "bad", note: "very high — should be ~15-20°F" },
+              { formula: `Subcooling = ${f1(t.r410a440)}°F − 98°F = ${f1(t.r410a440 - 98)}°F`, verdict: "bad", note: "very high" },
+              { formula: `Condenser approach = ${f1(t.r410a440)}°F − 115°F = ${f1(t.r410a440 - 115)}°F`, verdict: "info", note: "still modest — not the fouling signature" },
+              { formula: `Cond above ambient = ${f1(t.r410a440)}°F − 95°F = ${f1(t.r410a440 - 95)}°F`, verdict: "bad", note: "very high — should be ~15-20°F" },
             ]}
           />
         </Panel>
         <VerdictBanner status="bad" title="Overcharge — condenser is healthy">
-          High SC with normal condenser approach (5°F) and high condenser-above-ambient
-          delta confirms overcharge: excess refrigerant fills the condenser, raising
-          saturation temperature for the same heat rejection load. If approach were also
-          high (12-18°F), fouling would be the cause. The 5°F approach proves the coil is
-          clean and airflow is good.
+          High SC with a still-modest condenser approach ({f1(t.r410a440 - 115)}°F) and a very
+          high condenser-above-ambient delta ({f1(t.r410a440 - 95)}°F) confirms overcharge:
+          excess refrigerant fills the condenser, raising saturation temperature for the same
+          heat rejection load. If approach were also high (15°F+, as in the fouled coil of
+          example 4), fouling would be the cause. The modest approach shows the coil is still
+          rejecting heat, so charge is the problem.
         </VerdictBanner>
         <FixCallout>
           Recover refrigerant in 1-2 oz increments using a recovery / charging scale. After
@@ -396,16 +419,16 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "420 PSIG", output: "117°F sat", note: "condenser saturation (very high)" },
+              { input: "420 PSIG", output: `${f1(t.r410a420)}°F sat`, note: "condenser saturation (very high)" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Subcooling = 117°F − 99°F = 18°F", verdict: "warn", note: "high" },
-              { formula: "Condenser approach = 117°F − 105°F = 12°F", verdict: "bad", note: "high — should be 3-7°F clean coil" },
-              { formula: "Cond above ambient = 117°F − 95°F = 22°F", verdict: "bad", note: "very high" },
+              { formula: `Subcooling = ${f1(t.r410a420)}°F − 99°F = ${f1(t.r410a420 - 99)}°F`, verdict: "warn", note: "high" },
+              { formula: `Condenser approach = ${f1(t.r410a420)}°F − 105°F = ${f1(t.r410a420 - 105)}°F`, verdict: "bad", note: "high — should be 3-7°F clean coil" },
+              { formula: `Cond above ambient = ${f1(t.r410a420)}°F − 95°F = ${f1(t.r410a420 - 95)}°F`, verdict: "bad", note: "very high" },
             ]}
           />
         </Panel>
@@ -441,24 +464,26 @@ function RichContent() {
         <Panel title="PT chart lookup (R-407C — dual curves)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "320 PSIG bubble", output: "118°F sat", note: "USE THIS — cond outlet saturation" },
-              { input: "320 PSIG dew", output: "107°F sat", note: "cond inlet — wrong for SC" },
+              { input: "320 PSIG bubble", output: `${f1(t.r407c320b)}°F sat`, note: "USE THIS — cond outlet saturation" },
+              { input: "320 PSIG dew", output: `${f1(t.r407c320d)}°F sat`, note: "cond inlet — wrong for SC" },
             ]}
           />
         </Panel>
         <Panel title="Derived (correct vs wrong-curve)" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Subcooling (bubble, correct) = 118°F − 98°F = 20°F", verdict: "warn", note: "high — overcharge?" },
-              { formula: "Subcooling (dew, wrong) = 107°F − 98°F = 9°F", verdict: "info", note: "would falsely look normal" },
+              { formula: `Subcooling (bubble, correct) = ${f1(t.r407c320b)}°F − 98°F = ${f1(t.r407c320b - 98)}°F`, verdict: "warn", note: "high — overcharge?" },
+              { formula: `Subcooling (dew, wrong) = ${f1(t.r407c320d)}°F − 98°F = ${f1(t.r407c320d - 98)}°F`, verdict: "info", note: `overestimates SC by the ${f1(t.r407c320d - t.r407c320b)}°F glide` },
             ]}
           />
         </Panel>
-        <VerdictBanner status="warn" title="Investigate overcharge or fouling — dew curve would have hidden it">
-          The correct bubble-curve calculation shows SC = 20°F, well above the 8-12°F
-          target — flags overcharge or condenser fouling for investigation. Using the wrong
-          dew curve would have shown SC = 9°F and signed off the system as properly
-          charged. Wrong-curve error = 11°F = R-407C glide.
+        <VerdictBanner status="warn" title="Investigate overcharge or fouling — and mind which curve you read">
+          The correct bubble-curve calculation shows SC = {f1(t.r407c320b - 98)}°F, well above
+          the 8-12°F target — flags overcharge or condenser fouling for investigation. The dew
+          temperature is the condenser-<em>inlet</em> boundary and sits {f1(t.r407c320d - t.r407c320b)}°F
+          higher, so reading SC off the dew curve would <em>overstate</em> it as {f1(t.r407c320d - 98)}°F —
+          inflated by the glide. Either way the system needs investigation, but subcooling is
+          always read off the bubble curve.
         </VerdictBanner>
         <FixCallout>
           For zeotropic blends (R-407C, R-454C, R-455A, R-448A, R-449A), always confirm PT
@@ -486,24 +511,23 @@ function RichContent() {
         <Panel title="PT chart lookup (R-454C — dual curves)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "200 PSIG bubble", output: "88°F sat", note: "USE THIS — cond outlet saturation" },
-              { input: "200 PSIG dew", output: "74°F sat", note: "cond inlet — wrong for SC" },
+              { input: "200 PSIG bubble", output: `${f1(t.r454c200b)}°F sat`, note: "USE THIS — cond outlet saturation" },
+              { input: "200 PSIG dew", output: `${f1(t.r454c200d)}°F sat`, note: "cond inlet — wrong for SC" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Subcooling (bubble, correct) = 88°F − 82°F = 6°F", verdict: "ok", note: "in 5-15°F LT walk-in target" },
-              { formula: "Wrong-curve error = 14°F = R-454C glide", verdict: "info", note: "dew would give SC = −8°F" },
+              { formula: `Subcooling (bubble, correct) = ${f1(t.r454c200b)}°F − 82°F = ${f1(t.r454c200b - 82)}°F`, verdict: "ok", note: "in 5-15°F LT walk-in target" },
+              { formula: `Wrong-curve error = ${f1(t.r454c200d - t.r454c200b)}°F = R-454C glide`, verdict: "info", note: `dew would give SC = ${f1(t.r454c200d - 82)}°F (overestimate)` },
             ]}
           />
         </Panel>
         <VerdictBanner status="ok" title="Within target — bubble curve gives correct answer">
-          6°F subcooling using the correct bubble curve is at the low end of the 5-15°F
-          walk-in freezer range. Wide line runs (typical for walk-in installations) often
-          shift SC toward the higher end of the range; if this freezer has short lines,
-          the low end is appropriate.
+          {f1(t.r454c200b - 82)}°F subcooling using the correct bubble curve sits mid-range in
+          the 5-15°F walk-in freezer target. Wide line runs (typical for walk-in installations)
+          push SC toward the higher end of the range; this reading is comfortably in band.
         </VerdictBanner>
       </ServiceProblem>
 
@@ -526,24 +550,24 @@ function RichContent() {
         <Panel title="PT chart lookup (R-134a)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "152 PSIG", output: "113°F sat", note: "condenser saturation" },
+              { input: "152 PSIG", output: `${f1(t.r134a152)}°F sat`, note: "condenser saturation" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Subcooling = 113°F − 110°F = 3°F", verdict: "ok", note: "chiller target 2-5°F" },
-              { formula: "Condenser approach = 113°F − 95°F = 18°F", verdict: "bad", note: "high — should be 5-10°F water-cooled" },
+              { formula: `Subcooling = ${f1(t.r134a152)}°F − 110°F = ${f1(t.r134a152 - 110)}°F`, verdict: "ok", note: "chiller target 2-5°F" },
+              { formula: `Condenser approach = ${f1(t.r134a152)}°F − 95°F = ${f1(t.r134a152 - 95)}°F`, verdict: "bad", note: "high — should be 5-10°F water-cooled" },
             ]}
           />
         </Panel>
         <VerdictBanner status="ok" title="Subcooling normal — but condenser fouling needs attention">
-          3°F SC is within the chiller 2-5°F design range — chillers run lower SC than
-          residential AC because the flooded-evaporator design and high-side liquid sump
-          handle hold-up rather than relying on condenser sub-cooling. The high condenser
-          approach (18°F vs target 5-10°F) is the real issue: condenser tubes need cleaning
-          or condenser water flow is restricted.
+          {f1(t.r134a152 - 110)}°F SC is within the chiller 2-5°F design range — chillers run
+          lower SC than residential AC because the flooded-evaporator design and high-side
+          liquid sump handle hold-up rather than relying on condenser sub-cooling. The high
+          condenser approach ({f1(t.r134a152 - 95)}°F vs target 5-10°F) is the real issue:
+          condenser tubes need cleaning or condenser water flow is restricted.
         </VerdictBanner>
         <FixCallout>
           Do NOT add refrigerant. Schedule a condenser tube brush-and-flush per chiller OEM
@@ -572,19 +596,19 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "395 PSIG", output: "114°F sat", note: "outdoor coil (= condenser in cooling)" },
+              { input: "395 PSIG", output: `${f1(t.r410a395)}°F sat`, note: "outdoor coil (= condenser in cooling)" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Subcooling = 114°F − 102°F = 12°F", verdict: "ok", note: "heat pump cooling target 8-15°F" },
+              { formula: `Subcooling = ${f1(t.r410a395)}°F − 102°F = ${f1(t.r410a395 - 102)}°F`, verdict: "ok", note: "heat pump cooling target 8-15°F" },
             ]}
           />
         </Panel>
         <VerdictBanner status="ok" title="Properly charged for cooling mode">
-          12°F SC is in the heat pump cooling-mode target range. Heat pump systems typically
+          {f1(t.r410a395 - 102)}°F SC is in the heat pump cooling-mode target range. Heat pump systems typically
           have a slightly wider SC target than straight AC (8-15°F vs 8-12°F) because of the
           dual-mode TXV / accumulator design — extra SC margin ensures liquid column in both
           cooling and heating mode operation. Verify nameplate for the specific
@@ -618,29 +642,31 @@ function RichContent() {
         <Panel title="PT chart lookup (R-32)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "395 PSIG", output: "111°F sat", note: "outdoor coil saturation (R-32 pure)" },
+              { input: "395 PSIG", output: `${f1(t.r32395)}°F sat`, note: "outdoor coil saturation (R-32 pure)" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Subcooling at OU = 111°F − 100°F = 11°F", verdict: "warn", note: "below long-line target" },
+              { formula: `Subcooling at OU = ${f1(t.r32395)}°F − 100°F = ${f1(t.r32395 - 100)}°F`, verdict: "ok", note: "meets 13°F long-line target" },
               { formula: "Long-line target (75 ft) = 13°F per OEM table", verdict: "info", note: "+2-3°F per 25 ft over 25-ft baseline" },
             ]}
           />
         </Panel>
-        <VerdictBanner status="warn" title="Under target for long-line installation — add small charge">
+        <VerdictBanner status="ok" title="On target for the long-line installation">
           For line sets over 25 feet, OEMs (Mitsubishi, Daikin, Fujitsu) specify higher
           subcooling at the outdoor unit to ensure sufficient liquid column reaches the
           indoor TXV. The 75-ft line set adds ~3°F to the baseline 10°F target; your reading
-          of 11°F is below the 13°F long-line target.
+          of {f1(t.r32395 - 100)}°F meets the 13°F long-line target, so the charge is correct
+          for this installation.
         </VerdictBanner>
         <FixCallout>
-          Add refrigerant in 2-4 oz increments per the OEM line-length charge correction
-          table (typically +0.4 to 0.6 oz per foot over 25 ft for R-32 / R-410A mini-splits).
-          Re-test SC at the outdoor unit until it reaches the long-line target. Verify
-          superheat at the indoor unit lands in 8-15°F.
+          No charge adjustment needed — SC at the outdoor unit is on the long-line target. Had
+          it fallen short, you would add refrigerant in 2-4 oz increments per the OEM
+          line-length charge correction table (typically +0.4 to 0.6 oz per foot over 25 ft for
+          R-32 / R-410A mini-splits) and re-test. Finish by verifying superheat at the indoor
+          unit lands in 8-15°F and documenting the line-length correction used.
         </FixCallout>
       </ServiceProblem>
 
@@ -662,7 +688,7 @@ function RichContent() {
         <Panel title="PT chart lookup (R-744)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "1350 PSIG", output: "out of range", note: "no saturation above 87.8°F critical point" },
+              { input: "1350 PSIG", output: t.r744_1350 === null ? "above critical (transcritical)" : `${f1(t.r744_1350)}°F sat`, note: "no saturation above 87.8°F critical point" },
             ]}
           />
         </Panel>

@@ -168,6 +168,41 @@ sentence, no "23.6"/"Manual D"/"Guideline K"/brand-table. Lint: 0 errors. **Not 
 
 ---
 
+## 2026-09-25 — Fix 3D/18: calculators compute reference tables and worked examples from the dataset
+
+**pt-calculator** (`src/app/pt-calculator/page.tsx`):
+- "Saturation pressure quick reference" table now computed live via `satPressure()`
+  over 11 fluids × [32,45,70,95,120]°F (bubble for pures, bubble/dew for blends,
+  "transcritical" above critical). Corrects the wrong 95/120°F values (e.g. R-410A
+  95°F 278→296, 120°F 380→419; R-32, R-134a, R-404A, R-407C, R-454C all corrected).
+- "Operating pressure ranges" table rebuilt from the 3A method (residential dew38-45 /
+  bubble amb+15..25; commercial dew evap±3 / bubble amb+15..30). Kept the 8 rows with a
+  computed method (R-410A/R-32/R-454B/R-22/R-407C residential; R-404A/R-448A/R-454C
+  commercial); **dropped and listed** R-744, R-290 heat pump, R-717, R-134a & R-513A
+  chillers, R-1234yf mobile. Removes the "neg twenty evap" glitch.
+- Worked example "5-8 percent / R-32 296 / R-410A 278" → computed `${satPressure}`
+  (302.9 vs 296.4, ~2%). FAQ "5-8%" → "~2%".
+
+**Worked examples (pt / superheat / subcooling calculators):** every saturation temp/
+pressure now computed inline via `satTemp()`/`satPressure()` (dew for superheat, bubble
+for subcooling), verdicts rechecked. Key fixes: R-410A 380 psig → 112.6°F so SC off a
+100°F line = 12.6°F (was 11°F). Two superheat examples had physically-inverted hand-typed
+saturations (R-407C bubble>dew; R-134a chiller sat 47°F > 45°F chilled water) → corrected,
+**2 verdicts changed ok→warn**. pt-calc R-454C freezer had inverted cond bubble/dew →
+fixed; R-744 LT "−50°F" (below the −40°F chart floor) → "out of range".
+
+**Also fixed** a now-inconsistent factual claim on superheat-calculator: the bubble curve
+*overstates* superheat by the glide (bubble temp < dew temp at a given pressure), not
+"underestimates" — corrected the FAQ, the mistakes list, and two captions to match the
+recomputed examples.
+
+**Verification:** build exit 0, all gates. Grep: "5-8 percent", "neg twenty evap",
+"approximately 278" all gone; no typed pressures remain in the pt-calc tables. Curl
+confirms quick-ref 296/419, operating 114-130/367-419, 380→112.6 in both calculators,
+R-32/R-410A ~2%. Lint: 0 errors. **Not pushed.**
+
+---
+
 ## 2026-09-25 — Fix 2/18: 301 redirects for legacy, typo and old comparison URLs
 
 **Goal.** Every legacy/typo/old URL search engines still request must answer with

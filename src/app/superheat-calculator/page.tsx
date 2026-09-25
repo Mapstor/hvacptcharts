@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon, Thermometer } from "lucide-react";
-import { refrigerants, getRefrigerant, getPressureAtTempF } from "@/data/refrigerants";
+import { refrigerants, getRefrigerant, getPressureAtTempF, satTemp } from "@/data/refrigerants";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { SuperheatCalculator } from "@/components/calculators/SuperheatCalculator";
 import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatrix";
@@ -44,7 +44,7 @@ const FAQS = [
   },
   {
     q: "Why does superheat math differ for zeotropic blends?",
-    a: "Zeotropic blends (R-407C, R-454C, R-455A, R-448A, R-449A) condense and evaporate across a temperature range at constant pressure. On the suction line the refrigerant has already passed through evaporation — the relevant saturation boundary is the dew temperature, not the bubble temperature. This calculator uses the dew curve automatically for zeotropic blends. Using the bubble curve for R-407C would underestimate superheat by approximately 11°F; for R-455A by approximately 22°F.",
+    a: "Zeotropic blends (R-407C, R-454C, R-455A, R-448A, R-449A) condense and evaporate across a temperature range at constant pressure. On the suction line the refrigerant has already passed through evaporation — the relevant saturation boundary is the dew temperature, not the bubble temperature. This calculator uses the dew curve automatically for zeotropic blends. Using the bubble curve for R-407C would overstate superheat by approximately 11°F; for R-455A by approximately 22°F (bubble sits below dew at a given pressure, so subtracting it inflates the result).",
   },
   {
     q: "Is this the same as Total Superheat versus Evaporator Superheat?",
@@ -96,7 +96,7 @@ export default function SuperheatCalculatorPage() {
         commonErrors: [
           "Reading the discharge pressure instead of the suction pressure. The suction is the LOW side; discharge is the HIGH side.",
           "Probing the suction line without insulating — ambient air pulls the reading toward room temperature, inflating apparent superheat.",
-          "On zeotropic blends, using the bubble pressure for saturation temperature — underestimates superheat by the temperature glide (11°F for R-407C, 14°F for R-454C, 22°F for R-455A). This calculator does dew-curve math automatically.",
+          "On zeotropic blends, using the bubble pressure for saturation temperature — overstates superheat by the temperature glide (11°F for R-407C, 14°F for R-454C, 22°F for R-455A). This calculator does dew-curve math automatically.",
           "Forgetting that fixed-orifice and TXV systems have very different target ranges. A fixed-orifice system reading 10°F superheat on a 95°F day may actually be undercharged per the fixed-orifice charging chart.",
           "Reading SH before steady state. Allow 10-20 minutes after compressor start before the readings stabilize.",
         ],
@@ -139,6 +139,54 @@ export default function SuperheatCalculatorPage() {
 /* ──────────────────────── Body content ──────────────────────── */
 
 function RichContent() {
+  // ── Worked-example saturation temps, superheat, and subcooling ──
+  // Every value below is computed from the dataset via satTemp(). SUPERHEAT is
+  // read on the DEW curve (suction/vapor side); SUBCOOLING on the BUBBLE curve
+  // (liquid side). No saturation temperature is hand-typed.
+  // Example 1 — R-410A fixed orifice
+  const ex1Sat = satTemp("r-410a", 120, "dew")!;
+  const ex1SH = 56 - ex1Sat;
+  // Example 2 — R-410A TXV (commissioned)
+  const ex2SucSat = satTemp("r-410a", 130, "dew")!;
+  const ex2DisSat = satTemp("r-410a", 380, "bubble")!;
+  const ex2SH = 60 - ex2SucSat;
+  const ex2SC = ex2DisSat - 100;
+  // Example 3 — R-410A high superheat
+  const ex3SucSat = satTemp("r-410a", 110, "dew")!;
+  const ex3DisSat = satTemp("r-410a", 340, "bubble")!;
+  const ex3SH = 75 - ex3SucSat;
+  const ex3SC = ex3DisSat - 108;
+  // Example 4 — R-410A low superheat
+  const ex4SucSat = satTemp("r-410a", 155, "dew")!;
+  const ex4DisSat = satTemp("r-410a", 460, "bubble")!;
+  const ex4SH = 55 - ex4SucSat;
+  const ex4SC = ex4DisSat - 92;
+  // Example 5 — R-22 slugging
+  const ex5SucSat = satTemp("r-22", 80, "dew")!;
+  const ex5DisSat = satTemp("r-22", 245, "bubble")!;
+  const ex5SH = 48 - ex5SucSat;
+  const ex5SC = ex5DisSat - 75;
+  // Example 6 — R-407C (dew correct vs bubble wrong)
+  const ex6Dew = satTemp("r-407c", 30, "dew")!;
+  const ex6Bubble = satTemp("r-407c", 30, "bubble")!;
+  const ex6SHdew = 35 - ex6Dew;
+  const ex6SHbubble = 35 - ex6Bubble;
+  const ex6Glide = ex6Dew - ex6Bubble;
+  // Example 7 — R-454C (dew correct vs bubble wrong)
+  const ex7Dew = satTemp("r-454c", 5, "dew")!;
+  const ex7Bubble = satTemp("r-454c", 5, "bubble")!;
+  const ex7SHdew = 0 - ex7Dew;
+  const ex7SHbubble = 0 - ex7Bubble;
+  const ex7Glide = ex7Dew - ex7Bubble;
+  // Example 8 — R-410A heat pump, heating mode
+  const ex8Sat = satTemp("r-410a", 80, "dew")!;
+  const ex8SH = 30 - ex8Sat;
+  const ex8Depression = 35 - ex8Sat;
+  // Example 9 — R-134a centrifugal chiller
+  const ex9Sat = satTemp("r-134a", 38, "dew")!;
+  const ex9SH = 50 - ex9Sat;
+  const ex9Approach = 45 - ex9Sat;
+
   return (
     <>
       <TechSection icon="thermometer" tone="blue" title="What superheat is and why we measure it">
@@ -287,20 +335,20 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "120 PSIG", output: "41°F sat", note: "evaporator saturation" },
+              { input: "120 PSIG", output: `${ex1Sat.toFixed(1)}°F sat`, note: "evaporator saturation" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat = 56°F − 41°F = 15°F", verdict: "warn", note: "actual measured value" },
+              { formula: `Superheat = 56°F − ${ex1Sat.toFixed(1)}°F = ${ex1SH.toFixed(1)}°F`, verdict: "warn", note: "actual measured value" },
               { formula: "target superheat at 63°F WB / 95°F DB ≈ 7°F", verdict: "info", note: "fixed-orifice charging-chart target" },
             ]}
           />
         </Panel>
         <VerdictBanner status="warn" title="Undercharged — add refrigerant to lower superheat">
-          Measured SH is 15°F vs the fixed-orifice charging-chart target of approximately 7°F
+          Measured SH is {ex1SH.toFixed(1)}°F vs the fixed-orifice charging-chart target of approximately 7°F
           at this WB / DB combination. Superheat above target means the evaporator is starved;
           the system is undercharged, and adding refrigerant will reduce superheat toward the
           target.
@@ -331,22 +379,23 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "130 PSIG", output: "45°F sat", note: "evaporator saturation" },
-              { input: "380 PSIG", output: "111°F sat", note: "condenser saturation (for SC cross-check)" },
+              { input: "130 PSIG", output: `${ex2SucSat.toFixed(1)}°F sat`, note: "evaporator saturation" },
+              { input: "380 PSIG", output: `${ex2DisSat.toFixed(1)}°F sat`, note: "condenser saturation (for SC cross-check)" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat = 60°F − 45°F = 15°F", verdict: "ok", note: "TXV target 8-15°F" },
-              { formula: "Subcooling = 111°F − 100°F = 11°F", verdict: "ok", note: "target 8-12°F (sanity check)" },
+              { formula: `Superheat = 60°F − ${ex2SucSat.toFixed(1)}°F = ${ex2SH.toFixed(1)}°F`, verdict: "ok", note: "TXV target 8-15°F" },
+              { formula: `Subcooling = ${ex2DisSat.toFixed(1)}°F − 100°F = ${ex2SC.toFixed(1)}°F`, verdict: "ok", note: "target 8-12°F (sanity check)" },
             ]}
           />
         </Panel>
         <VerdictBanner status="ok" title="TXV operating in target range">
-          Superheat sits inside the 8-15°F TXV target window and subcooling confirms the
-          charge is correct. The valve is regulating properly. No further service action.
+          Superheat ({ex2SH.toFixed(1)}°F) sits inside the 8-15°F TXV target window and subcooling
+          ({ex2SC.toFixed(1)}°F, right at the top of the 8-12°F range) confirms the charge is correct.
+          The valve is regulating properly. No further service action.
         </VerdictBanner>
       </ServiceProblem>
 
@@ -369,16 +418,16 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "110 PSIG", output: "36°F sat", note: "evap saturation (low for 95°F day)" },
-              { input: "340 PSIG", output: "104°F sat", note: "cond saturation" },
+              { input: "110 PSIG", output: `${ex3SucSat.toFixed(1)}°F sat`, note: "evap saturation (low for 95°F day)" },
+              { input: "340 PSIG", output: `${ex3DisSat.toFixed(1)}°F sat`, note: "cond saturation" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat = 75°F − 36°F = 39°F", verdict: "bad", note: "very high — should be 8-15°F" },
-              { formula: "Subcooling = 104°F − 108°F = −4°F", verdict: "bad", note: "negative — confirms undercharge" },
+              { formula: `Superheat = 75°F − ${ex3SucSat.toFixed(1)}°F = ${ex3SH.toFixed(1)}°F`, verdict: "bad", note: "very high — should be 8-15°F" },
+              { formula: `Subcooling = ${ex3DisSat.toFixed(1)}°F − 108°F = ${ex3SC.toFixed(1)}°F`, verdict: "bad", note: "negative — confirms undercharge" },
             ]}
           />
         </Panel>
@@ -414,21 +463,21 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "155 PSIG", output: "53°F sat", note: "evap saturation (high for cooling)" },
-              { input: "460 PSIG", output: "127°F sat", note: "cond saturation (very high)" },
+              { input: "155 PSIG", output: `${ex4SucSat.toFixed(1)}°F sat`, note: "evap saturation (high for cooling)" },
+              { input: "460 PSIG", output: `${ex4DisSat.toFixed(1)}°F sat`, note: "cond saturation (very high)" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat = 55°F − 53°F = 2°F", verdict: "bad", note: "near zero — slugging risk" },
-              { formula: "Subcooling = 127°F − 92°F = 35°F", verdict: "bad", note: "very high — overcharge" },
+              { formula: `Superheat = 55°F − ${ex4SucSat.toFixed(1)}°F = ${ex4SH.toFixed(1)}°F`, verdict: "bad", note: "near zero — slugging risk" },
+              { formula: `Subcooling = ${ex4DisSat.toFixed(1)}°F − 92°F = ${ex4SC.toFixed(1)}°F`, verdict: "bad", note: "very high — overcharge" },
             ]}
           />
         </Panel>
         <VerdictBanner status="bad" title="Overcharge — recover refrigerant immediately">
-          Near-zero superheat with 35°F subcooling is the classic overcharge fingerprint:
+          Near-zero superheat with {ex4SC.toFixed(1)}°F subcooling is the classic overcharge fingerprint:
           excess refrigerant backs up in the condenser (high SC) and saturated liquid is
           reaching the compressor (near-zero SH). Continued operation risks valve damage or
           hydraulic lock; the compressor noise is the warning sign.
@@ -459,22 +508,23 @@ function RichContent() {
         <Panel title="PT chart lookup (R-22)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "80 PSIG", output: "48°F sat", note: "evaporator saturation" },
-              { input: "245 PSIG", output: "115°F sat", note: "condenser saturation" },
+              { input: "80 PSIG", output: `${ex5SucSat.toFixed(1)}°F sat`, note: "evaporator saturation" },
+              { input: "245 PSIG", output: `${ex5DisSat.toFixed(1)}°F sat`, note: "condenser saturation" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat = 48°F − 48°F = 0°F", verdict: "bad", note: "saturated mixture in suction" },
-              { formula: "Subcooling = 115°F − 75°F = 40°F", verdict: "bad", note: "extreme — confirms overcharge" },
+              { formula: `Superheat = 48°F − ${ex5SucSat.toFixed(1)}°F = ${ex5SH.toFixed(1)}°F`, verdict: "bad", note: "essentially zero — saturated mixture in suction" },
+              { formula: `Subcooling = ${ex5DisSat.toFixed(1)}°F − 75°F = ${ex5SC.toFixed(1)}°F`, verdict: "bad", note: "extreme — confirms overcharge" },
             ]}
           />
         </Panel>
         <VerdictBanner status="bad" title="Imminent compressor damage — shut system down">
-          Zero superheat means the suction line carries a saturated liquid-vapor mixture; the
-          compressor is actively slugging. Combined with 40°F subcooling (severe overcharge)
+          Near-zero superheat ({ex5SH.toFixed(1)}°F) means the suction line carries an essentially
+          saturated liquid-vapor mixture; the compressor is actively slugging. Combined with
+          {" "}{ex5SC.toFixed(1)}°F subcooling (severe overcharge)
           this is an emergency: every minute of run-time is breaking valves and crankshaft
           bearings.
         </VerdictBanner>
@@ -504,24 +554,25 @@ function RichContent() {
         <Panel title="PT chart lookup (R-407C — dual curves)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "30 PSIG dew", output: "20°F sat", note: "USE THIS — evap outlet saturation" },
-              { input: "30 PSIG bubble", output: "31°F sat", note: "evap inlet — wrong for SH" },
+              { input: "30 PSIG dew", output: `${ex6Dew.toFixed(1)}°F sat`, note: "USE THIS — evap outlet saturation" },
+              { input: "30 PSIG bubble", output: `${ex6Bubble.toFixed(1)}°F sat`, note: "evap inlet — wrong for SH" },
             ]}
           />
         </Panel>
         <Panel title="Derived (correct vs wrong-curve)" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat (dew, correct) = 35°F − 20°F = 15°F", verdict: "ok", note: "in 6-12°F MT target — slightly high" },
-              { formula: "Superheat (bubble, wrong) = 35°F − 31°F = 4°F", verdict: "bad", note: "would falsely suggest near-slugging" },
+              { formula: `Superheat (dew, correct) = 35°F − ${ex6Dew.toFixed(1)}°F = ${ex6SHdew.toFixed(1)}°F`, verdict: "warn", note: "above 6-12°F MT target — evaporator starved" },
+              { formula: `Superheat (bubble, wrong) = 35°F − ${ex6Bubble.toFixed(1)}°F = ${ex6SHbubble.toFixed(1)}°F`, verdict: "bad", note: `overstates SH by the ${ex6Glide.toFixed(1)}°F glide` },
             ]}
           />
         </Panel>
-        <VerdictBanner status="ok" title="Correctly calculated — within target">
+        <VerdictBanner status="warn" title="High superheat — evaporator starved, verify charge and airflow">
           Using the dew curve (the correct curve for suction-line superheat on zeotropic
-          blends) gives SH = 15°F, slightly above the 6-12°F MT walk-in target but
-          acceptable. Using the bubble curve would have falsely shown SH = 4°F and led to a
-          recover-refrigerant action that would have made the system worse.
+          blends) gives SH = {ex6SHdew.toFixed(1)}°F, well above the 6-12°F MT walk-in target —
+          the evaporator is starved, so check charge, TXV feed, and evaporator airflow. Using the
+          bubble curve would have shown SH = {ex6SHbubble.toFixed(1)}°F, overstating superheat by
+          the {ex6Glide.toFixed(1)}°F glide and pushing you to over-add refrigerant.
         </VerdictBanner>
         <FixCallout>
           For zeotropic blends (R-407C, R-454C, R-455A, R-448A, R-449A), always confirm your
@@ -550,21 +601,21 @@ function RichContent() {
         <Panel title="PT chart lookup (R-454C — dual curves)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "5 PSIG dew", output: "−22°F sat", note: "USE THIS — evap outlet saturation" },
-              { input: "5 PSIG bubble", output: "−36°F sat", note: "evap inlet — wrong for SH" },
+              { input: "5 PSIG dew", output: `${ex7Dew.toFixed(1)}°F sat`, note: "USE THIS — evap outlet saturation" },
+              { input: "5 PSIG bubble", output: `${ex7Bubble.toFixed(1)}°F sat`, note: "evap inlet — wrong for SH" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat (dew, correct) = 0°F − (−22°F) = 22°F", verdict: "warn", note: "high end of LT 8-15°F target" },
-              { formula: "Wrong-curve error = 14°F = R-454C glide", verdict: "info", note: "bubble curve would show SH = 36°F" },
+              { formula: `Superheat (dew, correct) = 0°F − (${ex7Dew.toFixed(1)}°F) = ${ex7SHdew.toFixed(1)}°F`, verdict: "warn", note: "above LT 8-15°F target" },
+              { formula: `Wrong-curve error = ${ex7Glide.toFixed(1)}°F = R-454C glide`, verdict: "info", note: `bubble curve would show SH = ${ex7SHbubble.toFixed(1)}°F` },
             ]}
           />
         </Panel>
         <VerdictBanner status="warn" title="Superheat high — likely undercharge or TXV throttling">
-          22°F SH using the correct dew curve is above the 8-15°F LT target. Either the
+          {ex7SHdew.toFixed(1)}°F SH using the correct dew curve is above the 8-15°F LT target. Either the
           system is slightly undercharged, the TXV is slightly over-controlling, or the
           evaporator coil has reduced airflow. Cross-check subcooling and look for frost
           patterns on the evaporator before charging.
@@ -596,21 +647,21 @@ function RichContent() {
         <Panel title="PT chart lookup (R-410A)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "80 PSIG", output: "21°F sat", note: "outdoor coil — now the evaporator" },
+              { input: "80 PSIG", output: `${ex8Sat.toFixed(1)}°F sat`, note: "outdoor coil — now the evaporator" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat = 30°F − 21°F = 9°F", verdict: "ok", note: "in heating-mode 10-20°F target" },
-              { formula: "Outdoor coil = 35°F − 21°F = 14°F below ambient", verdict: "ok", note: "normal heating-mode evap depression" },
+              { formula: `Superheat = 30°F − ${ex8Sat.toFixed(1)}°F = ${ex8SH.toFixed(1)}°F`, verdict: "ok", note: "just below heating-mode 10-20°F target" },
+              { formula: `Outdoor coil = 35°F − ${ex8Sat.toFixed(1)}°F = ${ex8Depression.toFixed(1)}°F below ambient`, verdict: "ok", note: "normal heating-mode evap depression" },
             ]}
           />
         </Panel>
         <VerdictBanner status="ok" title="TXV operating correctly in heating mode">
-          9°F superheat sits at the low end of the heating-mode 10-20°F target range; the
-          TXV is regulating. Outdoor coil saturation at 21°F is 14°F below ambient — normal
+          {ex8SH.toFixed(1)}°F superheat sits just below the heating-mode 10-20°F target range; the
+          TXV is regulating. Outdoor coil saturation at {ex8Sat.toFixed(1)}°F is {ex8Depression.toFixed(1)}°F below ambient — normal
           for heating mode where the evaporator must run below ambient to absorb heat from
           cold outdoor air.
         </VerdictBanner>
@@ -626,7 +677,7 @@ function RichContent() {
       <ServiceProblem
         number={9}
         refrigerant="R-134a (centrifugal chiller)"
-        title="R-134a centrifugal chiller — low evaporator superheat is normal"
+        title="R-134a centrifugal chiller — very low superheat targets (2–5°F)"
         scenario="Water-cooled R-134a centrifugal chiller, 45°F leaving chilled water, 85°F entering condenser water. You measure suction and want to verify the evaporator is operating correctly. Chillers are different from residential AC — much lower SH targets."
       >
         <Panel title="Measured" icon={Gauge}>
@@ -642,25 +693,26 @@ function RichContent() {
         <Panel title="PT chart lookup (R-134a)" icon={CalcIcon}>
           <Lookups
             rows={[
-              { input: "38 PSIG", output: "47°F sat", note: "evaporator saturation" },
+              { input: "38 PSIG", output: `${ex9Sat.toFixed(1)}°F sat`, note: "evaporator saturation" },
             ]}
           />
         </Panel>
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Superheat = 50°F − 47°F = 3°F", verdict: "ok", note: "chiller target 2-5°F" },
-              { formula: "Evap approach = 47°F − 45°F = 2°F", verdict: "ok", note: "good chiller approach" },
+              { formula: `Superheat = 50°F − ${ex9Sat.toFixed(1)}°F = ${ex9SH.toFixed(1)}°F`, verdict: "warn", note: "above chiller 2-5°F target" },
+              { formula: `Evap approach = 45°F − ${ex9Sat.toFixed(1)}°F = ${ex9Approach.toFixed(1)}°F`, verdict: "ok", note: "good chiller approach (refrigerant below CHW)" },
             ]}
           />
         </Panel>
-        <VerdictBanner status="ok" title="Chiller operating in design range">
-          3°F superheat sits in the centrifugal chiller 2-5°F target range. Chillers
-          deliberately run lower SH than residential AC: the flooded evaporator design
-          maximizes heat transfer by submerging tubes in liquid refrigerant, and an
-          eliminator section + accumulator prevents liquid carryover to the compressor.
-          Compressor protection against liquid floodback is handled by these post-evap
-          accumulators in chiller plants.
+        <VerdictBanner status="warn" title="Superheat above chiller target — verify evaporator refrigerant level">
+          {ex9SH.toFixed(1)}°F superheat is above the centrifugal chiller 2-5°F target. Chillers
+          deliberately run very low SH: the flooded evaporator design maximizes heat transfer by
+          submerging tubes in liquid refrigerant, and an eliminator section + accumulator prevents
+          liquid carryover to the compressor. Superheat this high suggests the evaporator refrigerant
+          level or float/level control is slightly low — the tight {ex9Approach.toFixed(1)}°F approach
+          confirms the heat exchanger itself is clean, so investigate charge and level control rather
+          than fouling.
         </VerdictBanner>
       </ServiceProblem>
 
@@ -707,7 +759,8 @@ function RichContent() {
           is fully vaporized. The relevant saturation reference is the dew point: the
           temperature at which the last drop of liquid disappeared. Using the bubble point
           would treat the entry-side saturation as if it were the exit-side reference,
-          underestimating superheat by the glide value.
+          overstating superheat by the glide value (bubble sits below dew, so subtracting
+          it inflates the result).
         </p>
         <GlideCurveSelector />
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
@@ -728,7 +781,7 @@ function RichContent() {
         <ol>
           <li>
             <strong>Wrong curve on zeotropes.</strong> Using bubble pressure for saturation
-            temperature on R-407C / R-454C / R-455A underestimates superheat by the glide
+            temperature on R-407C / R-454C / R-455A overstates superheat by the glide
             value (11-22°F). This calculator uses the dew curve automatically — verify any
             paper PT chart you reference shows both columns and use the dew column for SH.
           </li>
