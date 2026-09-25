@@ -118,7 +118,7 @@ narrative:
 faqs:
   - q: "What is the normal operating pressure of R-410A?"
     a: |
-      On a 95°F outdoor day with a properly charged residential R-410A system, expect low-side (suction) pressures around 130 PSIG and high-side (discharge) pressures of 350-400 PSIG. R-410A saturation pressure at 95°F is approximately 278 PSIG (CoolProp 7.2.0); actual operating values depend on superheat, subcooling, ambient, and indoor load.
+      For a properly charged residential R-410A system, read the computed operating ranges on [What pressure should R-410A be?](/what-pressure-should-410a/); actual gauge values depend on superheat, subcooling, ambient, and indoor load. Saturation values come from the PT chart above.
 
   - q: "What does R-410A's GWP of 2088 mean in practical terms?"
     a: |
@@ -178,7 +178,7 @@ R-410A's composition keeps bubble and dew temperatures within about 0.2°F acros
 
 R-410A's component refrigerants are smaller molecules with higher vapor pressures than R-22 at any given temperature. R-32 boils at −61°F at atmospheric pressure; R-125 boils at −55°F; R-22 boils at −41°F. The 50/50 R-32/R-125 blend inherits the lower boiling point of its components, which means at any temperature in the operating range, R-410A's saturation pressure sits roughly 60-65% above R-22's.
 
-At a 95°F outdoor design ambient, an R-22 system runs about 181 PSIG saturation versus R-410A's 278 PSIG (CoolProp 7.2.0). On a 70°F bench-test condition the spread is 121 PSIG (R-22) versus 202 PSIG (R-410A). The ratio is consistent across the residential operating envelope.
+At a 95°F outdoor design ambient, an R-22 system runs about 181 PSIG saturation versus R-410A's 296 PSIG (CoolProp 7.2.0). On a 70°F bench-test condition the spread is 121 PSIG (R-22) versus 202 PSIG (R-410A). The ratio is consistent across the residential operating envelope.
 
 The higher pressure envelope drives all the R-410A equipment-design changes that distinguish it from R-22 in the field. Compressor housings, condenser tubing, expansion valves, accumulators, and service ports all carry higher pressure ratings [accamanualT]. Manifold gauge sets jump from R-22's 500 PSI standard to R-410A's 800 PSI standard. Recovery cylinder pressure ratings, hose burst pressures, and OEM service procedures all reflect the same scaling.
 
@@ -237,9 +237,9 @@ The quick-lookup pills above the PT chart show R-410A saturation pressures at si
 - **70°F (standard reference)** — used for bench testing and as the comparison point in HVAC literature.
 - **75°F (test reference)** — typical indoor return-air conditions for AC system rating.
 - **80°F (warm-weather operation)** — common condenser-saturation differential point.
-- **95°F (summer peak)** — the AHRI 210/240 test condition for residential AC ratings; R-410A saturation at 95°F is approximately 278 PSIG.
+- **95°F (summer peak)** — the AHRI 210/240 test condition for residential AC ratings.
 
-Comparing the chart value at your operating ambient to the manifold reading lets you isolate the refrigeration-side state from the air-side state. A condenser running at 278 PSIG on a 95°F day is at saturation — anything above that PSIG indicates the saturation temperature is higher than 95°F, meaning the condenser needs more air, has fouling, or has overcharge.
+Comparing the chart value at your operating ambient to the manifold reading lets you isolate the refrigeration-side state from the air-side state. A condenser running at 296 PSIG on a 95°F day is at saturation — anything above that PSIG indicates the saturation temperature is higher than 95°F, meaning the condenser needs more air, has fouling, or has overcharge.
 
 </TechSection>
 

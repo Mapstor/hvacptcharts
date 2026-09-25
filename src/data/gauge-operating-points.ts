@@ -33,13 +33,13 @@ export const GAUGE_OPERATING_POINTS: Record<string, GaugeOperatingPoint> = {
   "r-22": {
     slug: "r-22",
     evapTempF: 40,
-    condTempF: 105,
+    condTempF: 115,
     contextLabel: "Residential A/C at 95°F outdoor (ARI 210/240 design point)",
   },
   "r-32": {
     slug: "r-32",
     evapTempF: 40,
-    condTempF: 105,
+    condTempF: 115,
     contextLabel: "Residential A/C at 95°F outdoor (ARI 210/240 design point)",
   },
   "r-134a": {
@@ -53,42 +53,42 @@ export const GAUGE_OPERATING_POINTS: Record<string, GaugeOperatingPoint> = {
   "r-410a": {
     slug: "r-410a",
     evapTempF: 40,
-    condTempF: 105,
+    condTempF: 115,
     contextLabel: "Residential A/C at 95°F outdoor (ARI 210/240 design point)",
   },
   "r-407c": {
     slug: "r-407c",
     evapTempF: 40,
-    condTempF: 105,
+    condTempF: 115,
     contextLabel:
       "Residential A/C at 95°F outdoor (R-22 replacement in existing equipment)",
   },
   "r-404a": {
     slug: "r-404a",
     evapTempF: 25,
-    condTempF: 105,
+    condTempF: 115,
     contextLabel: "Medium-temperature display case at 95°F ambient (35°F case temp, ~25°F evap saturation)",
     altDutyNote:
-      "Low-temperature freezer duty on R-404A typically runs -20°F evap / 105°F cond.",
+      "Low-temperature freezer duty on R-404A typically runs -20°F evap / 115°F cond.",
   },
   "r-449a": {
     slug: "r-449a",
     evapTempF: 25,
-    condTempF: 105,
+    condTempF: 115,
     contextLabel:
       "Medium-temperature display case at 95°F ambient (R-404A replacement, ~25°F evap saturation)",
   },
   "r-454b": {
     slug: "r-454b",
     evapTempF: 40,
-    condTempF: 105,
+    condTempF: 115,
     contextLabel:
       "Residential A/C at 95°F outdoor (R-410A replacement, A2L)",
   },
   "r-454c": {
     slug: "r-454c",
     evapTempF: 20,
-    condTempF: 105,
+    condTempF: 115,
     contextLabel:
       "Medium-temperature commercial refrigeration (R-404A replacement, A2L)",
   },

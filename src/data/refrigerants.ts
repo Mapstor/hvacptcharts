@@ -367,3 +367,41 @@ export function getSaturationTempAtPsigF(
   }
   return null;
 }
+
+/* ─────────────── SATURATION HELPERS (single source of truth) ─────────────── */
+/**
+ * satPressure — saturation gauge pressure (PSIG) at a temperature, on the
+ * chosen saturation curve, by linear interpolation of the 1°F PT chart.
+ *
+ * Thin, ergonomic scalar wrapper over getPressureAtTempF. For pure and
+ * azeotropic fluids bubble === dew, so `curve` is moot; for zeotropic blends
+ * it selects the boundary (dew = saturated vapor / suction side, bubble =
+ * saturated liquid / liquid side).
+ *
+ * NEVER extrapolates. Returns null when tempF is outside the fluid's PT range
+ * (or the fluid has no PT data). Callers MUST handle null — drop the row and
+ * report the gap rather than invent a value. This is the only sanctioned way
+ * for pages to obtain an operating/charging pressure; no typed pressures.
+ */
+export function satPressure(
+  refId: string,
+  tempF: number,
+  curve: "bubble" | "dew"
+): number | null {
+  const p = getPressureAtTempF(refId, tempF);
+  return p ? p[curve] : null;
+}
+
+/**
+ * satTemp — saturation temperature (°F) at a gauge pressure (PSIG), on the
+ * chosen saturation curve, by inverse linear interpolation. Curve-required
+ * alias of getSaturationTempAtPsigF (dew for superheat / suction side, bubble
+ * for subcooling / liquid side). Returns null outside range — no extrapolation.
+ */
+export function satTemp(
+  refId: string,
+  psig: number,
+  curve: "bubble" | "dew"
+): number | null {
+  return getSaturationTempAtPsigF(refId, psig, curve);
+}

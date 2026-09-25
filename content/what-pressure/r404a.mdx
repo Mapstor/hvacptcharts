@@ -3,60 +3,31 @@ id: r404a
 refrigerantSlug: r-404a
 title: "What Pressure Should R404A Be?"
 metaTitle: "R404A Operating Pressures: What Should R404A Be? (By Temp)"
-metaDescription: "R404A commercial refrigeration operating pressures: 40°F evap ≈ 86.9 PSIG saturation, low-temp 20–45 PSIG, head 240–360 PSIG. Diagnostic procedure + FAQ."
+metaDescription: "R404A commercial refrigeration operating pressures by evaporator setpoint and ambient, computed from the CoolProp-verified dataset, with diagnostic steps and FAQ."
 introOneLiner: "R-404A operating pressures vary with both the evaporator setpoint (the refrigeration application) and the outdoor ambient. The table below covers the common combinations for medium-temperature and low-temperature commercial refrigeration."
+pressureModel: commercial-refrigeration
 
-operatingRangesSource: "ASHRAE Handbook of Refrigeration 2022; manufacturer service literature for commercial refrigeration equipment (Hussmann, Hillphoenix, Heatcraft, Carrier Commercial Refrigeration)"
+operatingRangesSource: "Computed from the CoolProp-verified R-404A PT dataset (dew/bubble saturation via satPressure); see the method note under the table."
 
 operatingRanges:
   - ambientF: 95
+    evaporatorF: 35
     application: "Medium-temp display case (35°F evap), 95°F ambient"
-    suctionPsigLow: 56
-    suctionPsigHigh: 70
-    dischargePsigLow: 235
-    dischargePsigHigh: 285
-    superheatTargetF: [10, 18]
-    subcoolingTargetF: [8, 14]
   - ambientF: 95
+    evaporatorF: 25
     application: "Walk-in cooler (25°F evap), 95°F ambient"
-    suctionPsigLow: 36
-    suctionPsigHigh: 48
-    dischargePsigLow: 235
-    dischargePsigHigh: 285
-    superheatTargetF: [10, 18]
-    subcoolingTargetF: [8, 14]
   - ambientF: 95
+    evaporatorF: 0
     application: "Walk-in freezer (0°F evap), 95°F ambient"
-    suctionPsigLow: 12
-    suctionPsigHigh: 20
-    dischargePsigLow: 240
-    dischargePsigHigh: 295
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 12]
   - ambientF: 95
+    evaporatorF: -15
     application: "Frozen food case (-15°F evap), 95°F ambient"
-    suctionPsigLow: 3
-    suctionPsigHigh: 12
-    dischargePsigLow: 245
-    dischargePsigHigh: 305
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 12]
   - ambientF: 75
+    evaporatorF: 25
     application: "Walk-in cooler (25°F evap), 75°F ambient"
-    suctionPsigLow: 36
-    suctionPsigHigh: 48
-    dischargePsigLow: 170
-    dischargePsigHigh: 215
-    superheatTargetF: [10, 18]
-    subcoolingTargetF: [8, 14]
   - ambientF: 75
+    evaporatorF: 0
     application: "Walk-in freezer (0°F evap), 75°F ambient"
-    suctionPsigLow: 12
-    suctionPsigHigh: 20
-    dischargePsigLow: 175
-    dischargePsigHigh: 220
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 12]
 
 narrativeIntro: |
   Commercial refrigeration on R-404A differs from residential AC in two ways that affect pressure interpretation. First, the evaporator setpoint varies by application — a walk-in cooler at 25°F has very different suction pressure than a frozen-food case at -15°F. Second, refrigeration cases cycle on and off through their differential band, so steady-state readings need the system to be in the "on" portion of the cycle for at least 10-15 minutes.
@@ -77,13 +48,13 @@ diagnosticSteps:
 
 faqs:
   - q: "What's the normal operating pressure of R-404A?"
-    a: "Depends on the evaporator setpoint. For a 0°F walk-in freezer at 95°F ambient: ~12-20 PSIG suction and 240-295 PSIG discharge. For a 25°F walk-in cooler: ~36-48 PSIG suction and the same discharge range. For a 35°F medium-temp display case: ~56-70 PSIG suction. The discharge pressure is largely determined by ambient + condenser cleanliness; suction is largely determined by evaporator setpoint + load."
+    a: "It depends on the evaporator setpoint and the ambient. Read the row in the operating-pressure table above (computed from the CoolProp-verified saturation dataset) that matches your evaporator setpoint and outdoor ambient. As a rule of thumb: suction follows the evaporator setpoint and load, so a 0°F walk-in freezer sits far lower than a 35°F display case; head pressure tracks ambient and condenser condition rather than the case setpoint."
 
   - q: "Why is R-404A being phased out?"
     a: "Its GWP of 3922 is one of the highest of common HFC refrigerants. The EPA AIM Act prohibited production of HFCs with GWP above 700 in most new commercial refrigeration equipment effective January 1, 2025; R-404A does not comply. Reclaimed R-404A remains legal for servicing existing equipment indefinitely under current regulations. Replacement options: R-448A, R-449A (medium-GWP A1), R-454C, R-455A (low-GWP A2L), R-744 (CO2 transcritical), R-290 (propane, charge-limited)."
 
   - q: "What does it mean if my low-side pressure goes into a vacuum?"
-    a: "On a properly-charged R-404A low-temperature system you should never see vacuum on the low side — even at -20°F evaporator the saturation is +3 PSIG. Vacuum on suction means severe undercharge, severe restriction (filter-drier clogged), or evaporator coil is frosted over and not transferring heat. Stop and diagnose — operating the compressor with vacuum suction risks motor burnout from inadequate refrigerant return for cooling."
+    a: "On a properly-charged R-404A low-temperature system you should never see vacuum on the low side — even at a −20°F evaporator the R-404A dew saturation is about 16 PSIG — positive, never a vacuum. Vacuum on suction means severe undercharge, severe restriction (filter-drier clogged), or evaporator coil is frosted over and not transferring heat. Stop and diagnose — operating the compressor with vacuum suction risks motor burnout from inadequate refrigerant return for cooling."
 
   - q: "What lubricant does R-404A use?"
     a: "Polyolester (POE) oil. Mineral oil and alkylbenzene are not miscible with R-404A. POE is hygroscopic; vacuum integrity matters. Some 1990s R-502 retrofits used 'soft conversion' POE flushes; modern systems use POE from new."

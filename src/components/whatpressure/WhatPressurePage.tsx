@@ -36,7 +36,7 @@ function renderInline(text: string): React.ReactNode[] {
   if (i < text.length) parts.push(text.slice(i));
   return parts.map((p, idx) => typeof p === "string" ? <Fragment key={idx}>{p}</Fragment> : p);
 }
-import { getRefrigerant, getPressureAtTempF, type Refrigerant } from "@/data/refrigerants";
+import { getRefrigerant, getPressureAtTempF, satPressure, type Refrigerant } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { Metadata } from "next";
 import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
@@ -71,6 +71,8 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
   const pageUrl = `${SITE_URL}/what-pressure-should-${id}/`;
   const schemaGraph = buildSchema(pageUrl, fm, r);
   const gaugePoint = getGaugeOperatingPoint(r.slug);
+  const { rows: displayRanges, dropped: droppedRows } = computeOperatingRanges(r.slug, fm);
+  const serviceScenarios = fm.serviceScenarios ?? generateServiceScenarios(r);
 
   return (
     <>
@@ -115,24 +117,50 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
                   <th className="px-3 py-2 font-medium">Condition</th>
                   <th className="px-3 py-2 font-medium text-right">Suction (low side)</th>
                   <th className="px-3 py-2 font-medium text-right">Discharge (high side)</th>
-                  <th className="px-3 py-2 font-medium text-right">Superheat target</th>
-                  <th className="px-3 py-2 font-medium text-right">Subcooling target</th>
+                  {!fm.pressureModel ? (
+                    <>
+                      <th className="px-3 py-2 font-medium text-right">Superheat target</th>
+                      <th className="px-3 py-2 font-medium text-right">Subcooling target</th>
+                    </>
+                  ) : null}
                 </tr>
               </thead>
               <tbody>
-                {fm.operatingRanges.map((row, i) => (
+                {displayRanges.map((row, i) => (
                   <tr key={i} className="border-t border-zinc-100 dark:border-zinc-800">
                     <td className="px-3 py-2">{row.application}</td>
-                    <td className="px-3 py-2 text-right font-mono">{row.suctionPsigLow}–{row.suctionPsigHigh} PSIG</td>
-                    <td className="px-3 py-2 text-right font-mono">{row.dischargePsigLow}–{row.dischargePsigHigh} PSIG</td>
-                    <td className="px-3 py-2 text-right font-mono text-xs">{row.superheatTargetF ? `${row.superheatTargetF[0]}–${row.superheatTargetF[1]}°F` : "—"}</td>
-                    <td className="px-3 py-2 text-right font-mono text-xs">{row.subcoolingTargetF ? `${row.subcoolingTargetF[0]}–${row.subcoolingTargetF[1]}°F` : "—"}</td>
+                    <td className="px-3 py-2 text-right font-mono">{row.suctionLow}–{row.suctionHigh} PSIG</td>
+                    <td className="px-3 py-2 text-right font-mono">{row.dischargeLow}–{row.dischargeHigh} PSIG</td>
+                    {!fm.pressureModel ? (
+                      <>
+                        <td className="px-3 py-2 text-right font-mono text-xs">{row.superheatTargetF ? `${row.superheatTargetF[0]}–${row.superheatTargetF[1]}°F` : "—"}</td>
+                        <td className="px-3 py-2 text-right font-mono text-xs">{row.subcoolingTargetF ? `${row.subcoolingTargetF[0]}–${row.subcoolingTargetF[1]}°F` : "—"}</td>
+                      </>
+                    ) : null}
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="mt-2 text-xs text-zinc-500">Source: {fm.operatingRangesSource}</p>
+          {fm.pressureModel ? (
+            <div className="mt-2 space-y-1 text-xs text-zinc-500">
+              <p>
+                <strong>How we calculate these:</strong> {METHOD_TEXT[fm.pressureModel]}
+              </p>
+              <p>
+                Suction and head are interpolated from the CoolProp-verified {r.displayName} saturation
+                dataset (dew and bubble curves) and rounded to whole PSIG — no hand-entered values.
+              </p>
+              {droppedRows.length > 0 ? (
+                <p>
+                  Rows omitted (would need saturation data beyond the published {r.displayName} PT
+                  range): {droppedRows.join("; ")}.
+                </p>
+              ) : null}
+            </div>
+          ) : (
+            <p className="mt-2 text-xs text-zinc-500">Source: {fm.operatingRangesSource}</p>
+          )}
         </section>
 
         {gaugePoint ? (
@@ -178,7 +206,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
             each application condition. Wider bars indicate larger variation expected; tighter
             bars indicate the operating point is more constrained.
           </p>
-          <OperatingEnvelopeBars fm={fm} />
+          <OperatingEnvelopeBars ranges={displayRanges} />
         </TechSection>
 
         <TechSection icon="thermometer" tone="emerald" title={`${r.displayName} property snapshot`}>
@@ -202,37 +230,41 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
           </Panel>
         </TechSection>
 
-        <TechSection icon="service" tone="amber" title={`Real service scenarios for ${r.displayName}`}>
-          <p>
-            Three field scenarios showing common diagnostic patterns when reading{" "}
-            {r.displayName} system pressures. Each maps manifold readings to a verdict and
-            specific service action.
-          </p>
-        </TechSection>
+        {serviceScenarios.length > 0 ? (
+          <>
+            <TechSection icon="service" tone="amber" title={`Real service scenarios for ${r.displayName}`}>
+              <p>
+                Field scenarios showing common diagnostic patterns when reading{" "}
+                {r.displayName} system pressures. Each maps manifold readings to a verdict and
+                specific service action.
+              </p>
+            </TechSection>
 
-        {(fm.serviceScenarios ?? generateServiceScenarios(r)).map((scenario, i) => (
-          <ServiceProblem
-            key={i}
-            number={i + 1}
-            refrigerant={r.displayName}
-            title={scenario.title}
-            scenario={scenario.scenario}
-          >
-            <Panel title="Measured" icon={Gauge}>
-              <Gauges items={scenario.measured} />
-            </Panel>
-            <Panel title="PT chart lookup" icon={CalcIcon}>
-              <Lookups rows={scenario.lookups} />
-            </Panel>
-            <Panel title="Derived" icon={Activity}>
-              <Derived rows={scenario.derived} />
-            </Panel>
-            <VerdictBanner status={scenario.verdict.status} title={scenario.verdict.title}>
-              {scenario.verdict.body}
-            </VerdictBanner>
-            {scenario.fix ? <FixCallout>{scenario.fix}</FixCallout> : null}
-          </ServiceProblem>
-        ))}
+            {serviceScenarios.map((scenario, i) => (
+              <ServiceProblem
+                key={i}
+                number={i + 1}
+                refrigerant={r.displayName}
+                title={scenario.title}
+                scenario={scenario.scenario}
+              >
+                <Panel title="Measured" icon={Gauge}>
+                  <Gauges items={scenario.measured} />
+                </Panel>
+                <Panel title="PT chart lookup" icon={CalcIcon}>
+                  <Lookups rows={scenario.lookups} />
+                </Panel>
+                <Panel title="Derived" icon={Activity}>
+                  <Derived rows={scenario.derived} />
+                </Panel>
+                <VerdictBanner status={scenario.verdict.status} title={scenario.verdict.title}>
+                  {scenario.verdict.body}
+                </VerdictBanner>
+                {scenario.fix ? <FixCallout>{scenario.fix}</FixCallout> : null}
+              </ServiceProblem>
+            ))}
+          </>
+        ) : null}
 
         <TechSection icon="composition" tone="emerald" title={`Operating envelope and equipment context — ${r.displayName}`}>
           <p>
@@ -267,15 +299,10 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
                   {r.physical.critical.pressurePsig !== null
                     ? `${r.displayName} critical pressure is ${r.physical.critical.pressurePsig.toFixed(0)} PSIG.`
                     : ""}{" "}
-                  Per AHRI Standard 540-2020, the high-pressure cutout switch is typically
-                  set at approximately 85% of critical pressure to protect the compressor
-                  from running into the near-critical regime where small temperature swings
-                  produce large pressure excursions. For {r.displayName}, that&apos;s a
-                  practical cutout setpoint around{" "}
-                  {r.physical.critical.pressurePsig !== null
-                    ? `${(r.physical.critical.pressurePsig * 0.85).toFixed(0)} PSIG`
-                    : "the OEM nameplate value"}
-                  .
+                  High- and low-pressure cutout setpoints are set by the equipment
+                  manufacturer, not derived from a refrigerant property — use the OEM
+                  nameplate / service-manual values (there is no standard
+                  percentage-of-critical-pressure cutout rule).
                 </li>
                 <li>
                   <strong>Charging metric:</strong>{" "}
@@ -479,16 +506,17 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">
           <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Sources &amp; provenance</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
-            <li>Operating pressure ranges: {fm.operatingRangesSource}</li>
+            <li>
+              {fm.pressureModel
+                ? `Operating pressure ranges: computed from the ${r.displayName} PT dataset (dew/bubble saturation via satPressure), rounded to whole PSIG — see the method note under the table.`
+                : `Operating pressure ranges: ${fm.operatingRangesSource}`}
+            </li>
             <li>Saturation pressures: CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS</li>
             <li>Safety classification: ANSI/ASHRAE Standard 34-2022</li>
             <li>GWP values: IPCC AR5 (2013) Working Group I, Table 8.A.1</li>
             <li>{r.displayName} dataset record generated {r.dataSource.ptChartGeneratedAt.slice(0, 10)}</li>
             {fm.omitStationaryFooterClaims ? null : (
-              <>
-                <li>Diagnostic procedures: ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 Chapter 23</li>
-                <li>Compressor protection minimums: AHRI Standard 540-2020 (20°F hermetic, 30°F semi-hermetic return-gas superheat)</li>
-              </>
+              <li>Diagnostic procedures: ASHRAE Handbook — Refrigeration (2022), Chapter 23</li>
             )}
             {fm.extraSources?.map((s, i) => <li key={`extra-${i}`}>{s}</li>)}
           </ul>
@@ -502,6 +530,108 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
       </article>
     </>
   );
+}
+
+/* ──────────────────────── Computed operating ranges ──────────────────────── */
+
+type WPFrontmatter = NonNullable<ReturnType<typeof loadWhatPressure>>["frontmatter"];
+
+/** A single operating-table row after suction/head are resolved to PSIG. */
+interface DisplayRange {
+  application: string;
+  suctionLow: number;
+  suctionHigh: number;
+  dischargeLow: number;
+  dischargeHigh: number;
+  /** Legacy-only companion target columns (unset on computed pages). */
+  superheatTargetF?: [number, number];
+  subcoolingTargetF?: [number, number];
+}
+
+/** Residential indoor evaporator saturation band (normal indoor load). */
+const RESIDENTIAL_EVAP_LOW_F = 38;
+const RESIDENTIAL_EVAP_HIGH_F = 45;
+
+/**
+ * Method blurb printed under the computed table. Verbatim per the task spec so
+ * every operating-pressure page states exactly how its numbers were derived.
+ */
+const METHOD_TEXT: Record<NonNullable<WPFrontmatter["pressureModel"]>, string> = {
+  "residential-ac":
+    "suction is the dew pressure for a 38–45°F evaporator (normal indoor load); head is the liquid (bubble) pressure 15–25°F above outdoor temperature, the usual condensing split for residential condensers (high-efficiency units run near the low end). Suction mostly follows indoor load and airflow, not outdoor temperature. Charge by the manufacturer's method: subcooling for TXV/EEV, superheat for fixed orifice.",
+  "commercial-refrigeration":
+    "suction is the dew pressure within ±3°F of the listed evaporator temperature; head is the liquid (bubble) pressure 15–30°F above ambient for air-cooled condensing units. Evaporator TD, head-pressure controls and condenser size shift these; follow the equipment data plate.",
+};
+
+/**
+ * Resolve every operating-table row to whole-PSIG suction/head.
+ *
+ * pressureModel set → compute from the PT dataset via satPressure (no typed
+ * values). A row whose formula needs a temperature outside the fluid's PT
+ * range (e.g. R-454B head at a 115°F outdoor needs bubble @140°F but the
+ * dataset stops at 134°F) is DROPPED and reported — never extrapolated.
+ *
+ * pressureModel unset → legacy pages: fall back to the hand-entered literals.
+ */
+function computeOperatingRanges(
+  slug: string,
+  fm: WPFrontmatter,
+): { rows: DisplayRange[]; dropped: string[] } {
+  const model = fm.pressureModel;
+  const rows: DisplayRange[] = [];
+  const dropped: string[] = [];
+
+  for (const row of fm.operatingRanges) {
+    if (!model) {
+      rows.push({
+        application: row.application,
+        suctionLow: row.suctionPsigLow ?? 0,
+        suctionHigh: row.suctionPsigHigh ?? 0,
+        dischargeLow: row.dischargePsigLow ?? 0,
+        dischargeHigh: row.dischargePsigHigh ?? 0,
+        superheatTargetF: row.superheatTargetF,
+        subcoolingTargetF: row.subcoolingTargetF,
+      });
+      continue;
+    }
+
+    // Suction band: residential = fixed indoor evaporator; commercial = ±3°F
+    // around the row's evaporator saturation temperature.
+    let sucLoT: number, sucHiT: number;
+    if (model === "residential-ac") {
+      sucLoT = RESIDENTIAL_EVAP_LOW_F;
+      sucHiT = RESIDENTIAL_EVAP_HIGH_F;
+    } else {
+      if (row.evaporatorF === undefined) {
+        dropped.push(`${row.application} (missing evaporator temperature)`);
+        continue;
+      }
+      sucLoT = row.evaporatorF - 3;
+      sucHiT = row.evaporatorF + 3;
+    }
+
+    // Head band: bubble pressure over the condensing split above ambient.
+    const headHiOffset = model === "residential-ac" ? 25 : 30;
+    const suctionLow = satPressure(slug, sucLoT, "dew");
+    const suctionHigh = satPressure(slug, sucHiT, "dew");
+    const dischargeLow = satPressure(slug, row.ambientF + 15, "bubble");
+    const dischargeHigh = satPressure(slug, row.ambientF + headHiOffset, "bubble");
+
+    if (suctionLow === null || suctionHigh === null || dischargeLow === null || dischargeHigh === null) {
+      dropped.push(`${row.application} (needs saturation data beyond the published ${slug.toUpperCase()} PT range)`);
+      continue;
+    }
+
+    rows.push({
+      application: row.application,
+      suctionLow: Math.round(suctionLow),
+      suctionHigh: Math.round(suctionHigh),
+      dischargeLow: Math.round(dischargeLow),
+      dischargeHigh: Math.round(dischargeHigh),
+    });
+  }
+
+  return { rows, dropped };
 }
 
 /* ──────────────────────── Data-driven helper components ──────────────────────── */
@@ -640,10 +770,9 @@ function PtCurveSnapshot({ r }: { r: Refrigerant }) {
   );
 }
 
-function OperatingEnvelopeBars({ fm }: { fm: NonNullable<ReturnType<typeof loadWhatPressure>>["frontmatter"] }) {
-  const ranges = fm.operatingRanges;
+function OperatingEnvelopeBars({ ranges }: { ranges: DisplayRange[] }) {
   if (ranges.length === 0) return null;
-  const allP = ranges.flatMap((r) => [r.suctionPsigLow, r.suctionPsigHigh, r.dischargePsigLow, r.dischargePsigHigh]);
+  const allP = ranges.flatMap((r) => [r.suctionLow, r.suctionHigh, r.dischargeLow, r.dischargeHigh]);
   const xMax = Math.max(...allP) * 1.05;
 
   const W = 720;
@@ -680,10 +809,10 @@ function OperatingEnvelopeBars({ fm }: { fm: NonNullable<ReturnType<typeof loadW
             <text x={LABEL_W - 8} y={y + 18} textAnchor="end" fontSize="10" fontWeight={500} fill="currentColor">
               {range.application}
             </text>
-            <rect x={xScale(range.suctionPsigLow)} y={y + 6} width={xScale(range.suctionPsigHigh) - xScale(range.suctionPsigLow)} height={12} fill="#3a8ed1" rx={2} />
-            <text x={xScale(range.suctionPsigHigh) + 4} y={y + 16} fontSize="9" fill="#3a8ed1" fontWeight={500}>SH {range.suctionPsigLow}-{range.suctionPsigHigh}</text>
-            <rect x={xScale(range.dischargePsigLow)} y={y + 22} width={xScale(range.dischargePsigHigh) - xScale(range.dischargePsigLow)} height={12} fill="#c45757" rx={2} />
-            <text x={xScale(range.dischargePsigHigh) + 4} y={y + 32} fontSize="9" fill="#c45757" fontWeight={500}>DC {range.dischargePsigLow}-{range.dischargePsigHigh}</text>
+            <rect x={xScale(range.suctionLow)} y={y + 6} width={xScale(range.suctionHigh) - xScale(range.suctionLow)} height={12} fill="#3a8ed1" rx={2} />
+            <text x={xScale(range.suctionHigh) + 4} y={y + 16} fontSize="9" fill="#3a8ed1" fontWeight={500}>SP {range.suctionLow}-{range.suctionHigh}</text>
+            <rect x={xScale(range.dischargeLow)} y={y + 22} width={xScale(range.dischargeHigh) - xScale(range.dischargeLow)} height={12} fill="#c45757" rx={2} />
+            <text x={xScale(range.dischargeHigh) + 4} y={y + 32} fontSize="9" fill="#c45757" fontWeight={500}>DP {range.dischargeLow}-{range.dischargeHigh}</text>
           </g>
         );
       })}
@@ -704,105 +833,14 @@ interface GeneratedScenario {
 }
 
 function generateServiceScenarios(r: Refrigerant): GeneratedScenario[] {
-  // Pick representative temperatures: middle of evap range (40°F), middle of cond range (95°F)
-  // Then compute realistic operating pressure values
-  const evapSat = getPressureAtTempF(r.slug, 40);
-  const condSat = getPressureAtTempF(r.slug, 95);
-  if (!evapSat || !condSat) {
-    return [];
-  }
-
-  const hasGlide = r.physical.hasSignificantGlide;
-  const evapBubble = evapSat.bubble;
-  const evapDew = evapSat.dew;
-  const condBubble = condSat.bubble;
-  const condDew = condSat.dew;
-
-  const isLowTemp = r.physical.boilingPointF !== null && r.physical.boilingPointF < -40;
-  const isCO2 = r.slug === "r-744";
-
-  if (isCO2) {
-    return generateCO2Scenarios(r);
-  }
-
-  // Properly-charged scenario
-  const properlyCharged: GeneratedScenario = {
-    title: `Properly-charged ${r.displayName} system at design ambient`,
-    scenario: `Residential ${r.displayName} TXV-equipped AC system, 95°F outdoor, 75°F indoor return air. System has been running 15-20 minutes at steady state and you're confirming charge.`,
-    measured: [
-      { label: "Suction P", value: `${evapBubble.toFixed(0)} PSIG`, side: "low" },
-      { label: "Suction line", value: `${(40 + 12).toFixed(0)}°F`, side: "low" },
-      { label: "Discharge P", value: `${condBubble.toFixed(0)} PSIG`, side: "high" },
-      { label: "Liquid line", value: `${(95 - 10).toFixed(0)}°F`, side: "high" },
-    ],
-    lookups: [
-      { input: `${evapBubble.toFixed(0)} PSIG`, output: `40°F sat${hasGlide ? " (dew)" : ""}`, note: "evaporator" },
-      { input: `${condBubble.toFixed(0)} PSIG`, output: `95°F sat${hasGlide ? " (bubble)" : ""}`, note: "condenser" },
-    ],
-    derived: [
-      { formula: `Superheat = ${(40 + 12).toFixed(0)}°F − 40°F = 12°F`, verdict: "ok", note: "in target 8-15°F" },
-      { formula: `Subcooling = 95°F − ${(95 - 10).toFixed(0)}°F = 10°F`, verdict: "ok", note: "in target 8-12°F" },
-    ],
-    verdict: {
-      status: "ok",
-      title: "Properly charged — no action required",
-      body: `Superheat and subcooling both inside standard TXV target ranges. ${r.displayName} pressures match the expected operating envelope at 95°F ambient. Sign off and move on.`,
-    },
-  };
-
-  // Undercharge scenario
-  const undercharge: GeneratedScenario = {
-    title: `${r.displayName} undercharge — high SH + low SC fingerprint`,
-    scenario: `Same ${r.displayName} TXV system, six months later. Customer reports weak cooling on a 95°F day. You take readings to confirm what's going on.`,
-    measured: [
-      { label: "Suction P", value: `${(evapBubble * 0.78).toFixed(0)} PSIG`, side: "low" },
-      { label: "Suction line", value: `${(40 + 30).toFixed(0)}°F`, side: "low" },
-      { label: "Discharge P", value: `${(condBubble * 0.85).toFixed(0)} PSIG`, side: "high" },
-      { label: "Liquid line", value: `${(95 + 5).toFixed(0)}°F`, side: "high" },
-    ],
-    lookups: [
-      { input: `${(evapBubble * 0.78).toFixed(0)} PSIG`, output: `~30°F sat`, note: "below normal" },
-      { input: `${(condBubble * 0.85).toFixed(0)} PSIG`, output: `~85°F sat`, note: "below normal" },
-    ],
-    derived: [
-      { formula: `Superheat = ${(40 + 30).toFixed(0)}°F − 30°F = ~40°F`, verdict: "bad", note: "very high" },
-      { formula: `Subcooling = 85°F − ${(95 + 5).toFixed(0)}°F = ~-15°F`, verdict: "bad", note: "negative — flash gas" },
-    ],
-    verdict: {
-      status: "bad",
-      title: "Undercharge — leak in the system",
-      body: `High SH + negative SC is the textbook ${r.displayName} undercharge fingerprint. Both pressures depressed below normal for the ambient. Refrigerant has leaked out since commissioning; find and repair before adding refrigerant.`,
-    },
-    fix: `Find and repair the leak per EPA Section 608, then evacuate to 500 microns and charge ${r.displayName} by weight to nameplate. Don't add refrigerant without leak repair.`,
-  };
-
-  // Overcharge scenario (only if low-temp doesn't apply)
-  const overcharge: GeneratedScenario = {
-    title: `${r.displayName} overcharge — low SH + high SC fingerprint`,
-    scenario: `${r.displayName} TXV system after a service add by gauge feel rather than weight. Compressor running noisy and customer reports higher power bills.`,
-    measured: [
-      { label: "Suction P", value: `${(evapBubble * 1.25).toFixed(0)} PSIG`, side: "low" },
-      { label: "Suction line", value: `${(40 + 25).toFixed(0)}°F`, side: "low" },
-      { label: "Discharge P", value: `${(condBubble * 1.25).toFixed(0)} PSIG`, side: "high" },
-      { label: "Liquid line", value: `${(95 - 25).toFixed(0)}°F`, side: "high" },
-    ],
-    lookups: [
-      { input: `${(evapBubble * 1.25).toFixed(0)} PSIG`, output: `~55°F sat`, note: "high" },
-      { input: `${(condBubble * 1.25).toFixed(0)} PSIG`, output: `~110°F sat`, note: "high" },
-    ],
-    derived: [
-      { formula: `Superheat = ${(40 + 25).toFixed(0)}°F − 55°F = ~10°F`, verdict: "warn", note: "low for ambient" },
-      { formula: `Subcooling = 110°F − ${(95 - 25).toFixed(0)}°F = ~40°F`, verdict: "bad", note: "very high" },
-    ],
-    verdict: {
-      status: "bad",
-      title: "Overcharge — recover refrigerant",
-      body: `Low SH + very high SC is the classic ${r.displayName} overcharge fingerprint. Excess refrigerant backs up in the condenser (high SC) and the compressor sees flooding risk. The noise is hydraulic events from incompressible liquid reaching the suction.`,
-    },
-    fix: `Recover ${r.displayName} in 1 oz increments using a recovery / charging scale. Re-test SH and SC after each. Stop when SC = 8-12°F target and SH = 8-15°F.`,
-  };
-
-  return [properlyCharged, undercharge, overcharge];
+  // The former auto-generated residential scenarios were fabricated: fixed
+  // 0.78 / 1.25 multipliers applied to the 40°F/95°F saturation values, not
+  // dataset-derived operating points (they produced readings like 69/182,
+  // 87/220, 112/280). Removed in task 3A. Pages that need scenarios now supply
+  // hand-checked ones via frontmatter (fm.serviceScenarios). R-744 keeps its
+  // bespoke sub-/transcritical set, which a later task revisits.
+  if (r.slug === "r-744") return generateCO2Scenarios(r);
+  return [];
 }
 
 function generateCO2Scenarios(r: Refrigerant): GeneratedScenario[] {

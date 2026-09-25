@@ -56,6 +56,61 @@ no `vercel.json`; no `X-Robots-Tag` anywhere.
 
 ---
 
+## 2026-09-25 — Fix 3A/18: operating pressures computed from dataset; scenarios + AHRI-540 dropped
+
+**Rule:** no typed pressures/temperatures — every operating value comes from the PT
+dataset via new helpers, and each page prints its method.
+
+**Shared helpers** (`src/data/refrigerants.ts`): `satPressure(refId, tempF, curve)` and
+`satTemp(refId, psig, curve)` — thin scalar wrappers over the existing interpolators;
+return `null` outside the fluid's PT range (never extrapolate).
+
+**Operating pages** (`WhatPressurePage.tsx` + `mdx-what-pressure.ts` schema + 8 MDX):
+added a `pressureModel` (residential-ac / commercial-refrigeration); the component now
+computes suction/head per row and prints the method note. Residential suction =
+dew(38–45°F evap); head = bubble(outdoor+15…+25). Commercial suction =
+dew(evap±3°F); head = bubble(ambient+15…+30). Hand-typed psig/superheat/subcooling
+literals removed from frontmatter (commercial rows gained `evaporatorF`).
+
+Computed tables (whole PSIG, verified against the CoolProp-8 oracle, all within tol):
+- R-404A: 35°F→72–82, 25°F→58–66, **0°F→30–36** (was 12–20), −15°F→17–22; head 95°F amb 273–333, 75°F amb 204–254.
+- Residential @95°F outdoor: R-410A 114–130 / 367–419; R-32 116–133 / 375–429; R-22 66–76 / 226–260; R-454B 103–118 / 346–396; R-407C 60–71 / 260–299.
+- R-449A / R-454C computed from their per-page rows (e.g. R-454C −25°F evap → 3–6 psig).
+
+**Dropped R-454B 115°F-outdoor row** — head needs bubble@140°F but the R-454B dataset
+stops at 134°F (step 3; reported here, not extrapolated).
+
+**Design point** (`gauge-operating-points.ts`): condTempF 105→115 for the 8 in-scope
+fluids (95°F outdoor + 20°F). Residential 40°F dew / 115°F bubble; commercial page evap
+dew / 115°F bubble. Verified: R-22 → 68.6 dew | 242.8 bubble.
+
+**Dropped fabricated "Real service scenarios"** — the multiplier-based (×0.78/×1.25)
+properly-charged/undercharge/overcharge generator was removed; the section now renders
+only hand-checked `fm.serviceScenarios`. (R-744's bespoke set is kept — out of scope.)
+No in-scope page had hand-written scenarios, so none were kept.
+
+**AHRI-540 / 85%-of-critical cutout claims deleted** (step 7, site-wide): the
+WhatPressurePage envelope bullet + footer line; `high-head-pressure-causes` FAQ
+("85% = ~593 PSIG") + source citation; `saturation-properties-calculator` ServiceProblem
+#1 ("0.85 × P_critical = 593 PSIG"). Replaced with accurate "cutout is an OEM setpoint"
+copy.
+
+**Step 8** (PT-chart pages with an operating page): removed typed operating numbers from
+`content/refrigerants/{r-410a,r-22,r-32,r-454b,r-407c,r-404a}.mdx` FAQs and linked to the
+operating page; also corrected two wrong "278 PSIG" R-410A 95°F saturation values → 296.
+R-449A/R-454C detail FAQs are saturation-only (left); r-134a/r-1234yf/r-744 out of scope.
+
+**Verification:** production build exit 0, all gates pass (verify-metadata 153 routes,
+verify-gauge-operating-points, validate-schema). Grep checks: "12-20 PSIG", "+3 PSIG"
+(R-404A), "approximately 278", "85% of critical", "Standard 540-2020, the high-pressure
+cutout" all gone (the only remaining "+3 PSIG" is on out-of-scope r1234yf, a correct
+statement). Live curl confirmed R-404A 0°F→30–36/273–333 and the 115°F design points.
+Lint of changed files: 0 errors.
+
+**Not pushed.**
+
+---
+
 ## 2026-09-25 — Fix 2/18: 301 redirects for legacy, typo and old comparison URLs
 
 **Goal.** Every legacy/typo/old URL search engines still request must answer with

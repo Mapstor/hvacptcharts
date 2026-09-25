@@ -242,8 +242,8 @@ function RichContent() {
       <ServiceProblem
         number={1}
         refrigerant="R-410A"
-        title="Compressor discharge above critical point — protection cutout sizing"
-        scenario="R-410A residential AC. The high-pressure safety cutout needs to be set below the critical pressure to prevent operation in the supercritical regime. What's the value to set?"
+        title="Critical pressure vs. the high-pressure cutout"
+        scenario="R-410A residential AC. How does the refrigerant's critical pressure relate to where the high-pressure safety cutout is set?"
       >
         <Panel title="Saturation properties referenced" icon={CalcIcon}>
           <Lookups
@@ -253,20 +253,20 @@ function RichContent() {
             ]}
           />
         </Panel>
-        <Panel title="Cutout sizing logic" icon={Activity}>
+        <Panel title="How the cutout is set" icon={Activity}>
           <Derived
             rows={[
-              { formula: "Standard HPS cutout = 0.85 × P_critical", verdict: "info", note: "common safety factor" },
-              { formula: "Cutout = 0.85 × 698 = 593 PSIG", verdict: "ok", note: "Carrier / Trane R-410A residential default 600-650 PSIG" },
+              { formula: "Critical pressure = 698 PSIG", verdict: "info", note: "physical ceiling — no saturation above this" },
+              { formula: "OEM high-pressure cutout ≈ 600–650 PSIG", verdict: "ok", note: "manufacturer spec, not a critical-pressure formula" },
             ]}
           />
         </Panel>
-        <VerdictBanner status="info" title="High-pressure cutout typically set at 600-650 PSIG">
-          Below the critical pressure (698 PSIG) with margin. Industry-standard cutout
-          settings on R-410A residential equipment fall in 600-650 PSIG range — well
-          below critical to protect against runaway and the system operating in unstable
-          near-critical regime where small temperature changes cause large pressure
-          excursions.
+        <VerdictBanner status="info" title="The cutout is an OEM setpoint below the critical pressure">
+          The critical pressure (698 PSIG) is the thermodynamic ceiling — above it no
+          saturation state exists. The high-pressure cutout is a manufacturer-defined
+          setpoint (typically 600–650 PSIG on R-410A residential equipment), chosen with
+          margin below critical. It is not derived from a fixed percentage of critical
+          pressure or from any rating standard — always use the OEM value.
         </VerdictBanner>
       </ServiceProblem>
 

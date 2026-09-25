@@ -3,52 +3,21 @@ id: r454b
 refrigerantSlug: r-454b
 title: "What Pressure Should R454B Be?"
 metaTitle: "R454B Operating Pressures: What Should R454B Be? (By Temp)"
-metaDescription: "R454B A2L residential AC operating pressures: 40°F dew ≈ 107.0 PSIG, head 240–490 PSIG at outdoor 65–115°F. Diagnostic procedure + A2L handling."
+metaDescription: "R454B A2L residential AC operating pressures by outdoor temperature, computed from the CoolProp-verified dataset, plus a diagnostic procedure and FAQ."
 introOneLiner: "R-454B operating pressures are very close to R-410A — within about 5% across the envelope. The substantive operational difference is the A2L safety class (mildly flammable) rather than the pressure envelope. Service equipment rated for R-410A is pressure-appropriate for R-454B."
+pressureModel: residential-ac
 
-operatingRangesSource: "Manufacturer service literature for R-454B residential AC equipment (Carrier Puron Advance product line, Daikin, and other US OEMs with R-454B product launches); ACCA Manual T charging procedures adapted for A2L systems"
+operatingRangesSource: "Computed from the CoolProp-verified R-454B PT dataset (dew/bubble saturation via satPressure); see the method note under the table."
 
 operatingRanges:
   - ambientF: 75
     application: "Residential AC at 75°F outdoor"
-    suctionPsigLow: 115
-    suctionPsigHigh: 135
-    dischargePsigLow: 240
-    dischargePsigHigh: 295
-    superheatTargetF: [8, 15]
-    subcoolingTargetF: [8, 14]
   - ambientF: 85
     application: "Residential AC at 85°F outdoor"
-    suctionPsigLow: 120
-    suctionPsigHigh: 140
-    dischargePsigLow: 290
-    dischargePsigHigh: 345
-    superheatTargetF: [8, 15]
-    subcoolingTargetF: [8, 14]
   - ambientF: 95
     application: "Residential AC at 95°F outdoor (rating condition)"
-    suctionPsigLow: 125
-    suctionPsigHigh: 145
-    dischargePsigLow: 340
-    dischargePsigHigh: 400
-    superheatTargetF: [8, 15]
-    subcoolingTargetF: [8, 12]
   - ambientF: 105
     application: "Residential AC at 105°F outdoor"
-    suctionPsigLow: 130
-    suctionPsigHigh: 150
-    dischargePsigLow: 390
-    dischargePsigHigh: 460
-    superheatTargetF: [10, 18]
-    subcoolingTargetF: [6, 12]
-  - ambientF: 115
-    application: "Residential AC at 115°F outdoor (hot-climate extreme)"
-    suctionPsigLow: 135
-    suctionPsigHigh: 160
-    dischargePsigLow: 440
-    dischargePsigHigh: 510
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 10]
 
 narrativeIntro: |
   R-454B and R-410A operate at very similar pressures — the blend was specifically engineered for this near-equivalence to simplify the OEM transition from R-410A residential AC. Across the typical ambient range, R-454B suction pressures are within about 5% of R-410A's; discharge pressures similarly close.
@@ -66,12 +35,12 @@ diagnosticSteps:
     text: "Connect manifold gauges to suction and discharge service ports. R-410A-rated 800 PSI manifolds are appropriate for R-454B from a pressure standpoint. Let the system run 10-15 minutes under load before recording values. Compare to the table above for the relevant outdoor ambient."
     tools: ["R-410A-rated manifold gauge set (800 PSI high-side rating minimum)"]
   - title: "Verify with superheat and subcooling — TXV systems use subcooling primarily"
-    text: "R-454B residential AC is typically TXV or EXV; subcooling is the primary charging metric (8-12°F target at the condenser outlet). Superheat hovers near the metering device setpoint regardless of charge — in-range superheat does NOT confirm correct charge on a TXV system. The combined PT/SH/SC calculator handles the math with diagnostic interpretation."
+    text: "R-454B residential AC is typically TXV or EXV; subcooling at the condenser outlet is the primary charging metric on these systems. Superheat hovers near the metering device setpoint regardless of charge — in-range superheat does NOT confirm correct charge on a TXV system. The combined PT/SH/SC calculator handles the math with diagnostic interpretation."
     tools: ["Contact temperature probe with insulation"]
 
 faqs:
   - q: "What's the normal operating pressure of R-454B at 95°F outdoor?"
-    a: "Roughly 125-145 PSIG suction and 340-400 PSIG discharge on a properly-charged residential R-454B system at the 95°F rating condition. Saturation at 70°F is ~190 PSIG bubble / ~183 PSIG dew — very close to R-410A's 201 PSIG (R-410A is a near-azeotrope, R-454B has small but non-zero ~0.4°F glide)."
+    a: "Use the operating-pressure table above (computed from the CoolProp-verified saturation dataset) and read the 95°F outdoor row. Suction follows the evaporator setpoint and load; head tracks the outdoor ambient and condenser condition. R-454B runs very close to R-410A across the envelope, and its small temperature glide means the dew and bubble saturation values differ only slightly."
 
   - q: "Can I use my R-410A gauges and recovery equipment for R-454B?"
     a: "Pressure ratings: yes. R-410A manifolds rated 800 PSI are pressure-appropriate for R-454B. Recovery cylinders: NO — must use A2L-rated cylinders (yellow with red top stripe), distinct from R-410A's pink. Recovery machines: only if specifically A2L-certified by the manufacturer; check the equipment marking. Hoses: must be rated for working pressure and resistant to refrigerant permeation; R-410A hoses generally work."

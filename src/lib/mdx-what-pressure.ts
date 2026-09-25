@@ -5,13 +5,27 @@ import { z } from "zod";
 import { FAQ } from "./mdx";
 
 export const OperatingRange = z.object({
+  /** Outdoor / condenser-side ambient temperature (°F) — drives computed head. */
   ambientF: z.number(),
   application: z.string(),
-  suctionPsigLow: z.number(),
-  suctionPsigHigh: z.number(),
-  dischargePsigLow: z.number(),
-  dischargePsigHigh: z.number(),
-  /** Optional companion values. */
+  /**
+   * Evaporator saturation temperature (°F) for commercial-refrigeration rows —
+   * the input to the computed suction pressure (dew at evaporator ±3°F).
+   * Omitted on residential-ac rows, where suction is computed from a fixed
+   * 38–45°F indoor evaporator regardless of ambient.
+   */
+  evaporatorF: z.number().optional(),
+  /**
+   * Legacy hand-entered operating pressures. Retained ONLY for pages that do
+   * NOT set `pressureModel` (R-134a / R-1234yf / R-744 — handled in later
+   * tasks). When `pressureModel` is set these are omitted and both suction and
+   * head are computed from the PT dataset via satPressure() — no typed values.
+   */
+  suctionPsigLow: z.number().optional(),
+  suctionPsigHigh: z.number().optional(),
+  dischargePsigLow: z.number().optional(),
+  dischargePsigHigh: z.number().optional(),
+  /** Optional companion values (legacy pages only). */
   superheatTargetF: z.tuple([z.number(), z.number()]).optional(),
   subcoolingTargetF: z.tuple([z.number(), z.number()]).optional(),
 });
@@ -81,7 +95,19 @@ export const WhatPressureFrontmatter = z.object({
   metaTitle: z.string().optional(),
   metaDescription: z.string().optional(),
   introOneLiner: z.string(),
-  /** ACCA Manual T / EPA Section 608 / manufacturer source label for the operating ranges. */
+  /**
+   * When set, the operating-pressure table and the design-point diagram are
+   * COMPUTED from the PT dataset (no typed pressures):
+   *  - "residential-ac": suction = dew pressure of a 38–45°F evaporator (same
+   *    for every row); head = bubble pressure from (ambientF+15) to
+   *    (ambientF+25). Each row's `ambientF` is the outdoor temperature.
+   *  - "commercial-refrigeration": suction = dew pressure from (evaporatorF−3)
+   *    to (evaporatorF+3); head = bubble pressure from (ambientF+15) to
+   *    (ambientF+30).
+   * Omitted → legacy behaviour: render the hand-entered suction/head literals.
+   */
+  pressureModel: z.enum(["residential-ac", "commercial-refrigeration"]).optional(),
+  /** Source label for the operating ranges (legacy pages) / supporting note. */
   operatingRangesSource: z.string(),
   operatingRanges: z.array(OperatingRange).min(1),
   diagnosticSteps: z.array(DiagnosticStep).min(1),

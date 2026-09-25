@@ -3,55 +3,26 @@ id: r32
 refrigerantSlug: r-32
 title: "What Pressure Should R32 Be?"
 metaTitle: "R32 Operating Pressures: What Should R32 Be? (By Temp)"
-metaDescription: "R32 A2L residential AC operating pressures: 40°F evap = 121.0 PSIG saturation, head 280–580 PSIG at outdoor 65–115°F. Diagnostic procedure + A2L handling notes."
+metaDescription: "R32 A2L residential AC operating pressure ranges by outdoor temperature, computed from the CoolProp-verified dataset. Diagnostic procedure, A2L handling, FAQ."
 introOneLiner: "Typical R-32 suction and discharge pressure ranges for residential AC, with A2L handling notes. Pressures slightly higher than R-410A; safety class is A2L (mildly flammable) rather than A1."
+pressureModel: residential-ac
 
-operatingRangesSource: "Manufacturer service literature for R-32 residential split systems (Daikin, Mitsubishi, LG, and US R-32 equipment); ACCA Manual T charging procedures adapted for R-32 systems"
+operatingRangesSource: "Computed from the CoolProp-verified R-32 PT dataset (dew/bubble saturation via satPressure); see the method note under the table."
 
 operatingRanges:
   - ambientF: 75
     application: "Residential AC at 75°F outdoor"
-    suctionPsigLow: 120
-    suctionPsigHigh: 140
-    dischargePsigLow: 260
-    dischargePsigHigh: 315
-    superheatTargetF: [8, 15]
-    subcoolingTargetF: [8, 14]
   - ambientF: 85
     application: "Residential AC at 85°F outdoor"
-    suctionPsigLow: 125
-    suctionPsigHigh: 145
-    dischargePsigLow: 310
-    dischargePsigHigh: 365
-    superheatTargetF: [8, 15]
-    subcoolingTargetF: [8, 14]
   - ambientF: 95
     application: "Residential AC at 95°F outdoor (rating condition)"
-    suctionPsigLow: 130
-    suctionPsigHigh: 150
-    dischargePsigLow: 360
-    dischargePsigHigh: 420
-    superheatTargetF: [8, 15]
-    subcoolingTargetF: [8, 12]
   - ambientF: 105
     application: "Residential AC at 105°F outdoor"
-    suctionPsigLow: 135
-    suctionPsigHigh: 155
-    dischargePsigLow: 410
-    dischargePsigHigh: 480
-    superheatTargetF: [10, 18]
-    subcoolingTargetF: [6, 12]
   - ambientF: 115
     application: "Residential AC at 115°F outdoor (hot-climate extreme)"
-    suctionPsigLow: 140
-    suctionPsigHigh: 165
-    dischargePsigLow: 460
-    dischargePsigHigh: 540
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 10]
 
 narrativeIntro: |
-  R-32 operates at pressures slightly higher than R-410A — about 5–8% across the envelope. R-32 saturation at 95°F is 296 PSIG vs. R-410A's 291 PSIG; the operating pressures track that small difference. Service equipment rated for R-410A (800 PSI high-side) is equally appropriate for R-32 from a pressure-rating standpoint.
+  R-32 operates at pressures slightly higher than R-410A — about 5–8% across the envelope. See the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for the ranges; the small R-32/R-410A saturation difference carries through them. Service equipment rated for R-410A (800 PSI high-side) is equally appropriate for R-32 from a pressure-rating standpoint.
 
   The substantive operational difference is the A2L safety class. R-32 is mildly flammable (low burning velocity, ≤ 10 cm/s) where R-410A is non-flammable (A1). This is materially different from R-410A handling — A2L charge limits per UL 60335-2-40, refrigerant leak detection sensors, A2L-rated recovery cylinders, and technician training specific to A2L apply. Treating R-32 as if it were R-410A from a safety standpoint is a structural error.
 
@@ -65,14 +36,14 @@ diagnosticSteps:
   - title: "Compare to expected ranges and identify the deviation"
     text: "Same diagnostic patterns as R-22 and R-410A: low low-side suggests undercharge or restriction; high low-side suggests overcharge or compressor issue; high high-side suggests dirty condenser or restricted airflow; low high-side suggests undercharge or low ambient. Use the operating range table above for the specific outdoor ambient."
   - title: "Verify with superheat and subcooling — TXV/EXV systems use subcooling primarily"
-    text: "Same TXV-vs-fixed-orifice logic as R-410A. R-32 systems are typically TXV or EXV; subcooling is the primary charging metric (8–12°F at condenser outlet target). Superheat hovers near the metering device setpoint; in-range superheat does not confirm correct charge on a TXV system. The combined PT/SH/SC calculator shows both with an interpretation banner."
+    text: "Same TXV-vs-fixed-orifice logic as R-410A. R-32 systems are typically TXV or EXV; subcooling is the primary charging metric (measured at the condenser outlet against the equipment's target). Superheat hovers near the metering device setpoint; in-range superheat does not confirm correct charge on a TXV system. The combined PT/SH/SC calculator shows both with an interpretation banner."
     tools: ["Contact or clamp-on temperature probe", "Probe insulation"]
 
 faqs:
   - q: "What's the normal operating pressure of R-32 at 95°F outdoor?"
-    a: "Expect roughly 130–150 PSIG suction and 360–420 PSIG discharge on a properly-charged residential R-32 system at the 95°F rating condition. Saturation pressure at 95°F is 296 PSIG; operating pressures fall on either side as the evaporator runs colder than ambient and the condenser runs hotter."
+    a: "Use the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for the ranges at the 95°F rating condition. Suction follows the evaporator setpoint and load while head tracks ambient and condenser condition, so a properly-charged system reads on either side of the saturation pressure — the evaporator runs colder than ambient and the condenser runs hotter."
   - q: "How does R-32 pressure compare to R-410A?"
-    a: "Very similar — about 5–8% higher across the envelope. R-32 suction at 95°F outdoor is ~130–150 PSIG vs. R-410A's ~125–145; R-32 discharge is ~360–420 PSIG vs. R-410A's ~350–410. Service equipment rated for R-410A is appropriate for R-32 pressure-wise. The substantive difference is the A2L safety class, not the operating pressures."
+    a: "Very similar — about 5–8% higher across the envelope. Compare the operating-pressure table above (computed from the CoolProp-verified saturation dataset) with the R-410A ranges: R-32 suction and discharge both sit slightly above R-410A at the same outdoor condition. Service equipment rated for R-410A is appropriate for R-32 pressure-wise. The substantive difference is the A2L safety class, not the operating pressures."
   - q: "Is R-32 flammable?"
     a: "Yes — R-32 is ASHRAE class A2L, mildly flammable with a low burning velocity (≤ 10 cm/s) and a heat of combustion below 19,000 kJ/kg. It will propagate flame in air at standard atmospheric pressure and 60°C, but the low burning velocity limits the explosion hazard. A2L equipment design, charge limits, leak detection, and service procedures apply per UL 60335-2-40 and ASHRAE 15. Treating R-32 like A1 R-410A is a safety-critical error."
   - q: "What gauges and recovery equipment do I need for R-32?"

@@ -3,60 +3,31 @@ id: r449a
 refrigerantSlug: r-449a
 title: "What Pressure Should R449A Be?"
 metaTitle: "R449A Operating Pressures: What Should R449A Be? (By Temp)"
-metaDescription: "R449A operating pressures on commercial refrigeration (R404A Opteon XP40 retrofit): 40°F dew ≈ 71.6 PSIG, head 240–360 PSIG. Diagnostic + retrofit notes."
+metaDescription: "R449A (Opteon XP40) operating pressures by application and ambient, computed from the CoolProp-verified PT dataset, plus a retrofit diagnostic procedure and FAQ."
 introOneLiner: "Typical R-1234yf and R-32/R-125/R-134a quaternary blend (Chemours Opteon™ XP40) operating pressures for the dominant real-world case: retrofitted R-404A/R-507 commercial refrigeration racks. R-449A reads ~10–18% LOWER suction and ~3–5% lower discharge than R-404A at the same evap/cond conditions — and runs +18–36°R hotter at the discharge. ~7.6°R average operating glide: dew curve for superheat, bubble for subcooling, charge LIQUID-only from the cylinder. Note: R-449A ≠ R-448A. Opteon XP40 (Chemours) is R-449A; Solstice N40 (Honeywell) is R-448A — the two are routinely confused in low-quality content."
+pressureModel: commercial-refrigeration
 
-operatingRangesSource: "Chemours Opteon™ XP40 retrofit guidelines and set-point conversion tables (R-404A/R-507 → R-449A); ASHRAE Handbook of Refrigeration 2022 commercial refrigeration chapter; manufacturer service literature for supermarket / walk-in commercial equipment. Ranges are indicative — verify against the specific rack's controller setpoints and the OEM service literature."
+operatingRangesSource: "Computed from the CoolProp-verified R-449A PT dataset (dew/bubble saturation via satPressure); see the method note under the table."
 
 operatingRanges:
   - ambientF: 95
+    evaporatorF: 35
     application: "Medium-temp display case (35°F evap), 95°F ambient"
-    suctionPsigLow: 49
-    suctionPsigHigh: 61
-    dischargePsigLow: 225
-    dischargePsigHigh: 275
-    superheatTargetF: [10, 18]
-    subcoolingTargetF: [8, 14]
   - ambientF: 95
+    evaporatorF: 25
     application: "Walk-in cooler (25°F evap), 95°F ambient"
-    suctionPsigLow: 31
-    suctionPsigHigh: 42
-    dischargePsigLow: 225
-    dischargePsigHigh: 275
-    superheatTargetF: [10, 18]
-    subcoolingTargetF: [8, 14]
   - ambientF: 95
+    evaporatorF: 0
     application: "Walk-in freezer (0°F evap), 95°F ambient"
-    suctionPsigLow: 9
-    suctionPsigHigh: 16
-    dischargePsigLow: 230
-    dischargePsigHigh: 285
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 12]
   - ambientF: 95
+    evaporatorF: -15
     application: "Frozen food case (−15°F evap), 95°F ambient"
-    suctionPsigLow: 2
-    suctionPsigHigh: 8
-    dischargePsigLow: 235
-    dischargePsigHigh: 292
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 12]
   - ambientF: 75
+    evaporatorF: 25
     application: "Walk-in cooler (25°F evap), 75°F ambient"
-    suctionPsigLow: 31
-    suctionPsigHigh: 42
-    dischargePsigLow: 160
-    dischargePsigHigh: 205
-    superheatTargetF: [10, 18]
-    subcoolingTargetF: [8, 14]
   - ambientF: 75
+    evaporatorF: 0
     application: "Walk-in freezer (0°F evap), 75°F ambient"
-    suctionPsigLow: 9
-    suctionPsigHigh: 16
-    dischargePsigLow: 165
-    dischargePsigHigh: 210
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 12]
 
 narrativeIntro: |
   R-449A is Chemours **Opteon™ XP40** — a quaternary HFC/HFO blend (R-32 / R-125 / R-1234yf / R-134a at 24.3 / 24.7 / 25.3 / 25.7 by mass) engineered as the lower-GWP replacement for R-404A and R-507 in commercial refrigeration. Read pressures on a R-449A system and the dominant real-world context is a retrofitted R-404A or R-507 rack — supermarkets, convenience stores, walk-in cold storage, low-temp freezer cases. New equipment is increasingly specified directly to R-449A as well; the 2026 EPA Technology Transitions final revision keeps it legal for new retail-food remote condensing units and supermarket systems through 2032 under the 1,400 interim GWP threshold.
@@ -90,7 +61,7 @@ serviceScenarios:
     verdict:
       status: ok
       title: Properly retrofitted — sign off
-      body: "Suction at 36 PSIG and discharge at 248 PSIG are mid-range for an MT walk-in cooler on R-449A at 95°F ambient (operating range 31–42 / 225–275). Both SH (dew basis) and SC (bubble basis) are inside target. Note the pressures are noticeably lower than the same system would read on R-404A — that is by design, not a fault. The retrofit is dialed in."
+      body: "Suction at 36 PSIG and discharge at 248 PSIG sit mid-range for an MT walk-in cooler on R-449A at 95°F ambient — compare against the operating-pressure table above (computed from the CoolProp-verified saturation dataset). Both SH (dew basis) and SC (bubble basis) are inside target. Note the pressures are noticeably lower than the same system would read on R-404A — that is by design, not a fault. The retrofit is dialed in."
   - title: "Phantom undercharge — the glide trap (R-449A-specific)"
     scenario: "Same walk-in cooler. New tech on shift reads the same gauges as in scenario 1 but uses the R-404A PT chart still clipped to the manifold (or computes SH on the bubble curve). The 'high SH' reading triggers a top-off. Result: a correctly-charged system gets overcharged. This is the #1 field-error class on high-glide blends and is unique to zeotropes — no equivalent failure mode exists on R-404A's near-azeotropic chemistry."
     measured:
@@ -182,10 +153,10 @@ diagnosticSteps:
 faqs:
   - q: "What's the normal R-449A operating pressure at 95°F ambient?"
     a: |
-      Depends on application. Medium-temp display case (35°F evap): 49–61 PSIG suction, 225–275 PSIG discharge. Walk-in cooler (25°F evap): 31–42 PSIG suction, 225–275 PSIG discharge. Walk-in freezer (0°F evap): 9–16 PSIG suction, 230–285 PSIG discharge. Frozen food case (−15°F evap): 2–8 PSIG suction (close to atmospheric — IN vacuum still means trouble), 235–292 PSIG discharge. These are R-449A's operating ranges; expect them to read ~10–18% LOWER suction and 3–5% lower discharge than the same R-404A rack at the same ambient.
+      It depends on the application. See the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for the suction and discharge ranges by case type and ambient — medium-temp display case, walk-in cooler, walk-in freezer, and frozen-food case each read differently. Suction follows the evaporator setpoint and load; head tracks the ambient and condenser condition. At the lowest evaporator temperatures suction runs close to atmospheric, so a system in vacuum still means trouble. Across the board R-449A reads meaningfully lower suction and slightly lower discharge than the same R-404A rack at the same conditions.
   - q: "How do R-449A pressures compare to R-404A on a retrofitted system?"
     a: |
-      Per Chemours retrofit guideline Tables 4 and 5: at the same evap/cond setpoints, R-449A suction reads about 10–18% LOWER than R-404A, and discharge reads about 3–5% lower. The discharge **TEMPERATURE**, however, runs **+18 to +36°R HOTTER** on R-449A — this is the retrofit gotcha and the reason Chemours says to consult the compressor OEM for LT applications. At MT 14°F evap / 104°F cond: R-404A evap 48.5 → R-449A 41.5 psig; R-404A cond 251 → R-449A 238 psig; discharge temp 171°F → 192°F. At LT −22°F evap / 104°F cond: R-404A evap 15 → R-449A 10.5 psig; R-404A cond 251 → R-449A 238 psig; discharge temp 189°F → 223°F. Pressures lower than R-404A are not automatically a fault.
+      Per Chemours retrofit guideline Tables 4 and 5, at the same evaporator and condensing setpoints R-449A suction reads about 10–18% LOWER than R-404A and discharge reads about 3–5% lower — the operating-pressure table above (computed from the CoolProp-verified saturation dataset) shows the R-449A side of that comparison by application. The discharge **TEMPERATURE**, however, runs **+18 to +36°R HOTTER** on R-449A — this is the retrofit gotcha and the reason Chemours says to consult the compressor OEM for LT applications, where the effect is largest. Pressures lower than the old R-404A baseline are not automatically a fault.
   - q: "Is R-449A the same as Honeywell Solstice N40?"
     a: |
       **No.** Solstice N40 is **R-448A**, not R-449A. R-449A is **Chemours Opteon™ XP40**. Both are HFC/HFO blends marketed as R-404A retrofits, both A1, both POE, both with significant operating glide — but they are different compositions. R-448A is quinary (5 components: R-32/R-125/R-134a/R-1234yf/R-1234ze at 26/26/21/20/7). R-449A is quaternary (4 components: R-32/R-125/R-134a/R-1234yf at 24.3/24.7/25.7/25.3). Per Chemours's own comparison, R-449A has slightly smaller glide and slightly lower condensing pressure than R-448A. The two are routinely confused in low-quality content — if a label, paperwork, or work order says "N40" it is NOT R-449A.

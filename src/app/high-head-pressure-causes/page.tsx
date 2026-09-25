@@ -89,8 +89,8 @@ const FAQS = [
     a: "R-410A residential equipment is typically pressure-rated to 600-650 PSIG high-side per manufacturer specification. Sustained pressures above can cause compressor valve damage, oil breakdown, refrigerant decomposition. Modern equipment includes a high-pressure switch that trips before damage occurs (500-650 PSIG depending on OEM). If the cutout is tripping, the system is telling you to find the cause.",
   },
   {
-    q: "How does the AHRI Standard 540 compressor protection relate?",
-    a: "AHRI Standard 540 (Positive Displacement Refrigerant Compressors) specifies discharge pressure limits as a percentage of refrigerant critical pressure. For R-410A (P_critical = 713 PSIA = 698 PSIG), the protection threshold is typically 85% = ~593 PSIG. Service equipment must operate below this to satisfy compressor protection requirements; the cutout switches are set with margin to AHRI 540 limits.",
+    q: "Is there a standard high-pressure cutout limit for R-410A?",
+    a: "Not from a standard. High-pressure cutout setpoints are defined by the equipment manufacturer — commonly 600–650 PSIG on R-410A residential equipment — not by a refrigerant property or a fixed percentage of critical pressure. (AHRI Standard 540 is a compressor performance-rating standard; it standardizes how capacity and efficiency are published and does not set a field cutout.) Use the OEM nameplate or service-manual value.",
   },
   {
     q: "Does this guide apply to R-744 (CO₂) systems?",
@@ -503,7 +503,6 @@ export default function HighHeadPressurePage() {
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>ACCA Manual T (2017) — &quot;Air-Side and Refrigerant-Side Diagnostics&quot;, diagnostic patterns and procedures</li>
             <li>ASHRAE Handbook of Refrigeration 2022 — Chapters 23, 39 (service procedures, condensers)</li>
-            <li>AHRI Standard 540-2020 — Positive Displacement Refrigerant Compressors, pressure limits</li>
             <li>EPA Section 608 (40 CFR Part 82 Subpart F) — refrigerant handling, evacuation procedures</li>
             <li>CoolProp 7.2.0 — saturation property source for site calculators</li>
             <li>Manufacturer service literature — Carrier, Trane, Lennox, Daikin, Goodman residential AC service manuals; commercial OEMs (Heatcraft, Hussmann) for walk-in / refrigeration high-side procedures</li>

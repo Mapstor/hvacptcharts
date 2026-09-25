@@ -3,57 +3,33 @@ id: r454c
 refrigerantSlug: r-454c
 title: "What Pressure Should R454C Be?"
 metaTitle: "R454C Operating Pressures: What Should R454C Be? (By Temp)"
-metaDescription: "R454C A2L commercial refrigeration operating pressures: 40°F dew ≈ 61.5 PSIG, head 210–330 PSIG by ambient. Diagnostic procedure + 14°F glide notes."
+metaDescription: "R454C A2L commercial refrigeration operating pressures by application and ambient, computed from the CoolProp-verified dataset, plus a diagnostic procedure and FAQ."
 introOneLiner: "R-454C is a low-GWP A2L commercial refrigeration refrigerant (GWP 148). Operating pressures for medium-temp (refrigerated cases) and low-temp (frozen cases) applications. Significant glide (~14°F) requires dew-curve superheat and bubble-curve subcooling."
+pressureModel: commercial-refrigeration
 
-operatingRangesSource: "Chemours Opteon XP35 (R-454C) technical literature; Honeywell Solstice 454C product data; ASHRAE Handbook of Refrigeration 2022; equipment OEM service procedures for low-GWP A2L commercial refrigeration"
+operatingRangesSource: "Computed from the CoolProp-verified R-454C PT dataset (dew/bubble saturation via satPressure); see the method note under the table."
 
 operatingRanges:
   - ambientF: 75
     application: "Medium-temp commercial refrigeration (refrigerated cases, ~30°F evap, 75°F ambient)"
-    suctionPsigLow: 30
-    suctionPsigHigh: 42
-    dischargePsigLow: 170
-    dischargePsigHigh: 215
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 15]
+    evaporatorF: 30
   - ambientF: 95
     application: "Medium-temp commercial refrigeration at 95°F ambient (rating)"
-    suctionPsigLow: 30
-    suctionPsigHigh: 42
-    dischargePsigLow: 240
-    dischargePsigHigh: 295
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 15]
+    evaporatorF: 30
   - ambientF: 105
     application: "Medium-temp commercial refrigeration at 105°F ambient"
-    suctionPsigLow: 30
-    suctionPsigHigh: 42
-    dischargePsigLow: 280
-    dischargePsigHigh: 340
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 15]
+    evaporatorF: 30
   - ambientF: 95
     application: "Low-temp commercial refrigeration (frozen cases, -10°F evap, 95°F ambient)"
-    suctionPsigLow: 8
-    suctionPsigHigh: 18
-    dischargePsigLow: 220
-    dischargePsigHigh: 280
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 12]
+    evaporatorF: -10
   - ambientF: 95
     application: "Low-temp commercial refrigeration (-25°F evap, 95°F ambient)"
-    suctionPsigLow: -2
-    suctionPsigHigh: 8
-    dischargePsigLow: 220
-    dischargePsigHigh: 280
-    superheatTargetF: [10, 20]
-    subcoolingTargetF: [5, 12]
+    evaporatorF: -25
 
 narrativeIntro: |
   R-454C is one of the modern low-GWP A2L replacements for R-404A in commercial refrigeration, alongside R-455A. Both have GWP 148 (below the EU F-Gas 150-GWP threshold); R-454C is the lower-glide of the two (~14°F vs R-455A's ~22°F).
 
-  Operating pressures depend strongly on application. Medium-temp commercial refrigeration runs with evaporator setpoints of 20-40°F (for refrigerated produce, dairy, beverage), yielding suction pressures around 30-42 PSIG. Low-temp commercial refrigeration runs evaporator setpoints of 0 to -25°F (for frozen food), yielding much lower suction pressures (down to -2 PSIG at the coldest setpoints — below atmospheric on the dew curve).
+  Operating pressures depend strongly on application. Medium-temp commercial refrigeration (refrigerated produce, dairy, beverage) runs warmer evaporator setpoints and correspondingly higher suction than low-temp equipment. Low-temp commercial refrigeration (frozen food) runs much colder setpoints, and suction can fall below atmospheric on the dew curve at the coldest conditions. See the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for the ranges by application: suction follows the evaporator setpoint and load, while head tracks ambient and condenser condition.
 
   Discharge pressure tracks the ambient temperature at the condenser, similar to AC equipment but typically with somewhat less air-temperature approach because commercial refrigeration condensers are sized more aggressively for steady-state operation.
 
@@ -78,9 +54,9 @@ diagnosticSteps:
 
 faqs:
   - q: "What's normal R-454C suction pressure for a walk-in cooler at 95°F ambient?"
-    a: "Approximately 30-42 PSIG for medium-temperature commercial refrigeration (walk-in coolers, refrigerated display cases, typical evaporator setpoint 30-40°F). The suction pressure is determined by the evaporator load more than by ambient — high ambients raise discharge pressure but suction stays in this range as long as the evaporator load is normal."
+    a: "See the medium-temp rows of the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for walk-in coolers and refrigerated display cases. Suction pressure is determined by the evaporator setpoint and load more than by ambient — high ambients raise discharge pressure while suction holds steady as long as the evaporator load is normal."
   - q: "What's normal R-454C suction pressure for a low-temp freezer?"
-    a: "Much lower — typically 8-18 PSIG at -10°F evaporator setpoint, down to -2 to 8 PSIG at -25°F evaporator setpoint. The low-temperature setpoint drives the low evaporator pressure. Sub-atmospheric (negative PSIG, meaning below atmospheric) suction is normal for the coldest commercial refrigeration applications — leak-tightness is critical to prevent air ingress."
+    a: "Much lower than medium-temp — see the low-temp rows of the operating-pressure table above (computed from the CoolProp-verified saturation dataset). The low-temperature setpoint drives the low evaporator pressure, and sub-atmospheric (below-atmospheric) suction is normal for the coldest commercial refrigeration applications, so leak-tightness is critical to prevent air ingress."
   - q: "How does R-454C glide affect service?"
     a: "R-454C has ~14°F glide between bubble and dew points at typical operating pressures. Service implications: (1) use dew curve for superheat measurement; (2) use bubble curve for subcooling; (3) TXV systems generally accommodate the glide without adjustment; (4) fixed-orifice systems are not well-matched to high-glide blends — use TXV or EXV equipment with R-454C; (5) leak-induced composition shift (fractionation) is a concern for any zeotropic blend, especially when topping off a leaked system — recover and recharge by weight rather than topping off."
   - q: "Is R-454C safe to handle?"
