@@ -224,6 +224,16 @@ export const Refrigerant = z.object({
   ptTable: z.array(PTTableRow).optional(),
   primaryDatasheet: PrimaryDatasheet.optional(),
   dataSource: DataSource,
+  /**
+   * SEO indexing flag. Default true. When false the detail page still renders
+   * and stays linkable, but generateMetadata emits robots { index:false,
+   * follow:true }, and the page is dropped from sitemap.ts and the homepage
+   * ItemList JSON-LD. Use for fluids with missing PT data or a template that
+   * doesn't fit the fluid yet (to be rebuilt).
+   */
+  indexable: z.boolean().default(true),
+  /** Machine-readable reason a fluid is noindexed (audit only; not rendered). */
+  noindexReason: z.string().optional(),
 });
 export type Refrigerant = z.infer<typeof Refrigerant>;
 

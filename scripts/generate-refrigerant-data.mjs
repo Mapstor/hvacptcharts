@@ -270,6 +270,8 @@ async function main() {
         applications: info.applications,
         replacementOptions: info.replacementOptions ?? [],
         replaces: info.replaces ?? null,
+        indexable: info.indexable ?? true,
+        ...(info.noindexReason && { noindexReason: info.noindexReason }),
         regulatoryStatus: info.regulatoryStatus,
         ptChart,
         ...(ptTable && { ptTable }),

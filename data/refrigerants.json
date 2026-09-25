@@ -2000,6 +2000,8 @@
   },
   {
     "slug": "r-1150",
+    "indexable": false,
+    "noindexReason": "Known content errors and a template that does not fit this fluid; page to be rebuilt.",
     "displayName": "R-1150",
     "altSpellings": [
       "R1150",
@@ -4968,6 +4970,8 @@
   },
   {
     "slug": "r-1224yd-z",
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-1224yd(Z)",
     "altSpellings": [
       "R1224ydZ",
@@ -9065,6 +9069,8 @@
   },
   {
     "slug": "r-1233zd-z",
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-1233zd(Z)",
     "altSpellings": [
       "R1233zdZ",
@@ -23693,6 +23699,8 @@
   },
   {
     "slug": "r-1336mzz-z",
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-1336mzz(Z)",
     "altSpellings": [
       "R1336mzzZ",
@@ -43532,6 +43540,8 @@
   },
   {
     "slug": "r-365mfc",
+    "indexable": false,
+    "noindexReason": "Known content errors and a template that does not fit this fluid; page to be rebuilt.",
     "displayName": "R-365mfc",
     "altSpellings": [
       "R365mfc",
@@ -70617,6 +70627,8 @@
   },
   {
     "slug": "r-450a",
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-450A",
     "altSpellings": [
       "R450A",
@@ -86596,6 +86608,8 @@
   },
   {
     "slug": "r-503",
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-503",
     "altSpellings": [
       "R503"
@@ -90703,6 +90717,8 @@
   },
   {
     "slug": "r-514a",
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-514A",
     "altSpellings": [
       "R514A",
@@ -90799,6 +90815,8 @@
   },
   {
     "slug": "r-515a",
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-515A",
     "altSpellings": [
       "R515A",
@@ -90895,6 +90913,8 @@
   },
   {
     "slug": "r-515b",
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-515B",
     "altSpellings": [
       "R515B",
@@ -98330,6 +98350,8 @@
   },
   {
     "slug": "r-c318",
+    "indexable": false,
+    "noindexReason": "Known content errors and a template that does not fit this fluid; page to be rebuilt.",
     "displayName": "R-c318",
     "altSpellings": [
       "Rc318",

@@ -161,7 +161,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  const refrigerantEntries = refrigerants.map((r) => {
+  const refrigerantEntries = refrigerants.filter((r) => r.indexable).map((r) => {
     const tier1 = ["r-22", "r-410a", "r-134a", "r-32", "r-404a", "r-454b", "r-407c", "r-1234yf", "r-1234ze", "r-744", "r-717", "r-290", "r-600a", "r-123"];
     const priority = tier1.includes(r.slug) ? 0.85 : 0.6;
     return {

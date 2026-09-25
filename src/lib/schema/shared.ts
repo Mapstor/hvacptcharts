@@ -241,6 +241,13 @@ export interface PageMetadataInput {
   twitterImage?: string;
   /** Set true to noindex/nofollow (e.g. internal preview routes). */
   noIndex?: boolean;
+  /**
+   * Full robots override, passed straight through to Next's Metadata.robots.
+   * Takes precedence over `noIndex`. Use for "index:false, follow:true"
+   * (noindexed refrigerant pages) or a googleBot-only noindex (guides Bing
+   * keeps but Google drops).
+   */
+  robots?: Metadata["robots"];
 }
 
 export function pageMetadata(input: PageMetadataInput): Metadata {
@@ -272,7 +279,11 @@ export function pageMetadata(input: PageMetadataInput): Metadata {
       description: input.description,
       images: [twitterImage],
     },
-    ...(input.noIndex ? { robots: { index: false, follow: false } } : {}),
+    ...(input.robots
+      ? { robots: input.robots }
+      : input.noIndex
+        ? { robots: { index: false, follow: false } }
+        : {}),
   };
 }
 

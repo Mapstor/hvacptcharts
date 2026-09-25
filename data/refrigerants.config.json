@@ -44,6 +44,8 @@
     "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
   },
   "r-1150": {
+    "indexable": false,
+    "noindexReason": "Known content errors and a template that does not fit this fluid; page to be rebuilt.",
     "displayName": "R-1150",
     "altSpellings": ["R1150", "Ethylene", "Ethene"],
     "chemicalName": "Ethylene",
@@ -129,6 +131,8 @@
     "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
   },
   "r-1224yd-z": {
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-1224yd(Z)",
     "altSpellings": ["R1224ydZ", "R-1224yd", "AMOLEA 1224yd"],
     "chemicalName": "(Z)-1-Chloro-2,3,3,3-tetrafluoro-1-propene",
@@ -258,6 +262,8 @@
     "propertiesSource": "CoolProp 7.2.0 + Honeywell Solstice technical datasheet"
   },
   "r-1233zd-z": {
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-1233zd(Z)",
     "altSpellings": ["R1233zdZ", "HCFO-1233zd(Z)"],
     "chemicalName": "(Z)-1-Chloro-3,3,3-trifluoro-1-propene",
@@ -640,6 +646,8 @@
     "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
   },
   "r-1336mzz-z": {
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-1336mzz(Z)",
     "altSpellings": ["R1336mzzZ", "HFO-1336mzz(Z)", "Opteon 1100"],
     "chemicalName": "(Z)-1,1,1,4,4,4-Hexafluoro-2-butene",
@@ -1114,6 +1122,8 @@
     "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
   },
   "r-365mfc": {
+    "indexable": false,
+    "noindexReason": "Known content errors and a template that does not fit this fluid; page to be rebuilt.",
     "displayName": "R-365mfc",
     "altSpellings": ["R365mfc", "HFC-365mfc"],
     "chemicalName": "1,1,1,3,3-Pentafluorobutane",
@@ -1821,6 +1831,8 @@
     "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
   },
   "r-450a": {
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-450A",
     "altSpellings": ["R450A", "450A", "Opteon XP10"],
     "chemicalName": "Binary HFC/HFO blend",
@@ -2234,6 +2246,8 @@
     "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
   },
   "r-503": {
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-503",
     "altSpellings": ["R503"],
     "chemicalName": "Binary HFC/CFC azeotropic blend",
@@ -2374,6 +2388,8 @@
     "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
   },
   "r-514a": {
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-514A",
     "altSpellings": ["R514A", "514A", "Opteon XP30"],
     "chemicalName": "Binary HFO/HCO blend",
@@ -2419,6 +2435,8 @@
     "propertiesSource": "Chemours Opteon XP30 datasheet"
   },
   "r-515a": {
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-515A",
     "altSpellings": ["R515A", "515A"],
     "chemicalName": "Binary HFO/HFC azeotropic blend",
@@ -2465,6 +2483,8 @@
     "propertiesSource": "Honeywell Solstice 515A datasheet"
   },
   "r-515b": {
+    "indexable": false,
+    "noindexReason": "pt-data-missing",
     "displayName": "R-515B",
     "altSpellings": ["R515B", "515B", "Solstice N15"],
     "chemicalName": "Binary HFO/HFC azeotropic blend",
@@ -2682,6 +2702,8 @@
     "propertiesSource": "CoolProp 7.2.0 + ASHRAE Standard 34-2022"
   },
   "r-c318": {
+    "indexable": false,
+    "noindexReason": "Known content errors and a template that does not fit this fluid; page to be rebuilt.",
     "displayName": "R-c318",
     "altSpellings": ["Rc318", "R-C318", "PFC-c318", "Octafluorocyclobutane"],
     "chemicalName": "Octafluorocyclobutane",

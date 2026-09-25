@@ -99,7 +99,7 @@ function buildSchema() {
         name: "Most-referenced refrigerant PT charts",
         itemListElement: HERO_SLUGS.map((slug, i) => {
           const r = getRefrigerant(slug);
-          return r
+          return r && r.indexable
             ? {
                 "@type": "ListItem",
                 position: i + 1,

@@ -93,6 +93,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description,
     path: `/refrigerant/${r.slug}/`,
     ogType: "article",
+    // Noindexed fluids (missing PT data, or a template that doesn't fit yet)
+    // stay live and linkable but are dropped from the index; follow stays on so
+    // link equity still flows. Also filtered from sitemap.ts and the homepage
+    // ItemList. Default indexable === true → no robots override.
+    ...(r.indexable ? {} : { robots: { index: false, follow: true } }),
   });
 }
 

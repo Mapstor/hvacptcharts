@@ -24,6 +24,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Decision trees for HVAC cooling, heating, airflow, and efficiency faults. Symptom → likely cause → verification test → fix. Sourced diagnostic procedures.",
   path: "/hvac-troubleshooting-guide/",
+  // Bing keeps this guide; Google drops it until rewritten. googleBot noindex only.
+  robots: { index: true, follow: true, googleBot: { index: false, follow: true } },
 });
 
 const FAQS = [

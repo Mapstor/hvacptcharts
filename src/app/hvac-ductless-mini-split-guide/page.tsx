@@ -23,8 +23,10 @@ const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/hv
 export const metadata: Metadata = pageMetadata({
   title: "Ductless Mini-Split Guide: Cold-Climate, A2L, VRF (Free 101)",
   description:
-    "Ductless mini-split and VRF systems for residential and light commercial: cold-climate heat pump performance, A2L transition, and IRA tax credit qualifying models.",
+    "Ductless mini-split and VRF systems for residential and light commercial: cold-climate heat pump performance, A2L transition, sizing, and commercial VRF selection.",
   path: "/hvac-ductless-mini-split-guide/",
+  // Bing keeps this guide; Google drops it until rewritten. googleBot noindex only.
+  robots: { index: true, follow: true, googleBot: { index: false, follow: true } },
 });
 
 const FAQS = [
@@ -56,10 +58,6 @@ const FAQS = [
     q: "What's a VRF system and when is it the right choice?",
     a: "Variable Refrigerant Flow (VRF) systems are commercial-scale ductless heat pump systems that connect one outdoor unit (or multiple combined) to many indoor units throughout a building. Distinguishing features from residential multi-zone mini-splits: (1) Scale: 5-100+ tons typical commercial capacity vs ~3-5 tons residential multi-zone. (2) Heat recovery capability: some VRF systems (heat recovery VRF or three-pipe VRF) can simultaneously cool one zone while heating another — extremely valuable for buildings with diverse load profiles (south-facing offices need cooling while north-facing offices need heating). (3) Sophistication: VRF outdoor units use multiple variable-speed compressors + advanced refrigerant management; control via dedicated VRF controller with BAS integration. (4) Refrigerant management: longer linesets (200+ ft); larger refrigerant charges (which trigger ASHRAE 15 + UL 60335-2-40 safety + charge limit considerations); leak detection systems required. (5) Cost: $15,000-100,000+ for commercial installations; significantly higher per-ton equipment + installation cost than packaged commercial HVAC. Major VRF manufacturers: Mitsubishi Electric City Multi (industry leader, established US presence); Daikin VRV (originator of VRF technology); LG Multi V (broad lineup); Samsung DVM (growing US presence); Toshiba Carrier VRF; Hitachi (less common in US); Panasonic (specialty markets). When VRF is the right choice: (1) Commercial buildings (5,000-100,000+ sq ft) wanting heat pump conversion. (2) Multi-zone buildings with diverse load profiles (heat recovery VRF). (3) Renovations + retrofits where ductwork is impractical. (4) High-end residential (3,000+ sq ft, multi-story) where premium HVAC justified. (5) Mixed-use buildings (office + retail + residential combinations). When VRF is NOT right: most single-family residential (simpler mini-split or ducted heat pump better); facilities with simple uniform loads (packaged commercial HVAC often more cost-effective); facilities without local VRF service technician availability. VRF requires specialized training + tooling for service; verify service availability in your region before committing.",
   },
-  {
-    q: "Do mini-splits qualify for IRA tax credits?",
-    a: "Yes, qualifying mini-split heat pumps are eligible for IRA Section 25C Energy Efficient Home Improvement Credit. Qualification framework: (1) Equipment must be heat pump (cooling + heating capability). (2) Equipment must meet ENERGY STAR Most Efficient certification for the appropriate climate region (separate Most Efficient lists for South + North regions). (3) Equipment must be AHRI-certified (combination of outdoor + indoor units listed in AHRI Directory). (4) For ENERGY STAR Most Efficient certification: typically requires SEER2 ≥17-22 + HSPF2 ≥9.5-11 depending on climate zone + capacity class. (5) Equipment installed in primary or secondary US residence by tax filer. Credit amount: 30% of cost (equipment + installation) up to $2,000 annual cap for heat pumps. Credit reset each tax year. To claim: (a) Verify ENERGY STAR Most Efficient + AHRI certification at purchase. (b) Save AHRI certificate + invoice + ENERGY STAR Most Efficient certification. (c) File IRS Form 5695 with annual tax return. (d) Consult tax professional for complex situations. Major qualifying mini-split brands: Mitsubishi Electric (multiple Hyper-Heat models qualify); Daikin LV Series + Aurora; Fujitsu Halcyon select models; LG select models; Bosch Climate 5000 + BHP select models; Carrier Infinity + Performance; Bryant; Trane select models; Senville premium models (some qualify); MrCool premium models (some qualify). Check the ENERGY STAR Most Efficient + AHRI Directory for current qualifying models before purchase — eligibility changes as DOE updates efficiency criteria. Also check HEEHRA rebates in your state (point-of-sale rebates for income-qualified households, up to $8,000 for heat pumps).",
-  },
 ];
 
 function buildSchema(): object[] {
@@ -69,9 +67,9 @@ function buildSchema(): object[] {
     {
       "@type": "TechArticle",
       "@id": `${PAGE_URL}#article`,
-      headline: "Ductless Mini-Split & VRF Guide — Single-Zone, Multi-Zone, Cold-Climate, A2L Transition, Installation, Brand Comparison, IRA Credits",
+      headline: "Ductless Mini-Split & VRF Guide — Single-Zone, Multi-Zone, Cold-Climate, A2L Transition, Installation, Brand Comparison",
       description:
-        "Complete ductless mini-split + variable refrigerant flow reference covering taxonomy, cold-climate mini-splits, multi-zone systems, commercial VRF, sizing, installation, refrigerant types + A2L transition, brand lineup, DIY mini-splits, common failures, IRA tax credits.",
+        "Complete ductless mini-split + variable refrigerant flow reference covering taxonomy, cold-climate mini-splits, multi-zone systems, commercial VRF, sizing, installation, refrigerant types + A2L transition, brand lineup, DIY mini-splits, and common failures.",
       proficiencyLevel: "Beginner to Advanced",
       url: PAGE_URL,
       mainEntityOfPage: PAGE_URL,
@@ -86,7 +84,6 @@ function buildSchema(): object[] {
         { "@type": "Thing", name: "variable refrigerant flow" },
         { "@type": "Thing", name: "cold climate heat pump" },
         { "@type": "Thing", name: "A2L refrigerant" },
-        { "@type": "Thing", name: "IRA heat pump credit" },
       ],
       keywords: [
         "ductless mini-split",
@@ -97,7 +94,6 @@ function buildSchema(): object[] {
         "mitsubishi hyper heat",
         "daikin mini split",
         "mini split installation",
-        "mini split ira tax credit",
       ],
     },
     {
@@ -136,15 +132,15 @@ export default function HvacDuctlessMiniSplitGuidePage() {
 
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Ductless Mini-Split & VRF Guide — Single-Zone, Multi-Zone, Cold-Climate Heat Pumps, A2L Refrigerant Transition, Installation, Brand Comparison, IRA Tax Credits, and Commercial VRF
+            Ductless Mini-Split & VRF Guide — Single-Zone, Multi-Zone, Cold-Climate Heat Pumps, A2L Refrigerant Transition, Installation, Brand Comparison, and Commercial VRF
           </h1>
           <p className="mt-4 text-lg text-zinc-700 dark:text-zinc-300">
-            Complete ductless mini-split + variable refrigerant flow (VRF) reference: 5-type system taxonomy (single-zone wall-mount + multi-zone + ducted mini-split + ceiling cassette + floor-mount), cold-climate mini-split deep dive covering Mitsubishi Electric Hyper-Heat (H2i), Daikin LV Series + Aurora, Bosch Climate 5000 BHP, Fujitsu Halcyon, LG Multi V S, Carrier Performance, with honest assessment of -13°F to -15°F rated capacities, multi-zone branch box architecture + sizing pitfalls (the oversized-outdoor-unit problem), commercial VRF systems (Mitsubishi City Multi, Daikin VRV, LG Multi V, Samsung DVM, Toshiba Carrier, Hitachi, Panasonic) including heat recovery vs heat pump VRF, Manual J + Manual S sizing methodology (still required for mini-splits), refrigerant lineset specifications (length, lift, insulation), electrical service + dedicated circuit requirements, condensate drainage including pump considerations, A2L refrigerant transition (R-32 dominant + R-454B emerging + R-410A legacy) with ASHRAE 15 Refrigerant Concentration Limit calculations for small rooms, complete 14-manufacturer brand vendor comparison, DIY mini-splits (MrCool, Pioneer, Senville) with explicit EPA Section 608 caveats, 9 common installation failures specific to mini-splits, IRA Section 25C $2,000 heat pump tax credit qualification framework + AHRI Directory + ENERGY STAR Most Efficient requirements, cost framework by system class, mini-split-specific maintenance procedures. Sourced throughout from AHRI 210/240 + 1230, ASHRAE 15 + 34 + 90.2, EPA Section 608 + AIM Act, UL 60335-2-40, IRS 25C, ENERGY STAR.
+            Complete ductless mini-split + variable refrigerant flow (VRF) reference: 5-type system taxonomy (single-zone wall-mount + multi-zone + ducted mini-split + ceiling cassette + floor-mount), cold-climate mini-split deep dive covering Mitsubishi Electric Hyper-Heat (H2i), Daikin LV Series + Aurora, Bosch Climate 5000 BHP, Fujitsu Halcyon, LG Multi V S, Carrier Performance, with honest assessment of -13°F to -15°F rated capacities, multi-zone branch box architecture + sizing pitfalls (the oversized-outdoor-unit problem), commercial VRF systems (Mitsubishi City Multi, Daikin VRV, LG Multi V, Samsung DVM, Toshiba Carrier, Hitachi, Panasonic) including heat recovery vs heat pump VRF, Manual J + Manual S sizing methodology (still required for mini-splits), refrigerant lineset specifications (length, lift, insulation), electrical service + dedicated circuit requirements, condensate drainage including pump considerations, A2L refrigerant transition (R-32 dominant + R-454B emerging + R-410A legacy) with ASHRAE 15 Refrigerant Concentration Limit calculations for small rooms, complete 14-manufacturer brand vendor comparison, DIY mini-splits (MrCool, Pioneer, Senville) with explicit EPA Section 608 caveats, 9 common installation failures specific to mini-splits, AHRI Directory + ENERGY STAR Most Efficient equipment verification, cost framework by system class, mini-split-specific maintenance procedures. Sourced throughout from AHRI 210/240 + 1230, ASHRAE 15 + 34 + 90.2, EPA Section 608 + AIM Act, UL 60335-2-40, ENERGY STAR.
           </p>
 
           <div className="mt-5 rounded-xl border-2 border-blue-300 bg-blue-50/60 p-4 dark:border-blue-700/60 dark:bg-blue-900/20">
             <p className="text-sm text-zinc-700 dark:text-zinc-300">
-              <strong>Why mini-splits matter in 2026.</strong> Ductless mini-splits are the single highest-growth residential HVAC category — driven by heat pump electrification + IRA tax credits + cold-climate technology advances + retrofit applications (ADUs, additions, garage conversions, homes without existing ductwork). The A2L refrigerant transition is hitting mini-splits FIRST since most new mini-splits globally already use R-32. For homeowners considering electrification, this guide is the &quot;is a mini-split right for me?&quot; reference. For HVAC professionals, this is the complete installation + commissioning + warranty methodology. To size a system, run the numbers with the <Link href="/hvac-load-calculator/" className="underline">HVAC load calculator</Link>, and see the <Link href="/calculators-hub/" className="underline">calculators hub</Link> for the full toolkit.
+              <strong>Why mini-splits matter in 2026.</strong> Ductless mini-splits are the single highest-growth residential HVAC category — driven by heat pump electrification + cold-climate technology advances + retrofit applications (ADUs, additions, garage conversions, homes without existing ductwork). The A2L refrigerant transition is hitting mini-splits FIRST since most new mini-splits globally already use R-32. For homeowners considering electrification, this guide is the &quot;is a mini-split right for me?&quot; reference. For HVAC professionals, this is the complete installation + commissioning + warranty methodology. To size a system, run the numbers with the <Link href="/hvac-load-calculator/" className="underline">HVAC load calculator</Link>, and see the <Link href="/calculators-hub/" className="underline">calculators hub</Link> for the full toolkit.
             </p>
           </div>
         </header>
@@ -421,7 +417,7 @@ export default function HvacDuctlessMiniSplitGuidePage() {
           />
 
           <KeyInsight tone="blue" title="Selection criteria over brand">
-            More important than brand: (1) AHRI-certified combination of outdoor + indoor units. (2) ENERGY STAR Most Efficient for IRA tax credit qualification. (3) Cold-climate certification if relevant. (4) Local service network availability (call 3 service contractors in your area + ask which brands they install + service most). (5) Warranty length + transferability. (6) Sound rating (dB at standard distance). (7) Variable-speed compressor + ECM blower (all major brands include in current lineups). For homeowners: cross-reference manufacturer rating with local service network; even premium brands underperform if no local certified service.
+            More important than brand: (1) AHRI-certified combination of outdoor + indoor units. (2) ENERGY STAR Most Efficient certification for efficiency verification. (3) Cold-climate certification if relevant. (4) Local service network availability (call 3 service contractors in your area + ask which brands they install + service most). (5) Warranty length + transferability. (6) Sound rating (dB at standard distance). (7) Variable-speed compressor + ECM blower (all major brands include in current lineups). For homeowners: cross-reference manufacturer rating with local service network; even premium brands underperform if no local certified service.
           </KeyInsight>
         </section>
 
@@ -446,35 +442,10 @@ export default function HvacDuctlessMiniSplitGuidePage() {
 
         </section>
 
-        {/* SECTION 11 — IRA */}
+        {/* SECTION 11 — Maintenance */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
             <span className="font-mono text-sm text-zinc-400">11</span>
-            IRA tax credits + rebate qualification
-          </h2>
-
-          <TechSection icon="insight" tone="blue" title="IRA Section 25C qualification framework for mini-splits">
-            <ol className="mt-2 list-decimal space-y-1 pl-5">
-              <li><strong>Equipment must be heat pump.</strong> Cooling + heating capability required.</li>
-              <li><strong>ENERGY STAR Most Efficient certification.</strong> Separate Most Efficient lists for South + North climate regions; verify equipment qualifies for your region.</li>
-              <li><strong>AHRI Directory certification.</strong> Combination of outdoor + indoor units must be AHRI-listed; verify model numbers match certification.</li>
-              <li><strong>Efficiency thresholds.</strong> Typically SEER2 ≥17-22 + HSPF2 ≥9.5-11 depending on climate zone + capacity class; specific thresholds change as DOE updates Most Efficient criteria.</li>
-              <li><strong>Installation in US residence.</strong> Primary or secondary residence; tax filer must be the homeowner.</li>
-              <li><strong>Credit amount.</strong> 30% of cost (equipment + installation) up to $2,000 annual cap for heat pumps.</li>
-              <li><strong>Annual reset.</strong> Credit available each tax year for new qualifying installations.</li>
-            </ol>
-          </TechSection>
-
-          <p className="mt-3 text-zinc-700 dark:text-zinc-300">
-            <strong>To claim:</strong> verify ENERGY STAR Most Efficient + AHRI certification at purchase; save AHRI certificate + invoice + ENERGY STAR Most Efficient certification; file IRS Form 5695 with annual tax return; consult tax professional for complex situations. <strong>Major qualifying brands</strong>: Mitsubishi Hyper-Heat models; Daikin LV Series + Aurora; Fujitsu Halcyon select models; LG select models; Bosch Climate 5000 + BHP select models; Carrier Infinity + Performance; Bryant Performance; Trane select models. Check ENERGY STAR Most Efficient + AHRI Directory for current qualifying models before purchase. Also check HEEHRA point-of-sale rebates (state-administered; up to $8,000 for heat pumps for income-qualified households).
-          </p>
-
-        </section>
-
-        {/* SECTION 12 — Maintenance */}
-        <section className="mb-12">
-          <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">12</span>
             Mini-split-specific maintenance
           </h2>
 
@@ -492,10 +463,10 @@ export default function HvacDuctlessMiniSplitGuidePage() {
 
         </section>
 
-        {/* SECTION 13 — FAQ */}
+        {/* SECTION 12 — FAQ */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">13</span>
+            <span className="font-mono text-sm text-zinc-400">12</span>
             Frequently asked
           </h2>
           <div className="space-y-3">
@@ -513,10 +484,10 @@ export default function HvacDuctlessMiniSplitGuidePage() {
           </div>
         </section>
 
-        {/* SECTION 14 — Sources */}
+        {/* SECTION 13 — Sources */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            <span className="font-mono text-sm text-zinc-400">14</span>
+            <span className="font-mono text-sm text-zinc-400">13</span>
             Sources and verification
           </h2>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-5 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-300">
@@ -531,9 +502,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
             </p>
             <p className="mt-3">
               <strong>UL + equipment safety:</strong> UL 60335-2-40 (Part 2-40: Particular Requirements for Electrical Heat Pumps, Air-Conditioners and Dehumidifiers — A2L provisions). UL 1995 (Heating and Cooling Equipment). UL 1741 (Inverters, Converters, Controllers and Interconnection System Equipment).
-            </p>
-            <p className="mt-3">
-              <strong>IRS + tax credits:</strong> Internal Revenue Code Section 25C (Energy Efficient Home Improvement Credit — IRS Form 5695). IRS Notice 2024-30 (clarifications on 25C eligibility). HEEHRA program (state-administered; check state energy office).
             </p>
             <p className="mt-3">
               <strong>DOE + efficiency:</strong> 10 CFR Part 430 (Energy Conservation Program for Consumer Products — residential AC, heat pump). DOE Cold-Climate Heat Pump Specification (administered through ENERGY STAR Most Efficient). DOE Better Buildings Initiative.
@@ -551,7 +519,7 @@ export default function HvacDuctlessMiniSplitGuidePage() {
               <strong>Manufacturer specifications consulted:</strong> Mitsubishi Electric (M-Series, P-Series, Hyper-Heat H2i, City Multi VRF); Daikin (LV Series, Aurora, Quaternity, VRV); Fujitsu General (Halcyon); LG (LP, LMU, Multi V S + LR); Samsung (Wind-Free, DVM); Carrier (Infinity, Performance); Bryant (Performance); Bosch (Climate 5000, BHP); Trane (Mini-Split + heat pump); Toshiba Carrier (VRF); Friedrich (Floating Air, PTAC); Pioneer (standard + DIYer); MrCool (DIY pre-flared, Universal Series); Senville (LETO); Cooper&Hunter (Sophia DIY); GREE; Midea. (Manufacturer specifications change frequently — verify current specifications + A2L compatibility + AHRI + ENERGY STAR Most Efficient certifications on manufacturer datasheets before purchase.)
             </p>
             <p className="mt-3">
-              <strong>What this page does not include:</strong> Specific equipment pricing (highly regional; check 3 contractors minimum). State-specific HEEHRA rebate availability (state-by-state rollout; check state energy office). Specific contractor recommendations (use AHRI dealer locator + state contractor licensing). Tool-specific configuration guides (consult manufacturer documentation). Detailed Manual J load calculations (use our load calculator or contractor with ACCA QI certification).
+              <strong>What this page does not include:</strong> Specific equipment pricing (highly regional; check 3 contractors minimum). Specific contractor recommendations (use AHRI dealer locator + state contractor licensing). Tool-specific configuration guides (consult manufacturer documentation). Detailed Manual J load calculations (use our load calculator or contractor with ACCA QI certification).
             </p>
             <p className="mt-3 text-xs text-zinc-500">
               Page generated: {PUBLISHED.slice(0, 10)}.

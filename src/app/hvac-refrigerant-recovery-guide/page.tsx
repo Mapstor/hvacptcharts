@@ -25,12 +25,15 @@ export const metadata: Metadata = pageMetadata({
   description:
     "EPA Section 608 refrigerant recovery procedure step by step, plus A2L handling and cylinder safety. Applies to R22, R410A, R454B, R32 service work.",
   path: "/hvac-refrigerant-recovery-guide/",
+  // Bing keeps this guide (it earns clicks); Google drops it until the guide is
+  // rewritten. index/follow stay on for other engines; googleBot noindex only.
+  robots: { index: true, follow: true, googleBot: { index: false, follow: true } },
 });
 
 const FAQS = [
   {
     q: "Do I need EPA Section 608 certification to recover refrigerant?",
-    a: "Yes — federal law. EPA Section 608 (40 CFR Part 82 Subpart F § 82.161) prohibits anyone from opening a refrigerant circuit, recovering refrigerant, or charging stationary refrigeration and air conditioning equipment unless they hold valid EPA Section 608 technician certification at the appropriate type level (Type I, II, III, or Universal). The prohibition applies to all refrigerants covered by Section 608 — originally CFCs and HCFCs, expanded to substitute refrigerants (HFCs) by the 2016 Final Rule effective January 2018. There is no DIY exemption, no hobbyist exemption, no 'just topping off' exemption. Penalties per 40 CFR § 82.166 are substantial (up to ~$44,539 per day per violation as adjusted for inflation, plus criminal liability for venting). Certification is one-time (no renewal required as of 2026) and offered by approved testing organizations (ESCO Institute, RSES, Ferris State, others); the proctored exam fee is typically $25-50.",
+    a: "Yes — federal law. EPA Section 608 (40 CFR Part 82 Subpart F § 82.161) prohibits anyone from opening a refrigerant circuit, recovering refrigerant, or charging stationary refrigeration and air conditioning equipment unless they hold valid EPA Section 608 technician certification at the appropriate type level (Type I, II, III, or Universal). The prohibition applies to all refrigerants covered by Section 608 — originally CFCs and HCFCs, expanded to substitute refrigerants (HFCs) by the 2016 Final Rule effective January 2018. There is no DIY exemption, no hobbyist exemption, no 'just topping off' exemption. EPA can assess civil penalties per day per violation, with the current inflation-adjusted maximum set in 40 CFR 19.4 (ecfr.gov/current/title-40/chapter-I/subchapter-A/part-19/section-19.4), plus criminal liability for venting under Clean Air Act § 113. Certification is one-time (no renewal required as of 2026) and offered by approved testing organizations (ESCO Institute, RSES, Ferris State, others); the proctored exam fee is typically $25-50.",
   },
   {
     q: "What's the difference between recovery, recycling, and reclamation?",
@@ -54,7 +57,7 @@ const FAQS = [
   },
   {
     q: "What's the penalty for venting refrigerant?",
-    a: "Per 40 CFR § 82.166 and EPA's annual Civil Monetary Penalty Adjustment Rule (which adjusts for inflation), civil penalties for Section 608 violations are up to ~$44,539 per day per violation as of recent adjustment. Criminal violations (intentional venting, falsification of records) can result in fines, equipment confiscation, and prison time per the Clean Air Act § 113. Practical enforcement examples include EPA-initiated lawsuits against contractors who failed to recover R-22 during commercial service ($300,000-1.5M settlements have been reported in EPA enforcement actions). The risk is real even for small operations — EPA frequently uses subpoenaed distributor refrigerant-purchase records to identify contractors buying refrigerant without proportional recovery activity, then audits backwards from there. Recovery isn't optional; it's the federal law that makes refrigerant trade legal.",
+    a: "Per EPA's annual Civil Monetary Penalty Adjustment Rule (which adjusts for inflation), civil penalties for Section 608 violations are assessed per day per violation, with the current inflation-adjusted maximum in 40 CFR 19.4 (inflation-adjusted maximum under Clean Air Act § 113). Criminal violations (intentional venting, falsification of records) can result in fines, equipment confiscation, and prison time per the Clean Air Act § 113. Practical enforcement examples include EPA-initiated lawsuits against contractors who failed to recover R-22 during commercial service. The risk is real even for small operations — EPA frequently uses subpoenaed distributor refrigerant-purchase records to identify contractors buying refrigerant without proportional recovery activity, then audits backwards from there. Recovery isn't optional; it's the federal law that makes refrigerant trade legal.",
   },
   {
     q: "What happens to refrigerant after I recover it?",
@@ -169,7 +172,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
 
           <div className="mt-5 rounded-xl border-2 border-amber-300 bg-amber-50/60 p-4 dark:border-amber-700/60 dark:bg-amber-900/20">
             <p className="text-sm text-zinc-700 dark:text-zinc-300">
-              <strong>Educational reference, not legal advice.</strong> Recovery, recycling, and reclamation of refrigerants in the US are regulated by federal law (40 CFR Part 82 Subpart F). This page describes the regulatory framework and standard practice as of 2026, but EPA rules are updated periodically (the 2024 amendments to Section 608 are in effect; see epa.gov/section608 for current rule text). For training and certification, consult an EPA-approved 608 training provider (ESCO Institute, RSES, Ferris State, Mainstream Engineering, others). For specific compliance questions in your jurisdiction, consult EPA Region offices and your state environmental agency. <strong>Performing refrigerant recovery without proper EPA Section 608 certification is a federal violation</strong> with civil penalties up to ~$44,539 per day (per § 82.166 as inflation-adjusted) and potential criminal liability per Clean Air Act § 113.
+              <strong>Educational reference, not legal advice.</strong> Recovery, recycling, and reclamation of refrigerants in the US are regulated by federal law (40 CFR Part 82 Subpart F). This page describes the regulatory framework and standard practice as of 2026, but EPA rules are updated periodically (the 2024 amendments to Section 608 are in effect; see epa.gov/section608 for current rule text). For training and certification, consult an EPA-approved 608 training provider (ESCO Institute, RSES, Ferris State, Mainstream Engineering, others). For specific compliance questions in your jurisdiction, consult EPA Region offices and your state environmental agency. <strong>Performing refrigerant recovery without proper EPA Section 608 certification is a federal violation</strong> with civil penalties assessed per day per violation (current inflation-adjusted maximum in 40 CFR 19.4, under Clean Air Act § 113) and potential criminal liability per Clean Air Act § 113.
             </p>
           </div>
         </header>
@@ -184,7 +187,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
             Refrigerant recovery exists at the intersection of three regulatory frameworks. The original driver was the Montreal Protocol (1987), which committed signatory nations to phase out ozone-depleting substances — chlorofluorocarbons (CFCs) and hydrochlorofluorocarbons (HCFCs) used as refrigerants. The US Clean Air Act Amendments of 1990 created the legal authority for EPA to regulate refrigerant management in the US. EPA published Section 608 in 1993 (40 CFR Part 82 Subpart F), which made it illegal to vent CFCs and HCFCs during the service, maintenance, repair, or disposal of refrigeration and air conditioning equipment.
           </p>
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
-            The 2016 Final Rule (effective January 2018) extended Section 608 to hydrofluorocarbons (HFCs) — R-410A, R-32, R-134a, R-454B, and all other HFCs — which were originally substitutes for the CFCs and HCFCs. Today the same recovery requirements apply to all stationary refrigeration and air-conditioning refrigerants regardless of chemistry. The 2024 AIM Act Section 60 rules added additional management requirements for HFC reclamation and reporting tied to the allowance phase-down.
+            The 2016 Final Rule (effective January 2018) extended Section 608 to hydrofluorocarbons (HFCs) — R-410A, R-32, R-134a, R-454B, and all other HFCs — which were originally substitutes for the CFCs and HCFCs. Today the same recovery requirements apply to all stationary refrigeration and air-conditioning refrigerants regardless of chemistry. The EPA 2024 rule under AIM Act subsection (h) (40 CFR Part 84, Subpart C — Management of Regulated Substances) added management requirements for HFC reclamation and reporting tied to the allowance phase-down.
           </p>
 
           <KeyInsight tone="blue" title="The 3 drivers in one sentence">
@@ -224,7 +227,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
             EPA Section 608 certification — the four types
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
-            EPA Section 608 § 82.161 establishes four technician certification types, each authorizing work on a specific category of equipment:
+            EPA Section 608 § 82.161 establishes four technician certification types, each authorizing work on a specific category of equipment. EPA revised the Section 608 exam to add A2L and A3 refrigerant questions; the current question bank can be used only through Jan 1, 2027, and there is no new Type IV certification (ACHR News, Sep 19, 2026: achrnews.com/articles/166686-what-you-need-to-know-about-the-new-section-608-exam):
           </p>
 
           <ComparisonTable
@@ -295,7 +298,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
           />
 
           <FixCallout>
-            <strong>About recovery cylinders:</strong> never use a virgin refrigerant cylinder for recovery — DOT-spec recovery cylinders (gray with yellow top) are designed for repeated fill/empty cycles and have a yellow top to identify them as recovery containers. Cylinder must be within its hydrostatic test date (5-12 year intervals per DOT regulation 49 CFR § 173.34). Never overfill — DOT-spec cylinders have water-capacity ratings (e.g. 30 lb water = roughly 26 lb HFC refrigerant) and overfilling creates explosion risk if temperature rises during storage or transport.
+            <strong>About recovery cylinders:</strong> never use a virgin refrigerant cylinder for recovery — DOT-spec recovery cylinders (gray with yellow top) are designed for repeated fill/empty cycles and have a yellow top to identify them as recovery containers. Cylinder must be within its hydrostatic test date (5-12 year intervals per DOT hazardous-materials rules, 49 CFR Parts 171–180). Never overfill — DOT-spec cylinders have water-capacity ratings (e.g. 30 lb water = roughly 26 lb HFC refrigerant) and overfilling creates explosion risk if temperature rises during storage or transport.
           </FixCallout>
         </section>
 
@@ -501,23 +504,23 @@ export default function HvacRefrigerantRecoveryGuidePage() {
           <ComparisonTable
             headers={["Violation type", "Maximum civil penalty", "Notes"]}
             rows={[
-              { label: "Venting refrigerant during service", cells: ["Up to ~$44,539 per day per violation", "Applies to each instance; per § 82.166 as inflation-adjusted"] },
-              { label: "Service work without EPA 608 certification", cells: ["Up to ~$44,539 per day per violation", "Per § 82.166"] },
-              { label: "Using non-EPA-certified recovery equipment", cells: ["Up to ~$44,539 per day per violation", "Per § 82.158"] },
+              { label: "Venting refrigerant during service", cells: ["Civil penalty per day per violation (current max: 40 CFR 19.4)", "Applies to each instance; 40 CFR 19.4 (inflation-adjusted maximum under Clean Air Act § 113)"] },
+              { label: "Service work without EPA 608 certification", cells: ["Civil penalty per day per violation (current max: 40 CFR 19.4)", "40 CFR 19.4 (inflation-adjusted maximum under Clean Air Act § 113)"] },
+              { label: "Using non-EPA-certified recovery equipment", cells: ["Civil penalty per day per violation (current max: 40 CFR 19.4)", "Per § 82.158"] },
               { label: "Falsification of certification, training records", cells: ["Per Clean Air Act § 113 plus criminal liability", "Can include criminal prosecution"] },
-              { label: "Failure to maintain required records", cells: ["Up to ~$44,539 per day per violation", "Per § 82.166"] },
-              { label: "Selling/transferring refrigerant to non-certified technicians", cells: ["Up to ~$44,539 per day per violation", "Distributors have specific obligations under § 82.166"] },
-              { label: "Reclamation by non-certified facility", cells: ["Up to ~$44,539 per day per violation", "Per § 82.164"] },
+              { label: "Failure to maintain required records", cells: ["Civil penalty per day per violation (current max: 40 CFR 19.4)", "Per § 82.166"] },
+              { label: "Selling/transferring refrigerant to non-certified technicians", cells: ["Civil penalty per day per violation (current max: 40 CFR 19.4)", "Distributors have specific obligations under § 82.166"] },
+              { label: "Reclamation by non-certified facility", cells: ["Civil penalty per day per violation (current max: 40 CFR 19.4)", "Per § 82.164"] },
               { label: "Knowing/willful violations", cells: ["Criminal liability per CAA § 113", "Up to 1 year imprisonment + fines for negligent endangerment"] },
             ]}
           />
 
           <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
-            Source: 40 CFR § 82.166; EPA Civil Monetary Penalty Adjustment Rule (annual inflation adjustment, typically published in January). Penalty amounts shown reflect recent EPA enforcement actions and are illustrative — for current maximum amounts consult the most recent annual adjustment at epa.gov/enforcement/civil-monetary-penalty-inflation-adjustment-rule.
+            Source: 40 CFR 19.4 (inflation-adjusted maximum under Clean Air Act § 113); EPA Civil Monetary Penalty Adjustment Rule (annual inflation adjustment, typically published in January). For current maximum amounts consult 40 CFR 19.4 and the most recent annual adjustment at epa.gov/enforcement/civil-monetary-penalty-inflation-adjustment-rule.
           </p>
 
           <FixCallout>
-            <strong>How EPA finds violations:</strong> the most common enforcement trigger is the &quot;refrigerant purchase audit&quot; — EPA subpoenas distributor records of refrigerant sold to a contractor, then compares against the contractor&apos;s recovery records and service tickets. If pounds purchased substantially exceed pounds recovered + pounds added to identified systems, EPA opens an investigation. Settlement amounts in EPA enforcement actions against HVAC contractors have ranged from $50,000 for small operations to $1.5M+ for large commercial contractors. Recovery isn&apos;t optional; it&apos;s the federal law that allows you to legally buy refrigerant from a distributor.
+            <strong>How EPA finds violations:</strong> the most common enforcement trigger is the &quot;refrigerant purchase audit&quot; — EPA subpoenas distributor records of refrigerant sold to a contractor, then compares against the contractor&apos;s recovery records and service tickets. If pounds purchased substantially exceed pounds recovered + pounds added to identified systems, EPA opens an investigation. Recovery isn&apos;t optional; it&apos;s the federal law that allows you to legally buy refrigerant from a distributor.
           </FixCallout>
         </section>
 
@@ -577,16 +580,16 @@ export default function HvacRefrigerantRecoveryGuidePage() {
           </h2>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-5 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-300">
             <p>
-              <strong>EPA Section 608 primary sources:</strong> 40 CFR Part 82 Subpart F — § 82.150 (definitions), § 82.152 (recovery + recycling + reclamation definitions), § 82.156 (required practices, including evacuation levels in Table 2), § 82.158 (equipment certification), § 82.161 (technician certification), § 82.162 (reclamation requirements), § 82.164 (reclaimer certification), § 82.166 (recordkeeping, reporting, and penalty provisions). Full regulation text at ecfr.gov. EPA Section 608 Final Rule 2016 (extension to HFCs); AIM Act 2024 implementation rules.
+              <strong>EPA Section 608 primary sources:</strong> 40 CFR Part 82 Subpart F — § 82.150 (definitions), § 82.152 (recovery + recycling + reclamation definitions), § 82.156 (required practices, including evacuation levels in Table 2), § 82.158 (equipment certification), § 82.161 (technician certification), § 82.162 (reclamation requirements), § 82.164 (reclaimer certification), § 82.166 (recordkeeping and reporting). Civil penalties are assessed under Clean Air Act § 113, with the current inflation-adjusted maximum in 40 CFR 19.4. Full regulation text at ecfr.gov. EPA Section 608 Final Rule 2016 (extension to HFCs); AIM Act 2024 implementation rules.
             </p>
             <p className="mt-3">
-              <strong>Industry standards:</strong> AHRI Standard 700-2019 (Specifications for Refrigerants — defines reclaim quality criteria). AHRI Standard 740 (Performance of Refrigerant Recovery, Recycling, or Reclaiming Equipment). AHRI Standard 770 (Performance of Refrigerant Pressure/Temperature Charts for Refrigerant-Pressure-Temperature Tables and Charts). AHRI Safe Refrigerant Transition guidance for A2L handling.
+              <strong>Industry standards:</strong> AHRI Standard 700-2019 (Specifications for Refrigerants — defines reclaim quality criteria). AHRI Standard 740 (Performance of Refrigerant Recovery, Recycling, or Reclaiming Equipment). AHRI Safe Refrigerant Transition guidance for A2L handling.
             </p>
             <p className="mt-3">
               <strong>Safety standards:</strong> ASHRAE Standard 15-2022 (Safety Standard for Refrigeration Systems — covers A2L and A3 handling). ASHRAE Standard 34-2022 (Designation and Safety Classification of Refrigerants). IEC 60335-2-89 (commercial refrigeration appliances with limited refrigerant charge — applies to A3 chest freezers and similar).
             </p>
             <p className="mt-3">
-              <strong>Transport regulations:</strong> DOT 49 CFR Part 173 — Hazardous Materials Transportation, particularly § 173.34 (qualification, maintenance, and use of cylinders) and § 173.193 (refrigerant gas transport). DOT cylinder specifications 4BW and 4BA for recovery cylinders.
+              <strong>Transport regulations:</strong> DOT hazardous-materials rules, 49 CFR Parts 171–180 (Hazardous Materials Transportation), covering qualification, maintenance, and use of cylinders and refrigerant gas transport. DOT cylinder specifications 4BW and 4BA for recovery cylinders.
             </p>
             <p className="mt-3">
               <strong>Statutory authority:</strong> Clean Air Act §§ 601-617 (Title VI — Stratospheric Ozone Protection). Clean Air Act § 113 (Enforcement and Penalties). AIM Act (American Innovation and Manufacturing Act of 2020), Public Law 116-260 Division S.

@@ -214,6 +214,8 @@ def main():
                 "applications": info["applications"],
                 "replacementOptions": info.get("replacementOptions", []),
                 "replaces": info.get("replaces"),
+                "indexable": info.get("indexable", True),
+                **({"noindexReason": info["noindexReason"]} if info.get("noindexReason") else {}),
                 "regulatoryStatus": info["regulatoryStatus"],
                 "ptChart": pt_chart,
                 "dataSource": {

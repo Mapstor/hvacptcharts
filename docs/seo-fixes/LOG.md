@@ -240,6 +240,57 @@ sitemap.xml has none of the 14 and keeps the 3 guides. Build exit 0, all gates. 
 
 ---
 
+## 2026-09-25 — Fix 4B/18: noindex thin refrigerant pages; Google-only noindex on 3 guides
+
+**Indexing flag** added to the refrigerant data layer: `indexable` (Zod
+`z.boolean().default(true)`) + optional `noindexReason` in `src/data/refrigerants.ts`,
+mirrored into `data/refrigerants.config.json`, `data/refrigerants.json`, and both
+generators (`.mjs`/`.py`). When `indexable:false`: `generateMetadata` emits
+`robots {index:false, follow:true}` (added a `robots` passthrough to
+`shared.ts:pageMetadata`); the slug is filtered out of `sitemap.ts` and the homepage
+ItemList JSON-LD; the page stays live and linkable. verify-metadata + validate-schema
+still pass.
+
+**Set indexable:false (11 refrigerants):**
+- r-1150, r-c318, r-365mfc — `noindexReason`: content errors + a template that doesn't
+  fit the fluid (to be rebuilt). (These have full ptCharts; the noindex is editorial.)
+- 8 with `noindexReason: "pt-data-missing"` (no real PT table — for research). Missing
+  source data per slug:
+  - **r-1224yd-z** — AGC AMOLEA 1224yd datasheet / Akasaka & Lemmon (2023) Helmholtz EOS; not in the CoolProp 7.2.0 WASM build.
+  - **r-1233zd-z** — no commercial PT chart exists (cis-isomer, research-grade only; commercial R-1233zd is the (E)-isomer).
+  - **r-1336mzz-z** — Tanaka et al. (2020) Helmholtz EOS / Chemours Opteon 1100; not in the WASM build.
+  - **r-450a** — Chemours Opteon XP10 datasheet; R450A.mix / R134a&R1234ze(E) mixture syntax unsupported by the WASM build.
+  - **r-503** — retired (Montreal Protocol; CFC-13 component); archived pre-2010 ASHRAE Handbook only.
+  - **r-514a** — Chemours Opteon XP30 datasheet; components R-1336mzz(Z)/R-1130(E) absent from the WASM pure-fluid library.
+  - **r-515a** — Honeywell Solstice 515A datasheet; R1234ze(E)&R227ea mixture syntax unsupported.
+  - **r-515b** — Honeywell Solstice N15 datasheet; mixture syntax unsupported.
+  (Excluded: r-438a and r-448a — they DO render real datasheet-native ptTable data.)
+
+**3 guides Google-noindexed** (Bing keeps them; rewrite pending): recovery, troubleshooting,
+ductless-mini-split → `robots {index:true, follow:true, googleBot:{index:false, follow:true}}`.
+Kept in the sitemap.
+
+**Recovery-guide corrections:** dropped the "~$44,539/day" figure → "civil penalties per
+day per violation, current inflation-adjusted maximum in 40 CFR 19.4 (under Clean Air Act
+§ 113)"; fixed the § 82.166-as-penalty mislabel (it's recordkeeping); deleted the AHRI
+Standard 770 citation; replaced "49 CFR 173.193"/"§ 173.34" with "DOT hazardous-materials
+rules, 49 CFR Parts 171–180"; "2024 AIM Act Section 60 rules" → "the EPA 2024 rule under
+AIM Act subsection (h) (40 CFR Part 84, Subpart C)"; deleted the unsourced "$50,000–$1.5M+"
+settlement range; added the Section 608 A2L/A3 exam note (question bank valid only through
+Jan 1 2027, no new Type IV; cite ACHR News 2026-09-19).
+
+**Removed all 25C/25D/IRA/HEEHRA/rebate content** from the ductless-mini-split guide (whole
+IRA section deleted + H1/meta/FAQ/schema/keywords/sources; sections renumbered 01-13);
+troubleshooting + recovery had none.
+
+**Verification (curl):** 3 guides HTTP 200 with `<meta name="googlebot" content="noindex,
+follow">` while `robots` stays `index, follow`; the 11 refrigerant pages HTTP 200 with
+`<meta name="robots" content="noindex, follow">` (r-410a control stays index); sitemap.xml
+excludes all 11 refrigerant slugs and keeps the 3 guides; built HTML of the 3 guides has no
+25C/IRA/HEEHRA. Build exit 0, all gates. Lint: 0 errors. **Not pushed.**
+
+---
+
 ## 2026-09-25 — Fix 2/18: 301 redirects for legacy, typo and old comparison URLs
 
 **Goal.** Every legacy/typo/old URL search engines still request must answer with
