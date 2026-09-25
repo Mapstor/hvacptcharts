@@ -19,7 +19,7 @@ export default function GuidesHubPage() {
       path="guides-hub"
       title="HVAC Guides"
       introHeadline="Reference material for HVAC technicians and engineers: the conceptual anchors behind the calculator pages, plus refrigerant comparisons and regulatory context."
-      introBody="Every guide is sourced — ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022, ASHRAE Standard 34-2022, EPA AIM Act / SNAP, IPCC AR5/AR6, AHRI Standard 540-2020, IIAR for ammonia, equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman). No 'general industry knowledge' filler; if a claim is in a guide, it carries an attribution. The guides pair with the calculator pages — guides provide the conceptual context, calculators do the math."
+      introBody="Every guide is sourced — ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022, ASHRAE Standard 34-2022, EPA AIM Act / SNAP, IPCC AR5/AR6, IIAR for ammonia, equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman). No 'general industry knowledge' filler; if a claim is in a guide, it carries an attribution. The guides pair with the calculator pages — guides provide the conceptual context, calculators do the math."
       publishedDate={PUBLISHED}
       scenarios={[
         {
@@ -208,7 +208,7 @@ The 14 guides on this site cover: PT chart reading, superheat & subcooling funda
 
 (1) Primary scientific source — CoolProp 7.2.0, NIST REFPROP, peer-reviewed thermodynamic literature (Lemmon et al., Bell et al., Span & Wagner) for refrigerant properties.
 
-(2) Industry standards — ANSI/ASHRAE Standard 34-2022 (refrigerant designation and safety classification), AHRI Standard 540-2020 (compressor pressure limits), AHRI Standard 700-2019 (refrigerant specifications), IEC 60335-2-40 (A2L equipment), IIAR 2/9 (ammonia installation), ASTM B280 (copper tubing).
+(2) Industry standards — ANSI/ASHRAE Standard 34-2022 (refrigerant designation and safety classification), AHRI Standard 700-2019 (refrigerant specifications), IEC 60335-2-40 (A2L equipment), IIAR 2/9 (ammonia installation), ASTM B280 (copper tubing).
 
 (3) Industry best practice — ACCA Manual T (2017) "Air-Side and Refrigerant-Side Diagnostics", ASHRAE Handbook of Refrigeration 2022, ASHRAE Handbook of Fundamentals 2021, ASHRAE HVAC Systems & Equipment 2024.
 

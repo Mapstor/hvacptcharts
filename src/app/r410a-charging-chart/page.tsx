@@ -9,6 +9,7 @@ import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatri
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 import { TwoMethodForkDiagram } from "@/components/diagrams/TwoMethodForkDiagram";
+import { TARGET_SUPERHEAT_LABEL } from "@/lib/target-superheat";
 
 const SLUG = "r-410a";
 const PAGE_URL = `${SITE_URL}/r410a-charging-chart/`;
@@ -178,6 +179,7 @@ export default function R410aChargingChartPage() {
             wbRows={[54, 58, 62, 66, 70, 74]}
             dbCols={[65, 75, 85, 95, 105, 115]}
           />
+          <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">{TARGET_SUPERHEAT_LABEL}</p>
           <p className="mt-3 text-sm text-zinc-500 dark:text-zinc-400">
             Compact matrix (6 × 6). The full 14 × 13 matrix lives on the <Link href="/r410a-superheat-chart/" className="underline">R-410A Superheat Chart</Link> page.
           </p>
@@ -277,7 +279,6 @@ export default function R410aChargingChartPage() {
                 )}
               </li>
             ))}
-            <li>ACCA technician charging references (name-only).</li>
             <li>OEM (Carrier / Trane / Lennox / Goodman / Rheem) residential AC installation manuals — subcooling and superheat targets.</li>
             <li>AHRI Standard 210/240 — 95°F outdoor dry-bulb cooling rating condition.</li>
             <li>EPA 40 CFR Part 82 Subpart F — Section 608 recovery certification.</li>

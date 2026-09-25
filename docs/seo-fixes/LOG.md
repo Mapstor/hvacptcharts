@@ -111,6 +111,36 @@ Lint of changed files: 0 errors.
 
 ---
 
+## 2026-09-25 — Fix 3B/18: one target-superheat formula site-wide
+
+**Helper** (`src/lib/target-superheat.ts`, new): `targetSuperheat(indoorWB, outdoorDB)
+= round((3×WB − 80 − DB)/2)`, returns `null` (render "—") below 5°F. Build-time
+assertion locks the spec check values (67/95→13, 65/95→10, 60/85→8, 55/75→5,
+60/95→"—"). `TARGET_SUPERHEAT_LABEL` attributes it to the field approximation of
+OEM fixed-orifice charts / California Title 24 RA3.2, Table RA3.2-2 — not Manual T.
+
+**Wiring:** `ChargingChartMatrix.tsx` refactored to use the shared helper (whole-°F
+cells) — so /target-superheat-chart/, /r410a-superheat-chart/, /r22-superheat-chart/,
+/r410a-charging-chart/ all compute from it. On /superheat-calculator/ the hand-typed
+"ACCA Manual T WB×DB matrix" (with fabricated cells like 65/105=17) was replaced with
+`<ChargingChartMatrix>` + the label. Corrected typed anchors: 64/95 "8.5°F"→9°F;
+64/105 "3.5°F"→"—"; worked-example "63/95 ≈17°F"→7°F (verdict re-checked: SH 15 > target
+7 = undercharged, unchanged).
+
+**Removed (step 3):** the AHRI-540 "minimum return-gas superheat" claim (20°F hermetic /
+30°F semi-hermetic) everywhere — FAQs, table rows, feature lists, SVG bars, aria labels,
+source lists (superheat-calculator, superheat-subcooling-fundamentals, system-pressure-
+diagnostic, pt-superheat-subcooling, calculators-hub, guides-hub, HubPage default). And
+"ACCA Manual T" as the source of charging/target-superheat tables on those pages →
+reworded to the fixed-orifice field-approximation framing. (Manual-T citations that
+source the SH×SC *diagnostic-pattern* matrix were left — out of 3B scope.)
+
+**Verification:** build exit 0, all gates (targetSuperheat build assert passes → check
+values guaranteed). Curl confirms Title-24 label + 9°F anchor render. Lint: 0 errors.
+**Not pushed.**
+
+---
+
 ## 2026-09-25 — Fix 2/18: 301 redirects for legacy, typo and old comparison URLs
 
 **Goal.** Every legacy/typo/old URL search engines still request must answer with

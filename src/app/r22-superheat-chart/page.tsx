@@ -9,6 +9,7 @@ import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatri
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
+import { TARGET_SUPERHEAT_LABEL } from "@/lib/target-superheat";
 
 const SLUG = "r-22";
 const PAGE_URL = `${SITE_URL}/r22-superheat-chart/`;
@@ -39,7 +40,7 @@ export const metadata: Metadata = pageMetadata({
 const FAQS = [
   {
     q: "What is the target superheat for a fixed-orifice R-22 system?",
-    a: "It depends on indoor wet-bulb and outdoor dry-bulb. Use TSH = ((3 × WB) − 80 − DB) / 2. At the 64°F indoor WB / 95°F outdoor DB design point, target superheat is 8.5°F. Look up other combinations in the interactive matrix above.",
+    a: "It depends on indoor wet-bulb and outdoor dry-bulb. Use TSH = ((3 × WB) − 80 − DB) / 2. At the 64°F indoor WB / 95°F outdoor DB design point, target superheat is 9°F. Look up other combinations in the interactive matrix above.",
   },
   {
     q: "Is the target-superheat formula the same for R-22 and R-410A?",
@@ -130,7 +131,7 @@ export default function R22SuperheatChartPage() {
         </header>
 
         <KeyInsight tone="blue" icon="insight" title="Answer, in one line">
-          Target SH = ((3 × Indoor WB) − 80 − Outdoor DB) / 2. Same formula as any fixed-orifice fluid. At 64°F WB / 95°F DB the target is 8.5°F.
+          Target SH = ((3 × Indoor WB) − 80 − Outdoor DB) / 2. Same formula as any fixed-orifice fluid. At 64°F WB / 95°F DB the target is 9°F.
         </KeyInsight>
 
         <MeasurementDiagram variant="superheat" />
@@ -138,6 +139,7 @@ export default function R22SuperheatChartPage() {
         <section className="mt-8 mb-10">
           <h2 className="mb-3 text-xl font-semibold">Interactive lookup and matrix</h2>
           <ChargingChartMatrix label="R-22 target superheat" />
+          <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">{TARGET_SUPERHEAT_LABEL}</p>
         </section>
 
         <TechSection icon="data" tone="purple" title="R-22 saturation quick table (evaporator range)">
@@ -186,7 +188,7 @@ export default function R22SuperheatChartPage() {
 
         <TechSection icon="gauge" tone="emerald" title="Reading your gauges">
           <p>
-            On a properly-charged R-22 residential AC at 95°F outdoor with 64°F indoor WB, the evaporator runs around 40°F saturation ({fmtPsigBubble(SLUG, 40)} PSIG). The manifold reads slightly higher after superheat pickup on the suction line. Measured suction-line temperature minus 40°F is your measured superheat; match against the 8.5°F target from the matrix.
+            On a properly-charged R-22 residential AC at 95°F outdoor with 64°F indoor WB, the evaporator runs around 40°F saturation ({fmtPsigBubble(SLUG, 40)} PSIG). The manifold reads slightly higher after superheat pickup on the suction line. Measured suction-line temperature minus 40°F is your measured superheat; match against the 9°F target from the matrix.
           </p>
           <p>
             R-22 saturation pressures are about 60% of R-410A across the envelope — different absolute PSIG values but the same target-superheat math. If you&apos;re used to R-410A numbers and switch to an R-22 service call, adjust your gauge-reading habits, not the target.
@@ -258,7 +260,6 @@ export default function R22SuperheatChartPage() {
                 )}
               </li>
             ))}
-            <li>ACCA technician charging references (name-only).</li>
             <li>OEM (Carrier / Trane / Lennox / Rheem) residential AC installation manuals — R-22 fixed-orifice charging bulletins.</li>
             <li>AHRI Standard 210/240 — 95°F outdoor dry-bulb cooling rating condition.</li>
             <li>CoolProp 7.2.0 — R-22 PT chart values.</li>

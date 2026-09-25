@@ -33,7 +33,7 @@ const FAQS = [
   },
   {
     q: "Why does the calculator ask for system type?",
-    a: "Target ranges for superheat and subcooling differ by metering device and application. TXV residential AC targets tight SH (8-15°F) with SC as the primary charge metric (8-12°F). Fixed-orifice residential AC uses a wider SH range from the ACCA Manual T chart. Walk-in cooler / freezer targets wider ranges (SH 8-20°F, SC 5-15°F). Without the system type the calculator uses a generic envelope; with it the flags are calibrated to what the specific equipment class expects.",
+    a: "Target ranges for superheat and subcooling differ by metering device and application. TXV residential AC targets tight SH (8-15°F) with SC as the primary charge metric (8-12°F). Fixed-orifice residential AC uses a wider SH range read from the fixed-orifice charging chart — target superheat from the field approximation (3 × indoor WB − 80 − outdoor DB) / 2, indexed on indoor wet-bulb and outdoor dry-bulb. Walk-in cooler / freezer targets wider ranges (SH 8-20°F, SC 5-15°F). Without the system type the calculator uses a generic envelope; with it the flags are calibrated to what the specific equipment class expects.",
   },
   {
     q: "How accurate are the diagnostic patterns?",
@@ -108,7 +108,7 @@ export default function SystemPressureDiagnosticPage() {
         formula:
           "Superheat = T_suction_line − T_sat(P_suction, dew)\nSubcooling = T_sat(P_liquid, bubble) − T_liquid_line\nCondenser approach = T_sat(P_liquid, bubble) − T_ambient\nEvaporator approach = T_return_air − T_sat(P_suction, dew)\n\nDiagnostic flags fire when derived values fall outside per-system-type target ranges, with severity ranked by magnitude × consequence.",
         sourceCitation:
-          "Saturation values from CoolProp 7.2.0. Diagnostic patterns and recommended actions from ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 (Chapters 23, 39), AHRI Standard 540-2020, and equipment manufacturer service literature.",
+          "Saturation values from CoolProp 7.2.0. Diagnostic patterns and recommended actions from ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 (Chapters 23, 39), and equipment manufacturer service literature.",
         workedExample:
           "R-410A TXV residential AC, 95°F outdoor, 75°F return air:\n  Suction: 110 PSIG, 62°F\n  Discharge: 340 PSIG, 98°F\n\nDerived:\n  Suction sat (dew): 37°F → SH = 62 − 37 = 25°F (above 8-15°F target)\n  Discharge sat (bubble): 102°F → SC = 102 − 98 = 4°F (below 8-12°F target)\n  Condenser approach = 102 − 95 = 7°F (LOW — should be 15-25°F)\n  Evap approach = 75 − 37 = 38°F (high end of normal)\n\nFlags (priority-sorted):\n  CONCERN — Likely undercharge (high SH + low SC fingerprint, supported by low condenser approach)\n  CAUTION — Verify with leak search before adjusting charge\n\nRecommendation order:\n  1. Leak search before adding refrigerant\n  2. Repair leak per EPA 608\n  3. Evacuate to 500 microns, charge by weight to nameplate",
       }}
@@ -397,7 +397,7 @@ function RichContent() {
         number={5}
         refrigerant="R-410A (fixed orifice)"
         title="Fixed-orifice system at 105°F outdoor — ACCA chart vs flags"
-        scenario="R-410A fixed-orifice (piston) residential AC, hot 105°F outdoor day, indoor 75°F / 65°F WB. You're charging by SH per ACCA Manual T target — but the diagnostic shows additional flags. How to interpret?"
+        scenario="R-410A fixed-orifice (piston) residential AC, hot 105°F outdoor day, indoor 75°F / 65°F WB. You're charging by SH against the fixed-orifice charging-chart field target — but the diagnostic shows additional flags. How to interpret?"
       >
         <Panel title="Measured" icon={Gauge}>
           <Gauges
@@ -412,7 +412,7 @@ function RichContent() {
         <Panel title="Derived" icon={Activity}>
           <Derived
             rows={[
-              { formula: "SH = 55 − 39 = 16°F", verdict: "ok", note: "matches ACCA Manual T target ~17°F at 105°F DB / 65°F WB" },
+              { formula: "SH = 55 − 39 = 16°F", verdict: "ok", note: "vs fixed-orifice field target from (3·WB − 80 − DB) / 2 for 65°F WB / 105°F DB" },
               { formula: "SC = 120 − 108 = 12°F", verdict: "ok", note: "informational on FXO system" },
               { formula: "Cond approach = 120 − 105 = 15°F", verdict: "ok", note: "lower end of target" },
               { formula: "Evap approach = 75 − 39 = 36°F", verdict: "ok", note: "normal" },
@@ -420,8 +420,8 @@ function RichContent() {
           />
         </Panel>
         <VerdictBanner status="ok" title="OK — properly charged fixed-orifice system at hot ambient">
-          SH matches the ACCA Manual T target for the WB / DB combination, all four
-          metrics in their respective ranges. The system is operating correctly despite
+          SH is read against the fixed-orifice charging-chart field target for the
+          WB / DB combination, all four metrics in their respective ranges. The system is operating correctly despite
           the high ambient pressures (which would look concerning without context). This
           is why system type matters in the diagnostic — fixed-orifice systems at hot
           ambient run pressures that would flag as overcharge on a TXV system.
@@ -527,10 +527,6 @@ function RichContent() {
           <li>
             <strong>ASHRAE HVAC Systems &amp; Equipment 2024</strong> — Chapter 43
             (chillers), water-cooled condenser approach targets.
-          </li>
-          <li>
-            <strong>AHRI Standard 540-2020</strong> — compressor protection minimum
-            return-gas superheat (20°F hermetic, 30°F semi-hermetic).
           </li>
           <li>
             <strong>EPA Section 608</strong> — refrigerant handling certification, leak

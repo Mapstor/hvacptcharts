@@ -2,24 +2,21 @@
 
 import { useMemo, useState } from "react";
 import { Calculator, Wind, Thermometer, AlertTriangle, Printer } from "lucide-react";
+import { targetSuperheat } from "@/lib/target-superheat";
 
 /**
  * Fixed-orifice / piston target-superheat matrix.
  *
- * Formula: TSH(WB, DB) = ((3 × WB) − 80 − DB) / 2
+ * Uses the single site-wide formula from src/lib/target-superheat.ts:
+ * targetSuperheat(WB, DB) = round((3 × WB − 80 − DB) / 2), a field
+ * approximation of the OEM fixed-orifice charging charts (see the
+ * TARGET_SUPERHEAT_LABEL there for provenance). Applies to fixed-orifice,
+ * piston, and capillary-tube metering devices. TXV and EEV systems charge by
+ * subcooling, not superheat — a target-superheat lookup gives the wrong
+ * answer for those.
  *
- * Standard fixed-orifice charging method credited to ACCA Manual T and
- * OEM (Carrier / Trane / Lennox) service bulletins. Applies to fixed-
- * orifice, piston, and capillary-tube metering devices. TXV and EEV
- * systems charge by subcooling, not superheat — a target-superheat lookup
- * gives the wrong answer for those.
- *
- * Cells with TSH < 5°F render as "—". Industry charging charts (Trane and
- * Carrier bead charts) blank out targets under ~5°F because charging by
- * superheat is unreliable there: any moderate probe error swamps the
- * target, and the operating point is often outside the fixed-orifice
- * envelope. Clamp-at-zero alone would print misleading 0–4°F targets that
- * techs would then chase without success.
+ * Cells below 5°F render as "—": probe error swamps the target and the
+ * operating point is usually outside the fixed-orifice charging envelope.
  */
 
 export interface ChargingChartMatrixProps {
@@ -37,45 +34,6 @@ export interface ChargingChartMatrixProps {
 
 const DEFAULT_WB_ROWS = [50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76];
 const DEFAULT_DB_COLS = [55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115];
-const MIN_RELIABLE_TSH = 5;
-
-/**
- * Target superheat in °F for a given indoor wet-bulb and outdoor dry-bulb.
- * Exported so build-time assertions and non-React consumers (e.g. static
- * matrix renderers) share the exact same computation as the client.
- */
-export function targetSuperheatF(wb: number, db: number): number {
-  return (3 * wb - 80 - db) / 2;
-}
-
-/**
- * Formatted target — "—" when below the reliability floor, else one decimal.
- * Same rounding convention as fmtPsigBubble so on-page numeric text is
- * uniformly presented.
- */
-export function formatTarget(wb: number, db: number): string {
-  const t = targetSuperheatF(wb, db);
-  return t < MIN_RELIABLE_TSH ? "—" : t.toFixed(1);
-}
-
-// Build-time assertions: catch a bad refactor of the formula before ship.
-// If any of these throw, the module fails to load and the build fails.
-(function assertFormula() {
-  const checks: Array<[number, number, number | "—"]> = [
-    [64, 95, 8.5],   // the canonical spec assertion
-    [70, 95, 17.5],  // middle of envelope
-    [50, 115, -22.5], // low-WB high-DB corner (< 5 — displays as "—")
-    [76, 55, 46.5],  // high-WB low-DB corner
-  ];
-  for (const [wb, db, expected] of checks) {
-    const actual = targetSuperheatF(wb, db);
-    if (Math.abs(actual - (expected as number)) > 0.0001) {
-      throw new Error(
-        `ChargingChartMatrix formula regression: TSH(${wb},${db}) = ${actual}, expected ${expected}`,
-      );
-    }
-  }
-})();
 
 export function ChargingChartMatrix({
   label,
@@ -89,11 +47,10 @@ export function ChargingChartMatrix({
     const wbN = Number(wb);
     const dbN = Number(db);
     if (!Number.isFinite(wbN) || !Number.isFinite(dbN)) return null;
-    const tsh = targetSuperheatF(wbN, dbN);
-    return { wb: wbN, db: dbN, tsh };
+    return { wb: wbN, db: dbN, tsh: targetSuperheat(wbN, dbN) };
   }, [wb, db]);
 
-  const reliable = result !== null && result.tsh >= MIN_RELIABLE_TSH;
+  const reliable = result !== null && result.tsh !== null;
 
   return (
     <div className="overflow-hidden rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50/50 to-white dark:border-blue-900/40 dark:from-blue-950/20 dark:to-zinc-950">
@@ -150,10 +107,11 @@ export function ChargingChartMatrix({
           <div className="mt-4 rounded-lg border border-blue-200 bg-white p-4 dark:border-blue-900/40 dark:bg-zinc-950">
             <div className="text-xs uppercase tracking-wider text-zinc-500">Target superheat</div>
             <div className="mt-1 font-mono text-2xl font-semibold text-blue-800 dark:text-blue-200">
-              {formatTarget(result.wb, result.db)}{reliable ? "°F" : ""}
+              {result.tsh !== null ? `${result.tsh}°F` : "—"}
             </div>
             <div className="mt-1 text-xs text-zinc-500">
-              TSH = ((3 × {result.wb}) − 80 − {result.db}) / 2 = {result.tsh.toFixed(2)}°F
+              TSH = round((3 × {result.wb} − 80 − {result.db}) / 2)
+              {result.tsh !== null ? ` = ${result.tsh}°F` : " → below 5°F, not reliable"}
             </div>
             {!reliable ? (
               <div className="mt-3 flex gap-2 rounded-md border border-amber-300 bg-amber-50 p-3 text-xs text-amber-900 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-100">
@@ -181,11 +139,11 @@ export function ChargingChartMatrix({
                 <tr key={wbRow} className="border-b border-zinc-100 last:border-0 dark:border-zinc-900">
                   <th className="border-r border-zinc-200 bg-zinc-50/50 px-2 py-1.5 text-right dark:border-zinc-800 dark:bg-zinc-900/50">{wbRow}°F</th>
                   {dbCols.map((dbCol) => {
-                    const display = formatTarget(wbRow, dbCol);
-                    const isPlaceholder = display === "—";
+                    const t = targetSuperheat(wbRow, dbCol);
+                    const isPlaceholder = t === null;
                     return (
                       <td key={dbCol} className={`px-2 py-1.5 text-right ${isPlaceholder ? "text-zinc-400 dark:text-zinc-600" : ""}`}>
-                        {display}
+                        {t === null ? "—" : t}
                       </td>
                     );
                   })}

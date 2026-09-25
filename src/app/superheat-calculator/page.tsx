@@ -3,6 +3,8 @@ import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon, Thermomete
 import { refrigerants, getRefrigerant, getPressureAtTempF } from "@/data/refrigerants";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { SuperheatCalculator } from "@/components/calculators/SuperheatCalculator";
+import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatrix";
+import { TARGET_SUPERHEAT_LABEL } from "@/lib/target-superheat";
 import {
   ComparisonTable,
   Derived,
@@ -26,7 +28,7 @@ const FAQS = [
   },
   {
     q: "What is the target superheat for an HVAC system?",
-    a: "Depends on the metering device. Fixed-orifice systems target a variable 5-25°F superheat calculated from a charging chart indexed on indoor wet-bulb and outdoor dry-bulb temperatures (ACCA Manual T, 2017). TXV / EEV systems target a fixed 8-15°F superheat regardless of ambient (the valve regulates to its setpoint, typically 10°F). Walk-in coolers target 6-12°F; walk-in freezers 8-15°F; heat-pump heating mode 10-20°F. Always cross-check against the manufacturer's service literature for the specific equipment.",
+    a: "Depends on the metering device. Fixed-orifice systems target a variable 5-25°F superheat read from a fixed-orifice charging chart indexed on indoor wet-bulb and outdoor dry-bulb temperatures (a field approximation of the OEM bead charts). TXV / EEV systems target a fixed 8-15°F superheat regardless of ambient (the valve regulates to its setpoint, typically 10°F). Walk-in coolers target 6-12°F; walk-in freezers 8-15°F; heat-pump heating mode 10-20°F. Always cross-check against the manufacturer's service literature for the specific equipment.",
   },
   {
     q: "How do I measure superheat in the field?",
@@ -46,11 +48,7 @@ const FAQS = [
   },
   {
     q: "Is this the same as Total Superheat versus Evaporator Superheat?",
-    a: "This calculator computes superheat at the measurement point — typically the suction line near the compressor, which is the 'Total Superheat' value most charging procedures reference. Evaporator Superheat (at the evaporator outlet, before line pickup) is 2-5°F higher than Total Superheat at the compressor. TXV setpoints control to Evaporator Superheat; ACCA Manual T charging charts target Total Superheat. The distinction matters most on systems with long suction line sets exposed to warm spaces.",
-  },
-  {
-    q: "What is the AHRI 540 minimum return-gas superheat?",
-    a: "AHRI Standard 540 (Positive Displacement Refrigerant Compressors) specifies minimum return-gas superheat at the compressor suction to guarantee no liquid floodback under any operating condition: 20°F for hermetic compressors and 30°F for semi-hermetic compressors. These are compressor-protection minimums, not service-charging targets. A residential split system charged to 10°F TXV superheat at the compressor inlet still satisfies the AHRI 540 minimum because suction-line pickup adds further superheat between the line measurement point and the compressor crankcase.",
+    a: "This calculator computes superheat at the measurement point — typically the suction line near the compressor, which is the 'Total Superheat' value most charging procedures reference. Evaporator Superheat (at the evaporator outlet, before line pickup) is 2-5°F higher than Total Superheat at the compressor. TXV setpoints control to Evaporator Superheat; fixed-orifice charging charts target Total Superheat. The distinction matters most on systems with long suction line sets exposed to warm spaces.",
   },
   {
     q: "Does this calculator work with R-1234yf and R-454B?",
@@ -61,7 +59,7 @@ const FAQS = [
 export const metadata: Metadata = pageMetadata({
   title: "Superheat Calculator: For Any Refrigerant (+ Target Chart)",
   description:
-    "Free superheat calculator for 50+ refrigerants with dew-curve math for blends. Suction PSIG + line temp → superheat, ACCA Manual T targets, diagnostics.",
+    "Free superheat calculator for 50+ refrigerants with dew-curve math for blends. Suction PSIG + line temp → superheat, fixed-orifice charging targets, diagnostics.",
   path: "/superheat-calculator/",
 });
 
@@ -72,13 +70,12 @@ export default function SuperheatCalculatorPage() {
         path: "superheat-calculator",
         name: "Superheat Calculator",
         description:
-          "Compute HVAC superheat from suction-line pressure and temperature for any of 50+ refrigerants. Correct dew-curve math for zeotropic blends. Diagnostic context, ACCA Manual T target table, and 10 worked service problems for residential AC, walk-in commercial refrigeration, heat pumps, and chillers.",
+          "Compute HVAC superheat from suction-line pressure and temperature for any of 50+ refrigerants. Correct dew-curve math for zeotropic blends. Diagnostic context, fixed-orifice charging-chart target table, and 10 worked service problems for residential AC, walk-in commercial refrigeration, heat pumps, and chillers.",
         featureList: [
           "Supports all 49 CoolProp-modeled refrigerants in the dataset",
           "Correct dew-curve math for zeotropic blends (R-407C, R-454C, R-455A, R-448A, R-449A)",
           "Imperial (°F, PSIG) and metric (°C, kPa) units",
-          "ACCA Manual T target superheat reference table",
-          "AHRI 540 compressor return-gas superheat minimums (20°F hermetic, 30°F semi-hermetic)",
+          "Fixed-orifice charging-chart target superheat reference table",
           "10 worked service problems for residential, commercial, heat pump, chiller applications",
           "Inline diagnostic context for high/low/zero superheat patterns",
           "Mobile-friendly, no signup",
@@ -94,13 +91,13 @@ export default function SuperheatCalculatorPage() {
           "Read the suction-line pressure from the low-side manifold gauge — most service gauges read PSIG by default.",
           "Measure the suction-line temperature with a contact or clamp-on probe within 6 inches of the compressor inlet. Insulate from ambient air and let the reading stabilize (10-20 min after compressor start).",
           "Enter both values. The calculator returns superheat in °F (or °C if you toggle the unit) plus a diagnostic banner.",
-          "Compare against your equipment's target superheat (OEM charging chart, TXV spec, or the ACCA Manual T reference table below).",
+          "Compare against your equipment's target superheat (OEM charging chart, TXV spec, or the fixed-orifice charging-chart reference below).",
         ],
         commonErrors: [
           "Reading the discharge pressure instead of the suction pressure. The suction is the LOW side; discharge is the HIGH side.",
           "Probing the suction line without insulating — ambient air pulls the reading toward room temperature, inflating apparent superheat.",
           "On zeotropic blends, using the bubble pressure for saturation temperature — underestimates superheat by the temperature glide (11°F for R-407C, 14°F for R-454C, 22°F for R-455A). This calculator does dew-curve math automatically.",
-          "Forgetting that fixed-orifice and TXV systems have very different target ranges. A fixed-orifice system reading 10°F superheat on a 95°F day may actually be undercharged per the ACCA Manual T chart.",
+          "Forgetting that fixed-orifice and TXV systems have very different target ranges. A fixed-orifice system reading 10°F superheat on a 95°F day may actually be undercharged per the fixed-orifice charging chart.",
           "Reading SH before steady state. Allow 10-20 minutes after compressor start before the readings stabilize.",
         ],
       }}
@@ -108,9 +105,9 @@ export default function SuperheatCalculatorPage() {
         formula:
           "Superheat (°F) = T_suction_line − T_sat(P_suction)\n\nT_sat is read off the DEW curve at the measured suction pressure for zeotropic blends. For pure refrigerants and azeotropes, bubble ≡ dew, so the curve choice is moot.",
         sourceCitation:
-          "Saturation temperatures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Target superheat per ACCA Manual T (Air Conditioning Contractors of America 2017), ASHRAE Handbook of Refrigeration 2022 (Chapter 1, 23), AHRI Standard 540-2020 (Positive Displacement Refrigerant Compressors), and equipment-specific manufacturer charging charts (Carrier, Trane, Lennox, Daikin, Goodman).",
+          "Saturation temperatures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Fixed-orifice target superheat is a field approximation of the OEM charging charts (see California Title 24 Reference Appendix RA3.2, Table RA3.2-2); application target ranges from ASHRAE Handbook of Refrigeration 2022 (Chapter 1, 23) and equipment-specific manufacturer charging charts (Carrier, Trane, Lennox, Daikin, Goodman).",
         workedExample:
-          "R-410A residential AC, 95°F outdoor, TXV metering:\n  Suction pressure (gauge): 130 PSIG\n  Suction-line temperature: 60°F\n  Saturation temperature at 130 PSIG: 45°F (CoolProp 7.2.0)\n  Superheat = 60 − 45 = 15°F\n\nWithin the typical 8-15°F TXV target range and comfortably above the slugging threshold. For a fixed-orifice system, cross-check against the ACCA Manual T target SH chart for the specific indoor wet-bulb / outdoor dry-bulb combination.",
+          "R-410A residential AC, 95°F outdoor, TXV metering:\n  Suction pressure (gauge): 130 PSIG\n  Suction-line temperature: 60°F\n  Saturation temperature at 130 PSIG: 45°F (CoolProp 7.2.0)\n  Superheat = 60 − 45 = 15°F\n\nWithin the typical 8-15°F TXV target range and comfortably above the slugging threshold. For a fixed-orifice system, cross-check against the fixed-orifice charging chart for the specific indoor wet-bulb / outdoor dry-bulb combination.",
       }}
       relatedTools={[
         { href: "/subcooling-calculator/", label: "Subcooling Calculator", blurb: "Companion to superheat on the liquid line. Together they pin down a system's charge state." },
@@ -190,7 +187,7 @@ function RichContent() {
             rows={[
               {
                 label: "Fixed orifice (piston, captube)",
-                cells: ["Superheat (target from chart)", "Match ACCA Manual T target", "5-25°F (variable)"],
+                cells: ["Superheat (target from chart)", "Match fixed-orifice chart target", "5-25°F (variable)"],
               },
               {
                 label: "TXV (thermostatic expansion valve)",
@@ -206,7 +203,7 @@ function RichContent() {
         <p>
           Fixed-orifice devices have no feedback control — superheat varies with charge,
           ambient, and indoor load. Charging a fixed-orifice system means adjusting
-          refrigerant mass until superheat lands on the ACCA Manual T target value for the
+          refrigerant mass until superheat lands on the fixed-orifice charging-chart target value for the
           current indoor wet bulb / outdoor dry bulb conditions. TXV and EEV systems have a
           sensing element that modulates flow to maintain a fixed superheat setpoint
           (typically 10°F at the bulb).
@@ -219,43 +216,18 @@ function RichContent() {
         </p>
       </TechSection>
 
-      <TechSection icon="data" tone="emerald" title="Target superheat reference — ACCA Manual T and OEM service literature">
+      <TechSection icon="data" tone="emerald" title="Target superheat reference — fixed-orifice charging charts and OEM service literature">
         <p>
-          The ACCA Manual T (2017) charging chart for fixed-orifice systems targets superheat
+          The fixed-orifice charging chart targets superheat
           based on the indoor wet-bulb temperature entering the evaporator coil and the
           outdoor dry-bulb temperature at the condenser. Higher indoor WB and lower outdoor
-          DB both raise the target.
+          DB both raise the target. The interactive matrix below computes the target from a
+          field-approximation formula; the chart or label on the specific unit always takes
+          precedence.
         </p>
-        <Panel title="ACCA Manual T fixed-orifice target superheat (°F)" icon={TableIcon}>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-zinc-200 text-[10px] uppercase tracking-wider text-zinc-500 dark:border-zinc-800">
-                  <th className="py-1.5 text-left">Indoor WB ↓ / Outdoor DB →</th>
-                  <th className="py-1.5 text-right">75°F</th>
-                  <th className="py-1.5 text-right">85°F</th>
-                  <th className="py-1.5 text-right">95°F</th>
-                  <th className="py-1.5 text-right">105°F</th>
-                  <th className="py-1.5 text-right">115°F</th>
-                </tr>
-              </thead>
-              <tbody className="font-mono tabular-nums">
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td>50°F</td><td className="text-right">6</td><td className="text-right">—</td><td className="text-right">—</td><td className="text-right">—</td><td className="text-right">—</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td>55°F</td><td className="text-right">11</td><td className="text-right">9</td><td className="text-right">7</td><td className="text-right">5</td><td className="text-right">—</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td>60°F</td><td className="text-right">18</td><td className="text-right">16</td><td className="text-right">14</td><td className="text-right">12</td><td className="text-right">9</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td>65°F</td><td className="text-right">23</td><td className="text-right">21</td><td className="text-right">19</td><td className="text-right">17</td><td className="text-right">15</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td>70°F</td><td className="text-right">28</td><td className="text-right">26</td><td className="text-right">24</td><td className="text-right">22</td><td className="text-right">20</td></tr>
-                <tr><td>75°F</td><td className="text-right">33</td><td className="text-right">31</td><td className="text-right">29</td><td className="text-right">27</td><td className="text-right">25</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </Panel>
+        <ChargingChartMatrix label="target superheat" />
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Source: ACCA Manual T &quot;Air-Side and Refrigerant-Side Diagnostics&quot; (2017
-          edition, Table 1). Representative values for R-22 and R-410A residential split
-          systems with fixed-orifice metering. Cell &quot;—&quot; means the operating point
-          is outside normal envelope — verify equipment is operating correctly before
-          charging.
+          {TARGET_SUPERHEAT_LABEL}
         </p>
         <Panel title="Target superheat by application (OEM + ASHRAE)" icon={TableIcon}>
           <div className="overflow-x-auto">
@@ -269,23 +241,20 @@ function RichContent() {
               </thead>
               <tbody>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Residential AC, TXV / EEV</td><td className="py-1.5 text-right font-mono tabular-nums">8-15°F</td><td className="py-1.5 text-xs">Carrier, Trane, Lennox, Daikin OEM literature</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Residential AC, fixed orifice</td><td className="py-1.5 text-right font-mono tabular-nums">per ACCA chart</td><td className="py-1.5 text-xs">ACCA Manual T (2017) Table 1</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Residential AC, fixed orifice</td><td className="py-1.5 text-right font-mono tabular-nums">per chart</td><td className="py-1.5 text-xs">fixed-orifice charging charts</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in cooler (MT), TXV</td><td className="py-1.5 text-right font-mono tabular-nums">6-12°F</td><td className="py-1.5 text-xs">ASHRAE Handbook of Refrigeration 2022 Ch. 23</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in freezer (LT), TXV</td><td className="py-1.5 text-right font-mono tabular-nums">8-15°F</td><td className="py-1.5 text-xs">ASHRAE Handbook of Refrigeration 2022 Ch. 23</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Heat pump, heating mode</td><td className="py-1.5 text-right font-mono tabular-nums">10-20°F</td><td className="py-1.5 text-xs">Carrier / Trane heat-pump service procedures</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Centrifugal chiller at evap</td><td className="py-1.5 text-right font-mono tabular-nums">2-5°F</td><td className="py-1.5 text-xs">ASHRAE HVAC Systems &amp; Equipment 2024 Ch. 43</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Hermetic compressor return-gas min</td><td className="py-1.5 text-right font-mono tabular-nums">20°F</td><td className="py-1.5 text-xs">AHRI Standard 540-2020 §6</td></tr>
-                <tr><td className="py-1.5">Semi-hermetic compressor return-gas min</td><td className="py-1.5 text-right font-mono tabular-nums">30°F</td><td className="py-1.5 text-xs">AHRI Standard 540-2020 §6</td></tr>
+                <tr><td className="py-1.5">Centrifugal chiller at evap</td><td className="py-1.5 text-right font-mono tabular-nums">2-5°F</td><td className="py-1.5 text-xs">ASHRAE HVAC Systems &amp; Equipment 2024 Ch. 43</td></tr>
               </tbody>
             </table>
           </div>
         </Panel>
         <TargetSHBars />
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Target superheat ranges across HVAC applications. Compressor minimums (AHRI 540)
-          are protection thresholds at the compressor inlet; service-line targets are usually
-          lower because suction-line pickup adds further superheat between the line probe and
-          the compressor crankcase.
+          Target superheat ranges across HVAC applications. Service-line targets are read at
+          the suction line near the compressor; suction-line pickup adds further superheat
+          between the line probe and the compressor crankcase.
         </p>
       </TechSection>
 
@@ -303,7 +272,7 @@ function RichContent() {
         number={1}
         refrigerant="R-410A (fixed orifice)"
         title="Charging a new R-410A residential AC by superheat target"
-        scenario="Brand-new R-410A residential AC, piston metering device, 95°F outdoor dry bulb, 63°F indoor wet bulb (75°F return air, 50% RH). You need to set the charge by superheat per the manufacturer's charging instructions, cross-checked against ACCA Manual T."
+        scenario="Brand-new R-410A residential AC, piston metering device, 95°F outdoor dry bulb, 63°F indoor wet bulb (75°F return air, 50% RH). You need to set the charge by superheat per the manufacturer's charging instructions, cross-checked against the fixed-orifice charging chart."
       >
         <Panel title="Measured at the manifold" icon={Gauge}>
           <Gauges
@@ -326,18 +295,19 @@ function RichContent() {
           <Derived
             rows={[
               { formula: "Superheat = 56°F − 41°F = 15°F", verdict: "warn", note: "actual measured value" },
-              { formula: "ACCA Manual T target @ 63°F WB / 95°F DB ≈ 17°F", verdict: "info", note: "interpolated chart target" },
+              { formula: "target superheat at 63°F WB / 95°F DB ≈ 7°F", verdict: "info", note: "fixed-orifice charging-chart target" },
             ]}
           />
         </Panel>
-        <VerdictBanner status="warn" title="Slightly undercharged — add a small increment">
-          Measured SH is 15°F vs the ACCA Manual T target of approximately 17°F at this
-          WB / DB combination. The system is close to correct but slightly undercharged;
-          adding refrigerant will reduce superheat toward the target.
+        <VerdictBanner status="warn" title="Undercharged — add refrigerant to lower superheat">
+          Measured SH is 15°F vs the fixed-orifice charging-chart target of approximately 7°F
+          at this WB / DB combination. Superheat above target means the evaporator is starved;
+          the system is undercharged, and adding refrigerant will reduce superheat toward the
+          target.
         </VerdictBanner>
         <FixCallout>
           Add refrigerant in 2-4 oz increments using a scale, allowing 10-15 minutes for
-          steady state between additions. Stop when SH = 17°F (±2°F tolerance). Confirm
+          steady state between additions. Stop when SH = 7°F (±2°F tolerance). Confirm
           subcooling lands in the 8-12°F range as a sanity check on the final charge.
         </FixCallout>
       </ServiceProblem>
@@ -689,8 +659,8 @@ function RichContent() {
           deliberately run lower SH than residential AC: the flooded evaporator design
           maximizes heat transfer by submerging tubes in liquid refrigerant, and an
           eliminator section + accumulator prevents liquid carryover to the compressor.
-          AHRI 540 compressor protection requirements are met by post-evap accumulators in
-          chiller plants.
+          Compressor protection against liquid floodback is handled by these post-evap
+          accumulators in chiller plants.
         </VerdictBanner>
       </ServiceProblem>
 
@@ -704,9 +674,9 @@ function RichContent() {
           <ComparisonTable
             headers={["Refrigerant", "Glide", "TXV target SH", "Fixed-orifice approach"]}
             rows={[
-              { label: "R-410A", cells: ["~0°F (near-az)", "8-15°F", "ACCA Manual T target"] },
-              { label: "R-32 (pure)", cells: ["0°F", "8-15°F", "ACCA Manual T target"] },
-              { label: "R-454B (zeotropic)", cells: ["~3°F", "8-15°F (dew curve)", "ACCA Manual T target"] },
+              { label: "R-410A", cells: ["~0°F (near-az)", "8-15°F", "fixed-orifice chart target"] },
+              { label: "R-32 (pure)", cells: ["0°F", "8-15°F", "fixed-orifice chart target"] },
+              { label: "R-454B (zeotropic)", cells: ["~3°F", "8-15°F (dew curve)", "fixed-orifice chart target"] },
             ]}
           />
         </Panel>
@@ -785,8 +755,8 @@ function RichContent() {
             <strong>Confusing total vs evaporator superheat.</strong> Total Superheat is
             measured at the compressor suction (what manifold-based service procedures use);
             Evaporator Superheat is at the evap outlet (what the TXV bulb senses). Total
-            SH is 2-5°F higher than Evap SH due to suction-line pickup. ACCA Manual T targets
-            are Total SH; TXV setpoints are Evap SH.
+            SH is 2-5°F higher than Evap SH due to suction-line pickup. Fixed-orifice
+            charging-chart targets are Total SH; TXV setpoints are Evap SH.
           </li>
           <li>
             <strong>PSIG vs PSIA mix-up.</strong> Service gauges read PSIG (gauge pressure
@@ -847,21 +817,16 @@ function RichContent() {
             temperatures. Accuracy typically better than ±0.5% across the operating range.
           </li>
           <li>
-            <strong>ACCA Manual T &quot;Air-Side and Refrigerant-Side Diagnostics&quot;
-            (2017)</strong> — fixed-orifice charging chart (target superheat indexed on
-            indoor wet-bulb and outdoor dry-bulb), measurement procedure, common error
-            patterns. Industry-standard reference for residential service technicians.
+            <strong>California Title 24 Reference Appendix RA3.2 (Table RA3.2-2)</strong> —
+            the field-approximation target-superheat table for fixed-orifice charging
+            (indexed on indoor wet-bulb and outdoor dry-bulb). The chart or label on the
+            specific unit always takes precedence over this approximation.
           </li>
           <li>
             <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Chapter 1
             (vapor-compression fundamentals), Chapter 23 (service procedures and target
             superheat by application). The reference text for commercial refrigeration
             service.
-          </li>
-          <li>
-            <strong>AHRI Standard 540-2020 (Positive Displacement Refrigerant
-            Compressors)</strong> — minimum return-gas superheat at the compressor inlet:
-            20°F hermetic, 30°F semi-hermetic. The compressor-protection floor.
           </li>
           <li>
             <strong>ASHRAE HVAC Systems &amp; Equipment 2024</strong> — Chapter 43
@@ -948,8 +913,6 @@ function TargetSHBars() {
     { label: "Walk-in freezer LT", min: 8, max: 15, tone: "#5a8a3a" },
     { label: "Heat pump heating", min: 10, max: 20, tone: "#d49a2b" },
     { label: "Residential FXO", min: 5, max: 25, tone: "#d49a2b" },
-    { label: "Hermetic min (AHRI)", min: 20, max: 20, tone: "#c45757" },
-    { label: "Semi-herm min (AHRI)", min: 30, max: 30, tone: "#c45757" },
   ];
   const W = 720;
   const ROW_H = 28;
@@ -966,7 +929,7 @@ function TargetSHBars() {
     <svg
       viewBox={`0 0 ${W} ${H}`}
       role="img"
-      aria-label="Bar chart of target superheat ranges by HVAC application, with compressor-protection minimums per AHRI Standard 540."
+      aria-label="Bar chart of target superheat ranges by HVAC application."
       className="my-3 h-auto w-full text-zinc-700 dark:text-zinc-300"
       preserveAspectRatio="xMidYMid meet"
     >
@@ -1015,7 +978,7 @@ function TargetSHBars() {
         );
       })}
       <text x={W / 2} y={H - 8} textAnchor="middle" fontSize="10" fill="currentColor" opacity={0.7}>
-        Source: ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022, AHRI 540-2020, OEM service literature.
+        Source: ASHRAE Handbook of Refrigeration 2022, OEM service literature.
       </text>
     </svg>
   );

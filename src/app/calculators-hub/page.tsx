@@ -19,7 +19,7 @@ export default function CalculatorsHubPage() {
       path="calculators-hub"
       title="HVAC Calculators"
       introHeadline="Free calculators for HVAC field work. Built on the verified refrigerant dataset — same source as the PT charts."
-      introBody="Each calculator reads from the same Zod-validated saturation data that drives the chart pages. Bubble vs dew curves are handled correctly for zeotropic blends. All targets and ranges cite ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022, AHRI Standard 540-2020, and equipment-specific manufacturer literature (Carrier, Trane, Lennox, Daikin, Goodman). Nine calculators total, each with worked service problems, reference tables, and SVG diagnostic visualizations."
+      introBody="Each calculator reads from the same Zod-validated saturation data that drives the chart pages. Bubble vs dew curves are handled correctly for zeotropic blends. Fixed-orifice target superheat follows the standard field-approximation formula for charging charts (per California Title 24 Reference Appendix RA3.2); other targets and ranges cite ASHRAE Handbook of Refrigeration 2022 and equipment-specific manufacturer literature (Carrier, Trane, Lennox, Daikin, Goodman). Nine calculators total, each with worked service problems, reference tables, and SVG diagnostic visualizations."
       publishedDate={PUBLISHED}
       scenarios={[
         {
@@ -32,7 +32,7 @@ export default function CalculatorsHubPage() {
           situation: "I'm charging a fixed-orifice R-22 / R-410A AC by superheat",
           href: "/superheat-calculator/",
           toolLabel: "Superheat Calculator",
-          reasoning: "Fixed-orifice systems use ACCA Manual T charging chart (SH indexed on indoor WB / outdoor DB).",
+          reasoning: "Fixed-orifice systems charge by superheat using the target-superheat charging chart (SH indexed on indoor WB / outdoor DB).",
         },
         {
           situation: "System is running but cooling is weak — diagnose root cause",
@@ -64,7 +64,7 @@ export default function CalculatorsHubPage() {
           heading: "Charging and diagnostic",
           description: "Service-call tools. Read manifold pressures + line temperatures, get superheat / subcooling / verdict.",
           items: [
-            { href: "/superheat-calculator/", label: "Superheat Calculator", blurb: "Suction-line PSIG + temperature → superheat with diagnostic interpretation. Top-traffic page on the site. ACCA Manual T target SH chart for fixed-orifice systems, dew-curve math for zeotropic blends.", tag: "Top traffic" },
+            { href: "/superheat-calculator/", label: "Superheat Calculator", blurb: "Suction-line PSIG + temperature → superheat with diagnostic interpretation. Top-traffic page on the site. Target superheat chart for fixed-orifice systems, dew-curve math for zeotropic blends.", tag: "Top traffic" },
             { href: "/subcooling-calculator/", label: "Subcooling Calculator", blurb: "Liquid-line PSIG + temperature → subcooling. Primary charging metric for TXV / EEV systems (8-12°F target). Bubble-curve math for zeotropic blends." },
             { href: "/pt-superheat-subcooling-calculator/", label: "Combined PT / Superheat / Subcooling", blurb: "Both sides on one form with eight-pattern diagnostic matrix (undercharge, overcharge, restriction, fouling, TXV failure, non-condensables)." },
             { href: "/system-pressure-diagnostic-calculator/", label: "System Pressure Diagnostic", blurb: "8-input expert system: ambient, return air, suction P/T, liquid P/T → flagged findings with evidence and ordered recommendations." },
@@ -75,7 +75,7 @@ export default function CalculatorsHubPage() {
           heading: "Lookup and reference",
           description: "Foundation tools. PT lookups, saturation properties, retrofit feasibility analysis.",
           items: [
-            { href: "/pt-calculator/", label: "PT Calculator", blurb: "Bidirectional saturation pressure ↔ temperature lookup for 50+ refrigerants, bubble + dew for blends. 10 worked service problems, ACCA Manual T target charts." },
+            { href: "/pt-calculator/", label: "PT Calculator", blurb: "Bidirectional saturation pressure ↔ temperature lookup for 50+ refrigerants, bubble + dew for blends. 10 worked service problems, target superheat charts." },
             { href: "/saturation-properties-calculator/", label: "Saturation Properties Calculator", blurb: "Bubble, dew, glide at any temperature plus reference properties (critical point, boiling point, molar mass)." },
             { href: "/refrigerant-pt-comparison-tool/", label: "Refrigerant PT Comparison Tool", blurb: "Overlay 2-4 refrigerants on one PT chart. Six common comparison presets for residential phase-down, commercial LT, mobile AC, retrofit." },
             { href: "/refrigerant-retrofit-compatibility-calculator/", label: "Retrofit Compatibility", blurb: "Pair-comparison decision matrix: lubricant, safety class, pressure rating, glide, application overlap. Six-tier verdict from drop-in to not feasible." },
@@ -137,7 +137,7 @@ This means the calculators here are deliberately less "smart" than some competit
           heading: "What the verification looks like",
           body: `Saturation data: CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999) implements REFPROP-compatible Helmholtz EOS for pure refrigerants and predefined mixtures. Cross-checked against AHRI Standard 700-2019 specifications where applicable. For 11 manufacturer-blend refrigerants not in CoolProp's library (R-448A, R-450A, R-1336mzz(Z), etc.), values come from named manufacturer datasheets (Honeywell, Chemours, Arkema, AGC).
 
-Target SH and SC ranges: ACCA Manual T (2017) for fixed-orifice charging charts and diagnostic patterns; ASHRAE Handbook of Refrigeration 2022 (Chapter 23) for application-specific target ranges; equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman, Mitsubishi) for equipment-specific setpoints; AHRI Standard 540-2020 for compressor protection minimums.
+Target SH and SC ranges: fixed-orifice charging-chart superheat follows the standard field-approximation formula (per California Title 24 Reference Appendix RA3.2); ASHRAE Handbook of Refrigeration 2022 (Chapter 23) for application-specific target ranges; equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman, Mitsubishi) for equipment-specific setpoints and diagnostic patterns.
 
 Regulatory context: EPA AIM Act (40 CFR Part 84) for HFC phase-down dates and GWP caps; ASHRAE Standard 34-2022 for safety classifications; IEC 60335-2-40 for A2L equipment requirements; EPA Section 608 for refrigerant handling and leak repair.
 
@@ -149,7 +149,7 @@ Every claim on every calculator page traces to one of these primary sources. The
 
 Real-time pricing or availability. Refrigerant prices and supply fluctuate based on AIM Act allocations, weather, and import/export dynamics. Use distributor pricing for current quotes.
 
-Equipment-specific charging procedures. The calculators surface the general procedure (charge by SC on TXV, charge by SH on fixed-orifice with ACCA Manual T chart). Specific equipment may have OEM-specific procedures that override the general approach — always check.
+Equipment-specific charging procedures. The calculators surface the general procedure (charge by SC on TXV, charge by SH on fixed-orifice with the target-superheat chart). Specific equipment may have OEM-specific procedures that override the general approach — always check.
 
 Real-time diagnostic recommendations. The diagnostic calculators surface pattern-matched root causes and ordered investigation steps; they don't replace technician judgment. Treat the flags as "here's what to investigate first" rather than "here's the definitive answer."
 

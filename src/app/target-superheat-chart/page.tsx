@@ -8,6 +8,7 @@ import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatri
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
+import { TARGET_SUPERHEAT_LABEL } from "@/lib/target-superheat";
 
 const PAGE_URL = `${SITE_URL}/target-superheat-chart/`;
 const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/target-superheat-chart/page.tsx");
@@ -138,6 +139,7 @@ export default function TargetSuperheatChartPage() {
         <section className="mt-8 mb-10">
           <h2 className="mb-3 text-xl font-semibold">Interactive lookup and matrix</h2>
           <ChargingChartMatrix label="target superheat" />
+          <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">{TARGET_SUPERHEAT_LABEL}</p>
         </section>
 
         <TechSection icon="book" tone="blue" title="Where this chart comes from — and when to trust the formula">
@@ -272,7 +274,7 @@ export default function TargetSuperheatChartPage() {
                 )}
               </li>
             ))}
-            <li>ACCA technician charging references (name-only).</li>
+            <li>California Title 24 Reference Appendix RA3.2 (Table RA3.2-2) — the field target-superheat approximation.</li>
             <li>Carrier, Trane, Lennox, Rheem residential AC installation manuals — fixed-orifice charging bulletins whose bead charts are discrete-point renderings of the same source data.</li>
             <li>ASHRAE Handbook of Fundamentals — psychrometric calculations and load-condition definitions.</li>
             <li>AHRI Standard 210/240 — 95°F outdoor dry-bulb cooling rating condition.</li>

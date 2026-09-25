@@ -34,11 +34,11 @@ const FAQS = [
   },
   {
     q: "Which is the primary charging metric?",
-    a: "Depends on the metering device. Fixed-orifice systems are charged by superheat (per ACCA Manual T charging chart, indexed on indoor wet-bulb and outdoor dry-bulb). TXV / EEV systems are charged by subcooling (typically 8-12°F per OEM nameplate). On a TXV system the superheat hovers near the TXV setpoint regardless of charge, so superheat reads in-range even at overcharge — subcooling is the primary metric.",
+    a: "Depends on the metering device. Fixed-orifice systems are charged by superheat, comparing measured total superheat against a target from the fixed-orifice charging chart (indexed on indoor wet-bulb and outdoor dry-bulb). TXV / EEV systems are charged by subcooling (typically 8-12°F per OEM nameplate). On a TXV system the superheat hovers near the TXV setpoint regardless of charge, so superheat reads in-range even at overcharge — subcooling is the primary metric.",
   },
   {
     q: "What's the difference between total superheat and evaporator superheat?",
-    a: "Total superheat is measured at the suction line near the compressor — what most charging procedures reference. Evaporator superheat is measured at the evaporator outlet, before any temperature pickup along the suction line. Total is usually 2-5°F higher than evaporator due to suction-line heat gain. ACCA Manual T charging charts target Total SH; TXV setpoints control to Evaporator SH.",
+    a: "Total superheat is measured at the suction line near the compressor — what most charging procedures reference. Evaporator superheat is measured at the evaporator outlet, before any temperature pickup along the suction line. Total is usually 2-5°F higher than evaporator due to suction-line heat gain. Fixed-orifice charging charts target Total SH; TXV setpoints control to Evaporator SH.",
   },
   {
     q: "How does temperature glide affect superheat measurement on zeotropic blends?",
@@ -51,10 +51,6 @@ const FAQS = [
   {
     q: "What does negative subcooling mean?",
     a: "Vapor bubbles are forming in the liquid line (flash gas). The metering device receives a two-phase mix instead of fully-liquid refrigerant; cooling capacity drops sharply. Causes: significant undercharge, restriction at filter-drier or expansion device, or non-condensables. The system is impaired; diagnose before adding refrigerant under EPA Section 608.",
-  },
-  {
-    q: "What's the AHRI 540 minimum return-gas superheat?",
-    a: "AHRI Standard 540 (Positive Displacement Refrigerant Compressors) specifies minimum return-gas superheat at the compressor suction: 20°F for hermetic compressors and 30°F for semi-hermetic compressors. These are compressor-protection minimums, not service-charging targets. A residential split system charged to 10°F TXV SH at the line measurement point still satisfies AHRI 540 because suction-line pickup adds further superheat between the line probe and the compressor crankcase.",
   },
   {
     q: "How do approach temperatures relate to SH and SC?",
@@ -228,7 +224,7 @@ export default function FundamentalsPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Fixed-orifice residential AC</td><td className="py-1.5 text-right font-mono tabular-nums">5-25°F</td><td className="py-1.5 text-right font-mono tabular-nums">informational</td><td className="py-1.5 text-xs">SH (ACCA Manual T chart)</td></tr>
+                    <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Fixed-orifice residential AC</td><td className="py-1.5 text-right font-mono tabular-nums">5-25°F</td><td className="py-1.5 text-right font-mono tabular-nums">informational</td><td className="py-1.5 text-xs">SH (fixed-orifice charging chart)</td></tr>
                     <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">TXV residential AC</td><td className="py-1.5 text-right font-mono tabular-nums">8-15°F</td><td className="py-1.5 text-right font-mono tabular-nums">8-12°F</td><td className="py-1.5 text-xs">SC (OEM nameplate)</td></tr>
                     <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">EEV residential AC</td><td className="py-1.5 text-right font-mono tabular-nums">5-15°F</td><td className="py-1.5 text-right font-mono tabular-nums">5-12°F</td><td className="py-1.5 text-xs">SC + EEV diagnostic</td></tr>
                     <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Heat pump (cooling mode)</td><td className="py-1.5 text-right font-mono tabular-nums">8-15°F</td><td className="py-1.5 text-right font-mono tabular-nums">8-15°F</td><td className="py-1.5 text-xs">SC</td></tr>
@@ -236,19 +232,18 @@ export default function FundamentalsPage() {
                     <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in cooler MT (TXV)</td><td className="py-1.5 text-right font-mono tabular-nums">6-12°F</td><td className="py-1.5 text-right font-mono tabular-nums">5-15°F</td><td className="py-1.5 text-xs">SC</td></tr>
                     <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in freezer LT (TXV)</td><td className="py-1.5 text-right font-mono tabular-nums">8-15°F</td><td className="py-1.5 text-right font-mono tabular-nums">5-15°F</td><td className="py-1.5 text-xs">SC</td></tr>
                     <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Centrifugal chiller</td><td className="py-1.5 text-right font-mono tabular-nums">2-5°F at evap</td><td className="py-1.5 text-right font-mono tabular-nums">2-5°F at cond</td><td className="py-1.5 text-xs">OEM-specific</td></tr>
-                    <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Mobile AC (R-1234yf, R-134a)</td><td className="py-1.5 text-right font-mono tabular-nums">5-15°F</td><td className="py-1.5 text-right font-mono tabular-nums">5-10°F</td><td className="py-1.5 text-xs">By weight (SAE J639)</td></tr>
-                    <tr><td className="py-1.5">Hermetic compressor min (AHRI 540)</td><td className="py-1.5 text-right font-mono tabular-nums">≥20°F</td><td className="py-1.5 text-right font-mono tabular-nums">—</td><td className="py-1.5 text-xs">Protection floor</td></tr>
+                    <tr><td className="py-1.5">Mobile AC (R-1234yf, R-134a)</td><td className="py-1.5 text-right font-mono tabular-nums">5-15°F</td><td className="py-1.5 text-right font-mono tabular-nums">5-10°F</td><td className="py-1.5 text-xs">By weight (SAE J639)</td></tr>
                   </tbody>
                 </table>
               </div>
             </Panel>
             <TargetRangeBars />
             <p className="text-xs text-zinc-500 dark:text-zinc-400">
-              Target SH (blue) and SC (purple) ranges by application. Compressor minimums (AHRI
-              540) are protection thresholds at the compressor inlet, typically higher than
-              service-line targets due to suction-line pickup. Source: ACCA Manual T (2017),
-              ASHRAE Handbook of Refrigeration 2022 Ch. 23, AHRI Standard 540-2020, OEM service
-              literature.
+              Target SH (blue) and SC (purple) ranges by application. Fixed-orifice SH targets are
+              a field approximation of the OEM charging charts (indexed on indoor wet-bulb and
+              outdoor dry-bulb); the chart or label on the unit always takes precedence. Source:
+              ASHRAE Handbook of Refrigeration 2022 Ch. 23, California Title 24 Reference Appendix
+              RA3.2, OEM service literature.
             </p>
           </TechSection>
         </section>
@@ -530,7 +525,7 @@ export default function FundamentalsPage() {
               <li>
                 <strong>Confusing total vs evaporator superheat.</strong> Total SH (at
                 compressor inlet, what charging procedures use) is 2-5°F higher than evap SH
-                (what TXV bulb senses). ACCA Manual T targets are total SH.
+                (what TXV bulb senses). Fixed-orifice charging-chart targets are total SH.
               </li>
             </ol>
           </TechSection>
@@ -586,10 +581,9 @@ export default function FundamentalsPage() {
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">
           <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Sources</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
-            <li>ACCA Manual T (2017) — &quot;Air-Side and Refrigerant-Side Diagnostics&quot;, target SH ranges and charging procedures</li>
+            <li>California Title 24 Reference Appendix RA3.2 (Table RA3.2-2) — fixed-orifice target-superheat charging procedure (field approximation of OEM charging charts)</li>
             <li>ASHRAE Handbook of Refrigeration 2022 — Chapters 1, 23 (vapor-compression cycle, service procedures)</li>
             <li>ASHRAE Handbook of Fundamentals 2021 — vapor-compression cycle thermodynamics</li>
-            <li>AHRI Standard 540-2020 — Positive Displacement Refrigerant Compressors, minimum return-gas SH</li>
             <li>EPA Section 608 (40 CFR Part 82 Subpart F) — refrigerant handling, leak repair requirements</li>
             <li>CoolProp 7.2.0 (Bell et al. 2014, doi:10.1021/ie4033999) — saturation property source for site calculators</li>
             <li>Equipment manufacturer service literature — Carrier, Trane, Lennox, Daikin, Goodman charging procedures</li>

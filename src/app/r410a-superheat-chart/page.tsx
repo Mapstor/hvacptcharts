@@ -9,6 +9,7 @@ import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatri
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
+import { TARGET_SUPERHEAT_LABEL } from "@/lib/target-superheat";
 
 const SLUG = "r-410a";
 const PAGE_URL = `${SITE_URL}/r410a-superheat-chart/`;
@@ -34,14 +35,14 @@ const SOURCES: readonly { name: string; publisher: string; url: string | null }[
 export const metadata: Metadata = pageMetadata({
   title: "R410A Superheat Chart: Target Superheat By WB & Outdoor Temp",
   description:
-    "R410A target superheat chart for fixed-orifice systems. Indoor wet-bulb 50–75°F rows × outdoor 65–115°F cols; standard formula, 8.5°F at 64WB/95DB.",
+    "R410A target superheat chart for fixed-orifice systems. Indoor wet-bulb 50–75°F rows × outdoor 65–115°F cols; standard formula, 9°F at 64WB/95DB.",
   path: "/r410a-superheat-chart/",
 });
 
 const FAQS = [
   {
     q: "What is the target superheat for a fixed-orifice R-410A system?",
-    a: "It depends on indoor wet-bulb and outdoor dry-bulb. Use the formula TSH = ((3 × WB) − 80 − DB) / 2. At the design point of 64°F indoor WB and 95°F outdoor DB, target superheat is 8.5°F. Look up other combinations in the interactive matrix above.",
+    a: "It depends on indoor wet-bulb and outdoor dry-bulb. Use the formula TSH = ((3 × WB) − 80 − DB) / 2. At the design point of 64°F indoor WB and 95°F outdoor DB, target superheat is 9°F. Look up other combinations in the interactive matrix above.",
   },
   {
     q: "How do I read R-410A suction pressure at the evaporator?",
@@ -132,7 +133,7 @@ export default function R410aSuperheatChartPage() {
         </header>
 
         <KeyInsight tone="blue" icon="insight" title="Answer, in one line">
-          Target SH = ((3 × Indoor WB) − 80 − Outdoor DB) / 2. At 64°F WB / 95°F DB the target is 8.5°F. Fixed-orifice only — TXV systems charge by subcooling.
+          Target SH = ((3 × Indoor WB) − 80 − Outdoor DB) / 2. At 64°F WB / 95°F DB the target is 9°F. Fixed-orifice only — TXV systems charge by subcooling.
         </KeyInsight>
 
         <MeasurementDiagram variant="superheat" />
@@ -140,6 +141,7 @@ export default function R410aSuperheatChartPage() {
         <section className="mt-8 mb-10">
           <h2 className="mb-3 text-xl font-semibold">Interactive lookup and matrix</h2>
           <ChargingChartMatrix label="R-410A target superheat" />
+          <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">{TARGET_SUPERHEAT_LABEL}</p>
         </section>
 
         <TechSection icon="data" tone="purple" title="R-410A saturation quick table (evaporator range)">
@@ -188,10 +190,10 @@ export default function R410aSuperheatChartPage() {
 
         <TechSection icon="gauge" tone="emerald" title="Reading your gauges">
           <p>
-            On a properly-charged R-410A residential AC at the 95°F rating condition with 64°F indoor WB, the evaporator runs around 40°F saturation ({fmtPsigBubble(SLUG, 40)} PSIG). The manifold at the low-side service port reads slightly higher than this due to superheat pickup on the suction line between the coil and the port. Measured suction-line temperature minus 40°F is your measured superheat; match against the 8.5°F target from the matrix.
+            On a properly-charged R-410A residential AC at the 95°F rating condition with 64°F indoor WB, the evaporator runs around 40°F saturation ({fmtPsigBubble(SLUG, 40)} PSIG). The manifold at the low-side service port reads slightly higher than this due to superheat pickup on the suction line between the coil and the port. Measured suction-line temperature minus 40°F is your measured superheat; match against the 9°F target from the matrix.
           </p>
           <p>
-            At a warmer 105°F outdoor day the condenser saturation climbs into the 115–120°F range ({fmtPsigBubble(SLUG, 120)} PSIG), the evaporator can hold at ~40°F saturation with adequate airflow, and the target superheat drops (target at 64°F WB / 105°F DB = 3.5°F — see the &quot;—&quot; footnote if the matrix blanks a cell). Charge decisions still follow the same procedure; the SH target just shifts.
+            At a warmer 105°F outdoor day the condenser saturation climbs into the 115–120°F range ({fmtPsigBubble(SLUG, 120)} PSIG), the evaporator can hold at ~40°F saturation with adequate airflow, and the target superheat drops (at 64°F WB / 105°F DB the formula falls below 5°F, where superheat charging is unreliable and the matrix blanks the cell to &quot;—&quot;). Charge decisions still follow the same procedure; the SH target just shifts.
           </p>
           <p>
             The 95°F outdoor DB reference isn&apos;t arbitrary — it&apos;s the AHRI Standard 210/240 cooling rating condition, which is why residential AC specs and OEM charging charts center on the same anchor. If you&apos;re charging on a day materially warmer or cooler than 95°F outdoor, the target shifts along the DB axis but the matrix accounts for it directly. If your climate parks you chronically at sub-5°F targets (dry-air regions with warm outdoor DB), AC Service Tech&apos;s guidance is to consider a TXV conversion or an accumulator on the suction line — either restores enough operating margin to charge with confidence.
@@ -260,7 +262,6 @@ export default function R410aSuperheatChartPage() {
                 )}
               </li>
             ))}
-            <li>ACCA technician charging references (name-only).</li>
             <li>Carrier, Trane, Lennox, Rheem residential AC installation manuals — R-410A fixed-orifice charging bulletins.</li>
             <li>AHRI Standard 210/240 — 95°F outdoor dry-bulb cooling rating condition.</li>
             <li>CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014) — R-410A PT chart values.</li>

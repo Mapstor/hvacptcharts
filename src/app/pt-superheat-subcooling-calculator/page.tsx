@@ -26,7 +26,7 @@ const FAQS = [
   },
   {
     q: "Which one should I trust more for charging?",
-    a: "Depends on the metering device. Fixed-orifice systems are charged by superheat (per ACCA Manual T chart). TXV / EEV systems are charged by subcooling (8-12°F target per OEM nameplate). On a TXV system, superheat hovers near the TXV setpoint regardless of charge — even an overcharged TXV system reads normal SH — so subcooling is the primary metric. Use the other measurement as a cross-check.",
+    a: "Depends on the metering device. Fixed-orifice systems are charged by superheat (target from the fixed-orifice charging-chart field approximation, indexed on indoor wet-bulb and outdoor dry-bulb). TXV / EEV systems are charged by subcooling (8-12°F target per OEM nameplate). On a TXV system, superheat hovers near the TXV setpoint regardless of charge — even an overcharged TXV system reads normal SH — so subcooling is the primary metric. Use the other measurement as a cross-check.",
   },
   {
     q: "What if both superheat and subcooling are off in the same direction?",
@@ -50,7 +50,7 @@ const FAQS = [
   },
   {
     q: "Why are the target ranges so specific to the equipment?",
-    a: "Different OEMs design their TXVs, condensers, and evaporators to specific operating points. Carrier targets 10°F SC, Trane targets 8°F SC, some Lennox models target 12°F — there's no universal residential AC value. The ACCA Manual T chart gives generic SH targets indexed on WB/DB conditions for fixed-orifice systems, but every TXV system is charged to its specific nameplate SC value. Always read the nameplate before charging.",
+    a: "Different OEMs design their TXVs, condensers, and evaporators to specific operating points. Carrier targets 10°F SC, Trane targets 8°F SC, some Lennox models target 12°F — there's no universal residential AC value. The fixed-orifice charging chart gives generic SH targets indexed on WB/DB conditions via the field approximation (3 × indoor WB − 80 − outdoor DB) / 2, but every TXV system is charged to its specific nameplate SC value. Always read the nameplate before charging.",
   },
 ];
 
@@ -90,7 +90,7 @@ export default function CombinedCalculatorPage() {
           "On the low-side panel: enter suction-line pressure (PSIG) and suction-line temperature (°F).",
           "On the high-side panel: enter liquid-line pressure and liquid-line temperature.",
           "Read superheat (dew curve, suction), subcooling (bubble curve, liquid), and the combined-pattern diagnostic banner.",
-          "Compare against your equipment's targets — TXV system 8-12°F SC, fixed-orifice per ACCA Manual T chart.",
+          "Compare against your equipment's targets — TXV system 8-12°F SC, fixed-orifice per the charging-chart field-approximation SH target for the WB/DB.",
         ],
         commonErrors: [
           "Measuring at the wrong service port — suction is the LOW-side port on the larger insulated line; liquid is the HIGH-side port on the smaller uninsulated line.",
@@ -103,7 +103,7 @@ export default function CombinedCalculatorPage() {
         formula:
           "Superheat = T_suction_line − T_sat(P_suction, dew)\nSubcooling = T_sat(P_liquid, bubble) − T_liquid_line\n\nDiagnostic pattern from {SH, SC, P_suction, P_liquid} via the eight-pattern matrix.",
         sourceCitation:
-          "Saturation values from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999). Target ranges per ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 (Chapter 23), AHRI Standard 540-2020 (compressor protection minimums), and equipment-specific manufacturer charging procedures (Carrier, Trane, Lennox, Daikin, Goodman).",
+          "Saturation values from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999). Target ranges per ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 (Chapter 23), and equipment-specific manufacturer charging procedures (Carrier, Trane, Lennox, Daikin, Goodman).",
         workedExample:
           "R-410A residential TXV system, 95°F outdoor:\n  Suction 130 PSIG / line 60°F  →  SH = 60 − 45 = 15°F (in 8-15°F TXV range)\n  Liquid 380 PSIG / line 100°F  →  SC = 111 − 100 = 11°F (in 8-12°F TXV range)\n  Diagnostic pattern: SH normal, SC normal, pressures normal\n  Verdict: properly charged.",
       }}
@@ -206,11 +206,11 @@ function RichContent() {
             <li>Document final reading on service log.</li>
           </ol>
         </Panel>
-        <Panel title="Fixed-orifice system charging procedure (ACCA Manual T)" icon={CalcIcon}>
+        <Panel title="Fixed-orifice system charging procedure (superheat method)" icon={CalcIcon}>
           <ol className="list-decimal pl-5 text-sm space-y-1">
             <li>Verify equipment is clean; airflow is correct (400 CFM/ton standard).</li>
             <li>Measure indoor wet-bulb (entering evaporator) and outdoor dry-bulb (entering condenser).</li>
-            <li>Look up target SH on the ACCA Manual T chart for the WB / DB combination.</li>
+            <li>Look up target SH from the fixed-orifice charging-chart field approximation (3 × indoor WB − 80 − outdoor DB) / 2 for the WB / DB combination.</li>
             <li>Run system 10-20 min to steady state.</li>
             <li>Measure SH. Compare to chart target.</li>
             <li>If SH is high: add refrigerant. If SH is low: recover refrigerant.</li>
@@ -608,16 +608,19 @@ function RichContent() {
           </li>
           <li>
             <strong>ACCA Manual T &quot;Air-Side and Refrigerant-Side Diagnostics&quot;
-            (2017)</strong> — combined SH × SC × pressure pattern matrix, charging
-            procedures for TXV and fixed-orifice systems, ambient-corrected target SH.
+            (2017)</strong> — combined SH × SC × pressure diagnostic pattern matrix.
+          </li>
+          <li>
+            <strong>Fixed-orifice charging-chart target superheat</strong> — standard
+            field approximation of OEM fixed-orifice charging charts,
+            (3 × indoor WB − 80 − outdoor DB) / 2 (within about ±3°F of the
+            Carrier/Bryant table in normal conditions; see California Title 24 Reference
+            Appendix RA3.2, Table RA3.2-2). The chart or label on the unit always takes
+            precedence.
           </li>
           <li>
             <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Chapter 23 (service
             procedures), eight-pattern fingerprint discussion, non-condensable detection.
-          </li>
-          <li>
-            <strong>AHRI Standard 540-2020</strong> — compressor protection minimum
-            return-gas superheat (20°F hermetic, 30°F semi-hermetic).
           </li>
           <li>
             <strong>EPA Section 608 (40 CFR Part 82 Subpart F)</strong> — refrigerant
