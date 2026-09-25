@@ -467,3 +467,29 @@ run-verify (61 refrigerants + 6 datasheet anchors), verify-redirects (43/43) gre
 regenerated") + sitemap lastmod + one JSON-LD `dateModified` confirmed on
 `/refrigerant/r-410a/`, `/r22-superheat-chart/`, `/r-32-vs-r-410a/`,
 `/what-pressure-should-r404a/`; homepage has no Updated line. **Not pushed.**
+
+---
+
+## 2026-09-25 — Fix 5C/18: add vercel.json to disable WIP-branch deployments [no-date]
+
+**Problem:** no `vercel.json` existed, so Vercel's default Git behavior could build and
+deploy from work-in-progress branch pushes.
+
+**Change:** new `vercel.json` — exactly:
+
+```json
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "git": {
+    "deploymentEnabled": {
+      "wip": false
+    }
+  }
+}
+```
+
+Nothing else is in the file. Redirects remain the single source of truth in
+`next.config.ts` (not moved here), and `/api/` stays Disallowed in robots.
+
+**Verified:** valid JSON, top-level keys `$schema` + `git` only; does not affect
+`next build`. **Not pushed.**
