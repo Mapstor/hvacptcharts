@@ -3,29 +3,16 @@
 import { useState } from "react";
 import { Calculator, Wind, Thermometer, BarChart3, ArrowRight } from "lucide-react";
 import type { PTPoint } from "@/data/refrigerants";
+import {
+  CARRIER_WB_COLS,
+  CARRIER_OD_ROWS,
+  carrierTargetSuperheat,
+} from "@/data/carrier-410a-chart";
 
 export interface CarrierChargingLookupProps {
   /** R-410A PT chart from the data layer. */
   ptChart: PTPoint[];
 }
-
-/**
- * Standard Carrier R-410A fixed-orifice superheat chart values.
- * Source: Carrier Service Bulletin "R-410A Charging — Fixed Orifice Devices",
- * reprinted in the Carrier Residential AC Service Reference and Bryant
- * installation manuals. Values in °F target superheat.
- */
-const SH_CHART: Record<number, Record<number, number | null>> = {
-  50: { 65: 13, 75: 7, 85: null, 95: null, 105: null, 115: null },
-  55: { 65: 21, 75: 16, 85: 11, 95: 6, 105: null, 115: null },
-  60: { 65: 27, 75: 23, 85: 19, 95: 16, 105: 12, 115: 8 },
-  65: { 65: 31, 75: 28, 85: 25, 95: 22, 105: 19, 115: 16 },
-  70: { 65: 32, 75: 30, 85: 28, 95: 26, 105: 24, 115: 22 },
-  75: { 65: 33, 75: 31, 85: 30, 95: 28, 105: 26, 115: 25 },
-};
-
-const WB_OPTIONS = [50, 55, 60, 65, 70, 75];
-const OD_OPTIONS = [65, 75, 85, 95, 105, 115];
 
 function interpPressure(chart: PTPoint[], tempF: number): { bubble: number; dew: number } | null {
   if (chart.length === 0) return null;
@@ -64,9 +51,9 @@ export function CarrierChargingLookup({ ptChart }: CarrierChargingLookupProps) {
     const wbN = Number(wb);
     const odN = Number(od);
     if (!Number.isFinite(wbN) || !Number.isFinite(odN)) return;
-    const wbRow = WB_OPTIONS.reduce((acc, v) => (v <= wbN ? v : acc), WB_OPTIONS[0]);
-    const odCol = OD_OPTIONS.reduce((acc, v) => (v <= odN ? v : acc), OD_OPTIONS[0]);
-    const targetSH = SH_CHART[wbRow]?.[odCol] ?? null;
+    const wbRow = [...CARRIER_WB_COLS].reduce<number>((acc, v) => (v <= wbN ? v : acc), CARRIER_WB_COLS[0]);
+    const odCol = [...CARRIER_OD_ROWS].reduce<number>((acc, v) => (v <= odN ? v : acc), CARRIER_OD_ROWS[0]);
+    const targetSH = carrierTargetSuperheat(wbN, odN);
     const satEvapF = Math.max(wbN - 17, ptChart[0]?.tempF ?? -40);
     const evapP = interpPressure(ptChart, satEvapF);
     const satCondF = Math.min(odN + 25, ptChart[ptChart.length - 1]?.tempF ?? 150);
@@ -96,7 +83,7 @@ export function CarrierChargingLookup({ ptChart }: CarrierChargingLookupProps) {
                 id="cc-wb"
                 type="number"
                 min={50}
-                max={75}
+                max={76}
                 step={1}
                 value={wb}
                 onChange={(e) => setWb(e.target.value)}
@@ -111,7 +98,7 @@ export function CarrierChargingLookup({ ptChart }: CarrierChargingLookupProps) {
               <input
                 id="cc-od"
                 type="number"
-                min={65}
+                min={55}
                 max={115}
                 step={1}
                 value={od}
@@ -147,7 +134,7 @@ export function CarrierChargingLookup({ ptChart }: CarrierChargingLookupProps) {
         <details className="mt-4 rounded-md border border-zinc-200 bg-zinc-50/50 p-3 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/30 dark:text-zinc-400">
           <summary className="cursor-pointer font-medium text-zinc-700 dark:text-zinc-300">Methodology + assumptions</summary>
           <p className="mt-2">
-            Target superheat values from <strong>Carrier Service Bulletin &quot;R-410A Charging — Fixed Orifice Devices&quot;</strong>. Suction saturation assumes 17°F approach between indoor WB and evaporator saturated suction (typical residential per ACCA Manual D). High-side assumes 25°F condenser approach. Actual values vary ±3-5°F by coil sizing, line set length, system age. Saturation pressures from <strong>CoolProp 7.2.0</strong> (REFPROP-compatible Helmholtz EOS).
+            Target superheat values are read directly from <strong>Carrier/Bryant Table 3, &quot;Superheat Charging — AC Only&quot;</strong> (chart tolerance ±3°F; the widget snaps your inputs down to the nearest published wet-bulb column and outdoor-temp row). Suction saturation assumes a ~17°F approach between indoor wet-bulb and evaporator saturated suction — a residential design rule of thumb, not a charging-chart value. High-side assumes a 25°F condenser approach. Actual values vary ±3-5°F by coil sizing, line set length, system age. Saturation pressures from <strong>CoolProp 7.2.0</strong> (REFPROP-compatible Helmholtz EOS).
           </p>
         </details>
       </div>
@@ -172,7 +159,7 @@ function ResultsSection({ snapshot, ptChart }: { snapshot: Snapshot; ptChart: PT
 
       {isExtreme ? (
         <div className="mt-4 rounded-md border border-amber-300 bg-amber-50 p-3 text-sm dark:border-amber-700/60 dark:bg-amber-900/20">
-          <strong>Outside chart range.</strong> Carrier&apos;s chart does not publish a target for {snapshot.wbRow}°F WB × {snapshot.odCol}°F OD — these conditions are typically too mild for meaningful charging. Wait for design or near-design outdoor temps (≥85°F) with normal indoor humidity (≥55°F WB).
+          <strong>Do not charge under these conditions.</strong> Carrier marks {snapshot.wbRow}°F WB × {snapshot.odCol}°F OD as &quot;—&quot; on Table 3 — the indoor wet-bulb is too low for this outdoor temperature, so the evaporator approach is too small to produce a safe, measurable superheat (risk of compressor slugging). Re-check when the indoor wet-bulb is higher, or nearer design outdoor conditions, so your inputs land on a published cell.
         </div>
       ) : (
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -229,7 +216,7 @@ function ResultsSection({ snapshot, ptChart }: { snapshot: Snapshot; ptChart: PT
           </>
         ) : (
           <div className="rounded-md border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
-            <strong className="text-zinc-900 dark:text-zinc-100">Why no target value?</strong> Carrier&apos;s chart deliberately leaves cells blank for combinations of low humidity + cool outdoor temperature. At those conditions, the evaporator coil&apos;s temperature approach is too small for superheat measurement to be meaningful, and the system should not be charged. Wait for conditions where outdoor exceeds 85°F and indoor wet-bulb is at least 55°F.
+            <strong className="text-zinc-900 dark:text-zinc-100">Why no target value?</strong> Carrier deliberately blanks cells where the indoor wet-bulb is too low for the outdoor temperature. At those conditions the evaporator approach is too small for superheat measurement to be meaningful, and charging there risks liquid flood-back to the compressor — so Carrier prints &quot;—&quot; (do not charge). Wait until the indoor wet-bulb rises, or re-check nearer design outdoor conditions, so the inputs land on a published cell.
           </div>
         )}
       </div>
@@ -262,40 +249,43 @@ function superheatColor(sh: number | null): string {
 }
 
 function ChargingChartHeatmap({ snapshot }: { snapshot: Snapshot }) {
-  const width = 640;
-  const height = 280;
-  const padding = { top: 30, right: 100, bottom: 50, left: 80 };
-  const innerW = width - padding.left - padding.right;
-  const innerH = height - padding.top - padding.bottom;
+  const padding = { top: 30, right: 92, bottom: 52, left: 56 };
+  // Cell sizing derives from the shared-array lengths, so the full Carrier
+  // Table 3 (13 outdoor-temp rows × 14 wet-bulb columns) lays out automatically.
+  const cellW = 40;
+  const cellH = 24;
+  const innerW = cellW * CARRIER_WB_COLS.length;
+  const innerH = cellH * CARRIER_OD_ROWS.length;
+  const width = padding.left + innerW + padding.right;
+  const height = padding.top + innerH + padding.bottom;
 
-  const cellW = innerW / OD_OPTIONS.length;
-  const cellH = innerH / WB_OPTIONS.length;
-
-  // Find user's position on the chart
-  const wbIndex = WB_OPTIONS.findIndex((v) => v === snapshot.wbRow);
-  const odIndex = OD_OPTIONS.findIndex((v) => v === snapshot.odCol);
-  const userX = padding.left + odIndex * cellW + cellW / 2;
-  const userY = padding.top + (WB_OPTIONS.length - 1 - wbIndex) * cellH + cellH / 2;
+  // User's position: wet-bulb along X (columns), outdoor temp along Y (rows).
+  const wbIndex = CARRIER_WB_COLS.findIndex((v) => v === snapshot.wbRow);
+  const odIndex = CARRIER_OD_ROWS.findIndex((v) => v === snapshot.odCol);
+  const userX = padding.left + wbIndex * cellW + cellW / 2;
+  const userY = padding.top + odIndex * cellH + cellH / 2;
 
   return (
     <figure>
       <figcaption className="mb-2 text-xs font-medium text-zinc-700 dark:text-zinc-300">
-        Carrier R-410A charging chart — target superheat at {snapshot.wbRow}°F WB × {snapshot.odCol}°F OD
+        Carrier R-410A charging chart (Table 3) — target superheat at {snapshot.wbRow}°F WB × {snapshot.odCol}°F OD
       </figcaption>
+      <div className="overflow-x-auto">
       <svg
         viewBox={`0 0 ${width} ${height}`}
-        className="w-full h-auto"
+        className="h-auto w-full"
+        style={{ minWidth: 560 }}
         role="img"
         aria-label={`Carrier R-410A charging chart heatmap. At ${snapshot.wbRow}°F wet-bulb and ${snapshot.odCol}°F outdoor, target superheat is ${snapshot.targetSH ?? "out of range"}.`}
       >
-        {/* Heatmap cells */}
-        {WB_OPTIONS.map((wbValue, wbI) =>
-          OD_OPTIONS.map((odValue, odI) => {
-            const sh = SH_CHART[wbValue]?.[odValue] ?? null;
-            const x = padding.left + odI * cellW;
-            const y = padding.top + (WB_OPTIONS.length - 1 - wbI) * cellH;
+        {/* Heatmap cells — outer loop = outdoor-temp rows, inner = wet-bulb columns */}
+        {CARRIER_OD_ROWS.map((odValue, odI) =>
+          CARRIER_WB_COLS.map((wbValue, wbI) => {
+            const sh = carrierTargetSuperheat(wbValue, odValue);
+            const x = padding.left + wbI * cellW;
+            const y = padding.top + odI * cellH;
             return (
-              <g key={`${wbValue}-${odValue}`}>
+              <g key={`${odValue}-${wbValue}`}>
                 <rect
                   x={x}
                   y={y}
@@ -307,7 +297,7 @@ function ChargingChartHeatmap({ snapshot }: { snapshot: Snapshot }) {
                 <text
                   x={x + cellW / 2}
                   y={y + cellH / 2 + 4}
-                  fontSize="12"
+                  fontSize="11"
                   fontWeight="600"
                   textAnchor="middle"
                   fill={sh === null ? "#71717a" : "#111827"}
@@ -320,35 +310,21 @@ function ChargingChartHeatmap({ snapshot }: { snapshot: Snapshot }) {
         )}
 
         {/* User input marker */}
-        <circle
-          cx={userX}
-          cy={userY}
-          r="14"
-          fill="none"
-          stroke="#0c1525"
-          strokeWidth="3"
-        />
-        <circle
-          cx={userX}
-          cy={userY}
-          r="14"
-          fill="none"
-          stroke="white"
-          strokeWidth="1.5"
-        />
+        <circle cx={userX} cy={userY} r="13" fill="none" stroke="#0c1525" strokeWidth="3" />
+        <circle cx={userX} cy={userY} r="13" fill="none" stroke="white" strokeWidth="1.5" />
 
-        {/* X-axis labels */}
-        {OD_OPTIONS.map((odValue, odI) => (
+        {/* X-axis labels (wet-bulb columns) */}
+        {CARRIER_WB_COLS.map((wbValue, wbI) => (
           <text
-            key={`x-${odValue}`}
-            x={padding.left + odI * cellW + cellW / 2}
+            key={`x-${wbValue}`}
+            x={padding.left + wbI * cellW + cellW / 2}
             y={padding.top + innerH + 16}
             fontSize="10"
             textAnchor="middle"
             fill="#71717a"
             className="dark:fill-zinc-400"
           >
-            {odValue}°F
+            {wbValue}
           </text>
         ))}
         <text
@@ -359,33 +335,33 @@ function ChargingChartHeatmap({ snapshot }: { snapshot: Snapshot }) {
           fill="#52525b"
           className="dark:fill-zinc-300"
         >
-          Outdoor dry-bulb (°F)
+          Indoor wet-bulb (°F)
         </text>
 
-        {/* Y-axis labels */}
-        {WB_OPTIONS.map((wbValue, wbI) => (
+        {/* Y-axis labels (outdoor-temp rows) */}
+        {CARRIER_OD_ROWS.map((odValue, odI) => (
           <text
-            key={`y-${wbValue}`}
+            key={`y-${odValue}`}
             x={padding.left - 6}
-            y={padding.top + (WB_OPTIONS.length - 1 - wbI) * cellH + cellH / 2 + 4}
+            y={padding.top + odI * cellH + cellH / 2 + 4}
             fontSize="10"
             textAnchor="end"
             fill="#71717a"
             className="dark:fill-zinc-400"
           >
-            {wbValue}°F
+            {odValue}
           </text>
         ))}
         <text
-          x={padding.left - 56}
+          x={16}
           y={padding.top + innerH / 2}
           fontSize="10"
           fill="#52525b"
-          transform={`rotate(-90, ${padding.left - 56}, ${padding.top + innerH / 2})`}
+          transform={`rotate(-90, 16, ${padding.top + innerH / 2})`}
           textAnchor="middle"
           className="dark:fill-zinc-300"
         >
-          Indoor wet-bulb (°F)
+          Outdoor dry-bulb (°F)
         </text>
 
         {/* Color legend */}
@@ -397,10 +373,11 @@ function ChargingChartHeatmap({ snapshot }: { snapshot: Snapshot }) {
           </g>
         ))}
         <rect x={width - padding.right + 10} y={padding.top + 4 * 22} width={18} height={18} fill="#e4e4e7" />
-        <text x={width - padding.right + 33} y={padding.top + 4 * 22 + 13} fontSize="10" fill="#52525b" className="dark:fill-zinc-300">N/A</text>
+        <text x={width - padding.right + 33} y={padding.top + 4 * 22 + 13} fontSize="10" fill="#52525b" className="dark:fill-zinc-300">—</text>
       </svg>
+      </div>
       <p className="mt-2 text-[11px] text-zinc-600 dark:text-zinc-400">
-        Each cell shows the target superheat (°F) for that combination of indoor wet-bulb (rows) and outdoor dry-bulb (columns). Black circle marks your input position. Gray cells are operating conditions where Carrier does not publish a target — system should not be charged. Colors shift from red (low SH, hot+dry) to blue (high SH, cool+humid).
+        Each cell shows the target superheat (°F) for that combination of indoor wet-bulb (columns) and outdoor dry-bulb (rows). Black circle marks your input position (snapped to the nearest published cell). Gray cells (—) are conditions where Carrier does not publish a target — do not charge (risk of slugging). Colors shift from red (low SH, hot + dry) to blue (high SH, cool + humid).
       </p>
     </figure>
   );

@@ -141,6 +141,33 @@ values guaranteed). Curl confirms Title-24 label + 9°F anchor render. Lint: 0 e
 
 ---
 
+## 2026-09-25 — Fix 3C/18: publish Carrier's actual Table 3 with citation
+
+**Data** (`src/data/carrier-410a-chart.ts`, new): Carrier's published R-410A
+fixed-orifice "Superheat Charging — AC Only" chart (Table 3) reproduced verbatim —
+14 wet-bulb columns [50…76, incl. the printed 67] × 13 outdoor-temp rows [55…115],
+null = "—" (do not charge), tolerance ±3°F. Build-time assert guards the shape +
+anchor cells (95/67→10, 95/68→14, 50/55→9, 76/115→23, 50/65→"—"). Exports the full
+citation (Carrier Catalog 24AAA-ACC-6SI 10/16 + Bryant II114CNA-CNC-03 09/15) and a
+trademark notice. The 67°F column carries the "sits between 64 and 68; suggests 66"
+footnote.
+
+**Page + component** (`carrier-410a-charging-chart/page.tsx`, `CarrierChargingLookup.tsx`):
+deleted both local (wrong/incomplete) chart copies; both now render from the shared
+module. Static table shows the full Table 3; the interactive lookup + heatmap use
+`carrierTargetSuperheat`. Worked examples recomputed from the table + dataset — the
+flagship fix: 95°F OD / 67°F WB is **10°F** (68°F WB → 14°F), not the old "23.6 → 24°F".
+Added an honest formula contrast: Carrier 10°F vs `targetSuperheat(67,95)`=13°F (3°F,
+within ±3°F). Removed the unsourced Carrier-vs-Trane/Lennox/Goodman/Rheem comparison →
+one sentence. Removed "ACCA Manual D", "AHRI Guideline K", "ACCA Manual T" citations;
+kept AHRI 210/240 (correct rating condition). Added citation + trademark notice.
+
+**Verification:** build exit 0, all gates (+ carrier-chart build assert). Curl confirms
+95/67→10°F, citation + trademark + 67°F footnote render, brand comparison reduced to one
+sentence, no "23.6"/"Manual D"/"Guideline K"/brand-table. Lint: 0 errors. **Not pushed.**
+
+---
+
 ## 2026-09-25 — Fix 2/18: 301 redirects for legacy, typo and old comparison URLs
 
 **Goal.** Every legacy/typo/old URL search engines still request must answer with
