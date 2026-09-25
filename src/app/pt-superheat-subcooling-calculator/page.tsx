@@ -99,7 +99,7 @@ export default function CombinedCalculatorPage() {
         formula:
           "Superheat = T_suction_line − T_sat(P_suction, dew)\nSubcooling = T_sat(P_liquid, bubble) − T_liquid_line\n\nDiagnostic pattern from {SH, SC, P_suction, P_liquid} via the eight-pattern matrix.",
         sourceCitation:
-          "Saturation values from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999). Target ranges per ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 (Chapter 23), and equipment-specific manufacturer charging procedures (Carrier, Trane, Lennox, Daikin, Goodman).",
+          "Saturation values from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999). Target ranges per the ASHRAE Handbook of Refrigeration 2022 (Chapter 23) and equipment-specific manufacturer charging procedures (Carrier, Trane, Lennox, Daikin, Goodman).",
         workedExample:
           "R-410A residential TXV system, 95°F outdoor:\n  Suction 130 PSIG / line 60°F  →  SH = 60 − 45 = 15°F (in 8-15°F TXV range)\n  Liquid 380 PSIG / line 100°F  →  SC = 111 − 100 = 11°F (in 8-12°F TXV range)\n  Diagnostic pattern: SH normal, SC normal, pressures normal\n  Verdict: properly charged.",
       }}
@@ -185,7 +185,7 @@ function RichContent() {
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
           The SH × SC plane visualized: each quadrant corresponds to a different root cause
           family. The center region (10°F SH ±5, 10°F SC ±3) is the &quot;properly
-          charged&quot; window for residential TXV systems. Source: ACCA Manual T (2017),
+          charged&quot; window for residential TXV systems. Source: ASHRAE Handbook of Refrigeration 2022 (Ch. 23),
           ASHRAE Handbook of Refrigeration 2022.
         </p>
       </TechSection>
@@ -601,10 +601,6 @@ function RichContent() {
             <strong>CoolProp 7.2.0</strong> (Bell, Wronski, Quoilin, Lemort 2014,
             doi:10.1021/ie4033999) — REFPROP-compatible Helmholtz EOS for all saturation
             temperatures. Accuracy typically better than ±0.5% across operating range.
-          </li>
-          <li>
-            <strong>ACCA Manual T &quot;Air-Side and Refrigerant-Side Diagnostics&quot;
-            (2017)</strong> — combined SH × SC × pressure diagnostic pattern matrix.
           </li>
           <li>
             <strong>Fixed-orifice charging-chart target superheat</strong> — standard

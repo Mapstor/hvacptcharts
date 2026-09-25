@@ -72,7 +72,7 @@ function buildSchema(): object[] {
       "@id": `${PAGE_URL}#article`,
       headline: "Complete HVAC Troubleshooting Guide — Decision Trees for Cooling, Heating, Airflow & Efficiency Failures",
       description:
-        "Diagnostic decision trees for 10 common HVAC failures with cause hierarchies ordered by frequency, quick checks, service-level procedures, and escalation logic. Sourced from ACCA Manual T, EPA 608, ASHRAE Handbook of Refrigeration.",
+        "Diagnostic decision trees for 10 common HVAC failures with cause hierarchies ordered by frequency, quick checks, service-level procedures, and escalation logic. Sourced from EPA 608 and the ASHRAE Handbook of Refrigeration.",
       proficiencyLevel: "Beginner to Intermediate",
       url: PAGE_URL,
       mainEntityOfPage: PAGE_URL,
@@ -160,7 +160,7 @@ export default function HvacTroubleshootingGuidePage() {
           </h1>
           <UpdatedLine route="/hvac-troubleshooting-guide/" />
           <p className="mt-4 text-lg text-zinc-700 dark:text-zinc-300">
-            Ten symptom categories with cause hierarchies ordered by frequency, quick DIY checks, service-level diagnostic procedures, and escalation logic. Every diagnostic step traces back to ACCA Manual T system-balancing procedures, EPA Section 608 refrigerant handling, and ASHRAE Handbook of Refrigeration. Use the symptom that matches your problem — each section walks from observation to root cause in a deterministic decision tree.
+            Ten symptom categories with cause hierarchies ordered by frequency, quick DIY checks, service-level diagnostic procedures, and escalation logic. Every diagnostic step traces back to EPA Section 608 refrigerant handling and the ASHRAE Handbook of Refrigeration. Use the symptom that matches your problem — each section walks from observation to root cause in a deterministic decision tree.
           </p>
         </header>
 
@@ -560,7 +560,7 @@ export default function HvacTroubleshootingGuidePage() {
           </h2>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-5 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-300">
             <p>
-              <strong>Diagnostic procedures:</strong> ACCA Manual T (System Balancing &amp; Air Distribution), ACCA Quality Maintenance Standards (QMS), ASHRAE Handbook of HVAC Applications 2023 Chapter 38 (Diagnostic Practice). Decision trees adapted from manufacturer service literature (Carrier Service Reference, Trane Service Bulletins, Lennox Diagnostic Guides).
+              <strong>Diagnostic procedures:</strong> ACCA Quality Maintenance Standards (QMS), ASHRAE Handbook of HVAC Applications 2023 Chapter 38 (Diagnostic Practice). Decision trees adapted from manufacturer service literature (Carrier Service Reference, Trane Service Bulletins, Lennox Diagnostic Guides).
             </p>
             <p className="mt-3">
               <strong>Refrigerant safety:</strong> EPA Section 608 (40 CFR Part 82, Subpart F). ASHRAE Standard 15 (Safety Standard for Refrigeration Systems). ASHRAE Standard 34 (Designation and Safety Classification of Refrigerants). For A2L-specific handling: AHRI Safe Refrigerant Transition guidance + manufacturer&apos;s installation instructions.

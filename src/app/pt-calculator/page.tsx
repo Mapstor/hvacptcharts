@@ -951,10 +951,6 @@ function RichContent() {
             <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Application context,
             operating range references, service procedure guidance.
           </li>
-          <li>
-            <strong>ACCA Manual T</strong> — Air-Side and Refrigerant-Side Diagnostics. Field
-            service interpretation context for PT lookup applications.
-          </li>
         </ul>
         <p>
           Each refrigerant&apos;s detail page (linked from the dropdown) cites the specific

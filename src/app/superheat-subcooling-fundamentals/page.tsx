@@ -282,7 +282,7 @@ export default function FundamentalsPage() {
               The four-pattern matrix visualized in the SH × SC plane. Each quadrant
               corresponds to a different root cause family. The center region (8-15°F SH
               and 8-12°F SC for TXV residential) is the &quot;properly charged&quot; window.
-              Source: ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 Ch. 23.
+              Source: ASHRAE Handbook of Refrigeration 2022 Ch. 23.
             </p>
           </TechSection>
         </section>

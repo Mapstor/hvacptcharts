@@ -156,7 +156,7 @@ For these, refer to the specific equipment OEM, your distributor, and your own f
           heading: "How the calculators have evolved",
           body: `The first version of these calculators shipped on WordPress with approximately 25,000 fabricated quantitative errors — PT values wrong by 2-15× across the dataset, several values physically impossible (above critical pressure), and safety-critical misclassifications (A2L/A3/B2L refrigerants labeled "A1 non-flammable"). That version of the site was technically a calculator but structurally a liability — a technician trusting the numbers risked equipment damage or safety incidents.
 
-The current rebuild started from the data. Every refrigerant property comes from a primary source (CoolProp 7.2.0 / NIST REFPROP / manufacturer datasheet); every value is validated at build time; safety class is stored as a fixed value so the wrong class cannot be displayed; values outside the valid range return "out of range" instead of an extrapolated fabrication. The calculator code then sits on top of this verified data layer with minimal computation — usually just unit conversion, interpolation between adjacent data points, and pattern-matched diagnostic logic from ACCA Manual T.
+The current rebuild started from the data. Every refrigerant property comes from a primary source (CoolProp 7.2.0 / NIST REFPROP / manufacturer datasheet); every value is validated at build time; safety class is stored as a fixed value so the wrong class cannot be displayed; values outside the valid range return "out of range" instead of an extrapolated fabrication. The calculator code then sits on top of this verified data layer with minimal computation — usually just unit conversion, interpolation between adjacent data points, and pattern matching against the ASHRAE Handbook of Refrigeration diagnostic patterns.
 
 This means the calculators are deliberately "thin" — they do less than some competitors but the small amount they do is verifiable. Each calculator page lists every source feeding into the calculation. The downloadable refrigerant dataset under CC BY 4.0 is the same dataset the calculators read from, so independent verification is possible.
 
@@ -186,7 +186,7 @@ Using the wrong curve introduces an error equal to the glide value: 11°F for R-
           q: "Can I trust these calculators for legal/compliance documentation?",
           a: `The calculators provide service-decision support; they don't replace EPA Section 608 documentation requirements or OEM-mandated charging procedures. For compliance documentation: keep a written record of recovery amounts, refrigerant added, leak repairs, and service procedures performed as required by 40 CFR Part 82 Subpart F.
 
-The calculators' diagnostic patterns and recommendations are sourced from ACCA Manual T, ASHRAE Handbook of Refrigeration 2022, and AHRI standards — the same primary sources EPA-certified technicians reference. Source citations on each calculator page identify the specific authority.`,
+The calculators' diagnostic patterns and recommendations are sourced from the ASHRAE Handbook of Refrigeration 2022 and AHRI standards — the same primary sources EPA-certified technicians reference. Source citations on each calculator page identify the specific authority.`,
         },
         {
           q: "Why don't you have a heat-load / sizing calculator?",
@@ -202,7 +202,7 @@ The underlying refrigerant dataset is licensed CC BY 4.0 and downloadable as CSV
         },
         {
           q: "How can I report a calculation error or data issue?",
-          a: `Email the maintainer through the contact page. Include the refrigerant (for example r-410a), the input values you used, the calculator output you received, and the expected output with its source citation (CoolProp, ACCA Manual T, ASHRAE, manufacturer datasheet — whichever you're cross-checking against).
+          a: `Email the maintainer through the contact page. Include the refrigerant (for example r-410a), the input values you used, the calculator output you received, and the expected output with its source citation (CoolProp, ASHRAE, manufacturer datasheet — whichever you're cross-checking against).
 
 When an error is confirmed, the data is corrected and the site is rebuilt so the fix goes live.`,
         },

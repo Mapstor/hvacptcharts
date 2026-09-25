@@ -303,7 +303,6 @@ export default function OverchargedAcSymptomsPage() {
                 )}
               </li>
             ))}
-            <li>ACCA Manual T — subcooling target charging methodology.</li>
             <li>EPA 40 CFR Part 82 Subpart F — Section 608 recovery certification.</li>
             <li>SAE J2843 — automotive AC service standards.</li>
             <li>CoolProp 7.2.0 — R-410A, R-134a, R-1234yf PT chart values.</li>

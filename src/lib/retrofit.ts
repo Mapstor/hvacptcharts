@@ -6,7 +6,7 @@
  * typed fields of two refrigerant records.
  *
  * Per project skill rule 9: the decision logic cites named sources for
- * each criterion — ACCA Manual T (charging), UL 60335-2-40 (A2L charge
+ * each criterion — UL 60335-2-40 (A2L charge
  * limits), ASHRAE 15 (machine room), ASHRAE 34 (safety class), and
  * manufacturer service literature.
  */

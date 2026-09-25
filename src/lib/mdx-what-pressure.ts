@@ -134,7 +134,7 @@ export const WhatPressureFrontmatter = z.object({
   regulatoryNote: z.string().optional(),
   /**
    * Omit the stationary-HVAC-specific footer lines (AHRI 540-2020 compressor
-   * minimums; ACCA Manual T diagnostic procedures) when this page is for a
+   * minimums) when this page is for a
    * non-stationary application (e.g. MVAC). When true, supply replacement
    * provenance via extraSources.
    */

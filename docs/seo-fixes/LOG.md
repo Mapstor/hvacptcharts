@@ -650,3 +650,54 @@ been rendering "—" since Task 4C; converted the 35 usages to `tempF="N"` and m
 routes, verify-content-dates 132/132, verify-no-generator-text 0 disallowed, validate-schema,
 verify-redirects 45/45); eslint 0 errors. content-dates bumped to 2026-09-25 for every changed route.
 **Not pushed.**
+
+---
+
+## 2026-09-25 — Fix 6-PART-2/18: remove misattributed ACCA Manual T + list unverifiable citations (commit "sources: …")
+
+ACCA Manual T is an air-distribution / commissioning guide; it says nothing about
+charging, superheat, subcooling, pressures, or fault diagnosis. Audited all 42
+sitewide "Manual T" hits (see MANUAL_T_DEBT.md "Resolution" section for the full
+per-line ledger):
+
+- **Removed — misattributed (33):** every Manual T citation attached to a
+  charging / superheat / subcooling / pressure / diagnosis claim. Where another
+  verified source was already on the line (ASHRAE Handbook of Refrigeration, AHRI,
+  "Manufacturer spec", OEM literature) it was kept; where Manual T was the sole
+  citation the claim was rephrased generically. Included the two refrigerant-page
+  source defs (r-410a.mdx, r-22.mdx) with their `[accamanualT]` markers (all on
+  800-PSI-envelope claims) and the r134a what-pressure `operatingRangesSource`.
+- **Rephrased — number-dependent (4):** SuperheatCalculator ("OEM fixed-orifice
+  charging charts"), SuperheatCalculator/SubcoolingCalculator ("Manufacturer spec"),
+  pt-superheat-subcooling-calculator (10°F window → cited to ASHRAE, already present).
+- **Kept — genuine air-distribution / name-only (4):** llms-full.txt ("Air
+  distribution balancing + commissioning"); guides-hub ×2 (name-only "authoritative
+  industry publications" + generic cite example); target-superheat.ts (the
+  disclaimer that the formula is NOT from Manual T). No other citation was
+  substituted.
+
+Net "Manual T" mentions: **42 → 4** (all air-distribution / name-only). In rendered
+HTML, Manual T now appears only on guides-hub (name-only) and llms-full.txt (air
+distribution).
+
+### PART 2 item 2 — unverifiable specific-claim citations (listed, NOT fixed)
+
+Citations naming an organization/document attached to a specific number/rule with
+no URL and no document number / edition to verify. Left for verification:
+
+1. `duct-size-calculator/page.tsx:138` — "30–40% of residential cooling capacity lost to duct problems" → "Studies from NIST and Lawrence Berkeley National Laboratory" (no study name/URL).
+2. `duct-size-calculator/page.tsx:66/70/113/157/244/249` — equal-friction default rates (0.08 / 0.05 / 0.10–0.20 in.w.c./100 ft) and the friction equation → "ACCA Manual D Table 7" / "the ASHRAE friction equation" (no edition/number/URL on the claim lines).
+3. `duct-size-calculator/page.tsx:82/346/396/400` — aspect-ratio cap 4:1, equivalent lengths (~20 ft elbow, 15–25 ft boot), "friction 30–50% higher" → "ACCA Manual D" / "SMACNA Table 4-1" (no edition/URL).
+4. `duct-size-calculator/page.tsx:98` — flex-duct correction factor 1.5–2.5× → "ACCA Manual D and ASHRAE" (no edition/URL).
+5. `ac-compressor-short-cycling/page.tsx:105` — "sizing errors of 30–50% oversized" → "ACCA Manual S sizing limits and ENERGY STAR sizing guidance" (no edition/number/URL).
+6. `refrigerant-prices-guide/page.tsx:57` — "R-22 reclaim prices 8–15× pre-phaseout" → "per EPA Section 608 economic data" (no document/URL).
+7. `refrigerant-prices-guide/page.tsx:137/288` — historical price multipliers → "documented in EPA Section 608 economic analyses" (no document/URL).
+8. `llms-full.txt/route.ts:31` — "Civil penalties up to $48,762 per day per violation" → "(2024 EPA inflation-adjusted)" (no CFR cite/URL).
+9. `hvac-troubleshooting-guide/page.tsx:52/426` (also `refrigerant-prices-guide.tsx:493/545`) — ">50 lb charge commercial leak-repair threshold" → "EPA Section 608" (section named; no CFR part / § on the line).
+10. `hvac-ductless-mini-split-guide/page.tsx:47` — equipment sizing "90–115% of cooling load" → "ACCA Manual S" (no edition/URL).
+
+(The refrigerant-prices-guide labor citation the audit also flagged — "$85–150/hr per BLS" — was corrected in PART 1, item 12.)
+
+**Verified:** build exit 0; all gates pass (verify-no-generator-text 0 disallowed,
+verify-metadata, verify-content-dates 132/132, validate-schema, run-verify); eslint
+0 errors. content-dates bumped to 2026-09-25 for changed routes. **Not pushed.**

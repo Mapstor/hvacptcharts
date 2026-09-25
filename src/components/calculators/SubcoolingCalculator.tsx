@@ -149,10 +149,10 @@ function SubcoolingCalculatorInner({ initialSlug = "r-410a" }: { initialSlug?: s
               </tr>
             </thead>
             <tbody className="font-mono">
-              <tr className="border-b border-zinc-100 dark:border-zinc-800"><td className="py-1.5">TXV residential AC</td><td>8–12°F at the condenser outlet</td><td className="font-sans text-zinc-500">Manufacturer spec; ACCA Manual T</td></tr>
+              <tr className="border-b border-zinc-100 dark:border-zinc-800"><td className="py-1.5">TXV residential AC</td><td>8–12°F at the condenser outlet</td><td className="font-sans text-zinc-500">Manufacturer spec</td></tr>
               <tr className="border-b border-zinc-100 dark:border-zinc-800"><td className="py-1.5">Heat pump (cooling mode)</td><td>8–15°F</td><td className="font-sans text-zinc-500">Manufacturer spec</td></tr>
               <tr className="border-b border-zinc-100 dark:border-zinc-800"><td className="py-1.5">Commercial refrigeration</td><td>5–15°F</td><td className="font-sans text-zinc-500">ASHRAE Refrigeration Handbook 2022</td></tr>
-              <tr><td className="py-1.5">Fixed-orifice residential AC</td><td>Not directly used; charge by superheat</td><td className="font-sans text-zinc-500">ACCA Manual T</td></tr>
+              <tr><td className="py-1.5">Fixed-orifice residential AC</td><td>Not directly used; charge by superheat</td><td className="font-sans text-zinc-500">OEM charging practice</td></tr>
             </tbody>
           </table>
         </div>

@@ -34,7 +34,7 @@ const FAQS = [
   },
   {
     q: "How accurate are the diagnostic patterns?",
-    a: "The patterns reflect well-established HVAC diagnostic conventions from ACCA Manual T and ASHRAE Handbook of Refrigeration 2022 — high SH + low SC = undercharge is the textbook fingerprint, repeated across decades of service literature. The calculator surfaces these patterns reliably from the input combination, but doesn't account for every real-world variable (system age, recent service, equipment-specific quirks, ambient changes during the reading). Treat the flags as 'here's what to investigate' rather than 'definitive diagnosis'.",
+    a: "The patterns reflect well-established HVAC diagnostic conventions from the ASHRAE Handbook of Refrigeration 2022 — high SH + low SC = undercharge is the textbook fingerprint, repeated across decades of service literature. The calculator surfaces these patterns reliably from the input combination, but doesn't account for every real-world variable (system age, recent service, equipment-specific quirks, ambient changes during the reading). Treat the flags as 'here's what to investigate' rather than 'definitive diagnosis'.",
   },
   {
     q: "What if multiple flags appear at the same time?",
@@ -50,7 +50,7 @@ const FAQS = [
   },
   {
     q: "Why does the calculator weight some patterns higher than others?",
-    a: "Severity is determined by both the magnitude of the deviation and the consequence. Zero superheat (slugging risk) is an ALARM because of immediate compressor-damage risk; high condenser approach during normal operation is a CONCERN because of long-term efficiency loss; slightly elevated subcooling alone is CAUTION because it might be early-stage and might be measurement error. The weighting follows ACCA Manual T severity-ranking conventions used in field service.",
+    a: "Severity is determined by both the magnitude of the deviation and the consequence. Zero superheat (slugging risk) is an ALARM because of immediate compressor-damage risk; high condenser approach during normal operation is a CONCERN because of long-term efficiency loss; slightly elevated subcooling alone is CAUTION because it might be early-stage and might be measurement error. The weighting follows established field-service severity-ranking conventions.",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function SystemPressureDiagnosticPage() {
           "Severity-ranked flags: alarm / concern / caution / OK",
           "Each flag includes evidence + ordered service recommendations",
           "Six multi-flag service problems showing diagnostic synthesis",
-          "ACCA Manual T, ASHRAE Handbook of Refrigeration 2022 sourced",
+          "ASHRAE Handbook of Refrigeration 2022 sourced",
           "Mobile-friendly, no signup",
         ],
         breadcrumbLabel: "System Pressure Diagnostic",
@@ -104,7 +104,7 @@ export default function SystemPressureDiagnosticPage() {
         formula:
           "Superheat = T_suction_line − T_sat(P_suction, dew)\nSubcooling = T_sat(P_liquid, bubble) − T_liquid_line\nCondenser approach = T_sat(P_liquid, bubble) − T_ambient\nEvaporator approach = T_return_air − T_sat(P_suction, dew)\n\nDiagnostic flags fire when derived values fall outside per-system-type target ranges, with severity ranked by magnitude × consequence.",
         sourceCitation:
-          "Saturation values from CoolProp 7.2.0. Diagnostic patterns and recommended actions from ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 (Chapters 23, 39), and equipment manufacturer service literature.",
+          "Saturation values from CoolProp 7.2.0. Diagnostic patterns and recommended actions from the ASHRAE Handbook of Refrigeration 2022 (Chapters 23, 39) and equipment manufacturer service literature.",
         workedExample:
           "R-410A TXV residential AC, 95°F outdoor, 75°F return air:\n  Suction: 110 PSIG, 62°F\n  Discharge: 340 PSIG, 98°F\n\nDerived:\n  Suction sat (dew): 37°F → SH = 62 − 37 = 25°F (above 8-15°F target)\n  Discharge sat (bubble): 102°F → SC = 102 − 98 = 4°F (below 8-12°F target)\n  Condenser approach = 102 − 95 = 7°F (LOW — should be 15-25°F)\n  Evap approach = 75 − 37 = 38°F (high end of normal)\n\nFlags (priority-sorted):\n  CONCERN — Likely undercharge (high SH + low SC fingerprint, supported by low condenser approach)\n  CAUTION — Verify with leak search before adjusting charge\n\nRecommendation order:\n  1. Leak search before adding refrigerant\n  2. Repair leak per EPA 608\n  3. Evacuate to 500 microns, charge by weight to nameplate",
       }}
@@ -511,11 +511,6 @@ function RichContent() {
             temperatures.
           </li>
           <li>
-            <strong>ACCA Manual T &quot;Air-Side and Refrigerant-Side Diagnostics&quot;
-            (2017)</strong> — multi-input diagnostic framework, target ranges by system
-            type, severity ranking conventions.
-          </li>
-          <li>
             <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Chapter 23 (service
             procedures), Chapter 39 (condensers, approach temperatures), Chapter 40
             (evaporators).
@@ -591,7 +586,7 @@ function ApproachVisual() {
       ))}
       <line x1={PAD_L} y1={PAD_T} x2={PAD_L} y2={PAD_T + PLOT_H} stroke="currentColor" opacity={0.6} />
       <text x={W / 2} y={H - 12} textAnchor="middle" fontSize="10" fill="currentColor" opacity={0.7}>
-        Source: ASHRAE Handbook of Refrigeration 2022 Ch. 39, ACCA Manual T, Carrier / Trane service literature
+        Source: ASHRAE Handbook of Refrigeration 2022 Ch. 39, Carrier / Trane service literature
       </text>
     </svg>
   );

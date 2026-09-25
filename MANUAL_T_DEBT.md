@@ -92,3 +92,39 @@ the formula's precise origin is unrecorded, it survives on OEM /
 technician charging references, and the trade's memory reaches only "to
 the best of anyone's knowledge." Any file that still asserts the formula
 is codified in Manual T contradicts the centerpiece narrative.
+
+## Resolution (Task 6 PART 2, 2026-09-25)
+
+Site-wide audit of all 42 remaining "Manual T" hits. ACCA Manual T is an
+air-distribution / commissioning guide; every citation attaching it to a
+charging / superheat / subcooling / pressure / fault-diagnosis claim was
+**misattributed** and removed. Where another verified source was already on the
+line (ASHRAE Handbook of Refrigeration, AHRI standards, "Manufacturer spec", OEM
+service literature) it was kept; where Manual T was the sole citation the claim
+was rephrased generically ("OEM fixed-orifice charging charts", "manufacturer
+spec", "standard charging practice") — no new citation was substituted.
+
+- **Removed — misattributed (33):** calculators-hub :159/:189/:205;
+  hvac-troubleshooting-guide :75/:163/:563; pt-calculator :955;
+  refrigerant-charge-calculator :467/:515; guides-hub :19/:191;
+  system-pressure-diagnostic-calculator :37/:53/:79/:107/:514/:594;
+  high-head-pressure-causes :251/:509; subcooling-calculator :47/:110/:806/:953;
+  superheat-subcooling-fundamentals :285; overcharged-ac-symptoms :306;
+  pt-superheat-subcooling-calculator :102/:606; SubcoolingCalculator.tsx :155;
+  HubPage.tsx :280 (default sourcesNote); lib/mdx-what-pressure.ts :137 (comment);
+  lib/retrofit.ts :9 (comment); content/refrigerants/r-410a.mdx (source def +
+  3 `[accamanualT]` on 800-PSI-envelope claims); content/refrigerants/r-22.mdx
+  (source def + 1 `[accamanualT]`); content/what-pressure/r134a.mdx :9.
+- **Rephrased — number-dependent (4):** SuperheatCalculator.tsx :157 (8–25°F →
+  "OEM fixed-orifice charging charts"), :160 (kept "Manufacturer spec");
+  SubcoolingCalculator.tsx :152 (kept "Manufacturer spec");
+  pt-superheat-subcooling-calculator :188 (10°F window → cited to ASHRAE Handbook
+  of Refrigeration, which was already alongside).
+- **Kept — genuine air-distribution / name-only (4):** llms-full.txt :73
+  ("Manual T: Air distribution balancing + commissioning"); guides-hub :235
+  (name-only, "authoritative industry publications"); guides-hub :257 (generic
+  "cite the source shown on the page" example); lib/target-superheat.ts :21 (the
+  disclaimer that the formula is NOT from Manual T).
+- **Formula-attribution (0):** none remained (resolved in earlier waves).
+
+Net: "Manual T" mentions 42 → 4 (all air-distribution / name-only).

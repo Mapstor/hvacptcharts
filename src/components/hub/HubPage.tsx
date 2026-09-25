@@ -277,7 +277,7 @@ export function HubPage({
             <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Sources &amp; provenance</h2>
           </div>
           <p className="mt-2">
-            {sourcesNote ?? `All saturation values and refrigerant properties come from the verified dataset: CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Safety classifications per ANSI/ASHRAE Standard 34-2022. GWP per IPCC AR5 (2013). Operating ranges and diagnostic procedures per ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022, and equipment manufacturer service literature.`}
+            {sourcesNote ?? `All saturation values and refrigerant properties come from the verified dataset: CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Safety classifications per ANSI/ASHRAE Standard 34-2022. GWP per IPCC AR5 (2013). Operating ranges and diagnostic procedures per the ASHRAE Handbook of Refrigeration 2022 and equipment manufacturer service literature.`}
           </p>
           <p className="mt-3">
             All pages and data are licensed for

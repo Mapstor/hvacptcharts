@@ -464,8 +464,7 @@ function RichContent() {
             <strong>
               <a href="/superheat-calculator/" className="underline">Superheat Calculator</a>
             </strong>{" "}
-            — verification after charging for fixed-orifice systems; ACCA Manual T charging
-            chart references.
+            — verification after charging for fixed-orifice systems.
           </li>
           <li>
             <strong>
@@ -510,10 +509,6 @@ function RichContent() {
           <li>
             <strong>EPA Section 608 (40 CFR Part 82 Subpart F)</strong> — refrigerant
             handling certification, leak repair requirements.
-          </li>
-          <li>
-            <strong>ACCA Manual T (2017)</strong> — charging procedures for TXV and
-            fixed-orifice systems with verification at steady state.
           </li>
           <li>
             <strong>Mini-split OEM literature</strong> — Mitsubishi, Daikin, Fujitsu, LG

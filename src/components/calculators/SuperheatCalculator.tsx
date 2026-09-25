@@ -154,10 +154,10 @@ function SuperheatCalculatorInner({ initialSlug = "r-410a" }: { initialSlug?: st
             </thead>
             <tbody className="font-mono">
               <tr className="border-b border-zinc-100 dark:border-zinc-800">
-                <td className="py-1.5">Fixed orifice (residential AC)</td><td>8–25°F (chart-based)</td><td className="font-sans text-zinc-500">ACCA Manual T charging chart</td>
+                <td className="py-1.5">Fixed orifice (residential AC)</td><td>8–25°F (chart-based)</td><td className="font-sans text-zinc-500">OEM fixed-orifice charging charts</td>
               </tr>
               <tr className="border-b border-zinc-100 dark:border-zinc-800">
-                <td className="py-1.5">TXV (residential / commercial AC)</td><td>8–15°F (often 10°F setpoint)</td><td className="font-sans text-zinc-500">Manufacturer spec; ACCA Manual T</td>
+                <td className="py-1.5">TXV (residential / commercial AC)</td><td>8–15°F (often 10°F setpoint)</td><td className="font-sans text-zinc-500">Manufacturer spec</td>
               </tr>
               <tr className="border-b border-zinc-100 dark:border-zinc-800">
                 <td className="py-1.5">EXV</td><td>8–15°F (controlled to setpoint)</td><td className="font-sans text-zinc-500">Equipment controls</td>

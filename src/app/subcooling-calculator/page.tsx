@@ -44,7 +44,7 @@ const FAQS = [
   },
   {
     q: "Why is TXV charged by subcooling and fixed-orifice by superheat?",
-    a: "A TXV / EEV regulates superheat to its setpoint regardless of how much refrigerant is in the system. So superheat on a TXV system tells you about valve operation, not charge. Subcooling, by contrast, measures how much liquid is backed up in the condenser — directly proportional to charge. Fixed-orifice devices have no feedback control, so superheat varies directly with charge and ambient; it is the right signal to charge against. The ACCA Manual T charging procedure formalizes this: TXV = subcooling, fixed orifice = superheat.",
+    a: "A TXV / EEV regulates superheat to its setpoint regardless of how much refrigerant is in the system. So superheat on a TXV system tells you about valve operation, not charge. Subcooling, by contrast, measures how much liquid is backed up in the condenser — directly proportional to charge. Fixed-orifice devices have no feedback control, so superheat varies directly with charge and ambient; it is the right signal to charge against. Standard charging practice formalizes this: TXV = subcooling, fixed orifice = superheat.",
   },
   {
     q: "How does subcooling differ from condenser approach?",
@@ -107,7 +107,7 @@ export default function SubcoolingCalculatorPage() {
         formula:
           "Subcooling (°F) = T_sat(P_liquid) − T_liquid_line\n\nT_sat is read off the BUBBLE curve at the measured liquid pressure for zeotropic blends. For pure refrigerants and azeotropes, bubble ≡ dew, so the curve choice is moot.",
         sourceCitation:
-          "Saturation temperatures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Target subcooling per equipment manufacturer service literature (Carrier, Trane, Lennox, Daikin, Goodman), ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022 (Chapter 23), and ASHRAE HVAC Systems & Equipment 2024 (Chapter 43, chillers).",
+          "Saturation temperatures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Target subcooling per equipment manufacturer service literature (Carrier, Trane, Lennox, Daikin, Goodman), ASHRAE Handbook of Refrigeration 2022 (Chapter 23), and ASHRAE HVAC Systems & Equipment 2024 (Chapter 43, chillers).",
         workedExample: `R-410A residential AC TXV system, 95°F outdoor:\n  Liquid pressure: 380 PSIG\n  Liquid-line temperature: 100°F\n  Saturation temperature at 380 PSIG: ${workedSat.toFixed(1)}°F (CoolProp 7.2.0)\n  Subcooling = ${workedSat.toFixed(1)} − 100 = ${(workedSat - 100).toFixed(1)}°F\n\nAt the top of the typical 8-12°F TXV target range. TXV systems are charged BY subcooling — adjust refrigerant in 1-2 oz increments until SC lands on target (usually 10°F).`,
       }}
       relatedTools={[
@@ -803,11 +803,6 @@ function RichContent() {
             temperatures. Accuracy typically better than ±0.5% across operating range.
           </li>
           <li>
-            <strong>ACCA Manual T &quot;Air-Side and Refrigerant-Side Diagnostics&quot;
-            (2017)</strong> — TXV charging procedure (subcooling-based), condenser fouling
-            vs overcharge distinction, common error patterns. Industry-standard reference.
-          </li>
-          <li>
             <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Chapter 23 (service
             procedures), target subcooling by application for commercial refrigeration.
           </li>
@@ -950,7 +945,7 @@ function TargetSCBars() {
         );
       })}
       <text x={W / 2} y={H - 8} textAnchor="middle" fontSize="10" fill="currentColor" opacity={0.7}>
-        Source: ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022, ASHRAE HVAC S&amp;E 2024, OEM literature.
+        Source: ASHRAE Handbook of Refrigeration 2022, ASHRAE HVAC S&amp;E 2024, OEM literature.
       </text>
     </svg>
   );
