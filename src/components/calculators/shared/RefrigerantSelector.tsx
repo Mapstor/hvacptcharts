@@ -16,6 +16,7 @@ const TYPE_GROUPS: Array<{ label: string; types: string[] }> = [
   { label: "HFC pure", types: ["hfc-pure"] },
   { label: "HFC blend", types: ["hfc-blend"] },
   { label: "HFO pure / blend", types: ["hfo-pure", "hfo-blend"] },
+  { label: "PFC", types: ["pfc"] },
   { label: "HCFC (legacy)", types: ["hcfc"] },
   { label: "CFC (banned)", types: ["cfc"] },
   { label: "Natural", types: ["natural"] },

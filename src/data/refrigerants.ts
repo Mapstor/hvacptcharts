@@ -13,6 +13,7 @@ export const RefrigerantType = z.enum([
   "hfc-blend",
   "hfo-pure",
   "hfo-blend",
+  "pfc",
   "hc",
   "natural",
 ]);

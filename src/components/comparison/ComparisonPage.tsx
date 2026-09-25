@@ -114,6 +114,10 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
   }
 
   const retrofitFeasible = fm.retrofitFeasible ?? deriveRetrofitFeasibility(a, b);
+  // Transition/retrofit direction: default A → B, but B → A when the slug lists
+  // the newer refrigerant first (transitionReversed) so the real-world industry
+  // transition reads correctly (e.g. R-134a → R-1234yf on /r-1234yf-vs-r-134a/).
+  const [fromR, toR] = fm.transitionReversed ? [b, a] : [a, b];
   const pageUrl = `${SITE_URL}/${fm.slug}/`;
   const schemaGraph = buildSchema(pageUrl, fm, a, b);
 
@@ -281,12 +285,12 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
         </TechSection>
 
         {retrofitFeasible ? (
-          <TechSection icon="service" tone="amber" title={`Standard transition procedure — ${a.displayName} → ${b.displayName}`}>
-            <TransitionProcedure a={a} b={b} />
+          <TechSection icon="service" tone="amber" title={`Standard transition procedure — ${fromR.displayName} → ${toR.displayName}`}>
+            <TransitionProcedure a={fromR} b={toR} />
           </TechSection>
         ) : (
-          <TechSection icon="warning" tone="red" title={`Why ${a.displayName} → ${b.displayName} isn't a direct retrofit`}>
-            <RetrofitNotFeasible a={a} b={b} />
+          <TechSection icon="warning" tone="red" title={`Why ${fromR.displayName} → ${toR.displayName} isn't a direct retrofit`}>
+            <RetrofitNotFeasible a={fromR} b={toR} />
           </TechSection>
         )}
 
@@ -294,10 +298,10 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
           <LifecycleContext a={a} b={b} />
         </TechSection>
 
-        <TechSection icon="service" tone="amber" title={`Service implications — ${a.displayName} → ${b.displayName}`}>
+        <TechSection icon="service" tone="amber" title={`Service implications — ${fromR.displayName} → ${toR.displayName}`}>
           <p>
-            What a service technician needs to know when transitioning from {a.displayName}
-            to {b.displayName} (or comparing them for new equipment specification). Two
+            What a service technician needs to know when transitioning from {fromR.displayName}
+            to {toR.displayName} (or comparing them for new equipment specification). Two
             real-world scenarios show how the difference plays out in practice.
           </p>
         </TechSection>
@@ -429,13 +433,24 @@ function PropRow({ label, valueA, valueB }: { label: string; valueA: string; val
 
 /* ──────────────────────── Data-driven helpers ──────────────────────── */
 
+/**
+ * Percent pressure deviation of b relative to a. Only meaningful when the base
+ * (a) is a positive gauge pressure and the compared value (b) isn't in vacuum
+ * (negative PSIG); otherwise returns null and the caller renders "—". Dividing
+ * by a base ≤ 0 produced nonsense like "-561.5%" on low-pressure comparisons.
+ */
+function pctDelta(paBubble: number, pbBubble: number): number | null {
+  if (paBubble <= 0 || pbBubble < 0) return null;
+  return ((pbBubble - paBubble) / paBubble) * 100;
+}
+
 function PressureCompareTable({ a, b }: { a: Refrigerant; b: Refrigerant }) {
   const temps = [-20, 0, 40, 70, 95, 120];
   const rows = temps.flatMap((t) => {
     const pa = getPressureAtTempF(a.slug, t);
     const pb = getPressureAtTempF(b.slug, t);
     if (!pa || !pb) return [];
-    const delta = ((pb.bubble - pa.bubble) / pa.bubble) * 100;
+    const delta = pctDelta(pa.bubble, pb.bubble);
     return [{
       temp: t,
       aBubble: pa.bubble,
@@ -463,8 +478,8 @@ function PressureCompareTable({ a, b }: { a: Refrigerant; b: Refrigerant }) {
               <td className="py-1.5 text-left">{r.temp}°F</td>
               <td className="py-1.5 text-right">{r.aBubble.toFixed(0)} PSIG</td>
               <td className="py-1.5 text-right">{r.bBubble.toFixed(0)} PSIG</td>
-              <td className={`py-1.5 text-right font-semibold ${Math.abs(r.delta) > 20 ? "text-red-700 dark:text-red-300" : Math.abs(r.delta) > 10 ? "text-amber-700 dark:text-amber-300" : "text-emerald-700 dark:text-emerald-300"}`}>
-                {r.delta > 0 ? "+" : ""}{r.delta.toFixed(1)}%
+              <td className={`py-1.5 text-right font-semibold ${r.delta === null ? "text-zinc-400 dark:text-zinc-500" : Math.abs(r.delta) > 20 ? "text-red-700 dark:text-red-300" : Math.abs(r.delta) > 10 ? "text-amber-700 dark:text-amber-300" : "text-emerald-700 dark:text-emerald-300"}`}>
+                {r.delta === null ? "—" : `${r.delta > 0 ? "+" : ""}${r.delta.toFixed(1)}%`}
               </td>
             </tr>
           ))}
@@ -480,12 +495,12 @@ function PressureDeltaBars({ a, b }: { a: Refrigerant; b: Refrigerant }) {
     const pa = getPressureAtTempF(a.slug, t);
     const pb = getPressureAtTempF(b.slug, t);
     if (!pa || !pb) return [];
-    return [{ temp: t, delta: ((pb.bubble - pa.bubble) / pa.bubble) * 100 }];
+    return [{ temp: t, delta: pctDelta(pa.bubble, pb.bubble) }];
   });
 
   if (data.length === 0) return null;
 
-  const maxAbs = Math.max(20, ...data.map((d) => Math.abs(d.delta))) * 1.1;
+  const maxAbs = Math.max(20, ...data.filter((d) => d.delta !== null).map((d) => Math.abs(d.delta as number))) * 1.1;
   const W = 720;
   const ROW_H = 28;
   const PAD_T = 40;
@@ -518,18 +533,32 @@ function PressureDeltaBars({ a, b }: { a: Refrigerant; b: Refrigerant }) {
       ))}
       {data.map((d, i) => {
         const y = PAD_T + i * ROW_H;
-        const isPositive = d.delta >= 0;
-        const barX = isPositive ? centerX : xScale(d.delta);
-        const barW = Math.abs(xScale(d.delta) - centerX);
-        const color = Math.abs(d.delta) > 20 ? "#c45757" : Math.abs(d.delta) > 10 ? "#d49a2b" : "#5a8a3a";
+        if (d.delta === null) {
+          // Base pressure ≤ 0 or compared value in vacuum → % deviation undefined.
+          return (
+            <g key={d.temp}>
+              <text x={LABEL_W - 8} y={y + 16} textAnchor="end" fontSize="11" fontWeight={500} fill="currentColor">
+                {d.temp}°F
+              </text>
+              <text x={centerX + 8} y={y + 16} fontSize="10" fill="currentColor" opacity={0.6} textAnchor="start">
+                — (base in vacuum)
+              </text>
+            </g>
+          );
+        }
+        const delta = d.delta;
+        const isPositive = delta >= 0;
+        const barX = isPositive ? centerX : xScale(delta);
+        const barW = Math.abs(xScale(delta) - centerX);
+        const color = Math.abs(delta) > 20 ? "#c45757" : Math.abs(delta) > 10 ? "#d49a2b" : "#5a8a3a";
         return (
           <g key={d.temp}>
             <text x={LABEL_W - 8} y={y + 16} textAnchor="end" fontSize="11" fontWeight={500} fill="currentColor">
               {d.temp}°F
             </text>
             <rect x={barX} y={y + 6} width={barW} height={14} fill={color} rx={2} />
-            <text x={isPositive ? xScale(d.delta) + 6 : xScale(d.delta) - 6} y={y + 16} fontSize="10" fontWeight={600} fill="currentColor" textAnchor={isPositive ? "start" : "end"}>
-              {d.delta > 0 ? "+" : ""}{d.delta.toFixed(1)}%
+            <text x={isPositive ? xScale(delta) + 6 : xScale(delta) - 6} y={y + 16} fontSize="10" fontWeight={600} fill="currentColor" textAnchor={isPositive ? "start" : "end"}>
+              {delta > 0 ? "+" : ""}{delta.toFixed(1)}%
             </text>
           </g>
         );

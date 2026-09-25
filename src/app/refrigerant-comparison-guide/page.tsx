@@ -511,7 +511,7 @@ export default function ComparisonGuidePage() {
               also serves the high-temperature heat-pump range.
             </p>
             <p className="mt-2 text-sm">
-              EU Heat Pump Action Plan and US IRA industrial heat-pump credits are driving rapid growth in this
+              EU Heat Pump Action Plan and US industrial decarbonization policy are driving rapid growth in this
               segment — equipment OEMs are still consolidating around specific refrigerant choices.
             </p>
           </div>

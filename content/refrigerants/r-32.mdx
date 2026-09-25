@@ -106,12 +106,12 @@ narrative:
   serviceNotes: |
     POE oil is required (same lubricant family as R-410A) — mineral oil and alkylbenzene are not miscible. ISO 32 viscosity is typical for residential split systems [ahri700].
 
-    A2L safety class requires specific procedures: no open flames during service (nitrogen purge for brazing — standard practice for any HFC), A2L-rated leak detection sensors, charge limits per UL 60335-2-40 and ASHRAE 15 [ul60335][ashrae15]. R-32 operating pressures are approximately 5-8% above R-410A; R-410A-rated service equipment (800 PSI manifold) handles R-32 without modification.
+    A2L safety class requires specific procedures: no open flames during service (nitrogen purge for brazing — standard practice for any HFC), A2L-rated leak detection sensors, charge limits per UL 60335-2-40 and ASHRAE 15 [ul60335][ashrae15]. R-32 operating pressures are approximately 2% above R-410A; R-410A-rated service equipment (800 PSI manifold) handles R-32 without modification.
 
 faqs:
   - q: "What is the normal operating pressure of R-32?"
     a: |
-      Very similar to R-410A — about 5-8% higher across the operating envelope. For the ranges by outdoor temperature, see [What pressure should R-32 be?](/what-pressure-should-r32/) — the operating-pressure table there is computed from the CoolProp-verified saturation dataset. Suction follows the evaporator setpoint and load while head tracks ambient and condenser condition.
+      Very similar to R-410A — about 2% higher across the operating envelope. For the ranges by outdoor temperature, see [What pressure should R-32 be?](/what-pressure-should-r32/) — the operating-pressure table there is computed from the CoolProp-verified saturation dataset. Suction follows the evaporator setpoint and load while head tracks ambient and condenser condition.
 
   - q: "Is R-32 flammable?"
     a: |
@@ -173,11 +173,11 @@ Pure-component simplicity gives R-32 a service-procedure advantage over R-410A. 
 
 </TechSection>
 
-<TechSection icon="trending" tone="amber" title="Why R-32 operates 5-8% higher than R-410A">
+<TechSection icon="trending" tone="amber" title="Why R-32 operates about 2% higher than R-410A">
 
 R-32 is the lighter and more volatile component of the R-410A 50/50 blend. Pure R-32 has lower molar mass (52.02 g/mol versus R-410A's blend average of ~72.6 g/mol) and a slightly lower normal boiling point (−61°F versus R-410A's effective −60.6°F). The smaller molecule produces higher vapor pressure at any given temperature.
 
-At a 70°F bench-test condition, R-32 saturation is approximately 206 PSIG versus R-410A's 202 PSIG (CoolProp 7.2.0). At 95°F outdoor design ambient, R-32 saturation is approximately 296 PSIG versus R-410A's 278 PSIG. The 5-8% delta is consistent across the residential operating envelope.
+At a 70°F bench-test condition, R-32 saturates at <PressureAtTemp slug="r-32" tempF="70" /> versus R-410A's <PressureAtTemp slug="r-410a" tempF="70" />. At 95°F outdoor design ambient, R-32 saturation is <PressureAtTemp slug="r-32" tempF="95" /> versus R-410A's <PressureAtTemp slug="r-410a" tempF="95" />. The roughly 2% delta is consistent across the residential operating envelope.
 
 The pressure delta is small enough that R-410A-rated service equipment (800 PSI manifold gauges, hoses, recovery) handles R-32 without modification. R-32 was deliberately engineered to share the R-410A service tool ecosystem — the operational transition for service technicians from R-410A to R-32 is far simpler than the R-22 to R-410A transition was.
 
@@ -227,7 +227,7 @@ The molar mass of 52.02 g/mol makes R-32 one of the lighter refrigerants in curr
 
 <TechSection icon="thermometer" tone="sky" title="Reading the common service temperatures for R-32">
 
-The quick-lookup pills above the PT chart show R-32 saturation pressures at six service-relevant temperatures. Compared to R-410A at the same temperatures, R-32 values run 5-8% higher across the operating range.
+The quick-lookup pills above the PT chart show R-32 saturation pressures at six service-relevant temperatures. Compared to R-410A at the same temperatures, R-32 values run about 2% higher across the operating range.
 
 - **32°F (freezing)** — R-32 saturation approximately 110 PSIG; iced-up evaporator territory.
 - **45°F (heat-pump heating)** — typical winter outdoor coil temperature when heat pump is heating; R-32 saturation around 145 PSIG.
@@ -236,13 +236,13 @@ The quick-lookup pills above the PT chart show R-32 saturation pressures at six 
 - **80°F (warm-weather operation)** — R-32 saturation approximately 235 PSIG.
 - **95°F (summer peak)** — AHRI 210/240 test condition; R-32 saturation approximately 296 PSIG.
 
-For comparison, R-22 at 95°F is 181 PSIG and R-410A is 278 PSIG — R-32 sits about 5% above R-410A and 65% above R-22. The R-32 to R-410A delta is small enough that R-410A-trained technicians need minimal pressure-envelope retraining for R-32 work.
+For comparison, R-22 at 95°F is <PressureAtTemp slug="r-22" tempF="95" /> and R-410A is <PressureAtTemp slug="r-410a" tempF="95" /> — R-32 sits about 2% above R-410A and roughly 67% above R-22. The R-32 to R-410A delta is small enough that R-410A-trained technicians need minimal pressure-envelope retraining for R-32 work.
 
 </TechSection>
 
 <TechSection icon="service" tone="blue" title="A2L equipment requirements — what changes from R-410A">
 
-R-32's A2L safety class requires equipment-level accommodations that R-410A's A1 did not. The pressure envelope is essentially identical to R-410A (within 5-8%), so service-equipment pressure ratings (800 PSI manifold gauges, hoses, recovery cylinders) carry over from R-410A practice. What changes is everything related to potential ignition sources.
+R-32's A2L safety class requires equipment-level accommodations that R-410A's A1 did not. The pressure envelope is essentially identical to R-410A (within about 2%), so service-equipment pressure ratings (800 PSI manifold gauges, hoses, recovery cylinders) carry over from R-410A practice. What changes is everything related to potential ignition sources.
 
 | Equipment / procedure | R-410A (A1) | R-32 (A2L) |
 | --- | --- | --- |
@@ -292,6 +292,6 @@ R-32 is one of the two dominant new-equipment residential AC refrigerants in 202
 
 R-32's regulatory positioning is stable through 2035 at minimum. GWP 675 sits below the AIM Act 700 threshold; the AIM Act production schedule reaches 85% reduction by 2036 but R-32 (being a low-GWP HFC) consumes less production allocation per kg than higher-GWP refrigerants. EU F-Gas Regulation revisions (2024) target tighter thresholds in some segments — small split AC may face sub-150-GWP requirements by 2030, which would push beyond R-32 toward pure HFO blends or natural refrigerants. The US is not on that trajectory in 2026.
 
-For technicians, R-32 work resembles R-410A work with A2L procedures added on top: same pressures (within 5-8%), same lubricant family (POE), same vacuum discipline, same gauge ratings, same charging-by-weight approach. The A2L safety procedures (no open flames near refrigerant, A2L-rated leak detection, charge limits) are the meaningful operational difference from R-410A practice.
+For technicians, R-32 work resembles R-410A work with A2L procedures added on top: same pressures (within about 2%), same lubricant family (POE), same vacuum discipline, same gauge ratings, same charging-by-weight approach. The A2L safety procedures (no open flames near refrigerant, A2L-rated leak detection, charge limits) are the meaningful operational difference from R-410A practice.
 
 </TechSection>

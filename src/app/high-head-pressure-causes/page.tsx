@@ -34,7 +34,7 @@ const STEPS = [
     text: "Record outdoor dry-bulb temperature at the condenser (not in direct sun). Let the system run 10-15 minutes under load. Connect manifold gauges. Note discharge pressure and corresponding saturation temperature for the refrigerant. Expected discharge saturation = ambient + 15-25°F for residential AC; substantially higher means a high-side problem worth diagnosing.",
   },
   {
-    title: "Check condenser airflow — the most common cause (60-70% of cases)",
+    title: "Check condenser airflow — the most common cause",
     text: "Visually inspect the outdoor unit: leaves/debris blocking fins, dirt buildup on the coil (a thin film of dirt reduces airflow 20%+), recirculation from nearby walls or vegetation, condenser fan spinning at full speed in correct direction. Garden hose at low pressure rinses dirty coils; chemical coil cleaner for greasy or mineral buildup. If discharge drops noticeably after cleaning, this was the cause.",
   },
   {
@@ -222,19 +222,23 @@ export default function HighHeadPressurePage() {
           faultLabel="High-side elevated, suction near normal — airflow / overcharge / non-condensable family"
         />
 
-        <TechSection icon="data" tone="purple" title="Cause frequency — where to start the diagnostic">
+        <TechSection icon="data" tone="purple" title="Common causes — where to start the diagnostic">
           <p>
-            Field-service data shows high head pressure cases cluster heavily in the first two
-            causes. Working through the diagnostic in frequency order minimizes time spent on
-            unlikely causes.
+            High head pressure has a handful of recurring causes. Condenser airflow problems are
+            consistently the first thing to rule out on a service call — verify airflow and charge
+            before chasing the rarer causes. The list below is unranked; work through it in that
+            order of likelihood from experience, but confirm each with a measurement rather than a
+            frequency figure.
           </p>
-          <CauseFrequencyBars />
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">
-            High head pressure cause distribution based on field service data aggregated from
-            HVAC service company maintenance records. Condenser fouling alone accounts for the
-            majority of cases — always check airflow first. Sources: ACCA Service Industry
-            Survey 2020, manufacturer service-call analytics.
-          </p>
+          <ul className="my-3 list-disc space-y-1 pl-5 text-sm text-zinc-700 dark:text-zinc-300">
+            <li>Condenser fouling / low condenser airflow (dirty coil, failed or slow fan, blocked or recirculating airflow)</li>
+            <li>Overcharge</li>
+            <li>High ambient temperature (the system may be operating normally for the conditions)</li>
+            <li>Liquid-line restriction (kinked line, clogged filter-drier, stuck expansion valve)</li>
+            <li>Non-condensables in the system (air or moisture from poor evacuation)</li>
+            <li>Compressor wear</li>
+            <li>Undersized condenser</li>
+          </ul>
           <BlockedCondenserDiagram />
         </TechSection>
 
@@ -516,63 +520,6 @@ export default function HighHeadPressurePage() {
 
 /* ──────────────────────── Inline SVG charts ──────────────────────── */
 
-function CauseFrequencyBars() {
-  const data: { label: string; value: number; tone: string }[] = [
-    { label: "Condenser fouling / low airflow", value: 45, tone: "#c45757" },
-    { label: "Overcharge", value: 20, tone: "#d49a2b" },
-    { label: "High ambient (operating normally)", value: 12, tone: "#5a8a3a" },
-    { label: "Liquid-line restriction", value: 10, tone: "#8e4dd1" },
-    { label: "Non-condensables", value: 6, tone: "#3a8ed1" },
-    { label: "Compressor wear", value: 4, tone: "#7a3a3a" },
-    { label: "Condenser undersized", value: 3, tone: "#5a6f8a" },
-  ];
-  const W = 720;
-  const ROW_H = 26;
-  const PAD_T = 36;
-  const PAD_B = 28;
-  const LABEL_W = 200;
-  const PAD_R = 50;
-  const BAR_W = W - LABEL_W - PAD_R;
-  const xMax = 50;
-  const xScale = (v: number) => LABEL_W + (v / xMax) * BAR_W;
-  const H = PAD_T + data.length * ROW_H + PAD_B;
-
-  return (
-    <svg
-      viewBox={`0 0 ${W} ${H}`}
-      role="img"
-      aria-label="Frequency distribution of high head pressure causes in field service."
-      className="my-3 h-auto w-full text-zinc-700 dark:text-zinc-300"
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <text x={W / 2} y={20} textAnchor="middle" fontSize="13" fontWeight={600} fill="currentColor">
-        Cause frequency in field service (%)
-      </text>
-      {[0, 10, 20, 30, 40, 50].map((t) => (
-        <g key={`gx-${t}`}>
-          <line x1={xScale(t)} y1={PAD_T - 4} x2={xScale(t)} y2={PAD_T + data.length * ROW_H} stroke="currentColor" opacity={0.1} strokeDasharray="2 3" />
-          <text x={xScale(t)} y={PAD_T - 8} textAnchor="middle" fontSize="9" fill="currentColor" opacity={0.6}>{t}%</text>
-        </g>
-      ))}
-      {data.map((d, i) => {
-        const y = PAD_T + i * ROW_H;
-        const barLen = (d.value / xMax) * BAR_W;
-        return (
-          <g key={d.label}>
-            <text x={LABEL_W - 8} y={y + 14} textAnchor="end" fontSize="10" fontWeight={500} fill="currentColor">
-              {d.label}
-            </text>
-            <rect x={LABEL_W} y={y + 5} width={barLen} height={14} fill={d.tone} rx={2} />
-            <text x={LABEL_W + barLen + 6} y={y + 15} fontSize="10" fontWeight={600} fill="currentColor">
-              {d.value}%
-            </text>
-          </g>
-        );
-      })}
-    </svg>
-  );
-}
-
 function DecisionTreeDiagram() {
   const W = 720;
   const H = 520;
@@ -597,11 +544,11 @@ function DecisionTreeDiagram() {
       {/* Step 2: condenser airflow */}
       <line x1={360} y1={156} x2={360} y2={186} stroke="currentColor" opacity={0.5} />
       <rect x={240} y={186} width={240} height={36} rx={4} fill="#c45757" opacity={0.15} stroke="#c45757" strokeWidth={1} />
-      <text x={360} y={209} textAnchor="middle" fontSize="10" fill="currentColor">Condenser airflow / fouling? (45% of cases)</text>
+      <text x={360} y={209} textAnchor="middle" fontSize="10" fill="currentColor">Condenser airflow / fouling?</text>
       {/* Step 3: check SC for overcharge */}
       <line x1={360} y1={222} x2={360} y2={252} stroke="currentColor" opacity={0.5} />
       <rect x={240} y={252} width={240} height={36} rx={4} fill="#d49a2b" opacity={0.15} stroke="#d49a2b" strokeWidth={1} />
-      <text x={360} y={275} textAnchor="middle" fontSize="10" fill="currentColor">SC &gt; 15°F? → overcharge (20%)</text>
+      <text x={360} y={275} textAnchor="middle" fontSize="10" fill="currentColor">SC &gt; 15°F? → overcharge</text>
       {/* Step 4: SC normal, suspect non-condensables */}
       <line x1={360} y1={288} x2={360} y2={318} stroke="currentColor" opacity={0.5} />
       <rect x={240} y={318} width={240} height={36} rx={4} fill="#3a8ed1" opacity={0.15} stroke="#3a8ed1" strokeWidth={1} />

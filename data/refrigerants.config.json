@@ -4073,7 +4073,7 @@
     "chemicalName": "Octafluorocyclobutane",
     "chemicalFormula": "c-C4F8",
     "ashraeNumber": "R-C318",
-    "type": "hfc-pure",
+    "type": "pfc",
     "safetyClass": "A1",
     "strategy": "coolprop",
     "cpIdentifier": "RC318",

@@ -202,13 +202,16 @@ function computePhysical(identifier, manual) {
   const molarG = molarMass !== null ? round(molarMass * 1000, 3) : null;
 
   // Glide at 0°C (273.15K). For pures and azeotropes, this is ~0.
+  // Glide is defined as (dew − bubble) at a fixed pressure and is a non-negative
+  // magnitude: at the bubble pressure for 0°C, T0 is the bubble temperature and
+  // tDew (the dew temperature at that pressure) is ≥ T0, so glide = tDew − T0 ≥ 0.
   const T0 = 273.15;
   const pBub0 = safePropsSI("P", "T", T0, "Q", 0, identifier);
   let glideF = 0.0;
   if (pBub0 !== null) {
     const tDew = safePropsSI("T", "P", pBub0, "Q", 1, identifier);
     if (tDew !== null) {
-      const glideK = T0 - tDew;
+      const glideK = Math.abs(tDew - T0);
       glideF = (glideK * 9) / 5;
     }
   }

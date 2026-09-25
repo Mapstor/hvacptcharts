@@ -127,6 +127,12 @@ export const WhatPressureFrontmatter = z.object({
   /** Extra sources appended to the provenance footer (additive). */
   extraSources: z.array(z.string()).optional(),
   /**
+   * Per-fluid override for the "Regulatory status" supply line. When set,
+   * replaces the generic AIM-Act-affected / not-affected text (which is too
+   * blunt for e.g. R-22 phase-out or R-454B's regulated R-32 content).
+   */
+  regulatoryNote: z.string().optional(),
+  /**
    * Omit the stationary-HVAC-specific footer lines (AHRI 540-2020 compressor
    * minimums; ACCA Manual T diagnostic procedures) when this page is for a
    * non-stationary application (e.g. MVAC). When true, supply replacement

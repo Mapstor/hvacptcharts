@@ -170,9 +170,10 @@ def compute_physical(cp_identifier: str | None, manual: dict | None) -> dict:
     try:
         t0 = 273.15
         p_bub_0 = CP.PropsSI("P", "T", t0, "Q", 0, cp_identifier)
-        # Temperature at the bubble-pressure dew curve = bubble-temp shift across glide.
+        # Glide = (dew - bubble) at a fixed pressure, a non-negative magnitude.
+        # t0 is the bubble temperature at p_bub_0; the dew temperature there is >= t0.
         t_dew_at_pbub = CP.PropsSI("T", "P", p_bub_0, "Q", 1, cp_identifier)
-        glide_k = t0 - t_dew_at_pbub
+        glide_k = abs(t_dew_at_pbub - t0)
         glide_f = glide_k * 9.0 / 5.0
     except Exception:
         glide_f = 0.0

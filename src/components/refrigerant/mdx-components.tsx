@@ -14,9 +14,11 @@ import { RefrigerantGWPComparison } from "./RefrigerantGWPComparison";
 import { TechSection, KeyInsight, NumberFact } from "./TechSection";
 import { getPressureAtTempF, getRefrigerant } from "@/data/refrigerants";
 
-/** Render the saturation pressure at a specific temperature, from data layer. */
-function PressureAtTemp({ slug, tempF }: { slug: string; tempF: number }) {
-  const p = getPressureAtTempF(slug, tempF);
+/** Render the saturation pressure at a specific temperature, from data layer.
+ *  `tempF` accepts a string because MDX passes JSX attributes as strings. */
+function PressureAtTemp({ slug, tempF }: { slug: string; tempF: number | string }) {
+  const t = typeof tempF === "number" ? tempF : Number(tempF);
+  const p = Number.isFinite(t) ? getPressureAtTempF(slug, t) : null;
   if (!p) return <span>—</span>;
   const r = getRefrigerant(slug);
   if (r?.physical.hasSignificantGlide) {

@@ -300,14 +300,14 @@ function RichContent() {
             rows={[
               { label: "Lubricant", cells: ["MO / AB", "POE", "warn — oil change"] },
               { label: "Safety class", cells: ["A1", "A1", "ok"] },
-              { label: "Pressure @ 95°F", cells: ["181 PSIG", "278 PSIG", "FAIL — +54%"] },
+              { label: "Pressure @ 95°F", cells: ["182 PSIG", "296 PSIG", "FAIL — +63%"] },
               { label: "Glide", cells: ["0°F", "~0°F (near-az)", "ok"] },
               { label: "Application", cells: ["residential AC", "residential AC", "ok"] },
             ]}
           />
         </Panel>
         <VerdictBanner status="bad" title="Not feasible — pressure exceeds R-22 component ratings">
-          R-410A pressures run 54-60% higher than R-22 across the operating range. R-22
+          R-410A pressures run roughly 60-70% higher than R-22 across the operating range. R-22
           equipment is rated for 500 PSI service; R-410A requires 800 PSI service
           equipment. The compressor, condenser tubing, line set, valves, and accumulator
           all need replacement — at which point you have a new R-410A system, not a
@@ -332,7 +332,7 @@ function RichContent() {
             rows={[
               { label: "Lubricant", cells: ["POE", "POE", "ok"] },
               { label: "Safety class", cells: ["A1", "A2L", "warn — mildly flammable"] },
-              { label: "Pressure @ 95°F", cells: ["278 PSIG", "262 / 256", "ok (within 6%)"] },
+              { label: "Pressure @ 95°F", cells: ["296 PSIG", "280 / 270", "ok (within 6%)"] },
               { label: "Glide", cells: ["~0°F", "3°F", "ok — minor"] },
               { label: "Application", cells: ["residential AC", "residential AC", "ok"] },
             ]}

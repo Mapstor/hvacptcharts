@@ -127,7 +127,7 @@ faqs:
 
   - q: "How do I measure superheat on R-448A?"
     a: |
-      Use the dew temperature at suction pressure. R-448A's 10°F glide means using the bubble curve would understate superheat by approximately 10°F — large enough to cause meaningful charging errors. The dew curve corresponds to the suction-line state where refrigerant has fully evaporated.
+      Use the dew temperature at suction pressure. R-448A's 10°F glide means using the bubble curve would overstate superheat by roughly the glide (about 10°F) — because the bubble temperature is lower than the dew temperature, subtracting it from the line temperature makes superheat look larger than it is; large enough to cause meaningful charging errors. The dew curve corresponds to the suction-line state where refrigerant has fully evaporated.
 
       Modern PT calculators handle the dew/bubble selection automatically when R-448A is selected.
 
@@ -153,7 +153,7 @@ retrofitGuidance:
 
 R-448A is a zeotropic blend with approximately 10°F glide. The PT chart shows two curves: bubble (saturated liquid) and dew (saturated vapor). Service measurement requires selecting the correct curve based on which line of the system you're measuring.
 
-For suction-line superheat measurement, use the dew curve. The dew temperature at the measured suction pressure is the saturation reference; superheat = suction line temp − dew temperature. Using the bubble curve would understate superheat by ~10°F.
+For suction-line superheat measurement, use the dew curve. The dew temperature at the measured suction pressure is the saturation reference; superheat = suction line temp − dew temperature. Using the bubble curve (lower temperature) would overstate superheat by roughly the glide (~10°F).
 
 For liquid-line subcooling measurement, use the bubble curve. The bubble temperature at the measured discharge pressure is the saturation reference. Using the dew curve would overstate subcooling by the glide.
 

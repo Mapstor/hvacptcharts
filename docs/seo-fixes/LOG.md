@@ -571,3 +571,82 @@ eslint 0 errors. Curl: each of the six returns 200 with
 + cross-check lines, and appears in `sitemap.xml`; `/refrigerant/r-1233zd-z/` → single 301
 → `/refrigerant/r-1233zd-e/` → 200; no built HTML contains "in this build"; R-450A is
 never labeled "XP10" (XP10 appears only in the R-513A comparison). **Not pushed.**
+
+---
+
+## 2026-09-25 — Fix 6-PART-1/18: fix remaining factual errors (commit "facts: …")
+
+Single-line factual corrections; pressure/temperature values render from the dataset
+(`PressureAtTemp` / `satPressure`), not typed by hand.
+
+1. **R-422D trade name** (content/refrigerants/r-422d.mdx :4/:32/:69/:77/:98; r-22.mdx :278;
+   r-427a.mdx :8): "Honeywell Genetron MO99" → **Chemours Freon MO29 (formerly DuPont ISCEON
+   MO29)**; renamed the source id honeywellgenetron→chemoursfreon. **R-438A** correctly stated
+   as **Chemours Freon MO99** (was wrongly "Genetron Performax LT"; r-438a.mdx :32/:69/:77/:96/:106).
+2. **R-22 vs R-410A heading** (r-22.mdx :172): "~60% lower" → **"about 40% lower"** (70°F: 121.4
+   vs 201.8 = 39.8%).
+3. **R-32 vs R-410A** (r-32.mdx ×8, r-32-vs-r-410a.mdx, what-pressure/r32.mdx, r-410a-vs-r-454b.mdx,
+   r-32-vs-r-454b.mdx, r-32-vs-r-410a/page.tsx): every "5–8% higher" → **"about 2%"** (40°F 121.0 vs
+   118.8 = +1.8%; 95°F 302.9 vs 296.4 = +2.2%). The false **"278 psig at 95°F" R-410A** claim removed
+   everywhere (real value 296.4; fixed in r-22/r-134a/r-454b MDX via `PressureAtTemp` and in the
+   retrofit + PT-comparison calculator tables).
+4. **R-454B vs R-410A** (what-pressure/r454b.mdx :7/:23; r-410a-vs-r-454b.mdx :7/:9/:22/:35):
+   "within about 5%" → **bubble ~5% below / dew ~9–10% below** R-410A (40°F: 112.0/107.0 vs 118.8).
+5. **R-454B regulatory** (what-pressure/r454b.mdx regulatoryNote): removed "not directly affected by
+   the AIM Act / normal commodity dynamics"; now "R-454B is 68.9% R-32 by mass; R-32 is an HFC
+   regulated under the AIM Act, so R-454B supply falls under the HFC allowance phasedown."
+6. **R-22 regulatory** (what-pressure/r22.mdx regulatoryNote): "US production and import of R-22 ended
+   on January 1, 2020; service now depends on reclaimed, recycled or stockpiled R-22." (A new
+   optional `regulatoryNote` field on the what-pressure schema drives both, replacing the generic
+   AIM-Act line in WhatPressurePage.)
+7. **R-1234yf ↔ R-134a transition direction** (ComparisonPage.tsx + `transitionReversed` flag on
+   r-1234yf-vs-r-134a.mdx): the transition/retrofit sections now read **R-134a → R-1234yf**.
+   **Percent-difference formula** (ComparisonPage.tsx `pctDelta`, used by PressureCompareTable +
+   PressureDeltaBars): returns "—" when the base ≤ 0 or the compared value is in vacuum (negative
+   PSIG), killing the "-561.5%" cell. Pages changed: **/r-12-vs-r-134a/, /r-1234yf-vs-r-134a/,
+   /r-134a-vs-r-1234ze/, /r-134a-vs-r-513a/, /r-290-vs-r-600a/** (−20°F, and 0°F for r-290-vs-r-600a).
+8. **R-448A** (r-448a.mdx :130/:156): "understate" → **overstate** superheat (bubble temp < dew;
+   amount ≈ glide ~10°F).
+9. **R-1234yf 95°F** (r-1234yf.mdx :154): "128 vs 124" → rendered from data **115.1 vs 114.0**.
+10. **R-404A glide + GWP** — glide formula fixed (see below); "the highest mainstream HFC" →
+    **"one of the highest-GWP common HFCs"** (r-404a.mdx :209/:211; R-507A is higher).
+11. **R-c318 type** (data + config): `hfc-pure` → new **`pfc`** enum value; chip now renders **PFC**
+    (added "pfc" to RefrigerantType, TypeChip label/tone, schema typeLabel, and the four type filters).
+12. **Prices guide labor** (refrigerant-prices-guide.tsx :450/:462/:487/:601): removed the
+    BLS-attributed "$85–150/hr" (BLS publishes wages, not billed rates); now cites the **BLS median
+    $29.33/hour ($61,010/year, May 2025)** with the OOH link and notes the billed rate is higher
+    (overhead).
+13. **High head pressure** (high-head-pressure-causes.tsx): removed the unverifiable "ACCA Service
+    Industry Survey 2020" attribution and **all cause percentages** (45%/20%/…, the "60-70%" step
+    title, the decision-tree "(45%)"/"(20%)"); causes kept as an **unranked list**; deleted the
+    CauseFrequencyBars chart.
+14. **Section 608 exam** (refrigerant-safety-classifications.tsx :173/:254/:335): "608 expanded with
+    A2L module in 2025" → **"EPA revised the Section 608 technician exam to add A2L and A3 questions;
+    the current question bank can be used only through January 1, 2027, and there is no new Type IV
+    certification"** + ACHR News citation.
+15. **Superheat/subcooling fundamentals** (superheat-subcooling-fundamentals.tsx): reworked the
+    undercharge example from the impossible **"99 − 108 = −9°F"** to **subcooling ≈ 2°F** (low, near
+    0 — the real undercharge fingerprint) using satTemp (dew@100=31.5°F, bubble@320=100°F); added
+    that a negative reading is a measurement error, not an undercharge.
+16. **Tax credits** (llms-full.txt, llms.txt, guides-hub, feed.xml, refrigerant-comparison-guide,
+    r-1336mzz-z.mdx, r-1234ze-z.mdx): removed statements that 25C/25D/HEEHRA/rebates/IRA credits are
+    available; where a figure was needed, stated the OBBB caveat ("25C doesn't apply to equipment
+    placed in service after December 31, 2025, and 25D doesn't apply to expenditures made after that
+    date") with the IRS OBBB FAQ link.
+17. **AHRI 540**: no change needed — the two live mentions already state it is a compressor
+    performance-rating standard that does NOT set field cutouts/limits.
+
+**Glide formula fix (item 10, sitewide):** both generators computed `T0 − tDew` (= bubble − dew,
+negative for zeotropes). Now `Math.abs(tDew − T0)` (= dew − bubble ≥ 0). Flipped the 23 negative
+`temperatureGlideF` values in the dataset (r-404a −0.92→0.92, r-407c −11.02→11.02, r-455a −21.65→21.65,
+etc.); the /data/refrigerant/<slug>/json + csv downloads now show non-negative glide. Detail-page and
+comparison displays already used `Math.abs`, so the visible HTML was unchanged for the 19 pages whose
+only change was the glide sign.
+
+**Also fixed (latent bug):** MDX passes JSX attributes as strings, so `PressureAtTemp tempF={N}` had
+been rendering "—" since Task 4C; converted the 35 usages to `tempF="N"` and made the component coerce.
+
+**Verified:** build exit 0; all gates pass (run-verify 60 refrigerants + anchors, verify-metadata 138
+routes, verify-content-dates 132/132, verify-no-generator-text 0 disallowed, validate-schema,
+verify-redirects 45/45); eslint 0 errors. content-dates bumped to 2026-09-25 for every changed route.
+**Not pushed.**

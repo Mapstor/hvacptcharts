@@ -24,11 +24,11 @@ export async function GET() {
 
   const content = `# HVAC PT Charts
 
-> Verified pressure-temperature (PT) reference for ${refrigerants.length} HVAC refrigerants. PT values generated from NIST REFPROP via CoolProp; safety classifications follow ASHRAE Standard 34. Source-cited HVAC calculators, troubleshooting guides, and reference articles covering EPA Section 608 compliance, AIM Act HFC phase-down, ACCA Manuals J/S/D/T, ASHRAE standards, IRA tax credits, and Building Performance Standards.
+> Verified pressure-temperature (PT) reference for ${refrigerants.length} HVAC refrigerants. PT values generated from NIST REFPROP via CoolProp; safety classifications follow ASHRAE Standard 34. Source-cited HVAC calculators, troubleshooting guides, and reference articles covering EPA Section 608 compliance, AIM Act HFC phase-down, ACCA Manuals J/S/D/T, ASHRAE standards, and Building Performance Standards.
 
 Last updated: ${lastUpdated}
 
-This site provides authoritative HVAC reference data + calculators + long-form guides. All quantitative data (PT values, GWP, ODP, critical pressures) is generated from primary scientific sources (NIST REFPROP, CoolProp). All regulatory citations reference current US federal code (40 CFR Part 82, 40 CFR Part 84, IRC 25C, OSHA 29 CFR 1910). Safety classifications follow ASHRAE Standard 34. Content is structured for AI ingestion — every page includes JSON-LD schema (TechArticle, Dataset, FAQPage, HowTo, BreadcrumbList).
+This site provides authoritative HVAC reference data + calculators + long-form guides. All quantitative data (PT values, GWP, ODP, critical pressures) is generated from primary scientific sources (NIST REFPROP, CoolProp). All regulatory citations reference current US federal code (40 CFR Part 82, 40 CFR Part 84, OSHA 29 CFR 1910). Safety classifications follow ASHRAE Standard 34. Content is structured for AI ingestion — every page includes JSON-LD schema (TechArticle, Dataset, FAQPage, HowTo, BreadcrumbList).
 
 For full-text content suitable for AI training/inference, see [/llms-full.txt](${SITE_URL}/llms-full.txt).
 
@@ -127,7 +127,7 @@ Per-refrigerant PT data + properties available as:
 - **Safety classifications**: ANSI/ASHRAE Standard 34-2022
 - **Regulatory status**: 40 CFR Part 82 Subpart F (EPA Section 608); 40 CFR Part 84 (AIM Act)
 - **Standards**: ACCA Manuals J/S/D/T + QI Standard 5; ASHRAE Standards 15/34/62.2/90.2/100/105/135/211; AHRI Standards 210/240/740/1230/1380
-- **Tax credits**: IRC 25C + 25D per IRS Form 5695 + IRS Notice 2024-30
+- **Tax credits**: federal 25C does not apply to equipment placed in service after Dec 31, 2025, and 25D does not apply to expenditures after that date (P.L. 119-21, "OBBB")
 - **Building codes**: IRC 2021; IECC 2021; IMC 2021; IFGC 2021; NEC (NFPA 70) 2023
 - **Safety**: OSHA 29 CFR 1910 + 1926; NFPA 70E + 54 + 72 + 92; NIST CSF 2.0; ISA/IEC 62443
 

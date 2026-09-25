@@ -170,7 +170,7 @@ export default function SafetyClassificationsPage() {
               <li>Leak detection (refrigerant sensor + alarm) on larger systems above a charge threshold.</li>
               <li>Charge limit calculation per room floor area: m_max = LFL × 4 × A^0.5 × h_0 (LFL = lower flammability limit, A = room area, h_0 = installation height).</li>
               <li>Mechanical ventilation requirements in some occupancy categories above threshold charge.</li>
-              <li>Labeling and installer training (EPA Section 608 expanded for A2L handling in 2025).</li>
+              <li>Labeling and installer training (EPA revised the Section 608 technician exam to add A2L and A3 questions — the current question bank is usable only through January 1, 2027, and there is no new Type IV certification).</li>
             </ul>
           </Panel>
           <Panel title="A2L charge limits per refrigerant (IEC 60335-2-40 Table CC.1)" icon={TableIcon}>
@@ -251,7 +251,7 @@ export default function SafetyClassificationsPage() {
                 </thead>
                 <tbody>
                   <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A1</td><td className="py-1.5 text-xs">Standard EPA Section 608 procedures. Recovery, recycling, reclaiming per 40 CFR Part 82. Standard electronic leak detectors.</td></tr>
-                  <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A2L</td><td className="py-1.5 text-xs">EPA Section 608 + A2L-specific training (added 2025). A2L-rated recovery cylinders. No ignition sources during service (no torch-brazing near open refrigerant, no electrical sparks). Refrigerant-specific leak detectors.</td></tr>
+                  <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A2L</td><td className="py-1.5 text-xs">EPA Section 608 (the technician exam was revised to add A2L/A3 questions; no new Type IV certification). A2L-rated recovery cylinders. No ignition sources during service (no torch-brazing near open refrigerant, no electrical sparks). Refrigerant-specific leak detectors.</td></tr>
                   <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A3</td><td className="py-1.5 text-xs">Hydrocarbon-specific training. Spark-resistant tools or all-tools-removed during service. Ventilated spaces only. Small-charge limit (~150 g hermetic).</td></tr>
                   <tr><td className="py-1.5 font-mono font-semibold">B-class</td><td className="py-1.5 text-xs">Class-specific certification (IIAR for ammonia). PPE includes full-face SCBA for ammonia, vapor-resistant suit for fluorinated B. Machine-room procedures and emergency response plans required.</td></tr>
                 </tbody>
@@ -332,9 +332,10 @@ export default function SafetyClassificationsPage() {
             HVAC residential equipment design has remained A1 for decades. The
             AIM-Act-driven move to A2L requires equipment re-certification (sealed motor
             enclosures, charge limits per IEC 60335-2-40), installation procedure updates
-            (room volume calculations, A2L-rated leak detectors), service training (EPA
-            Section 608 expanded with A2L module in 2025), and supply chain adjustments
-            (A2L-rated recovery cylinders, fittings).
+            (room volume calculations, A2L-rated leak detectors), service training (EPA revised
+            the Section 608 technician exam to add A2L and A3 questions — the current question
+            bank can be used only through January 1, 2027, and there is no new Type IV
+            certification), and supply chain adjustments (A2L-rated recovery cylinders, fittings).
           </KeyInsight>
         </TechSection>
 
@@ -461,6 +462,7 @@ export default function SafetyClassificationsPage() {
             <li>UL 60335-2-40 (A2L charge limits, equipment design, leak detection requirements)</li>
             <li>ASHRAE Standard 15 (machine room ventilation, refrigerant detection)</li>
             <li>EPA Section 608 program documentation (technician certification, refrigerant management)</li>
+            <li>ACHR News, &quot;What You Need to Know About the New Section 608 Exam&quot; (Sep 19, 2026): https://www.achrnews.com/articles/166686-what-you-need-to-know-about-the-new-section-608-exam</li>
             <li>IIAR standards (industrial ammonia refrigeration — B2L handling)</li>
           </ul>
           <p className="mt-3">

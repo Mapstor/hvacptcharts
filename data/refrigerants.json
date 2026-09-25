@@ -49203,7 +49203,7 @@
       },
       "molarMassGPerMol": 97.604,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -0.92,
+      "temperatureGlideF": 0.92,
       "hasSignificantGlide": false
     },
     "environmental": {
@@ -51216,7 +51216,7 @@
       },
       "molarMassGPerMol": 90.111,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -9.94,
+      "temperatureGlideF": 9.94,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -53232,7 +53232,7 @@
       },
       "molarMassGPerMol": 86.204,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -11.02,
+      "temperatureGlideF": 11.02,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -55249,7 +55249,7 @@
       },
       "molarMassGPerMol": 82.058,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -9.93,
+      "temperatureGlideF": 9.93,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -57288,7 +57288,7 @@
       },
       "molarMassGPerMol": 72.585,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -0.19,
+      "temperatureGlideF": 0.19,
       "hasSignificantGlide": false
     },
     "environmental": {
@@ -59307,7 +59307,7 @@
       },
       "molarMassGPerMol": 106.746,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -7.16,
+      "temperatureGlideF": 7.16,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -61308,7 +61308,7 @@
       },
       "molarMassGPerMol": 111.746,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -7.64,
+      "temperatureGlideF": 7.64,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -63312,7 +63312,7 @@
       },
       "molarMassGPerMol": 113.604,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -3.17,
+      "temperatureGlideF": 3.17,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -65320,7 +65320,7 @@
       },
       "molarMassGPerMol": 108.518,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -7.6,
+      "temperatureGlideF": 7.6,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -67324,7 +67324,7 @@
       },
       "molarMassGPerMol": 109.935,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -6.67,
+      "temperatureGlideF": 6.67,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -69334,7 +69334,7 @@
       },
       "molarMassGPerMol": 90.444,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -10.44,
+      "temperatureGlideF": 10.44,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -72394,7 +72394,7 @@
       },
       "molarMassGPerMol": 87.213,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -9.51,
+      "temperatureGlideF": 9.51,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -76433,7 +76433,7 @@
       },
       "molarMassGPerMol": 103.511,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -7.03,
+      "temperatureGlideF": 7.03,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -78444,7 +78444,7 @@
       },
       "molarMassGPerMol": 63.526,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -2.02,
+      "temperatureGlideF": 2.02,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -80467,7 +80467,7 @@
       },
       "molarMassGPerMol": 62.614,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -2.32,
+      "temperatureGlideF": 2.32,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -82309,7 +82309,7 @@
       },
       "molarMassGPerMol": 90.776,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -13.89,
+      "temperatureGlideF": 13.89,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -84315,7 +84315,7 @@
       },
       "molarMassGPerMol": 87.453,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -21.65,
+      "temperatureGlideF": 21.65,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -86314,7 +86314,7 @@
       },
       "molarMassGPerMol": 87.605,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -12.52,
+      "temperatureGlideF": 12.52,
       "hasSignificantGlide": true
     },
     "environmental": {
@@ -88306,7 +88306,7 @@
       },
       "molarMassGPerMol": 99.303,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -0.05,
+      "temperatureGlideF": 0.05,
       "hasSignificantGlide": false
     },
     "environmental": {
@@ -90300,7 +90300,7 @@
       },
       "molarMassGPerMol": 111.628,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -0.29,
+      "temperatureGlideF": 0.29,
       "hasSignificantGlide": false
     },
     "environmental": {
@@ -92408,7 +92408,7 @@
       },
       "molarMassGPerMol": 98.859,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -0.04,
+      "temperatureGlideF": 0.04,
       "hasSignificantGlide": false
     },
     "environmental": {
@@ -94408,7 +94408,7 @@
       },
       "molarMassGPerMol": 108.426,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -0.04,
+      "temperatureGlideF": 0.04,
       "hasSignificantGlide": false
     },
     "environmental": {
@@ -102482,7 +102482,7 @@
       },
       "molarMassGPerMol": 102.58,
       "liquidDensityKgPerM3At25C": null,
-      "temperatureGlideF": -0.03,
+      "temperatureGlideF": 0.03,
       "hasSignificantGlide": false
     },
     "environmental": {
@@ -109795,7 +109795,7 @@
     "chemicalName": "Octafluorocyclobutane",
     "chemicalFormula": "c-C4F8",
     "ashraeNumber": "R-C318",
-    "type": "hfc-pure",
+    "type": "pfc",
     "safetyClass": "A1",
     "tradeNames": [],
     "composition": [],

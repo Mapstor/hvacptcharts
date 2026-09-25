@@ -345,22 +345,25 @@ export default function FundamentalsPage() {
                   { label: "Suction P", value: "100 PSIG", side: "low" },
                   { label: "Suction line", value: "70°F", side: "low" },
                   { label: "Discharge P", value: "320 PSIG", side: "high" },
-                  { label: "Liquid line", value: "108°F", side: "high" },
+                  { label: "Liquid line", value: "98°F", side: "high" },
                 ]}
               />
             </Panel>
             <Panel title="Derived" icon={Activity}>
               <Derived
                 rows={[
-                  { formula: "Superheat = 70°F − 31°F = 39°F", verdict: "bad", note: "very high (target 8-15°F)" },
-                  { formula: "Subcooling = 99°F − 108°F = −9°F", verdict: "bad", note: "negative — flash gas" },
+                  { formula: "Superheat = 70°F − 31.5°F = 38.5°F", verdict: "bad", note: "very high (target 8-15°F); 31.5°F = dew temp at 100 PSIG (satTemp)" },
+                  { formula: "Subcooling = 100°F − 98°F = 2°F", verdict: "bad", note: "very low, near 0 (target 8-12°F); 100°F = bubble temp at 320 PSIG (satTemp)" },
                 ]}
               />
             </Panel>
             <VerdictBanner status="bad" title="Undercharge — leak somewhere in the system">
-              High SH + negative SC is the textbook undercharge fingerprint. Refrigerant has
-              leaked out since commissioning. Both pressures depressed below normal for
-              ambient.
+              High superheat with subcooling near 0°F is the textbook undercharge fingerprint:
+              refrigerant has leaked out since commissioning, so there isn&apos;t enough liquid
+              to build subcooling at the condenser outlet, and the evaporator starves (high SH).
+              A <em>negative</em> subcooling reading is not an undercharge — subcooling can&apos;t
+              physically go below 0°F, so a negative result means a measurement error (wrong line
+              temperature, or the wrong pressure / saturation curve).
             </VerdictBanner>
             <FixCallout>
               Find and repair the leak per EPA Section 608, then evacuate to 500 microns and

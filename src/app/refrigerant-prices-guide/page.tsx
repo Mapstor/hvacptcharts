@@ -447,7 +447,7 @@ export default function RefrigerantPricesGuidePage() {
             headers={["Line item", "Typical residential range (2026)", "What it covers"]}
             rows={[
               { label: "Refrigerant (per lb)", cells: ["Variable — see current distributor pricing", "Marked-up cost of the actual refrigerant added"] },
-              { label: "Labor (per hour)", cells: ["$85-150/hr", "Trained tech time on site (recovery + leak check + recharge)"] },
+              { label: "Labor (billed)", cells: ["Varies by market", "Billed rate covers overhead, truck, and insurance — above the $29.33/hr BLS median HVAC-technician wage (May 2025)"] },
               { label: "Trip / service call charge", cells: ["$75-150 flat", "Travel time + dispatch overhead, often waived if work is performed"] },
               { label: "Leak detection (electronic + dye if used)", cells: ["$100-300 flat", "Electronic sniffer + dye-trace + soap-bubble verification"] },
               { label: "Refrigerant recovery (if any was in system)", cells: ["$50-150 flat or $30-50/lb", "Use of recovery machine, disposal of recovered refrigerant per EPA 608"] },
@@ -459,7 +459,7 @@ export default function RefrigerantPricesGuidePage() {
           />
 
           <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
-            Sourcing transparency: labor wage range ($85-150/hr) derived from US Bureau of Labor Statistics Occupational Employment Statistics for SOC 49-9021 (HVAC Mechanics and Installers, May 2023 reporting), marked up for typical small-contractor service-business overhead. The other component ranges (trip charge, leak detection, recovery, evacuation, filter, valve, EPA fee) are illustrative ranges drawn from HVAC trade publications and consumer guidance — they are NOT primary-source primary-data; specific quotes vary substantially by region, contractor, system condition, and time. Use these as a sanity-check envelope, not as authoritative price points. Refrigerant pricing is intentionally left as a placeholder; substitute the current distributor wholesale per pound × your contractor&apos;s typical markup (often 2-3× for residential service).
+            Sourcing transparency: the US Bureau of Labor Statistics reports a median wage of $29.33/hour ($61,010/year, May 2025) for heating, air-conditioning, and refrigeration mechanics and installers. BLS publishes technician wages, not contractors&apos; billed service rates; a contractor&apos;s billed hourly rate is higher because it covers vehicle, insurance, overhead, and profit, not just the technician&apos;s wage. The other component ranges (trip charge, leak detection, recovery, evacuation, filter, valve, EPA fee) are illustrative ranges drawn from HVAC trade publications and consumer guidance — they are NOT primary-source primary-data; specific quotes vary substantially by region, contractor, system condition, and time. Use these as a sanity-check envelope, not as authoritative price points. Refrigerant pricing is intentionally left as a placeholder; substitute the current distributor wholesale per pound × your contractor&apos;s typical markup (often 2-3× for residential service).
           </p>
 
           <FixCallout>
@@ -484,7 +484,7 @@ export default function RefrigerantPricesGuidePage() {
               <ol className="space-y-2 pl-5 text-sm text-zinc-700 dark:text-zinc-300 list-decimal">
                 <li><strong>Get the breakdown.</strong> Ask &quot;Can you itemize: refrigerant per pound, pounds added, labor hours, trip charge, leak detection if any, recovery if any?&quot; Reputable contractors itemize on request.</li>
                 <li><strong>Look up current refrigerant wholesale.</strong> Call any of the named distributors in Section 13, or check an online retailer (HVACDirect, Refrigerant Depot). Get the current 25 lb cylinder price for your refrigerant. Typical residential contractor markup is 2-3× wholesale.</li>
-                <li><strong>Validate labor.</strong> Local prevailing HVAC service rate ($85-150/hr range; higher in coastal CA, NY, MA). 1-2 hours is normal for a recharge with leak detection; 3+ hours suggests a complicated leak diagnosis or system condition issue.</li>
+                <li><strong>Validate labor.</strong> Local prevailing HVAC billed service rate varies by market (higher in coastal CA, NY, MA) and runs above the technician wage because it covers overhead. 1-2 hours is normal for a recharge with leak detection; 3+ hours suggests a complicated leak diagnosis or system condition issue.</li>
                 <li><strong>Check for double-charging.</strong> A &quot;recovery fee&quot; on a system that lost all charge before the tech arrived is bogus — there&apos;s nothing to recover. A &quot;leak detection&quot; charge after the contractor has already found the leak is bogus. A repeated trip charge is reasonable only if multiple visits were necessary.</li>
                 <li><strong>Compare against the validation envelope.</strong> Total quote should be within ±20% of (refrigerant cost × pounds × markup) + (labor rate × hours) + (one-time fees). Outside that envelope, get a second quote.</li>
               </ol>
@@ -598,7 +598,7 @@ export default function RefrigerantPricesGuidePage() {
               <strong>Trade publications:</strong> ACHR News (achrnews.com) annual refrigerant pricing surveys (typically January/February editions). Contracting Business (contractingbusiness.com) market analysis. RSES Journal (Refrigeration Service Engineers Society) technical and pricing commentary.
             </p>
             <p className="mt-3">
-              <strong>Government data:</strong> US EPA Allowance Allocation Final Rules (annual; published in Federal Register). California Air Resources Board (CARB) Short-Lived Climate Pollutant Strategy and HFC reduction measures. Washington State Department of Ecology Refrigerant Management Program. US Bureau of Labor Statistics Occupational Employment Statistics for SOC 49-9021 (HVAC Mechanics and Installers, used for labor cost ranges).
+              <strong>Government data:</strong> US EPA Allowance Allocation Final Rules (annual; published in Federal Register). California Air Resources Board (CARB) Short-Lived Climate Pollutant Strategy and HFC reduction measures. Washington State Department of Ecology Refrigerant Management Program. US Bureau of Labor Statistics, Occupational Outlook Handbook — Heating, Air Conditioning, and Refrigeration Mechanics and Installers (median pay $29.33/hour, $61,010/year, May 2025): https://www.bls.gov/ooh/installation-maintenance-and-repair/heating-air-conditioning-and-refrigeration-mechanics-and-installers.htm
             </p>
             <p className="mt-3">
               <strong>What this page does not cite:</strong> any source for &quot;current spot pricing.&quot; Specific per-cylinder or per-pound dollar amounts are not republished from any source on this page because they change frequently and our publication cadence cannot keep pace. Use the named distributor and survey sources in Section 12 to obtain current spot pricing before relying on any specific figure for purchase decisions.

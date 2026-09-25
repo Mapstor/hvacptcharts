@@ -7,6 +7,7 @@ const TYPE_LABEL: Record<RefrigerantType, string> = {
   "hfc-blend": "HFC blend",
   "hfo-pure": "HFO (pure)",
   "hfo-blend": "HFO blend",
+  pfc: "PFC",
   hc: "Hydrocarbon",
   natural: "Natural",
 };
@@ -18,6 +19,7 @@ const TYPE_TONE: Record<RefrigerantType, string> = {
   "hfc-blend": "bg-blue-100 text-blue-900 dark:bg-blue-900/30 dark:text-blue-200",
   "hfo-pure": "bg-emerald-100 text-emerald-900 dark:bg-emerald-900/30 dark:text-emerald-200",
   "hfo-blend": "bg-emerald-100 text-emerald-900 dark:bg-emerald-900/30 dark:text-emerald-200",
+  pfc: "bg-purple-100 text-purple-900 dark:bg-purple-900/30 dark:text-purple-200",
   hc: "bg-orange-100 text-orange-900 dark:bg-orange-900/30 dark:text-orange-200",
   natural: "bg-teal-100 text-teal-900 dark:bg-teal-900/30 dark:text-teal-200",
 };

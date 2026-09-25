@@ -325,9 +325,11 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
                 </li>
                 <li>
                   <strong>Regulatory status:</strong>{" "}
-                  {r.regulatoryStatus.aimActAffected
-                    ? `${r.displayName} is subject to the EPA AIM Act phase-down (40 CFR Part 84). Service supply continues from reclaimed and allocated production, with prices rising as supply tightens. Plan refrigerant cost escalation over equipment lifetime.`
-                    : `${r.displayName} is not directly affected by the AIM Act. Service supply follows normal commodity dynamics.`}
+                  {fm.regulatoryNote
+                    ? fm.regulatoryNote
+                    : r.regulatoryStatus.aimActAffected
+                      ? `${r.displayName} is subject to the EPA AIM Act phase-down (40 CFR Part 84). Service supply continues from reclaimed and allocated production, with prices rising as supply tightens. Plan refrigerant cost escalation over equipment lifetime.`
+                      : `${r.displayName} is not directly affected by the AIM Act. Service supply follows normal commodity dynamics.`}
                 </li>
               </ul>
             )}

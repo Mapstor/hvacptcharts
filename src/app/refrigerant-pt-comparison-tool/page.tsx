@@ -96,7 +96,7 @@ export default function ComparisonToolPage() {
         sourceCitation:
           "Saturation pressures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. For 11 manufacturer-blend refrigerants not in CoolProp's reference library, values from named manufacturer PT charts (Honeywell, Chemours, Arkema, AGC).",
         workedExample:
-          "R-410A vs R-32 vs R-454B at 95°F (typical residential design ambient):\n  R-410A: 278 PSIG\n  R-32: 296 PSIG (+6.5% vs R-410A)\n  R-454B: 262 PSIG bubble / 256 PSIG dew (−5.8% vs R-410A)\n\nAt 40°F (evaporator):\n  R-410A: 119 PSIG\n  R-32: 124 PSIG\n  R-454B: 115 PSIG / 113 PSIG\n\nInterpretation: R-32 runs slightly higher pressure than R-410A; R-454B slightly lower. All three within standard 500 PSI service equipment ratings.",
+          "R-410A vs R-32 vs R-454B at 95°F (typical residential design ambient):\n  R-410A: 296 PSIG\n  R-32: 303 PSIG (+2% vs R-410A)\n  R-454B: 280 PSIG bubble / 270 PSIG dew (−5% vs R-410A)\n\nAt 40°F (evaporator):\n  R-410A: 119 PSIG\n  R-32: 121 PSIG\n  R-454B: 112 PSIG / 107 PSIG\n\nInterpretation: R-32 runs slightly higher pressure than R-410A; R-454B slightly lower. All three within standard 500 PSI service equipment ratings.",
       }}
       relatedTools={[
         { href: "/pt-calculator/", label: "PT Calculator", blurb: "Single-refrigerant lookup, either direction." },
@@ -243,9 +243,9 @@ function RichContent() {
           <ComparisonTable
             headers={["Temp", "R-410A", "R-32", "Δ vs R-410A"]}
             rows={[
-              { label: "40°F evap", cells: ["119 PSIG", "124 PSIG", "+4%"], tone: "delta" },
-              { label: "95°F cond", cells: ["278 PSIG", "296 PSIG", "+6%"], tone: "delta" },
-              { label: "120°F cutout", cells: ["380 PSIG", "410 PSIG", "+8%"], tone: "delta" },
+              { label: "40°F evap", cells: ["119 PSIG", "121 PSIG", "+2%"], tone: "delta" },
+              { label: "95°F cond", cells: ["296 PSIG", "303 PSIG", "+2%"], tone: "delta" },
+              { label: "120°F cutout", cells: ["419 PSIG", "429 PSIG", "+2%"], tone: "delta" },
             ]}
           />
         </Panel>

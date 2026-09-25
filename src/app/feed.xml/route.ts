@@ -29,7 +29,7 @@ const ENTRIES: FeedEntry[] = [
   // Long-form HVAC guides
   { title: "Complete HVAC Troubleshooting Guide", url: "/hvac-troubleshooting-guide/", summary: "Decision trees for 10 symptom categories: no cooling, no heating, frozen evaporator, high bills, more.", updated: "2026-06-09" },
   { title: "HVAC Refrigerant Recovery Guide", url: "/hvac-refrigerant-recovery-guide/", summary: "EPA Section 608 procedure + AHRI 740 equipment + A2L safe-work practices.", updated: "2026-06-09" },
-  { title: "Ductless Mini-Split & VRF Guide", url: "/hvac-ductless-mini-split-guide/", summary: "Cold-climate mini-splits + A2L transition + multi-zone + commercial VRF + IRA credits.", updated: "2026-06-09" },
+  { title: "Ductless Mini-Split & VRF Guide", url: "/hvac-ductless-mini-split-guide/", summary: "Cold-climate mini-splits + A2L transition + multi-zone + commercial VRF.", updated: "2026-06-09" },
   { title: "Refrigerant Prices Guide", url: "/refrigerant-prices-guide/", summary: "AIM Act phase-down + EU F-Gas + reclaim economics + virgin/reclaimed pricing framework.", updated: "2026-06-09" },
   { title: "Carrier R-410A Charging Chart", url: "/carrier-410a-charging-chart/", summary: "Fixed-orifice target-superheat chart + worked examples + interactive WB×OD lookup.", updated: "2026-06-09" },
 

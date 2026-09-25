@@ -35,6 +35,13 @@ export const ComparisonFrontmatter = z.object({
    * canonical example of the inconsistency.)
    */
   retrofitFeasible: z.boolean().optional(),
+  /**
+   * When true, the transition/retrofit sections render the direction as
+   * B → A instead of the default A → B. Used when the slug/title lists the
+   * newer refrigerant first (e.g. "R-1234yf vs R-134a") but the real-world
+   * industry transition runs the other way (R-134a → R-1234yf).
+   */
+  transitionReversed: z.boolean().optional(),
   faqs: z.array(FAQ).optional().default([]),
 });
 export type ComparisonFrontmatter = z.infer<typeof ComparisonFrontmatter>;

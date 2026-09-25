@@ -44,11 +44,8 @@ American Innovation and Manufacturing Act of 2020 (15 USC 7675). HFC phase-down 
 - Existing R-22 equipment legally serviceable indefinitely via reclaim
 - R-22 reclaim prices have risen substantially since phase-out
 
-### IRA Tax Credits (Inflation Reduction Act of 2022)
-- **Section 25C** (IRC 25C, IRS Form 5695): 30% of cost up to $2,000 for heat pumps; $1,200 envelope cap; ENERGY STAR Most Efficient + AHRI certification required
-- **Section 25D**: 30% with NO cap for geothermal heat pumps + solar PV + solar thermal + wind + battery storage; steps down 26% in 2033, 22% in 2034
-- **HEEHRA** (IRA Section 50122): up to $14,000/household income-based point-of-sale rebate
-- **HOMES** (IRA Section 50121): performance-based rebates up to $8,000 for 35% energy reduction
+### Federal HVAC tax credits (status)
+- The federal 25C credit does not apply to equipment placed in service after December 31, 2025, and 25D does not apply to expenditures made after that date (One Big Beautiful Bill, Public Law 119-21, July 4, 2025). Source: https://www.irs.gov/newsroom/faqs-for-modification-of-sections-25c-25d-25e-30c-30d-45l-45w-and-179d-under-public-law-119-21-139-stat-72-july-4-2025-commonly-known-as-the-one-big-beautiful-bill-obbb
 
 ---
 
@@ -256,7 +253,7 @@ This site cites primary sources for all quantitative + regulatory claims:
 - **Refrigerant safety**: ANSI/ASHRAE Standard 34-2022
 - **Federal refrigerant regulation**: 40 CFR Part 82 Subpart F (Section 608); 40 CFR Part 84 (AIM Act)
 - **Federal energy efficiency**: 10 CFR Part 430 (residential); 10 CFR Part 431 (commercial)
-- **Tax credits**: IRC 25C + 25D; IRS Form 5695; IRS Notice 2024-30
+- **Tax credits**: federal 25C does not apply to equipment placed in service after Dec 31, 2025, and 25D does not apply to expenditures after that date (P.L. 119-21, "OBBB"); IRS OBBB FAQ
 - **Building codes**: International Codes 2021 (IRC, IECC, IMC, IFGC); NFPA 70 (NEC) 2023
 - **HVAC standards**: ACCA Manuals + ASHRAE Standards + AHRI Standards + ENERGY STAR
 - **Safety**: OSHA 29 CFR 1910 + 1926; NFPA 70E + 54 + 72 + 92
