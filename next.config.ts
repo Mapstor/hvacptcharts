@@ -30,8 +30,8 @@ const nextConfig: NextConfig = {
       { source: "/calculators", destination: "/calculators-hub/", permanent: true },
       { source: "/pt-charts-tools", destination: "/pt-charts-tools-hub/", permanent: true },
       { source: "/guides", destination: "/guides-hub/", permanent: true },
-      { source: "/r-410a-vs-r-32", destination: "/r-32-vs-r-410a/", permanent: true },
-      { source: "/pressure-diagnostic-tool", destination: "/system-pressure-diagnostic-calculator/", permanent: true },
+      // (/r-410a-vs-r-32 and /pressure-diagnostic-tool moved below and changed
+      //  to statusCode:301 — they are legacy WP URLs, not internal shortcuts.)
 
       // ──────────────────────────────────────────────────────────────────
       // WordPress migration redirects (statusCode: 301)
@@ -48,14 +48,36 @@ const nextConfig: NextConfig = {
       { source: "/what-pressure-should-r404a-be", destination: "/what-pressure-should-r404a/", statusCode: 301 },
       { source: "/what-pressure-should-r32-be", destination: "/what-pressure-should-r32/", statusCode: 301 },
       { source: "/what-pressure-should-r454b-be", destination: "/what-pressure-should-r454b/", statusCode: 301 },
+      // Typo variant still requested by search engines (missing the second
+      // "r" in "pressure"); 404s today. → canonical R-404A what-pressure page.
+      { source: "/what-pressue-should-r404a-be", destination: "/what-pressure-should-r404a/", statusCode: 301 },
 
-      // ── /refrigerant/ index: WP had a list of all 61; our homepage hosts the browser
-      { source: "/refrigerant", destination: "/", statusCode: 301 },
+      // ── /refrigerant index: WP listed all 61 here; the canonical index is
+      // now the PT-charts & tools hub (the homepage hosts the live browser).
+      { source: "/refrigerant", destination: "/pt-charts-tools-hub/", statusCode: 301 },
 
       // ── Stray /r-410a/ URL (never a real page — audit found leftover
       // external inbound links pointing here). Redirect to the canonical
       // refrigerant detail page.
       { source: "/r-410a", destination: "/refrigerant/r-410a/", statusCode: 301 },
+
+      // ── Duplicate / old-form comparison URLs → canonical ordered pair.
+      // WP served /r-410a-vs-r-32/ as its own page (duplicate of the canonical
+      // /r-32-vs-r-410a/); /r410a-vs-r32/ (no hyphens) and the reversed
+      // /r-134a-vs-r-1234yf/ 404 today. All 301 to the single canonical page.
+      { source: "/r-410a-vs-r-32", destination: "/r-32-vs-r-410a/", statusCode: 301 },
+      { source: "/r410a-vs-r32", destination: "/r-32-vs-r-410a/", statusCode: 301 },
+      { source: "/r-134a-vs-r-1234yf", destination: "/r-1234yf-vs-r-134a/", statusCode: 301 },
+
+      // ── Legacy diagnostic-tool URL → the equivalent calculator. Per spec 03
+      // the two are consolidated under one page; 301 the WP URL to it.
+      { source: "/pressure-diagnostic-tool", destination: "/system-pressure-diagnostic-calculator/", statusCode: 301 },
+
+      // ── Legacy /refrigerant-prices/ → canonical guide. WP served both
+      // /refrigerant-prices/ and /refrigerant-prices-guide/ (the former's
+      // canonical already pointed at the latter — see 02-AUDIT.md:429, spec
+      // 03:220-226). 301 the shorter legacy URL to the ported guide.
+      { source: "/refrigerant-prices", destination: "/refrigerant-prices-guide/", statusCode: 301 },
 
       // /refrigerant-prices-guide/ — PORTED (regulatory + market mechanics, no spot prices)
       // Carrier 410A charging chart: PORTED — page now lives at the canonical

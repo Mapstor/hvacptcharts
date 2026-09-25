@@ -52,9 +52,13 @@ const TESTS: TestCase[] = [
   { url: "/what-pressure-should-r134a-be", expected: "/what-pressure-should-r134a/" },
   { url: "/what-pressure-should-r404a-be", expected: "/what-pressure-should-r404a/" },
   { url: "/what-pressure-should-r454b-be", expected: "/what-pressure-should-r454b/" },
+  // typo variant (missing the second "r" in "pressure")
+  { url: "/what-pressue-should-r404a-be", expected: "/what-pressure-should-r404a/" },
 
-  // ── comparison alias ───────────────────────────────────────────
+  // ── comparison aliases → canonical ordered pair ────────────────
   { url: "/r-410a-vs-r-32", expected: "/r-32-vs-r-410a/" },
+  { url: "/r410a-vs-r32", expected: "/r-32-vs-r-410a/", reason: "no-hyphen old form" },
+  { url: "/r-134a-vs-r-1234yf", expected: "/r-1234yf-vs-r-134a/", reason: "reversed pair" },
 
   // ── WordPress sitemap variants ─────────────────────────────────
   { url: "/wp-sitemap.xml", expected: "/sitemap.xml" },
@@ -87,8 +91,12 @@ const TESTS: TestCase[] = [
     expected: "https://ads.adthrive.com/sites/68f28aad3e1aa05cf10f4d54/ads.txt",
   },
 
-  // ── /refrigerant → homepage ────────────────────────────────────
-  { url: "/refrigerant", expected: "/" },
+  // ── /refrigerant index → PT-charts & tools hub ─────────────────
+  { url: "/refrigerant", expected: "/pt-charts-tools-hub/" },
+
+  // ── legacy /refrigerant-prices → canonical guide (spec 03:220-226) ──
+  { url: "/refrigerant-prices", expected: "/refrigerant-prices-guide/" },
+  { url: "/refrigerant-prices-guide/", expected: null, reason: "canonical target must not redirect" },
 
   // ── NEGATIVE: routes that must NOT be caught by wildcards ──────
   { url: "/refrigerant/r-410a/", expected: null, reason: "must not redirect" },

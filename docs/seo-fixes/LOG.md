@@ -53,3 +53,59 @@ no `vercel.json`; no `X-Robots-Tag` anywhere.
   changed here.
 
 **Not pushed** (per instructions).
+
+---
+
+## 2026-09-25 — Fix 2/18: 301 redirects for legacy, typo and old comparison URLs
+
+**Goal.** Every legacy/typo/old URL search engines still request must answer with
+ONE permanent 301 straight to its canonical target (no chains, no 200 duplicates).
+The six `-be` URLs alone still draw ~1,379 Bing clicks / ~3,557 ad pageviews.
+
+**How each "from" URL was handled before → after.**
+| From | Before | After |
+|---|---|---|
+| `/what-pressure-should-{410a,r22,r134a,r32,r454b,r404a}-be/` (×6) | already 301 | unchanged (still 301) |
+| `/what-pressue-should-r404a-be/` (typo) | **nothing (404)** | **new 301** → `/what-pressure-should-r404a/` |
+| `/r410a-vs-r32/` | **nothing (404)** | **new 301** → `/r-32-vs-r-410a/` |
+| `/r-410a-vs-r-32/` | 308 (`permanent:true`) | **301** → `/r-32-vs-r-410a/` |
+| `/r-134a-vs-r-1234yf/` | **nothing (404)** | **new 301** → `/r-1234yf-vs-r-134a/` |
+| `/r-410a/` | already 301 | unchanged (301 → `/refrigerant/r-410a/`) |
+| `/pressure-diagnostic-tool/` | 308 (`permanent:true`) | **301** → `/system-pressure-diagnostic-calculator/` |
+| `/refrigerant/` | 301 → `/` (homepage) | **301 → `/pt-charts-tools-hub/`** (repointed) |
+| `/refrigerant-prices/` (spec cross-check, step 3) | **nothing** | **new 301** → `/refrigerant-prices-guide/` |
+
+No duplicate routes / page files / aliases served any of these with 200 (verified
+`src/app/refrigerant/` holds only `[slug]`, no other matches). No internal links
+pointed at any "from" URL (grep of `src/` + `content/` empty) and none were in the
+sitemap — so nothing to rewrite there.
+
+**Diff summary.**
+- `next.config.ts` — all 13 mapped URLs now resolve via `redirects()` with
+  `statusCode: 301`; moved `/r-410a-vs-r-32` and `/pressure-diagnostic-tool` out of
+  the 308 "internal shortcuts" block; added 4 new sources (typo, `/r410a-vs-r32`,
+  `/r-134a-vs-r-1234yf`, `/refrigerant-prices`); repointed `/refrigerant` → hub.
+  24 redirects total. Single source of truth (no middleware/vercel.json).
+- `scripts/verify-redirects.ts` — added test cases for the new/changed mappings
+  (41/41 pass).
+
+**Step 3 (spec cross-check).** Cross-checked every redirect the migration spec
+`docs/spec/03-SITEMAP_MIGRATION.md` prescribes against `next.config.ts` (+ both
+`reports/serp-inventory*.csv`, which list only live 200 routes). Exactly one
+spec-mapped redirect was missing with a clear existing target → **added**
+`/refrigerant-prices` → `/refrigerant-prices-guide/` (spec `03:220-226`,
+`02-AUDIT.md:429`). No unclear/ambiguous targets remain. (Out of scope, untouched:
+`/refrigerant/r-1234ze-e/`, all `/hvac-*-guide/`.)
+
+**Verification (production build, `next start -p 3100`).** Build exit 0, all gates
+pass (`verify-redirects` 41/41). Curl results:
+- **Trailing-slash form of every "from" URL → single `301` with `Location` = the
+  target.** All 12 targets → `200`.
+- **No-slash form → `308` (trailingSlash normalization adds `/`) then `301` → `200`
+  (2 hops).** This is the app-wide behavior for every slash-less source; the
+  canonical indexed form (trailing slash) is a clean single 301.
+- `/refrigerant/r-1234yf` (no slash) → `308` → `/refrigerant/r-1234yf/` → `200`
+  (the real refrigerant detail page; no conflict with the comparison redirect).
+- Lint of changed files (`next.config.ts`, `scripts/verify-redirects.ts`): clean.
+
+**Not pushed** (per instructions).
