@@ -87,23 +87,13 @@ const nextConfig: NextConfig = {
 
       // Psychrometric, duct-size, hvac-load calculators: ALL PORTED.
 
-      // ── HVAC long-form guides (Phase 7 port-as-is) → guides hub
-      // /hvac-troubleshooting-guide/ — PORTED (decision trees for 10 symptom categories)
-      // /hvac-load-calculation-guide/ — PORTED (Manual J explainer, companion to load calculator)
-      // /hvac-refrigerant-recovery-guide/ — PORTED (EPA Section 608 procedure + A2L safety)
-      // /hvac-duct-design-guide/ — PORTED (Manual D explainer, companion to duct calculator)
-      // /hvac-energy-efficiency-guide/ — PORTED (SEER2/HSPF2/AFUE + heat pump economics + IRA)
-      // /hvac-commissioning-guide/ — PORTED (Manual T + QI Std 5 + duct/blower testing)
-      // /hvac-controls-automation-guide/ — PORTED (thermostats + zoning + BAS + Matter)
-      // /hvac-maintenance-service-guide/ — PORTED (seasonal schedule + 14-pt tune-up + ROI)
-      // /hvac-indoor-air-quality-guide/ — PORTED (5 pollutant categories + ASHRAE 62.2 + radon)
-      // /hvac-system-design-guide/ — PORTED (design capstone — full ACCA cascade)
-      // /hvac-mechanical-ventilation-guide/ — PORTED (ASHRAE 62.2 + ERV/HRV + climate strategy)
-      // /hvac-safety-procedures-guide/ — PORTED (OSHA + LOTO + electrical + gas + A2L + PPE)
-      // /hvac-tools-equipment-guide/ — PORTED (13 tool categories, brand lineups, EPA 608 + AHRI 740)
-      // /hvac-retrofitting-upgrades-guide/ — PORTED (R-22 + A2L transition + heat pump + IRA + repair-vs-replace)
-      // /hvac-energy-management-guide/ — PORTED (auditing + benchmarking + RCx + FDD + M&V + BPS)
-      // /hvac-building-automation-guide/ — PORTED (commercial BMS architecture + Guideline 36 + cybersecurity)
+      // ── HVAC long-form guides (task 4A, 2026-09): 12 off-topic guides were
+      // removed and now serve 410 Gone from src/app/<slug>/route.ts. Two guides
+      // that merely duplicate a calculator are 301'd to that calculator instead.
+      // Three guides stay live (troubleshooting, refrigerant-recovery,
+      // ductless-mini-split), Google-noindexed pending rewrite (task 4B).
+      { source: "/hvac-load-calculation-guide", destination: "/hvac-load-calculator/", statusCode: 301 },
+      { source: "/hvac-duct-design-guide", destination: "/duct-size-calculator/", statusCode: 301 },
 
       // ── WordPress cruft (Task 5, 2026-07): sitemap variants, taxonomy
       // archives, and author archives all redirect to the appropriate live

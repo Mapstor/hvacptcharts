@@ -203,6 +203,43 @@ R-32/R-410A ~2%. Lint: 0 errors. **Not pushed.**
 
 ---
 
+## 2026-09-25 — Fix 4A/18: remove 12 off-topic guides (410); redirect 2 to their calculators
+
+**Removed 12** (off-topic, low-traffic, error-prone). Each `src/app/<slug>/page.tsx`
+deleted and replaced by `src/app/<slug>/route.ts` — `dynamic="force-dynamic"`, `GET`
+returns **410 Gone** with `X-Robots-Tag: noindex` and a tiny HTML body linking to
+`/pt-charts-tools-hub/`, `/calculators-hub/`, `/`:
+energy-efficiency, commissioning, maintenance-service, indoor-air-quality,
+mechanical-ventilation, system-design, controls-automation, safety-procedures,
+tools-equipment, retrofitting-upgrades, energy-management, building-automation.
+
+**Redirected 2** (duplicate a calculator): deleted their page.tsx and added 301s in
+`next.config.ts` — `/hvac-load-calculation-guide/ → /hvac-load-calculator/`,
+`/hvac-duct-design-guide/ → /duct-size-calculator/` (+ two cases in
+`verify-redirects.ts`, now 43/43). No 410 handler needed (the redirect fires first).
+
+**Fixed the load calculator** before sending it traffic: `hvac-load-calculator/page.tsx:256`
+had `title="…{r2(EX1.cooling.tons)}…"` inside a *quoted* JSX attribute, so the
+placeholders rendered as literal text. Converted to a template-literal expression
+(`title={\`…${r2(...)}…\`}`). Grep of the built HTML for `{r0(`/`{r1(`/`{r2(`/`{r3(`:
+**no other hits** (all other occurrences were legitimate JSX/`${}` expressions).
+
+**Removed all references to the 14 URLs:** `sitemap.ts` (14 entries + 2 commented stubs),
+`llms.txt/route.ts`, `feed.xml/route.ts`, `guides-hub/page.tsx` (dropped the emptied
+"Sizing & design" section + 6 economics items; the ItemList JSON-LD auto-derives, so its
+count updates automatically; reworded the "14 guides" prose → the 3 remaining guides), and
+the cross-links in the kept `hvac-ductless-mini-split-guide` (6 links to removed guides →
+retargeted to live calculators / removed). No components were used only by the removed
+guides (all shared). Comprehensive grep of src/content/data: **zero** references to the 14
+slugs remain (only the 2 redirect sources in next.config + verify-redirects). Kept
+untouched: troubleshooting, refrigerant-recovery, ductless-mini-split (4B handles them).
+
+**Verification (curl):** 12 removed → `/slug/` 410 (headers show `X-Robots-Tag: noindex`),
+`/slug` 308→410; 2 redirected → single 301→200; built-HTML has no href to any of the 14;
+sitemap.xml has none of the 14 and keeps the 3 guides. Build exit 0, all gates. **Not pushed.**
+
+---
+
 ## 2026-09-25 — Fix 2/18: 301 redirects for legacy, typo and old comparison URLs
 
 **Goal.** Every legacy/typo/old URL search engines still request must answer with

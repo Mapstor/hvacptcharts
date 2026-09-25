@@ -253,7 +253,7 @@ const BodySections = (
             { input: "Equipment + lighting", output: `${r0(EX1.cooling.components.equipment)} BTU/hr` },
           ]}/>
         </Panel>
-        <VerdictBanner status="info" title="Cooling: ~{r2(EX1.cooling.tons)} tons; Heating: ~{r0(EX1.heating.totalBtuHr)} BTU/hr">
+        <VerdictBanner status="info" title={`Cooling: ~${r2(EX1.cooling.tons)} tons; Heating: ~${r0(EX1.heating.totalBtuHr)} BTU/hr`}>
           Sensible {r0(EX1.cooling.sensibleBtuHr)} + Latent {r0(EX1.cooling.latentBtuHr)} = Total {r0(EX1.cooling.totalBtuHr)} BTU/hr = {r2(EX1.cooling.tons)} tons. SHR = {r2(EX1.cooling.shr)}. Heating load {r0(EX1.heating.totalBtuHr)} BTU/hr at 17°F outdoor / 70°F indoor.
         </VerdictBanner>
         <FixCallout>

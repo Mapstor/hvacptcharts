@@ -98,6 +98,10 @@ const TESTS: TestCase[] = [
   { url: "/refrigerant-prices", expected: "/refrigerant-prices-guide/" },
   { url: "/refrigerant-prices-guide/", expected: null, reason: "canonical target must not redirect" },
 
+  // ── removed guides that duplicate a calculator → 301 to it (task 4A) ──
+  { url: "/hvac-load-calculation-guide", expected: "/hvac-load-calculator/" },
+  { url: "/hvac-duct-design-guide", expected: "/duct-size-calculator/" },
+
   // ── NEGATIVE: routes that must NOT be caught by wildcards ──────
   { url: "/refrigerant/r-410a/", expected: null, reason: "must not redirect" },
   { url: "/what-pressure-should-410a/", expected: null, reason: "canonical target" },

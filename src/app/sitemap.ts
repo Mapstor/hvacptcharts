@@ -113,25 +113,8 @@ const STATIC_PAGES: StaticEntry[] = [
 
   // HVAC long-form guides — being ported one at a time with full content depth.
   { url: "/hvac-troubleshooting-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-load-calculation-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-duct-design-guide/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/hvac-refrigerant-recovery-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-energy-efficiency-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-commissioning-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-maintenance-service-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-indoor-air-quality-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-mechanical-ventilation-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-system-design-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-controls-automation-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-safety-procedures-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-tools-equipment-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-retrofitting-upgrades-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-energy-management-guide/", priority: 0.7, changeFrequency: "monthly" },
-  { url: "/hvac-building-automation-guide/", priority: 0.7, changeFrequency: "monthly" },
   { url: "/hvac-ductless-mini-split-guide/", priority: 0.7, changeFrequency: "monthly" },
-  // { url: "/hvac-building-automation-guide/", priority: 0.5 },
-  // { url: "/hvac-commissioning-guide/", priority: 0.6 },
-  // ...
 
   // Site pages
   { url: "/about-us/", priority: 0.3, changeFrequency: "yearly" },

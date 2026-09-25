@@ -144,7 +144,7 @@ export default function HvacDuctlessMiniSplitGuidePage() {
 
           <div className="mt-5 rounded-xl border-2 border-blue-300 bg-blue-50/60 p-4 dark:border-blue-700/60 dark:bg-blue-900/20">
             <p className="text-sm text-zinc-700 dark:text-zinc-300">
-              <strong>Why mini-splits matter in 2026.</strong> Ductless mini-splits are the single highest-growth residential HVAC category — driven by heat pump electrification + IRA tax credits + cold-climate technology advances + retrofit applications (ADUs, additions, garage conversions, homes without existing ductwork). The A2L refrigerant transition is hitting mini-splits FIRST since most new mini-splits globally already use R-32. For homeowners considering electrification, this guide is the &quot;is a mini-split right for me?&quot; reference. For HVAC professionals, this is the complete installation + commissioning + warranty methodology. Cross-references to <Link href="/hvac-retrofitting-upgrades-guide/" className="underline">retrofitting guide</Link> for the broader heat pump conversion decision, <Link href="/hvac-energy-efficiency-guide/" className="underline">energy efficiency guide</Link> for SEER2/HSPF2 ratings, <Link href="/hvac-system-design-guide/" className="underline">system design guide</Link> for the ACCA cascade, and <Link href="/hvac-tools-equipment-guide/" className="underline">tools guide</Link> for installation equipment.
+              <strong>Why mini-splits matter in 2026.</strong> Ductless mini-splits are the single highest-growth residential HVAC category — driven by heat pump electrification + IRA tax credits + cold-climate technology advances + retrofit applications (ADUs, additions, garage conversions, homes without existing ductwork). The A2L refrigerant transition is hitting mini-splits FIRST since most new mini-splits globally already use R-32. For homeowners considering electrification, this guide is the &quot;is a mini-split right for me?&quot; reference. For HVAC professionals, this is the complete installation + commissioning + warranty methodology. To size a system, run the numbers with the <Link href="/hvac-load-calculator/" className="underline">HVAC load calculator</Link>, and see the <Link href="/calculators-hub/" className="underline">calculators hub</Link> for the full toolkit.
             </p>
           </div>
         </header>
@@ -321,7 +321,7 @@ export default function HvacDuctlessMiniSplitGuidePage() {
           />
 
           <p className="mt-3 text-zinc-700 dark:text-zinc-300">
-            <strong>Cost framework:</strong> single-zone professional installation $1,500-4,000; multi-zone $4,000-12,000; VRF commercial $15,000-100,000+. See <Link href="/hvac-tools-equipment-guide/" className="underline">tools guide</Link> for required installation equipment.
+            <strong>Cost framework:</strong> single-zone professional installation $1,500-4,000; multi-zone $4,000-12,000; VRF commercial $15,000-100,000+.
           </p>
 
           <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
@@ -444,9 +444,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
             <li><strong>No coil cleaning consideration.</strong> Outdoor unit accumulates leaves + grass + dust over time; if not accessible for cleaning, performance degrades + premature failure. Verify access during installation.</li>
           </ul>
 
-          <p className="mt-3 text-zinc-700 dark:text-zinc-300">
-            See <Link href="/hvac-commissioning-guide/" className="underline">commissioning guide</Link> for systematic verification procedures + acceptance criteria.
-          </p>
         </section>
 
         {/* SECTION 11 — IRA */}
@@ -472,9 +469,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
             <strong>To claim:</strong> verify ENERGY STAR Most Efficient + AHRI certification at purchase; save AHRI certificate + invoice + ENERGY STAR Most Efficient certification; file IRS Form 5695 with annual tax return; consult tax professional for complex situations. <strong>Major qualifying brands</strong>: Mitsubishi Hyper-Heat models; Daikin LV Series + Aurora; Fujitsu Halcyon select models; LG select models; Bosch Climate 5000 + BHP select models; Carrier Infinity + Performance; Bryant Performance; Trane select models. Check ENERGY STAR Most Efficient + AHRI Directory for current qualifying models before purchase. Also check HEEHRA point-of-sale rebates (state-administered; up to $8,000 for heat pumps for income-qualified households).
           </p>
 
-          <p className="mt-3 text-zinc-700 dark:text-zinc-300">
-            For complete IRA framework, see <Link href="/hvac-retrofitting-upgrades-guide/" className="underline">retrofitting + upgrades guide</Link> Section 09.
-          </p>
         </section>
 
         {/* SECTION 12 — Maintenance */}
@@ -496,9 +490,6 @@ export default function HvacDuctlessMiniSplitGuidePage() {
             <li><strong>Indoor unit drainage pan.</strong> Annual; clean pan; verify drainage; check pan integrity.</li>
           </ul>
 
-          <p className="mt-3 text-zinc-700 dark:text-zinc-300">
-            For comprehensive maintenance methodology, see <Link href="/hvac-maintenance-service-guide/" className="underline">maintenance + service guide</Link>.
-          </p>
         </section>
 
         {/* SECTION 13 — FAQ */}
@@ -572,25 +563,9 @@ export default function HvacDuctlessMiniSplitGuidePage() {
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-semibold tracking-tight">Related guides + calculators</h2>
           <div className="grid gap-3 sm:grid-cols-2">
-            <Link href="/hvac-retrofitting-upgrades-guide/" className="block rounded-xl border-2 border-blue-300 p-4 hover:bg-blue-50 dark:border-blue-700/60 dark:hover:bg-blue-950/30">
-              <div className="flex items-center gap-2 font-semibold text-blue-700 dark:text-blue-300"><Snowflake className="h-4 w-4" /> Retrofitting & Upgrades Guide</div>
-              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Heat pump conversion decision + IRA framework + repair-vs-replace.</p>
-            </Link>
-            <Link href="/hvac-energy-efficiency-guide/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
-              <div className="flex items-center gap-2 font-semibold"><Activity className="h-4 w-4 text-blue-600" /> Energy Efficiency Guide</div>
-              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">SEER2/HSPF2 + heat pump economics + IRA 25C.</p>
-            </Link>
-            <Link href="/hvac-load-calculator/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
-              <div className="flex items-center gap-2 font-semibold"><Gauge className="h-4 w-4 text-blue-600" /> HVAC Load Calculator</div>
+            <Link href="/hvac-load-calculator/" className="block rounded-xl border-2 border-blue-300 p-4 hover:bg-blue-50 dark:border-blue-700/60 dark:hover:bg-blue-950/30">
+              <div className="flex items-center gap-2 font-semibold text-blue-700 dark:text-blue-300"><Gauge className="h-4 w-4" /> HVAC Load Calculator</div>
               <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Manual J for mini-split sizing — same methodology as ducted.</p>
-            </Link>
-            <Link href="/hvac-system-design-guide/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
-              <div className="flex items-center gap-2 font-semibold"><BookOpen className="h-4 w-4 text-blue-600" /> System Design Guide</div>
-              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Complete ACCA cascade + distribution-type decision (ducted vs ductless).</p>
-            </Link>
-            <Link href="/hvac-tools-equipment-guide/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
-              <div className="flex items-center gap-2 font-semibold"><Wrench className="h-4 w-4 text-blue-600" /> Tools & Equipment Guide</div>
-              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Vacuum pumps, micron gauges, manifolds for mini-split commissioning.</p>
             </Link>
             <Link href="/hvac-refrigerant-recovery-guide/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
               <div className="flex items-center gap-2 font-semibold"><ShieldCheck className="h-4 w-4 text-blue-600" /> Refrigerant Recovery Guide</div>
@@ -603,4 +578,4 @@ export default function HvacDuctlessMiniSplitGuidePage() {
   );
 }
 
-void [Wrench, Thermometer, Wind, Flame, Zap, Droplet, Cpu, AlertTriangle, ListChecks, FileCheck, Lookups, Panel, ServiceProblem];
+void [Wrench, Thermometer, Wind, Flame, Zap, Droplet, Cpu, AlertTriangle, ListChecks, FileCheck, Lookups, Panel, ServiceProblem, Snowflake, Activity, BookOpen];

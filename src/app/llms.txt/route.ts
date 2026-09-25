@@ -55,28 +55,10 @@ For full-text content suitable for AI training/inference, see [/llms-full.txt]($
 - [Carrier R-410A Charging Chart](${SITE_URL}/carrier-410a-charging-chart/): Fixed-orifice target-superheat reference
 
 ### Sizing + design
-- [HVAC Load Calculation Guide](${SITE_URL}/hvac-load-calculation-guide/): Manual J 8th edition explained
-- [HVAC Duct Design Guide](${SITE_URL}/hvac-duct-design-guide/): Manual D + SMACNA leakage classes
-- [HVAC System Design Guide](${SITE_URL}/hvac-system-design-guide/): Complete ACCA cascade design capstone
-- [HVAC Commissioning Guide](${SITE_URL}/hvac-commissioning-guide/): ACCA QI Standard 5 + Manual T balancing
-- [HVAC Maintenance & Service Guide](${SITE_URL}/hvac-maintenance-service-guide/): 14-point tune-up + ROI
-- [HVAC Indoor Air Quality Guide](${SITE_URL}/hvac-indoor-air-quality-guide/): ASHRAE 62.2 + radon + filtration
-- [HVAC Mechanical Ventilation Guide](${SITE_URL}/hvac-mechanical-ventilation-guide/): ERV/HRV + Energy Recovery Ventilator deep dive
 - [Ductless Mini-Split & VRF Guide](${SITE_URL}/hvac-ductless-mini-split-guide/): Cold-climate mini-splits + A2L + multi-zone
-
-### Controls + automation
-- [HVAC Controls & Automation Guide](${SITE_URL}/hvac-controls-automation-guide/): Residential thermostats + smart home integration
-- [HVAC Building Automation Guide](${SITE_URL}/hvac-building-automation-guide/): Commercial BMS + ASHRAE Guideline 36 + cybersecurity
-
-### Operations + management
-- [HVAC Energy Management Guide](${SITE_URL}/hvac-energy-management-guide/): Auditing + RCx + FDD + M&V + Building Performance Standards
-- [HVAC Energy Efficiency Guide](${SITE_URL}/hvac-energy-efficiency-guide/): SEER2/HSPF2/AFUE + IRA tax credits
-- [HVAC Safety Procedures Guide](${SITE_URL}/hvac-safety-procedures-guide/): OSHA 29 CFR 1910 + LOTO + A2L + PPE
-- [HVAC Tools & Equipment Guide](${SITE_URL}/hvac-tools-equipment-guide/): 13 tool categories + brand lineups
 
 ### Retrofit + upgrade
 - [HVAC Refrigerant Recovery Guide](${SITE_URL}/hvac-refrigerant-recovery-guide/): EPA Section 608 + AHRI 740 + A2L
-- [HVAC Retrofitting & Upgrades Guide](${SITE_URL}/hvac-retrofitting-upgrades-guide/): R-22 phase-out + A2L transition + IRA credits + repair-vs-replace
 
 ### Refrigerant fundamentals
 - [PT Chart Guide](${SITE_URL}/pt-chart-guide/): How to read PT charts + practical use cases
