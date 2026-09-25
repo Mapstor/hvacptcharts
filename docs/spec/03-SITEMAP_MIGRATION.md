@@ -347,7 +347,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/', '/admin/'],
+        disallow: ['/api/', '/admin/'],
       },
     ],
     sitemap: 'https://hvacptcharts.com/sitemap.xml',
@@ -355,6 +355,14 @@ export default function robots(): MetadataRoute.Robots {
   };
 }
 ```
+
+**Never disallow `/_next/`.** It serves the JS, CSS and optimized images
+(`/_next/static/*`, `/_next/image`) that Googlebot must fetch to render a page.
+Blocking it makes Google render pages unstyled and drop any client-rendered
+content — the "can't fetch important resources" failure Google's robots.txt
+guidance warns against, and the likely reason Google historically ranked this
+site far below Bing. (An earlier draft of this spec listed `/_next/` in the
+disallow array; it was removed for this reason and must not be re-added.)
 
 No special LLM-bot blocking. Per the AI content policy skill: don't create an `llms.txt` — Google has confirmed those aren't a factor.
 
