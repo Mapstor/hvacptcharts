@@ -16,7 +16,7 @@ const { published: PUBLISHED, updated: MODIFIED } = contentDates("/refrigerant-s
 export const metadata: Metadata = pageMetadata({
   title: "Refrigerant Safety Classes: A1, A2L, A3, B1 Explained (ASHRAE 34)",
   description:
-    "ASHRAE 34-2022 classifications for 61 refrigerants in one sortable table: toxicity, flammability, and charge-limit implications under UL 60335-2-40.",
+    "ASHRAE 34-2022 classifications for 60 refrigerants in one sortable table: toxicity, flammability, and charge-limit implications under UL 60335-2-40.",
   path: "/refrigerant-safety-classifications/",
 });
 
@@ -43,7 +43,7 @@ function buildSchema() {
       "@id": `${PAGE_URL}#dataset`,
       name: "HVAC Refrigerant Safety Classifications",
       description:
-        "ASHRAE 34-2022 safety classifications for 61 common HVAC refrigerants, with toxicity / flammability descriptors and source citations.",
+        "ASHRAE 34-2022 safety classifications for 60 common HVAC refrigerants, with toxicity / flammability descriptors and source citations.",
       url: PAGE_URL,
       license: "https://creativecommons.org/licenses/by/4.0/",
       creator: { "@id": `${SITE_URL}/#organization` },

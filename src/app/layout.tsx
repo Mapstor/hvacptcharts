@@ -8,7 +8,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 const SITE_NAME = "HVAC PT Charts";
 const DEFAULT_TITLE = "HVAC PT Charts — Verified Pressure-Temperature Data";
 const DEFAULT_DESCRIPTION =
-  "Verified saturation pressure-temperature charts for 61 refrigerants, plus calculators for superheat, subcooling, charge, and retrofit. Data sourced from CoolProp and manufacturer datasheets.";
+  "Verified saturation pressure-temperature charts for 60 refrigerants, plus calculators for superheat, subcooling, charge, and retrofit. Data sourced from CoolProp and manufacturer datasheets.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://hvacptcharts.com"),

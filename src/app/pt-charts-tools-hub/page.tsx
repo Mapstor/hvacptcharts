@@ -7,9 +7,9 @@ import { pageMetadata } from "@/lib/schema/shared";
 const POPULAR_SLUGS = ["r-410a", "r-22", "r-134a", "r-32", "r-404a", "r-454b", "r-407c", "r-1234yf"];
 
 export const metadata: Metadata = pageMetadata({
-  title: "PT Charts For 61 Refrigerants: Tables, Tools, PDFs (Free)",
+  title: "PT Charts For 60 Refrigerants: Tables, Tools, PDFs (Free)",
   description:
-    "Saturation PT charts for 61 HVAC refrigerants, plus overlay comparison tool, operating-pressure references, and sortable ASHRAE 34 safety and GWP tables.",
+    "Saturation PT charts for 60 HVAC refrigerants, plus overlay comparison tool, operating-pressure references, and sortable ASHRAE 34 safety and GWP tables.",
   path: "/pt-charts-tools-hub/",
   ogType: "website",
 });
@@ -37,7 +37,7 @@ export default function PTChartsToolsHubPage() {
           situation: "I need to find a refrigerant by name or ASHRAE number",
           href: "/#find",
           toolLabel: "Homepage A-Z browser",
-          reasoning: "Searchable list of all 61 refrigerants with filters by type, safety class, and GWP bucket.",
+          reasoning: "Searchable list of all 60 refrigerants with filters by type, safety class, and GWP bucket.",
         },
         {
           situation: "Quick PT lookup for service measurement",
@@ -121,7 +121,7 @@ export default function PTChartsToolsHubPage() {
       aboutSections={[
         {
           heading: "About the dataset",
-          body: `The verified refrigerant dataset is the foundation under every page on this site. Each of the 61 refrigerants is represented by a single JSON record containing: ASHRAE 34 safety classification, refrigerant type, composition (mass fractions for blends), physical properties (boiling point, critical point, glide), environmental data (GWP per IPCC AR5/AR6, ODP, atmospheric lifetime), lubricant compatibility, applications, replacement options, regulatory status, and a 191-row PT chart (-40°F to 150°F in 1°F increments).
+          body: `The verified refrigerant dataset is the foundation under every page on this site. Each of the 60 refrigerants is represented by a single JSON record containing: ASHRAE 34 safety classification, refrigerant type, composition (mass fractions for blends), physical properties (boiling point, critical point, glide), environmental data (GWP per IPCC AR5/AR6, ODP, atmospheric lifetime), lubricant compatibility, applications, replacement options, regulatory status, and a 191-row PT chart (-40°F to 150°F in 1°F increments).
 
 The PT chart is generated from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), a REFPROP-compatible Helmholtz EOS implementation. For 11 manufacturer-blend refrigerants not in CoolProp's reference library (R-448A, R-450A, R-1336mzz(Z), R-454C in blended-data mode, etc.), PT values come directly from the named manufacturer datasheets (Honeywell Solstice / Genetron, Chemours Opteon, Arkema Forane, AGC AMOLEA).
 
@@ -149,7 +149,7 @@ Every PT chart page has CSV and JSON downloads at /data/refrigerant/<slug>/json 
         },
         {
           heading: "Refrigerant families overview",
-          body: `The 61 refrigerants in this dataset span several chemical families with characteristic property and regulatory profiles:
+          body: `The 60 refrigerants in this dataset span several chemical families with characteristic property and regulatory profiles:
 
 HCFCs (R-22, R-123) — ozone-depleting, phased out under Montreal Protocol. R-22 production stopped in developed countries 2020; service from reclaimed stock. R-123 production ends 2030.
 
@@ -209,7 +209,7 @@ Alternatively, the URL pattern /refrigerant/[slug]/ uses the lowercase hyphenate
         },
         {
           q: "What if a refrigerant I need isn't in the dataset?",
-          a: `61 refrigerants cover the mainstream HVAC and commercial refrigeration market. Very rare specialty refrigerants (some older CFCs no longer in service, some niche industrial process refrigerants) aren't covered.
+          a: `60 refrigerants cover the mainstream HVAC and commercial refrigeration market. Very rare specialty refrigerants (some older CFCs no longer in service, some niche industrial process refrigerants) aren't covered.
 
 If you encounter a refrigerant not in the dataset, check the equipment OEM service literature for that refrigerant's PT chart and properties, or contact us with a request — we add refrigerants based on demand and data availability.`,
         },

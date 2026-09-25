@@ -23,7 +23,7 @@ sources:
     label: "EPA SNAP — R-450A acceptable for chiller retrofit"
     url: "https://www.epa.gov/snap"
   - id: coolprop
-    label: "CoolProp 7.2.0"
+    label: "CoolProp 8.0.0"
     url: "http://www.coolprop.org/"
     date: "2014 (continually updated)"
     note: "doi:10.1021/ie4033999"
@@ -55,8 +55,8 @@ keyStats:
     context: Zero-ODP HFC + HFO components
     sourceId: ashrae34
   - label: Normal boiling point
-    value: "−10.1"
-    unit: °F (−23.4°C)
+    value: "−10.5"
+    unit: °F (−23.6°C)
     context: Higher than R-513A; comparable chiller pressure envelope
     sourceId: coolprop
   - label: Temperature glide
@@ -98,7 +98,7 @@ narrative:
 faqs:
   - q: "What is the normal operating pressure of R-450A?"
     a: |
-      Very close to R-134a. At 70°F R-450A saturation is approximately 65 PSIG (CoolProp 7.2.0). Compare to R-134a at 70°F (71 PSIG) — R-450A is about 8% lower.
+      Very close to R-134a — about 8% lower across the range. See the PT chart and the quick-lookup strip above for exact saturation values at any temperature.
 
       For typical chiller operation, the pressure delta is small enough that R-134a-rated equipment handles R-450A within design tolerances. Compressor and expansion-valve adjustments are typically not required.
 
@@ -118,7 +118,7 @@ faqs:
 
   - q: "Does R-450A have temperature glide?"
     a: |
-      Very small — approximately 0.6°F at typical operating pressures (CoolProp 7.2.0). The near-azeotropic composition means service measurement procedures from R-134a practice apply without modification. Single-curve approximation is acceptable for routine superheat and subcooling calculations.
+      Very small — approximately 0.6°F at typical operating pressures. The near-azeotropic composition means service measurement procedures from R-134a practice apply without modification. Single-curve approximation is acceptable for routine superheat and subcooling calculations.
 
   - q: "What lubricant does R-450A use?"
     a: |
@@ -167,7 +167,7 @@ For chiller applications where centrifugal compressor efficiency depends on the 
 
 <TechSection icon="trending" tone="amber" title="Pressure envelope ~8% below R-134a">
 
-R-450A's pressure envelope is slightly below R-134a across the operating range. At 70°F R-450A saturation is 65 PSIG vs R-134a's 71 PSIG (CoolProp 7.2.0) — approximately 8% below. At 95°F, R-450A is approximately 112 PSIG vs R-134a's 124 PSIG.
+R-450A's pressure envelope is slightly below R-134a across the operating range. At 70°F R-450A saturates at <PressureAtTemp slug="r-450a" tempF={70} /> vs R-134a's <PressureAtTemp slug="r-134a" tempF={70} /> — approximately 8% below. At 95°F, R-450A is <PressureAtTemp slug="r-450a" tempF={95} /> vs R-134a's <PressureAtTemp slug="r-134a" tempF={95} />.
 
 The lower pressure profile is mildly beneficial for chiller centrifugal compressor designs that operate near the upper end of their efficient pressure-ratio range with R-134a. Some chiller OEMs may show slightly better efficiency with R-450A than with R-513A in specific equipment lines; others may show the opposite. The differences are small (typically within 1-2% COP) and are equipment-specific.
 
@@ -185,14 +185,14 @@ For very-low-GWP chiller applications, R-515B (A1, GWP 287) and R-1234ze(E) (A2L
 
 R-450A saturation values across typical chiller operating conditions:
 
-- **35°F (chilled water evaporator)** — R-450A saturation approximately 25 PSIG.
-- **45°F (chilled water reference)** — R-450A saturation approximately 35 PSIG.
-- **70°F (bench reference)** — R-450A saturation 65 PSIG.
-- **85°F (cooling tower water supply)** — R-450A saturation approximately 88 PSIG.
-- **95°F (warm cooling water condenser)** — R-450A saturation approximately 112 PSIG.
-- **105°F (extreme condenser operation)** — R-450A saturation approximately 130 PSIG.
+- **35°F (chilled water evaporator)** — R-450A saturation <PressureAtTemp slug="r-450a" tempF={35} />.
+- **45°F (chilled water reference)** — R-450A saturation <PressureAtTemp slug="r-450a" tempF={45} />.
+- **70°F (bench reference)** — R-450A saturation <PressureAtTemp slug="r-450a" tempF={70} />.
+- **85°F (cooling tower water supply)** — R-450A saturation <PressureAtTemp slug="r-450a" tempF={85} />.
+- **95°F (warm cooling water condenser)** — R-450A saturation <PressureAtTemp slug="r-450a" tempF={95} />.
+- **105°F (extreme condenser operation)** — R-450A saturation <PressureAtTemp slug="r-450a" tempF={105} />.
 
-For typical chiller operation: expect 30-40 PSIG suction and 110-140 PSIG discharge. Very similar to R-134a operating ranges in the same equipment.
+For typical chiller operation, suction and discharge pressures are very similar to R-134a in the same equipment.
 
 </TechSection>
 

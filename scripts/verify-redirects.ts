@@ -45,6 +45,10 @@ const TESTS: TestCase[] = [
   { url: "/r-410a", expected: "/refrigerant/r-410a/", reason: "stray R-410A URL" },
   { url: "/r-410a/", expected: "/refrigerant/r-410a/", reason: "trailing-slash variant" },
 
+  // ── R-1233zd(Z) merged into R-1233zd(E) (task 4C) ──────────────
+  { url: "/refrigerant/r-1233zd-z", expected: "/refrigerant/r-1233zd-e/", reason: "R-1233zd(Z) removed → (E) isomer" },
+  { url: "/refrigerant/r-1233zd-z/", expected: "/refrigerant/r-1233zd-e/", reason: "trailing-slash variant" },
+
   // ── what-pressure -be variants ─────────────────────────────────
   { url: "/what-pressure-should-410a-be", expected: "/what-pressure-should-410a/" },
   { url: "/what-pressure-should-r22-be", expected: "/what-pressure-should-r22/" },

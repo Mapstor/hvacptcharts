@@ -1,7 +1,7 @@
 ---
 slug: r-1336mzz-z
 title: "R-1336mzz(Z) Pressure Temperature Chart & Properties"
-introOneLiner: "Pure HFO (cis-1,1,1,4,4,4-hexafluoro-2-butene) — A1 non-flammable, GWP 2, very low operating pressures. Chemours Opteon 1100. High-temperature heat pump and process refrigeration applications where high condensing temperatures matter."
+introOneLiner: "Pure HFO (cis-1,1,1,4,4,4-hexafluoro-2-butene) — A1 non-flammable, GWP 2, very low operating pressures. Chemours Opteon MZ (also sold as Opteon SF33 and Opteon 1100). High-temperature heat pump and process refrigeration applications where high condensing temperatures matter."
 
 sources:
   - id: ashrae34
@@ -13,7 +13,7 @@ sources:
     url: "https://www.ipcc.ch/report/ar5/wg1/"
     date: "2014"
   - id: coolprop
-    label: "CoolProp 7.2.0"
+    label: "CoolProp 8.0.0"
     url: "http://www.coolprop.org/"
     date: "2014 (continually updated)"
     note: "doi:10.1021/ie4033999"
@@ -47,8 +47,8 @@ keyStats:
     context: Fluorine-only HFO; no chlorine
     sourceId: ashrae34
   - label: Normal boiling point
-    value: "92.1"
-    unit: °F (33.4°C)
+    value: "92.2"
+    unit: °F (33.5°C)
     context: Higher than R-123, R-1233zd(E); very low pressure operation
     sourceId: coolprop
   - label: Temperature glide
@@ -61,7 +61,7 @@ keyStats:
     context: Equipment-OEM specific; verify per service literature
     sourceId: ahri700
   - label: Trade name
-    value: Opteon 1100
+    value: Opteon MZ
     context: Chemours brand
     sourceId: chemoursopteon
 
@@ -90,7 +90,7 @@ narrative:
 faqs:
   - q: "What is R-1336mzz(Z) used for?"
     a: |
-      High-temperature industrial heat pumps and specialty low-pressure chillers. Chemours markets the refrigerant as Opteon 1100 [chemoursopteon]. The high boiling point (92°F) suits applications where typical refrigerant operating temperatures fall in ranges other refrigerants can't reach efficiently — industrial process heating, ORC waste-heat recovery, high-condensing-temperature heat pumps.
+      High-temperature industrial heat pumps and specialty low-pressure chillers. Chemours markets the refrigerant as Opteon MZ, also sold as Opteon SF33 and Opteon 1100 [chemoursopteon]. The high boiling point (92°F) suits applications where typical refrigerant operating temperatures fall in ranges other refrigerants can't reach efficiently — industrial process heating, ORC waste-heat recovery, high-condensing-temperature heat pumps.
 
   - q: "What's R-1336mzz(Z)'s GWP?"
     a: |
@@ -124,7 +124,7 @@ retrofitGuidance:
 
 <TechSection icon="chart" tone="blue" title="Reading the R-1336mzz(Z) PT chart — very low pressures, sub-atmospheric on evaporator">
 
-R-1336mzz(Z)'s PT chart shows very low operating pressures across the typical heat pump and refrigeration range. At 70°F R-1336mzz(Z) saturation is approximately −2 PSIG (slightly sub-atmospheric); at typical chiller evaporator temperatures (45°F), saturation is well into vacuum. At condensing temperatures (120-150°F for high-temperature heat pumps), saturation reaches 30-60 PSIG.
+R-1336mzz(Z)'s PT chart shows very low operating pressures across the typical heat pump and refrigeration range. At 70°F R-1336mzz(Z) saturates at <PressureAtTemp slug="r-1336mzz-z" tempF={70} /> (slightly sub-atmospheric); at typical chiller evaporator temperatures (45°F), saturation is well into vacuum. At high-temperature-heat-pump condensing temperatures, saturation stays moderate — <PressureAtTemp slug="r-1336mzz-z" tempF={120} /> at 120°F and <PressureAtTemp slug="r-1336mzz-z" tempF={150} /> at 150°F.
 
 Single saturation curve (pure refrigerant, no glide). The operating envelope is unique among mainstream refrigerants — substantially lower than R-134a, comparable to R-123 / R-1233zd(E) for low-pressure chiller applications.
 
@@ -144,7 +144,7 @@ The molecular weight (164 g/mol) is the highest among mainstream HFO refrigerant
 
 <TechSection icon="trending" tone="amber" title="High boiling point enables high-temperature heat pump applications">
 
-R-1336mzz(Z)'s 92°F normal boiling point is the key feature for high-temperature heat pump applications. At typical industrial process heating delivery temperatures (100-150°C / 212-302°F), R-1336mzz(Z) operates at moderate condensing pressures (30-60 PSIG) — within compressor design tolerances.
+R-1336mzz(Z)'s 92°F normal boiling point is the key feature for high-temperature heat pump applications. At typical industrial process heating delivery temperatures (100-150°C / 212-302°F), R-1336mzz(Z) operates at moderate condensing pressures — within compressor design tolerances.
 
 For comparison, R-134a or R-410A at the same condensing temperatures would operate at very high pressures — well above standard equipment design ratings or requiring transcritical operation. R-1336mzz(Z) extends the temperature range of practical vapor-compression heat pumps significantly above conventional HFC refrigerants.
 

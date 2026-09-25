@@ -9,9 +9,9 @@ const PAGE_URL = `${SITE_URL}/refrigerant-gwp-rankings/`;
 const { published: PUBLISHED, updated: MODIFIED } = contentDates("/refrigerant-gwp-rankings/");
 
 export const metadata: Metadata = pageMetadata({
-  title: "Refrigerant GWP Rankings: All 61 Compared (AR5 & AR6)",
+  title: "Refrigerant GWP Rankings: All 60 Compared (AR5 & AR6)",
   description:
-    "Sortable GWP table for 61 refrigerants from R744 (GWP 1) to R404A (3922). AIM Act 700 and EU F-Gas 150 thresholds marked. AR5 vs AR6 side by side.",
+    "Sortable GWP table for 60 refrigerants from R744 (GWP 1) to R404A (3922). AIM Act 700 and EU F-Gas 150 thresholds marked. AR5 vs AR6 side by side.",
   path: "/refrigerant-gwp-rankings/",
 });
 
@@ -24,7 +24,7 @@ function buildSchema() {
       "@id": `${PAGE_URL}#article`,
       headline: "HVAC Refrigerant Global Warming Potential (GWP) Rankings",
       description:
-        "Sortable, filterable table of 61 common HVAC refrigerants by Global Warming Potential. IPCC AR5 (the EPA AIM Act figure) and AR6 columns. Cross-reference for EU F-Gas Regulation and AIM Act thresholds.",
+        "Sortable, filterable table of 60 common HVAC refrigerants by Global Warming Potential. IPCC AR5 (the EPA AIM Act figure) and AR6 columns. Cross-reference for EU F-Gas Regulation and AIM Act thresholds.",
       url: PAGE_URL,
       datePublished: PUBLISHED,
       dateModified: MODIFIED,
@@ -38,7 +38,7 @@ function buildSchema() {
       "@id": `${PAGE_URL}#dataset`,
       name: "HVAC Refrigerant Global Warming Potential Rankings",
       description:
-        "100-year GWP (IPCC AR5 and AR6) for 61 common HVAC refrigerants, with ASHRAE 34 safety class, ODP, and current EPA regulatory status.",
+        "100-year GWP (IPCC AR5 and AR6) for 60 common HVAC refrigerants, with ASHRAE 34 safety class, ODP, and current EPA regulatory status.",
       url: PAGE_URL,
       license: "https://creativecommons.org/licenses/by/4.0/",
       creator: { "@id": `${SITE_URL}/#organization` },

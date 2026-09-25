@@ -15,7 +15,7 @@ export function SiteHeader() {
           <span className="flex min-w-0 flex-col leading-none">
             <span className="truncate text-sm font-bold tracking-tight">HVAC PT Charts</span>
             <span className="mt-0.5 hidden truncate text-[10px] font-medium uppercase tracking-wider text-zinc-500 sm:inline dark:text-zinc-400">
-              Verified saturation data &middot; 61 refrigerants
+              Verified saturation data &middot; 60 refrigerants
             </span>
           </span>
         </Link>

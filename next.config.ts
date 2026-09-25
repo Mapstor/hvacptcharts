@@ -61,6 +61,12 @@ const nextConfig: NextConfig = {
       // refrigerant detail page.
       { source: "/r-410a", destination: "/refrigerant/r-410a/", statusCode: 301 },
 
+      // ── R-1233zd(Z) merged into R-1233zd(E) (task 4C, 2026-09). The cis
+      // isomer is research-grade — no CoolProp 8 equation of state and no
+      // commercial product — so its page was removed. 301 to the commercial
+      // (E) isomer, which carries the E/Z isomer explanation.
+      { source: "/refrigerant/r-1233zd-z", destination: "/refrigerant/r-1233zd-e/", statusCode: 301 },
+
       // ── Duplicate / old-form comparison URLs → canonical ordered pair.
       // WP served /r-410a-vs-r-32/ as its own page (duplicate of the canonical
       // /r-32-vs-r-410a/); /r410a-vs-r32/ (no hyphens) and the reversed

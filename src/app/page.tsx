@@ -89,7 +89,7 @@ function buildSchema() {
     {
       "@type": "CollectionPage",
       "@id": `${SITE_URL}/#collectionpage`,
-      name: "HVAC PT Charts — Verified Pressure-Temperature Data for 61 Refrigerants",
+      name: "HVAC PT Charts — Verified Pressure-Temperature Data for 60 Refrigerants",
       description:
         "Field reference for HVAC professionals: saturation pressure-temperature charts, superheat / subcooling / charge calculators, retrofit and comparison tools, safety classifications, and GWP rankings.",
       url: `${SITE_URL}/`,

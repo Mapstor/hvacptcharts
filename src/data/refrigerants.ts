@@ -147,6 +147,34 @@ export const DataStatus = z.enum([
 ]);
 export type DataStatus = z.infer<typeof DataStatus>;
 
+/**
+ * One equation-of-state or mixture-model citation backing a `"precomputed"`
+ * PT table (CoolProp 8.0.0 fluids: R-515B, R-515A, R-514A, R-450A,
+ * R-1336mzz(Z), R-1224yd(Z)). Rendered as a numbered source under the PT table.
+ */
+export const EosReference = z.object({
+  /** "eos" (pure-component equation of state) or "mixture" (binary mixing model). */
+  kind: z.enum(["eos", "mixture"]),
+  /** Display label — the component ("R-1234ze(E)") or the pair ("R-134a/R-1234ze(E)"). */
+  label: z.string(),
+  /** Full bibliographic citation string. */
+  citation: z.string(),
+});
+export type EosReference = z.infer<typeof EosReference>;
+
+/**
+ * A manufacturer-datasheet cross-check for a `"precomputed"` PT table: the
+ * one-sentence agreement note rendered under the table, plus the document it
+ * was checked against. `url`/`source` are null/empty for R-515A (computed-only;
+ * no manufacturer chart exists).
+ */
+export const CrossCheck = z.object({
+  source: z.string(),
+  url: z.string().nullable(),
+  note: z.string(),
+});
+export type CrossCheck = z.infer<typeof CrossCheck>;
+
 export const DataSource = z.object({
   ptChartSource: z.string(),
   ptChartGeneratedAt: z.string(),
@@ -155,6 +183,16 @@ export const DataSource = z.object({
   gwpSource: z.string(),
   dataStatus: DataStatus.optional(),
   primarySources: z.array(PrimarySource).optional(),
+  /**
+   * PT-computation engine for `"precomputed"` fluids. "CoolProp" / "8.0.0".
+   * Absent on CoolProp-7.2.0 (`ptChartSource` string) and datasheet fluids.
+   */
+  engine: z.string().optional(),
+  engineVersion: z.string().optional(),
+  /** EOS + mixture-model citations backing the precomputed table. */
+  references: z.array(EosReference).optional(),
+  /** Manufacturer-datasheet cross-checks (one rendered sentence each). */
+  crossChecks: z.array(CrossCheck).optional(),
 });
 export type DataSource = z.infer<typeof DataSource>;
 

@@ -99,9 +99,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "HVAC PT Calculator: Calculate Pressure And Temperature (61 Refrigerants)",
+  title: "HVAC PT Calculator: Calculate Pressure And Temperature (60 Refrigerants)",
   description:
-    "Instant saturation lookup for 61 refrigerants: temperature → PSIG or pressure → °F, bubble/dew handled for blends. 70°F R410A = 201.8 PSIG saturation.",
+    "Instant saturation lookup for 60 refrigerants: temperature → PSIG or pressure → °F, bubble/dew handled for blends. 70°F R410A = 201.8 PSIG saturation.",
   path: "/pt-calculator/",
 });
 

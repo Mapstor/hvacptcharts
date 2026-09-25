@@ -82,7 +82,7 @@ Per-refrigerant detail pages contain: PT charts (10-200°F), critical pressure +
   const referenceSection = `
 ## Reference + Comparison
 
-- [Refrigerant Safety Classifications](${SITE_URL}/refrigerant-safety-classifications/): All 61 refrigerants sortable by ASHRAE 34 safety class (A1/A2L/A2/A3/B1/B2L/B2/B3)
+- [Refrigerant Safety Classifications](${SITE_URL}/refrigerant-safety-classifications/): All 60 refrigerants sortable by ASHRAE 34 safety class (A1/A2L/A2/A3/B1/B2L/B2/B3)
 - [Refrigerant GWP Rankings](${SITE_URL}/refrigerant-gwp-rankings/): All refrigerants ranked by Global Warming Potential (AIM Act 700 GWP threshold marked)
 
 ## "What Pressure Should X Be" Quick References

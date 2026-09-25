@@ -12,7 +12,6 @@ Each file in this directory is a skeleton: `ptChart: []` plus physical propertie
 |---|---|
 | `r-1150` | NIST WebBook (Ethylene), subcritical region only (Tcrit ≈ 9.2°C / 48.6°F) |
 | `r-1224yd-z` | AGC AMOLEA 1224yd technical data sheet |
-| `r-1233zd-z` | Honeywell datasheet (Z-isomer, specialty applications) |
 | `r-1336mzz-z` | Chemours Opteon 1100 technical data sheet |
 | `r-438a` | Honeywell Genetron MO99 technical data sheet |
 | `r-448a` | Honeywell Solstice N40 (R-448A) technical data sheet |

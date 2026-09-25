@@ -113,7 +113,6 @@ const LIQUID_DENSITY_FACTOR_VS_R410A: Record<string, number> = {
   "r-1234ze-e": 0.96,
   "r-1234ze-z": 0.98,
   "r-1233zd-e": 1.95,
-  "r-1233zd-z": 1.95,
   "r-1224yd-z": 1.95,
   "r-1336mzz-z": 1.95,
   // Hydrocarbons — much lower liquid density

@@ -98,3 +98,92 @@ if (datasheetErrors.length > 0) {
 }
 
 console.log(`OK  Verified ${DATASHEET_ANCHORS.length} datasheet anchor points across ${new Set(DATASHEET_ANCHORS.map((a) => a.slug)).size} fluids. All within +/-${DATASHEET_TOLERANCE_F}°F of published values.`);
+
+// ─────────────────────────────────────────────────────────────────────────
+// Precomputed anchors — Task 4C (CoolProp 8.0.0 fluids)
+//
+// The six restored chiller/HTHP refrigerants (R-515B, R-515A, R-514A, R-450A,
+// R-1336mzz(Z), R-1224yd(Z)) carry PT tables computed out-of-band with CoolProp
+// 8.0.0 and stored in data/precomputed/coolprop8-pt.json. These anchors pin the
+// converted site values (PSIG at ±0.05) and assert the physical invariants
+// bubble ≥ dew and monotonically rising pressure with temperature.
+// ─────────────────────────────────────────────────────────────────────────
+
+interface PrecomputedAnchor {
+  slug: string;
+  tempF: number;
+  side: "bubble" | "dew";
+  psig: number;
+  note?: string;
+}
+
+const PRECOMPUTED_ANCHORS: PrecomputedAnchor[] = [
+  { slug: "r-515b", tempF: 40, side: "bubble", psig: 22.16 },
+  { slug: "r-515a", tempF: 40, side: "bubble", psig: 22.14 },
+  { slug: "r-514a", tempF: 100, side: "bubble", psig: 5.1, note: "19.79 psia" },
+  { slug: "r-450a", tempF: 40, side: "bubble", psig: 29.8 },
+  { slug: "r-450a", tempF: 40, side: "dew", psig: 28.85 },
+  { slug: "r-1336mzz-z", tempF: 100, side: "bubble", psig: 2.48 },
+  { slug: "r-1224yd-z", tempF: 100, side: "bubble", psig: 18.24 },
+];
+const PRECOMPUTED_TOLERANCE = 0.05;
+const PRECOMPUTED_SLUGS = ["r-515b", "r-515a", "r-514a", "r-450a", "r-1336mzz-z", "r-1224yd-z"];
+
+const precomputedErrors: string[] = [];
+
+for (const a of PRECOMPUTED_ANCHORS) {
+  const r = refrigerants.find((x) => x.slug === a.slug);
+  if (!r) {
+    precomputedErrors.push(`${a.slug} not found in dataset`);
+    continue;
+  }
+  const row = r.ptChart.find((p) => p.tempF === a.tempF);
+  if (!row) {
+    precomputedErrors.push(`${a.slug}: no ptChart row at ${a.tempF}°F`);
+    continue;
+  }
+  const got = a.side === "bubble" ? row.bubblePsig : row.dewPsig;
+  const delta = Math.abs(got - a.psig);
+  if (delta > PRECOMPUTED_TOLERANCE) {
+    precomputedErrors.push(
+      `${a.slug} @ ${a.tempF}°F ${a.side}: ${got} PSIG, expected ${a.psig} PSIG (drift ${delta.toFixed(3)} > ${PRECOMPUTED_TOLERANCE})`,
+    );
+  }
+}
+
+// Invariants for every precomputed table: bubble ≥ dew, and both curves rise
+// monotonically with temperature.
+for (const slug of PRECOMPUTED_SLUGS) {
+  const r = refrigerants.find((x) => x.slug === slug);
+  if (!r) {
+    precomputedErrors.push(`${slug} not found in dataset`);
+    continue;
+  }
+  if (r.ptChart.length === 0) {
+    precomputedErrors.push(`${slug}: empty ptChart (expected precomputed table)`);
+    continue;
+  }
+  const rows = [...r.ptChart].sort((x, y) => x.tempF - y.tempF);
+  for (let i = 0; i < rows.length; i++) {
+    if (rows[i].bubblePsig < rows[i].dewPsig - 1e-6) {
+      precomputedErrors.push(`${slug} @ ${rows[i].tempF}°F: bubble ${rows[i].bubblePsig} < dew ${rows[i].dewPsig}`);
+    }
+    if (i > 0) {
+      if (rows[i].bubblePsig < rows[i - 1].bubblePsig - 1e-6) {
+        precomputedErrors.push(`${slug}: bubble not rising at ${rows[i].tempF}°F (${rows[i - 1].bubblePsig} → ${rows[i].bubblePsig})`);
+      }
+      if (rows[i].dewPsig < rows[i - 1].dewPsig - 1e-6) {
+        precomputedErrors.push(`${slug}: dew not rising at ${rows[i].tempF}°F (${rows[i - 1].dewPsig} → ${rows[i].dewPsig})`);
+      }
+    }
+  }
+}
+
+if (precomputedErrors.length > 0) {
+  console.error(`\nx  Precomputed anchor verification FAILED (${precomputedErrors.length} issue${precomputedErrors.length === 1 ? "" : "s"}):\n`);
+  for (const e of precomputedErrors) console.error(`  - ${e}`);
+  console.error("\nFix data/precomputed/coolprop8-pt.json or re-run the precomputed pipeline (scripts/generate-refrigerant-data.*).\n");
+  process.exit(1);
+}
+
+console.log(`OK  Verified ${PRECOMPUTED_ANCHORS.length} precomputed anchor points + bubble≥dew / monotonic invariants across ${PRECOMPUTED_SLUGS.length} CoolProp 8.0.0 fluids. All within +/-${PRECOMPUTED_TOLERANCE} PSIG.`);

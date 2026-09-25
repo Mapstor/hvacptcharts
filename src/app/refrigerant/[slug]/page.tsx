@@ -340,16 +340,20 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                 </div>
               </div>
             </div>
-            <p className="mt-3 break-words text-xs text-zinc-500">
-              Saturation values from {r.dataSource.ptChartSource}. Operating pressure on a running system differs —
-              {whatPressureId ? (
-                <>
-                  {" "}see <Link href={`/what-pressure-should-${whatPressureId}/`} className="underline">what {r.displayName} operating pressures should be</Link>.
-                </>
-              ) : (
-                <> see the operating-pressure references for in-use values.</>
-              )}
-            </p>
+            {r.dataSource.engine === "CoolProp" && (r.dataSource.references?.length ?? 0) > 0 ? (
+              <PrecomputedSourceBlock dataSource={r.dataSource} />
+            ) : (
+              <p className="mt-3 break-words text-xs text-zinc-500">
+                Saturation values from {r.dataSource.ptChartSource}. Operating pressure on a running system differs —
+                {whatPressureId ? (
+                  <>
+                    {" "}see <Link href={`/what-pressure-should-${whatPressureId}/`} className="underline">what {r.displayName} operating pressures should be</Link>.
+                  </>
+                ) : (
+                  <> see the operating-pressure references for in-use values.</>
+                )}
+              </p>
+            )}
           </Section>
         ) : r.ptTable && r.ptTable.length > 0 ? (
           <Section
@@ -408,8 +412,10 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
               Full saturation values at 1° increments — toggle between °F / PSIG and °C / kPa.
               Use <strong>Print / Save as PDF</strong> for laminated shop reference, or
               download the CSV / JSON below for use in other tools. {r.displayName} PT chart
-              data: CoolProp 7.2.0 (REFPROP-compatible Helmholtz EOS) or manufacturer
-              datasheet, validated against AHRI Standard 700-2019.
+              data:{" "}
+              {r.dataSource.engine === "CoolProp" && r.dataSource.engineVersion === "8.0.0"
+                ? "CoolProp 8.0.0 (published Helmholtz equations of state / mixture models — see the source citations above)"
+                : "CoolProp 7.2.0 (REFPROP-compatible Helmholtz EOS) or manufacturer datasheet, validated against AHRI Standard 700-2019"}.
             </p>
           </Section>
         ) : null}
@@ -806,6 +812,51 @@ function citeInline(text: string, idx: Map<string, number>): React.ReactNode[] {
 function paragraphs(text: string, sources?: { id: string }[]) {
   const idx = citationIndex(sources);
   return text.split(/\n\s*\n/).map((p, i) => <p key={i}>{citeInline(p.trim(), idx)}</p>);
+}
+
+/**
+ * Source + verification line rendered under the PT table for `"precomputed"`
+ * fluids (CoolProp 8.0.0): "Computed with CoolProp 8.0.0", the numbered EOS /
+ * mixture-model citations, and each manufacturer-datasheet cross-check sentence
+ * with a link to the document it was checked against.
+ */
+function PrecomputedSourceBlock({ dataSource }: { dataSource: Refrigerant["dataSource"] }) {
+  const refs = dataSource.references ?? [];
+  const crossChecks = dataSource.crossChecks ?? [];
+  return (
+    <div className="mt-3 space-y-2 break-words text-xs text-zinc-500">
+      <p>
+        Computed with {dataSource.engine} {dataSource.engineVersion}. Saturation pressures use the following
+        published equation-of-state and mixture-model sources:
+      </p>
+      {refs.length > 0 ? (
+        <ol className="ml-4 list-decimal space-y-1">
+          {refs.map((ref, i) => (
+            <li key={i} id={`src-eos-${i + 1}`}>
+              <span className="font-medium">
+                {ref.kind === "eos" ? "EOS" : "Mixture model"} — {ref.label}:
+              </span>{" "}
+              {ref.citation}
+            </li>
+          ))}
+        </ol>
+      ) : null}
+      {crossChecks.map((cc, i) => (
+        <p key={i}>
+          {cc.note}
+          {cc.url ? (
+            <>
+              {" "}
+              <a href={cc.url} target="_blank" rel="noopener noreferrer" className="underline">
+                View the source document
+              </a>
+              .
+            </>
+          ) : null}
+        </p>
+      ))}
+    </div>
+  );
 }
 
 /**

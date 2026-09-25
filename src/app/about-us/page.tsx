@@ -14,7 +14,7 @@ const { published: PUBLISHED } = contentDates("/about-us/");
 export const metadata: Metadata = pageMetadata({
   title: "About HVAC PT Charts",
   description:
-    "About HVAC PT Charts: a field reference for HVAC professionals with verified pressure-temperature data for 61 refrigerants, calculators for daily service work, and structural guarantees that the data is correct.",
+    "About HVAC PT Charts: a field reference for HVAC professionals with verified pressure-temperature data for 60 refrigerants, calculators for daily service work, and structural guarantees that the data is correct.",
   path: "/about-us/",
 });
 

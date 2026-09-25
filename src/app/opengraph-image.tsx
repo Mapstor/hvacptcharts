@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "HVAC PT Charts — Verified saturation data for 61 refrigerants";
+export const alt = "HVAC PT Charts — Verified saturation data for 60 refrigerants";
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -94,7 +94,7 @@ export default function OpengraphImage() {
             maxWidth: 700,
           }}
         >
-          Verified saturation pressure-temperature data for 61 refrigerants
+          Verified saturation pressure-temperature data for 60 refrigerants
         </div>
 
         <div

@@ -622,7 +622,7 @@ export default function RefrigerantPricesGuidePage() {
               <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">AIM Act exposure, current allowance status, A2L transition timeline.</p>
             </Link>
             <Link href="/refrigerant-gwp-rankings/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
-              <div className="flex items-center gap-2 font-semibold"><TrendingUp className="h-4 w-4 text-blue-600" /> GWP rankings (all 61)</div>
+              <div className="flex items-center gap-2 font-semibold"><TrendingUp className="h-4 w-4 text-blue-600" /> GWP rankings (all 60)</div>
               <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">AIM Act 700-GWP threshold, EU F-Gas 150-GWP threshold marked.</p>
             </Link>
             <Link href="/r-22-vs-r-410a/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">

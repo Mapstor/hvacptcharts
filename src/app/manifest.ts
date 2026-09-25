@@ -13,7 +13,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "HVAC PT Charts",
     short_name: "PT Charts",
     description:
-      "Verified saturation pressure-temperature data for 61 refrigerants, plus calculators for superheat, subcooling, charge, and retrofit.",
+      "Verified saturation pressure-temperature data for 60 refrigerants, plus calculators for superheat, subcooling, charge, and retrofit.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

@@ -22,7 +22,16 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const CONFIG_PATH = path.join(ROOT, "data", "refrigerants.config.json");
 const MANUAL_DIR = path.join(ROOT, "data", "manufacturer-blends");
+const PRECOMPUTED_PATH = path.join(ROOT, "data", "precomputed", "coolprop8-pt.json");
 const OUTPUT_PATH = path.join(ROOT, "data", "refrigerants.json");
+
+// CoolProp component identifiers → site display designations, for the
+// "precomputed" strategy's EOS / mixture-model reference labels.
+const COMP_DISPLAY = {
+  "R1234ze(E)": "R-1234ze(E)", "R227EA": "R-227ea", "R134a": "R-134a",
+  "R1336mzz(Z)": "R-1336mzz(Z)", "R1130(E)": "R-1130(E)", "R1224YDZ": "R-1224yd(Z)",
+};
+const prettyComp = (s) => s.split("/").map((x) => COMP_DISPLAY[x] ?? x).join("/");
 
 const PSI_PER_PA = 1 / 6894.757;
 const KPA_PER_PA = 1 / 1000;
@@ -215,8 +224,76 @@ function computePhysical(identifier, manual) {
   };
 }
 
+// ─────────────────────── "precomputed" strategy ───────────────────────
+// Fluids whose saturation tables were computed out-of-band with CoolProp
+// 8.0.0 (equations of state / mixture models not present in the 7.2.0 WASM
+// build): R-515B, R-515A, R-514A, R-450A, R-1336mzz(Z), R-1224yd(Z). The
+// table is read from data/precomputed/coolprop8-pt.json (bubble/dew in psia)
+// and converted to the site's PSIG/kPag shape with the SAME constants and
+// rounding as generatePtChart — so these pages format like every other fluid.
+
+/** psia → site PSIG/kPag ptChart rows (mirrors generatePtChart's conversion). */
+function precomputedPtChart(table) {
+  return table.map((row) => {
+    const bubPsig = row.bubblePsia * PSI_PER_PA * 6894.757 - PSIG_OFFSET; // == psia − 14.696
+    const dewPsig = row.dewPsia * PSI_PER_PA * 6894.757 - PSIG_OFFSET;
+    const bubKpag = row.bubblePsia * 6894.757 * KPA_PER_PA - KPAG_OFFSET;
+    const dewKpag = row.dewPsia * 6894.757 * KPA_PER_PA - KPAG_OFFSET;
+    return {
+      tempF: row.tempF,
+      tempC: round(((row.tempF - 32) * 5) / 9, 1),
+      bubblePsig: round(bubPsig, 2),
+      dewPsig: round(dewPsig, 2),
+      bubbleKpag: round(bubKpag, 1),
+      dewKpag: round(dewKpag, 1),
+      displayPsig: round((bubPsig + dewPsig) / 2, 2),
+      displayKpag: round((bubKpag + dewKpag) / 2, 1),
+    };
+  });
+}
+
+/** EOS + mixture-model citations resolved from the precomputed JSON. */
+function precomputedReferences(fluid, refMap) {
+  const out = [];
+  for (const e of fluid.eosReferences) out.push({ kind: "eos", label: prettyComp(e.fluid), citation: refMap[e.bibtexKey] });
+  for (const m of fluid.mixtureReferences) out.push({ kind: "mixture", label: prettyComp(m.pair), citation: refMap[m.bibtexKey] });
+  return out;
+}
+
+/** Physical block for a precomputed fluid: boiling point + critical (pures) from
+ * the precomputed JSON; molar mass / density / glide carried in the config entry. */
+function precomputedPhysical(fluid, info) {
+  const bf = fluid.normalBoilingPointF.bubble;
+  // A single critical point exists only for the pure fluids; blends omit it.
+  const critical =
+    fluid.criticalTemperatureF !== undefined && fluid.criticalPressurePsia !== undefined
+      ? {
+          tempC: round(((fluid.criticalTemperatureF - 32) * 5) / 9, 2),
+          tempF: round(fluid.criticalTemperatureF, 2),
+          pressurePsia: round(fluid.criticalPressurePsia, 1),
+          pressurePsig: round(fluid.criticalPressurePsia - PSIG_OFFSET, 1),
+          pressureKpaA: round(fluid.criticalPressurePsia * 6894.757 * KPA_PER_PA, 1),
+          pressureKpaG: round(fluid.criticalPressurePsia * 6894.757 * KPA_PER_PA - KPAG_OFFSET, 1),
+        }
+      : nullCritical();
+  const p = info.physical ?? {};
+  return {
+    boilingPointC: round(((bf - 32) * 5) / 9, 2),
+    boilingPointF: round(bf, 2),
+    critical,
+    molarMassGPerMol: p.molarMassGPerMol ?? null,
+    liquidDensityKgPerM3At25C: p.liquidDensityKgPerM3At25C ?? null,
+    temperatureGlideF: p.temperatureGlideF ?? 0,
+    hasSignificantGlide: p.hasSignificantGlide ?? false,
+  };
+}
+
 async function main() {
   await cp.init();
+
+  const precomputed = fs.existsSync(PRECOMPUTED_PATH)
+    ? JSON.parse(fs.readFileSync(PRECOMPUTED_PATH, "utf8"))
+    : { fluids: {}, references: {}, engineVersion: "8.0.0" };
 
   const config = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8"));
   const slugs = Object.keys(config);
@@ -232,11 +309,30 @@ async function main() {
       const manual = fs.existsSync(manualPath) ? JSON.parse(fs.readFileSync(manualPath, "utf8")) : null;
 
       let ptChart, ptSource, physical;
+      let precomputedDataSource = null;
       if (info.strategy === "manual") {
         const m = loadManualPtChart(slug);
         ptChart = m.ptChart;
         ptSource = m.ptSource;
         physical = computePhysical(null, manual);
+      } else if (info.strategy === "precomputed") {
+        const pc = precomputed.fluids[slug];
+        if (!pc) throw new Error(`strategy "precomputed" for ${slug} but no entry in data/precomputed/coolprop8-pt.json`);
+        ptChart = precomputedPtChart(pc.table);
+        ptSource = "Computed with CoolProp 8.0.0";
+        physical = precomputedPhysical(pc, info);
+        precomputedDataSource = {
+          ptChartSource: ptSource,
+          ptChartGeneratedAt: new Date().toISOString(),
+          ptChartVerifiedAgainst: info.verifiedAgainst ?? [],
+          propertiesSource: info.propertiesSource ?? "CoolProp 8.0.0",
+          gwpSource: info.gwpSource ?? "IPCC AR5",
+          dataStatus: "complete",
+          engine: "CoolProp",
+          engineVersion: precomputed.engineVersion ?? "8.0.0",
+          references: precomputedReferences(pc, precomputed.references),
+          crossChecks: info.crossChecks ?? [],
+        };
       } else {
         ptChart = generatePtChart(info.cpIdentifier);
         ptSource = `CoolProp 7.2.0 ${info.cpIdentifier}`;
@@ -276,7 +372,7 @@ async function main() {
         ptChart,
         ...(ptTable && { ptTable }),
         ...(primaryDatasheet && { primaryDatasheet }),
-        dataSource: {
+        dataSource: precomputedDataSource ?? {
           ptChartSource: ptSource,
           ptChartGeneratedAt: new Date().toISOString(),
           ptChartVerifiedAgainst: info.verifiedAgainst ?? [],

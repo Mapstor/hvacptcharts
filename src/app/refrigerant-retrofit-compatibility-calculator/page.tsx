@@ -63,7 +63,7 @@ export default function RetrofitCompatibilityCalculatorPage() {
         description:
           "Pair-comparison decision tool for refrigerant retrofit feasibility. Evaluates lubricant compatibility, safety class transition, pressure envelope, temperature glide, and application family.",
         featureList: [
-          "Pair-wise compatibility analysis for any two of 61 refrigerants",
+          "Pair-wise compatibility analysis for any two of 60 refrigerants",
           "Five-criterion evaluation: lubricant, safety class, pressure, glide, application",
           "Six-category verdict: drop-in, retrofit with oil change, equipment mods required, not recommended, not feasible",
           "Specific recommendations per pair based on the failure modes detected",

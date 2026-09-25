@@ -122,7 +122,7 @@ export default function GuidesHubPage() {
         {
           heading: "Reference tables",
           items: [
-            { href: "/refrigerant-safety-classifications/", label: "Safety Classifications", blurb: "All 61 refrigerants by ASHRAE 34 class, with full A vs B and 1/2L/2/3 explanation." },
+            { href: "/refrigerant-safety-classifications/", label: "Safety Classifications", blurb: "All 60 refrigerants by ASHRAE 34 class, with full A vs B and 1/2L/2/3 explanation." },
             { href: "/refrigerant-gwp-rankings/", label: "GWP Rankings", blurb: "Sortable IPCC AR5/AR6 values, EU F-Gas and AIM Act thresholds marked." },
           ],
         },

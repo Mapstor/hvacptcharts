@@ -401,7 +401,7 @@ export default function PsychrometricCalculatorPage() {
         { href: "/subcooling-calculator/", label: "Subcooling calculator", blurb: "Liquid line PSIG + °F → SC. TXV charging metric." },
         { href: "/refrigerant-charge-calculator/", label: "Refrigerant charge calculator", blurb: "Line-set adjustment to nameplate charge." },
         { href: "/carrier-410a-charging-chart/", label: "Carrier R-410A charging chart", blurb: "Wet-bulb × outdoor dry-bulb → target superheat for fixed-orifice systems." },
-        { href: "/refrigerant-safety-classifications/", label: "Safety classifications", blurb: "ASHRAE 34 reference for all 61 refrigerants in our dataset." },
+        { href: "/refrigerant-safety-classifications/", label: "Safety classifications", blurb: "ASHRAE 34 reference for all 60 refrigerants in our dataset." },
         { href: "/high-head-pressure-causes/", label: "High head pressure causes", blurb: "Diagnostic decision tree for high-side problems." },
       ]}
       faqs={FAQS}

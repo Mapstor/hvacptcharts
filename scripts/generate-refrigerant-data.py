@@ -35,7 +35,19 @@ KPAG_OFFSET = 101.325
 ROOT = Path(__file__).parent.parent
 CONFIG_PATH = ROOT / "data" / "refrigerants.config.json"
 MANUAL_DIR = ROOT / "data" / "manufacturer-blends"
+PRECOMPUTED_PATH = ROOT / "data" / "precomputed" / "coolprop8-pt.json"
 OUTPUT_PATH = ROOT / "data" / "refrigerants.json"
+
+# CoolProp component identifiers -> site display designations, for the
+# "precomputed" strategy's EOS / mixture-model reference labels.
+COMP_DISPLAY = {
+    "R1234ze(E)": "R-1234ze(E)", "R227EA": "R-227ea", "R134a": "R-134a",
+    "R1336mzz(Z)": "R-1336mzz(Z)", "R1130(E)": "R-1130(E)", "R1224YDZ": "R-1224yd(Z)",
+}
+
+
+def pretty_comp(s):
+    return "/".join(COMP_DISPLAY.get(x, x) for x in s.split("/"))
 
 TEMP_F_MIN = -40
 TEMP_F_MAX = 150
@@ -176,8 +188,73 @@ def compute_physical(cp_identifier: str | None, manual: dict | None) -> dict:
     }
 
 
+# ----------------------- "precomputed" strategy -----------------------
+# Fluids computed out-of-band with CoolProp 8.0.0 (EOS / mixture models not in
+# the CoolProp build this generator links against): R-515B, R-515A, R-514A,
+# R-450A, R-1336mzz(Z), R-1224yd(Z). Table read from
+# data/precomputed/coolprop8-pt.json (bubble/dew in psia) and converted to the
+# site's PSIG/kPag shape with the SAME constants + rounding as generate_pt_chart.
+
+def precomputed_pt_chart(table):
+    rows = []
+    for row in table:
+        bub_psig = row["bubblePsia"] * PSI_PER_PA * 6894.757 - PSIG_OFFSET  # == psia - 14.696
+        dew_psig = row["dewPsia"] * PSI_PER_PA * 6894.757 - PSIG_OFFSET
+        bub_kpag = row["bubblePsia"] * 6894.757 * KPA_PER_PA - KPAG_OFFSET
+        dew_kpag = row["dewPsia"] * 6894.757 * KPA_PER_PA - KPAG_OFFSET
+        rows.append({
+            "tempF": row["tempF"],
+            "tempC": round((row["tempF"] - 32) * 5 / 9, 1),
+            "bubblePsig": round(bub_psig, 2),
+            "dewPsig": round(dew_psig, 2),
+            "bubbleKpag": round(bub_kpag, 1),
+            "dewKpag": round(dew_kpag, 1),
+            "displayPsig": round((bub_psig + dew_psig) / 2, 2),
+            "displayKpag": round((bub_kpag + dew_kpag) / 2, 1),
+        })
+    return rows
+
+
+def precomputed_references(fluid, ref_map):
+    out = []
+    for e in fluid.get("eosReferences", []):
+        out.append({"kind": "eos", "label": pretty_comp(e["fluid"]), "citation": ref_map.get(e["bibtexKey"])})
+    for m in fluid.get("mixtureReferences", []):
+        out.append({"kind": "mixture", "label": pretty_comp(m["pair"]), "citation": ref_map.get(m["bibtexKey"])})
+    return out
+
+
+def precomputed_physical(fluid, info):
+    bf = fluid["normalBoilingPointF"]["bubble"]
+    if fluid.get("criticalTemperatureF") is not None and fluid.get("criticalPressurePsia") is not None:
+        t_f = fluid["criticalTemperatureF"]
+        p_psia = fluid["criticalPressurePsia"]
+        critical = {
+            "tempC": round((t_f - 32) * 5 / 9, 2), "tempF": round(t_f, 2),
+            "pressurePsia": round(p_psia, 1), "pressurePsig": round(p_psia - PSIG_OFFSET, 1),
+            "pressureKpaA": round(p_psia * 6894.757 * KPA_PER_PA, 1),
+            "pressureKpaG": round(p_psia * 6894.757 * KPA_PER_PA - KPAG_OFFSET, 1),
+        }
+    else:
+        critical = {"tempC": None, "tempF": None, "pressurePsia": None,
+                    "pressurePsig": None, "pressureKpaA": None, "pressureKpaG": None}
+    p = info.get("physical", {})
+    return {
+        "boilingPointC": round((bf - 32) * 5 / 9, 2),
+        "boilingPointF": round(bf, 2),
+        "critical": critical,
+        "molarMassGPerMol": p.get("molarMassGPerMol"),
+        "liquidDensityKgPerM3At25C": p.get("liquidDensityKgPerM3At25C"),
+        "temperatureGlideF": p.get("temperatureGlideF", 0),
+        "hasSignificantGlide": p.get("hasSignificantGlide", False),
+    }
+
+
 def main():
     config = json.loads(CONFIG_PATH.read_text())
+    precomputed = (json.loads(PRECOMPUTED_PATH.read_text())
+                   if PRECOMPUTED_PATH.exists()
+                   else {"fluids": {}, "references": {}, "engineVersion": "8.0.0"})
     output = []
     errors = []
 
@@ -189,9 +266,29 @@ def main():
             if manual_path.exists():
                 manual = json.loads(manual_path.read_text())
 
+            precomputed_data_source = None
             if info["strategy"] == "manual":
                 pt_chart, pt_source = load_manual_pt_chart(slug)
                 physical = compute_physical(None, manual)
+            elif info["strategy"] == "precomputed":
+                pc = precomputed["fluids"].get(slug)
+                if pc is None:
+                    raise ValueError(f'strategy "precomputed" for {slug} but no entry in data/precomputed/coolprop8-pt.json')
+                pt_chart = precomputed_pt_chart(pc["table"])
+                pt_source = "Computed with CoolProp 8.0.0"
+                physical = precomputed_physical(pc, info)
+                precomputed_data_source = {
+                    "ptChartSource": pt_source,
+                    "ptChartGeneratedAt": datetime.now(timezone.utc).isoformat(),
+                    "ptChartVerifiedAgainst": info.get("verifiedAgainst", []),
+                    "propertiesSource": info.get("propertiesSource", "CoolProp 8.0.0"),
+                    "gwpSource": info.get("gwpSource", "IPCC AR5"),
+                    "dataStatus": "complete",
+                    "engine": "CoolProp",
+                    "engineVersion": precomputed.get("engineVersion", "8.0.0"),
+                    "references": precomputed_references(pc, precomputed.get("references", {})),
+                    "crossChecks": info.get("crossChecks", []),
+                }
             else:
                 pt_chart = generate_pt_chart(info["cpIdentifier"])
                 pt_source = f"CoolProp 7.2.0 {info['cpIdentifier']}"
@@ -218,7 +315,7 @@ def main():
                 **({"noindexReason": info["noindexReason"]} if info.get("noindexReason") else {}),
                 "regulatoryStatus": info["regulatoryStatus"],
                 "ptChart": pt_chart,
-                "dataSource": {
+                "dataSource": precomputed_data_source if precomputed_data_source else {
                     "ptChartSource": pt_source,
                     "ptChartGeneratedAt": datetime.now(timezone.utc).isoformat(),
                     "ptChartVerifiedAgainst": info.get("verifiedAgainst", []),

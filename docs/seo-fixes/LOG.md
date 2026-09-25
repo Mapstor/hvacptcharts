@@ -493,3 +493,81 @@ Nothing else is in the file. Redirects remain the single source of truth in
 
 **Verified:** valid JSON, top-level keys `$schema` + `git` only; does not affect
 `next build`. **Not pushed.**
+
+---
+
+## 2026-09-25 — Fix 4C/18: restore 6 refrigerant PT pages (CoolProp 8.0.0 precomputed); merge R-1233zd(Z) → R-1233zd(E)
+
+Task 4B noindexed 8 fluids as `pt-data-missing`. CoolProp 8.0.0 (June 2026) added the
+missing equations of state / mixture models, so six of them now ship real PT tables and
+go back into the index. R-1233zd(Z) — research-grade, no CoolProp 8 EOS, no product — is
+removed and 301'd to the commercial (E) isomer. R-503 stays noindexed (retired, saturates
+only to ~67°F, no traffic).
+
+**New "precomputed" source type.**
+- Moved `coolprop8-pt.json` → `data/precomputed/coolprop8-pt.json` and
+  `generate_coolprop8_pt.py` → `scripts/generate_coolprop8_pt.py` (numbers untouched).
+- Added a `strategy: "precomputed"` branch to BOTH generators
+  (`generate-refrigerant-data.mjs` + `.py`): reads the precomputed table (bubble/dew in
+  psia), converts to the site's PSIG/kPag shape with the **same constant (14.696) and
+  rounding** as CoolProp fluids, resolves EOS/mixture references, and carries the
+  cross-check sentences from config.
+- Extended the Zod `DataSource` schema: `engine`, `engineVersion`, `references[]`
+  (`{kind, label, citation}`), `crossChecks[]` (`{source, url, note}`).
+- Fed r-515b, r-515a, r-514a, r-450a, r-1336mzz-z, r-1224yd-z into
+  `refrigerants.json` + `refrigerants.config.json` (191-row tables, `indexable: true`,
+  `noindexReason` removed). Boiling point from the JSON; critical point from the JSON for
+  the two pure fluids (R-1336mzz(Z), R-1224yd(Z)); blend criticals omitted (no single
+  critical point, none manufacturer-attributed → "No single point — blend critical locus").
+
+**Trade-name / maker fixes** (were wrong or imprecise in config/data/schema):
+- R-450A: **"Opteon XP10" (that is R-513A) → "Solstice N13" (Honeywell)** — fixed
+  `tradeNames`, `altSpellings` (dropped "Opteon XP10"; JSON-LD `alternateName` now
+  `["R450A","450A","Solstice N13"]`), `propertiesSource`, and the keyStats trade-name.
+- R-515B: maker → **Solstice Advanced Materials** (the former Honeywell refrigerants
+  business); Solstice N15.
+- R-514A: Chemours **Opteon XP30** (confirmed).
+- R-1336mzz(Z): **Opteon MZ** primary (also sold as Opteon SF33, Opteon 1100).
+- R-1224yd(Z): AGC **AMOLEA 1224yd** (confirmed).
+- R-515A: **Honeywell development blend, no current product** — `tradeNames: []`; MDX
+  reframed (commercial member of the family is R-515B / Solstice N15).
+
+**Rendered source line** (`PrecomputedSourceBlock` under the PT curve): "Computed with
+CoolProp 8.0.0", a numbered EOS/mixture-model list, and one cross-check sentence linking
+the manufacturer document. The PT-table caption is now engine-aware (no false "CoolProp
+7.2.0" for these fluids).
+
+**Step 5 — hand-typed pressures/temperatures removed** from the six pages' prose, FAQs
+and meta. TechSection bodies now render values from the dataset via
+`<PressureAtTemp slug tempF />`; frontmatter (narrative/FAQ/keyStats — not MDX) had the
+numbers dropped/rephrased; keyStats boiling points and the `coolprop` source label
+updated to CoolProp 8.0.0. (r-514a and r-1224yd-z carried no saturation literals.)
+
+**Build asserts** (`run-verify.ts`, ±0.05 PSIG) + bubble≥dew and rising-with-temperature
+for all six: R-515B 40°F 22.16 · R-515A 40°F 22.14 · R-514A 100°F bubble 5.10 (19.79 psia)
+· R-450A 40°F bubble 29.80 / dew 28.85 · R-1336mzz(Z) 100°F 2.48 · R-1224yd(Z) 100°F 18.24.
+
+**R-1233zd(Z) removal:** deleted the config/data entries, `manufacturer-blends/r-1233zd-z.json`,
+`content/refrigerants/r-1233zd-z.mdx`, the `charge.ts` liquid-density entry, the
+content-dates entry, and the manufacturer-blends README row. Added a
+`statusCode: 301` from `/refrigerant/r-1233zd-z` → `/refrigerant/r-1233zd-e/` in
+`next.config.ts` + two `verify-redirects` cases (45/45). The useful E/Z isomer explanation
+moved into a short "E vs Z isomer" section on the R-1233zd(E) page (no numbers for Z). No
+internal href pointed at the Z slug; it was already out of the sitemap/ItemList.
+
+**Dataset count 61 → 60:** removing R-1233zd(Z) drops the total, so 33 hardcoded
+"61 refrigerants" strings across 20 files (titles, meta, OG/Twitter images, header, hubs,
+feed, llms.txt) were corrected to 60 for accuracy.
+
+**Dates:** the six pages + R-1233zd(E) dated 2026-09-25 in `content-dates.json` (real
+content changes — this commit does **not** carry `[no-date]`).
+
+**Verified (production build, `next start`):** build exit 0; all gates pass —
+run-verify (60 refrigerants, 10 CoolProp + 6 datasheet + **7 precomputed** anchors +
+invariants), verify-redirects 45/45, verify-metadata (138 routes), verify-content-dates
+132/132, verify-no-generator-text (0 disallowed), verify-no-psig-literals, validate-schema;
+eslint 0 errors. Curl: each of the six returns 200 with
+`<meta name="robots" content="index, follow">`, the PT table + 40°F/100°F rows, the source
++ cross-check lines, and appears in `sitemap.xml`; `/refrigerant/r-1233zd-z/` → single 301
+→ `/refrigerant/r-1233zd-e/` → 200; no built HTML contains "in this build"; R-450A is
+never labeled "XP10" (XP10 appears only in the R-513A comparison). **Not pushed.**

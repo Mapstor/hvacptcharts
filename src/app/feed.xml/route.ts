@@ -19,7 +19,7 @@ interface FeedEntry {
 
 const ENTRIES: FeedEntry[] = [
   // Calculators
-  { title: "PT Calculator", url: "/pt-calculator/", summary: "Pressure-temperature lookup for any of 61 refrigerants. NIST REFPROP-sourced data.", updated: "2026-06-09" },
+  { title: "PT Calculator", url: "/pt-calculator/", summary: "Pressure-temperature lookup for any of 60 refrigerants. NIST REFPROP-sourced data.", updated: "2026-06-09" },
   { title: "Superheat Calculator", url: "/superheat-calculator/", summary: "Suction-line superheat calculation with TXV and fixed-orifice target ranges.", updated: "2026-06-09" },
   { title: "Subcooling Calculator", url: "/subcooling-calculator/", summary: "Liquid-line subcooling for TXV system charge verification.", updated: "2026-06-09" },
   { title: "Psychrometric Calculator", url: "/psychrometric-calculator/", summary: "DB/WB/RH/DP/enthalpy/humidity ratio per ASHRAE Handbook 2021 Ch.1 equations.", updated: "2026-06-09" },
@@ -37,7 +37,7 @@ const ENTRIES: FeedEntry[] = [
   { title: "PT Chart Guide", url: "/pt-chart-guide/", summary: "How to read PT charts + practical field use + common errors.", updated: "2026-06-09" },
   { title: "Superheat & Subcooling Fundamentals", url: "/superheat-subcooling-fundamentals/", summary: "TXV vs fixed-orifice target ranges + measurement methodology.", updated: "2026-06-09" },
   { title: "Refrigerant Comparison Guide", url: "/refrigerant-comparison-guide/", summary: "A1/A2L/A2/A3/B safety classifications + GWP/ODP framework + AIM Act compliance.", updated: "2026-06-09" },
-  { title: "Refrigerant Safety Classifications", url: "/refrigerant-safety-classifications/", summary: "All 61 refrigerants sortable by ASHRAE 34 safety class.", updated: "2026-06-09" },
+  { title: "Refrigerant Safety Classifications", url: "/refrigerant-safety-classifications/", summary: "All 60 refrigerants sortable by ASHRAE 34 safety class.", updated: "2026-06-09" },
   { title: "Refrigerant GWP Rankings", url: "/refrigerant-gwp-rankings/", summary: "Refrigerants ranked by Global Warming Potential (AIM Act 700 GWP threshold marked).", updated: "2026-06-09" },
   { title: "High Head Pressure Causes", url: "/high-head-pressure-causes/", summary: "8-root-cause decision tree for high-side pressure problems.", updated: "2026-06-09" },
 ];

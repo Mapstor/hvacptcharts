@@ -48,7 +48,7 @@ const NAV: NavGroup[] = [
         items: [
           { href: "/refrigerant-safety-classifications/", label: "Safety classifications" },
           { href: "/refrigerant-gwp-rankings/", label: "GWP rankings" },
-          { href: "/#find", label: "Browse all 61 refrigerants →" },
+          { href: "/#find", label: "Browse all 60 refrigerants →" },
         ],
       },
       // Adding a third section triggers the DesktopDropdown `isWide` layout

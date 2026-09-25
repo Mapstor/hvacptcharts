@@ -57,7 +57,7 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Subcooling Calculator: What Should Subcooling Be? (61 Refrigerants)",
+  title: "Subcooling Calculator: What Should Subcooling Be? (60 Refrigerants)",
   description:
     "Liquid PSIG + line temp → subcooling with overcharge/undercharge reading. TXV target 8–12°F. Works for all common refrigerants including blends with glide.",
   path: "/subcooling-calculator/",
