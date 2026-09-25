@@ -1,21 +1,18 @@
 import type { MetadataRoute } from "next";
 import { refrigerants } from "@/data/refrigerants";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates } from "@/lib/content-dates";
 
 /**
  * Sitemap generated at build time. Per docs/spec/03-SITEMAP_MIGRATION.md.
  *
  * Only includes URLs that actually return 200 in the current build.
  *
- * Refrigerant page lastModified comes from the data layer
- * (r.dataSource.ptChartGeneratedAt) — when the dataset is regenerated, every
- * refrigerant URL gets a new lastModified, which Google's crawl scheduler
- * respects.
- *
- * Guide and comparison URLs derive lastModified from the git log of their
- * content file (page.tsx for guides, .mdx for comparisons). This matches the
- * TechArticle dateModified emitted on the same pages, so the sitemap and the
- * JSON-LD tell Google the same story about freshness.
+ * Every lastModified comes from data/content-dates.json (the single source of
+ * honest per-route dates, generated from full git history by
+ * scripts/update-content-dates.mjs). The build never calls git or reads file
+ * mtimes — a shallow Vercel clone can't make pages look modified today. The
+ * lastModified here equals the JSON-LD dateModified on the same page, so the
+ * sitemap and the structured data tell Google the same freshness story.
  */
 
 const BASE_URL = "https://hvacptcharts.com";
@@ -24,8 +21,6 @@ interface StaticEntry {
   url: string;
   priority: number;
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
-  /** Path (relative to repo root) whose git log drives lastModified. */
-  sourceFile?: string;
 }
 
 const STATIC_PAGES: StaticEntry[] = [
@@ -123,50 +118,22 @@ const STATIC_PAGES: StaticEntry[] = [
   { url: "/terms-of-service/", priority: 0.2, changeFrequency: "yearly" },
 ];
 
-/**
- * Given a sitemap URL path, return the repo-relative file whose git log
- * drives lastModified. Comparison pages are MDX; everything else is the
- * page.tsx that renders that route. Called at build time only.
- */
-function inferSourceFile(url: string): string {
-  // Comparison pages: /r-32-vs-r-410a/ → content/comparisons/r-32-vs-r-410a.mdx
-  if (/^\/r-[a-z0-9-]+-vs-r-[a-z0-9-]+\/$/.test(url)) {
-    const slug = url.slice(1, -1);
-    return `content/comparisons/${slug}.mdx`;
-  }
-  if (url === "/") return "src/app/page.tsx";
-  return `src/app${url}page.tsx`;
-}
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  const datasetGeneratedAt = new Date(
-    refrigerants[0]?.dataSource.ptChartGeneratedAt ?? Date.now(),
-  );
+  const staticEntries = STATIC_PAGES.map((p) => ({
+    url: `${BASE_URL}${p.url}`,
+    lastModified: new Date(`${contentDates(p.url).updated}T00:00:00Z`),
+    changeFrequency: p.changeFrequency,
+    priority: p.priority,
+  }));
 
-  const staticEntries = STATIC_PAGES.map((p) => {
-    const src = p.sourceFile ?? inferSourceFile(p.url);
-    let lastModified: Date;
-    try {
-      lastModified = new Date(getFileGitDates(src).modified);
-    } catch {
-      // File resolution failed (e.g. dynamic route with no direct source);
-      // fall back to dataset-regen timestamp so the entry still ships.
-      lastModified = datasetGeneratedAt;
-    }
-    return {
-      url: `${BASE_URL}${p.url}`,
-      lastModified,
-      changeFrequency: p.changeFrequency,
-      priority: p.priority,
-    };
-  });
-
+  // Non-indexable refrigerants (missing PT data / to-be-rebuilt) are excluded.
   const refrigerantEntries = refrigerants.filter((r) => r.indexable).map((r) => {
     const tier1 = ["r-22", "r-410a", "r-134a", "r-32", "r-404a", "r-454b", "r-407c", "r-1234yf", "r-1234ze", "r-744", "r-717", "r-290", "r-600a", "r-123"];
     const priority = tier1.includes(r.slug) ? 0.85 : 0.6;
+    const route = `/refrigerant/${r.slug}/`;
     return {
-      url: `${BASE_URL}/refrigerant/${r.slug}/`,
-      lastModified: new Date(r.dataSource.ptChartGeneratedAt),
+      url: `${BASE_URL}${route}`,
+      lastModified: new Date(`${contentDates(route).updated}T00:00:00Z`),
       changeFrequency: "monthly" as const,
       priority,
     };

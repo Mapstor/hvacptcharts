@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Activity, AlertTriangle, BookOpen, DollarSign, ListChecks, TrendingUp, ShieldCheck, ScrollText } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -18,7 +18,7 @@ import { BarChart } from "@/components/svg/concepts/BarChart";
 import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/refrigerant-prices-guide/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/refrigerant-prices-guide/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/refrigerant-prices-guide/");
 
 export const metadata: Metadata = pageMetadata({
   title: "Refrigerant Prices Guide: Why Costs Keep Rising (AIM Act, F-Gas)",
@@ -136,6 +136,7 @@ export default function RefrigerantPricesGuidePage() {
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Why Refrigerant Prices Keep Rising — The AIM Act, EU F-Gas Phase-Down, and the Three-Tier Pricing Structure
           </h1>
+          <UpdatedLine route="/refrigerant-prices-guide/" />
           <p className="mt-4 text-lg text-zinc-700 dark:text-zinc-300">
             A primary-source guide to the regulatory and market mechanics that determine what you pay for R-410A, R-22, R-32, R-454B, R-134a, and the rest of the HVAC refrigerant market. Every claim sourced from public regulatory documents (40 CFR Part 84, EU Regulation 517/2014, AHRI Standard 700-2019) or financial filings (Hudson Technologies SEC reports). The guide deliberately does not quote current per-cylinder spot prices — see the disclosure box immediately below.
           </p>

@@ -3,14 +3,14 @@ import Link from "next/link";
 import { BookOpen, ListChecks } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { GaugeSignatureDiagram } from "@/components/diagrams/GaugeSignatureDiagram";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 
 const PAGE_URL = `${SITE_URL}/ac-low-side-pressure-too-high/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/ac-low-side-pressure-too-high/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/ac-low-side-pressure-too-high/");
 
 const R410A_40F = fmtPsigBubble("r-410a", 40);
 const R134A_40F = fmtPsigBubble("r-134a", 40);
@@ -168,6 +168,7 @@ export default function AcLowSidePressureTooHighPage() {
 
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">AC Low Side Pressure Too High</h1>
+          <UpdatedLine route="/ac-low-side-pressure-too-high/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Diagnostic tree covering residential HVAC and automotive AC — overcharge is the most common cause; TXV overfeed, restricted airflow, and internal leakage are the next tier.
           </p>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Activity, AlertTriangle, BookOpen, Gauge, ListChecks, Wrench, Zap, Droplet, Thermometer, Wind } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import {
   ComparisonTable,
   FixCallout,
@@ -17,7 +17,7 @@ import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 import { BarChart } from "@/components/svg/concepts/BarChart";
 
 const PAGE_URL = `${SITE_URL}/hvac-troubleshooting-guide/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/hvac-troubleshooting-guide/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/hvac-troubleshooting-guide/");
 
 export const metadata: Metadata = pageMetadata({
   title: "HVAC Troubleshooting Guide: Diagnose Any Fault Fast (Free 101)",
@@ -158,6 +158,7 @@ export default function HvacTroubleshootingGuidePage() {
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Complete HVAC Troubleshooting Guide — Decision Trees for Cooling, Heating, Airflow &amp; Efficiency Failures
           </h1>
+          <UpdatedLine route="/hvac-troubleshooting-guide/" />
           <p className="mt-4 text-lg text-zinc-700 dark:text-zinc-300">
             Ten symptom categories with cause hierarchies ordered by frequency, quick DIY checks, service-level diagnostic procedures, and escalation logic. Every diagnostic step traces back to ACCA Manual T system-balancing procedures, EPA Section 608 refrigerant handling, and ASHRAE Handbook of Refrigeration. Use the symptom that matches your problem — each section walks from observation to root cause in a deterministic decision tree.
           </p>

@@ -16,8 +16,6 @@ import {
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
 
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
-
 const FAQS = [
   {
     q: "What does this calculator actually compute?",
@@ -76,11 +74,10 @@ export default function RefrigerantChargeCalculatorPage() {
           "Cross-references to superheat / subcooling verification calculators",
           "Reference table of baseline oz/ft values by liquid-line OD",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "Refrigerant Charge Calculator",
       }}
       introOneLiner="Adjust the nameplate charge for the actual line-set length. Calculator computes per-foot mass from refrigerant liquid density and applies the delta to your nameplate figure."
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/refrigerant-charge-calculator/"
       howTo={{
         steps: [
           "Read the nameplate charge from the unit's data plate (typically in lb; some smaller units list oz — divide by 16 for lb).",

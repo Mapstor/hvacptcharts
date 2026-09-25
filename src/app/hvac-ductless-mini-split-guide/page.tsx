@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Activity, BookOpen, AlertTriangle, ShieldCheck, ListChecks, FileCheck, Wrench, Flame, Zap, Wind, Thermometer, Gauge, Snowflake, Droplet, Cpu } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -18,7 +18,7 @@ import { BarChart } from "@/components/svg/concepts/BarChart";
 import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-ductless-mini-split-guide/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/hvac-ductless-mini-split-guide/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/hvac-ductless-mini-split-guide/");
 
 export const metadata: Metadata = pageMetadata({
   title: "Ductless Mini-Split Guide: Cold-Climate, A2L, VRF (Free 101)",
@@ -134,6 +134,7 @@ export default function HvacDuctlessMiniSplitGuidePage() {
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Ductless Mini-Split & VRF Guide — Single-Zone, Multi-Zone, Cold-Climate Heat Pumps, A2L Refrigerant Transition, Installation, Brand Comparison, and Commercial VRF
           </h1>
+          <UpdatedLine route="/hvac-ductless-mini-split-guide/" />
           <p className="mt-4 text-lg text-zinc-700 dark:text-zinc-300">
             Complete ductless mini-split + variable refrigerant flow (VRF) reference: 5-type system taxonomy (single-zone wall-mount + multi-zone + ducted mini-split + ceiling cassette + floor-mount), cold-climate mini-split deep dive covering Mitsubishi Electric Hyper-Heat (H2i), Daikin LV Series + Aurora, Bosch Climate 5000 BHP, Fujitsu Halcyon, LG Multi V S, Carrier Performance, with honest assessment of -13°F to -15°F rated capacities, multi-zone branch box architecture + sizing pitfalls (the oversized-outdoor-unit problem), commercial VRF systems (Mitsubishi City Multi, Daikin VRV, LG Multi V, Samsung DVM, Toshiba Carrier, Hitachi, Panasonic) including heat recovery vs heat pump VRF, Manual J + Manual S sizing methodology (still required for mini-splits), refrigerant lineset specifications (length, lift, insulation), electrical service + dedicated circuit requirements, condensate drainage including pump considerations, A2L refrigerant transition (R-32 dominant + R-454B emerging + R-410A legacy) with ASHRAE 15 Refrigerant Concentration Limit calculations for small rooms, complete 14-manufacturer brand vendor comparison, DIY mini-splits (MrCool, Pioneer, Senville) with explicit EPA Section 608 caveats, 9 common installation failures specific to mini-splits, AHRI Directory + ENERGY STAR Most Efficient equipment verification, cost framework by system class, mini-split-specific maintenance procedures. Sourced throughout from AHRI 210/240 + 1230, ASHRAE 15 + 34 + 90.2, EPA Section 608 + AIM Act, UL 60335-2-40, ENERGY STAR.
           </p>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import {
   ComparisonTable,
   Derived,
@@ -19,7 +19,7 @@ import { GaugeSignatureDiagram } from "@/components/diagrams/GaugeSignatureDiagr
 import { BlockedCondenserDiagram } from "@/components/diagrams/BlockedCondenserDiagram";
 
 const PAGE_URL = `${SITE_URL}/high-head-pressure-causes/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/high-head-pressure-causes/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/high-head-pressure-causes/");
 
 export const metadata: Metadata = pageMetadata({
   title: "High Head Pressure Causes: 8-Cause HVAC Diagnostic Tree",
@@ -168,6 +168,7 @@ export default function HighHeadPressurePage() {
 
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">High Head Pressure Causes</h1>
+          <UpdatedLine route="/high-head-pressure-causes/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Diagnostic decision tree for high-side pressure problems on HVAC and commercial
             refrigeration systems. Eight root causes ranked by frequency, with diagnostic

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
-import { refrigerants } from "@/data/refrigerants";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { CombinedCalculator } from "@/components/calculators/CombinedCalculator";
 import {
@@ -16,8 +15,6 @@ import {
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
 import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
-
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 const FAQS = [
   {
@@ -79,11 +76,10 @@ export default function CombinedCalculatorPage() {
           "Charging cheat sheet for TXV / EEV / fixed orifice",
           "Mobile-friendly, no signup",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "Combined Calculator",
       }}
       introOneLiner="One form for both the low side (suction, superheat) and the high side (liquid, subcooling). The eight-pattern diagnostic matrix maps the combined SH × SC × pressure fingerprint to the root cause: properly charged, undercharge, overcharge, restriction, fouling, TXV failure, or non-condensables."
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/pt-superheat-subcooling-calculator/"
       howTo={{
         steps: [
           "Pick the refrigerant. Defaults to R-410A.",

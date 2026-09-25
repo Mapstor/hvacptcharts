@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, Sun, Snowflake, Home, Users, AlertTriangle, BookOpen, ListChecks, Gauge } from "lucide-react";
-import { refrigerants } from "@/data/refrigerants";
 import { SITE_URL, pageMetadata } from "@/lib/schema/shared";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { HvacLoadCalculator } from "@/components/calculators/HvacLoadCalculator";
@@ -17,7 +16,6 @@ import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { calculateLoad } from "@/lib/load-calc";
 
 const PAGE_URL = `${SITE_URL}/hvac-load-calculator/`;
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
   title: "HVAC Load Calculator: Manual J Cooling & Heating Load (Free)",
@@ -407,7 +405,6 @@ export default function HvacLoadCalculatorPage() {
           "Full component breakdown: walls, windows (conduction + solar), roof, infiltration, people, equipment",
           "Heating load with furnace input requirement at 92% AFUE",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "HVAC Load Calculator",
       }}
       introOneLiner="Compute residential cooling tons and heating BTU/hr from 7 inputs. Component breakdown, sensible/latent split, and equipment sizing guidance with oversizing warnings. Quick Manual J estimate — accurate within ±20% of full Manual J for typical residential."
@@ -426,7 +423,7 @@ export default function HvacLoadCalculatorPage() {
         { href: "/high-head-pressure-causes/", label: "High head pressure causes", blurb: "Diagnostic for equipment underperforming vs design." },
       ]}
       faqs={FAQS}
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/hvac-load-calculator/"
       bodySections={BodySections}
     >
       <HvacLoadCalculator />

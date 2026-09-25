@@ -17,8 +17,6 @@ import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
 import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
 
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
-
 const FAQS = [
   {
     q: "What is subcooling?",
@@ -86,11 +84,10 @@ export default function SubcoolingCalculatorPage() {
           "Long-line-set adjustment guidance per OEM literature",
           "Mobile-friendly, no signup",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "Subcooling Calculator",
       }}
       introOneLiner="Enter your liquid-line pressure and temperature for any refrigerant; get subcooling plus diagnostic context. Bubble-curve math so high-glide blends (R-407C, R-454C, R-455A) don't read 11-22°F off."
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/subcooling-calculator/"
       howTo={{
         steps: [
           "Pick the refrigerant. Defaults to R-410A.",

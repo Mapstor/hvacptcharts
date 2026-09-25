@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { getRefrigerant, getPressureAtTempF, refrigerants } from "@/data/refrigerants";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 
 const PAGE_URL = `${SITE_URL}/refrigerant-comparison-guide/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/refrigerant-comparison-guide/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/refrigerant-comparison-guide/");
 
 export const metadata: Metadata = pageMetadata({
   title: "Refrigerant Comparison Guide: 5-Axis Decision Framework",
@@ -166,6 +166,7 @@ export default function ComparisonGuidePage() {
 
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Refrigerant Comparison Guide</h1>
+          <UpdatedLine route="/refrigerant-comparison-guide/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Framework for comparing HVAC refrigerants. Five axes of comparison — thermodynamics, safety, environmental
             impact, regulation, and practical service factors — plus decision logic for the common scenarios where you

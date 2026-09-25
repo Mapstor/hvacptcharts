@@ -16,8 +16,6 @@ import {
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
 
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
-
 const FAQS = [
   {
     q: "What is saturation pressure?",
@@ -77,11 +75,10 @@ export default function SaturationPropertiesPage() {
           "Sourced from CoolProp 7.2.0 (REFPROP-compatible Helmholtz EOS)",
           "Mobile-friendly, no signup",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "Saturation Properties",
       }}
       introOneLiner="Bubble and dew saturation pressures at any temperature, plus the refrigerant's reference properties (critical point, normal boiling point, molar mass). Foundation data for service measurements, retrofit comparisons, and engineering design."
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/saturation-properties-calculator/"
       howTo={{
         steps: [
           "Pick the refrigerant from the dropdown. Defaults to R-410A.",

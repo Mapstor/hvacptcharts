@@ -8,9 +8,10 @@ import { SafetyClassTable } from "@/components/reference/SafetyClassTable";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 
 const PAGE_URL = `${SITE_URL}/refrigerant-safety-classifications/`;
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/refrigerant-safety-classifications/");
 
 export const metadata: Metadata = pageMetadata({
   title: "Refrigerant Safety Classes: A1, A2L, A3, B1 Explained (ASHRAE 34)",
@@ -31,7 +32,7 @@ function buildSchema() {
         "Reference table of HVAC refrigerant safety classifications per ANSI/ASHRAE Standard 34-2022. Every refrigerant in the dataset, sortable and filterable by class and type.",
       url: PAGE_URL,
       datePublished: PUBLISHED,
-      dateModified: PUBLISHED,
+      dateModified: MODIFIED,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: PAGE_URL,
@@ -47,7 +48,7 @@ function buildSchema() {
       license: "https://creativecommons.org/licenses/by/4.0/",
       creator: { "@id": `${SITE_URL}/#organization` },
       datePublished: PUBLISHED,
-      dateModified: PUBLISHED,
+      dateModified: MODIFIED,
       isAccessibleForFree: true,
       citation: [
         "ANSI/ASHRAE Standard 34-2022: Designation and Safety Classification of Refrigerants",
@@ -90,6 +91,7 @@ export default function SafetyClassificationsPage() {
 
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Refrigerant Safety Classifications</h1>
+          <UpdatedLine route="/refrigerant-safety-classifications/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             ANSI/ASHRAE Standard 34-2022 classifies refrigerants by toxicity (Class A or B) and flammability
             (Subclass 1, 2L, 2, or 3). The combination — A1, A2L, A3, B1, B2L, and so on — determines equipment

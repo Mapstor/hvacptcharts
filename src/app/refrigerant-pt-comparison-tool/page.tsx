@@ -16,8 +16,6 @@ import {
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
 
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
-
 const FAQS = [
   {
     q: "What does this tool show?",
@@ -73,11 +71,10 @@ export default function ComparisonToolPage() {
           "Service problems showing retrofit feasibility workflow",
           "Mobile-friendly, no signup",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "PT Comparison Tool",
       }}
       introOneLiner="Pick 2-4 refrigerants from the dataset; the tool overlays their saturation curves on one chart. Glide visible for zeotropic blends. Useful for retrofit feasibility, new-equipment specification, and commercial low-GWP transition planning."
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/refrigerant-pt-comparison-tool/"
       howTo={{
         steps: [
           "Tool starts with R-22, R-410A, R-32, and R-454B — the residential AC phase-down trajectory.",

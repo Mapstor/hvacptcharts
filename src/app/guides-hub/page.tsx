@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { refrigerants } from "@/data/refrigerants";
 import { HubPage } from "@/components/hub/HubPage";
 import { pageMetadata } from "@/lib/schema/shared";
-
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
   title: "HVAC Guides: Commissioning, Safety, Troubleshooting (Free)",
@@ -20,7 +17,7 @@ export default function GuidesHubPage() {
       title="HVAC Guides"
       introHeadline="Reference material for HVAC technicians and engineers: the conceptual anchors behind the calculator pages, plus refrigerant comparisons and regulatory context."
       introBody="Every guide is sourced — ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022, ASHRAE Standard 34-2022, EPA AIM Act / SNAP, IPCC AR5/AR6, IIAR for ammonia, equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman). No 'general industry knowledge' filler; if a claim is in a guide, it carries an attribution. The guides pair with the calculator pages — guides provide the conceptual context, calculators do the math."
-      publishedDate={PUBLISHED}
+      route="/guides-hub/"
       scenarios={[
         {
           situation: "I'm learning what superheat and subcooling actually mean",

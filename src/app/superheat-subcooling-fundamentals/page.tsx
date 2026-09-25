@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import {
   ComparisonTable,
   Derived,
@@ -18,7 +18,7 @@ import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { SuperheatSubcoolingConceptDiagram } from "@/components/diagrams/SuperheatSubcoolingConceptDiagram";
 
 const PAGE_URL = `${SITE_URL}/superheat-subcooling-fundamentals/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/superheat-subcooling-fundamentals/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/superheat-subcooling-fundamentals/");
 
 export const metadata: Metadata = pageMetadata({
   title: "Superheat And Subcooling Explained: What Are They In HVAC? (Guide)",
@@ -114,6 +114,7 @@ export default function FundamentalsPage() {
 
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Superheat &amp; Subcooling Fundamentals</h1>
+          <UpdatedLine route="/superheat-subcooling-fundamentals/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Complete reference for HVAC technicians: what superheat and subcooling are, how to
             measure them in the field, what their target values mean for different system types,

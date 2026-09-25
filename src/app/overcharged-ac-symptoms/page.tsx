@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BookOpen, ListChecks } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { GaugeSignatureDiagram } from "@/components/diagrams/GaugeSignatureDiagram";
@@ -11,7 +11,7 @@ import { FloodedCondenserDiagram } from "@/components/diagrams/FloodedCondenserD
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 
 const PAGE_URL = `${SITE_URL}/overcharged-ac-symptoms/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/overcharged-ac-symptoms/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/overcharged-ac-symptoms/");
 
 const R410A_130F = fmtPsigBubble("r-410a", 130);
 const R410A_120F = fmtPsigBubble("r-410a", 120);
@@ -170,6 +170,7 @@ export default function OverchargedAcSymptomsPage() {
 
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Overcharged AC Symptoms</h1>
+          <UpdatedLine route="/overcharged-ac-symptoms/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             8 signs of an AC with too much refrigerant. High subcooling is the definitive fingerprint — high discharge pressure with normal SC points to a different cause. Applies to residential and automotive AC.
           </p>

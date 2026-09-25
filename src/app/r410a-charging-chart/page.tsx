@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BookOpen, Gauge, ListChecks } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatrix";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
@@ -13,7 +13,7 @@ import { TARGET_SUPERHEAT_LABEL } from "@/lib/target-superheat";
 
 const SLUG = "r-410a";
 const PAGE_URL = `${SITE_URL}/r410a-charging-chart/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/r410a-charging-chart/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/r410a-charging-chart/");
 
 // Liquid-line saturation temperatures for the subcooling method.
 const COND_TEMPS_F = [95, 100, 105, 110, 115, 120, 125, 130];
@@ -125,6 +125,7 @@ export default function R410aChargingChartPage() {
 
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">R410A Charging Chart</h1>
+          <UpdatedLine route="/r410a-charging-chart/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Two methods, one page: charge TXV / EEV systems by subcooling (8–12°F general target, OEM nameplate governs); charge fixed-orifice systems by target superheat. Identify the metering device before choosing a method.
           </p>

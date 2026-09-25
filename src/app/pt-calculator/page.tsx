@@ -17,8 +17,6 @@ import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { RefrigerantGlide } from "@/components/refrigerant/RefrigerantGlide";
 import { pageMetadata } from "@/lib/schema/shared";
 
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
-
 /* ── Computed reference-table data (no typed pressures) ─────────────────── */
 
 // Quick-reference: saturation PSIG at these temps for these fluids, computed
@@ -123,11 +121,10 @@ export default function PtCalculatorPage() {
           "No signup, no paywall, mobile-friendly",
           "Worked examples for residential AC, commercial refrigeration, chillers, mobile AC, transcritical CO2",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "PT Calculator",
       }}
       introOneLiner="Enter a temperature or a pressure for any refrigerant in the dataset; get the corresponding saturation value, with bubble/dew handling for zeotropic blends and ten-plus worked examples covering the full range of HVAC service scenarios."
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/pt-calculator/"
       howTo={{
         steps: [
           "Pick a refrigerant from the dropdown. Defaults to R-410A.",

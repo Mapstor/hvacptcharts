@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
-import { refrigerants } from "@/data/refrigerants";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { SystemPressureDiagnostic } from "@/components/calculators/SystemPressureDiagnostic";
 import {
@@ -15,8 +14,6 @@ import {
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
-
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 const FAQS = [
   {
@@ -82,11 +79,10 @@ export default function SystemPressureDiagnosticPage() {
           "ACCA Manual T, ASHRAE Handbook of Refrigeration 2022 sourced",
           "Mobile-friendly, no signup",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "System Pressure Diagnostic",
       }}
       introOneLiner="Enter your full set of pressure and temperature readings; the calculator computes SH, SC, condenser approach, and evaporator approach, then produces severity-ranked diagnostic flags with evidence and ordered recommendations."
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/system-pressure-diagnostic-calculator/"
       howTo={{
         steps: [
           "Pick the refrigerant in the system. Pick the system type (TXV, fixed-orifice, EXV, or MT / LT commercial) — target ranges adjust accordingly.",

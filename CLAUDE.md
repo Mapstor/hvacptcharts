@@ -55,6 +55,23 @@ pnpm run generate-data  # CoolProp script regenerates data/refrigerants.json
 pnpm run verify-data    # build-time anchor check + critical-pressure invariant
 ```
 
+## Content dates & commit hygiene (non-negotiable)
+
+Page dates come from `data/content-dates.json`, generated from git history by
+`scripts/update-content-dates.mjs`. The build never calls git or reads file
+mtimes for dates (Vercel builds from a shallow clone where both are wrong).
+
+- **After changing a page's visible content, update its date in the SAME commit.**
+  Run `pnpm run update-content-dates` (recomputes all routes from git) or bump one
+  route with `node scripts/update-content-dates.mjs --touch /the-route/`, and stage
+  `data/content-dates.json` with your change. `scripts/verify-content-dates.ts`
+  fails the build if a rendered route has no entry, a date is unparsable/in the
+  future, or published > updated.
+- **Put `[no-date]` in the commit message of mechanical commits** (refactors,
+  formatting, infra, dependency bumps — anything that doesn't change a page's
+  visible numbers or statements). `update-content-dates.mjs` skips `[no-date]`
+  commits, so they never bump a page's "Updated" date.
+
 ## Next.js 16 cheat sheet (don't trip on these)
 
 - **`params` is async.** `async function Page(props: PageProps<'/refrigerant/[slug]'>)`, then `const { slug } = await props.params`. Same for `searchParams` and metadata routes.

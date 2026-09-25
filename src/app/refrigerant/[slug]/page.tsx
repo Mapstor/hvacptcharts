@@ -38,6 +38,7 @@ import { findComparisonsForRefrigerant, type ComparisonSummary } from "@/lib/mdx
 import { findWhatPressureForRefrigerant } from "@/lib/mdx-what-pressure";
 import { buildRefrigerantSchema } from "@/lib/schema/refrigerant";
 import { SITE_URL, buildRefrigerantMetadata, pageMetadata, seoName, COMMON_NAME } from "@/lib/schema/shared";
+import { UpdatedLine } from "@/lib/content-dates";
 
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
@@ -155,6 +156,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
             <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
               {pageH1}
             </h1>
+            <UpdatedLine route={`/refrigerant/${r.slug}/`} />
             <p className="mt-1 text-sm font-mono text-zinc-500 dark:text-zinc-400">
               {r.displayName}{COMMON_NAME[slug] ? ` · ${COMMON_NAME[slug]}` : ""}
             </p>

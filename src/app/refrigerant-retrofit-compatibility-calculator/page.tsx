@@ -16,8 +16,6 @@ import {
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
 
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
-
 const FAQS = [
   {
     q: "How is the compatibility verdict computed?",
@@ -71,11 +69,10 @@ export default function RetrofitCompatibilityCalculatorPage() {
           "Specific recommendations per pair based on the failure modes detected",
           "Built on the verified data layer; no fabricated decision rules",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "Retrofit Compatibility Calculator",
       }}
       introOneLiner="Enter the existing refrigerant and the target replacement; the calculator evaluates compatibility across five criteria (lubricant, safety class, pressure, glide, application) and returns a verdict plus specific recommendations."
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/refrigerant-retrofit-compatibility-calculator/"
       howTo={{
         steps: [
           "Pick the existing refrigerant in the system from the first dropdown. Defaults to R-22 (the most common retrofit-source refrigerant in current US practice).",

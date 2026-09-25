@@ -3,14 +3,14 @@ import Link from "next/link";
 import { BookOpen, ListChecks } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 import { GaugeSignatureDiagram } from "@/components/diagrams/GaugeSignatureDiagram";
 
 const PAGE_URL = `${SITE_URL}/high-suction-low-head-pressure/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/high-suction-low-head-pressure/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/high-suction-low-head-pressure/");
 
 // A short label prevents redundant per-branch prose repeating the numbers.
 const R410A_40F_EVAP = fmtPsigBubble("r-410a", 40);
@@ -174,6 +174,7 @@ export default function HighSuctionLowHeadPressurePage() {
 
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">High Suction Low Head Pressure</h1>
+          <UpdatedLine route="/high-suction-low-head-pressure/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Diagnostic tree for the specific pattern where both pressures move toward each other — suction elevated, discharge depressed. Different from generic &quot;low head&quot; or &quot;high suction&quot; alone; this combined signature isolates internal-leakage and reduced-mass-flow causes.
           </p>

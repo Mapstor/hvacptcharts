@@ -3,7 +3,6 @@ import { refrigerants } from "@/data/refrigerants";
 import { HubPage } from "@/components/hub/HubPage";
 import { pageMetadata } from "@/lib/schema/shared";
 
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 const POPULAR_SLUGS = ["r-410a", "r-22", "r-134a", "r-32", "r-404a", "r-454b", "r-407c", "r-1234yf"];
 
@@ -32,7 +31,7 @@ export default function PTChartsToolsHubPage() {
       title="PT Charts & Reference Tools"
       introHeadline={`Verified pressure-temperature data for ${refrigerants.length} refrigerants, plus the sortable reference tables and comparison tools.`}
       introBody="All saturation data generated from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS, or transcribed from named manufacturer datasheets (Honeywell, Chemours, Arkema, AGC). The full chart for each refrigerant is downloadable as CSV or JSON under CC BY 4.0. Bubble and dew curves for zeotropic blends are computed independently; safety classifications come from ANSI/ASHRAE Standard 34-2022 and are stored as Zod-validated enums so the wrong class can't be displayed."
-      publishedDate={PUBLISHED}
+      route="/pt-charts-tools-hub/"
       scenarios={[
         {
           situation: "I need to find a refrigerant by name or ASHRAE number",

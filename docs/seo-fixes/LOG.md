@@ -291,6 +291,52 @@ excludes all 11 refrigerant slugs and keeps the 3 guides; built HTML of the 3 gu
 
 ---
 
+## 2026-09-25 — Fix 5A/18: honest content dates from git history, not build-time git/mtime [no-date]
+
+**Problem:** sitemap/JSON-LD dates came from `getFileGitDates()` (git log at build) or
+`dataSource.ptChartGeneratedAt` (a generation timestamp). Vercel builds from a shallow
+clone (`--depth=10`), so after a ~14-commit batch most pages would claim they changed today.
+
+**New dating pipeline (build never calls git or reads mtimes):**
+- `scripts/update-content-dates.mjs` computes `data/content-dates.json` (133 routes,
+  `{updated, published}`) from FULL local git history. `updated` = latest commit that
+  changed the route's own content (page.tsx / MDX / that slug's data record); `[no-date]`
+  commits skipped; per-slug JSON dated by diff-scanning each slug's object across commits,
+  ignoring `ptChartGeneratedAt`. `--touch /route/` bumps one route.
+- `src/lib/content-dates.tsx` — `contentDates(route)`, `longDate(iso)`, `<UpdatedLine>`.
+- `sitemap.ts` lastmod + every JSON-LD `dateModified`/`datePublished` (refrigerant,
+  what-pressure, comparison, calculator, hub schema builders) now read content-dates.
+- **Deleted `src/lib/git-dates.ts`**; no page/sitemap/schema calls git or fs.mtime.
+- `scripts/verify-content-dates.ts` (new build gate, after verify-metadata): fails if a
+  rendered route (walked from `.next/server/app/**/*.html`, excluding Next internals/dev)
+  has no entry, a date is unparsable/future, or published > updated. → 133/133, 0 failures.
+
+**Visible line:** `Updated <Month D, YYYY>` (en-US) under the H1 of refrigerant,
+what-pressure, comparison, guide/chart/diagnostic, calculator and hub pages. Omitted on
+the homepage and legal/about/contact. No "Reviewed by" line.
+
+**Dating method for per-slug JSON records:** for each refrigerant slug, a commit counts
+only if that slug's object in `refrigerants.config.json`/`refrigerants.json` changed with
+`dataSource.ptChartGeneratedAt` stripped (so a bare regen never bumps a page). Shared
+templates were reflected only where the same commit also touched the route's own
+file/MDX/record — which is how every Task 3–4 visible change landed — so no unrelated
+shared-lib commit bumps a page.
+
+**45 routes dated 2026-09-25** (from Task 3–4 commits): the 8 computed what-pressure pages
++ their step-8 refrigerant detail pages, the calculators/charts/hubs changed in 3B–3D
+(cfc5f4e, 9c0da23, b7bc5d8, 2d7089d), the 3 kept guides + hvac-load-calculator (4A 8ee47c2),
+and the 11 noindexed refrigerants + homepage ItemList (4B e393ca3, structural). All other
+routes keep their real earlier dates (e.g. comparison pages 2026-07-13; min date 2026-05-20).
+
+**Docs:** CLAUDE.md + AGENTS.md now require updating a page's date in the same commit as a
+visible-content change, and `[no-date]` on mechanical commits.
+
+**Verified:** build exit 0, all gates incl. verify-content-dates (133/133). Curl: Updated
+line renders per page (r-32-vs-r-410a honestly shows July 13, 2026; homepage none); sitemap
+lastmod + JSON-LD dateModified match content-dates. **Not pushed.**
+
+---
+
 ## 2026-09-25 — Fix 2/18: 301 redirects for legacy, typo and old comparison URLs
 
 **Goal.** Every legacy/typo/old URL search engines still request must answer with

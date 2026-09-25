@@ -19,8 +19,6 @@ import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
 import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
 
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
-
 const FAQS = [
   {
     q: "What is superheat?",
@@ -80,11 +78,10 @@ export default function SuperheatCalculatorPage() {
           "Inline diagnostic context for high/low/zero superheat patterns",
           "Mobile-friendly, no signup",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "Superheat Calculator",
       }}
       introOneLiner="Enter your suction-line pressure and temperature for any refrigerant; get superheat plus diagnostic context. Correct dew-curve math for zeotropic blends so high-glide refrigerants (R-407C, R-454C, R-455A) don't read 11-22°F off."
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/superheat-calculator/"
       howTo={{
         steps: [
           "Pick the refrigerant in the system. Defaults to R-410A.",

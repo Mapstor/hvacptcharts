@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Activity, AlertTriangle, BookOpen, ShieldCheck, ListChecks, FileCheck, Wrench, Droplet, Zap, Flame } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { refrigerants } from "@/data/refrigerants";
 import {
   ComparisonTable,
@@ -18,7 +18,7 @@ import { BarChart } from "@/components/svg/concepts/BarChart";
 import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
 
 const PAGE_URL = `${SITE_URL}/hvac-refrigerant-recovery-guide/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/hvac-refrigerant-recovery-guide/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/hvac-refrigerant-recovery-guide/");
 
 export const metadata: Metadata = pageMetadata({
   title: "Refrigerant Recovery Guide: EPA 608 Steps + A2L Safety (Free 101)",
@@ -166,6 +166,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             HVAC Refrigerant Recovery Guide — EPA Section 608 Procedure, Equipment, Certification, and A2L Handling
           </h1>
+          <UpdatedLine route="/hvac-refrigerant-recovery-guide/" />
           <p className="mt-4 text-lg text-zinc-700 dark:text-zinc-300">
             A primary-source guide to refrigerant recovery under EPA Section 608 (40 CFR Part 82 Subpart F): the four technician certification types, the legal distinctions between recovery / recycling / reclamation, equipment requirements per AHRI Standard 740, evacuation levels by equipment type, the recovery procedure step-by-step for typical residential and small commercial systems, recordkeeping requirements per § 82.166, A2L refrigerant safety for the current AIM Act transition, and the penalty exposure for violations. Sourced throughout from EPA Section 608 regulations, AHRI Standards 700 + 740, ASHRAE Standard 15, and DOT cylinder regulations.
           </p>

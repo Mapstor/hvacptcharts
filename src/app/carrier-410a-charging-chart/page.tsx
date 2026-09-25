@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Activity, Wind, Thermometer, Gauge, ListChecks, AlertTriangle, Wrench, BookOpen } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { getRefrigerant, getPressureAtTempF, satPressure, satTemp } from "@/data/refrigerants";
 import {
   FixCallout,
@@ -27,7 +27,7 @@ import { targetSuperheat } from "@/lib/target-superheat";
 
 const PAGE_URL = `${SITE_URL}/carrier-410a-charging-chart/`;
 const R410A = getRefrigerant("r-410a");
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/carrier-410a-charging-chart/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/carrier-410a-charging-chart/");
 
 export const metadata: Metadata = pageMetadata({
   title: "Carrier R410A Charging Chart: Superheat By WB & Outdoor Temp",
@@ -250,6 +250,7 @@ export default function CarrierChargingChartPage() {
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Carrier R410A Charging Chart: Target Superheat by Fixed-Orifice Ambient
           </h1>
+          <UpdatedLine route="/carrier-410a-charging-chart/" />
           <p className="mt-4 text-lg text-zinc-700 dark:text-zinc-300">
             A complete walk-through of Carrier&apos;s fixed-orifice R-410A target-superheat chart: the chart itself, the R-410A saturation pressures it implies (so you know what to see on the manifold), three worked field examples, the full charging procedure, common-error diagnostics, and an interactive lookup. Every pressure value below comes from CoolProp 7.2.0 saturation data for R-410A; nothing is approximated or generic.
           </p>

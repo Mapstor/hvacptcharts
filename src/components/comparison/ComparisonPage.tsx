@@ -42,7 +42,7 @@ function renderInline(text: string): React.ReactNode[] {
 import { getRefrigerant, getPressureAtTempF, type Refrigerant } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { TypeChip } from "@/components/refrigerant/TypeChip";
 import { PTCurveOverlay } from "@/components/svg/PTCurveOverlay";
@@ -150,6 +150,7 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
 
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{fm.title}</h1>
+          <UpdatedLine route={`/${fm.slug}/`} />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">{fm.introOneLiner}</p>
           <CylinderComparisonRow slugA={a.slug} slugB={b.slug} />
         </header>
@@ -1067,7 +1068,7 @@ function LifecycleContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
 }
 
 function buildSchema(pageUrl: string, fm: ComparisonFrontmatter, a: Refrigerant, b: Refrigerant): object[] {
-  const { modified } = getFileGitDates(`content/comparisons/${fm.slug}.mdx`);
+  const d = contentDates(`/${fm.slug}/`);
   const graph: object[] = [
     ORG,
     WEBSITE,
@@ -1077,8 +1078,8 @@ function buildSchema(pageUrl: string, fm: ComparisonFrontmatter, a: Refrigerant,
       headline: fm.title,
       description: fm.metaDescription ?? fm.introOneLiner,
       url: pageUrl,
-      datePublished: fm.datePublished,
-      dateModified: modified,
+      datePublished: d.published,
+      dateModified: d.updated,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: pageUrl,

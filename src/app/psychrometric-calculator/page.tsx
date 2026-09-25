@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, Droplet, Wind, BookOpen, ListChecks, Mountain, Gauge } from "lucide-react";
-import { refrigerants } from "@/data/refrigerants";
 import { SITE_URL, pageMetadata } from "@/lib/schema/shared";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { PsychrometricCalculator } from "@/components/calculators/PsychrometricCalculator";
@@ -20,7 +19,6 @@ import {
 } from "@/lib/psychrometrics";
 
 const PAGE_URL = `${SITE_URL}/psychrometric-calculator/`;
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
   title: "Psychrometric Calculator: Dry-Bulb, Wet-Bulb, Dew Point, RH (+ Altitude)",
@@ -389,7 +387,6 @@ export default function PsychrometricCalculatorPage() {
           "Enthalpy in BTU/lb dry air for cooling-coil and ventilation load calculations",
           "Specific volume for mass-flow conversions",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "Psychrometric Calculator",
       }}
       introOneLiner="Enter any 2 air properties — DB, WB, RH, or dew point — plus altitude, and the calculator returns all 7 properties (DB, WB, DP, RH, humidity ratio, grains/lb, enthalpy, specific volume) using ASHRAE Handbook 2021 equations."
@@ -408,7 +405,7 @@ export default function PsychrometricCalculatorPage() {
         { href: "/high-head-pressure-causes/", label: "High head pressure causes", blurb: "Diagnostic decision tree for high-side problems." },
       ]}
       faqs={FAQS}
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/psychrometric-calculator/"
       bodySections={BodySections}
     >
       <PsychrometricCalculator />

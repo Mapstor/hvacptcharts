@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Activity, BookOpen, Gauge, ListChecks, Mountain, AlertTriangle } from "lucide-react";
-import { refrigerants } from "@/data/refrigerants";
 import { SITE_URL, pageMetadata } from "@/lib/schema/shared";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { DuctSizeCalculator } from "@/components/calculators/DuctSizeCalculator";
@@ -26,7 +25,6 @@ import {
 } from "@/lib/duct-sizing";
 
 const PAGE_URL = `${SITE_URL}/duct-size-calculator/`;
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
   title: "Duct Size Calculator: Round & Rectangular From CFM (Manual D)",
@@ -457,7 +455,6 @@ export default function DuctSizeCalculatorPage() {
           "Altitude and temperature density correction",
           "CFM reference table for all standard sizes at 0.08 and 0.05 friction",
         ],
-        publishedDate: PUBLISHED,
         breadcrumbLabel: "Duct Size Calculator",
       }}
       introOneLiner="Enter the design CFM and friction rate (or pick an application preset), and the calculator returns the standard round duct size, velocity, actual friction, and Huebscher rectangular equivalents. Equal-friction method per ACCA Manual D, with altitude correction for mountain installations."
@@ -476,7 +473,7 @@ export default function DuctSizeCalculatorPage() {
         { href: "/calculators-hub/", label: "All HVAC calculators", blurb: "Browse the full set of calculators." },
       ]}
       faqs={FAQS}
-      generatedDate={PUBLISHED.slice(0, 10)}
+      route="/duct-size-calculator/"
       bodySections={BodySections}
     >
       <DuctSizeCalculator />

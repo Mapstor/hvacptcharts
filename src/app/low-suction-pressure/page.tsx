@@ -3,14 +3,14 @@ import Link from "next/link";
 import { BookOpen, ListChecks } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { GaugeSignatureDiagram } from "@/components/diagrams/GaugeSignatureDiagram";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
 
 const PAGE_URL = `${SITE_URL}/low-suction-pressure/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/low-suction-pressure/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/low-suction-pressure/");
 
 const R410A_40F = fmtPsigBubble("r-410a", 40);
 const R410A_30F = fmtPsigBubble("r-410a", 30);
@@ -187,6 +187,7 @@ export default function LowSuctionPressurePage() {
 
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Low Suction Pressure</h1>
+          <UpdatedLine route="/low-suction-pressure/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Broad diagnostic tree for suction below normal, regardless of head. Undercharge is the most common cause; restrictions, airflow issues, and TXV under-feed follow. This page covers low-suction patterns broadly — the specific high-suction/low-head signature has its own tree.
           </p>

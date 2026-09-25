@@ -9,6 +9,7 @@
 
 import type { Refrigerant } from "@/data/refrigerants";
 import type { FAQ } from "@/lib/mdx";
+import { contentDates } from "@/lib/content-dates";
 import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE } from "./shared";
 
 function oneLineDescription(r: Refrigerant): string {
@@ -60,6 +61,7 @@ function datasetDescription(r: Refrigerant): string {
 
 export function buildRefrigerantSchema(r: Refrigerant, faqs: FAQ[]): object[] {
   const pageUrl = `${SITE_URL}/refrigerant/${r.slug}/`;
+  const d = contentDates(`/refrigerant/${r.slug}/`);
   const altNames = [...new Set([...r.altSpellings, ...r.tradeNames.map((t) => t.name)])];
 
   const graph: object[] = [
@@ -72,8 +74,8 @@ export function buildRefrigerantSchema(r: Refrigerant, faqs: FAQ[]): object[] {
       description: `Verified saturation pressure-temperature data for ${r.displayName} refrigerant, plus critical properties, GWP, ASHRAE safety class, and lubricant compatibility. Generated from ${r.dataSource.ptChartSource}.`,
       url: pageUrl,
       mainEntityOfPage: pageUrl,
-      datePublished: r.dataSource.ptChartGeneratedAt,
-      dateModified: r.dataSource.ptChartGeneratedAt,
+      datePublished: d.published,
+      dateModified: d.updated,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       about: { "@id": `${pageUrl}#refrigerant` },
@@ -104,8 +106,8 @@ export function buildRefrigerantSchema(r: Refrigerant, faqs: FAQ[]): object[] {
       license: "https://creativecommons.org/licenses/by/4.0/",
       creator: { "@id": `${SITE_URL}/#organization` },
       measurementTechnique: "CoolProp 7.2.0 Helmholtz EOS / manufacturer datasheets",
-      datePublished: r.dataSource.ptChartGeneratedAt,
-      dateModified: r.dataSource.ptChartGeneratedAt,
+      datePublished: d.published,
+      dateModified: d.updated,
       keywords: [
         r.displayName,
         "pressure temperature chart",

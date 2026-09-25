@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BookOpen, Gauge } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatrix";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
@@ -13,7 +13,7 @@ import { TARGET_SUPERHEAT_LABEL } from "@/lib/target-superheat";
 
 const SLUG = "r-22";
 const PAGE_URL = `${SITE_URL}/r22-superheat-chart/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/r22-superheat-chart/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/r22-superheat-chart/");
 
 const EVAP_TEMPS_F = [35, 40, 45, 50, 55];
 
@@ -125,6 +125,7 @@ export default function R22SuperheatChartPage() {
 
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">R22 Superheat Chart</h1>
+          <UpdatedLine route="/r22-superheat-chart/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Target superheat for fixed-orifice R-22 residential AC. Same formula as R-410A; R-22 pressures are substantially lower across the envelope.
           </p>

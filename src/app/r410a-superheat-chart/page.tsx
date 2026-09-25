@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BookOpen, Gauge } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatrix";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
@@ -13,7 +13,7 @@ import { TARGET_SUPERHEAT_LABEL } from "@/lib/target-superheat";
 
 const SLUG = "r-410a";
 const PAGE_URL = `${SITE_URL}/r410a-superheat-chart/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/r410a-superheat-chart/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/r410a-superheat-chart/");
 
 // Evap-range quick-lookup temperatures (°F). All values pulled through
 // fmtPsigBubble at render time; no PSIG literals in this source.
@@ -127,6 +127,7 @@ export default function R410aSuperheatChartPage() {
 
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">R410A Superheat Chart</h1>
+          <UpdatedLine route="/r410a-superheat-chart/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Target superheat for fixed-orifice R-410A residential AC. Look up target by indoor WB × outdoor DB, then match against measured superheat at the suction line.
           </p>

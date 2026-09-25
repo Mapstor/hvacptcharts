@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BookOpen, ListChecks, AlertTriangle } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { ChargingChartMatrix } from "@/components/calculators/ChargingChartMatrix";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
@@ -11,7 +11,7 @@ import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
 import { TARGET_SUPERHEAT_LABEL } from "@/lib/target-superheat";
 
 const PAGE_URL = `${SITE_URL}/target-superheat-chart/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/target-superheat-chart/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/target-superheat-chart/");
 
 const SOURCES: readonly { name: string; publisher: string; url: string | null }[] = [
   {
@@ -125,6 +125,7 @@ export default function TargetSuperheatChartPage() {
 
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Target Superheat Chart</h1>
+          <UpdatedLine route="/target-superheat-chart/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Fixed-orifice / piston HVAC charging method. Target superheat is a function of indoor wet-bulb and outdoor dry-bulb — refrigerant-independent. For TXV / EEV systems, charge by subcooling instead.
           </p>

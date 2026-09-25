@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { refrigerants } from "@/data/refrigerants";
 import { HubPage } from "@/components/hub/HubPage";
 import { pageMetadata } from "@/lib/schema/shared";
-
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
 
 export const metadata: Metadata = pageMetadata({
   title: "HVAC Calculators: Superheat, Subcooling, Charge, PT (Free)",
@@ -20,7 +17,7 @@ export default function CalculatorsHubPage() {
       title="HVAC Calculators"
       introHeadline="Free calculators for HVAC field work. Built on the verified refrigerant dataset — same source as the PT charts."
       introBody="Each calculator reads from the same Zod-validated saturation data that drives the chart pages. Bubble vs dew curves are handled correctly for zeotropic blends. Fixed-orifice target superheat follows the standard field-approximation formula for charging charts (per California Title 24 Reference Appendix RA3.2); other targets and ranges cite ASHRAE Handbook of Refrigeration 2022 and equipment-specific manufacturer literature (Carrier, Trane, Lennox, Daikin, Goodman). Nine calculators total, each with worked service problems, reference tables, and SVG diagnostic visualizations."
-      publishedDate={PUBLISHED}
+      route="/calculators-hub/"
       scenarios={[
         {
           situation: "I'm charging a new R-410A TXV residential AC by subcooling",

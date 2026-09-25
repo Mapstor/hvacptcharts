@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Compass, Lightbulb, ScrollText, type LucideIcon } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { contentDates, longDate, UpdatedLine } from "@/lib/content-dates";
 import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
 
 export interface HubItem {
@@ -63,8 +64,8 @@ export interface HubPageProps {
   breadcrumbLabel?: string;
   /** Optional crosslinks to other hubs. */
   crosslinks?: Array<{ href: string; label: string }>;
-  /** ISO date for schema. */
-  publishedDate: string;
+  /** Route (e.g. "/calculators-hub/") — drives content dates + the Updated line. */
+  route: string;
   /** Optional sources/provenance footer text. */
   sourcesNote?: string;
 }
@@ -81,10 +82,11 @@ export function HubPage({
   faqs,
   breadcrumbLabel,
   crosslinks,
-  publishedDate,
+  route,
   sourcesNote,
 }: HubPageProps) {
   const pageUrl = `${SITE_URL}/${path}/`;
+  const { published, updated } = contentDates(route);
   const allItems = sections.flatMap((s) => s.items);
 
   const schemaGraph = [
@@ -96,8 +98,8 @@ export function HubPage({
       name: title,
       description: introHeadline,
       url: pageUrl,
-      datePublished: publishedDate,
-      dateModified: publishedDate,
+      datePublished: published,
+      dateModified: updated,
       publisher: { "@id": `${SITE_URL}/#organization` },
       mainEntity: {
         "@type": "ItemList",
@@ -132,6 +134,7 @@ export function HubPage({
 
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
+          <UpdatedLine route={route} />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">{introHeadline}</p>
           {introBody ? (
             <p className="mt-3 max-w-3xl text-sm text-zinc-600 dark:text-zinc-400">{introBody}</p>
@@ -277,7 +280,7 @@ export function HubPage({
             {sourcesNote ?? `All saturation values and refrigerant properties come from the verified dataset: CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Safety classifications per ANSI/ASHRAE Standard 34-2022. GWP per IPCC AR5 (2013). Operating ranges and diagnostic procedures per ACCA Manual T (2017), ASHRAE Handbook of Refrigeration 2022, and equipment manufacturer service literature.`}
           </p>
           <p className="mt-3">
-            Last regenerated {publishedDate.slice(0, 10)}. All pages and data are licensed for
+            Last regenerated {longDate(updated)}. All pages and data are licensed for
             free reference use; verification against equipment manufacturer literature is the
             responsibility of the user.
           </p>

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { refrigerants } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { GwpTable } from "@/components/reference/GwpTable";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 
 const PAGE_URL = `${SITE_URL}/refrigerant-gwp-rankings/`;
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/refrigerant-gwp-rankings/");
 
 export const metadata: Metadata = pageMetadata({
   title: "Refrigerant GWP Rankings: All 61 Compared (AR5 & AR6)",
@@ -27,7 +27,7 @@ function buildSchema() {
         "Sortable, filterable table of 61 common HVAC refrigerants by Global Warming Potential. IPCC AR5 (the EPA AIM Act figure) and AR6 columns. Cross-reference for EU F-Gas Regulation and AIM Act thresholds.",
       url: PAGE_URL,
       datePublished: PUBLISHED,
-      dateModified: PUBLISHED,
+      dateModified: MODIFIED,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: PAGE_URL,
@@ -43,7 +43,7 @@ function buildSchema() {
       license: "https://creativecommons.org/licenses/by/4.0/",
       creator: { "@id": `${SITE_URL}/#organization` },
       datePublished: PUBLISHED,
-      dateModified: PUBLISHED,
+      dateModified: MODIFIED,
       isAccessibleForFree: true,
       citation: [
         "IPCC AR5 Working Group I (2013), Climate Change 2013: The Physical Science Basis, Table 8.A.1",
@@ -86,6 +86,7 @@ export default function GwpRankingsPage() {
 
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Refrigerant GWP Rankings</h1>
+          <UpdatedLine route="/refrigerant-gwp-rankings/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Global Warming Potential expresses the radiative forcing of a refrigerant relative to CO₂ over a fixed
             time horizon (100 years for AIM Act and EU F-Gas accounting). Lower is better; the AIM Act gates new

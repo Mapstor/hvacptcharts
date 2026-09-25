@@ -18,12 +18,12 @@ import {
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { getPressureAtTempF, getRefrigerant, refrigerants } from "@/data/refrigerants";
 import { RefrigerantPTCurve } from "@/components/refrigerant/RefrigerantPTCurve";
 
 const PAGE_URL = `${SITE_URL}/pt-chart-guide/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/pt-chart-guide/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/pt-chart-guide/");
 
 export const metadata: Metadata = pageMetadata({
   title: "PT Chart Guide: How To Read A PT Chart Like A Pro (7 Key Points)",
@@ -155,6 +155,7 @@ export default function PtChartGuidePage() {
             <BookOpen className="h-3 w-3" /> Long-form guide · 8 sections
           </span>
           <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-5xl">How to Read a PT Chart</h1>
+          <UpdatedLine route="/pt-chart-guide/" />
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
             What a pressure-temperature chart shows, how to read bubble vs dew columns, what temperature glide means in
             practice, and why some charts truncate above a critical temperature.

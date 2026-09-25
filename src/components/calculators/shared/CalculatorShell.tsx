@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { contentDates, longDate, UpdatedLine } from "@/lib/content-dates";
 import type { FAQ } from "@/lib/mdx";
 import { buildCalculatorSchema, type CalculatorSchemaInput } from "@/lib/schema/calculator";
 
 export interface CalculatorShellProps {
-  /** Schema input — also drives the breadcrumb + canonical URL. */
-  schema: CalculatorSchemaInput;
+  /** Schema input — also drives the breadcrumb + canonical URL. Dates come from `route`. */
+  schema: Omit<CalculatorSchemaInput, "datePublished" | "dateModified">;
   /** Renders inside the hero block, below the H1. */
   introOneLiner: string;
   /** Interactive calculator (client component, with `'use client'`). */
@@ -18,8 +19,8 @@ export interface CalculatorShellProps {
   relatedTools?: { href: string; label: string; blurb: string }[];
   /** FAQ items (also fed into schema). */
   faqs?: FAQ[];
-  /** Generation date for provenance. */
-  generatedDate: string;
+  /** Route (e.g. "/superheat-calculator/") — drives content dates + the Updated line. */
+  route: string;
   /** Rich content rendered after the calculator widget, before howTo. */
   bodySections?: React.ReactNode;
 }
@@ -32,10 +33,16 @@ export function CalculatorShell({
   math,
   relatedTools,
   faqs,
-  generatedDate,
+  route,
   bodySections,
 }: CalculatorShellProps) {
-  const schemaGraph = buildCalculatorSchema({ ...schema, faqs });
+  const { published, updated } = contentDates(route);
+  const schemaGraph = buildCalculatorSchema({
+    ...schema,
+    faqs,
+    datePublished: published,
+    dateModified: updated,
+  });
 
   return (
     <>
@@ -52,6 +59,7 @@ export function CalculatorShell({
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{schema.name}</h1>
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">{introOneLiner}</p>
+          <UpdatedLine route={route} />
         </header>
 
         <section className="mb-10 rounded-lg border border-zinc-200 bg-zinc-50/50 p-4 dark:border-zinc-800 dark:bg-zinc-900/30 sm:p-6">
@@ -136,7 +144,7 @@ export function CalculatorShell({
           <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Data sources & provenance</h2>
           <p className="mt-2">
             All saturation calculations use the verified refrigerant dataset (CoolProp 7.2.0, HEOS backend +
-            named manufacturer datasheets for unmodeled blends). Last regenerated {generatedDate}.
+            named manufacturer datasheets for unmodeled blends). Last regenerated {longDate(updated)}.
           </p>
           <p className="mt-3">
             This calculator is provided as a reference. Always verify pressure values against the equipment data

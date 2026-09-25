@@ -53,6 +53,7 @@ import {
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { loadWhatPressure } from "@/lib/mdx-what-pressure";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { SystemGaugesDiagram } from "@/components/diagrams/SystemGaugesDiagram";
 import { getGaugeOperatingPoint } from "@/data/gauge-operating-points";
 
@@ -69,7 +70,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
   if (!r) notFound();
 
   const pageUrl = `${SITE_URL}/what-pressure-should-${id}/`;
-  const schemaGraph = buildSchema(pageUrl, fm, r);
+  const schemaGraph = buildSchema(pageUrl, fm, r, id);
   const gaugePoint = getGaugeOperatingPoint(r.slug);
   const { rows: displayRanges, dropped: droppedRows } = computeOperatingRanges(r.slug, fm);
   const serviceScenarios = fm.serviceScenarios ?? generateServiceScenarios(r);
@@ -88,6 +89,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
 
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{fm.title}</h1>
+          <UpdatedLine route={`/what-pressure-should-${id}/`} />
           <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
             <Link href={`/refrigerant/${r.slug}/`} className="font-medium text-blue-700 hover:underline dark:text-blue-300">
               {r.displayName}
@@ -964,7 +966,8 @@ function ContentComingSoon({ id }: { id: string }) {
   );
 }
 
-function buildSchema(pageUrl: string, fm: NonNullable<ReturnType<typeof loadWhatPressure>>["frontmatter"], r: NonNullable<ReturnType<typeof getRefrigerant>>) {
+function buildSchema(pageUrl: string, fm: NonNullable<ReturnType<typeof loadWhatPressure>>["frontmatter"], r: NonNullable<ReturnType<typeof getRefrigerant>>, id: string) {
+  const d = contentDates(`/what-pressure-should-${id}/`);
   const graph: object[] = [
     ORG,
     WEBSITE,
@@ -974,8 +977,8 @@ function buildSchema(pageUrl: string, fm: NonNullable<ReturnType<typeof loadWhat
       headline: fm.title,
       description: fm.metaDescription ?? fm.introOneLiner,
       url: pageUrl,
-      datePublished: r.dataSource.ptChartGeneratedAt,
-      dateModified: r.dataSource.ptChartGeneratedAt,
+      datePublished: d.published,
+      dateModified: d.updated,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       mainEntityOfPage: pageUrl,

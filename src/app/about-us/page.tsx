@@ -6,9 +6,10 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
+import { contentDates } from "@/lib/content-dates";
 
 const PAGE_URL = `${SITE_URL}/about-us/`;
-const PUBLISHED = refrigerants[0]?.dataSource.ptChartGeneratedAt ?? new Date().toISOString();
+const { published: PUBLISHED } = contentDates("/about-us/");
 
 export const metadata: Metadata = pageMetadata({
   title: "About HVAC PT Charts",

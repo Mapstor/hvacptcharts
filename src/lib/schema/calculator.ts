@@ -10,8 +10,10 @@ export interface CalculatorSchemaInput {
   description: string;
   /** WebApplication featureList — short bullet phrases. */
   featureList: string[];
-  /** ISO date for datePublished / dateModified. */
-  publishedDate: string;
+  /** ISO date for the Article's datePublished. */
+  datePublished: string;
+  /** ISO date for the Article's dateModified. */
+  dateModified: string;
   faqs?: FAQ[];
   /** Breadcrumb leaf — defaults to `name`. */
   breadcrumbLabel?: string;
@@ -22,7 +24,8 @@ export function buildCalculatorSchema({
   name,
   description,
   featureList,
-  publishedDate,
+  datePublished,
+  dateModified,
   faqs = [],
   breadcrumbLabel,
 }: CalculatorSchemaInput): object[] {
@@ -37,8 +40,8 @@ export function buildCalculatorSchema({
       description,
       url: pageUrl,
       mainEntityOfPage: pageUrl,
-      datePublished: publishedDate,
-      dateModified: publishedDate,
+      datePublished,
+      dateModified,
       publisher: { "@id": `${SITE_URL}/#organization` },
       author: { "@id": `${SITE_URL}/#organization` },
       isPartOf: { "@id": `${SITE_URL}/#website` },

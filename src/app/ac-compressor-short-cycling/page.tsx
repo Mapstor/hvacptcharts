@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BookOpen, ListChecks } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
-import { getFileGitDates } from "@/lib/git-dates";
+import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { fmtPsigBubble } from "@/lib/pressure-format";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { Panel } from "@/components/calculators/shared/ServiceProblem";
@@ -11,7 +11,7 @@ import { CycleTimelineDiagram } from "@/components/diagrams/CycleTimelineDiagram
 import { OilFoamMechanismDiagram } from "@/components/diagrams/OilFoamMechanismDiagram";
 
 const PAGE_URL = `${SITE_URL}/ac-compressor-short-cycling/`;
-const { published: PUBLISHED, modified: MODIFIED } = getFileGitDates("src/app/ac-compressor-short-cycling/page.tsx");
+const { published: PUBLISHED, updated: MODIFIED } = contentDates("/ac-compressor-short-cycling/");
 
 const R410A_40F = fmtPsigBubble("r-410a", 40);
 const R410A_120F = fmtPsigBubble("r-410a", 120);
@@ -215,6 +215,7 @@ export default function AcCompressorShortCyclingPage() {
 
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">AC Compressor Short Cycling</h1>
+          <UpdatedLine route="/ac-compressor-short-cycling/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             Diagnostic tree for compressor cycles too short for normal operation. Covers residential (thermostat, contactor, sizing) and automotive (clutch chatter, ECU faults, variable-displacement behavior).
           </p>
