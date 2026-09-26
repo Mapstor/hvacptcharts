@@ -6970,7 +6970,7 @@
         {
           "source": "AMOLEA 1224yd technical information",
           "url": "https://www.agc-chemicals.com/file.jsp?id=32141",
-          "note": "Checked against AGC's AMOLEA 1224yd data: within 1.3% (≤0.2 psi) across −40 to 150°F."
+          "note": "Checked against AGC's AMOLEA 1224yd data at 32, 68 and 104°F: within 1.3% (0.2 psi or less)."
         }
       ]
     }
@@ -27523,7 +27523,7 @@
         {
           "source": "Opteon SF33 technical information (C-11069)",
           "url": "https://www.opteon.com/en/-/media/files/opteon/opteon-sf33-specialty-fluid-technical-bulletin.pdf",
-          "note": "Checked against Chemours' Opteon SF33 data (the same molecule sold as Opteon MZ): agreement within 0.7% (≤0.03 psi)."
+          "note": "Checked against Chemours' Opteon SF33 data (the same molecule sold as Opteon MZ) at 32 to 77°F: agreement within 0.7% (≤0.03 psi)."
         }
       ]
     }

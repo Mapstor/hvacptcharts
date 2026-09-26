@@ -63,11 +63,11 @@ const DENVER_EX = sizeDuct({ cfm: 1200, frictionTarget: 0.08, tempF: 70, altitud
 const FAQS = [
   {
     q: "What is the equal-friction method and why is it the standard?",
-    a: "Equal-friction sizing keeps the friction rate (pressure drop per 100 ft of duct) constant throughout the supply or return system — typically 0.08 in.w.c./100 ft for residential supply, 0.05 for residential return, 0.10-0.20 for commercial. Each duct section is sized to maintain that target friction at its design CFM. The method is the standard because it produces predictable total system static pressure (sum of friction × length plus fitting losses) without iterative balancing. ACCA Manual D, ASHRAE Handbook Fundamentals Chapter 21, and SMACNA all teach equal-friction as the primary sizing method for low- and medium-pressure HVAC systems.",
+    a: "Equal-friction sizing keeps the friction rate (pressure drop per 100 ft of duct) constant throughout the supply or return system — typically 0.08 in.w.c./100 ft for residential supply, 0.05 for residential return, 0.10-0.20 for commercial. Each duct section is sized to maintain that target friction at its design CFM. The method is the standard because it produces predictable total system static pressure (sum of friction × length plus fitting losses) without iterative balancing. ASHRAE Handbook of Fundamentals Chapter 21 and SMACNA both teach equal-friction as the primary sizing method for low- and medium-pressure HVAC systems.",
   },
   {
     q: "What friction rate should I use for residential design?",
-    a: "0.08 in.w.c./100 ft for supply, 0.05 for return — the defaults in ACCA Manual D Table 7. These values balance duct cost (lower friction means larger ducts which cost more material and take more space) against blower energy (higher friction means smaller ducts but more blower work and noise). Going below 0.05 is rarely justified — the duct gets oversized without meaningful comfort gain. Going above 0.10 on residential supply pushes velocity into the audible range and forces a larger blower. Stay at 0.08/0.05 unless you have a specific reason to deviate.",
+    a: "0.08 in.w.c./100 ft for supply, 0.05 for return — common equal-friction design targets. These values balance duct cost (lower friction means larger ducts which cost more material and take more space) against blower energy (higher friction means smaller ducts but more blower work and noise). Going below 0.05 is rarely justified — the duct gets oversized without meaningful comfort gain. Going above 0.10 on residential supply pushes velocity into the audible range and forces a larger blower. Stay at 0.08/0.05 unless you have a specific reason to deviate.",
   },
   {
     q: "Why is the return-side friction target lower than the supply?",
@@ -79,7 +79,7 @@ const FAQS = [
   },
   {
     q: "What does aspect ratio mean and why does ACCA limit it to 4:1?",
-    a: "Aspect ratio is width-to-height of a rectangular duct (e.g. 20×5 = 4:1). The Huebscher equivalence equation assumes friction scales smoothly with shape; in practice, ratios above 4:1 see disproportionate friction increase because the higher surface-to-area ratio adds more wall friction than Huebscher predicts. Beyond 4:1 also creates uneven velocity profile (faster in the middle, slower at the corners) which generates noise. ACCA Manual D Table 7 caps aspect ratio at 4:1 for design work; the calculator above excludes ratios above 4:1 from its rectangular equivalents.",
+    a: "Aspect ratio is width-to-height of a rectangular duct (e.g. 20×5 = 4:1). The Huebscher equivalence equation assumes friction scales smoothly with shape; in practice, ratios above 4:1 see disproportionate friction increase because the higher surface-to-area ratio adds more wall friction than Huebscher predicts. Beyond 4:1 also creates uneven velocity profile (faster in the middle, slower at the corners) which generates noise. A common design rule of thumb caps aspect ratio at 4:1 for design work; the calculator above excludes ratios above 4:1 from its rectangular equivalents.",
   },
   {
     q: "How do I size return-air grilles to match the duct?",
@@ -95,7 +95,7 @@ const FAQS = [
   },
   {
     q: "What about flex duct? Same sizing equations?",
-    a: "No — flex duct has higher friction than smooth-wall galvanized at the same diameter. ACCA Manual D and ASHRAE both apply a flex-duct correction factor of approximately 1.5-2.5× (varies by manufacturer and how taut the flex is installed). The cleanest approach: size for galvanized, then upsize the flex by one standard size (e.g., a calculation calling for 8″ round → use 10″ flex, or use 8″ flex stretched taut with no excess length). Manufacturers like Atco and Flexmaster publish their own friction charts; consult those for tighter design.",
+    a: "No — flex duct has higher friction than smooth-wall galvanized at the same diameter, so a flex-duct correction factor applies (it varies by manufacturer and how taut the flex is installed). The cleanest approach: size for galvanized, then upsize the flex by one standard size (e.g., a calculation calling for 8″ round → use 10″ flex, or use 8″ flex stretched taut with no excess length). Manufacturers like Atco and Flexmaster publish their own friction charts; consult those for tighter design.",
   },
 ];
 
@@ -135,7 +135,7 @@ const BodySections = (
         Why duct sizing is the most consequential decision in residential HVAC design
       </h2>
       <p className="text-zinc-700 dark:text-zinc-300">
-        A correctly sized cooling system on undersized ductwork can&apos;t reach its rated capacity — the airflow that the equipment spec sheet assumes never materializes, so neither does the cooling. Studies from NIST and Lawrence Berkeley National Laboratory document that 30-40% of residential cooling capacity is commonly lost to duct system problems: leakage, undersizing, poor routing, and uninsulated ducts in unconditioned space. The single largest controllable factor is sizing. ACCA published Manual D in 1991 specifically because the trade had been free-handing duct sizes for decades and getting it wrong consistently. The equal-friction method this calculator implements is the same method Manual D specifies.
+        A correctly sized cooling system on undersized ductwork can&apos;t reach its rated capacity — the airflow that the equipment spec sheet assumes never materializes, so neither does the cooling. According to ENERGY STAR, in a typical house about 20 to 30 percent of the air that moves through the duct system is lost due to leaks, holes, and poorly connected ducts (<a href="https://www.energystar.gov/saveathome/heating-cooling/duct-sealing" className="underline" target="_blank" rel="noopener noreferrer">energystar.gov/saveathome/heating-cooling/duct-sealing</a>). The single largest controllable design factor is sizing. The equal-friction method this calculator implements is the long-standing standard for residential duct sizing, solving the friction equation shown below for each duct section.
       </p>
 
       <KeyInsight tone="blue" title="What &quot;correct&quot; sizing produces">
@@ -154,7 +154,7 @@ const BodySections = (
         The equal-friction method explained
       </h2>
       <p className="text-zinc-700 dark:text-zinc-300">
-        The equal-friction method holds the friction-loss rate constant across every duct section in the supply (or return) trunk-and-branch system. Pick a friction rate at the start — typically 0.08 in.w.c./100 ft for residential supply per ACCA Manual D Table 7 — and every section is sized to maintain that rate at its design CFM.
+        The equal-friction method holds the friction-loss rate constant across every duct section in the supply (or return) trunk-and-branch system. Pick a friction rate at the start — typically 0.08 in.w.c./100 ft for residential supply — and every section is sized to maintain that rate at its design CFM.
       </p>
 
       <p className="mt-4 text-zinc-700 dark:text-zinc-300">
@@ -241,12 +241,12 @@ const BodySections = (
         number={1}
         title="Sizing the main supply trunk for a 3-ton AC"
         refrigerant="(airflow calculation — not refrigerant-side)"
-        scenario="3-ton (36,000 BTU/hr) residential AC, 400 CFM/ton design = 1,200 CFM total. Standard 70°F supply air at sea level. Equal-friction sizing at 0.08 in.w.c./100 ft per ACCA Manual D Table 7. Max trunk velocity 900 fpm."
+        scenario="3-ton (36,000 BTU/hr) residential AC, 400 CFM/ton design = 1,200 CFM total. Standard 70°F supply air at sea level. Equal-friction sizing at 0.08 in.w.c./100 ft. Max trunk velocity 900 fpm."
       >
         <Panel title="Inputs" icon={ListChecks}>
           <Lookups rows={[
             { input: "CFM", output: "1,200" },
-            { input: "Friction target", output: "0.08 in.w.c./100 ft", note: "ACCA Manual D residential supply" },
+            { input: "Friction target", output: "0.08 in.w.c./100 ft", note: "typical residential supply target" },
             { input: "Velocity limit", output: "900 fpm", note: "noise-controlled limit for trunk" },
             { input: "Air density", output: `${r3(STANDARD_AIR_DENSITY)} lb/ft³`, note: "standard sea-level air" },
           ]}/>
@@ -343,7 +343,7 @@ where:  D_eq = equivalent round diameter (in)
       </pre>
 
       <p className="mt-4 text-zinc-700 dark:text-zinc-300">
-        Example: a 14″ round duct has D_eq = 14″. Find rectangular dimensions with the same equivalent diameter — the calculator lists them. A 16″ × 8″ rectangle gives D_eq = {r1(huebscherEquivalent(16, 8))}″ — very close to 14″. A 20″ × 6″ rectangle has aspect ratio 3.3:1 (acceptable) but D_eq = {r1(huebscherEquivalent(20, 6))}″ — also close. The calculator filters to aspect ratios ≤ 4:1 per ACCA Manual D because ratios above 4:1 suffer disproportionate friction beyond Huebscher&apos;s smooth prediction.
+        Example: a 14″ round duct has D_eq = 14″. Find rectangular dimensions with the same equivalent diameter — the calculator lists them. A 16″ × 8″ rectangle gives D_eq = {r1(huebscherEquivalent(16, 8))}″ — very close to 14″. A 20″ × 6″ rectangle has aspect ratio 3.3:1 (acceptable) but D_eq = {r1(huebscherEquivalent(20, 6))}″ — also close. The calculator filters to aspect ratios ≤ 4:1 (a common design rule of thumb) because ratios above 4:1 suffer disproportionate friction beyond Huebscher&apos;s smooth prediction.
       </p>
 
       <KeyInsight tone="amber" title="Practical advantages of round">
@@ -393,11 +393,11 @@ where:  D_eq = equivalent round diameter (in)
       </TechSection>
 
       <TechSection icon="problem" tone="amber" title="Error 3 — Ignoring fitting equivalent lengths">
-        Elbows, takeoffs, transitions, and reducers all add static pressure beyond straight-duct friction. A 90° smooth elbow has equivalent length ~20 ft of straight duct at the same diameter. A boot takeoff with a damper adds 15-25 ft equivalent. Skipping fitting losses in the total-static calculation under-budgets blower work, and the system runs short of airflow. ACCA Manual D Appendix 3 lists equivalent lengths for common fittings; SMACNA Table 4-1 has a more complete catalog.
+        Elbows, takeoffs, transitions, and reducers all add static pressure beyond straight-duct friction. A 90° smooth elbow has equivalent length ~20 ft of straight duct at the same diameter. A boot takeoff with a damper adds 15-25 ft equivalent. Skipping fitting losses in the total-static calculation under-budgets blower work, and the system runs short of airflow. ACCA Manual D lists equivalent lengths for common fittings; SMACNA has a more complete catalog.
       </TechSection>
 
       <TechSection icon="problem" tone="amber" title="Error 4 — Aspect ratio above 4:1">
-        Squeezing a 14″ round equivalent into a 28″ × 4″ rectangular cavity exceeds the 7:1 aspect ratio. Huebscher predicts D_eq ≈ {r1(huebscherEquivalent(28, 4))}″ (close to 14″), but actual friction is 30-50% higher than the equation suggests because the elongated cross-section has more wall surface per unit area. Per ACCA Manual D and ASHRAE Chapter 21, cap aspect ratios at 4:1 for sizing — beyond that, you need oversize sheet metal or you take the performance hit.
+        Squeezing a 14″ round equivalent into a 28″ × 4″ rectangular cavity exceeds the 7:1 aspect ratio. Huebscher predicts D_eq ≈ {r1(huebscherEquivalent(28, 4))}″ (close to 14″), but actual friction runs meaningfully higher than the equation suggests because the elongated cross-section has more wall surface per unit area. As a common design rule of thumb, cap aspect ratios at 4:1 for sizing — beyond that, you need oversize sheet metal or you take the performance hit.
       </TechSection>
 
       <TechSection icon="problem" tone="amber" title="Error 5 — Forgetting altitude at mountain elevations">

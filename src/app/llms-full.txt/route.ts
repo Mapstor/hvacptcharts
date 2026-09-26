@@ -28,7 +28,7 @@ Federal law governing refrigerant handling in the US. Key provisions:
 - Mandatory certification (Type I/II/III/Universal) for any refrigerant handling
 - Mandatory recovery of refrigerant before equipment disposal or service requiring refrigerant removal
 - Recordkeeping requirements for certain equipment
-- Civil penalties up to $48,762 per day per violation (2024 EPA inflation-adjusted)
+- EPA can assess civil penalties per day per violation; the current inflation-adjusted maximums are in 40 CFR 19.4 (https://www.ecfr.gov/current/title-40/chapter-I/subchapter-A/part-19/section-19.4)
 - Type II certification covers high-pressure refrigerant (R-410A, R-22, A2L); most residential + commercial work requires Type II or Universal
 
 ### AIM Act (40 CFR Part 84)
