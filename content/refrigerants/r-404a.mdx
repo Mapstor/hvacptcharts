@@ -29,10 +29,6 @@ sources:
     url: "http://www.coolprop.org/"
     date: "2014 (continually updated)"
     note: "doi:10.1021/ie4033999"
-  - id: ahri700
-    label: "AHRI Standard 700-2019 — Specifications for Refrigerants"
-    url: "https://www.ahrinet.org/search-standards"
-    date: "2019"
   - id: ashraehandbook
     label: "ASHRAE Handbook of Refrigeration 2022 — Commercial refrigeration application data"
     url: "https://www.ashrae.org/technical-resources/ashrae-handbook"
@@ -80,7 +76,6 @@ keyStats:
   - label: Required lubricant
     value: POE
     context: Polyolester; mineral oil not miscible
-    sourceId: ahri700
   - label: New-equipment status (US)
     value: Restricted
     context: SNAP delisted for many commercial refrigeration categories 2024-2025
@@ -105,7 +100,7 @@ narrative:
     Service of existing R-404A equipment remains legal under current US rules. The standard retrofit path is R-448A or R-449A (A1 HFC blends, GWP ~1390) — both mineral-oil-incompatible (POE required like R-404A); for new equipment R-454C / R-455A (A2L, GWP 148) or R-744 (CO₂ transcritical) are the long-term low-GWP destinations.
 
   serviceNotes: |
-    POE oil is required — same lubricant family as R-410A; mineral oil and alkylbenzene are not miscible [ahri700]. Typical viscosity is ISO 32 for medium-temperature applications, ISO 22 or 46 for some low-temperature equipment.
+    POE oil is required — same lubricant family as R-410A; mineral oil and alkylbenzene are not miscible. Typical viscosity is ISO 32 for medium-temperature applications, ISO 22 or 46 for some low-temperature equipment.
 
     R-404A operates at moderate pressures: saturation at 70°F is approximately 148 PSIG (CoolProp 7.2.0). Standard manifold gauges rated 500-800 PSI handle the operating envelope; A1 classification means no special A2L procedures apply. Recovery is mandatory under EPA Section 608.
 
@@ -136,7 +131,7 @@ faqs:
 
   - q: "What lubricant does R-404A use?"
     a: |
-      Polyolester (POE) oil [ahri700]. Mineral oil and alkylbenzene — the standards for CFC R-502 (R-404A's predecessor) — are NOT miscible with R-404A and will not return to the compressor.
+      Polyolester (POE) oil. Mineral oil and alkylbenzene — the standards for CFC R-502 (R-404A's predecessor) — are NOT miscible with R-404A and will not return to the compressor.
 
       Typical viscosity is ISO 32 for medium-temperature commercial refrigeration, ISO 22 or 46 for low-temperature applications. Verify against equipment OEM specification.
 
@@ -262,7 +257,7 @@ The pressure-equipment compatibility is one reason R-404A service has remained o
 
 <TechSection icon="lubricant" tone="blue" title="POE lubricant — same chemistry as other HFC refrigerants">
 
-R-404A requires polyolester (POE) oil, the same lubricant family used with R-410A, R-32, and other HFC refrigerants [ahri700]. Typical viscosity is ISO 32 for medium-temperature commercial refrigeration and ISO 22 or ISO 46 for low-temperature applications — the specific viscosity grade depends on the compressor design and is specified by the equipment OEM.
+R-404A requires polyolester (POE) oil, the same lubricant family used with R-410A, R-32, and other HFC refrigerants. Typical viscosity is ISO 32 for medium-temperature commercial refrigeration and ISO 22 or ISO 46 for low-temperature applications — the specific viscosity grade depends on the compressor design and is specified by the equipment OEM.
 
 POE compatibility with R-404A derives from its polar ester groups, which mix with the polar HFC molecules and return reliably through the compressor in the refrigerant flow. Mineral oil and alkylbenzene — used with R-22 and R-502 era equipment — are not miscible with R-404A and will not return. R-502 to R-404A retrofit in the 1990s required full oil changes (multiple flush cycles) to remove mineral oil residue before charging R-404A.
 

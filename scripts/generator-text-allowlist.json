@@ -23,5 +23,35 @@
     "pattern": "bare-citation-key",
     "contains": "/refrigerant/[slug]/ uses",
     "reason": "False positive: [slug] here is the documented URL-pattern variable on the developer tools hub, not an inline citation key."
+  },
+  {
+    "pattern": "lowercase-open-paren",
+    "contains": "kPa(abs)",
+    "reason": "Standard unit notation: kPa(abs) = absolute kilopascals. No missing space — this is the conventional way to qualify a pressure unit."
+  },
+  {
+    "pattern": "lowercase-open-paren",
+    "contains": "kPa(gauge)",
+    "reason": "Standard unit notation: kPa(gauge) = gauge kilopascals. No missing space — conventional unit qualifier."
+  },
+  {
+    "pattern": "lowercase-open-paren",
+    "contains": "Service problem(",
+    "reason": "False positive: the 'Service problem' label and the parenthetical application chip are separate flex items with a CSS gap; they are visually spaced, only text-concatenated in the DOM."
+  },
+  {
+    "pattern": "lowercase-open-paren",
+    "contains": "exp(",
+    "reason": "Math notation in the psychrometric formula (the saturation-vapor-pressure equation uses exp(...)); a function call takes no space before its parenthesis."
+  },
+  {
+    "pattern": "lowercase-open-paren",
+    "contains": "targetSuperheat(",
+    "reason": "Code/function notation on the charging-chart worked example (targetSuperheat(67,95)); a function call takes no space before its parenthesis."
+  },
+  {
+    "pattern": "lowercase-open-paren",
+    "contains": "synthesize(",
+    "reason": "Pseudo-code notation on the retrofit-compatibility calculator describing the verdict function synthesize(lubricantCheck, safetyClassCheck, pressureCheck, glideCheck); a function call takes no space before its parenthesis."
   }
 ]

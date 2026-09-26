@@ -12,8 +12,13 @@ const SOURCES = sources as Record<string, SourceRecord>;
 
 export function Cite({ id }: { id: string }) {
   const src = SOURCES[id];
-  const label = src ? `${src.publisher} ${src.year}` : id;
-  const href = src?.url ?? `/sources/#${id}`;
+  // Render a compact, consistent citation marker — the standard's short name
+  // (the part of the title before the colon), not the full publisher name.
+  // Previously this printed the sprawling "[Air-Conditioning, Heating, and
+  // Refrigeration Institute (AHRI) 2017]" inline in the cylinder caption; the
+  // short form reads like the other bracketed citation markers on the page.
+  const label = src ? `${src.title.split(":")[0].trim()}` : id;
+  const href = src?.url ?? `#src-${id}`;
   return (
     <sup className="ml-0.5">
       <a

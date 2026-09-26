@@ -412,10 +412,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
               Full saturation values at 1° increments — toggle between °F / PSIG and °C / kPa.
               Use <strong>Print / Save as PDF</strong> for laminated shop reference, or
               download the CSV / JSON below for use in other tools. {r.displayName} PT chart
-              data:{" "}
-              {r.dataSource.engine === "CoolProp" && r.dataSource.engineVersion === "8.0.0"
-                ? "CoolProp 8.0.0 (published Helmholtz equations of state / mixture models — see the source citations above)"
-                : "CoolProp 7.2.0 (REFPROP-compatible Helmholtz EOS) or manufacturer datasheet, validated against AHRI Standard 700-2019"}.
+              data: {coolPropLabel(r.dataSource)}.
             </p>
           </Section>
         ) : null}
@@ -661,7 +658,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
         {/* ───────────────── MDX body ───────────────── */}
         {mdx && mdx.body.length > 0 ? (
           <section className="prose prose-zinc mb-10 max-w-none dark:prose-invert">
-            <MDXRemote source={preprocessCitations(mdx.body, mdx.frontmatter.sources)} components={mdxComponents as never} />
+            <MDXRemote source={mdxTablesToHtml(preprocessCitations(mdx.body, mdx.frontmatter.sources))} components={mdxComponents as never} />
           </section>
         ) : null}
 
@@ -785,12 +782,34 @@ function citationIndex(sources?: { id: string }[]): Map<string, number> {
  */
 function citeInline(text: string, idx: Map<string, number>): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
-  const re = / ?\[([A-Za-z][A-Za-z0-9]*)\]/g;
+  // A Markdown link `[label](url)` OR a bare citation marker `[id]`. The link
+  // alternative is tried first at each `[`, so citation handling only sees bare
+  // brackets. Frontmatter strings (faq / narrative) reach the page through this
+  // renderer, not through MDX, so without link handling `[label](/url)` would
+  // print literally — the live what-pressure/r-450a defect.
+  const re = /\[([^\]]+)\]\(([^)\s]+)\)|( ?)\[([A-Za-z][A-Za-z0-9]*)\]/g;
   let last = 0;
   let key = 0;
   let m: RegExpExecArray | null;
   while ((m = re.exec(text)) !== null) {
-    const id = m[1];
+    if (m[1] !== undefined && m[2] !== undefined) {
+      // Markdown link.
+      parts.push(text.slice(last, m.index));
+      const label = m[1];
+      const href = m[2];
+      const internal = href.startsWith("/") && !href.startsWith("//");
+      parts.push(
+        internal ? (
+          <Link key={`l${key++}`} href={href} className="text-blue-700 underline dark:text-blue-300">{label}</Link>
+        ) : (
+          <a key={`l${key++}`} href={href} className="break-all text-blue-700 underline dark:text-blue-300" target="_blank" rel="noopener noreferrer">{label}</a>
+        ),
+      );
+      last = m.index + m[0].length;
+      continue;
+    }
+    // Citation marker [id] — m[3] is the optional leading space, m[4] the id.
+    const id = m[4];
     const n = idx.get(id);
     const isCitationKey = n !== undefined || /^[a-z][a-z0-9]{2,}$/.test(id);
     if (!isCitationKey) continue; // leave non-citation brackets (e.g. "[CO2]") intact
@@ -865,6 +884,22 @@ function PrecomputedSourceBlock({ dataSource }: { dataSource: Refrigerant["dataS
  * `sources` list) or strip them (orphan citation-shaped keys). Non-citation
  * brackets are left intact.
  */
+/**
+ * PT-table footer label: the CoolProp version this fluid's chart was actually
+ * computed with (precomputed fluids carry engine/engineVersion; the mainstream
+ * fluids embed it in ptChartSource, e.g. "CoolProp 7.2.0 R410A.mix"), or a
+ * datasheet note. Never a hardcoded version — each chart states its own.
+ */
+function coolPropLabel(ds: Refrigerant["dataSource"]): string {
+  const ver =
+    ds.engine === "CoolProp" && ds.engineVersion
+      ? ds.engineVersion
+      : ds.ptChartSource.match(/CoolProp\s+(\d+\.\d+(?:\.\d+)?)/)?.[1] ?? null;
+  return ver
+    ? `CoolProp ${ver} (published Helmholtz equations of state / mixture models — see the source citations above)`
+    : "manufacturer datasheet (see the source citations above)";
+}
+
 function preprocessCitations(body: string, sources?: { id: string }[]): string {
   const idx = citationIndex(sources);
   return body.replace(/ ?\[([A-Za-z][A-Za-z0-9]*)\]/g, (full, id: string) => {
@@ -875,6 +910,48 @@ function preprocessCitations(body: string, sources?: { id: string }[]): string {
     if (/^[a-z][a-z0-9]{2,}$/.test(id)) return ""; // orphan citation key
     return full; // non-citation bracket (e.g. "[CO2]")
   });
+}
+
+/**
+ * Convert GitHub-flavored Markdown tables in an MDX body to HTML `<table>`s.
+ *
+ * We render MDX via next-mdx-remote without remark-gfm, so pipe tables would
+ * otherwise reach the page as literal `| --- |` text (the live r-450a defect).
+ * This is a focused converter for the well-formed pipe tables this content
+ * uses — a header row, a `| --- |` delimiter row, then body rows — emitting
+ * HTML that MDX passes through and the `prose` wrapper styles. Cell text is
+ * escaped so `<`, `{`, `}` can't be reinterpreted as MDX/JSX.
+ */
+function mdxTablesToHtml(body: string): string {
+  const esc = (s: string) =>
+    s.trim().replace(/</g, "&lt;").replace(/\{/g, "&#123;").replace(/\}/g, "&#125;");
+  const cells = (line: string) =>
+    line.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map((c) => c.trim());
+  const isDelim = (line: string) => /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)*\|?\s*$/.test(line);
+  const isRow = (line: string) => line.trim().startsWith("|");
+
+  const lines = body.split("\n");
+  const out: string[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    if (isRow(lines[i]) && i + 1 < lines.length && isDelim(lines[i + 1])) {
+      const header = cells(lines[i]);
+      let j = i + 2;
+      const rows: string[][] = [];
+      while (j < lines.length && isRow(lines[j]) && !isDelim(lines[j])) {
+        rows.push(cells(lines[j]));
+        j++;
+      }
+      const thead = `<thead><tr>${header.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead>`;
+      const tbody = `<tbody>${rows
+        .map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join("")}</tr>`)
+        .join("")}</tbody>`;
+      out.push(`<table>${thead}${tbody}</table>`);
+      i = j - 1;
+    } else {
+      out.push(lines[i]);
+    }
+  }
+  return out.join("\n");
 }
 
 function Section({

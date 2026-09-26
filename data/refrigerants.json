@@ -4980,7 +4980,7 @@
     "chemicalName": "(Z)-1-Chloro-2,3,3,3-tetrafluoro-1-propene",
     "chemicalFormula": "CF3CF=CHCl (Z isomer)",
     "ashraeNumber": "R-1224yd(Z)",
-    "type": "hfo-pure",
+    "type": "hcfo",
     "safetyClass": "A1",
     "tradeNames": [
       {
@@ -8984,7 +8984,7 @@
     "chemicalName": "(E)-1-Chloro-3,3,3-trifluoro-1-propene",
     "chemicalFormula": "CF3CH=CHCl (E isomer)",
     "ashraeNumber": "R-1233zd(E)",
-    "type": "hfo-pure",
+    "type": "hcfo",
     "safetyClass": "A1",
     "tradeNames": [
       {
@@ -74400,8 +74400,8 @@
       },
       "molarMassGPerMol": 108.7,
       "liquidDensityKgPerM3At25C": 1196,
-      "temperatureGlideF": 0.9,
-      "hasSignificantGlide": false
+      "temperatureGlideF": 1.1,
+      "hasSignificantGlide": true
     },
     "environmental": {
       "odp": 0,

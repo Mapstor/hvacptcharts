@@ -300,7 +300,7 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
 
         <TechSection icon="service" tone="amber" title={`Service implications — ${fromR.displayName} → ${toR.displayName}`}>
           <p>
-            What a service technician needs to know when transitioning from {fromR.displayName}
+            What a service technician needs to know when transitioning from {fromR.displayName}{" "}
             to {toR.displayName} (or comparing them for new equipment specification). Two
             real-world scenarios show how the difference plays out in practice.
           </p>

@@ -61,9 +61,9 @@ export function SiteFooter() {
         </div>
         <div className="mt-10 border-t border-zinc-200 pt-6 text-xs text-zinc-500 dark:border-zinc-800">
           <p>
-            Pressure-temperature data and saturation calculations on this site are derived from{" "}
-            <a href="http://www.coolprop.org/" className="underline" rel="nofollow">CoolProp 7.2.0</a> (REFPROP-compatible
-            Helmholtz EOS) and named manufacturer datasheets. Released under{" "}
+            Pressure-temperature data are computed with{" "}
+            <a href="http://www.coolprop.org/" className="underline" rel="nofollow">CoolProp</a> (version shown on each
+            chart) or transcribed from named manufacturer datasheets. Released under{" "}
             <a href="https://creativecommons.org/licenses/by/4.0/" className="underline" rel="nofollow">CC BY 4.0</a>.
           </p>
           <p className="mt-3">

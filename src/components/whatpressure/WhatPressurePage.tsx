@@ -140,11 +140,11 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
                   <tr key={i} className="border-t border-zinc-100 dark:border-zinc-800">
                     <td className="px-3 py-2">{row.application}</td>
                     <td className="px-3 py-2 text-right font-mono">{row.suctionLow}–{row.suctionHigh} PSIG</td>
-                    <td className="px-3 py-2 text-right font-mono">{row.dischargeLow}–{row.dischargeHigh} PSIG</td>
+                    <td className="px-3 py-2 text-right font-mono">{row.dischargeNote ? <span className="text-xs font-sans italic text-zinc-500">{row.dischargeNote}</span> : `${row.dischargeLow}–${row.dischargeHigh} PSIG`}</td>
                     {!fm.pressureModel ? (
                       <>
                         <td className="px-3 py-2 text-right font-mono text-xs">{row.superheatTargetF ? `${row.superheatTargetF[0]}–${row.superheatTargetF[1]}°F` : "—"}</td>
-                        <td className="px-3 py-2 text-right font-mono text-xs">{row.subcoolingTargetF ? `${row.subcoolingTargetF[0]}–${row.subcoolingTargetF[1]}°F` : "—"}</td>
+                        <td className="px-3 py-2 text-right font-mono text-xs">{row.subcoolingNote ? <span className="font-sans italic text-zinc-500">{row.subcoolingNote}</span> : row.subcoolingTargetF ? `${row.subcoolingTargetF[0]}–${row.subcoolingTargetF[1]}°F` : "—"}</td>
                       </>
                     ) : null}
                   </tr>
@@ -228,7 +228,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
                   <PropertyRow label="Type" value={typeLabel(r.type)} />
                   <PropertyRow label="GWP (IPCC AR5, 100-yr)" value={r.environmental.gwp100Ar5 !== null ? String(r.environmental.gwp100Ar5) : "—"} />
                   <PropertyRow label="ODP" value={r.environmental.odp !== null ? String(r.environmental.odp) : "—"} />
-                  <PropertyRow label="Normal boiling point" value={r.physical.boilingPointF !== null ? `${r.physical.boilingPointF.toFixed(1)}°F` : "—"} />
+                  <PropertyRow label="Normal boiling point" value={r.slug === "r-744" ? "none: CO₂ sublimes at −109.2°F at 1 atm (triple point 60.4 psig, −69.8°F)" : r.physical.boilingPointF !== null ? `${r.physical.boilingPointF.toFixed(1)}°F` : "—"} />
                   <PropertyRow label="Critical temperature" value={r.physical.critical.tempF !== null ? `${r.physical.critical.tempF.toFixed(1)}°F` : "—"} />
                   <PropertyRow label="Critical pressure" value={r.physical.critical.pressurePsig !== null ? `${r.physical.critical.pressurePsig.toFixed(0)} PSIG` : "—"} />
                   <PropertyRow label="Temperature glide" value={`${Math.abs(r.physical.temperatureGlideF).toFixed(1)}°F`} />
@@ -278,7 +278,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
 
         <TechSection icon="composition" tone="emerald" title={`Operating envelope and equipment context — ${r.displayName}`}>
           <p>
-            {r.displayName} pressures sit inside an operating envelope bounded by the
+            {r.displayName}{" "}pressures sit inside an operating envelope bounded by the
             refrigerant&apos;s thermodynamic properties (saturation curve, critical point)
             and the equipment&apos;s pressure-rated components. Understanding both bounds
             tells you what pressure readings are normal versus what readings indicate a
@@ -369,7 +369,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
                 </li>
               ) : (
                 <li>
-                  <strong>{r.displayName} has minimal glide</strong> (pure refrigerant or
+                  <strong>{r.displayName} has minimal glide</strong>{" "}(pure refrigerant or
                   near-azeotrope), so bubble ≡ dew on the saturation curve. Curve selection on
                   the PT chart doesn&apos;t matter for {r.displayName}.
                 </li>
@@ -390,7 +390,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
               </li>
               {r.physical.critical.tempF !== null && r.physical.critical.tempF < 150 ? (
                 <li>
-                  <strong>{r.displayName} has a low critical temperature</strong>
+                  <strong>{r.displayName} has a low critical temperature</strong>{" "}
                   ({r.physical.critical.tempF.toFixed(1)}°F). Above this temperature there is
                   no saturation state — for warm-ambient applications, transcritical operation
                   or system shutdown applies. Look up{" "}
@@ -445,7 +445,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
                   <span className="mr-2 inline-block rounded-full bg-zinc-200 px-2 py-0.5 text-xs text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">{i + 1}</span>
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">{step.text}</p>
+                <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">{renderInline(step.text)}</p>
                 {step.tools && step.tools.length > 0 ? (
                   <p className="mt-2 text-xs text-zinc-500"><strong>Tools:</strong> {step.tools.join(", ")}</p>
                 ) : null}
@@ -525,9 +525,6 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
             <li>Saturation pressures: CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS</li>
             <li>Safety classification: ANSI/ASHRAE Standard 34-2022</li>
             <li>GWP values: IPCC AR5 (2013) Working Group I, Table 8.A.1</li>
-            {fm.omitStationaryFooterClaims ? null : (
-              <li>Diagnostic procedures: ASHRAE Handbook — Refrigeration (2022), Chapter 23</li>
-            )}
             {fm.extraSources?.map((s, i) => <li key={`extra-${i}`}>{s}</li>)}
           </ul>
           <p className="mt-3">
@@ -553,9 +550,13 @@ interface DisplayRange {
   suctionHigh: number;
   dischargeLow: number;
   dischargeHigh: number;
+  /** Text shown for discharge instead of a numeric range (transcritical rows). */
+  dischargeNote?: string;
   /** Legacy-only companion target columns (unset on computed pages). */
   superheatTargetF?: [number, number];
   subcoolingTargetF?: [number, number];
+  /** Text shown for subcooling instead of a numeric target (transcritical rows). */
+  subcoolingNote?: string;
 }
 
 /** Residential indoor evaporator saturation band (normal indoor load). */
@@ -599,8 +600,10 @@ function computeOperatingRanges(
         suctionHigh: row.suctionPsigHigh ?? 0,
         dischargeLow: row.dischargePsigLow ?? 0,
         dischargeHigh: row.dischargePsigHigh ?? 0,
+        dischargeNote: row.dischargeNote,
         superheatTargetF: row.superheatTargetF,
         subcoolingTargetF: row.subcoolingTargetF,
+        subcoolingNote: row.subcoolingNote,
       });
       continue;
     }
@@ -821,8 +824,14 @@ function OperatingEnvelopeBars({ ranges }: { ranges: DisplayRange[] }) {
             </text>
             <rect x={xScale(range.suctionLow)} y={y + 6} width={xScale(range.suctionHigh) - xScale(range.suctionLow)} height={12} fill="#3a8ed1" rx={2} />
             <text x={xScale(range.suctionHigh) + 4} y={y + 16} fontSize="9" fill="#3a8ed1" fontWeight={500}>SP {range.suctionLow}-{range.suctionHigh}</text>
-            <rect x={xScale(range.dischargeLow)} y={y + 22} width={xScale(range.dischargeHigh) - xScale(range.dischargeLow)} height={12} fill="#c45757" rx={2} />
-            <text x={xScale(range.dischargeHigh) + 4} y={y + 32} fontSize="9" fill="#c45757" fontWeight={500}>DP {range.dischargeLow}-{range.dischargeHigh}</text>
+            {range.dischargeHigh > 0 ? (
+              <>
+                <rect x={xScale(range.dischargeLow)} y={y + 22} width={xScale(range.dischargeHigh) - xScale(range.dischargeLow)} height={12} fill="#c45757" rx={2} />
+                <text x={xScale(range.dischargeHigh) + 4} y={y + 32} fontSize="9" fill="#c45757" fontWeight={500}>DP {range.dischargeLow}-{range.dischargeHigh}</text>
+              </>
+            ) : (
+              <text x={xScale(0) + 4} y={y + 32} fontSize="9" fill="#c45757" fontWeight={500}>High side: controller-set (transcritical)</text>
+            )}
           </g>
         );
       })}
@@ -845,87 +854,14 @@ interface GeneratedScenario {
 function generateServiceScenarios(r: Refrigerant): GeneratedScenario[] {
   // The former auto-generated residential scenarios were fabricated: fixed
   // 0.78 / 1.25 multipliers applied to the 40°F/95°F saturation values, not
-  // dataset-derived operating points (they produced readings like 69/182,
-  // 87/220, 112/280). Removed in task 3A. Pages that need scenarios now supply
-  // hand-checked ones via frontmatter (fm.serviceScenarios). R-744 keeps its
-  // bespoke sub-/transcritical set, which a later task revisits.
-  if (r.slug === "r-744") return generateCO2Scenarios(r);
+  // dataset-derived operating points. Removed in task 3A. The R-744 set was
+  // likewise fabricated and physically impossible (900 PSIG labelled 33°F sat
+  // when it is ~75°F; a 40 PSIG suction below CO₂'s 60.4 PSIG triple point; a
+  // 1100 PSIG "60°F sat" above the 1055 PSIG critical pressure) — removed in
+  // task 6E. Pages that need scenarios now supply hand-checked ones via
+  // frontmatter (fm.serviceScenarios).
+  void r;
   return [];
-}
-
-function generateCO2Scenarios(r: Refrigerant): GeneratedScenario[] {
-  return [
-    {
-      title: "R-744 medium-temp commercial — sub-critical operation",
-      scenario: "Supermarket R-744 commercial refrigeration MT case, cold-ambient operation (35°F outdoor — sub-critical). Standard saturation behavior applies, similar to HFC systems.",
-      measured: [
-        { label: "MT suction P", value: "290 PSIG", side: "low" },
-        { label: "Suction line", value: "10°F", side: "low" },
-        { label: "Discharge P", value: "900 PSIG", side: "high" },
-        { label: "Liquid line", value: "30°F", side: "high" },
-      ],
-      lookups: [
-        { input: "290 PSIG", output: "0°F sat", note: "MT evaporator (sub-critical)" },
-        { input: "900 PSIG", output: "33°F sat", note: "condenser (sub-critical)" },
-      ],
-      derived: [
-        { formula: "Superheat = 10°F − 0°F = 10°F", verdict: "ok", note: "in target" },
-        { formula: "Subcooling = 33°F − 30°F = 3°F", verdict: "ok", note: "CO2 typical 2-5°F" },
-      ],
-      verdict: {
-        status: "ok",
-        title: "Operating correctly in sub-critical mode",
-        body: "Cold-ambient R-744 systems operate sub-critically with standard saturation behavior. Target SC is much lower than HFC systems (2-5°F) — don't expect 10°F SC on CO2.",
-      },
-    },
-    {
-      title: "R-744 transcritical at 95°F outdoor",
-      scenario: "Same R-744 supermarket system, hot-weather operation (95°F outdoor — above 87.8°F critical temperature). High side is transcritical and pressure is throttle-valve controlled.",
-      measured: [
-        { label: "MT suction P", value: "290 PSIG", side: "low" },
-        { label: "LT suction P", value: "40 PSIG", side: "low" },
-        { label: "Gas cooler P", value: "1350 PSIG", side: "high" },
-        { label: "Gas cooler outlet T", value: "105°F", side: "high" },
-      ],
-      lookups: [
-        { input: "290 PSIG", output: "0°F sat", note: "MT evaporator (sub-critical)" },
-        { input: "40 PSIG", output: "−50°F sat", note: "LT evaporator (sub-critical)" },
-        { input: "1350 PSIG", output: "out of range", note: "above critical — transcritical" },
-      ],
-      derived: [
-        { formula: "Gas cooler T = ambient + 8-10°F target", verdict: "info", note: "controls system COP" },
-      ],
-      verdict: {
-        status: "info",
-        title: "Transcritical high side — different rules apply",
-        body: "Above CO2 critical T (87.8°F) no saturation exists; subcooling concept doesn't apply. High side controlled by high-pressure throttle valve. Target gas cooler outlet T ≈ ambient + 8-10°F at design optimum.",
-      },
-      fix: "For transcritical operation, optimize high-pressure throttle setpoint per OEM. Gas cooler outlet temperature is the meaningful high-side metric, not pressure.",
-    },
-    {
-      title: "R-744 LT freezer at design conditions",
-      scenario: "R-744 low-temperature walk-in freezer, -25°F evaporator target, 80°F ambient (sub-critical mode). LT R-744 operates at very high pressures even sub-critically.",
-      measured: [
-        { label: "LT suction P", value: "210 PSIG", side: "low" },
-        { label: "Suction line", value: "-15°F", side: "low" },
-        { label: "Discharge P", value: "1100 PSIG", side: "high" },
-        { label: "Liquid line", value: "60°F", side: "high" },
-      ],
-      lookups: [
-        { input: "210 PSIG", output: "-25°F sat", note: "LT evaporator" },
-        { input: "1100 PSIG", output: "60°F sat", note: "condenser" },
-      ],
-      derived: [
-        { formula: "Superheat = -15°F − (-25°F) = 10°F", verdict: "ok", note: "LT target" },
-        { formula: "Subcooling = 60°F − 60°F = 0°F", verdict: "warn", note: "verify with liquid receiver" },
-      ],
-      verdict: {
-        status: "ok",
-        title: "Standard LT R-744 operation",
-        body: "LT R-744 evaporator pressures are still 200+ PSIG even at -25°F — much higher than HFCs. Service equipment must be R-744-rated (3000+ PSI components). Subcooling near zero is acceptable when a liquid receiver provides the liquid column.",
-      },
-    },
-  ];
 }
 
 function ContentComingSoon({ id }: { id: string }) {
@@ -1008,7 +944,12 @@ function buildSchema(pageUrl: string, fm: NonNullable<ReturnType<typeof loadWhat
       step: fm.diagnosticSteps.map((s) => ({
         "@type": "HowToStep",
         name: s.title,
-        text: s.text,
+        // Strip inline Markdown ([label](url), **bold**, *em*) so the schema
+        // carries plain prose, not raw markup.
+        text: s.text
+          .replace(/\[([^\]]+)\]\([^)\s]+\)/g, "$1")
+          .replace(/\*\*([^*]+)\*\*/g, "$1")
+          .replace(/\*([^*]+)\*/g, "$1"),
       })),
     },
   ];

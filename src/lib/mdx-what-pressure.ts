@@ -25,9 +25,17 @@ export const OperatingRange = z.object({
   suctionPsigHigh: z.number().optional(),
   dischargePsigLow: z.number().optional(),
   dischargePsigHigh: z.number().optional(),
+  /**
+   * Text shown in the discharge column instead of a numeric range. Used for
+   * transcritical operation (R-744), where there is no high-side saturation and
+   * the head pressure is a controller setpoint, not a saturation lookup.
+   */
+  dischargeNote: z.string().optional(),
   /** Optional companion values (legacy pages only). */
   superheatTargetF: z.tuple([z.number(), z.number()]).optional(),
   subcoolingTargetF: z.tuple([z.number(), z.number()]).optional(),
+  /** Text shown in the subcooling column instead of a numeric target (e.g. "n/a (transcritical)"). */
+  subcoolingNote: z.string().optional(),
 });
 export type OperatingRange = z.infer<typeof OperatingRange>;
 

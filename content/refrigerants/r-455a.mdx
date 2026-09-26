@@ -34,10 +34,6 @@ sources:
     url: "http://www.coolprop.org/"
     date: "2014 (continually updated)"
     note: "doi:10.1021/ie4033999"
-  - id: ahri700
-    label: "AHRI Standard 700-2019 — Specifications for Refrigerants"
-    url: "https://www.ahrinet.org/search-standards"
-    date: "2019"
   - id: honeywellsolstice
     label: "Honeywell Solstice L40X / N40 (R-455A) Technical Information"
     url: "https://www.honeywell-refrigerants.com/americas/"
@@ -74,7 +70,6 @@ keyStats:
   - label: Required lubricant
     value: POE
     context: Polyolester; mineral oil not miscible
-    sourceId: ahri700
   - label: Application
     value: New commercial refrigeration
     context: R-404A replacement alongside R-454C; not a drop-in for legacy A1 systems
@@ -98,7 +93,7 @@ narrative:
     R-454C and R-455A serve as competing low-GWP A2L choices with identical GWP. The differences are composition-specific: R-455A includes the 3% R-744 component for capacity and slightly different pressure characteristics; R-454C is a binary R-32/R-1234yf blend with simpler chemistry. OEM preference and equipment optimization typically drive the choice between them.
 
   serviceNotes: |
-    POE oil required — same lubricant family as R-410A and R-32 [ahri700]. A2L safety class requires sealed motors, charge limits per UL 60335-2-89 and ASHRAE 15, A2L-rated leak detection in some installations, and nitrogen-purged brazing [ul60335][ashrae15].
+    POE oil required — same lubricant family as R-410A and R-32. A2L safety class requires sealed motors, charge limits per UL 60335-2-89 and ASHRAE 15, A2L-rated leak detection in some installations, and nitrogen-purged brazing [ul60335][ashrae15].
 
     The 22°F temperature glide is the largest among mainstream commercial refrigerants and significantly affects service measurement. Use dew temperature for superheat math (suction line) and bubble temperature for subcooling (liquid line). The R-744 component requires attention to fractionation behavior during partial charging — full recovery and recharge is the correct service approach.
 
@@ -123,7 +118,7 @@ faqs:
 
   - q: "What lubricant does R-455A use?"
     a: |
-      Polyolester (POE) oil — same lubricant family as R-410A, R-32, and R-454C [ahri700]. Typical viscosity is ISO 32 for medium-temperature commercial refrigeration, ISO 22 or 46 for low-temperature applications.
+      Polyolester (POE) oil — same lubricant family as R-410A, R-32, and R-454C. Typical viscosity is ISO 32 for medium-temperature commercial refrigeration, ISO 22 or 46 for low-temperature applications.
 
       POE is hygroscopic — pull vacuum to 500 microns and hold ≥30 minutes before charging. The R-744 component doesn't change the lubricant choice; the blend's overall behavior is determined by the 97% HFC/HFO content.
 

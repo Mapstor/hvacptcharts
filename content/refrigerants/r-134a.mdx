@@ -32,10 +32,6 @@ sources:
     url: "http://www.coolprop.org/"
     date: "2014 (continually updated)"
     note: "doi:10.1021/ie4033999"
-  - id: ahri700
-    label: "AHRI Standard 700-2019 — Specifications for Refrigerants"
-    url: "https://www.ahrinet.org/search-standards"
-    date: "2019"
   - id: saej639
     label: "SAE J639 — Safety Standards for Motor Vehicle Refrigerant Vapor Compression Systems"
     url: "https://www.sae.org/standards/content/j639_201407/"
@@ -82,7 +78,6 @@ keyStats:
   - label: Required lubricant
     value: POE / PAG
     context: POE for stationary HVAC; PAG for mobile AC
-    sourceId: ahri700
 
 narrative:
   whatItIs: |
@@ -103,7 +98,7 @@ narrative:
     Stationary applications: R-134a's GWP of 1430 places it above the EPA AIM Act 700-GWP threshold for residential AC categories (R-134a isn't widely used in residential AC anyway), with phase-down restrictions affecting some chiller and commercial refrigeration categories from 2025-2030 [aimact]. R-450A, R-513A, R-515B, R-1234ze(E) are the chiller replacement options.
 
   serviceNotes: |
-    Polyolester (POE) oil is standard for stationary HVAC; polyalkylene glycol (PAG) oil is standard for mobile AC due to better oil return in variable-displacement automotive compressors [ahri700][saej639]. The two are not interchangeable — verify lubricant grade against equipment OEM.
+    Polyolester (POE) oil is standard for stationary HVAC; polyalkylene glycol (PAG) oil is standard for mobile AC due to better oil return in variable-displacement automotive compressors [saej639]. The two are not interchangeable — verify lubricant grade against equipment OEM.
 
     R-134a service equipment is widely available and inexpensive (decades of installed base). Manifold gauges rated 500 PSI cover R-134a's operating envelope (low side ~25-40 PSIG, high side ~150-220 PSIG for typical applications). Recovery is mandatory under EPA Section 608.
 
@@ -128,7 +123,7 @@ faqs:
 
   - q: "What lubricant does R-134a use?"
     a: |
-      Depends on application. Stationary HVAC (chillers, commercial refrigeration): polyolester (POE) oil [ahri700]. Mobile AC: polyalkylene glycol (PAG) oil — typically PAG 46 or PAG 100 viscosity grades — for better oil return in variable-displacement automotive compressors [saej639].
+      Depends on application. Stationary HVAC (chillers, commercial refrigeration): polyolester (POE) oil. Mobile AC: polyalkylene glycol (PAG) oil — typically PAG 46 or PAG 100 viscosity grades — for better oil return in variable-displacement automotive compressors [saej639].
 
       Mineral oil and alkylbenzene are NOT miscible with R-134a. Mixing PAG and POE oils in a single system causes oil-return and stability issues.
 
@@ -243,7 +238,7 @@ For mobile AC, the operational range typically runs lower on the suction side (2
 
 <TechSection icon="lubricant" tone="blue" title="Two lubricant chemistries — POE for stationary, PAG for mobile">
 
-R-134a is unique among Tier 1 refrigerants in requiring two different lubricant chemistries depending on application. Stationary HVAC (chillers, commercial refrigeration, vending machines, household refrigerators): polyolester (POE) oil, the same family used with R-410A and R-32 [ahri700]. Mobile AC: polyalkylene glycol (PAG) oil, typically PAG 46 or PAG 100 viscosity grades [saej639].
+R-134a is unique among Tier 1 refrigerants in requiring two different lubricant chemistries depending on application. Stationary HVAC (chillers, commercial refrigeration, vending machines, household refrigerators): polyolester (POE) oil, the same family used with R-410A and R-32. Mobile AC: polyalkylene glycol (PAG) oil, typically PAG 46 or PAG 100 viscosity grades [saej639].
 
 The reason for the split is automotive compressor design. Mobile AC compressors are mostly variable-displacement (the compressor adjusts its stroke or piston count to match cabin cooling demand), which requires the lubricant to behave predictably across a wider range of operating conditions than stationary HVAC compressors face. PAG oil's specific polymer chemistry provides better oil-return behavior in variable-displacement applications and better seal compatibility with the elastomers used in automotive AC system components.
 

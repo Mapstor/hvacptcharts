@@ -39,20 +39,29 @@ export function RefrigerantCycle({ slug, className }: RefrigerantCycleProps) {
     return <CycleNotApplicable reason="above-critical" slug={slug} criticalF={critF ?? null} />;
   }
 
+  // The low side is superheated vapor at the compressor inlet, so suction
+  // references the DEW curve; the liquid line is subcooled liquid, so it
+  // references the BUBBLE curve. (For pure fluids bubble ≡ dew; this only
+  // matters for zeotropic blends with glide.)
+  const residentialAc = r.applications.some(
+    (a) => /residential/i.test(a) && /(air.?condition|cooling|heat pump)/i.test(a),
+  );
+
   return (
     <CycleDiagram
       refrigerantName={r.displayName}
+      residentialAc={residentialAc}
       conditions={{
-        suctionPsig: suctionSat.bubble,
+        suctionPsig: suctionSat.dew,
         suctionTempF: 50, // 40 + 10°F superheat
         dischargePsig: dischargeSat.bubble,
         dischargeTempF: 180,
         liquidPsig: dischargeSat.bubble,
         liquidTempF: 100, // 110 − 10°F subcooling
-        evapInletPsig: suctionSat.bubble,
+        evapInletPsig: suctionSat.dew,
         evapInletTempF: 40,
       }}
-      ariaLabel={`Refrigeration cycle diagram for ${r.displayName} with typical residential operating conditions`}
+      ariaLabel={`Refrigeration cycle diagram for ${r.displayName} at 40°F evaporator / 110°F condenser conditions`}
       className={className}
     />
   );

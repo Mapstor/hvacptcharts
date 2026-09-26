@@ -34,10 +34,6 @@ sources:
     url: "http://www.coolprop.org/"
     date: "2014 (continually updated)"
     note: "doi:10.1021/ie4033999"
-  - id: ahri700
-    label: "AHRI Standard 700-2019 — Specifications for Refrigerants"
-    url: "https://www.ahrinet.org/search-standards"
-    date: "2019"
   - id: chemoursopteon
     label: "Chemours Opteon XL20 (R-454C) Product Data"
     url: "https://www.chemours.com/en/products/refrigerants"
@@ -77,7 +73,6 @@ keyStats:
   - label: Required lubricant
     value: POE
     context: Polyolester; mineral oil not miscible
-    sourceId: ahri700
   - label: Application
     value: New commercial refrigeration
     context: R-404A replacement in new equipment; not a drop-in for legacy A1 systems
@@ -101,7 +96,7 @@ narrative:
     Long-term regulatory positioning is strong. The 148 GWP figure was deliberately engineered to fit just under the EU 150-GWP cap — providing structural compliance for the foreseeable regulatory horizon.
 
   serviceNotes: |
-    POE oil required — same lubricant family as R-410A and R-32 [ahri700]. A2L safety class requires sealed motors, charge limits per UL 60335-2-89 and ASHRAE 15, A2L-rated leak detection in some installations, and nitrogen-purged brazing [ul60335][ashrae15].
+    POE oil required — same lubricant family as R-410A and R-32. A2L safety class requires sealed motors, charge limits per UL 60335-2-89 and ASHRAE 15, A2L-rated leak detection in some installations, and nitrogen-purged brazing [ul60335][ashrae15].
 
     The 14°F temperature glide significantly affects superheat and subcooling measurement. Use dew temperature for superheat math (suction line) and bubble temperature for subcooling (liquid line). Single-curve approximation introduces measurement error equal to the glide — for R-454C this is large enough to invalidate charging decisions on systems where superheat or subcooling targets are tight.
 
@@ -132,7 +127,7 @@ faqs:
 
   - q: "What lubricant does R-454C use?"
     a: |
-      Polyolester (POE) oil — same lubricant family as R-410A, R-32, and R-404A [ahri700]. Typical viscosity is ISO 32 for medium-temperature commercial refrigeration, ISO 22 or 46 for low-temperature applications. Verify against equipment OEM specification.
+      Polyolester (POE) oil — same lubricant family as R-410A, R-32, and R-404A. Typical viscosity is ISO 32 for medium-temperature commercial refrigeration, ISO 22 or 46 for low-temperature applications. Verify against equipment OEM specification.
 
       POE oil is hygroscopic — pull vacuum to 500 microns and hold ≥30 minutes before charging.
 

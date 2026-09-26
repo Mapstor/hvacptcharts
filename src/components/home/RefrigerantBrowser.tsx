@@ -13,6 +13,7 @@ const TYPE_OPTIONS: Array<{ id: RefrigerantType | "all"; label: string }> = [
   { id: "hfc-blend", label: "HFC blend" },
   { id: "hfo-pure", label: "HFO pure" },
   { id: "hfo-blend", label: "HFO blend" },
+  { id: "hcfo", label: "HCFO" },
   { id: "pfc", label: "PFC" },
   { id: "hcfc", label: "HCFC (legacy)" },
   { id: "cfc", label: "CFC (banned)" },

@@ -38,6 +38,7 @@ function typeLabel(t: Refrigerant["type"]): string {
     case "hfc-blend": return "HFC";
     case "hfo-pure": return "Hydrofluoroolefin (HFO)";
     case "hfo-blend": return "HFO";
+    case "hcfo": return "Hydrochlorofluoroolefin (HCFO)";
     case "pfc": return "Perfluorocarbon (PFC)";
     case "hc": return "Hydrocarbon";
     case "natural": return "Natural refrigerant";

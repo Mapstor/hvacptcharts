@@ -32,10 +32,6 @@ sources:
     url: "http://www.coolprop.org/"
     date: "2014 (continually updated)"
     note: "doi:10.1021/ie4033999"
-  - id: ahri700
-    label: "AHRI Standard 700-2019 — Specifications for Refrigerants"
-    url: "https://www.ahrinet.org/search-standards"
-    date: "2019"
   - id: ul60335
     label: "UL 60335-2-40 / IEC 60335-2-40 — Safety of household and commercial AC equipment"
     url: "https://www.ul.com/services/ul-60335-standards"
@@ -73,7 +69,6 @@ keyStats:
   - label: Required lubricant
     value: POE
     context: Polyolester; mineral oil is not miscible
-    sourceId: ahri700
   - label: New-equipment status (US)
     value: Discontinued
     context: New residential AC equipment manufactured ≥1 Jan 2025 must use ≤700-GWP refrigerant
@@ -106,7 +101,7 @@ narrative:
     AIM Act production allocations step down through the next decade — 70% of baseline by 2029, 80% by 2034, and 85% by 2036 [aimact]. As virgin HFC production tightens, reclaimed R-410A (recovered from end-of-life equipment, processed back to AHRI 700 spec, and resold) will fill an increasing share of the service supply. Pricing will track scarcity — expect rising costs through the 2030s.
 
   serviceNotes: |
-    Polyolester (POE) oil is the only lubricant compatible with R-410A — mineral oil and alkylbenzene, the historical R-22 lubricants, are not miscible with R-410A and will not return to the compressor [ahri700]. Typical residential R-410A systems use ISO 32 viscosity POE; commercial applications may use ISO 22 or ISO 46. Verify viscosity grade against the equipment OEM service literature.
+    Polyolester (POE) oil is the only lubricant compatible with R-410A — mineral oil and alkylbenzene, the historical R-22 lubricants, are not miscible with R-410A and will not return to the compressor. Typical residential R-410A systems use ISO 32 viscosity POE; commercial applications may use ISO 22 or ISO 46. Verify viscosity grade against the equipment OEM service literature.
 
     POE oil is hygroscopic — it absorbs moisture from atmospheric humidity within minutes of being exposed to ambient air. Moisture in a sealed refrigeration system reacts with POE to form acidic byproducts that corrode metal surfaces and degrade the oil's lubrication performance. The defense is rigorous vacuum: pull to 500 microns and verify the reading holds for at least 30 minutes before opening the system to refrigerant. A failing vacuum hold indicates a leak or residual moisture that must be resolved before charging.
 
@@ -137,7 +132,7 @@ faqs:
 
   - q: "What lubricant does R-410A use?"
     a: |
-      Polyolester (POE) oil — typically ISO 32 viscosity for residential split systems, ISO 22 or 46 for some commercial applications (verify against equipment OEM). Mineral oil and alkylbenzene — the standards for R-22 and R-12 — are not miscible with R-410A and will not return to the compressor [ahri700].
+      Polyolester (POE) oil — typically ISO 32 viscosity for residential split systems, ISO 22 or 46 for some commercial applications (verify against equipment OEM). Mineral oil and alkylbenzene — the standards for R-22 and R-12 — are not miscible with R-410A and will not return to the compressor.
 
       POE oil absorbs moisture from atmospheric humidity rapidly. Minimize the time the oil container is open, pull vacuum to 500 microns held ≥30 minutes before charging, and replace the filter-drier on any major service intervention.
 
@@ -260,7 +255,7 @@ The R-22 to R-410A transition between 2003-2010 forced contractors to replace en
 
 <TechSection icon="lubricant" tone="blue" title="POE lubricant — why hygroscopic chemistry matters">
 
-Polyolester (POE) oil is the synthetic lubricant required for R-410A and other HFC refrigerants. The chemistry is fundamentally different from R-22's mineral oil — POE molecules are designed to mix with the highly polar HFC refrigerant molecules and return to the compressor in the refrigerant flow. Mineral oil (a non-polar hydrocarbon) is not miscible with HFCs and would separate, causing compressor lubrication failure within hours [ahri700].
+Polyolester (POE) oil is the synthetic lubricant required for R-410A and other HFC refrigerants. The chemistry is fundamentally different from R-22's mineral oil — POE molecules are designed to mix with the highly polar HFC refrigerant molecules and return to the compressor in the refrigerant flow. Mineral oil (a non-polar hydrocarbon) is not miscible with HFCs and would separate, causing compressor lubrication failure within hours.
 
 The downside of POE chemistry is hygroscopy — POE molecules contain ester groups that attract water molecules. A POE oil container left open to a 50% humidity environment for an hour absorbs enough moisture to significantly degrade its lubrication performance. In a sealed refrigeration system, water reacts with POE to form weak organic acids that corrode copper and aluminum surfaces over time.
 

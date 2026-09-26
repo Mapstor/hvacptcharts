@@ -249,7 +249,7 @@ export default function PtChartGuidePage() {
             </p>
             <p>
               In the field, the practical use is converting <strong>manifold pressure</strong> (what you read on the
-              gauge) to <strong>saturation temperature</strong> (what you compare against the line-temperature probe to
+              gauge) to <strong>saturation temperature</strong>{" "}(what you compare against the line-temperature probe to
               compute superheat or subcooling). The chart isn&apos;t the answer — it&apos;s the unit conversion
               between two service measurements.
             </p>
@@ -450,7 +450,7 @@ export default function PtChartGuidePage() {
               better than ±0.5% across the operating range.
             </p>
             <p>
-              Verification policy: every value is recorded in <code>data/refrigerants.json</code> (the generated data
+              Verification policy: every value is recorded in <code>data/refrigerants.json</code>{" "}(the generated data
               layer), validated against a strict schema at build time, and cross-checked against AHRI 700 specifications
               where applicable. The previous WordPress version of this site shipped with approximately 25,000
               fabricated quantitative errors including PT values wrong by 2-15×, some above critical pressure (a

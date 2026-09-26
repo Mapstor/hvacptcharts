@@ -39,7 +39,7 @@ function NoMilestonesNotice({ slug }: { slug: string }) {
   const odp = r.environmental.odp;
   const aimAct = r.regulatoryStatus.aimActAffected;
   const type = r.type;
-  const isHfo = type === "hfo-pure" || type === "hfo-blend";
+  const isHfo = type === "hfo-pure" || type === "hfo-blend" || type === "hcfo";
   const isHydrocarbon = type === "natural";
 
   let reason: React.ReactNode;

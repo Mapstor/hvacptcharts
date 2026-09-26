@@ -20,6 +20,8 @@ export interface CycleDiagramProps {
   conditions: CycleConditions;
   /** Required for accessibility. */
   ariaLabel: string;
+  /** True only for residential-AC refrigerants — controls the caption wording. */
+  residentialAc?: boolean;
   className?: string;
 }
 
@@ -37,6 +39,7 @@ export function CycleDiagram({
   refrigerantName,
   conditions,
   ariaLabel,
+  residentialAc = false,
   className = "",
 }: CycleDiagramProps) {
   const c = conditions;
@@ -187,7 +190,7 @@ export function CycleDiagram({
 
       {/* Footer label */}
       <text x={W / 2} y={H - 12} textAnchor="middle" fontSize="11" fill="var(--c-text)" opacity={0.6}>
-        Typical residential cooling cycle for {refrigerantName} (40°F evap, 110°F condenser, 10°F superheat, 10°F subcooling)
+        {residentialAc ? "Typical residential cooling cycle" : "Example cycle"} for {refrigerantName} (40°F evap, 110°F condenser, 10°F superheat, 10°F subcooling)
       </text>
     </svg>
   );

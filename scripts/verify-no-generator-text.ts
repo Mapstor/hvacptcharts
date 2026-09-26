@@ -51,7 +51,18 @@ const PATTERNS: { name: string; re: RegExp }[] = [
   { name: "undefined", re: /\bundefined\b/ },
   { name: "[object Object]", re: /\[object Object\]/ },
   { name: "bare-citation-key", re: /\[[a-z][a-z0-9]{2,}\]/ },
-  { name: "lowercase-type-label", re: /\b(hcfc|hfc|hfo|cfc|pfc)\b/ },
+  { name: "lowercase-type-label", re: /\b(hcfc|hfc|hfo|cfc|pfc|hcfo)\b/ },
+  // Markdown that leaked as literal text because remark-gfm isn't enabled and a
+  // table/link reached a page unrendered (task 6E). Both pipe-table delimiter
+  // forms are banned in visible text.
+  { name: "md-table-sep-spaced", re: /\| --- \|/ },
+  { name: "md-table-sep-tight", re: /\|---\|/ },
+  // Missing JSX whitespace: a refrigerant designation running straight into a
+  // word ("R-404Apressures"), or a lowercase letter jammed against "(" then a
+  // lowercase letter/digit ("glide(pure", "temperature(87"). Allowlist genuine
+  // exceptions in generator-text-allowlist.json.
+  { name: "refrigerant-run-into-word", re: /R-\d+[A-Z][a-z]/ },
+  { name: "lowercase-open-paren", re: /[a-z]\([a-z0-9]/ },
 ];
 
 interface AllowEntry { pattern: string; contains: string; reason: string }
@@ -65,6 +76,36 @@ function collectJsonLdStrings(node: unknown, out: string[]): void {
   else if (node && typeof node === "object") Object.values(node).forEach((v) => collectJsonLdStrings(v, out));
 }
 
+// Block-level tags render as a line/box break, so text across them never "runs
+// together" visually. Inline tags (span, a, strong, sup…) do NOT separate their
+// text — a missing space across an inline boundary IS a visible defect. We emit
+// a newline at block boundaries and concatenate everything else with no
+// separator, so the whitespace patterns fire on genuine run-togethers
+// ("R-404Ato", "temperature(87") without tripping on element adjacency
+// ("R-744" heading followed by a "Pair comparisons" heading).
+const BLOCK_TAGS = new Set([
+  "address", "article", "aside", "blockquote", "br", "caption", "dd", "details",
+  "dialog", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form",
+  "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav",
+  "ol", "p", "pre", "section", "summary", "table", "tbody", "td", "tfoot", "th",
+  "thead", "tr", "ul",
+  // SVG <text> labels are independently-positioned; adjacent labels never run
+  // together visually even though they concatenate in the DOM.
+  "text",
+]);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function blockAwareText(node: any, parts: string[]): void {
+  if (!node) return;
+  if (node.type === "text") { parts.push(node.data ?? ""); return; }
+  const name = typeof node.name === "string" ? node.name.toLowerCase() : "";
+  if (name === "script" || name === "style" || name === "template") return;
+  const block = BLOCK_TAGS.has(name);
+  if (block) parts.push("\n");
+  for (const c of node.children ?? []) blockAwareText(c, parts);
+  if (block) parts.push("\n");
+}
+
 /** Return the searchable strings for one HTML file. */
 function searchable(html: string): string[] {
   const $ = cheerio.load(html);
@@ -74,7 +115,9 @@ function searchable(html: string): string[] {
     out.push($(el).attr("content") ?? "");
   });
   $("script, style, template").remove();
-  out.push($("body").text());
+  const bodyParts: string[] = [];
+  blockAwareText($("body")[0], bodyParts);
+  out.push(bodyParts.join(""));
   // JSON-LD string values (parse before removal above? scripts removed — re-load)
   const $2 = cheerio.load(html);
   $2('script[type="application/ld+json"]').each((_, el) => {

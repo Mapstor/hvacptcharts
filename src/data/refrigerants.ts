@@ -13,6 +13,10 @@ export const RefrigerantType = z.enum([
   "hfc-blend",
   "hfo-pure",
   "hfo-blend",
+  // Hydrochlorofluoroolefin — an unsaturated (olefin) molecule that still
+  // contains chlorine, e.g. R-1233zd(E) and R-1224yd(Z). Distinct from HFO
+  // (no chlorine); not an HCFC (HCFCs are saturated).
+  "hcfo",
   "pfc",
   "hc",
   "natural",

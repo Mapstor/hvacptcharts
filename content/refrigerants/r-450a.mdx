@@ -27,10 +27,6 @@ sources:
     url: "http://www.coolprop.org/"
     date: "2014 (continually updated)"
     note: "doi:10.1021/ie4033999"
-  - id: ahri700
-    label: "AHRI Standard 700-2019"
-    url: "https://www.ahrinet.org/search-standards"
-    date: "2019"
   - id: honeywellsolstice
     label: "Honeywell Solstice N13 (R-450A) Technical Information"
     url: "https://www.honeywell-refrigerants.com/americas/"
@@ -60,14 +56,13 @@ keyStats:
     context: Higher than R-513A; comparable chiller pressure envelope
     sourceId: coolprop
   - label: Temperature glide
-    value: "≈0.6"
+    value: "≈1.1"
     unit: °F
     context: Near-azeotropic; service-equivalent to pure refrigerant
     sourceId: coolprop
   - label: Required lubricant
     value: POE
     context: Polyolester; same as R-134a — no oil change for retrofit
-    sourceId: ahri700
   - label: Trade name
     value: Solstice N13
     context: Honeywell brand; competitor to Chemours Opteon XP10 (R-513A)
@@ -75,7 +70,7 @@ keyStats:
 
 narrative:
   whatItIs: |
-    R-450A is a near-azeotropic binary blend of 42% R-134a (HFC) and 58% R-1234ze(E) (HFO) by mass [ashrae34]. The near-azeotropic composition produces very small temperature glide (~0.6°F) — service-equivalent to a pure refrigerant for practical measurement purposes.
+    R-450A is a near-azeotropic binary blend of 42% R-134a (HFC) and 58% R-1234ze(E) (HFO) by mass [ashrae34]. The near-azeotropic composition produces very small temperature glide (~1.1°F) — service-equivalent to a pure refrigerant for practical measurement purposes.
 
     R-450A was developed by Honeywell as a near-drop-in retrofit for R-134a centrifugal chillers and commercial refrigeration. The R-1234ze(E) component (GWP 7) is different from R-513A's R-1234yf component (GWP 4) but serves the same role: diluting the blend's overall GWP while preserving A1 safety classification and operational compatibility with R-134a equipment.
 
@@ -91,20 +86,20 @@ narrative:
     Like R-513A, R-450A is a transitional refrigerant for R-134a equipment retrofit. New chiller equipment increasingly specifies R-515B (A1, GWP 287) or R-1234ze(E) (A2L, GWP 7) for lower long-term GWP positioning.
 
   serviceNotes: |
-    POE oil required — same lubricant family as R-134a, so R-134a retrofit to R-450A typically does NOT require oil change [ahri700]. The near-azeotropic composition (~0.6°F glide) is small enough that service measurement procedures from R-134a practice apply without modification.
+    POE oil required — same lubricant family as R-134a, so R-134a retrofit to R-450A typically does NOT require oil change. The near-azeotropic composition (~1.1°F glide) is small enough that service measurement procedures from R-134a practice apply without modification.
 
     R-450A operating pressures are very close to R-134a across the chiller operating range. Standard 500 PSI manifold gauges handle the envelope. A1 classification means no A2L procedures required.
 
 faqs:
   - q: "What is the normal operating pressure of R-450A?"
     a: |
-      Very close to R-134a — about 8% lower across the range. See the PT chart and the quick-lookup strip above for exact saturation values at any temperature.
+      Very close to R-134a — about 12–13% lower across the range (about 13% at 70°F, 12% at 95°F, computed from the PT dataset). See the PT chart and the quick-lookup strip above for exact saturation values at any temperature.
 
       For typical chiller operation, the pressure delta is small enough that R-134a-rated equipment handles R-450A within design tolerances. Compressor and expansion-valve adjustments are typically not required.
 
   - q: "What's the difference between R-450A and R-513A?"
     a: |
-      Both are A1 near-azeotropic HFC/HFO blends marketed as R-134a chiller retrofits. R-450A (Honeywell Solstice N13) uses R-134a/R-1234ze(E) 42/58, GWP 605, ~0.6°F glide. R-513A (Chemours Opteon XP10) uses R-134a/R-1234yf 44/56, GWP 631, azeotropic (~0°F glide).
+      Both are A1 near-azeotropic HFC/HFO blends marketed as R-134a chiller retrofits. R-450A (Honeywell Solstice N13) uses R-134a/R-1234ze(E) 42/58, GWP 605, ~1.1°F glide. R-513A (Chemours Opteon XP10) uses R-134a/R-1234yf 44/56, GWP 631, azeotropic (~0°F glide).
 
       R-450A has slightly lower GWP (605 vs 631) and uses R-1234ze(E) (slightly higher GWP individually than R-1234yf but lower vapor pressure). R-513A has slightly higher pressure envelope match to R-134a. The choice between them is typically driven by manufacturer relationship.
 
@@ -118,11 +113,11 @@ faqs:
 
   - q: "Does R-450A have temperature glide?"
     a: |
-      Very small — approximately 0.6°F at typical operating pressures. The near-azeotropic composition means service measurement procedures from R-134a practice apply without modification. Single-curve approximation is acceptable for routine superheat and subcooling calculations.
+      Very small — approximately 1.1°F (dew minus bubble at 1 atm, from the PT dataset). The near-azeotropic composition means service measurement procedures from R-134a practice apply without modification. Single-curve approximation is acceptable for routine superheat and subcooling calculations.
 
   - q: "What lubricant does R-450A use?"
     a: |
-      Polyolester (POE) oil — same lubricant family as R-134a [ahri700]. No oil change required for R-134a retrofit.
+      Polyolester (POE) oil — same lubricant family as R-134a. No oil change required for R-134a retrofit.
 
   - q: "Is R-450A safe to handle?"
     a: |
@@ -142,12 +137,12 @@ retrofitGuidance:
 
 <TechSection icon="chart" tone="blue" title="Reading the R-450A PT chart — near-azeotropic, single curve adequate">
 
-R-450A is near-azeotropic with very small glide (~0.6°F). The PT chart can show bubble and dew curves but the spread is small enough that a single curve approximation is operationally adequate for most service measurements.
+R-450A is near-azeotropic with very small glide (~1.1°F). The PT chart can show bubble and dew curves but the spread is small enough that a single curve approximation is operationally adequate for most service measurements.
 
-For superheat measurement at the suction line, use the dew curve (or single approximation curve). For subcooling at the liquid line, use the bubble curve (or single approximation curve). The 0.6°F glide creates measurement uncertainty much smaller than typical superheat/subcooling targets.
+For superheat measurement at the suction line, use the dew curve (or single approximation curve). For subcooling at the liquid line, use the bubble curve (or single approximation curve). The 1.1°F glide creates measurement uncertainty much smaller than typical superheat/subcooling targets.
 
 <KeyInsight tone="emerald" icon="glide" title="Service-equivalent to R-134a">
-R-450A's near-azeotropic behavior means R-134a service procedures apply without procedural change. Technicians transitioning from R-134a to R-450A face no operational training adjustment — same lubricant, same pressure envelope (within 8%), same effectively-single-curve measurement.
+R-450A's near-azeotropic behavior means R-134a service procedures apply without procedural change. Technicians transitioning from R-134a to R-450A face no operational training adjustment — same lubricant, a slightly lower pressure envelope (about 12–13% below R-134a), same effectively-single-curve measurement.
 </KeyInsight>
 
 </TechSection>
@@ -165,9 +160,9 @@ For chiller applications where centrifugal compressor efficiency depends on the 
 
 </TechSection>
 
-<TechSection icon="trending" tone="amber" title="Pressure envelope ~8% below R-134a">
+<TechSection icon="trending" tone="amber" title="Pressure envelope about 12–13% below R-134a">
 
-R-450A's pressure envelope is slightly below R-134a across the operating range. At 70°F R-450A saturates at <PressureAtTemp slug="r-450a" tempF="70" /> vs R-134a's <PressureAtTemp slug="r-134a" tempF="70" /> — approximately 8% below. At 95°F, R-450A is <PressureAtTemp slug="r-450a" tempF="95" /> vs R-134a's <PressureAtTemp slug="r-134a" tempF="95" />.
+R-450A's pressure envelope is below R-134a across the operating range. At 70°F R-450A saturates at <PressureAtTemp slug="r-450a" tempF="70" /> vs R-134a's <PressureAtTemp slug="r-134a" tempF="70" /> — about 13% below. At 95°F, R-450A is <PressureAtTemp slug="r-450a" tempF="95" /> vs R-134a's <PressureAtTemp slug="r-134a" tempF="95" /> — about 12% below.
 
 The lower pressure profile is mildly beneficial for chiller centrifugal compressor designs that operate near the upper end of their efficient pressure-ratio range with R-134a. Some chiller OEMs may show slightly better efficiency with R-450A than with R-513A in specific equipment lines; others may show the opposite. The differences are small (typically within 1-2% COP) and are equipment-specific.
 
@@ -205,7 +200,7 @@ R-450A service is operationally indistinguishable from R-513A and R-134a for typ
 | Manifold gauge rating | 500 PSI | 500 PSI | 500 PSI |
 | Recovery cylinder | Standard | Standard | Standard |
 | Lubricant | POE | POE (no change) | POE (no change) |
-| Curve selection | Single curve (pure) | Effectively single (0.6°F glide) | Single curve (azeotrope) |
+| Curve selection | Single curve (pure) | Effectively single (1.1°F glide) | Single curve (azeotrope) |
 | Safety class | A1 | A1 | A1 |
 | Charge by weight | Required | Required | Required |
 | Vacuum target | 500 microns held 30+ min | 500 microns held 30+ min | 500 microns held 30+ min |

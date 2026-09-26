@@ -8,53 +8,56 @@ introOneLiner: "R-744 (CO₂) operating pressures are unlike any other HVAC refr
 
 operatingRangesSource: "ASHRAE Handbook of Refrigeration 2022 (CO₂ refrigeration); IIR Informatory Note on CO₂; Hillphoenix and other commercial CO₂ refrigeration OEM design literature; Carel and Danfoss control documentation for transcritical CO₂ booster systems"
 
+# Subcritical rows use the site's standard method: suction = dew (= saturation,
+# CO₂ is pure) within ±3°F of the evaporator temperature; head = bubble within
+# ±5°F of the stated condensing temperature. Transcritical rows have no high-side
+# saturation, so discharge is a controller setpoint, not a number, and subcooling
+# is undefined. All saturation values are CoolProp R-744 (critical 87.8°F / 1055 PSIG).
 operatingRanges:
   - ambientF: 60
-    application: "Subcritical commercial refrigeration — medium-temp (cold ambient, 30°F evap)"
-    suctionPsigLow: 415
-    suctionPsigHigh: 470
-    dischargePsigLow: 600
-    dischargePsigHigh: 700
+    application: "Subcritical medium-temp (cold ambient, 30°F evap, ~75°F condensing)"
+    suctionPsigLow: 455
+    suctionPsigHigh: 498
+    dischargePsigLow: 838
+    dischargePsigHigh: 955
     superheatTargetF: [5, 15]
     subcoolingTargetF: [3, 10]
   - ambientF: 60
-    application: "Subcritical commercial refrigeration — low-temp (cold ambient, -20°F evap)"
-    suctionPsigLow: 215
-    suctionPsigHigh: 260
-    dischargePsigLow: 600
-    dischargePsigHigh: 700
+    application: "Subcritical low-temp (cold ambient, -20°F evap, ~75°F condensing)"
+    suctionPsigLow: 189
+    suctionPsigHigh: 212
+    dischargePsigLow: 838
+    dischargePsigHigh: 955
     superheatTargetF: [5, 15]
     subcoolingTargetF: [3, 10]
   - ambientF: 80
-    application: "Subcritical operation (just below critical, 30°F evap)"
-    suctionPsigLow: 415
-    suctionPsigHigh: 470
-    dischargePsigLow: 950
-    dischargePsigHigh: 1100
+    application: "Subcritical, just below critical (30°F evap, ~82°F condensing)"
+    suctionPsigLow: 455
+    suctionPsigHigh: 498
+    dischargePsigLow: 919
+    dischargePsigHigh: 1045
     superheatTargetF: [5, 15]
     subcoolingTargetF: [3, 8]
   - ambientF: 95
-    application: "Transcritical operation — medium-temp (30°F evap, 95°F ambient)"
-    suctionPsigLow: 415
-    suctionPsigHigh: 470
-    dischargePsigLow: 1300
-    dischargePsigHigh: 1500
+    application: "Transcritical medium-temp (30°F evap, 95°F ambient — no condensing)"
+    suctionPsigLow: 455
+    suctionPsigHigh: 498
+    dischargeNote: "set by the high-pressure controller; follow the OEM"
     superheatTargetF: [5, 15]
-    subcoolingTargetF: [0, 0]
+    subcoolingNote: "n/a (transcritical)"
   - ambientF: 105
-    application: "Transcritical operation — medium-temp (30°F evap, 105°F ambient)"
-    suctionPsigLow: 415
-    suctionPsigHigh: 470
-    dischargePsigLow: 1450
-    dischargePsigHigh: 1650
+    application: "Transcritical medium-temp (30°F evap, 105°F ambient — no condensing)"
+    suctionPsigLow: 455
+    suctionPsigHigh: 498
+    dischargeNote: "set by the high-pressure controller; follow the OEM"
     superheatTargetF: [5, 15]
-    subcoolingTargetF: [0, 0]
+    subcoolingNote: "n/a (transcritical)"
   - ambientF: 95
     application: "Cascade low-stage (CO₂ low side, -20°F evap, cascade condenser ~10°F)"
-    suctionPsigLow: 215
-    suctionPsigHigh: 260
-    dischargePsigLow: 360
-    dischargePsigHigh: 410
+    suctionPsigLow: 189
+    suctionPsigHigh: 212
+    dischargePsigLow: 318
+    dischargePsigHigh: 376
     superheatTargetF: [5, 15]
     subcoolingTargetF: [3, 10]
 
@@ -99,7 +102,7 @@ faqs:
     a: "Rarely in cooling-only residential AC in the US (the equipment cost is high and the transcritical operation in hot ambients reduces efficiency vs HFC alternatives). Common in residential heat pumps for water heating (heat pump water heaters with CO₂) and in some EU residential heat pumps, where the transcritical cycle's high temperature glide is well-matched to water heating. The dominant US application is commercial refrigeration (supermarket CO₂ booster systems)."
   - q: "What's the GWP of R-744?"
     a: "1 (defined as 1 — CO₂ is the reference for GWP). R-744 has by definition the lowest GWP of any commercial refrigerant. It's the long-term destination for many applications facing aggressive GWP phase-down — the trade-off is equipment cost (high-pressure components) and efficiency in warm climates (transcritical operation has lower efficiency than subcritical at the same temperatures)."
-  - q: "Why does subcooling appear as 0 in the transcritical operating ranges?"
+  - q: "Why is subcooling shown as 'n/a' in the transcritical operating ranges?"
     a: "Subcooling requires a saturation temperature at the discharge pressure to subtract from the liquid-line temperature. In transcritical operation there is no saturation on the high side — no condensation occurs, the refrigerant stays in supercritical state throughout the gas cooler. 'Subcooling' as a concept doesn't apply. Gas cooler outlet temperature is the relevant high-side measurement, evaluated against the manufacturer's optimal operating envelope."
 
 faqs_END: ""

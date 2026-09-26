@@ -35,10 +35,6 @@ sources:
     url: "http://www.coolprop.org/"
     date: "2014 (continually updated)"
     note: "doi:10.1021/ie4033999"
-  - id: ahri700
-    label: "AHRI Standard 700-2019 — Specifications for Refrigerants"
-    url: "https://www.ahrinet.org/search-standards"
-    date: "2019"
   - id: daikin
     label: "Daikin Industries — R-32 commercial deployment documentation"
     url: "https://www.daikin.com/products/ac/r32/"
@@ -83,7 +79,6 @@ keyStats:
   - label: Required lubricant
     value: POE
     context: Polyolester; same lubricant family as R-410A
-    sourceId: ahri700
 
 narrative:
   whatItIs: |
@@ -104,7 +99,7 @@ narrative:
     Long-term, the EU F-Gas Regulation revision (2024) targets even lower GWP thresholds in some segments, which may eventually pressure R-32. For 2025-2035, R-32 has stable regulatory positioning in the US residential AC market.
 
   serviceNotes: |
-    POE oil is required (same lubricant family as R-410A) — mineral oil and alkylbenzene are not miscible. ISO 32 viscosity is typical for residential split systems [ahri700].
+    POE oil is required (same lubricant family as R-410A) — mineral oil and alkylbenzene are not miscible. ISO 32 viscosity is typical for residential split systems.
 
     A2L safety class requires specific procedures: no open flames during service (nitrogen purge for brazing — standard practice for any HFC), A2L-rated leak detection sensors, charge limits per UL 60335-2-40 and ASHRAE 15 [ul60335][ashrae15]. R-32 operating pressures are approximately 2% above R-410A; R-410A-rated service equipment (800 PSI manifold) handles R-32 without modification.
 
@@ -139,7 +134,7 @@ faqs:
 
   - q: "What lubricant does R-32 use?"
     a: |
-      Polyolester (POE) oil — the same lubricant family used with R-410A [ahri700]. Typical viscosity is ISO 32 for residential split systems; commercial applications may use ISO 22 or ISO 46.
+      Polyolester (POE) oil — the same lubricant family used with R-410A. Typical viscosity is ISO 32 for residential split systems; commercial applications may use ISO 22 or ISO 46.
 
       POE is hygroscopic — absorbs moisture aggressively from atmospheric humidity. Vacuum to 500 microns and hold ≥30 minutes before charging.
 
@@ -261,7 +256,7 @@ The transition from R-410A-only service to R-32-capable service is primarily abo
 
 <TechSection icon="lubricant" tone="blue" title="POE lubricant — same chemistry as R-410A">
 
-R-32 requires polyolester (POE) oil, the same lubricant family used with R-410A and most other HFC refrigerants [ahri700]. Typical residential R-32 systems use ISO 32 viscosity POE; commercial applications may use ISO 22 or ISO 46. The viscosity grade is specified by the equipment OEM and reflects the compressor design — verify against equipment service literature before adding oil to a system.
+R-32 requires polyolester (POE) oil, the same lubricant family used with R-410A and most other HFC refrigerants. Typical residential R-32 systems use ISO 32 viscosity POE; commercial applications may use ISO 22 or ISO 46. The viscosity grade is specified by the equipment OEM and reflects the compressor design — verify against equipment service literature before adding oil to a system.
 
 POE's compatibility with R-32 derives from its polar ester groups, which mix with the polar HFC molecule and return reliably through the compressor in the refrigerant flow. This is fundamentally different from R-22's mineral oil, which is non-polar and would not mix with R-32. Mixing oils across the HCFC/HFC boundary causes immediate lubrication failure — never use mineral oil residue from an R-22 system in R-32 service.
 
