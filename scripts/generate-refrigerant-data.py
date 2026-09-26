@@ -199,8 +199,8 @@ def compute_physical(cp_identifier: str | None, manual: dict | None) -> dict:
 def precomputed_pt_chart(table):
     rows = []
     for row in table:
-        bub_psig = row["bubblePsia"] * PSI_PER_PA * 6894.757 - PSIG_OFFSET  # == psia - 14.696
-        dew_psig = row["dewPsia"] * PSI_PER_PA * 6894.757 - PSIG_OFFSET
+        bub_psig = row["bubblePsia"] - PSIG_OFFSET  # gauge = absolute - atmospheric
+        dew_psig = row["dewPsia"] - PSIG_OFFSET
         bub_kpag = row["bubblePsia"] * 6894.757 * KPA_PER_PA - KPAG_OFFSET
         dew_kpag = row["dewPsia"] * 6894.757 * KPA_PER_PA - KPAG_OFFSET
         rows.append({

@@ -1,0 +1,487 @@
+{
+  "base": "http://localhost:3200",
+  "pass": 55,
+  "fail": [],
+  "dataRows": [
+    {
+      "slug": "r-11",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-1150",
+      "jrows": 89,
+      "crows": 89,
+      "tmin": -40,
+      "tmax": 48,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-12",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-1224yd-z",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-123",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-1233zd-e",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-1234yf",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-1234ze",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-1234ze-e",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-1234ze-z",
+      "jrows": 119,
+      "crows": 119,
+      "tmin": 32,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-124",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-125",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-1270",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-13",
+      "jrows": 124,
+      "crows": 124,
+      "tmin": -40,
+      "tmax": 83,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-1336mzz-z",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-134a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-143a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-152a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-218",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-22",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-236ea",
+      "jrows": 173,
+      "crows": 173,
+      "tmin": -22,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-236fa",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-245fa",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-290",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-32",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-365mfc",
+      "jrows": 180,
+      "crows": 180,
+      "tmin": -29,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-404a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-407a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-407c",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-407f",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-410a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-417a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-421a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-422a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-422b",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-422d",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-427a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-438a",
+      "jrows": 103,
+      "crows": 0,
+      "tmin": -63,
+      "tmax": 148.1,
+      "kind": "ptTable"
+    },
+    {
+      "slug": "r-448a",
+      "jrows": 56,
+      "crows": 0,
+      "tmin": -51,
+      "tmax": 146.9,
+      "kind": "ptTable"
+    },
+    {
+      "slug": "r-449a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-450a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-452a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-452b",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-454b",
+      "jrows": 175,
+      "crows": 175,
+      "tmin": -40,
+      "tmax": 134,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-454c",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-455a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-457a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-500",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-502",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-503",
+      "jrows": 0,
+      "crows": 0,
+      "tmin": null,
+      "tmax": null,
+      "kind": "none"
+    },
+    {
+      "slug": "r-507a",
+      "jrows": 189,
+      "crows": 189,
+      "tmin": -40,
+      "tmax": 148,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-513a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-514a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-515a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-515b",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-516a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-600a",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-717",
+      "jrows": 191,
+      "crows": 191,
+      "tmin": -40,
+      "tmax": 150,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-744",
+      "jrows": 128,
+      "crows": 128,
+      "tmin": -40,
+      "tmax": 87,
+      "kind": "ptChart"
+    },
+    {
+      "slug": "r-c318",
+      "jrows": 190,
+      "crows": 190,
+      "tmin": -39,
+      "tmax": 150,
+      "kind": "ptChart"
+    }
+  ]
+}

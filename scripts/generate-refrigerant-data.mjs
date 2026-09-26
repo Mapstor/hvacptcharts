@@ -238,8 +238,8 @@ function computePhysical(identifier, manual) {
 /** psia → site PSIG/kPag ptChart rows (mirrors generatePtChart's conversion). */
 function precomputedPtChart(table) {
   return table.map((row) => {
-    const bubPsig = row.bubblePsia * PSI_PER_PA * 6894.757 - PSIG_OFFSET; // == psia − 14.696
-    const dewPsig = row.dewPsia * PSI_PER_PA * 6894.757 - PSIG_OFFSET;
+    const bubPsig = row.bubblePsia - PSIG_OFFSET; // gauge = absolute − atmospheric
+    const dewPsig = row.dewPsia - PSIG_OFFSET;
     const bubKpag = row.bubblePsia * 6894.757 * KPA_PER_PA - KPAG_OFFSET;
     const dewKpag = row.dewPsia * 6894.757 * KPA_PER_PA - KPAG_OFFSET;
     return {

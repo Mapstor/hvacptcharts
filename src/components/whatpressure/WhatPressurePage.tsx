@@ -76,6 +76,13 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
   const { rows: displayRanges, dropped: droppedRows } = computeOperatingRanges(r.slug, fm);
   const serviceScenarios = fm.serviceScenarios ?? generateServiceScenarios(r);
 
+  // Saturation-envelope endpoints for the default bullet: clamp to the fluid's
+  // actual PT-chart range so low-critical fluids (R-744 crit 87.8°F, R-13 83.7°F)
+  // don't ask for a saturation pressure above their critical point (which renders "—").
+  const envRows = [...r.ptChart].sort((a, b) => a.tempF - b.tempF);
+  const envLoT = envRows.length ? Math.max(-20, envRows[0].tempF) : -20;
+  const envHiT = envRows.length ? Math.min(95, envRows[envRows.length - 1].tempF) : 95;
+
   return (
     <>
       <JsonLd graph={schemaGraph} />
@@ -291,8 +298,8 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
                 <li>
                   <strong>Saturation envelope:</strong> {r.displayName} saturation pressure
                   ranges from{" "}
-                  {getPressureAtTempF(r.slug, -20)?.bubble.toFixed(0) ?? "—"} PSIG at −20°F
-                  to {getPressureAtTempF(r.slug, 95)?.bubble.toFixed(0) ?? "—"} PSIG at 95°F.{" "}
+                  {getPressureAtTempF(r.slug, envLoT)?.bubble.toFixed(0) ?? "—"} PSIG at {envLoT}°F
+                  to {getPressureAtTempF(r.slug, envHiT)?.bubble.toFixed(0) ?? "—"} PSIG at {envHiT}°F.{" "}
                   {r.physical.critical.tempF !== null
                     ? `Critical temperature is ${r.physical.critical.tempF.toFixed(1)}°F — above this point no saturation state exists.`
                     : `Critical temperature is well above the service range — sub-critical operation throughout.`}
