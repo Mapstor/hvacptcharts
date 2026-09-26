@@ -14,6 +14,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { banner, htmlFloor } from "./build-guard";
 
 const ROOT = process.cwd();
 const APP_DIR = path.join(ROOT, ".next", "server", "app");
@@ -64,6 +65,12 @@ function renderedRoutes(): string[] {
   return [...routes].filter((r) => !EXCLUDE.some((re) => re.test(r)));
 }
 
+// Discover rendered routes first, so the Node version + coverage count is the
+// gate's first line and a collapsed discovery (0 routes) fails before anything
+// else — a content-dates gate that checks no rendered routes proves nothing.
+const rendered = renderedRoutes();
+banner("verify-content-dates", rendered.length, htmlFloor(), "rendered routes");
+
 let failures = 0;
 const fail = (m: string) => { failures++; console.log(`  ✗ ${m}`); };
 
@@ -79,7 +86,6 @@ for (const [route, e] of Object.entries(dates)) {
 }
 
 // 2. Every rendered content route must have an entry.
-const rendered = renderedRoutes();
 let missing = 0;
 for (const r of rendered) {
   if (!dates[r]) { fail(`rendered route "${r}" has no content-dates entry`); missing++; }

@@ -19,6 +19,16 @@ export function verifyAgainstAnchors(refrigerants: Refrigerant[]): { ok: boolean
   const parsedAnchors = AnchorList.parse(anchors);
   const errors: string[] = [];
 
+  // The anchor comparison is the structural last line of defense against
+  // shipping fabricated PT values. An empty anchor file would make the loop
+  // below run zero times and still return ok — a gate that verifies nothing.
+  // Treat that as a hard failure rather than a silent pass.
+  if (parsedAnchors.length === 0) {
+    errors.push(
+      "coolprop-anchors.json is empty — anchor verification would pass without comparing any PT value.",
+    );
+  }
+
   for (const anchor of parsedAnchors) {
     const r = refrigerants.find((x) => x.slug === anchor.slug);
     if (!r) {

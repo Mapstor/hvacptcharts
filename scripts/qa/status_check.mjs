@@ -16,6 +16,16 @@ const data = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "refrigerants.js
 const precomputed = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "precomputed", "coolprop8-pt.json"), "utf8"));
 const nextConfig = fs.readFileSync(path.join(ROOT, "next.config.ts"), "utf8");
 
+// First line: Node version + how much this run will check. A dataset that
+// collapsed below the floor means the check itself is broken, not that the site
+// is clean — fail rather than report a hollow pass.
+const REFRIGERANT_FLOOR = 55;
+console.log(`[status_check] node ${process.version} — checking ${data.length} refrigerants against ${BASE} (floor ${REFRIGERANT_FLOOR})`);
+if (data.length < REFRIGERANT_FLOOR) {
+  console.error(`[status_check] FAIL: only ${data.length} refrigerants loaded, need at least ${REFRIGERANT_FLOOR}.`);
+  process.exit(1);
+}
+
 const results = { pass: [], fail: [] };
 const ok = (name) => results.pass.push(name);
 const bad = (name, detail) => results.fail.push(`${name} — ${detail}`);
@@ -109,8 +119,9 @@ for (const [file, kind] of [["sitemap.xml", "xml"], ["feed.xml", "xml"], ["llms.
 const PSIG_OFFSET = 14.696;
 const round = (n, d) => Math.round(n * 10 ** d) / 10 ** d;
 const psiaToPsig = (p) => round(p - PSIG_OFFSET, 2);
-let negGlide = 0, dataFails = 0;
+let negGlide = 0, dataFails = 0, csvTooFew = 0;
 const dataRows = [];
+const csvExempt = [];
 for (const rf of data) {
   const slug = rf.slug;
   // JSON
@@ -142,11 +153,19 @@ for (const rf of data) {
   let crows = 0;
   if (cr.status === 200) { const ct = await cr.text(); crows = ct.trim().split("\n").length - 1; }
   else { dataFails++; bad(`csv ${slug}`, `status ${cr.status}`); }
+  // Every refrigerant that HAS a PT dataset (CoolProp ptChart or datasheet
+  // ptTable) must download as a real CSV, not just a header row — the r-438a /
+  // r-448a datasheet-CSV bug. The no-PT fluid (r-503) is exempt but logged,
+  // never silently skipped.
+  const hasData = jrows > 0;
+  if (hasData && crows <= 10) { csvTooFew++; bad(`csv rows ${slug}`, `only ${crows} data rows (expected > 10; ${kind})`); }
+  else if (!hasData) csvExempt.push(slug);
   if (rf.physical.temperatureGlideF < 0) { negGlide++; bad(`glide ${slug}`, `negative ${rf.physical.temperatureGlideF}`); }
   dataRows.push({ slug, jrows, crows, tmin, tmax, kind });
 }
 if (negGlide === 0) ok(`no negative glides (${data.length} refrigerants)`);
 if (dataFails === 0) ok(`all ${data.length} refrigerant json+csv endpoints 200 + parse`);
+if (csvTooFew === 0) ok(`every refrigerant CSV with PT data has > 10 data rows (${csvExempt.length} no-PT exempt: ${csvExempt.join(", ") || "none"})`);
 
 // ── 6b. precomputed 6 match coolprop8-pt.json after site rounding ──
 let pcMismatch = 0;

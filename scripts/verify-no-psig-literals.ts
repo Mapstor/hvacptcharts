@@ -27,6 +27,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { banner } from "./build-guard";
 
 const REPO_ROOT = path.resolve(process.cwd());
 
@@ -101,7 +102,10 @@ for (const rel of WAVE_1_ALLOWLIST) {
 }
 
 const bar = "=".repeat(80);
-console.log(`\n[verify-no-psig-literals] scanned ${WAVE_1_ALLOWLIST.length} Wave 1 files`);
+// Every listed file was read above (a missing one already exited non-zero), so
+// this count is the number actually scanned. Floor guards against the list being
+// gutted to nothing.
+banner("verify-no-psig-literals", WAVE_1_ALLOWLIST.length, 20, "Wave 1 files");
 
 if (violations.length === 0) {
   console.log(`[verify-no-psig-literals] OK — 0 numeric PSIG literals; every pressure renders through fmtPsigBubble/fmtPsigDew or dataset props.\n`);

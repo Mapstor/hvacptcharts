@@ -11,9 +11,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import * as cheerio from "cheerio";
+import { banner, htmlFloor } from "./build-guard";
 
 const ROOT = process.cwd();
-const APP_DIR = path.join(ROOT, ".next", "server", "app");
+// Scan dir defaults to the prerendered app output; an optional CLI arg overrides
+// it (used to prove the gate FAILS when pointed at an empty directory).
+const APP_DIR = process.argv[2] ? path.resolve(process.argv[2]) : path.join(ROOT, ".next", "server", "app");
 const ALLOWLIST_FILE = path.join(ROOT, "scripts", "generator-text-allowlist.json");
 
 // Case-sensitive banned patterns (task 5 PART 2 step 10).
@@ -84,12 +87,23 @@ function searchable(html: string): string[] {
   return out;
 }
 
+/**
+ * Recursively collect prerendered *.html under APP_DIR. Plain readdir walk with
+ * `withFileTypes` and paths built by path.join(dir, entry.name) — no recursive
+ * option, no globs, no Dirent.path / Dirent.parentPath (whose semantics differ
+ * between Node 20 and 22). The dev-gallery route (.next/server/app/dev/**) is
+ * skipped by its path RELATIVE to APP_DIR. The previous code tested the ABSOLUTE
+ * path for "/dev/", which silently dropped every file when the checkout itself
+ * lived under a directory named "dev" (e.g. ~/dev/hvacptcharts on a Mac) — the
+ * "scanned 0 HTML files ✓" failure this gate now refuses to report.
+ */
 function walkHtml(dir: string, acc: string[]): string[] {
-  for (const name of fs.readdirSync(dir)) {
-    const full = path.join(dir, name);
-    const st = fs.statSync(full);
-    if (st.isDirectory()) walkHtml(full, acc);
-    else if (name.endsWith(".html") && !full.includes(`${path.sep}dev${path.sep}`)) acc.push(full);
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    const relFromApp = path.relative(APP_DIR, full).split(path.sep).join("/");
+    if (relFromApp === "dev" || relFromApp.startsWith("dev/")) continue; // dev gallery (noindex)
+    if (entry.isDirectory()) walkHtml(full, acc);
+    else if (entry.isFile() && entry.name.endsWith(".html")) acc.push(full);
   }
   return acc;
 }
@@ -105,6 +119,8 @@ if (!fs.existsSync(APP_DIR)) {
 }
 
 const files = walkHtml(APP_DIR, []);
+banner("verify-no-generator-text", files.length, htmlFloor(), "HTML files");
+console.log(`[verify-no-generator-text] scanned directory ${path.relative(ROOT, APP_DIR)}`);
 const counts: Record<string, number> = {};
 const failures: { pattern: string; file: string; snip: string }[] = [];
 
@@ -126,7 +142,6 @@ for (const file of files) {
   }
 }
 
-console.log(`[verify-no-generator-text] scanned ${files.length} HTML files`);
 const nonZero = Object.entries(counts).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]);
 if (nonZero.length) {
   console.log("pattern hit counts (incl. allowlisted):");

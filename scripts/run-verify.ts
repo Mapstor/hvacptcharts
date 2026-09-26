@@ -10,6 +10,12 @@
  */
 import { refrigerants } from "@/data/refrigerants";
 import { verifyAgainstAnchors } from "../.claude/skills/hvacptcharts/verify";
+import { banner } from "./build-guard";
+
+// First line: Node version + dataset size. A dataset that collapsed to a
+// handful of fluids (or zero) must fail before any anchor check runs — anchors
+// pass vacuously against an empty dataset.
+banner("run-verify", refrigerants.length, 55, "refrigerants");
 
 const { ok, errors } = verifyAgainstAnchors(refrigerants);
 
@@ -58,6 +64,10 @@ const DATASHEET_ANCHORS: DatasheetAnchor[] = [
 ];
 
 const DATASHEET_TOLERANCE_F = 0.5;
+if (DATASHEET_ANCHORS.length === 0) {
+  console.error("x  run-verify: DATASHEET_ANCHORS is empty — datasheet transcription would go unverified.");
+  process.exit(1);
+}
 const datasheetErrors: string[] = [];
 
 for (const a of DATASHEET_ANCHORS) {
@@ -128,6 +138,10 @@ const PRECOMPUTED_ANCHORS: PrecomputedAnchor[] = [
 ];
 const PRECOMPUTED_TOLERANCE = 0.05;
 const PRECOMPUTED_SLUGS = ["r-515b", "r-515a", "r-514a", "r-450a", "r-1336mzz-z", "r-1224yd-z"];
+if (PRECOMPUTED_ANCHORS.length === 0 || PRECOMPUTED_SLUGS.length === 0) {
+  console.error("x  run-verify: PRECOMPUTED_ANCHORS/SLUGS is empty — precomputed fluids would go unverified.");
+  process.exit(1);
+}
 
 const precomputedErrors: string[] = [];
 

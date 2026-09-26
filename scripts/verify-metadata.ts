@@ -29,6 +29,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import * as cheerio from "cheerio";
+import { banner, htmlFloor } from "./build-guard";
 
 // Load the refrigerant dataset once at build time so the SERP-promise
 // assertion (below) can check ptChart presence per slug without walking the
@@ -187,6 +188,8 @@ function main() {
 
   const files = walkHtml(HTML_ROOT).sort();
   const records = files.map(extract).sort((a, b) => a.route.localeCompare(b.route));
+
+  banner("verify-metadata", records.length, htmlFloor(), "routes");
 
   const hardFailures: string[] = [];
 

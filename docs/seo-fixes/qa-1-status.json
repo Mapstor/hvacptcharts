@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:3200",
-  "pass": 55,
+  "pass": 56,
   "fail": [],
   "dataRows": [
     {
@@ -302,7 +302,7 @@
     {
       "slug": "r-438a",
       "jrows": 103,
-      "crows": 0,
+      "crows": 103,
       "tmin": -63,
       "tmax": 148.1,
       "kind": "ptTable"
@@ -310,7 +310,7 @@
     {
       "slug": "r-448a",
       "jrows": 56,
-      "crows": 0,
+      "crows": 56,
       "tmin": -51,
       "tmax": 146.9,
       "kind": "ptTable"

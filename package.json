@@ -2,9 +2,12 @@
   "name": "hvacptcharts",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm run verify-redirects && pnpm run verify-data && pnpm run verify-gauge-operating-points && pnpm run verify-no-psig-literals && pnpm run verify-no-overlay && next build && pnpm run verify-metadata && pnpm run verify-content-dates && pnpm run verify-no-generator-text && pnpm run validate-schema",
+    "build": "node -v && pnpm run verify-redirects && pnpm run verify-data && pnpm run verify-gauge-operating-points && pnpm run verify-no-psig-literals && pnpm run verify-no-overlay && next build && pnpm run verify-metadata && pnpm run verify-content-dates && pnpm run verify-no-generator-text && pnpm run validate-schema",
     "start": "next start",
     "lint": "eslint",
     "generate-data": "node scripts/generate-refrigerant-data.mjs",

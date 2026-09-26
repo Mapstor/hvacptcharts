@@ -18,6 +18,7 @@
 // @ts-expect-error - reaching into Next.js internal compiled dep
 import { pathToRegexp, compile } from "next/dist/compiled/path-to-regexp/index.js";
 import config from "../next.config";
+import { banner } from "./build-guard";
 
 interface RedirectDef {
   source: string;
@@ -119,6 +120,14 @@ const TESTS: TestCase[] = [
 
 async function main() {
   const redirects = await loadRedirects();
+  // First line: Node version + the number of redirect test cases exercised.
+  // An empty TESTS table would report "0/0 passed" as success, and an empty
+  // redirects config would silently stop testing anything real.
+  banner("verify-redirects", TESTS.length, 40, "redirect test cases");
+  if (redirects.length < 20) {
+    console.error(`[verify-redirects] FAIL: next.config declares only ${redirects.length} redirects (expected ≥ 20). Redirect table collapsed.`);
+    process.exit(1);
+  }
   console.log(`[verify-redirects] loaded ${redirects.length} redirects`);
 
   // Precompile each redirect's source and destination.

@@ -19,6 +19,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { banner } from "./build-guard";
 
 const REPO_ROOT = path.resolve(process.cwd());
 const DIAGRAMS_DIR = path.join(REPO_ROOT, "src/components/diagrams");
@@ -50,10 +51,12 @@ function walk(dir: string): void {
 }
 
 if (!fs.existsSync(DIAGRAMS_DIR)) {
-  console.log(
-    `\n[verify-no-overlay] ${DIAGRAMS_DIR} not found — nothing to scan\n`,
+  // Previously exited 0 ("nothing to scan") — a missing diagram directory made
+  // the gate pass while verifying nothing. That is now a hard failure.
+  console.error(
+    `\n[verify-no-overlay] ${DIAGRAMS_DIR} not found — cannot verify diagram components. FAIL\n`,
   );
-  process.exit(0);
+  process.exit(1);
 }
 
 walk(DIAGRAMS_DIR);
@@ -83,9 +86,7 @@ for (const abs of files) {
 }
 
 const bar = "=".repeat(80);
-console.log(
-  `\n[verify-no-overlay] scanned ${files.length} files under src/components/diagrams/`,
-);
+banner("verify-no-overlay", files.length, 10, "diagram files");
 
 if (violations.length === 0) {
   console.log(

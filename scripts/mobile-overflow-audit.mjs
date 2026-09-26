@@ -347,8 +347,15 @@ function main() {
     process.exit(1);
   }
 
+  const htmlFiles = walkHtml(APP_DIR);
+  if (htmlFiles.length === 0) {
+    // APP_DIR exists but contains no prerendered HTML — discovery collapsed.
+    // Report nothing rather than a clean "0 findings" pass.
+    console.error(`No prerendered HTML found under ${APP_DIR} — build output looks empty. Run \`pnpm build\` first.`);
+    process.exit(1);
+  }
   const all = [];
-  for (const p of walkHtml(APP_DIR)) {
+  for (const p of htmlFiles) {
     const route = pathToRoute(p);
     if (ROUTE_FILTER && route !== ROUTE_FILTER) continue;
     all.push(...scanPage(p));

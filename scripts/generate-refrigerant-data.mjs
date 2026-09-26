@@ -394,8 +394,17 @@ async function main() {
   }
 
   if (errors.length) {
-    console.log(`\n${errors.length} errors:`);
-    for (const [slug, err] of errors) console.log(`  ${slug}: ${err}`);
+    // A per-slug read/parse/compute failure previously still wrote the partial
+    // output and exited 0, silently dropping refrigerants from the committed
+    // dataset. A generation error is now a hard failure — never overwrite the
+    // dataset from an incomplete run.
+    console.error(`\n${errors.length} error(s) — refusing to overwrite ${OUTPUT_PATH}:`);
+    for (const [slug, err] of errors) console.error(`  ${slug}: ${err}`);
+    process.exit(1);
+  }
+  if (out.length === 0) {
+    console.error(`\nGenerated 0 refrigerants (config had ${slugs.length} slug(s)) — refusing to overwrite ${OUTPUT_PATH} with an empty dataset.`);
+    process.exit(1);
   }
 
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(out, null, 2));

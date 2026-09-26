@@ -24,6 +24,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
+import { banner, htmlFloor } from "./build-guard";
 
 const ROOT = path.resolve(process.cwd());
 const BUILD_DIR = path.join(ROOT, ".next", "server", "app");
@@ -275,6 +276,10 @@ function validate(): { ok: boolean; errors: string[]; warnings: string[]; visite
 }
 
 const { ok, errors, warnings, visited, skipped } = validate();
+
+// First line: Node version + pages actually validated. Fails if discovery
+// collapsed (0 pages matched a schema category) rather than silently passing.
+banner("validate-schema", visited, htmlFloor(), "pages");
 
 console.log(`\nSchema validation summary`);
 console.log(`  visited:  ${visited} pages`);

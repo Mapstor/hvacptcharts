@@ -59,12 +59,16 @@ function jsonLdTypes(html) {
         }
       };
       walk(parsed);
-    } catch { /* ignore */ }
+    } catch { types.add("PARSE_ERROR"); } // surface malformed JSON-LD instead of silently dropping it
   }
   return [...types].sort();
 }
 
 const files = findHtml(BUILD_DIR).sort();
+if (files.length === 0) {
+  console.error(`[audit-static] no prerendered HTML under ${BUILD_DIR} — run \`pnpm build\` first. Refusing to report a clean audit of nothing.`);
+  process.exit(1);
+}
 const audit = [];
 for (const f of files) {
   const url = urlOf(f);

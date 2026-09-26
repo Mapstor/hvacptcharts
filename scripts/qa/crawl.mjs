@@ -27,6 +27,10 @@ const OUT = getArg("--out", "qa-1");
 const HOST = new URL(BASE).host;
 const MAX_HOPS = 5;
 
+// First line: the Node version this crawl ran under (coverage count is asserted
+// against a floor once the crawl completes — see the end of the file).
+console.log(`[crawl] node ${process.version} — crawling from ${BASE}`);
+
 const contentDates = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "content-dates.json"), "utf8"));
 
 // Production hosts are treated as internal and rewritten to BASE so the crawl
@@ -200,9 +204,20 @@ const summary = {
 };
 fs.writeFileSync(path.join(ROOT, "docs", "seo-fixes", `${OUT}-crawl-findings.json`), JSON.stringify(summary, null, 2) + "\n");
 
-console.log(`Crawled ${records.size} URLs (${sitemapSet.size} in sitemap). CSV → ${path.relative(ROOT, outCsv)}`);
+// A crawl that visited almost nothing (discovery/seeding collapsed, or the
+// sitemap itself is near-empty) must fail rather than report six clean checks.
+const CRAWL_FLOOR = Math.max(100, sitemapSet.size - 5);
+const belowFloor = records.size < CRAWL_FLOOR || sitemapSet.size < 100;
+console.log(`[crawl] node ${process.version} — crawled ${records.size} URLs, ${sitemapSet.size} in sitemap (floor ${CRAWL_FLOOR}). CSV → ${path.relative(ROOT, outCsv)}`);
 for (const [k, label] of [["a", "internal link not 200-in-one-hop"], ["b", "sitemap URL issues"], ["c", "indexable 200 missing from sitemap"], ["d", "JSON-LD parse / dateModified mismatch"], ["e", "blank computed values"], ["f", "sitemap orphans (0 inbound)"]]) {
   console.log(`\n[${k}] ${label}: ${fail[k].length}`);
   for (const line of fail[k].slice(0, 40)) console.log(`   ${line}`);
   if (fail[k].length > 40) console.log(`   … +${fail[k].length - 40} more`);
 }
+
+const totalFindings = Object.values(fail).reduce((s, a) => s + a.length, 0);
+if (belowFloor) {
+  console.error(`\n[crawl] FAIL: crawled too little (${records.size} URLs < floor ${CRAWL_FLOOR}, or sitemap ${sitemapSet.size} < 100). Discovery collapsed — refusing to report a clean crawl.`);
+  process.exit(1);
+}
+process.exit(totalFindings > 0 ? 1 : 0);

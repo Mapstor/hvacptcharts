@@ -196,6 +196,13 @@ function main() {
     if (d._fallback) notes.push(`FALLBACK (no dated commit) for ${route}`);
     out[route] = { updated: d.updated, published: d.published };
   }
+  // If route enumeration collapsed (wrong cwd / missing src/app / empty
+  // refrigerant list) this would otherwise overwrite content-dates.json with
+  // {} and exit 0, silently wiping every page's dates. Refuse.
+  if (Object.keys(out).length === 0) {
+    console.error(`enumerateRoutes produced 0 dated routes — refusing to overwrite ${OUT} with an empty object.`);
+    process.exit(1);
+  }
   fs.writeFileSync(OUT, JSON.stringify(sortObj(out), null, 2) + "\n");
   const dates = Object.values(out).flatMap((v) => [v.updated, v.published]).sort();
   console.log(`content-dates.json: ${Object.keys(out).length} routes; min ${dates[0]} max ${dates[dates.length - 1]}`);

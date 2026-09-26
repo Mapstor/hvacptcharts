@@ -15,12 +15,13 @@ import {
   isGaugeDiagramSupported,
 } from "../src/data/gauge-operating-points";
 import { getRefrigerant, getPressureAtTempF } from "../src/data/refrigerants";
+import { banner } from "./build-guard";
 
 let hadError = false;
 const entries = Object.entries(GAUGE_OPERATING_POINTS);
-console.log(
-  `\n[verify-gauge-operating-points] validating ${entries.length} entries`,
-);
+// First line: Node version + entries validated. An empty constants object would
+// otherwise sail through the loop and report OK.
+banner("verify-gauge-operating-points", entries.length, 8, "entries");
 
 for (const [slug, pt] of entries) {
   const r = getRefrigerant(slug);
