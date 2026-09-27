@@ -6,16 +6,29 @@
  * severity, evidence (the specific measurements that triggered it), and
  * recommendations in order of action priority.
  *
+ * The superheat/subcooling charge fingerprints and the residential condenser-
+ * approach target come from the shared fault-pattern module (fault-patterns.ts)
+ * so the wording and thresholds match the combined SH/SC calculator exactly.
+ * Every range check compares the value ROUNDED to the displayed precision, so a
+ * reading shown as 15.0°F reads as inside an 8–15°F target (not above it).
+ *
  * This is decision-support material drawing on the patterns documented in
  * /superheat-subcooling-fundamentals/ and /high-head-pressure-causes/. Not a
  * substitute for hands-on equipment verification and equipment OEM service
  * literature.
  */
 import { getRefrigerant, getSaturationTempAtPsigF } from "@/data/refrigerants";
+import {
+  classifyShSc,
+  round1,
+  RESIDENTIAL_CONDENSER_APPROACH_F,
+  type FlagSeverity,
+  type ShScTargets,
+} from "@/lib/fault-patterns";
 
 export type SystemType = "txv-residential" | "fixed-orifice-residential" | "exv-residential" | "commercial-refrig-medium" | "commercial-refrig-low";
 
-export type FlagSeverity = "info" | "caution" | "concern" | "alarm";
+export type { FlagSeverity };
 
 export interface DiagnosticFlag {
   severity: FlagSeverity;
@@ -38,21 +51,19 @@ export interface DiagnosticInputs {
 export interface DiagnosticOutput {
   /** Sorted by severity (alarm first). */
   flags: DiagnosticFlag[];
-  /** Computed derived values surfaced for the UI. */
+  /** Computed derived values surfaced for the UI — rounded to displayed precision. */
   derived: {
     superheatF: number | null;
     subcoolingF: number | null;
     suctionSatF: number | null;
     dischargeSatF: number | null;
-    /** Discharge sat T minus ambient — typical 20-30°F for residential AC; higher = condenser problem. */
+    /** Discharge sat T minus ambient — typical 15-25°F for residential AC; higher = condenser problem. */
     condenserApproachF: number | null;
-    /** Return-air T minus suction sat T — typical 35-40°F. */
+    /** Return-air T minus suction sat T — typical 20-40°F. */
     evaporatorApproachF: number | null;
   };
   /** Targets used for interpretation (varies by system type). */
-  targets: {
-    superheatF: [number, number];
-    subcoolingF: [number, number];
+  targets: ShScTargets & {
     condenserApproachF: [number, number];
   };
 }
@@ -61,27 +72,27 @@ const TARGETS_BY_TYPE: Record<SystemType, DiagnosticOutput["targets"]> = {
   "txv-residential": {
     superheatF: [8, 15],
     subcoolingF: [8, 12],
-    condenserApproachF: [20, 30],
+    condenserApproachF: RESIDENTIAL_CONDENSER_APPROACH_F,
   },
   "fixed-orifice-residential": {
     superheatF: [8, 25],
     subcoolingF: [8, 14],
-    condenserApproachF: [20, 30],
+    condenserApproachF: RESIDENTIAL_CONDENSER_APPROACH_F,
   },
   "exv-residential": {
     superheatF: [8, 15],
     subcoolingF: [8, 14],
-    condenserApproachF: [20, 30],
+    condenserApproachF: RESIDENTIAL_CONDENSER_APPROACH_F,
   },
   "commercial-refrig-medium": {
     superheatF: [10, 20],
     subcoolingF: [5, 15],
-    condenserApproachF: [15, 25],
+    condenserApproachF: RESIDENTIAL_CONDENSER_APPROACH_F,
   },
   "commercial-refrig-low": {
     superheatF: [10, 20],
     subcoolingF: [5, 12],
-    condenserApproachF: [15, 25],
+    condenserApproachF: RESIDENTIAL_CONDENSER_APPROACH_F,
   },
 };
 
@@ -110,17 +121,19 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
     return { flags, derived, targets };
   }
 
-  // Compute saturation temperatures and derived values
+  // Compute saturation temperatures and derived values. Everything surfaced to
+  // the UI and compared against a target is rounded to one decimal — the same
+  // value the page displays — so boundary readings read as in-range.
   const suctionSatF = getSaturationTempAtPsigF(inputs.slug, inputs.suctionPsig, "dew");
   const dischargeSatF = getSaturationTempAtPsigF(inputs.slug, inputs.liquidPsig, "bubble");
-  derived.suctionSatF = suctionSatF;
-  derived.dischargeSatF = dischargeSatF;
-  const superheatF = suctionSatF !== null ? inputs.suctionLineF - suctionSatF : null;
-  const subcoolingF = dischargeSatF !== null ? dischargeSatF - inputs.liquidLineF : null;
+  derived.suctionSatF = suctionSatF === null ? null : round1(suctionSatF);
+  derived.dischargeSatF = dischargeSatF === null ? null : round1(dischargeSatF);
+  const superheatF = suctionSatF !== null ? round1(inputs.suctionLineF - suctionSatF) : null;
+  const subcoolingF = dischargeSatF !== null ? round1(dischargeSatF - inputs.liquidLineF) : null;
   derived.superheatF = superheatF;
   derived.subcoolingF = subcoolingF;
-  derived.condenserApproachF = dischargeSatF !== null ? dischargeSatF - inputs.ambientF : null;
-  derived.evaporatorApproachF = suctionSatF !== null ? inputs.returnAirF - suctionSatF : null;
+  derived.condenserApproachF = dischargeSatF !== null ? round1(dischargeSatF - inputs.ambientF) : null;
+  derived.evaporatorApproachF = suctionSatF !== null ? round1(inputs.returnAirF - suctionSatF) : null;
 
   // Out-of-range warnings
   if (suctionSatF === null) {
@@ -146,13 +159,14 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
     });
   }
 
-  // The hard-stop alarms first
+  // The hard-stop alarms first (negative superheat / subcooling handled separately
+  // so each gets its own targeted evidence and recommendations).
   if (superheatF !== null && superheatF < 0) {
     flags.push({
       severity: "alarm",
       label: "Negative superheat — slugging risk",
       evidence: [
-        `Suction-line temperature ${inputs.suctionLineF}°F is below saturation temperature ${suctionSatF?.toFixed(1)}°F at the measured suction pressure.`,
+        `Suction-line temperature ${inputs.suctionLineF}°F is below saturation temperature ${derived.suctionSatF?.toFixed(1)}°F at the measured suction pressure.`,
         "Liquid refrigerant is reaching the compressor.",
       ],
       recommendations: [
@@ -168,7 +182,7 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
       severity: "alarm",
       label: "Negative subcooling — vapor in liquid line",
       evidence: [
-        `Liquid-line temperature ${inputs.liquidLineF}°F is above saturation temperature ${dischargeSatF?.toFixed(1)}°F at the measured discharge pressure.`,
+        `Liquid-line temperature ${inputs.liquidLineF}°F is above saturation temperature ${derived.dischargeSatF?.toFixed(1)}°F at the measured discharge pressure.`,
         "Vapor bubbles are forming in the liquid line.",
       ],
       recommendations: [
@@ -179,79 +193,31 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
     });
   }
 
-  // Pattern matching — overcharge / undercharge / restriction
-  if (superheatF !== null && subcoolingF !== null) {
+  // SH × SC charge fingerprint — thresholds + wording from the shared module.
+  // classifyShSc rounds and compares inclusively, so a value shown as exactly
+  // the boundary reads as in-range.
+  if (superheatF !== null && subcoolingF !== null && superheatF >= 0 && subcoolingF >= 0) {
     const [shMin, shMax] = targets.superheatF;
     const [scMin, scMax] = targets.subcoolingF;
-    const shLow = superheatF < shMin;
-    const shHigh = superheatF > shMax;
-    const scLow = subcoolingF < scMin;
-    const scHigh = subcoolingF > scMax;
-
-    if (shLow && scHigh) {
+    const pattern = classifyShSc(superheatF, subcoolingF, targets);
+    const actionable = ["overcharge", "undercharge", "restriction", "airflow-metering"] as const;
+    if ((actionable as readonly string[]).includes(pattern.id)) {
+      const shWord = superheatF < shMin ? `below target range ${shMin}-${shMax}°F` : superheatF > shMax ? `above target range ${shMin}-${shMax}°F` : `within target range ${shMin}-${shMax}°F`;
+      const scWord = subcoolingF < scMin ? `below target range ${scMin}-${scMax}°F` : subcoolingF > scMax ? `above target range ${scMin}-${scMax}°F` : `within target range ${scMin}-${scMax}°F`;
       flags.push({
-        severity: "concern",
-        label: "Likely overcharge",
+        severity: pattern.severity,
+        label: pattern.label,
         evidence: [
-          `Superheat ${superheatF.toFixed(1)}°F is below target range ${shMin}-${shMax}°F.`,
-          `Subcooling ${subcoolingF.toFixed(1)}°F is above target range ${scMin}-${scMax}°F.`,
-          "Low SH + high SC is the classic overcharge fingerprint.",
+          `Superheat ${superheatF.toFixed(1)}°F is ${shWord}.`,
+          `Subcooling ${subcoolingF.toFixed(1)}°F is ${scWord}.`,
+          `${pattern.signature} — ${pattern.note}`,
         ],
-        recommendations: [
-          "Verify condenser airflow and coil cleanliness first — both will mimic overcharge symptoms.",
-          "If airflow and cleanliness are confirmed good, recover refrigerant in measured amounts.",
-          "Re-check superheat and subcooling after each removal to find the correct charge.",
-        ],
-      });
-    } else if (shHigh && scLow) {
-      flags.push({
-        severity: "concern",
-        label: "Likely undercharge",
-        evidence: [
-          `Superheat ${superheatF.toFixed(1)}°F is above target range ${shMin}-${shMax}°F.`,
-          `Subcooling ${subcoolingF.toFixed(1)}°F is below target range ${scMin}-${scMax}°F.`,
-          "High SH + low SC is the classic undercharge fingerprint.",
-        ],
-        recommendations: [
-          "Check for leaks before adding refrigerant — pressure-add without leak repair is an EPA Section 608 violation and the refrigerant will be lost again.",
-          "Find the leak using an electronic detector, UV dye, or soap bubbles on accessible joints.",
-          "Repair the leak, evacuate to 500 microns, charge by weight to the system's specified amount.",
-        ],
-      });
-    } else if (shHigh && scHigh) {
-      flags.push({
-        severity: "concern",
-        label: "Likely restriction or low evaporator airflow",
-        evidence: [
-          `Superheat ${superheatF.toFixed(1)}°F is above target range ${shMin}-${shMax}°F.`,
-          `Subcooling ${subcoolingF.toFixed(1)}°F is above target range ${scMin}-${scMax}°F.`,
-          "Both abnormal-high suggests refrigerant isn't reaching the evaporator at full mass flow.",
-        ],
-        recommendations: [
-          "Check filter-drier for restriction: touch both sides — significant temperature drop indicates a clog. Replace if cold downstream.",
-          "Check indoor evaporator airflow: dirty filter, blocked return, blower motor speed.",
-          "Check expansion device for partial restriction or stuck-partially-closed TXV.",
-        ],
-      });
-    } else if (shLow && scLow) {
-      flags.push({
-        severity: "caution",
-        label: "Possible airflow or metering device issue",
-        evidence: [
-          `Superheat ${superheatF.toFixed(1)}°F is below target range ${shMin}-${shMax}°F.`,
-          `Subcooling ${subcoolingF.toFixed(1)}°F is below target range ${scMin}-${scMax}°F.`,
-          "Both abnormal-low is less common; usually indicates a stuck-open TXV plus low condenser performance.",
-        ],
-        recommendations: [
-          "Check TXV operation — stuck-open valves flood the evaporator (low SH) without backing up liquid in the condenser (low SC).",
-          "Check condenser airflow and cleanliness.",
-          "Verify the system is in steady-state operation — readings during cycling can produce this pattern transiently.",
-        ],
+        recommendations: pattern.recommendations,
       });
     }
   }
 
-  // Condenser approach analysis
+  // Condenser approach analysis (uses the shared residential-AC approach target).
   if (derived.condenserApproachF !== null) {
     const [caMin, caMax] = targets.condenserApproachF;
     const ca = derived.condenserApproachF;
@@ -260,7 +226,7 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
         severity: "alarm",
         label: "Very high condenser approach — heat rejection failure",
         evidence: [
-          `Discharge saturation ${dischargeSatF?.toFixed(1)}°F is ${ca.toFixed(1)}°F above ambient ${inputs.ambientF}°F.`,
+          `Discharge saturation ${derived.dischargeSatF?.toFixed(1)}°F is ${ca.toFixed(1)}°F above ambient ${inputs.ambientF}°F.`,
           `Target approach for this system type: ${caMin}-${caMax}°F.`,
         ],
         recommendations: [
@@ -274,7 +240,7 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
         severity: "concern",
         label: "High condenser approach",
         evidence: [
-          `Discharge saturation ${dischargeSatF?.toFixed(1)}°F is ${ca.toFixed(1)}°F above ambient ${inputs.ambientF}°F.`,
+          `Discharge saturation ${derived.dischargeSatF?.toFixed(1)}°F is ${ca.toFixed(1)}°F above ambient ${inputs.ambientF}°F.`,
           `Target approach for this system type: ${caMin}-${caMax}°F.`,
         ],
         recommendations: [
@@ -288,7 +254,7 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
         severity: "caution",
         label: "Low condenser approach",
         evidence: [
-          `Discharge saturation ${dischargeSatF?.toFixed(1)}°F is only ${ca.toFixed(1)}°F above ambient ${inputs.ambientF}°F.`,
+          `Discharge saturation ${derived.dischargeSatF?.toFixed(1)}°F is only ${ca.toFixed(1)}°F above ambient ${inputs.ambientF}°F.`,
           `Target approach for this system type: ${caMin}-${caMax}°F.`,
         ],
         recommendations: [

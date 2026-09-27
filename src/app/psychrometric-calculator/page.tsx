@@ -406,6 +406,48 @@ export default function PsychrometricCalculatorPage() {
       ]}
       faqs={FAQS}
       route="/psychrometric-calculator/"
+      howToReadResults={[
+        {
+          output: "Dry-bulb temperature (°F)",
+          meaning:
+            "The temperature a standard thermometer reads and the value a thermostat controls; it drives sensible heat transfer. On its own it says nothing about moisture, so two air streams at the same dry-bulb can carry very different latent loads.",
+        },
+        {
+          output: "Wet-bulb temperature (°F)",
+          meaning:
+            "The lowest temperature reachable by evaporative cooling; always at or below dry-bulb, and equal to it only at 100% RH. A wide dry-bulb-to-wet-bulb spread means dry air with strong evaporative-cooling and dehumidification potential, while a small spread means the air is near saturation.",
+        },
+        {
+          output: "Dew point (°F)",
+          meaning:
+            "The temperature at which water vapor begins to condense, and the direct metric for condensation and mold risk: any surface colder than this value will sweat. A dew point above roughly 60°F is where most people start to perceive the air as sticky, and it is unaffected by heating or cooling that does not remove moisture.",
+        },
+        {
+          output: "Relative humidity (%)",
+          meaning:
+            "Actual vapor pressure divided by the saturation pressure at the current dry-bulb, with a residential comfort target of about 30–60%. Because it depends on temperature, the same moisture content reads as a higher RH in cool air and a lower RH in warm air.",
+        },
+        {
+          output: "Humidity ratio (lb/lb) and grains H₂O per lb dry air",
+          meaning:
+            "The absolute mass of water vapor per pound of dry air, shown both in lb/lb and in grains (1 lb = 7,000 grains). Unlike RH it does not change when air is only heated or cooled above its dew point, so it is the correct quantity for coil mass balances and dehumidifier sizing.",
+        },
+        {
+          output: "Enthalpy (BTU/lb dry air)",
+          meaning:
+            "Total energy content of the air, combining sensible (temperature) and latent (moisture) heat. Cooling capacity is the enthalpy difference between return and supply air times airflow, so a larger inlet-to-outlet enthalpy drop means more total cooling delivered.",
+        },
+        {
+          output: "Specific volume (ft³/lb dry air)",
+          meaning:
+            "The volume occupied by one pound of dry air, the reciprocal of density, used to convert volumetric airflow (CFM) to mass flow. It rises with temperature and altitude, so a higher specific volume means thinner air that moves less mass — and less heat capacity — per CFM.",
+        },
+        {
+          output: "ASHRAE 55 comfort-status banner",
+          meaning:
+            "Flags whether the computed state falls inside the ASHRAE 55 thermal-comfort envelope. When it reads outside, the banner names the corrective action needed — heating, cooling, humidification, or dehumidification — based on whether dry-bulb and humidity ratio sit above or below the envelope.",
+        },
+      ]}
       bodySections={BodySections}
     >
       <PsychrometricCalculator />

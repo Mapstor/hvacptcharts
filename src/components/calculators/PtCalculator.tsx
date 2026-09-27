@@ -1,7 +1,6 @@
 "use client";
 
-import { Suspense, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import { getPressureAtTempF, getRefrigerant, getSaturationTempAtPsigF } from "@/data/refrigerants";
 import { RefrigerantSelector } from "./shared/RefrigerantSelector";
 import { cToF, fToC, kpagToPsig, psigToKpag } from "./shared/units";
@@ -15,22 +14,16 @@ const TOGGLE_BASE =
 const TOGGLE_ACTIVE = "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900";
 const TOGGLE_IDLE = "bg-white text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800";
 
-export function PtCalculator(props: { initialSlug?: string } = {}) {
-  return (
-    <Suspense fallback={<CalculatorSkeleton />}>
-      <PtCalculatorInner {...props} />
-    </Suspense>
-  );
-}
-
-function CalculatorSkeleton() {
-  return <div className="h-96 animate-pulse rounded-md bg-zinc-100 dark:bg-zinc-900" aria-hidden />;
-}
-
-function PtCalculatorInner({ initialSlug = "r-410a" }: { initialSlug?: string }) {
-  const searchParams = useSearchParams();
-  const slugFromUrl = searchParams.get("refrigerant");
-  const [slug, setSlug] = useState(slugFromUrl ?? initialSlug);
+export function PtCalculator({ initialSlug = "r-410a" }: { initialSlug?: string } = {}) {
+  // Default (server + first client render) uses initialSlug so the full form ships
+  // in static HTML. ?refrigerant= is read AFTER mount — reading it via
+  // useSearchParams() bails this subtree out of prerendering (skeleton only).
+  const [slug, setSlug] = useState(initialSlug);
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("refrigerant");
+    if (q) setSlug(q);
+  }, []);
+  const [submitted, setSubmitted] = useState(false);
   const [direction, setDirection] = useState<Direction>("tToP");
   const [tempUnit, setTempUnit] = useState<TempUnit>("F");
   const [pUnit, setPUnit] = useState<PUnit>("psig");
@@ -154,15 +147,27 @@ function PtCalculatorInner({ initialSlug = "r-410a" }: { initialSlug?: string })
         </div>
         <div className="rounded-md border border-zinc-300 bg-white p-3 dark:border-zinc-700 dark:bg-zinc-950/40">
           <span className="block text-xs uppercase tracking-wide text-zinc-500">Result</span>
-          <ResultDisplay
-            direction={direction}
-            tempUnit={tempUnit}
-            pUnit={pUnit}
-            result={result}
-            hasGlide={hasGlide}
-          />
+          {submitted ? (
+            <ResultDisplay
+              direction={direction}
+              tempUnit={tempUnit}
+              pUnit={pUnit}
+              result={result}
+              hasGlide={hasGlide}
+            />
+          ) : (
+            <span className="text-zinc-500">Enter a value, then click Calculate.</span>
+          )}
         </div>
       </div>
+
+      <button
+        type="button"
+        onClick={() => setSubmitted(true)}
+        className="w-full rounded-md bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 sm:w-auto"
+      >
+        Calculate
+      </button>
 
       {/* Reference card */}
       {r && r.ptChart.length > 0 ? (

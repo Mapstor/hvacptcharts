@@ -474,6 +474,32 @@ export default function DuctSizeCalculatorPage() {
       ]}
       faqs={FAQS}
       route="/duct-size-calculator/"
+      howToReadResults={[
+        {
+          output: "Standard round duct diameter",
+          meaning: "The actionable result: the exact diameter from the equal-friction equation rounded UP to the next standard sheet-metal size (4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20...). Rounding up keeps you at or below your friction target with a small margin of safety; the calculated exact diameter is shown alongside so you can see how much the rounding added.",
+        },
+        {
+          output: "Air velocity (fpm)",
+          meaning: "Air speed through the standard-size duct, V = 576 × CFM / (π × D²), compared against the application's velocity limit. The headroom percentage shows how far below the ceiling you sit; high velocity drives noise, register-throw issues, and static pressure, while very low velocity is quiet but implies a larger, costlier duct.",
+        },
+        {
+          output: "Actual friction loss (in.w.c./100 ft)",
+          meaning: "The real pressure drop per 100 ft in the standard-size duct, usually slightly below your target because rounding up enlarges the duct. Below target is good — it leaves headroom for fittings and accessories that add pressure drop; above target means you should watch your total external static pressure budget.",
+        },
+        {
+          output: "Velocity status banner",
+          meaning: "A pass/warn/fail check of velocity against the preset limit: green \"Sized correctly\" (comfortably below the limit), amber \"Approaching velocity limit\" (within 10% — acceptable but consider upsizing for quieter operation), or red \"Exceeds velocity limit\" (undersized — upsize to the next standard round size to cut noise and static loss).",
+        },
+        {
+          output: "Rectangular equivalents (Huebscher)",
+          meaning: "Width × height dimensions that produce the same friction at the same CFM as the round result, for when joists, ceiling cavities, or chases forbid round duct. Each option lists its aspect ratio and equivalent round diameter; prefer the lowest aspect ratio, and note that ratios above 4:1 are omitted because they suffer friction penalties beyond what Huebscher predicts.",
+        },
+        {
+          output: "Air density (lb/ft³)",
+          meaning: "The density used in the sizing math, adjusted from the 0.075 lb/ft³ sea-level, 70°F standard for the altitude and air temperature you enter (shown only when you set non-standard conditions). Thinner air from high altitude or high temperature lowers friction per fpm but also carries less heating and cooling capacity per CFM.",
+        },
+      ]}
       bodySections={BodySections}
     >
       <DuctSizeCalculator />

@@ -75,6 +75,38 @@ export default function ComparisonToolPage() {
       }}
       introOneLiner="Pick 2-4 refrigerants from the dataset; the tool overlays their saturation curves on one chart. Glide visible for zeotropic blends. Useful for retrofit feasibility, new-equipment specification, and commercial low-GWP transition planning."
       route="/refrigerant-pt-comparison-tool/"
+      howToReadResults={[
+        {
+          output: "Bubble curve (solid line)",
+          meaning:
+            "Each solid line is one refrigerant's saturated-liquid pressure at the temperature on the x-axis. Read it at your evaporator and condenser saturation temperatures to see the pressure that refrigerant runs, and use the bubble curve as the reference for subcooling.",
+        },
+        {
+          output: "Dew curve (dashed line)",
+          meaning:
+            "Drawn only for zeotropic blends, the dashed line is the saturated-vapor pressure where the last liquid flashes to vapor. Use it as the reference for superheat on blends; pure refrigerants and azeotropes show no dashed line because their bubble and dew curves coincide.",
+        },
+        {
+          output: "Temperature glide (gap between a blend's two curves)",
+          meaning:
+            "The separation between a blend's solid and dashed lines is its temperature glide, the spread across the phase change at a given pressure. A wide gap (R-407C, R-454C) means saturation temperature is not a single value, so TXV sensing, superheat, and subcooling must reference the correct curve; a negligible gap means the blend behaves like a pure refrigerant.",
+        },
+        {
+          output: "Pressure delta between refrigerants (vertical distance between curves)",
+          meaning:
+            "The vertical gap between any two curves at the same temperature is the pressure difference between those refrigerants at that operating point. A small delta (roughly within 20%) signals a comparable operating envelope suited to retrofit; a large delta means different component pressure ratings, charge, and possibly equipment redesign.",
+        },
+        {
+          output: "Color-coded series legend",
+          meaning:
+            "The legend maps each color to a selected refrigerant and flags zeotropic blends as bubble / dew so you know which series carry a second dashed curve. Use it to keep series straight where curves cross or bunch together.",
+        },
+        {
+          output: "Temperature and pressure axes (unit toggles)",
+          meaning:
+            "The x-axis is saturation temperature and the y-axis is saturation gauge pressure, switchable between °F/PSIG and °C/kPa. Overlaying refrigerants with very different envelopes (e.g. R-744 vs an HFC) makes the linear y-axis compress the low-pressure curves toward zero — the values stay correct, but split those into separate comparisons for readability.",
+        },
+      ]}
       howTo={{
         steps: [
           "Tool starts with R-22, R-410A, R-32, and R-454B — the residential AC phase-down trajectory.",

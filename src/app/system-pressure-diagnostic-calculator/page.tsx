@@ -22,7 +22,7 @@ const FAQS = [
   },
   {
     q: "What is condenser approach and why does it matter?",
-    a: "Condenser approach is the discharge saturation temperature minus the outdoor ambient. On a properly-running residential AC, the approach is typically 15-25°F — the condenser needs that delta to reject heat to the air. An approach significantly above this range indicates the condenser can't reject heat as fast as the system is generating it: dirty coil, blocked airflow, non-condensables, or compressor inefficiency. Above ~45°F approach raises high-pressure-cutout risk and warrants stopping the system. ASHRAE Handbook of Refrigeration 2022 Chapter 39 (condensers) and equipment OEM service literature are the authoritative references.",
+    a: "Condenser approach is the discharge saturation temperature minus the outdoor ambient. On a properly-running residential AC, the approach is typically 15-25°F (high-efficiency units near the low end) — the condenser needs that delta to reject heat to the air. An approach significantly above this range indicates the condenser can't reject heat as fast as the system is generating it: dirty coil, blocked airflow, non-condensables, or compressor inefficiency. Above ~40°F approach raises high-pressure-cutout risk and warrants stopping the system. ASHRAE Handbook of Refrigeration 2022 Chapter 39 (condensers) and equipment OEM service literature are the authoritative references.",
   },
   {
     q: "What is evaporator approach and why does it matter?",
@@ -83,6 +83,43 @@ export default function SystemPressureDiagnosticPage() {
       }}
       introOneLiner="Enter your full set of pressure and temperature readings; the calculator computes SH, SC, condenser approach, and evaporator approach, then produces severity-ranked diagnostic flags with evidence and ordered recommendations."
       route="/system-pressure-diagnostic-calculator/"
+      howToReadResults={[
+        {
+          output: "Superheat (°F)",
+          meaning:
+            "Suction-line temperature minus the suction saturation (dew) temperature — how far the vapor has warmed past its boiling point. Compare to the per-system-type target shown (e.g. 8-15°F on TXV residential AC); high superheat points to undercharge, a metering restriction, or low load, while near-zero or negative superheat means liquid refrigerant is reaching the compressor (slugging risk).",
+        },
+        {
+          output: "Subcooling (°F)",
+          meaning:
+            "Liquid saturation (bubble) temperature minus the measured liquid-line temperature — how far the liquid has cooled below its condensing point. Compare to the target shown (e.g. 8-12°F on TXV residential AC); high subcooling suggests overcharge or a condenser bottleneck, while low or negative subcooling suggests undercharge.",
+        },
+        {
+          output: "Suction saturation temperature (°F)",
+          meaning:
+            "The saturation (dew) temperature the measured suction pressure converts to — the temperature at which refrigerant boils in the evaporator. It is the baseline the suction-line temperature is compared against to compute superheat, and it should sit below the indoor return-air temperature.",
+        },
+        {
+          output: "Discharge saturation temperature (°F)",
+          meaning:
+            "The saturation (bubble) temperature the measured liquid/discharge pressure converts to — the temperature at which refrigerant condenses in the condenser. It is the baseline for both subcooling and condenser approach, and on a healthy system it sits above the outdoor ambient.",
+        },
+        {
+          output: "Condenser approach (°F)",
+          meaning:
+            "Discharge saturation temperature minus outdoor ambient — how much hotter than the air the condenser must run to reject heat. Typically 15–25°F above outdoor air (high-efficiency units near the low end); a high approach indicates a dirty coil, blocked airflow, non-condensables, or overcharge, while a low or negative approach indicates undercharge (little liquid backed up in the coil).",
+        },
+        {
+          output: "Evaporator approach (°F)",
+          meaning:
+            "Return-air temperature minus the suction saturation temperature — how much warmer the entering air is than the boiling refrigerant. Roughly 20-40°F on residential AC; below range points to low indoor airflow (dirty filter or failing blower), while above range points to evaporator starvation from undercharge or a liquid-line restriction.",
+        },
+        {
+          output: "Diagnostic findings (severity-ranked flags)",
+          meaning:
+            "Each finding carries a severity badge (ALARM, CONCERN, CAUTION, or OK), the evidence behind it, and ordered recommended actions. Read them top-down: an ALARM demands stopping the system before restart, a CONCERN identifies a likely root cause to service, a CAUTION warrants a confirming measurement, and OK means every metric is inside its target range.",
+        },
+      ]}
       howTo={{
         steps: [
           "Pick the refrigerant in the system. Pick the system type (TXV, fixed-orifice, EXV, or MT / LT commercial) — target ranges adjust accordingly.",
@@ -211,8 +248,8 @@ function RichContent() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 text-red-700 dark:text-red-300 font-semibold">ALARM</td><td className="py-1.5">Zero / negative SH, negative SC, condenser approach &gt; 45°F, discharge P near cutout</td><td className="py-1.5">Stop the system, investigate before restart.</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 text-amber-700 dark:text-amber-300 font-semibold">CONCERN</td><td className="py-1.5">SH 20-30°F above target, SC &lt; 3°F, condenser approach 30-45°F</td><td className="py-1.5">Identify root cause, plan service action.</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 text-red-700 dark:text-red-300 font-semibold">ALARM</td><td className="py-1.5">Zero / negative SH, negative SC, condenser approach &gt; 40°F, discharge P near cutout</td><td className="py-1.5">Stop the system, investigate before restart.</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 text-amber-700 dark:text-amber-300 font-semibold">CONCERN</td><td className="py-1.5">SH 20-30°F above target, SC &lt; 3°F, condenser approach 25-40°F</td><td className="py-1.5">Identify root cause, plan service action.</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 text-sky-700 dark:text-sky-300 font-semibold">CAUTION</td><td className="py-1.5">SH or SC 5-10°F off target, approach slightly elevated, pressure trends mismatched</td><td className="py-1.5">Verify with additional measurement, schedule follow-up.</td></tr>
                 <tr><td className="py-1.5 text-emerald-700 dark:text-emerald-300 font-semibold">OK</td><td className="py-1.5">All metrics in target range</td><td className="py-1.5">No action; document baseline.</td></tr>
               </tbody>

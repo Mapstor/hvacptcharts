@@ -134,7 +134,7 @@ export function CarrierChargingLookup({ ptChart }: CarrierChargingLookupProps) {
         <details className="mt-4 rounded-md border border-zinc-200 bg-zinc-50/50 p-3 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/30 dark:text-zinc-400">
           <summary className="cursor-pointer font-medium text-zinc-700 dark:text-zinc-300">Methodology + assumptions</summary>
           <p className="mt-2">
-            Target superheat values are read directly from <strong>Carrier/Bryant Table 3, &quot;Superheat Charging — AC Only&quot;</strong> (chart tolerance ±3°F; the widget snaps your inputs down to the nearest published wet-bulb column and outdoor-temp row). Suction saturation assumes a ~17°F approach between indoor wet-bulb and evaporator saturated suction — a residential design rule of thumb, not a charging-chart value. High-side assumes a 25°F condenser approach. Actual values vary ±3-5°F by coil sizing, line set length, system age. Saturation pressures from <strong>CoolProp 7.2.0</strong> (REFPROP-compatible Helmholtz EOS).
+            Target superheat values are read directly from <strong>Carrier/Bryant Table 3, &quot;Superheat Charging — AC Only&quot;</strong> (chart tolerance ±3°F; the widget snaps your inputs down to the nearest published wet-bulb column and outdoor-temp row). Suction saturation assumes a ~17°F approach between indoor wet-bulb and evaporator saturated suction — a residential design rule of thumb, not a charging-chart value. High-side assumes a 25°F condenser approach — the high end of the typical 15–25°F residential range (high-efficiency units run nearer the low end). Actual values vary ±3-5°F by coil sizing, line set length, system age. Saturation pressures from <strong>CoolProp 7.2.0</strong> (REFPROP-compatible Helmholtz EOS).
           </p>
         </details>
       </div>
@@ -207,7 +207,7 @@ function ResultsSection({ snapshot, ptChart }: { snapshot: Snapshot; ptChart: PT
             </div>
 
             <div className="rounded-md border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
-              <strong className="text-zinc-900 dark:text-zinc-100">Why {snapshot.condP?.bubble.toFixed(0)} PSIG expected high-side?</strong> The condenser must reject heat at a temperature above ambient — typically 25°F above outdoor (the &quot;condenser approach&quot;). At {snapshot.satCondF.toFixed(0)}°F saturated condensing temperature, R-410A saturation pressure is <strong>{snapshot.condP?.bubble.toFixed(0)} PSIG</strong>. This is your discharge manifold reading. High readings suggest overcharge, restricted condenser coil, or excessive non-condensable gases. Low readings suggest undercharge or weak compressor.
+              <strong className="text-zinc-900 dark:text-zinc-100">Why {snapshot.condP?.bubble.toFixed(0)} PSIG expected high-side?</strong> The condenser must reject heat at a temperature above ambient — typically 15–25°F above outdoor (the &quot;condenser approach&quot;; this chart uses the 25°F high end, and high-efficiency units run nearer the 15°F low end). At {snapshot.satCondF.toFixed(0)}°F saturated condensing temperature, R-410A saturation pressure is <strong>{snapshot.condP?.bubble.toFixed(0)} PSIG</strong>. This is your discharge manifold reading. High readings suggest overcharge, restricted condenser coil, or excessive non-condensable gases. Low readings suggest undercharge or weak compressor.
             </div>
 
             <div className="rounded-md border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">

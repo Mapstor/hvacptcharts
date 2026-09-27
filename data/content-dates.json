@@ -20,7 +20,7 @@
     "published": "2026-05-21"
   },
   "/carrier-410a-charging-chart/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-06-11"
   },
   "/contact-us/": {
@@ -28,7 +28,7 @@
     "published": "2026-05-21"
   },
   "/duct-size-calculator/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-06-11"
   },
   "/guides-hub/": {
@@ -40,7 +40,7 @@
     "published": "2026-05-22"
   },
   "/high-suction-low-head-pressure/": {
-    "updated": "2026-07-18",
+    "updated": "2026-09-27",
     "published": "2026-07-13"
   },
   "/hvac-ductless-mini-split-guide/": {
@@ -48,7 +48,7 @@
     "published": "2026-06-11"
   },
   "/hvac-load-calculator/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-06-11"
   },
   "/hvac-refrigerant-recovery-guide/": {
@@ -72,11 +72,11 @@
     "published": "2026-05-21"
   },
   "/psychrometric-calculator/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-06-11"
   },
   "/pt-calculator/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/pt-chart-guide/": {
@@ -88,7 +88,7 @@
     "published": "2026-05-21"
   },
   "/pt-superheat-subcooling-calculator/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/r-12-vs-r-134a/": {
@@ -180,7 +180,7 @@
     "published": "2026-07-13"
   },
   "/r410a-charging-chart/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-07-13"
   },
   "/r410a-superheat-chart/": {
@@ -188,7 +188,7 @@
     "published": "2026-07-13"
   },
   "/refrigerant-charge-calculator/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/refrigerant-comparison-guide/": {
@@ -456,15 +456,15 @@
     "published": "2026-05-20"
   },
   "/saturation-properties-calculator/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/subcooling-calculator/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/superheat-calculator/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/superheat-subcooling-fundamentals/": {
@@ -472,7 +472,7 @@
     "published": "2026-05-21"
   },
   "/system-pressure-diagnostic-calculator/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/target-superheat-chart/": {

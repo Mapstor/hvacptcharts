@@ -73,6 +73,43 @@ export default function RetrofitCompatibilityCalculatorPage() {
       }}
       introOneLiner="Enter the existing refrigerant and the target replacement; the calculator evaluates compatibility across five criteria (lubricant, safety class, pressure, glide, application) and returns a verdict plus specific recommendations."
       route="/refrigerant-retrofit-compatibility-calculator/"
+      howToReadResults={[
+        {
+          output: "Compatibility verdict",
+          meaning:
+            "The color-coded headline (green drop-in through red not feasible) synthesizes all five criteria and weights the worst one — a single 'fail' produces a fail verdict no matter how well the other four align. Read the summary line beneath it for the one-sentence reason the pair landed in that tier.",
+        },
+        {
+          output: "Lubricant compatibility",
+          meaning:
+            "Green means the two refrigerants share a compatible oil family, so no oil change is needed; amber means an oil change (drain, flush, new filter-drier) is required — typically mineral oil to POE when moving to an HFC; red means the lubricant systems are fundamentally incompatible, such as ammonia's steel-system oils versus HFC POE.",
+        },
+        {
+          output: "Safety class transition",
+          meaning:
+            "Compares the two ASHRAE 34 classes. Green is the same class with no safety-driven changes; amber is a manageable shift or a downgrade in flammability; red is a blocking change such as A1 to A2L (needs A2L-rated electrical, leak detection, and charge limits per UL 60335-2-40) or any A-to-B cross-class move, which is not a swap at all.",
+        },
+        {
+          output: "Pressure envelope",
+          meaning:
+            "Compares saturation pressure at 70°F between the two refrigerants and reports the percent change. Within ±10% is drop-in-capable (green); ±10-25% is amber and requires verifying component pressure ratings; beyond ~25% is red — existing equipment is not rated for the higher pressures, so full replacement is the realistic path.",
+        },
+        {
+          output: "Temperature glide",
+          meaning:
+            "Flags whether metering-device and superheat procedures change. Green when both refrigerants are pure or near-azeotropic, or both already glide; amber when moving from an azeotrope to a wide-glide blend, where the existing TXV may not control superheat across the glide range and may need adjustment or replacement.",
+        },
+        {
+          output: "Application family",
+          meaning:
+            "Checks whether both refrigerants share an equipment category (residential AC, commercial refrigeration, chiller, mobile AC, and so on). Green means they overlap and a retrofit is plausible; red means they were engineered for different equipment types, whose compressor sizing and heat-exchanger geometry rarely swap successfully.",
+        },
+        {
+          output: "Recommendations",
+          meaning:
+            "An ordered service procedure tailored to the issues detected — recovery per EPA Section 608, filter-drier and oil changes, pulling vacuum to 500 microns, glide and charge-by-weight notes, and post-retrofit capacity verification — or, for infeasible pairs, the case for full equipment replacement. A longer, more invasive list signals a harder retrofit.",
+        },
+      ]}
       howTo={{
         steps: [
           "Pick the existing refrigerant in the system from the first dropdown. Defaults to R-22 (the most common retrofit-source refrigerant in current US practice).",

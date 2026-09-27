@@ -424,6 +424,32 @@ export default function HvacLoadCalculatorPage() {
       ]}
       faqs={FAQS}
       route="/hvac-load-calculator/"
+      howToReadResults={[
+        {
+          output: "Cooling load (BTU/hr, tons, ft²/ton)",
+          meaning: "Total sensible + latent heat the AC must remove at the 1% design day; divide by 12,000 for tons and round up to the nearest standard size (1.5, 2, 2.5, 3 ton...). The ft²/ton ratio is a sanity check: typical residential runs 400 ft²/ton (older, leaky) to 800 ft²/ton (modern, tight, shaded), so a value far below 400 hints at over-count and far above 800 hints at an unusually efficient envelope.",
+        },
+        {
+          output: "Sensible heat ratio (SHR) + sensible / latent split",
+          meaning: "SHR = sensible cooling / total cooling; the remainder is moisture removal. High SHR (near 0.90+) means a dry climate dominated by temperature control, while low SHR (near 0.70) means a humid climate needing significant dehumidification — pick equipment whose AHRI-rated SHR is at or below the load SHR or humidity will stay high even when the thermostat is satisfied.",
+        },
+        {
+          output: "Heating load (BTU/hr) + furnace input @ 92% AFUE",
+          meaning: "Heat that must be added at the 99% winter design temperature to hold 70°F indoors; the furnace output must meet or exceed it, and the shown input (load ÷ 0.92) is the nameplate BTU/hr to buy for a 92% AFUE unit. In cold zones this typically exceeds the cooling load, so size the furnace to this number independently rather than inferring it from AC tonnage.",
+        },
+        {
+          output: "Sizing recommendation banner",
+          meaning: "Translates the cooling load into an ACCA Manual S equipment window (roughly 90–115% of the calculated load). Treat the low end as the target for single-stage gear; going above the high end short-cycles the equipment, defeats dehumidification, and wastes energy unless you choose variable-capacity.",
+        },
+        {
+          output: "Cooling load component breakdown (stacked bar)",
+          meaning: "Shows each source's share of cooling load — walls, window conduction, window solar gain, roof, infiltration (sensible + latent), people, and equipment. Windows (especially solar gain) and infiltration are usually the largest and most reducible; a dominant window-solar or infiltration segment points to the highest-payback envelope upgrades before locking in equipment size.",
+        },
+        {
+          output: "Cooling vs heating comparison (climate dominance)",
+          meaning: "Plots the two design-day loads side by side and labels the climate cooling- or heating-dominant. The larger bar drives the system decision — in a heating-dominant zone a heat pump may need supplemental/auxiliary heat below the balance point, while a cooling-dominant zone sizes the compressor to the cooling bar.",
+        },
+      ]}
       bodySections={BodySections}
     >
       <HvacLoadCalculator />

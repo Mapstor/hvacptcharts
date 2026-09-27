@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { diagnose, type FlagSeverity, type SystemType } from "@/lib/diagnostic";
+import { inTargetRange } from "@/lib/fault-patterns";
 import { RefrigerantSelector } from "./shared/RefrigerantSelector";
 
 const SEVERITY_CLASSES: Record<FlagSeverity, string> = {
@@ -176,7 +177,7 @@ function FormField({ id, label, unit, value, onChange, step }: { id: string; lab
 }
 
 function Derived({ label, value, unit, target }: { label: string; value: number | null; unit: string; target?: [number, number] }) {
-  const inRange = value !== null && target ? value >= target[0] && value <= target[1] : null;
+  const inRange = value !== null && target ? inTargetRange(value, target) : null;
   return (
     <div>
       <dt className="text-xs uppercase tracking-wide text-zinc-500">{label}</dt>

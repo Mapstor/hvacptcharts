@@ -48,7 +48,7 @@ const FAQS = [
   },
   {
     q: "What R-410A liquid-line pressure should I see on a hot day?",
-    a: `Condenser saturation typically runs 20–30°F above outdoor ambient — so on a 95°F day expect ~115–125°F saturation (${fmtPsigBubble(SLUG, 120)} PSIG at 120°F). Subcooling is measured as saturation temperature at the discharge minus the actual liquid-line temperature entering the metering device.`,
+    a: `Condenser saturation typically runs 15–25°F above outdoor ambient (high-efficiency units near the low end) — so on a 95°F day expect ~110–120°F saturation (${fmtPsigBubble(SLUG, 120)} PSIG at 120°F). Subcooling is measured as saturation temperature at the discharge minus the actual liquid-line temperature entering the metering device.`,
   },
   {
     q: "Does the Carrier bead chart differ from this superheat matrix?",

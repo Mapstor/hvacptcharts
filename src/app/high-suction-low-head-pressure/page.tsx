@@ -97,7 +97,7 @@ const FAQS = [
   },
   {
     q: "What are normal R-410A pressures at 40°F evap and 95°F ambient?",
-    a: `On a properly-charged residential R-410A AC at the 95°F rating condition, evaporator saturation runs about 40°F (${R410A_40F_EVAP} PSIG). Condenser saturation sits 20–30°F above ambient, so ~115–120°F saturation (${fmtPsigBubble("r-410a", 120)} PSIG). Actual manifold readings include superheat and subcooling adjustments — see /what-pressure-should-410a/ for the full envelope with OEM-observed suction and discharge bands.`,
+    a: `On a properly-charged residential R-410A AC at the 95°F rating condition, evaporator saturation runs about 40°F (${R410A_40F_EVAP} PSIG). Condenser saturation sits 15–25°F above ambient (high-efficiency units near the low end), so ~110–120°F saturation (${fmtPsigBubble("r-410a", 120)} PSIG). Actual manifold readings include superheat and subcooling adjustments — see /what-pressure-should-410a/ for the full envelope with OEM-observed suction and discharge bands.`,
   },
   {
     q: "What are normal R-22 pressures at 40°F evap and 95°F ambient?",

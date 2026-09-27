@@ -88,6 +88,33 @@ export default function SubcoolingCalculatorPage() {
       }}
       introOneLiner="Enter your liquid-line pressure and temperature for any refrigerant; get subcooling plus diagnostic context. Bubble-curve math so high-glide blends (R-407C, R-454C, R-455A) don't read 11-22°F off."
       route="/subcooling-calculator/"
+      howToReadResults={[
+        {
+          output: "Subcooling (°F or °C)",
+          meaning:
+            "The headline number: how far the liquid refrigerant sits below its saturation point, computed as saturation temp minus measured liquid-line temp. TXV residential AC typically targets 8–12°F; a healthy positive value confirms a solid liquid column reaching the metering device, while a reading near zero or negative means flash gas is present. Switching the temperature unit to °C shows the value as a temperature difference (delta), not an absolute temperature.",
+        },
+        {
+          output: "Saturation temperature at your liquid-line pressure",
+          meaning:
+            "The bubble-point temperature the tool looks up from the PT chart at the pressure you entered — the boundary the liquid line must fall below to be subcooled. Subtracting your measured line temperature from it yields the subcooling. It is echoed back so you can sanity-check the pressure-to-temperature conversion.",
+        },
+        {
+          output: "Diagnostic banner (negative / low / within range / high)",
+          meaning:
+            "A color-coded interpretation of the number. Negative (red) means vapor in the liquid line — undercharge, a restriction, or non-condensables — so stop and diagnose before adding refrigerant. Below 3°F (amber) suggests undercharge, especially alongside high superheat. 3–15°F (green) covers most residential and commercial TXV systems. Above 15°F (amber) points to overcharge, restricted condenser airflow, or a dirty coil — verify airflow and coil cleanliness before recovering refrigerant.",
+        },
+        {
+          output: "Bubble-curve note (zeotropic blends only)",
+          meaning:
+            "Appears only for high-glide blends (R-407C, R-454C, R-455A, R-448A, R-449A) to confirm the saturation lookup used the bubble curve rather than the dew curve. Reading subcooling off the dew curve would overstate it by the refrigerant's glide — roughly 11°F for R-407C and up to about 22°F for R-455A — so this note flags that the math is correct for the liquid line.",
+        },
+        {
+          output: "Chart range for the selected refrigerant",
+          meaning:
+            "The lowest-to-highest temperature the refrigerant's PT data covers. If your liquid pressure converts to a saturation temperature outside this span, the calculator reports that the pressure is out of range instead of a number; transcritical CO2 (R-744) above its critical point has no saturation state and returns no subcooling.",
+        },
+      ]}
       howTo={{
         steps: [
           "Pick the refrigerant. Defaults to R-410A.",

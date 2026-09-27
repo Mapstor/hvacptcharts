@@ -80,6 +80,33 @@ export default function CombinedCalculatorPage() {
       }}
       introOneLiner="One form for both the low side (suction, superheat) and the high side (liquid, subcooling). The eight-pattern diagnostic matrix maps the combined SH × SC × pressure fingerprint to the root cause: properly charged, undercharge, overcharge, restriction, fouling, TXV failure, or non-condensables."
       route="/pt-superheat-subcooling-calculator/"
+      howToReadResults={[
+        {
+          output: "Superheat (°F/°C)",
+          meaning:
+            "Suction-line temperature minus the dew-point saturation temperature at your suction pressure. Residential TXV systems target roughly 8–15°F and fixed-orifice systems follow the charging-chart value; high superheat points to undercharge, low evaporator airflow, or a liquid-line restriction, while near-zero or negative superheat means liquid is reaching the compressor (slugging risk — stop and diagnose).",
+        },
+        {
+          output: "Saturation temperature at suction pressure (dew curve)",
+          meaning:
+            "The temperature at which the refrigerant boils at the measured suction pressure, read off the dew curve (the correct curve for a vapor-side measurement, which matters on wide-glide zeotropic blends). It is the baseline the suction-line temperature is compared against to produce superheat, not a target on its own.",
+        },
+        {
+          output: "Subcooling (°F/°C)",
+          meaning:
+            "The bubble-point saturation temperature at your liquid pressure minus the liquid-line temperature. TXV/EEV systems are charged to the nameplate value (commonly 8–12°F); high subcooling indicates overcharge or a condenser rejecting heat poorly, and low or negative subcooling indicates undercharge or flash gas in the liquid line.",
+        },
+        {
+          output: "Saturation temperature at liquid pressure (bubble curve)",
+          meaning:
+            "The condensing temperature at the measured liquid pressure, read off the bubble curve (correct for a liquid-side measurement on blends). It is the reference the liquid-line temperature is subtracted from to get subcooling; compared against outdoor air it also reflects condenser approach — condensing temperature 15–25°F above outdoor air (high-efficiency units near the low end).",
+        },
+        {
+          output: "Combined diagnostic banner",
+          meaning:
+            "Reads the combined superheat × subcooling fingerprint against generic residential targets (about 8–25°F SH, 3–15°F SC) and names the likely condition: properly charged, undercharge (high SH + low SC), overcharge (low SH + high SC), restriction or low evaporator airflow (high SH + high SC), or a stuck-open TXV flooding the evaporator (low SH + low SC). The banner color signals severity, and a negative SH or SC raises a stop-and-diagnose alarm.",
+        },
+      ]}
       howTo={{
         steps: [
           "Pick the refrigerant. Defaults to R-410A.",

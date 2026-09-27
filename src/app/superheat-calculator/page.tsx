@@ -82,6 +82,23 @@ export default function SuperheatCalculatorPage() {
       }}
       introOneLiner="Enter your suction-line pressure and temperature for any refrigerant; get superheat plus diagnostic context. Correct dew-curve math for zeotropic blends so high-glide refrigerants (R-407C, R-454C, R-455A) don't read 11-22°F off."
       route="/superheat-calculator/"
+      howToReadResults={[
+        {
+          output: "Superheat (°F or °C)",
+          meaning:
+            "How many degrees the suction-line vapor sits above its saturation temperature — the vapor margin that keeps liquid out of the compressor. Roughly 5–25°F covers most working systems (TXV/EEV target 8–15°F; fixed-orifice varies by charging chart); near-zero means little margin against flooding, and a value well above 25°F points to a starved evaporator (undercharge, restriction, or low airflow).",
+        },
+        {
+          output: "Saturation temperature at suction pressure",
+          meaning:
+            "The temperature the entered suction pressure corresponds to on the PT chart — the baseline the superheat is measured from (superheat = line temp − this value). For zeotropic blends the tool reads the dew curve (labeled as such), which is the correct boundary for suction-line superheat; using the bubble curve would overstate superheat by the refrigerant's glide.",
+        },
+        {
+          output: "Diagnostic banner",
+          meaning:
+            "Interprets the reading against generic thresholds: negative superheat means liquid is reaching the compressor (slugging — stop and investigate); under 5°F is very low margin (suspect overcharge, a stuck TXV, or low evaporator load); 5–25°F is within the typical operating range; above 25°F is high (suspect undercharge, an over-controlling TXV, an airflow problem, or a liquid-line restriction). Always confirm against the equipment's charging chart or manufacturer spec.",
+        },
+      ]}
       howTo={{
         steps: [
           "Pick the refrigerant in the system. Defaults to R-410A.",

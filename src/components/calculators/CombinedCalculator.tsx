@@ -4,6 +4,14 @@ import { useMemo, useState } from "react";
 import { getPressureAtTempF, getRefrigerant, getSaturationTempAtPsigF } from "@/data/refrigerants";
 import { RefrigerantSelector } from "./shared/RefrigerantSelector";
 import { cToF, fToC, kpagToPsig, psigToKpag, deltaFtoC } from "./shared/units";
+import { classifyShSc, GENERIC_SH_SC_TARGETS, type FlagSeverity } from "@/lib/fault-patterns";
+
+const TONE_BY_SEVERITY: Record<FlagSeverity, string> = {
+  alarm: "border-red-300 bg-red-50 text-red-900 dark:border-red-900 dark:bg-red-950/40 dark:text-red-100",
+  concern: "border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-100",
+  caution: "border-zinc-300 bg-zinc-50 text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-300",
+  info: "border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-100",
+};
 
 type TempUnit = "F" | "C";
 type PUnit = "psig" | "kpag";
@@ -149,37 +157,14 @@ function ResultBox({ label, valueF, tempUnit }: { label: string; valueF: number 
 }
 
 function CombinedDiagnostic({ superheatF, subcoolingF }: { superheatF: number; subcoolingF: number }) {
-  // Classic interpretation matrix.
-  let label = "";
-  let note = "";
-  let tone = "";
-
-  if (superheatF < 0 || subcoolingF < 0) {
-    label = "Out-of-range condition";
-    note = "Negative superheat (slugging) or negative subcooling (vapor in liquid line) — stop and diagnose before continuing.";
-    tone = "border-red-300 bg-red-50 text-red-900 dark:border-red-900 dark:bg-red-950/40 dark:text-red-100";
-  } else if (superheatF < 8 && subcoolingF > 15) {
-    label = "Likely overcharge";
-    note = "Low superheat + high subcooling is the classic overcharge fingerprint. Verify condenser airflow and coil cleanliness first, then recover refrigerant in measured amounts.";
-    tone = "border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-100";
-  } else if (superheatF > 25 && subcoolingF < 3) {
-    label = "Likely undercharge";
-    note = "High superheat + low subcooling is the undercharge fingerprint. Check for leaks before adding refrigerant.";
-    tone = "border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-100";
-  } else if (superheatF >= 8 && superheatF <= 25 && subcoolingF >= 3 && subcoolingF <= 15) {
-    label = "Charge appears correct";
-    note = "Both superheat and subcooling fall in typical ranges. Cross-check against the equipment manufacturer's charging spec for the specific setpoint.";
-    tone = "border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-100";
-  } else {
-    label = "Mixed indicators";
-    note = "Neither classic overcharge nor undercharge fingerprint. Consider system-side factors: low indoor airflow (high evaporator temperature inflating superheat), restricted condenser (high subcooling without overcharge), incorrect metering device sizing.";
-    tone = "border-zinc-300 bg-zinc-50 text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-300";
-  }
-
+  // Shared SH×SC classifier (fault-patterns.ts) — same thresholds and wording as
+  // the system-pressure diagnostic. Rounds to displayed precision and compares
+  // inclusively, so a value shown at the boundary (8.0 / 15.0) reads as in-range.
+  const pattern = classifyShSc(superheatF, subcoolingF, GENERIC_SH_SC_TARGETS);
   return (
-    <div className={`rounded-md border px-3 py-2 text-sm ${tone}`}>
-      <strong className="font-semibold">{label}</strong>
-      <span> · {note}</span>
+    <div className={`rounded-md border px-3 py-2 text-sm ${TONE_BY_SEVERITY[pattern.severity]}`}>
+      <strong className="font-semibold">{pattern.label}</strong>
+      <span> · {pattern.note}</span>
     </div>
   );
 }

@@ -78,6 +78,33 @@ export default function RefrigerantChargeCalculatorPage() {
       }}
       introOneLiner="Adjust the nameplate charge for the actual line-set length. Calculator computes per-foot mass from refrigerant liquid density and applies the delta to your nameplate figure."
       route="/refrigerant-charge-calculator/"
+      howToReadResults={[
+        {
+          output: "Total charge (lb / oz)",
+          meaning:
+            "The nameplate factory charge plus the line-set adjustment — the target weight to meter onto a charging scale. It is a starting point only: confirm it with superheat (fixed-orifice) or subcooling (TXV/EXV) once the system reaches steady state.",
+        },
+        {
+          output: "Add / Excess (recover)",
+          meaning:
+            "The line-set correction to the nameplate. A positive value (labeled Add) is refrigerant to weigh in for a run longer than the OEM reference length; a negative value (labeled Excess – recover) means the shorter-than-reference run needs less than the factory charge. For a typical residential run this is only a few ounces.",
+        },
+        {
+          output: "Per-foot rate (oz/ft)",
+          meaning:
+            "Ounces of liquid refrigerant held per foot of liquid line — the R-410A baseline for the selected line OD times the refrigerant’s liquid-density factor. Larger lines and denser refrigerants (R-22, older CFC/HCFCs) raise this rate; low-density hydrocarbons (R-290) and CO₂ lower it, so the same extra footage moves less mass.",
+        },
+        {
+          output: "Δ length (ft)",
+          meaning:
+            "Actual one-way liquid-line length minus the OEM standard reference length. Positive means the install is longer than the factory assumption (add refrigerant); negative means shorter (recover); zero means no line-set adjustment is needed.",
+        },
+        {
+          output: "Notes & cautions",
+          meaning:
+            "Context-triggered flags — an untabulated refrigerant density (defaults to the R-410A factor), a run over 80 ft or under 10 ft, vertical rise above 50 ft, or a non-physical total charge. Any flag means the linear per-foot estimate may not fully apply; defer to the OEM installation manual and verify by superheat/subcooling.",
+        },
+      ]}
       howTo={{
         steps: [
           "Read the nameplate charge from the unit's data plate (typically in lb; some smaller units list oz — divide by 16 for lb).",

@@ -23,6 +23,11 @@ export interface CalculatorShellProps {
   route: string;
   /** Rich content rendered after the calculator widget, before howTo. */
   bodySections?: React.ReactNode;
+  /**
+   * "How to read your results" — one entry per output the tool produces, so the
+   * server HTML explains every result field even before the JS tool runs.
+   */
+  howToReadResults?: { output: string; meaning: string }[];
 }
 
 export function CalculatorShell({
@@ -35,6 +40,7 @@ export function CalculatorShell({
   faqs,
   route,
   bodySections,
+  howToReadResults,
 }: CalculatorShellProps) {
   const { published, updated } = contentDates(route);
   const schemaGraph = buildCalculatorSchema({
@@ -67,6 +73,20 @@ export function CalculatorShell({
         </section>
 
         {bodySections ? <div className="mb-10">{bodySections}</div> : null}
+
+        {howToReadResults && howToReadResults.length > 0 ? (
+          <section className="mb-10">
+            <h2 className="mb-3 text-xl font-semibold">How to read your results</h2>
+            <dl className="space-y-3">
+              {howToReadResults.map((r, i) => (
+                <div key={i} className="rounded-lg border border-zinc-200 p-4 dark:border-zinc-800">
+                  <dt className="font-semibold">{r.output}</dt>
+                  <dd className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{r.meaning}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
 
         {howTo ? (
           <section className="mb-10">

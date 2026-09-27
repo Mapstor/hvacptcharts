@@ -117,9 +117,16 @@ function extract(html, headers) {
     const abs = norm(href);
     if (abs && sameHost(abs)) blockLinks.add(abs);
   });
+  // Calculator JS-off signals (check j): the tool's form must be server-rendered
+  // (inputs/selects present), the crawlable twin must carry a worked example and
+  // at least one table, and there must be NO loading skeleton where the tool goes.
+  const formControls = $("input, select, textarea").length;
+  const tableCount = $("table").length;
+  const skeleton = $("[class*='animate-pulse']").length > 0;
   // visible text (drop scripts/styles)
   $("script, style, template, noscript").remove();
   const body = $("body").text().replace(/\s+/g, " ").trim();
+  const workedExample = /worked example/i.test(body);
   const updated = (body.match(/Updated\s+([A-Z][a-z]+ \d{1,2}, \d{4})/) || [])[1] || "";
   const words = body ? body.split(/\s+/).length : 0;
   // blank-value check: a dash immediately BEFORE a unit (a missing computed value
@@ -128,7 +135,7 @@ function extract(html, headers) {
   const blanks = [];
   const unitRe = /(?:[—–]\s*(?:PSIG|psig|psia|°F|°C|inHg)\b)|\bNaN\b|\[object Object\]/g;
   let mm; while ((mm = unitRe.exec(body)) !== null) blanks.push(body.slice(Math.max(0, mm.index - 30), mm.index + 12).trim());
-  return { title, desc, canonical, robots, googlebot, h1, jsonldParses, types: [...types], dateModified, outLinks: [...outLinks], blockLinks: [...blockLinks], updated, words, xRobots: headers.get("x-robots-tag") || "", blanks };
+  return { title, desc, canonical, robots, googlebot, h1, jsonldParses, types: [...types], dateModified, outLinks: [...outLinks], blockLinks: [...blockLinks], updated, words, xRobots: headers.get("x-robots-tag") || "", blanks, formControls, tableCount, skeleton, workedExample };
 }
 
 let processed = 0;
@@ -168,7 +175,11 @@ const outCsv = path.join(ROOT, "docs", "seo-fixes", `${OUT}-crawl.csv`);
 fs.writeFileSync(outCsv, rows.join("\n") + "\n");
 
 // ── checks a–i ──
-const fail = { a: [], b: [], c: [], d: [], e: [], f: [], g: [], h: [], i: [] };
+const fail = { a: [], b: [], c: [], d: [], e: [], f: [], g: [], h: [], i: [], j: [] };
+// A calculator page is any 200 HTML page whose JSON-LD declares a WebApplication
+// (buildCalculatorSchema emits one). Its tool must work JS-off: form controls +
+// a worked example + at least one table in the twin, and no loading skeleton.
+const isCalculatorPage = (r) => r.finalStatus === 200 && (r.ct || "").includes("text/html") && (r.types || []).includes("WebApplication");
 const cdKey = (u) => { const p = toPath(u); return p.endsWith("/") ? p : p + "/"; };
 // Indexable = self-canonical 200 HTML, not robots-noindex, not a dev/internal
 // path. NB: unlike check (c) — which additionally requires !isSitemap to find
@@ -215,6 +226,15 @@ for (const r of records.values()) {
   if (r.finalStatus === 200 && (r.ct || "").includes("text/html") && r.jsonldParses === false) fail.d.push(`${toPath(r.url)}: JSON-LD parse error`);
   // (e) blank computed values
   if (r.blanks && r.blanks.length) fail.e.push(`${toPath(r.url)}: ${[...new Set(r.blanks)].slice(0,3).join(" | ")}`);
+  // (j) calculator pages must be crawlable JS-off: form + worked example + table, no skeleton
+  if (isCalculatorPage(r)) {
+    const miss = [];
+    if (!(r.formControls > 0)) miss.push("no form inputs");
+    if (!r.workedExample) miss.push("no worked-example section");
+    if (!(r.tableCount > 0)) miss.push("no table in twin");
+    if (r.skeleton) miss.push("animate-pulse skeleton present where the tool should be");
+    if (miss.length) fail.j.push(`${toPath(r.url)}: ${miss.join("; ")} (inputs=${r.formControls}, tables=${r.tableCount}, workedExample=${r.workedExample})`);
+  }
 }
 // (g) the homepage and the PT hub must each link EVERY indexable refrigerant page
 const indexableRefrUrls = new Set(
@@ -252,7 +272,7 @@ const CRAWL_FLOOR = Math.max(100, sitemapSet.size - 5);
 const belowFloor = records.size < CRAWL_FLOOR || sitemapSet.size < 100;
 console.log(`[crawl] node ${process.version} — crawled ${records.size} URLs, ${sitemapSet.size} in sitemap (floor ${CRAWL_FLOOR}). CSV → ${path.relative(ROOT, outCsv)}`);
 console.log(`[inbound] indexable /refrigerant/ pages: ${refrInboundStats.pages}; min ${refrInboundStats.min}, median ${refrInboundStats.median}, max ${refrInboundStats.max} inbound internal links`);
-for (const [k, label] of [["a", "internal link not 200-in-one-hop"], ["b", "sitemap URL issues"], ["c", "indexable 200 missing from sitemap"], ["d", "JSON-LD parse / dateModified mismatch"], ["e", "blank computed values"], ["f", "sitemap orphans (0 inbound)"], ["g", "homepage/PT-hub missing indexable refrigerant links"], ["h", "indexable refrigerant page with <3 inbound links"], ["i", "new-block link not 200-in-one-hop"]]) {
+for (const [k, label] of [["a", "internal link not 200-in-one-hop"], ["b", "sitemap URL issues"], ["c", "indexable 200 missing from sitemap"], ["d", "JSON-LD parse / dateModified mismatch"], ["e", "blank computed values"], ["f", "sitemap orphans (0 inbound)"], ["g", "homepage/PT-hub missing indexable refrigerant links"], ["h", "indexable refrigerant page with <3 inbound links"], ["i", "new-block link not 200-in-one-hop"], ["j", "calculator not crawlable JS-off (form/worked-example/table/skeleton)"]]) {
   console.log(`\n[${k}] ${label}: ${fail[k].length}`);
   for (const line of fail[k].slice(0, 40)) console.log(`   ${line}`);
   if (fail[k].length > 40) console.log(`   … +${fail[k].length - 40} more`);

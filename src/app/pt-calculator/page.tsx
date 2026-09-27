@@ -125,6 +125,43 @@ export default function PtCalculatorPage() {
       }}
       introOneLiner="Enter a temperature or a pressure for any refrigerant in the dataset; get the corresponding saturation value, with bubble/dew handling for zeotropic blends and ten-plus worked examples covering the full range of HVAC service scenarios."
       route="/pt-calculator/"
+      howToReadResults={[
+        {
+          output: "Saturation pressure (PSIG or kPa)",
+          meaning:
+            "In the temperature-to-pressure direction, this is the gauge pressure at which a pure refrigerant boils or condenses at the temperature you entered. It is the thermodynamic reference a manifold should read at that saturation temperature; actual operating pressure varies with charge, ambient, load, and line drop. PSIG is gauge (PSIA = PSIG + 14.696 at sea level); kPa shown is gauge above 101.325 kPa atmospheric.",
+        },
+        {
+          output: "Saturation temperature (°F or °C)",
+          meaning:
+            "In the pressure-to-temperature direction, this is the temperature at which a pure refrigerant boils or condenses at the gauge pressure you entered. Subtract it from a measured suction-line temperature to get superheat, or subtract a measured liquid-line temperature from it to get subcooling.",
+        },
+        {
+          output: "Bubble value (bubble pressure or bubble temperature)",
+          meaning:
+            "Shown only for zeotropic blends. The bubble point is the saturated-liquid side, where the first vapor bubble forms. Use the bubble curve for liquid-line subcooling on blends; using it for superheat introduces error equal to the glide.",
+        },
+        {
+          output: "Dew value (dew pressure or dew temperature)",
+          meaning:
+            "Shown only for zeotropic blends. The dew point is the saturated-vapor side, where the last liquid droplet evaporates. Use the dew curve for suction-line superheat on blends; the superheat calculator selects it automatically.",
+        },
+        {
+          output: "Glide",
+          meaning:
+            "The spread between the bubble and dew values at your entered condition, displayed in the active pressure or temperature unit. Near-zero for pure refrigerants, azeotropes, and near-azeotropes like R-410A means the two curves coincide; a large glide (R-407C, R-454C) means curve selection materially changes superheat and subcooling results.",
+        },
+        {
+          output: "Out-of-range and no-data messages",
+          meaning:
+            "“Outside the chart range” means the entered value falls beyond the refrigerant’s validated −40°F to 150°F table or above its critical point (for example R-744 above 87.8°F), where no saturation state exists — this is correct physics, not an error. “No PT data available” appears for manual-blend refrigerants that have no computed chart.",
+        },
+        {
+          output: "PT chart range reference",
+          meaning:
+            "Below the result, the tool states the valid temperature span for the selected refrigerant and, for zeotropic blends, the dataset glide at 0°C. Confirm your input sits inside the modeled range before trusting the result.",
+        },
+      ]}
       howTo={{
         steps: [
           "Pick a refrigerant from the dropdown. Defaults to R-410A.",

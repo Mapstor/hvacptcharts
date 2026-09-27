@@ -79,6 +79,43 @@ export default function SaturationPropertiesPage() {
       }}
       introOneLiner="Bubble and dew saturation pressures at any temperature, plus the refrigerant's reference properties (critical point, normal boiling point, molar mass). Foundation data for service measurements, retrofit comparisons, and engineering design."
       route="/saturation-properties-calculator/"
+      howToReadResults={[
+        {
+          output: "Bubble pressure (PSIG / kPa)",
+          meaning:
+            "Saturation pressure of the liquid at your temperature — the point where the first vapor bubble forms. This is the value to apply to liquid-line readings for subcooling; for pure refrigerants and azeotropes it equals the dew pressure.",
+        },
+        {
+          output: "Dew pressure (PSIG / kPa)",
+          meaning:
+            "Saturation pressure of the vapor at your temperature — the point where the last liquid drop evaporates. Use this value against suction-line readings for superheat, especially on zeotropic blends where it differs from bubble pressure.",
+        },
+        {
+          output: "Glide (pressure difference at this temperature)",
+          meaning:
+            "The spread between bubble and dew pressure at the entered temperature (|bubble − dew|). Near zero means the refrigerant is pure or azeotropic; a larger spread flags a zeotropic blend whose suction and liquid saturation pressures diverge.",
+        },
+        {
+          output: "Boiling point @ 1 atm (normal boiling point)",
+          meaning:
+            "Saturation temperature at atmospheric pressure (0 PSIG). A low NBP well below 0°F means the refrigerant stays above atmospheric across AC and refrigeration ranges; a higher NBP points toward chiller or high-temperature service.",
+        },
+        {
+          output: "Critical point (temperature, pressure)",
+          meaning:
+            "The temperature and pressure above which liquid and vapor become indistinguishable and no saturation state exists — the thermodynamic ceiling for the high side. Operating near or above the critical temperature means transcritical behavior (mainly relevant for R-744/CO₂); blends show “no single point” because they have a critical locus rather than one point.",
+        },
+        {
+          output: "Molar mass (g/mol)",
+          meaning:
+            "The refrigerant's molecular weight, a fixed reference property that does not change with temperature. It feeds cycle and mass-flow calculations and helps identify blends versus pure fluids.",
+        },
+        {
+          output: "Temperature glide at 0°C (significant / negligible)",
+          meaning:
+            "The stored temperature glide in °F, flagged significant or negligible. Significant glide (blends such as R-407C or R-455A) means you must use dew for superheat and bubble for subcooling; negligible glide means a single saturation temperature applies throughout the phase change.",
+        },
+      ]}
       howTo={{
         steps: [
           "Pick the refrigerant from the dropdown. Defaults to R-410A.",
