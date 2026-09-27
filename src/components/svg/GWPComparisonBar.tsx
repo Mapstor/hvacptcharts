@@ -227,7 +227,7 @@ export function GWPComparisonBar({
           </text>
         ))}
         <text x={PAD_L + PLOT_W / 2} y={H - 14} textAnchor="middle" fontSize="12" fontWeight={500}>
-          Global Warming Potential (100-year, IPCC AR5)
+          GWP (100-yr, US EPA basis)
         </text>
       </g>
     </svg>

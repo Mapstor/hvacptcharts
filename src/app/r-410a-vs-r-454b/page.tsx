@@ -9,7 +9,7 @@ const SLUG = "r-410a-vs-r-454b";
 export const metadata: Metadata = pageMetadata({
   title: "R410A vs R454B: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R410A vs R454B for residential AC: pressures within 5%, POE oil unchanged, GWP cut 78% (2088→466). A1→A2L means new A2L equipment — no field retrofit path.",
+    "R410A vs R454B for residential AC: pressures within 5%, POE oil unchanged, GWP cut 78% (2088→465). A1→A2L means new A2L equipment — no field retrofit path.",
   path: "/r-410a-vs-r-454b/",
 });
 

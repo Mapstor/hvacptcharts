@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { refrigerants, type Refrigerant, type SafetyClass, type RefrigerantType } from "@/data/refrigerants";
+import { refrigerants, gwpNum, gwpText, type Refrigerant, type SafetyClass, type RefrigerantType } from "@/data/refrigerants";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { typeLabel } from "@/components/refrigerant/TypeChip";
 
@@ -126,7 +126,7 @@ export function SafetyClassTable() {
               <Th label="Type" k="type" sortKey={sortKey} sortDir={sortDir} toggleSort={toggleSort} />
               <Th label="Class" k="safetyClass" sortKey={sortKey} sortDir={sortDir} toggleSort={toggleSort} />
               <th className="px-3 py-2 font-medium">Chemistry</th>
-              <Th label="GWP (AR5)" k="gwp" sortKey={sortKey} sortDir={sortDir} toggleSort={toggleSort} align="right" />
+              <Th label="GWP (100-yr)" k="gwp" sortKey={sortKey} sortDir={sortDir} toggleSort={toggleSort} align="right" />
             </tr>
           </thead>
           <tbody>
@@ -143,7 +143,7 @@ export function SafetyClassTable() {
                 </td>
                 <td className="px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 font-mono">{r.chemicalFormula}</td>
                 <td className="px-3 py-2 text-right font-mono">
-                  {r.environmental.gwp100Ar5 === null ? <span className="text-zinc-400">—</span> : r.environmental.gwp100Ar5.toLocaleString()}
+                  {gwpText(r.environmental.gwp.headline)}
                 </td>
               </tr>
             ))}
@@ -200,8 +200,8 @@ function compareRows(key: SortKey, dir: SortDir) {
       case "safetyClass":
         return mul * (SAFETY_ORDER[a.safetyClass] - SAFETY_ORDER[b.safetyClass]);
       case "gwp": {
-        const av = a.environmental.gwp100Ar5 ?? -1;
-        const bv = b.environmental.gwp100Ar5 ?? -1;
+        const av = gwpNum(a.environmental.gwp.headline) ?? -1;
+        const bv = gwpNum(b.environmental.gwp.headline) ?? -1;
         return mul * (av - bv);
       }
     }

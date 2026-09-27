@@ -31,7 +31,8 @@ import {
   Waves,
 } from "lucide-react";
 
-import { getAllSlugs, getRefrigerant, getPressureAtTempF, type Refrigerant } from "@/data/refrigerants";
+import { getAllSlugs, getRefrigerant, getPressureAtTempF, gwpNum, gwpText, type Refrigerant } from "@/data/refrigerants";
+import { basisLabel, ipccLine, gwpTone } from "@/lib/gwp";
 import { getPrimaryGroupForSlug } from "@/data/comparison-groups";
 import { loadRefrigerantMdx } from "@/lib/mdx";
 import { findComparisonsForRefrigerant, type ComparisonSummary } from "@/lib/mdx-comparison";
@@ -81,7 +82,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     hasPtData: chart.length > 0 || (r.ptTable !== undefined && r.ptTable.length > 0),
     dataStatus: r.dataSource.dataStatus,
     safetyClass: r.safetyClass,
-    gwp100Ar5: r.environmental.gwp100Ar5,
+    gwpHeadline: gwpNum(r.environmental.gwp.headline),
     // Populated from the manufacturer-blends JSON via the generator. When
     // present with dataStatus === "manufacturer-datasheet", the metadata
     // function's branch 2 fires and renders the SERP surface as a
@@ -208,18 +209,10 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
               />
               <StatBox
                 icon={<Leaf className="h-4 w-4" />}
-                label="GWP (IPCC AR5)"
-                value={r.environmental.gwp100Ar5 !== null ? String(r.environmental.gwp100Ar5) : null}
-                unit="100-yr"
-                tone={
-                  r.environmental.gwp100Ar5 === null
-                    ? "neutral"
-                    : r.environmental.gwp100Ar5 < 150
-                    ? "emerald"
-                    : r.environmental.gwp100Ar5 < 700
-                    ? "amber"
-                    : "red"
-                }
+                label="GWP (100-yr)"
+                value={gwpText(r.environmental.gwp.headline)}
+                unit={basisLabel(r.environmental.gwp.headline.source)}
+                tone={gwpTone(gwpNum(r.environmental.gwp.headline))}
               />
               <StatBox
                 icon={<Waves className="h-4 w-4" />}
@@ -1147,25 +1140,20 @@ function PropertiesGrid({ r }: { r: Refrigerant }) {
     value: r.environmental.odp === null ? <span className="text-zinc-500">—</span> : r.environmental.odp,
     tone: r.environmental.odp && r.environmental.odp > 0 ? "red" : "emerald",
   });
-  rows.push({
-    icon: <Leaf className="h-3.5 w-3.5" />,
-    label: "GWP (AR5, 100-yr)",
-    value: r.environmental.gwp100Ar5 === null ? <span className="text-zinc-500">—</span> : r.environmental.gwp100Ar5,
-    tone:
-      r.environmental.gwp100Ar5 === null
-        ? "neutral"
-        : r.environmental.gwp100Ar5 < 150
-        ? "emerald"
-        : r.environmental.gwp100Ar5 < 700
-        ? "amber"
-        : "red",
-  });
-  if (r.environmental.gwp100Ar6 !== null) {
+  {
+    const g = r.environmental.gwp;
     rows.push({
       icon: <Leaf className="h-3.5 w-3.5" />,
-      label: "GWP (AR6, 100-yr)",
-      value: r.environmental.gwp100Ar6,
-      tone: "neutral",
+      label: "GWP (100-yr)",
+      value: (
+        <span className="flex flex-col">
+          <span>{gwpText(g.headline)}</span>
+          <span className="mt-0.5 text-[10px] font-normal text-zinc-500">{basisLabel(g.headline.source)}</span>
+          <span className="mt-0.5 text-[10px] font-normal text-zinc-500">{ipccLine(g)}</span>
+          {g.note ? <span className="mt-0.5 text-[10px] font-normal italic text-zinc-500">{g.note}</span> : null}
+        </span>
+      ),
+      tone: gwpTone(gwpNum(g.headline)),
     });
   }
   if (r.environmental.atmosphericLifetimeYears !== null) {
@@ -1233,7 +1221,7 @@ function ReplacementCard({
               >
                 <span className="font-semibold text-blue-700 dark:text-blue-300">{target.displayName}</span>
                 <span className="text-xs text-zinc-500">
-                  {target.safetyClass} · GWP {target.environmental.gwp100Ar5 ?? "—"}
+                  {target.safetyClass} · GWP {gwpText(target.environmental.gwp.headline)}
                 </span>
               </Link>
             </li>
@@ -1390,12 +1378,10 @@ function ProvenanceFooter({ r }: { r: Refrigerant }) {
           <dt className="font-semibold text-zinc-700 dark:text-zinc-300">Properties</dt>
           <dd>{r.dataSource.propertiesSource}</dd>
         </div>
-        {r.dataSource.gwpSource !== "Pending source citation" ? (
-          <div>
-            <dt className="font-semibold text-zinc-700 dark:text-zinc-300">GWP</dt>
-            <dd>{r.dataSource.gwpSource}</dd>
-          </div>
-        ) : null}
+        <div>
+          <dt className="font-semibold text-zinc-700 dark:text-zinc-300">GWP (100-yr)</dt>
+          <dd>{basisLabel(r.environmental.gwp.headline.source)} · IPCC AR4/AR5/AR6 on the <Link href="/refrigerant-gwp-rankings/" className="underline">GWP rankings</Link></dd>
+        </div>
         <div>
           <dt className="font-semibold text-zinc-700 dark:text-zinc-300">Generated</dt>
           <dd>{generated}</dd>

@@ -1,0 +1,1262 @@
+{
+ "generatedBy": "scripts/reference/build_gwp.py (2026-09-27)",
+ "method": {
+  "headline": "GWP 100-yr on the basis US EPA uses: regulated HFCs = AIM Act exchange values (40 CFR 84 Appendix A, identical to IPCC AR4); HFOs, HCFOs, hydrocarbons, ammonia, CO2 = 40 CFR 84.64(b) Table 1; CFCs, HCFCs, PFCs = IPCC AR4 Table 2.14. Blends = sum of mass fraction x constituent GWP (40 CFR 84.64(b)), rounded half-up to an integer.",
+  "ar4": "IPCC AR4 values only; blends computed only when every component has an AR4 value.",
+  "ar5": "IPCC AR5 Table 8.A.1; '<1' is shown as '<1' for pure substances and counted as 1 in blend sums; blends computed only when every component is listed in AR5.",
+  "ar6": "IPCC AR6 Table 7.SM.7; blends computed only when every component is listed in AR6.",
+  "rounding": "Blends: integer, round half up. Pure substances: as published."
+ },
+ "sources": {
+  "ipcc_ar4": {
+   "title": "IPCC AR4 WG1 (2007), Chapter 2, Table 2.14 (GWP 100-yr)",
+   "url": "https://archive.ipcc.ch/publications_and_data/ar4/wg1/en/ch2s2-10-2.html"
+  },
+  "ipcc_ar4_errata": {
+   "title": "IPCC AR4 WG1 Errata (2012), Table 2.14 (Errata)",
+   "url": "https://www.ipcc.ch/site/assets/uploads/2018/05/ar4-wg1-errata.pdf"
+  },
+  "ipcc_ar4_indirect": {
+   "title": "IPCC AR4 WG1 (2007), Chapter 2, Table 2.15 (indirect GWPs of NMVOCs)",
+   "url": "https://archive.ipcc.ch/publications_and_data/ar4/wg1/en/ch2s2-10-3-2.html"
+  },
+  "ipcc_ar5": {
+   "title": "IPCC AR5 WG1 (2013), Chapter 8, Appendix 8.A, Table 8.A.1 (GWP 100-yr)",
+   "url": "https://www.ipcc.ch/report/ar5/wg1/"
+  },
+  "ipcc_ar6": {
+   "title": "IPCC AR6 WG1 (2021), Chapter 7 Supplementary Material, Table 7.SM.7 (GWP-100)",
+   "url": "https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter07_SM.pdf"
+  },
+  "aim_app_a": {
+   "title": "40 CFR Part 84, Appendix A — Regulated Substances (AIM Act exchange values, equal to IPCC AR4)",
+   "url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/appendix-Appendix%20A%20to%20Part%2084"
+  },
+  "cfr_84_64b": {
+   "title": "40 CFR 84.64(b), Table 1 — GWP of blend constituents that are not regulated HFCs",
+   "url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-B/section-84.64"
+  },
+  "epa_tt_table": {
+   "title": "US EPA, Technology Transitions GWP Reference Table (updated April 2, 2026)",
+   "url": "https://www.epa.gov/hfcs/technology-transitions-gwp-reference-table"
+  }
+ },
+ "components": {
+  "R-11": {
+   "name": "CFC-11",
+   "headline": {
+    "value": 4750,
+    "source": "ipcc_ar4"
+   },
+   "ar4": {
+    "value": 4750,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 4660,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 6230,
+    "source": "ipcc_ar6"
+   },
+   "note": "AR6 final Table 7.SM.7 value (a pre-final draft printed 5560)."
+  },
+  "R-12": {
+   "name": "CFC-12",
+   "headline": {
+    "value": 10900,
+    "source": "ipcc_ar4"
+   },
+   "ar4": {
+    "value": 10900,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 10200,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 12500,
+    "source": "ipcc_ar6"
+   },
+   "note": "AR6 final Table 7.SM.7 value (a pre-final draft printed 11200)."
+  },
+  "R-13": {
+   "name": "CFC-13",
+   "headline": {
+    "value": 14400,
+    "source": "ipcc_ar4"
+   },
+   "ar4": {
+    "value": 14400,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 13900,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 16200,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-115": {
+   "name": "CFC-115",
+   "headline": {
+    "value": 7370,
+    "source": "ipcc_ar4"
+   },
+   "ar4": {
+    "value": 7370,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 7670,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 9600,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-22": {
+   "name": "HCFC-22",
+   "headline": {
+    "value": 1810,
+    "source": "ipcc_ar4"
+   },
+   "ar4": {
+    "value": 1810,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 1760,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 1960,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-123": {
+   "name": "HCFC-123",
+   "headline": {
+    "value": 77,
+    "source": "ipcc_ar4"
+   },
+   "ar4": {
+    "value": 77,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 79,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 90.4,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-124": {
+   "name": "HCFC-124",
+   "headline": {
+    "value": 609,
+    "source": "ipcc_ar4"
+   },
+   "ar4": {
+    "value": 609,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 527,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 597,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-23": {
+   "name": "HFC-23",
+   "headline": {
+    "value": 14800,
+    "source": "aim_app_a"
+   },
+   "ar4": {
+    "value": 14800,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 12400,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 14600,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-32": {
+   "name": "HFC-32",
+   "headline": {
+    "value": 675,
+    "source": "aim_app_a"
+   },
+   "ar4": {
+    "value": 675,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 677,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 771,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-125": {
+   "name": "HFC-125",
+   "headline": {
+    "value": 3500,
+    "source": "aim_app_a"
+   },
+   "ar4": {
+    "value": 3500,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 3170,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 3740,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-134a": {
+   "name": "HFC-134a",
+   "headline": {
+    "value": 1430,
+    "source": "aim_app_a"
+   },
+   "ar4": {
+    "value": 1430,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 1300,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 1530,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-143a": {
+   "name": "HFC-143a",
+   "headline": {
+    "value": 4470,
+    "source": "aim_app_a"
+   },
+   "ar4": {
+    "value": 4470,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 4800,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 5810,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-152a": {
+   "name": "HFC-152a",
+   "headline": {
+    "value": 124,
+    "source": "aim_app_a"
+   },
+   "ar4": {
+    "value": 124,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 138,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 164,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-227ea": {
+   "name": "HFC-227ea",
+   "headline": {
+    "value": 3220,
+    "source": "aim_app_a"
+   },
+   "ar4": {
+    "value": 3220,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 3350,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 3600,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-236ea": {
+   "name": "HFC-236ea",
+   "headline": {
+    "value": 1370,
+    "source": "aim_app_a"
+   },
+   "ar4": {
+    "value": 1370,
+    "source": "ipcc_ar4_errata"
+   },
+   "ar5": {
+    "value": 1330,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 1500,
+    "source": "ipcc_ar6"
+   },
+   "note": "Not in the original AR4 Table 2.14; value from the 2012 AR4 errata table, identical to the AIM Act exchange value."
+  },
+  "R-236fa": {
+   "name": "HFC-236fa",
+   "headline": {
+    "value": 9810,
+    "source": "aim_app_a"
+   },
+   "ar4": {
+    "value": 9810,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 8060,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 8690,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-245fa": {
+   "name": "HFC-245fa",
+   "headline": {
+    "value": 1030,
+    "source": "aim_app_a"
+   },
+   "ar4": {
+    "value": 1030,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 858,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 962,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-365mfc": {
+   "name": "HFC-365mfc",
+   "headline": {
+    "value": 794,
+    "source": "aim_app_a"
+   },
+   "ar4": {
+    "value": 794,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 804,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 914,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-218": {
+   "name": "PFC-218 (C3F8)",
+   "headline": {
+    "value": 8830,
+    "source": "ipcc_ar4"
+   },
+   "ar4": {
+    "value": 8830,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 8900,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 9290,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-C318": {
+   "name": "PFC-C318 (c-C4F8)",
+   "headline": {
+    "value": 10300,
+    "source": "ipcc_ar4"
+   },
+   "ar4": {
+    "value": 10300,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 9540,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 10200,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-1234yf": {
+   "name": "HFO-1234yf",
+   "headline": {
+    "value": 1,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": {
+    "value": "<1",
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 0.501,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-1234ze(E)": {
+   "name": "HFO-1234ze(E)",
+   "headline": {
+    "value": 1,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": {
+    "value": "<1",
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 1.37,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-1234ze(Z)": {
+   "name": "HFO-1234ze(Z)",
+   "headline": {
+    "value": "<1",
+    "source": "ipcc_ar5"
+   },
+   "ar4": null,
+   "ar5": {
+    "value": "<1",
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 0.315,
+    "source": "ipcc_ar6"
+   },
+   "note": "Not in 40 CFR 84.64(b) or AR4; headline shows the AR5 value."
+  },
+  "R-1233zd(E)": {
+   "name": "HCFO-1233zd(E)",
+   "headline": {
+    "value": 4,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": {
+    "value": 1,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 3.88,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-1224yd(Z)": {
+   "name": "HCFO-1224yd(Z)",
+   "headline": {
+    "value": 1,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null
+  },
+  "R-1336mzz(Z)": {
+   "name": "HFO-1336mzz(Z)",
+   "headline": {
+    "value": 2,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": {
+    "value": 2,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 2.08,
+    "source": "ipcc_ar6"
+   }
+  },
+  "R-1130(E)": {
+   "name": "trans-1,2-dichloroethene (HCO-1130(E))",
+   "headline": {
+    "value": 5,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null
+  },
+  "R-290": {
+   "name": "propane",
+   "headline": {
+    "value": 3.3,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": {
+    "value": 0.02,
+    "source": "ipcc_ar6"
+   },
+   "note": "40 CFR 84.64(b) uses 3.3, the AR4 indirect GWP (Table 2.15); AR6 lists only the direct GWP (0.02)."
+  },
+  "R-600": {
+   "name": "n-butane",
+   "headline": {
+    "value": 4,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": {
+    "value": 0.006,
+    "source": "ipcc_ar6"
+   },
+   "note": "40 CFR 84.64(b) uses 4, the AR4 indirect GWP (Table 2.15); AR6 lists only the direct GWP (0.006)."
+  },
+  "R-600a": {
+   "name": "isobutane",
+   "headline": {
+    "value": 1,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null
+  },
+  "R-601a": {
+   "name": "isopentane",
+   "headline": {
+    "value": 1,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null,
+   "note": "Not listed by name; 40 CFR 84.64(b) gives 1–4 for saturated light hydrocarbons (C3–C6). Only used as a 0.6% component of R-438A, where it cannot change the rounded result."
+  },
+  "R-1270": {
+   "name": "propylene",
+   "headline": {
+    "value": 1.8,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null,
+   "note": "40 CFR 84.64(b) uses 1.8, the AR4 indirect GWP (Table 2.15)."
+  },
+  "R-1150": {
+   "name": "ethylene",
+   "headline": {
+    "value": 3.7,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null,
+   "note": "40 CFR 84.64(b) uses 3.7, the AR4 indirect GWP (Table 2.15)."
+  },
+  "R-717": {
+   "name": "ammonia",
+   "headline": {
+    "value": 1,
+    "source": "cfr_84_64b"
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null,
+   "note": "IPCC does not assess ammonia as a greenhouse gas; 40 CFR 84.64(b) lists 1."
+  },
+  "R-744": {
+   "name": "carbon dioxide",
+   "headline": {
+    "value": 1,
+    "source": "cfr_84_64b"
+   },
+   "ar4": {
+    "value": 1,
+    "source": "ipcc_ar4"
+   },
+   "ar5": {
+    "value": 1,
+    "source": "ipcc_ar5"
+   },
+   "ar6": {
+    "value": 1,
+    "source": "ipcc_ar6"
+   }
+  }
+ },
+ "blends": {
+  "R-404A": {
+   "massPercent": {
+    "R-125": 44.0,
+    "R-143a": 52.0,
+    "R-134a": 4.0
+   },
+   "headline": {
+    "exact": 3921.6,
+    "value": 3922
+   },
+   "ar4": {
+    "exact": 3921.6,
+    "value": 3922
+   },
+   "ar5": {
+    "exact": 3942.8,
+    "value": 3943
+   },
+   "ar6": {
+    "exact": 4728.0,
+    "value": 4728
+   },
+   "epaPublished": 3922
+  },
+  "R-407A": {
+   "massPercent": {
+    "R-32": 20.0,
+    "R-125": 40.0,
+    "R-134a": 40.0
+   },
+   "headline": {
+    "exact": 2107.0,
+    "value": 2107
+   },
+   "ar4": {
+    "exact": 2107.0,
+    "value": 2107
+   },
+   "ar5": {
+    "exact": 1923.4,
+    "value": 1923
+   },
+   "ar6": {
+    "exact": 2262.2,
+    "value": 2262
+   }
+  },
+  "R-407C": {
+   "massPercent": {
+    "R-32": 23.0,
+    "R-125": 25.0,
+    "R-134a": 52.0
+   },
+   "headline": {
+    "exact": 1773.85,
+    "value": 1774
+   },
+   "ar4": {
+    "exact": 1773.85,
+    "value": 1774
+   },
+   "ar5": {
+    "exact": 1624.21,
+    "value": 1624
+   },
+   "ar6": {
+    "exact": 1907.93,
+    "value": 1908
+   },
+   "epaPublished": 1774
+  },
+  "R-407F": {
+   "massPercent": {
+    "R-32": 30.0,
+    "R-125": 30.0,
+    "R-134a": 40.0
+   },
+   "headline": {
+    "exact": 1824.5,
+    "value": 1825
+   },
+   "ar4": {
+    "exact": 1824.5,
+    "value": 1825
+   },
+   "ar5": {
+    "exact": 1674.1,
+    "value": 1674
+   },
+   "ar6": {
+    "exact": 1965.3,
+    "value": 1965
+   }
+  },
+  "R-410A": {
+   "massPercent": {
+    "R-32": 50.0,
+    "R-125": 50.0
+   },
+   "headline": {
+    "exact": 2087.5,
+    "value": 2088
+   },
+   "ar4": {
+    "exact": 2087.5,
+    "value": 2088
+   },
+   "ar5": {
+    "exact": 1923.5,
+    "value": 1924
+   },
+   "ar6": {
+    "exact": 2255.5,
+    "value": 2256
+   },
+   "epaPublished": 2088
+  },
+  "R-417A": {
+   "massPercent": {
+    "R-125": 46.6,
+    "R-134a": 50.0,
+    "R-600": 3.4
+   },
+   "headline": {
+    "exact": 2346.136,
+    "value": 2346
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": {
+    "exact": 2507.8402,
+    "value": 2508
+   }
+  },
+  "R-421A": {
+   "massPercent": {
+    "R-125": 58.0,
+    "R-134a": 42.0
+   },
+   "headline": {
+    "exact": 2630.6,
+    "value": 2631
+   },
+   "ar4": {
+    "exact": 2630.6,
+    "value": 2631
+   },
+   "ar5": {
+    "exact": 2384.6,
+    "value": 2385
+   },
+   "ar6": {
+    "exact": 2811.8,
+    "value": 2812
+   }
+  },
+  "R-422A": {
+   "massPercent": {
+    "R-125": 85.1,
+    "R-134a": 11.5,
+    "R-600a": 3.4
+   },
+   "headline": {
+    "exact": 3142.984,
+    "value": 3143
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null
+  },
+  "R-422B": {
+   "massPercent": {
+    "R-125": 55.0,
+    "R-134a": 42.0,
+    "R-600a": 3.0
+   },
+   "headline": {
+    "exact": 2525.63,
+    "value": 2526
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null
+  },
+  "R-422D": {
+   "massPercent": {
+    "R-125": 65.1,
+    "R-134a": 31.5,
+    "R-600a": 3.4
+   },
+   "headline": {
+    "exact": 2728.984,
+    "value": 2729
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null
+  },
+  "R-427A": {
+   "massPercent": {
+    "R-32": 15.0,
+    "R-125": 25.0,
+    "R-143a": 10.0,
+    "R-134a": 50.0
+   },
+   "headline": {
+    "exact": 2138.25,
+    "value": 2138
+   },
+   "ar4": {
+    "exact": 2138.25,
+    "value": 2138
+   },
+   "ar5": {
+    "exact": 2024.05,
+    "value": 2024
+   },
+   "ar6": {
+    "exact": 2396.65,
+    "value": 2397
+   }
+  },
+  "R-438A": {
+   "massPercent": {
+    "R-32": 8.5,
+    "R-125": 45.0,
+    "R-134a": 44.2,
+    "R-600": 1.7,
+    "R-601a": 0.6
+   },
+   "headline": {
+    "exact": 2264.509,
+    "value": 2265
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null
+  },
+  "R-448A": {
+   "massPercent": {
+    "R-32": 26.0,
+    "R-125": 26.0,
+    "R-1234yf": 20.0,
+    "R-134a": 21.0,
+    "R-1234ze(E)": 7.0
+   },
+   "headline": {
+    "exact": 1386.07,
+    "value": 1386
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 1273.49,
+    "value": 1273
+   },
+   "ar6": {
+    "exact": 1494.3561,
+    "value": 1494
+   },
+   "epaPublished": 1386
+  },
+  "R-449A": {
+   "massPercent": {
+    "R-32": 24.3,
+    "R-125": 24.7,
+    "R-1234yf": 25.3,
+    "R-134a": 25.7
+   },
+   "headline": {
+    "exact": 1396.288,
+    "value": 1396
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 1281.854,
+    "value": 1282
+   },
+   "ar6": {
+    "exact": 1504.4698,
+    "value": 1504
+   },
+   "epaPublished": 1396
+  },
+  "R-450A": {
+   "massPercent": {
+    "R-134a": 42.0,
+    "R-1234ze(E)": 58.0
+   },
+   "headline": {
+    "exact": 601.18,
+    "value": 601
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 546.58,
+    "value": 547
+   },
+   "ar6": {
+    "exact": 643.3946,
+    "value": 643
+   },
+   "epaPublished": 601
+  },
+  "R-452A": {
+   "massPercent": {
+    "R-32": 11.0,
+    "R-125": 59.0,
+    "R-1234yf": 30.0
+   },
+   "headline": {
+    "exact": 2139.55,
+    "value": 2140
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 1945.07,
+    "value": 1945
+   },
+   "ar6": {
+    "exact": 2291.5603,
+    "value": 2292
+   },
+   "epaPublished": 2140
+  },
+  "R-452B": {
+   "massPercent": {
+    "R-32": 67.0,
+    "R-125": 7.0,
+    "R-1234yf": 26.0
+   },
+   "headline": {
+    "exact": 697.51,
+    "value": 698
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 675.75,
+    "value": 676
+   },
+   "ar6": {
+    "exact": 778.5003,
+    "value": 779
+   },
+   "epaPublished": 698
+  },
+  "R-454B": {
+   "massPercent": {
+    "R-32": 68.9,
+    "R-1234yf": 31.1
+   },
+   "headline": {
+    "exact": 465.386,
+    "value": 465
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 466.764,
+    "value": 467
+   },
+   "ar6": {
+    "exact": 531.3748,
+    "value": 531
+   },
+   "epaPublished": 465
+  },
+  "R-454C": {
+   "massPercent": {
+    "R-32": 21.5,
+    "R-1234yf": 78.5
+   },
+   "headline": {
+    "exact": 145.91,
+    "value": 146
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 146.34,
+    "value": 146
+   },
+   "ar6": {
+    "exact": 166.1583,
+    "value": 166
+   },
+   "epaPublished": 146
+  },
+  "R-455A": {
+   "massPercent": {
+    "R-744": 3.0,
+    "R-32": 21.5,
+    "R-1234yf": 75.5
+   },
+   "headline": {
+    "exact": 145.91,
+    "value": 146
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 146.34,
+    "value": 146
+   },
+   "ar6": {
+    "exact": 166.1733,
+    "value": 166
+   },
+   "epaPublished": 146
+  },
+  "R-457A": {
+   "massPercent": {
+    "R-32": 18.0,
+    "R-1234yf": 70.0,
+    "R-152a": 12.0
+   },
+   "headline": {
+    "exact": 137.08,
+    "value": 137
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 139.12,
+    "value": 139
+   },
+   "ar6": {
+    "exact": 158.8107,
+    "value": 159
+   },
+   "epaPublished": 137
+  },
+  "R-500": {
+   "massPercent": {
+    "R-12": 73.8,
+    "R-152a": 26.2
+   },
+   "headline": {
+    "exact": 8076.688,
+    "value": 8077
+   },
+   "ar4": {
+    "exact": 8076.688,
+    "value": 8077
+   },
+   "ar5": {
+    "exact": 7563.756,
+    "value": 7564
+   },
+   "ar6": {
+    "exact": 9267.968,
+    "value": 9268
+   }
+  },
+  "R-502": {
+   "massPercent": {
+    "R-22": 48.8,
+    "R-115": 51.2
+   },
+   "headline": {
+    "exact": 4656.72,
+    "value": 4657
+   },
+   "ar4": {
+    "exact": 4656.72,
+    "value": 4657
+   },
+   "ar5": {
+    "exact": 4785.92,
+    "value": 4786
+   },
+   "ar6": {
+    "exact": 5871.68,
+    "value": 5872
+   }
+  },
+  "R-503": {
+   "massPercent": {
+    "R-23": 40.1,
+    "R-13": 59.9
+   },
+   "headline": {
+    "exact": 14560.4,
+    "value": 14560
+   },
+   "ar4": {
+    "exact": 14560.4,
+    "value": 14560
+   },
+   "ar5": {
+    "exact": 13298.5,
+    "value": 13299
+   },
+   "ar6": {
+    "exact": 15558.4,
+    "value": 15558
+   }
+  },
+  "R-507A": {
+   "massPercent": {
+    "R-125": 50.0,
+    "R-143a": 50.0
+   },
+   "headline": {
+    "exact": 3985.0,
+    "value": 3985
+   },
+   "ar4": {
+    "exact": 3985.0,
+    "value": 3985
+   },
+   "ar5": {
+    "exact": 3985.0,
+    "value": 3985
+   },
+   "ar6": {
+    "exact": 4775.0,
+    "value": 4775
+   },
+   "epaPublished": 3985
+  },
+  "R-513A": {
+   "massPercent": {
+    "R-1234yf": 56.0,
+    "R-134a": 44.0
+   },
+   "headline": {
+    "exact": 629.76,
+    "value": 630
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 572.56,
+    "value": 573
+   },
+   "ar6": {
+    "exact": 673.4806,
+    "value": 673
+   },
+   "epaPublished": 630
+  },
+  "R-514A": {
+   "massPercent": {
+    "R-1336mzz(Z)": 74.7,
+    "R-1130(E)": 25.3
+   },
+   "headline": {
+    "exact": 2.759,
+    "value": 3
+   },
+   "ar4": null,
+   "ar5": null,
+   "ar6": null,
+   "epaPublished": 3
+  },
+  "R-515A": {
+   "massPercent": {
+    "R-1234ze(E)": 88.0,
+    "R-227ea": 12.0
+   },
+   "headline": {
+    "exact": 387.28,
+    "value": 387
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 402.88,
+    "value": 403
+   },
+   "ar6": {
+    "exact": 433.2056,
+    "value": 433
+   }
+  },
+  "R-515B": {
+   "massPercent": {
+    "R-1234ze(E)": 91.1,
+    "R-227ea": 8.9
+   },
+   "headline": {
+    "exact": 287.491,
+    "value": 287
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 299.061,
+    "value": 299
+   },
+   "ar6": {
+    "exact": 321.6481,
+    "value": 322
+   },
+   "epaPublished": 287
+  },
+  "R-516A": {
+   "massPercent": {
+    "R-1234yf": 77.5,
+    "R-134a": 8.5,
+    "R-152a": 14.0
+   },
+   "headline": {
+    "exact": 139.685,
+    "value": 140
+   },
+   "ar4": null,
+   "ar5": {
+    "exact": 130.595,
+    "value": 131
+   },
+   "ar6": {
+    "exact": 153.3983,
+    "value": 153
+   },
+   "epaPublished": 140
+  }
+ },
+ "epaPublishedBlendValues": {
+  "R-404A": 3922,
+  "R-407C": 1774,
+  "R-410A": 2088,
+  "R-448A": 1386,
+  "R-449A": 1396,
+  "R-450A": 601,
+  "R-452A": 2140,
+  "R-452B": 698,
+  "R-454B": 465,
+  "R-454C": 146,
+  "R-455A": 146,
+  "R-457A": 137,
+  "R-507A": 3985,
+  "R-513A": 630,
+  "R-514A": 3,
+  "R-515B": 287,
+  "R-516A": 140
+ }
+}

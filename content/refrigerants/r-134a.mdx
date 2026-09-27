@@ -53,9 +53,8 @@ keyStats:
     sourceId: ashrae34
   - label: GWP (100-yr)
     value: "1430"
-    unit: IPCC AR5
+    unit: "100-yr"
     context: Above EPA AIM Act 700-GWP threshold for residential AC; phased in MAC (EU)
-    sourceId: ipccar5
   - label: GWP (AR6)
     value: "1530"
     unit: IPCC AR6
@@ -111,15 +110,15 @@ faqs:
 
   - q: "What does R-134a's GWP of 1430 mean?"
     a: |
-      Global Warming Potential is a relative atmospheric-warming metric over 100 years against CO₂ (defined as GWP 1). A 1 kg release of R-134a traps approximately 1,430 times more heat than 1 kg of CO₂ over that horizon (IPCC AR5) [ipccar5].
+      Global Warming Potential is a relative atmospheric-warming metric over 100 years against CO₂ (defined as GWP 1). A 1 kg release of R-134a traps approximately 1,430 times more heat than 1 kg of CO₂ over that horizon [ipccar5].
 
-      The IPCC AR6 figure (2021) is approximately 1,530 — updated based on improved atmospheric chemistry models. EU F-Gas and US EPA regulation continue to use the AR5 figure (1430) for compliance determinations.
+      The IPCC AR6 figure (2021) is approximately 1,530 — updated based on improved atmospheric chemistry models. EU F-Gas and US EPA regulation continue to use the 1430 figure for compliance determinations.
 
   - q: "Why is R-134a being replaced in cars?"
     a: |
       GWP. The EU Mobile Air Conditioning Directive 2006/40/EC mandated 150-GWP cap for refrigerants in new MAC vehicle types from 1 January 2017 [eumac]. R-134a's 1430 GWP is well above that threshold.
 
-      The chosen MAC replacement is R-1234yf (HFO, A2L, GWP 4). US OEMs transitioned to R-1234yf for most new light-duty vehicles starting around 2017-2021. R-134a remains legal for service of existing MAC systems indefinitely.
+      The chosen MAC replacement is R-1234yf (HFO, A2L, GWP 1). US OEMs transitioned to R-1234yf for most new light-duty vehicles starting around 2017-2021. R-134a remains legal for service of existing MAC systems indefinitely.
 
   - q: "What lubricant does R-134a use?"
     a: |
@@ -137,7 +136,7 @@ faqs:
     a: |
       Mobile AC: not as a refrigerant swap. R-1234yf service ports are different from R-134a (specifically designed to prevent cross-contamination), and the A1-to-A2L safety class change requires vehicle-level safety design. Mobile AC retrofit is rare and economically unjustified.
 
-      Stationary chillers: R-134a-to-R-1234yf direct retrofit is not common. The typical chiller path is retrofit to R-513A (A1, GWP 631, near-azeotrope R-134a/R-1234yf blend) or R-450A (A1, GWP 605, R-134a/R-1234ze blend) — both preserve A1 classification and similar pressure envelope.
+      Stationary chillers: R-134a-to-R-1234yf direct retrofit is not common. The typical chiller path is retrofit to R-513A (A1, GWP 630, near-azeotrope R-134a/R-1234yf blend) or R-450A (A1, GWP 601, R-134a/R-1234ze blend) — both preserve A1 classification and similar pressure envelope.
 
   - q: "Is R-134a still legal in the US?"
     a: |
@@ -149,12 +148,12 @@ faqs:
     a: |
       Centrifugal chillers (water-cooled commercial cooling), domestic refrigeration (household refrigerators historically, though many have transitioned to R-600a isobutane), vending machines and beverage coolers, commercial display refrigeration cases, and some medical inhaler propellants.
 
-      The chiller market has been transitioning to R-1234ze(E) (A2L, GWP 7) for new equipment and R-513A / R-450A / R-515B (A1 blends with R-1234yf or R-1234ze) for retrofit. R-134a remains the legacy backbone in the installed base.
+      The chiller market has been transitioning to R-1234ze(E) (A2L, GWP 1) for new equipment and R-513A / R-450A / R-515B (A1 blends with R-1234yf or R-1234ze) for retrofit. R-134a remains the legacy backbone in the installed base.
 
 retrofitGuidance:
   fromRefrigerant: ""
   notes: |
-    R-134a is being retrofitted FROM in many applications. Mobile AC: typically not retrofitted; service with R-134a or replace vehicle. Centrifugal chillers: retrofit to R-513A (A1, GWP 631, near-drop-in) or R-450A (A1, GWP 605); for very-low-GWP new equipment, R-1234ze(E) (A2L) or R-515B (A1). Commercial refrigeration: R-513A or R-450A for retrofit; R-1234yf-containing low-GWP blends for new equipment.
+    R-134a is being retrofitted FROM in many applications. Mobile AC: typically not retrofitted; service with R-134a or replace vehicle. Centrifugal chillers: retrofit to R-513A (A1, GWP 630, near-drop-in) or R-450A (A1, GWP 601); for very-low-GWP new equipment, R-1234ze(E) (A2L) or R-515B (A1). Commercial refrigeration: R-513A or R-450A for retrofit; R-1234yf-containing low-GWP blends for new equipment.
 ---
 
 <TechSection icon="chart" tone="blue" title="Reading the R-134a pressure-temperature chart">
@@ -199,14 +198,14 @@ For practical purposes, R-134a's ODP 0 placed it outside Montreal Protocol restr
 
 </TechSection>
 
-<TechSection icon="climate" tone="amber" title="GWP 1430 (AR5) vs 1530 (AR6) — both above policy thresholds">
+<TechSection icon="climate" tone="amber" title="GWP 1430 vs 1530 (AR6) — both above policy thresholds">
 
-R-134a's GWP value depends on which IPCC assessment report you reference. AR5 (2014) computed 1430; AR6 (2021) updated to approximately 1530 — a ~7% revision driven by improved atmospheric chemistry modeling [ipccar5][ipccar6]. The EPA AIM Act and EU F-Gas Regulation both use the AR5 value for regulatory determinations.
+R-134a's GWP value depends on which IPCC assessment you reference. The regulatory value is 1430 (the AR4 / AIM Act exchange figure); AR6 (2021) updated it to approximately 1530 — a ~7% revision driven by improved atmospheric chemistry modeling [ipccar5][ipccar6]. The EPA AIM Act and EU F-Gas Regulation both use the 1430 figure for regulatory determinations.
 
 Both figures place R-134a above the policy thresholds in major segments. EU F-Gas Regulation 517/2014 banned R-134a in new MAC vehicle types from 1 January 2017 under a 150-GWP threshold [eumac]. EPA AIM Act 700-GWP threshold for residential AC doesn't materially affect R-134a (which wasn't used in residential AC anyway), but commercial refrigeration and some chiller categories see R-134a restrictions through 2025-2030 phase-downs.
 
 <KeyInsight tone="zinc" icon="climate" title="Two transitions running in parallel">
-For mobile AC, the regulatory pressure drove industry standardization on R-1234yf (GWP 4) — a single global replacement. For stationary chillers, the regulatory pressure is spread across multiple replacement chemistries with different trade-offs: R-513A and R-450A as A1 retrofits; R-1234ze(E) as A2L new-equipment; R-515B as A1 lower-GWP than R-513A.
+For mobile AC, the regulatory pressure drove industry standardization on R-1234yf (GWP 1) — a single global replacement. For stationary chillers, the regulatory pressure is spread across multiple replacement chemistries with different trade-offs: R-513A and R-450A as A1 retrofits; R-1234ze(E) as A2L new-equipment; R-515B as A1 lower-GWP than R-513A.
 </KeyInsight>
 
 </TechSection>
@@ -252,7 +251,7 @@ POE and PAG are chemically incompatible — mixing them produces oil-return fail
 
 EU Directive 2006/40/EC, commonly called the MAC Directive (Mobile Air Conditioning Directive), was the first major refrigerant regulation to use GWP as the binding compliance threshold [eumac]. The directive required all new vehicle types receiving EU type approval from 1 January 2011 to use refrigerants with GWP below 150, and all new vehicles regardless of type from 1 January 2017.
 
-R-134a's GWP of 1430 placed it well above the 150 threshold. The chosen replacement was R-1234yf (HFO, A2L, GWP 4), which became the dominant new-vehicle MAC refrigerant in the EU from 2011 onward and globally over the following decade. Daimler initially resisted R-1234yf adoption (citing flammability concerns) but ultimately conformed; the broader industry standardized rapidly.
+R-134a's GWP of 1430 placed it well above the 150 threshold. The chosen replacement was R-1234yf (HFO, A2L, GWP 1), which became the dominant new-vehicle MAC refrigerant in the EU from 2011 onward and globally over the following decade. Daimler initially resisted R-1234yf adoption (citing flammability concerns) but ultimately conformed; the broader industry standardized rapidly.
 
 The MAC Directive's significance extended beyond mobile AC. It established the regulatory template for the EU F-Gas Regulation (517/2014, revised 2024) and ultimately influenced the US EPA AIM Act framework — using GWP thresholds tied to specific end-uses rather than blanket refrigerant bans. The 150-GWP threshold remains the EU benchmark for the most aggressive refrigerant categories.
 
@@ -262,10 +261,10 @@ The MAC Directive's significance extended beyond mobile AC. It established the r
 
 For centrifugal chillers using R-134a, the EU F-Gas and EPA AIM Act phase-down pressure creates four established retrofit / replacement paths:
 
-- **R-513A** (R-134a/R-1234yf 56/44, A1, GWP 631) — near-azeotropic blend designed as a true drop-in for R-134a. POE oil; pressure envelope within 5% of R-134a; minimal compressor adjustment needed. Most common R-134a chiller retrofit.
-- **R-450A** (R-134a/R-1234ze(E) 42/58, A1, GWP 605) — small glide (~0.9°F), POE oil, similar pressure envelope to R-134a. Slightly lower GWP than R-513A.
+- **R-513A** (R-134a/R-1234yf 56/44, A1, GWP 630) — near-azeotropic blend designed as a true drop-in for R-134a. POE oil; pressure envelope within 5% of R-134a; minimal compressor adjustment needed. Most common R-134a chiller retrofit.
+- **R-450A** (R-134a/R-1234ze(E) 42/58, A1, GWP 601) — small glide (~0.9°F), POE oil, similar pressure envelope to R-134a. Slightly lower GWP than R-513A.
 - **R-515B** (R-1234ze(E)/R-227ea 91.1/8.9, A1, GWP 287) — azeotropic blend, lower GWP than R-513A / R-450A. Slightly higher pressures; equipment evaluation needed for retrofit.
-- **R-1234ze(E)** (pure HFO, A2L, GWP 7) — for new equipment installations; requires A2L-rated chiller design. The long-term low-GWP destination for centrifugal chillers.
+- **R-1234ze(E)** (pure HFO, A2L, GWP 1) — for new equipment installations; requires A2L-rated chiller design. The long-term low-GWP destination for centrifugal chillers.
 
 The choice among these depends on whether the equipment is being retrofitted (in which case A1 paths preserve safety classification) or replaced (in which case A2L pure HFO offers maximum GWP reduction). New chiller equipment installations from 2024+ increasingly specify R-1234ze(E) for long-term regulatory positioning.
 

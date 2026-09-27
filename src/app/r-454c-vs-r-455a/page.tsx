@@ -9,7 +9,7 @@ const SLUG = "r-454c-vs-r-455a";
 export const metadata: Metadata = pageMetadata({
   title: "R454C vs R455A: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R454C vs R455A for commercial refrigeration: both A2L, both GWP 148. R455A has 22°F glide vs R454C's 14°F, and higher pressures from 3% R744 content.",
+    "R454C vs R455A for commercial refrigeration: both A2L, both GWP 146. R455A has 22°F glide vs R454C's 14°F, and higher pressures from 3% R744 content.",
   path: "/r-454c-vs-r-455a/",
 });
 

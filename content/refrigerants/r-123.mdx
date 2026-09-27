@@ -1,7 +1,7 @@
 ---
 slug: r-123
 title: "R-123 Pressure Temperature Chart & Properties"
-introOneLiner: "HCFC (2,2-dichloro-1,1,1-trifluoroethane, CHCl₂CF₃) — B1 toxic non-flammable, GWP 79, ODP 0.02. The dominant low-pressure centrifugal chiller refrigerant 1990-2020; US production banned 1 January 2020. R-1233zd(E) is the standard replacement."
+introOneLiner: "HCFC (2,2-dichloro-1,1,1-trifluoroethane, CHCl₂CF₃) — B1 toxic non-flammable, GWP 77, ODP 0.02. The dominant low-pressure centrifugal chiller refrigerant 1990-2020; US production banned 1 January 2020. R-1233zd(E) is the standard replacement."
 
 sources:
   - id: ashrae34
@@ -50,10 +50,9 @@ keyStats:
     context: Lower than R-22 (0.055); subject to HCFC phase-out
     sourceId: montrealprotocol
   - label: GWP (100-yr)
-    value: "79"
-    unit: IPCC AR5
+    value: "77"
+    unit: "100-yr"
     context: Low for HCFC; very low compared to HFC alternatives
-    sourceId: ipccar5
   - label: Normal boiling point
     value: "82.1"
     unit: °F (27.8°C)
@@ -69,7 +68,7 @@ keyStats:
     context: Compatible with HCFC chemistry
   - label: Replacement
     value: R-1233zd(E)
-    context: HCFO replacement (A1, GWP 1, near-zero ODP)
+    context: HCFO replacement (A1, GWP 4, near-zero ODP)
     sourceId: trane
 
 narrative:
@@ -82,7 +81,7 @@ narrative:
     - "Low-pressure centrifugal chillers (Trane CenTraVac, others) installed 1990-2020"
     - "Legacy chiller equipment requiring service with reclaimed R-123"
     - "Specialty heat-transfer applications"
-    - "Replaced in new equipment by R-1233zd(E) (A1, GWP 1, near-zero ODP)"
+    - "Replaced in new equipment by R-1233zd(E) (A1, GWP 4, near-zero ODP)"
 
   phaseDownStatus: |
     R-123 US production was banned on 1 January 2020 under the HCFC schedule [epacfr82]. The phase-out parallels R-22's: complete ban on new production, with reclaimed supply remaining legal for service of existing equipment under EPA Section 608 [epasec608].
@@ -101,7 +100,7 @@ faqs:
     a: |
       Low-pressure centrifugal chillers, dominantly. Trane CenTraVac was the most prominent R-123 chiller product line [trane]; other chiller OEMs also offered R-123 options. R-123 was the standard low-pressure chiller refrigerant from 1990 through 2020.
 
-      Production was banned on 1 January 2020 under the HCFC phase-out; new chiller equipment specifies R-1233zd(E) (HCFO, A1, GWP 1, near-zero ODP) as the standard R-123 replacement.
+      Production was banned on 1 January 2020 under the HCFC phase-out; new chiller equipment specifies R-1233zd(E) (HCFO, A1, GWP 4, near-zero ODP) as the standard R-123 replacement.
 
   - q: "Why was R-123 phased out?"
     a: |
@@ -111,11 +110,11 @@ faqs:
 
   - q: "What's R-123's GWP and ODP?"
     a: |
-      GWP 79 (IPCC AR5), ODP 0.02 [ipccar5][montrealprotocol]. The GWP is low for an HCFC and dramatically lower than HFC alternatives (R-134a 1430, R-410A 2088). The ODP is small but non-zero — triggering the Montreal Protocol phase-out despite the relatively low ozone impact per kg.
+      GWP 77, ODP 0.02 [ipccar5][montrealprotocol]. The GWP is low for an HCFC and dramatically lower than HFC alternatives (R-134a 1430, R-410A 2088). The ODP is small but non-zero — triggering the Montreal Protocol phase-out despite the relatively low ozone impact per kg.
 
   - q: "What replaced R-123?"
     a: |
-      R-1233zd(E) (Honeywell Solstice zd) is the standard replacement [trane]. HCFO chemistry similar to R-123 but with a carbon-carbon double bond that gives very short atmospheric lifetime (26 days) and very low GWP (1). The one chlorine atom in R-1233zd(E) gives technically-non-zero ODP (0.00034) but below regulatory de-minimis thresholds.
+      R-1233zd(E) (Honeywell Solstice zd) is the standard replacement [trane]. HCFO chemistry similar to R-123 but with a carbon-carbon double bond that gives very short atmospheric lifetime (26 days) and very low GWP (4). The one chlorine atom in R-1233zd(E) gives technically-non-zero ODP (0.00034) but below regulatory de-minimis thresholds.
 
       R-1233zd(E) is operationally near-equivalent to R-123 — similar pressure envelope, similar safety class (R-1233zd(E) is A1, R-123 is B1, so R-1233zd(E) is actually safer), similar lubricant compatibility.
 
@@ -140,7 +139,7 @@ faqs:
 retrofitGuidance:
   fromRefrigerant: ""
   notes: |
-    R-123 retrofit path: R-1233zd(E) (Honeywell Solstice zd) for low-pressure centrifugal chillers. Major OEMs (Trane CenTraVac, others) document conversion procedures. The retrofit preserves the R-123 chiller installed base under modern environmental regulations while improving safety class (B1 → A1) and dramatically lowering GWP (79 → 1).
+    R-123 retrofit path: R-1233zd(E) (Honeywell Solstice zd) for low-pressure centrifugal chillers. Major OEMs (Trane CenTraVac, others) document conversion procedures. The retrofit preserves the R-123 chiller installed base under modern environmental regulations while improving safety class (B1 → A1) and dramatically lowering GWP (77 → 4).
 ---
 
 <TechSection icon="chart" tone="blue" title="Reading the R-123 PT chart — very low pressures, sub-atmospheric on chiller evaporator">
@@ -169,11 +168,11 @@ For chiller machine room design, B1 refrigerants require dedicated ventilation s
 
 </TechSection>
 
-<TechSection icon="globe" tone="emerald" title="ODP 0.02 and GWP 79 — low for an HCFC, but Montreal Protocol mandates phase-out">
+<TechSection icon="globe" tone="emerald" title="ODP 0.02 and GWP 77 — low for an HCFC, but Montreal Protocol mandates phase-out">
 
 R-123's ODP of 0.02 is small but non-zero — much lower than R-22 (0.055) and R-12 (1.0). The Montreal Protocol HCFC schedule mandated complete phase-out despite the lower ODP because all chlorine-bearing refrigerants contribute to long-term stratospheric ozone burden.
 
-GWP 79 is low for an HCFC — much lower than HFC alternatives (R-134a 1430, R-410A 2088). R-123's environmental profile was favorable on the GWP axis but unfavorable on the ODP axis; modern policy preserves the favorable GWP positioning through R-1233zd(E) replacement (HCFO chemistry, GWP 1, near-zero ODP).
+GWP 77 is low for an HCFC — much lower than HFC alternatives (R-134a 1430, R-410A 2088). R-123's environmental profile was favorable on the GWP axis but unfavorable on the ODP axis; modern policy preserves the favorable GWP positioning through R-1233zd(E) replacement (HCFO chemistry, GWP 4, near-zero ODP).
 
 </TechSection>
 
@@ -181,7 +180,7 @@ GWP 79 is low for an HCFC — much lower than HFC alternatives (R-134a 1430, R-4
 
 R-123 occupies a defined legacy niche in 2026 — service of low-pressure centrifugal chillers installed 1990-2020. The installed base is significant (thousands of large commercial chillers in the US) and these chillers will continue operating for decades. Service supply via reclaimed R-123 will continue indefinitely.
 
-For new chiller equipment, R-1233zd(E) is the standard low-pressure replacement. The replacement provides operational equivalence (similar pressure envelope, mineral oil compatibility) with environmental and safety improvements (A1 vs B1, GWP 1 vs 79, near-zero vs 0.02 ODP).
+For new chiller equipment, R-1233zd(E) is the standard low-pressure replacement. The replacement provides operational equivalence (similar pressure envelope, mineral oil compatibility) with environmental and safety improvements (A1 vs B1, GWP 4 vs 77, near-zero vs 0.02 ODP).
 
 For existing R-123 chillers, the decision tree: continue on reclaimed R-123 for systems with remaining life and acceptable pricing; retrofit to R-1233zd(E) for systems where the B1 toxicity provisions are inconvenient or where major chiller refurbishment is planned anyway. Replacement decision parallels R-22 retrofit-vs-replace logic at the chiller scale.
 

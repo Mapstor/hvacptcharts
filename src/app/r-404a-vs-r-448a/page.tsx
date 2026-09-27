@@ -9,7 +9,7 @@ const SLUG = "r-404a-vs-r-448a";
 export const metadata: Metadata = pageMetadata({
   title: "R404A vs R448A: Solstice N40 Retrofit Compared",
   description:
-    "R404A vs R448A: Solstice N40 retrofit cuts GWP 65% (3922→1387), keeps A1+POE, similar pressures at service temps. Zeotropic ~11°F glide vs R404A near-azeotropic.",
+    "R404A vs R448A: Solstice N40 retrofit cuts GWP 65% (3922→1386), keeps A1+POE, similar pressures at service temps. Zeotropic ~11°F glide vs R404A near-azeotropic.",
   path: "/r-404a-vs-r-448a/",
 });
 

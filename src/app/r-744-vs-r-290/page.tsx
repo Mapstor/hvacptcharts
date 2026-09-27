@@ -9,7 +9,7 @@ const SLUG = "r-744-vs-r-290";
 export const metadata: Metadata = pageMetadata({
   title: "R744 vs R290: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R744 vs R290 naturals: R744 (CO2, GWP 1, non-flammable, transcritical) vs R290 (propane, GWP 3, A3 charge-limited). Different application classes — not swaps.",
+    "R744 vs R290 naturals: R744 (CO2, GWP 1, non-flammable, transcritical) vs R290 (propane, GWP 3.3, A3 charge-limited). Different application classes — not swaps.",
   path: "/r-744-vs-r-290/",
 });
 

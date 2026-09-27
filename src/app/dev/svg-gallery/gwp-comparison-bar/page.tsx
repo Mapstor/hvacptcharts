@@ -6,9 +6,9 @@ export default function GalleryGWPComparisonBar() {
       <section>
         <h2 className="text-lg font-semibold">Residential AC — current = R-410A</h2>
         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-          Linear scale. R-410A highlighted with outline. EU F-Gas 150 and EPA AIM Act 700 thresholds shown as
-          dashed verticals. R-22 (HCFC, A1, GWP 1810) and R-410A (A1, GWP 2088) sit well above the AIM Act
-          threshold; R-454B (A2L, GWP 466) and R-32 (A2L, GWP 675) sit below it. Color encodes ASHRAE class:
+          Linear scale, bars sorted by GWP. R-410A highlighted with outline. GWP is the 100-year value on the
+          US EPA basis. R-22 (HCFC, A1, GWP 1810) and R-410A (A1, GWP 2088) sit well above the A2L replacements
+          R-454B (A2L, GWP 465) and R-32 (A2L, GWP 675). Color encodes ASHRAE class:
           green = A1, yellow = A2L.
         </p>
         <div className="mt-4">
@@ -19,9 +19,9 @@ export default function GalleryGWPComparisonBar() {
       <section>
         <h2 className="text-lg font-semibold">Commercial refrigeration — medium temp, current = R-404A</h2>
         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-          Shows the active phase-down landscape: R-404A (GWP 3922) being replaced by R-448A (1387), R-449A (1397),
-          R-450A (605), R-454C (148), R-455A (148), R-516A (142), and R-744 (1). The 150 reference line is the EU
-          F-Gas Regulation threshold; refrigerants below it are the long-term path.
+          Shows the active phase-down landscape: R-404A (GWP 3922) being replaced by R-448A (1386), R-449A (1396),
+          R-450A (601), R-454C (146), R-455A (146), R-516A (140), and R-744 (1). Bars are sorted by GWP (100-yr,
+          US EPA basis); the lower-GWP blends are the long-term path.
         </p>
         <div className="mt-4">
           <RefrigerantGWPComparison currentSlug="r-404a" />

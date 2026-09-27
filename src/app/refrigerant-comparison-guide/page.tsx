@@ -3,7 +3,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { contentDates, UpdatedLine } from "@/lib/content-dates";
-import { getRefrigerant, getPressureAtTempF, refrigerants } from "@/data/refrigerants";
+import { getRefrigerant, getPressureAtTempF, refrigerants, gwpText } from "@/data/refrigerants";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 
 const PAGE_URL = `${SITE_URL}/refrigerant-comparison-guide/`;
@@ -23,11 +23,11 @@ const FAQS = [
   },
   {
     q: "Why is the industry transitioning from R-410A to R-32 and R-454B?",
-    a: "GWP. R-410A is GWP 2088 (IPCC AR5) and is restricted under the EPA AIM Act for new equipment beginning January 1, 2025 (with regulatory phase-down through 2036). R-32 (GWP 675) and R-454B (GWP 466) are the dominant A2L replacements. R-32 is the pure-component choice (Daikin's preference); R-454B is a R-32/R-1234yf blend (Carrier, Trane, Lennox preference). Both require A2L-rated equipment with sealed motors, charge limits, and leak-detection accommodations. Equipment built before the transition uses R-410A and continues to be serviceable with reclaimed R-410A indefinitely.",
+    a: "GWP. R-410A is GWP 2088 and is restricted under the EPA AIM Act for new equipment beginning January 1, 2025 (with regulatory phase-down through 2036). R-32 (GWP 675) and R-454B (GWP 465) are the dominant A2L replacements. R-32 is the pure-component choice (Daikin's preference); R-454B is a R-32/R-1234yf blend (Carrier, Trane, Lennox preference). Both require A2L-rated equipment with sealed motors, charge limits, and leak-detection accommodations. Equipment built before the transition uses R-410A and continues to be serviceable with reclaimed R-410A indefinitely.",
   },
   {
     q: "Is a lower-GWP refrigerant always better?",
-    a: "No — it's a multi-axis trade-off. The lowest-GWP refrigerants (hydrocarbons R-290, R-600a, R-1270 at GWP 2-3) are A3 highly flammable and charge-limited under most codes. R-744 (CO₂, GWP 1) is non-flammable but requires very-high-pressure equipment and transcritical operation in warm climates. R-1234yf (GWP 4) and R-1234ze (GWP 7) are A2L. The 'low-GWP doesn't necessarily mean drop-in' point is the foundation of the modern transition — switching refrigerants typically requires new equipment, not just new refrigerant.",
+    a: "No — it's a multi-axis trade-off. The lowest-GWP refrigerants (hydrocarbons R-290, R-600a, R-1270, all single-digit GWP) are A3 highly flammable and charge-limited under most codes. R-744 (CO₂, GWP 1) is non-flammable but requires very-high-pressure equipment and transcritical operation in warm climates. R-1234yf (GWP 1) and R-1234ze (GWP 1) are A2L. The 'low-GWP doesn't necessarily mean drop-in' point is the foundation of the modern transition — switching refrigerants typically requires new equipment, not just new refrigerant.",
   },
   {
     q: "Should I retrofit an R-22 system or replace it?",
@@ -72,7 +72,7 @@ function ComparisonRow({ slug }: { slug: string }) {
         <Link href={`/refrigerant/${r.slug}/`} className="hover:underline">{r.displayName}</Link>
       </td>
       <td className="px-3 py-2"><SafetyClassChip safetyClass={r.safetyClass} size="sm" /></td>
-      <td className="px-3 py-2 font-mono text-right">{r.environmental.gwp100Ar5 ?? "—"}</td>
+      <td className="px-3 py-2 font-mono text-right">{gwpText(r.environmental.gwp.headline)}</td>
       <td className="px-3 py-2 font-mono text-right">{r.environmental.odp ?? "—"}</td>
       <td className="px-3 py-2 font-mono text-right">
         {p ? (Math.abs(p.bubble - p.dew) < 0.5 ? p.bubble.toFixed(0) : `${p.bubble.toFixed(0)} / ${p.dew.toFixed(0)}`) : "—"}
@@ -443,7 +443,7 @@ export default function ComparisonGuidePage() {
           <div className="mb-6 rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
             <h3 className="text-base font-semibold">Scenario A: New residential AC equipment, 2026+</h3>
             <p className="mt-2 text-sm">
-              The choice in 2026 is between R-32 (pure HFC, A2L, GWP 675) and R-454B (HFC/HFO blend, A2L, GWP 466).
+              The choice in 2026 is between R-32 (pure HFC, A2L, GWP 675) and R-454B (HFC/HFO blend, A2L, GWP 465).
               Both replace R-410A in new equipment. The decision typically follows the equipment OEM&apos;s
               standardization: Daikin favors R-32 (pure-component supply chain control); Carrier, Trane, Lennox
               favor R-454B (slightly lower GWP, blend manufactured by Honeywell/Chemours). Performance is comparable.
@@ -489,13 +489,13 @@ export default function ComparisonGuidePage() {
             <h3 className="text-base font-semibold">Scenario D: Centrifugal chiller, R-123 / R-134a transition</h3>
             <p className="mt-2 text-sm">
               R-123 was the dominant low-pressure centrifugal chiller refrigerant for decades — production banned
-              2020. Replacement options: R-1233zd(E) (HFO, A1, GWP 1, near-drop-in pressure envelope), R-1224yd(Z)
-              (HCFO, A1, GWP 1), R-514A (HFO blend, B1 toxicity classification, GWP 2). R-1233zd(E) leads in
+              2020. Replacement options: R-1233zd(E) (HFO, A1, GWP 4, near-drop-in pressure envelope), R-1224yd(Z)
+              (HCFO, A1, GWP 1), R-514A (HFO blend, B1 toxicity classification, GWP 3). R-1233zd(E) leads in
               market share.
             </p>
             <p className="mt-2 text-sm">
-              R-134a chillers face AIM Act restrictions for new equipment. Replacement options: R-513A (A1, GWP 631),
-              R-450A (A1, GWP 605), R-515A (A1, GWP 392), R-515B (A1, GWP 287), or pure R-1234ze(E) (A2L, GWP 7).
+              R-134a chillers face AIM Act restrictions for new equipment. Replacement options: R-513A (A1, GWP 630),
+              R-450A (A1, GWP 601), R-515A (A1, GWP 387), R-515B (A1, GWP 287), or pure R-1234ze(E) (A2L, GWP 1).
               The A1 blends are retrofit-compatible with existing R-134a equipment; R-1234ze(E) requires new
               A2L-rated equipment.
             </p>
@@ -506,7 +506,7 @@ export default function ComparisonGuidePage() {
             <p className="mt-2 text-sm">
               High-temperature industrial heat pumps require working fluids with high-temperature stability and
               appropriate pressure envelope. R-245fa was historical workhorse for organic Rankine cycle and
-              heat-pump applications; being replaced by R-1233zd(E) (A1, GWP 1) for moderate-temperature applications
+              heat-pump applications; being replaced by R-1233zd(E) (A1, GWP 4) for moderate-temperature applications
               and R-1336mzz(Z) (A1, GWP 2) for high-temperature applications (up to 150°C condensing). R-1234ze(Z)
               also serves the high-temperature heat-pump range.
             </p>
@@ -586,7 +586,7 @@ export default function ComparisonGuidePage() {
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>CoolProp 7.2.0 — saturation pressures, critical points, physical properties (PT values in tables)</li>
             <li>ASHRAE Standard 34-2022 — refrigerant designations, safety classifications, composition specifications</li>
-            <li>IPCC AR5 (2014) — Global warming potential values (the EPA AIM Act regulatory figures)</li>
+            <li>IPCC AR4 — the values the US AIM Act uses as exchange values; IPCC AR5 and AR6 shown alongside for reference</li>
             <li>EPA AIM Act (Public Law 116-260) and EPA implementation rulemaking — HFC phase-down schedule</li>
             <li>EPA SNAP — Significant New Alternatives Policy acceptable-use designations</li>
             <li>EU F-Gas Regulation 517/2014 (revised 2024) — EU HFC phase-down framework</li>

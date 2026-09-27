@@ -9,7 +9,7 @@ const SLUG = "r-134a-vs-r-513a";
 export const metadata: Metadata = pageMetadata({
   title: "R134a vs R513A: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R134a vs R513A: R513A is the azeotropic R1234yf/R134a blend designed as R134a drop-in. Same A1, same POE oil, similar pressures. GWP cut 56% (1430→631).",
+    "R134a vs R513A: R513A is the azeotropic R1234yf/R134a blend designed as R134a drop-in. Same A1, same POE oil, similar pressures. GWP cut 56% (1430→630).",
   path: "/r-134a-vs-r-513a/",
 });
 

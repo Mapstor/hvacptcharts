@@ -9,7 +9,7 @@ const SLUG = "r-454b-vs-r-454c";
 export const metadata: Metadata = pageMetadata({
   title: "R454B vs R454C: The Two A2L Blends Compared (GWP, Glide)",
   description:
-    "R454B vs R454C: same R32/R1234yf components, different ratios. R454B GWP 466 (residential AC); R454C GWP 148 with 13.9°F glide (LT commercial).",
+    "R454B vs R454C: same R32/R1234yf components, different ratios. R454B GWP 465 (residential AC); R454C GWP 146 with 13.9°F glide (LT commercial).",
   path: "/r-454b-vs-r-454c/",
 });
 

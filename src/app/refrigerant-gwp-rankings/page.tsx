@@ -3,15 +3,20 @@ import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { GwpTable } from "@/components/reference/GwpTable";
+import { GWP_SOURCES, GWP_METHOD } from "@/lib/gwp";
 import { contentDates, UpdatedLine } from "@/lib/content-dates";
 
 const PAGE_URL = `${SITE_URL}/refrigerant-gwp-rankings/`;
 const { published: PUBLISHED, updated: MODIFIED } = contentDates("/refrigerant-gwp-rankings/");
 
+const EPA_8454 = "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-B/section-84.54";
+const KIGALI_RATIFICATIONS = "https://ozone.unep.org/all-ratifications";
+const EU_FGAS_2024 = "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R0573";
+
 export const metadata: Metadata = pageMetadata({
-  title: "Refrigerant GWP Rankings: All 60 Compared (AR5 & AR6)",
+  title: "Refrigerant GWP Rankings: All 60 Compared (AR4/AR5/AR6)",
   description:
-    "Sortable GWP table for 60 refrigerants from R744 (GWP 1) to R404A (3922). AIM Act 700 and EU F-Gas 150 thresholds marked. AR5 vs AR6 side by side.",
+    "Sortable 100-year GWP table for 60 refrigerants on the US EPA basis, with IPCC AR4, AR5 and AR6 side by side, from R744 (1) to R503 (14560).",
   path: "/refrigerant-gwp-rankings/",
 });
 
@@ -24,7 +29,7 @@ function buildSchema() {
       "@id": `${PAGE_URL}#article`,
       headline: "HVAC Refrigerant Global Warming Potential (GWP) Rankings",
       description:
-        "Sortable, filterable table of 60 common HVAC refrigerants by Global Warming Potential. IPCC AR5 (the EPA AIM Act figure) and AR6 columns. Cross-reference for EU F-Gas Regulation and AIM Act thresholds.",
+        "Sortable, filterable table of 60 common HVAC refrigerants by 100-year GWP on the US EPA basis, with IPCC AR4, AR5 and AR6 columns.",
       url: PAGE_URL,
       datePublished: PUBLISHED,
       dateModified: MODIFIED,
@@ -38,21 +43,17 @@ function buildSchema() {
       "@id": `${PAGE_URL}#dataset`,
       name: "HVAC Refrigerant Global Warming Potential Rankings",
       description:
-        "100-year GWP (IPCC AR5 and AR6) for 60 common HVAC refrigerants, with ASHRAE 34 safety class, ODP, and current EPA regulatory status.",
+        "100-year GWP on the US EPA basis plus IPCC AR4, AR5 and AR6 for 60 common HVAC refrigerants, with ASHRAE 34 safety class and ODP.",
       url: PAGE_URL,
       license: "https://creativecommons.org/licenses/by/4.0/",
       creator: { "@id": `${SITE_URL}/#organization` },
       datePublished: PUBLISHED,
       dateModified: MODIFIED,
       isAccessibleForFree: true,
-      citation: [
-        "IPCC AR5 Working Group I (2013), Climate Change 2013: The Physical Science Basis, Table 8.A.1",
-        "IPCC AR6 Working Group I (2021), Chapter 7 Supplementary Material",
-        "ANSI/ASHRAE Standard 34-2022",
-        "US EPA AIM Act (American Innovation and Manufacturing Act of 2020) final rule",
-        "EU Regulation 517/2014 (F-Gas Regulation)",
-      ],
+      citation: Object.values(GWP_SOURCES).map((s) => s.title),
       variableMeasured: [
+        { "@type": "PropertyValue", name: "GWP (100-year, US EPA basis)", unitText: "ratio relative to CO2" },
+        { "@type": "PropertyValue", name: "GWP (100-year, IPCC AR4)", unitText: "ratio relative to CO2" },
         { "@type": "PropertyValue", name: "GWP (100-year, IPCC AR5)", unitText: "ratio relative to CO2" },
         { "@type": "PropertyValue", name: "GWP (100-year, IPCC AR6)", unitText: "ratio relative to CO2" },
         { "@type": "PropertyValue", name: "Ozone Depletion Potential", unitText: "ratio relative to R-11" },
@@ -88,303 +89,133 @@ export default function GwpRankingsPage() {
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Refrigerant GWP Rankings</h1>
           <UpdatedLine route="/refrigerant-gwp-rankings/" />
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
-            Global Warming Potential expresses the radiative forcing of a refrigerant relative to CO₂ over a fixed
-            time horizon (100 years for AIM Act and EU F-Gas accounting). Lower is better; the AIM Act gates new
-            equipment at 700, and the EU F-Gas Regulation gates much of new stationary refrigeration at 150.
+            Global Warming Potential (GWP) expresses the radiative forcing of a refrigerant relative to CO₂ over a
+            100-year horizon. The <strong>headline value</strong> is the one the US EPA uses (see the method note
+            below); the IPCC AR4, AR5 and AR6 columns are the raw assessment-report values. Lower is better.
           </p>
         </header>
 
-        <section className="mb-10 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-lg border border-amber-200 bg-amber-50/40 p-4 dark:border-amber-900 dark:bg-amber-950/20">
-            <h2 className="text-sm font-semibold text-amber-900 dark:text-amber-100">AIM Act threshold — 700</h2>
-            <p className="mt-1 text-sm">
-              Production and import of HFCs with GWP above 700 in new residential AC equipment was prohibited by the US
-              EPA AIM Act effective January 1, 2025. R-410A (2088), R-404A (3922), and R-507A (3985) are well above
-              this threshold and being displaced in new equipment.
-            </p>
-          </div>
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50/40 p-4 dark:border-emerald-900 dark:bg-emerald-950/20">
-            <h2 className="text-sm font-semibold text-emerald-900 dark:text-emerald-100">EU F-Gas threshold — 150</h2>
-            <p className="mt-1 text-sm">
-              EU Regulation 517/2014 prohibits placing new stationary refrigeration equipment containing fluorinated
-              gases with GWP above 150 on the EU market for most categories. The very-low-GWP HFOs and natural
-              refrigerants (R-744, R-290, R-1234yf, R-454C, R-455A, R-516A) sit below this line.
-            </p>
-          </div>
+        <section className="mb-10 rounded-lg border border-zinc-200 bg-zinc-50/60 p-4 text-sm dark:border-zinc-800 dark:bg-zinc-900/40">
+          <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">US regulatory status (GWP-based)</h2>
+          <p className="mt-1">
+            US EPA restricts the manufacture and import of new self-contained residential and light-commercial air
+            conditioners and heat pumps that use a refrigerant with a GWP of 700 or more, effective January 1, 2025{" "}
+            (<a href={EPA_8454} className="underline" target="_blank" rel="nofollow noopener">40 CFR 84.54(a)(1)</a>).
+            Limits for other equipment types differ; see the full section at{" "}
+            <a href={EPA_8454} className="underline" target="_blank" rel="nofollow noopener">40 CFR 84.54</a>.
+          </p>
         </section>
 
         <section className="mb-10">
           <h2 className="mb-3 text-xl font-semibold">All refrigerants by GWP</h2>
           <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400">
-            Default sort is ascending by AR5 (the EPA-published figure for AIM Act accounting). Click any column heading
-            to sort. Use the filters to narrow to a category. Rows are tinted green below the EU F-Gas 150 line and
-            amber above the AIM Act 700 line.
+            Default sort is descending by the headline 100-year GWP (US EPA basis). Click any column heading to sort;
+            use the filters to narrow to a family or safety class. Columns: Refrigerant · GWP (100-yr, US EPA basis) ·
+            AR4 · AR5 · AR6 · Basis.
           </p>
           <GwpTable />
         </section>
 
         <section className="mb-10 prose prose-zinc max-w-none dark:prose-invert">
-          <h2>GWP by refrigerant family — the climate-driven transition</h2>
+          <h2>How the headline GWP is chosen</h2>
+          <p>{GWP_METHOD.headline}</p>
           <p>
-            HVAC refrigerants cluster into four broad chemical families with characteristic GWP
-            ranges. The history of refrigerant transitions tracks each family&apos;s
-            environmental issues: chlorine-bearing CFCs and HCFCs phased out for ozone
-            depletion (Montreal Protocol 1987, US EPA SNAP), then high-GWP HFCs phased down
-            for climate impact (Kigali Amendment 2016, EU F-Gas 2014, EPA AIM Act 2020).
+            The AR4, AR5 and AR6 columns are the raw IPCC values. A blend gets a value in one of those columns only
+            when every constituent is listed in that report. IPCC AR5 lists some low-GWP fluids as &quot;&lt;1&quot;;
+            that is shown as &quot;&lt;1&quot; for pure substances and counted as 1 in blend sums. Blend headlines are
+            rounded to a whole number.
+          </p>
+
+          <h2>GWP by refrigerant family</h2>
+          <p>
+            HVAC refrigerants cluster into families with characteristic GWP ranges, tracking the history of
+            transitions: chlorine-bearing CFCs and HCFCs phased out for ozone depletion (Montreal Protocol 1987),
+            then high-GWP HFCs phased down for climate impact (Kigali Amendment 2016, EU F-Gas, US AIM Act 2020).
           </p>
           <ul>
             <li>
-              <strong>HCFCs (ozone-depleting):</strong> R-22 (GWP 1810), R-123 (GWP 79). Being
-              phased out worldwide under Montreal Protocol. Production stopped in developed
-              countries 2020. R-22 service continues from reclaimed stock; new equipment
-              uses HFC or HFO alternatives.
+              <strong>HCFCs (ozone-depleting):</strong> R-22 (1810), R-123 (77). Production stopped in developed
+              countries in 2020; R-22 service continues from reclaimed stock.
             </li>
             <li>
-              <strong>HFCs (high-GWP, no ozone depletion):</strong> R-410A (GWP 2088), R-134a
-              (GWP 1430), R-404A (GWP 3922). Currently being phased down under AIM Act
-              (700 GWP cap for new residential AC equipment as of 2025) and EU F-Gas (150 GWP
-              cap for most stationary refrigeration). Service supply persists during the
-              wind-down via reclaimed and allocated production.
+              <strong>HFCs (high-GWP, no ozone depletion):</strong> R-410A (2088), R-134a (1430), R-404A (3922),
+              R-507A (3985). Being phased down under the AIM Act and EU F-Gas Regulation; service supply persists via
+              reclaimed and allocated production.
             </li>
             <li>
-              <strong>HFCs / HFOs blends (low to medium GWP):</strong> R-32 (GWP 675), R-454B
-              (GWP 466), R-454C (GWP 148), R-455A (GWP 148), R-448A (GWP 1387), R-449A (GWP
-              1397). The AIM Act-compliant new-equipment refrigerants for the next decade.
-              R-454C and R-455A sit below the EU F-Gas 150 threshold.
+              <strong>HFC/HFO blends (low to medium GWP):</strong> R-32 (675), R-454B (465), R-454C (146),
+              R-455A (146), R-448A (1386), R-449A (1396), R-513A (630). The A2L/low-GWP new-equipment family.
             </li>
             <li>
-              <strong>HFOs (low-GWP, short atmospheric lifetime):</strong> R-1234yf (GWP 4),
-              R-1234ze (GWP 7), R-1233zd (GWP 1), R-1336mzz (GWP 9). Engineered for very low
-              GWP via short atmospheric lifetime. Used in mobile AC (R-1234yf) and chillers
-              (R-1234ze, R-1233zd, R-1336mzz).
+              <strong>HFOs and HCFOs (very low GWP):</strong> R-1234yf (1), R-1234ze(E) (1), R-1233zd(E) (4),
+              R-1336mzz(Z) (2). Very low GWP from short atmospheric lifetimes; used in mobile AC and chillers.
             </li>
             <li>
-              <strong>Natural refrigerants (~zero GWP):</strong> R-744 (CO₂, GWP 1 by definition),
-              R-717 (NH₃, GWP 0), R-290 (propane, GWP 3), R-1270 (propylene, GWP 2), R-600a
-              (isobutane, GWP 3). Used in commercial refrigeration (R-744, R-290), industrial
-              refrigeration (R-717), and small appliances (R-290, R-600a).
+              <strong>Natural refrigerants (near-zero GWP):</strong> R-744 (CO₂, 1 by definition), R-717 (NH₃, 1),
+              R-290 (propane, 3.3), R-1270 (propylene, 1.8), R-600a (isobutane, 1). Used in commercial and industrial
+              refrigeration and small appliances.
             </li>
           </ul>
 
-          <h2>Sector-by-sector transition timeline (AIM Act + EU F-Gas)</h2>
+          <h2>US equipment restrictions by category</h2>
           <p>
-            The EPA AIM Act and EU F-Gas Regulation set sector-specific phase-down schedules
-            with GWP caps for new equipment by category. Most major sectors have 2024-2026
-            transition dates for new equipment; service of existing equipment continues
-            indefinitely with declining refrigerant allocations.
-          </p>
-          <ul>
-            <li>
-              <strong>Residential / light commercial AC (US, 2025+):</strong> GWP cap 700. R-410A
-              (GWP 2088) prohibited in new equipment. Replaced by R-32 (GWP 675) or R-454B
-              (GWP 466).
-            </li>
-            <li>
-              <strong>Commercial refrigeration MT / LT (US, 2025+):</strong> GWP cap 150-300
-              depending on sub-sector. R-404A (GWP 3922) and R-507A (GWP 3985) prohibited in
-              new equipment. Replaced by R-454C, R-455A, R-448A, R-449A, R-744 transcritical.
-            </li>
-            <li>
-              <strong>Centrifugal chillers (US, 2025+):</strong> GWP cap 700. R-134a (GWP 1430)
-              phasing out in new equipment. Replaced by R-513A (GWP 631), R-1234ze (GWP 7), or
-              R-1233zd (GWP 1) depending on chiller manufacturer.
-            </li>
-            <li>
-              <strong>Mobile AC (US, 2021+ per SNAP):</strong> GWP cap 150. R-134a (GWP 1430)
-              prohibited in new vehicles. Replaced by R-1234yf (GWP 4). Most 2017+ vehicles in
-              US already on R-1234yf.
-            </li>
-            <li>
-              <strong>EU stationary refrigeration (most categories):</strong> GWP cap 150 since
-              2022-2025. Tighter than AIM Act in most sectors — drove early adoption of R-454C,
-              R-455A, R-744 in European markets.
-            </li>
-          </ul>
-
-          <h2>AR5 vs AR6 — which one applies?</h2>
-          <p>
-            IPCC publishes updated GWP values with each Assessment Report. AR5 (2013) is the
-            figure most regulations anchor to — including the EPA AIM Act, EU F-Gas Regulation,
-            and the Kigali Amendment to the Montreal Protocol. AR6 (2021) provides updated
-            values that are gradually being adopted in newer standards. Where the two differ
-            meaningfully, both are shown.
-          </p>
-          <p>
-            For regulatory compliance and reporting, the AR5 value is what you reference unless
-            a specific regulation cites otherwise. AR6 values are typically slightly higher for
-            HFCs (revised methodology accounts for additional atmospheric effects) and slightly
-            lower for some HFOs. The methodology change does not affect the regulatory
-            threshold positions — a refrigerant above 700 GWP per AR5 remains regulated by
-            AIM Act regardless of its AR6 value.
+            The AIM Act Technology Transitions rule restricts new equipment by GWP, but the limit and effective date
+            differ by equipment type. Rather than reproduce each figure here (they were revised in 2026), consult the
+            controlling text directly:{" "}
+            <a href={EPA_8454} className="underline" target="_blank" rel="nofollow noopener">40 CFR 84.54</a>. The one
+            limit stated on this page is the residential / light-commercial self-contained AC and heat-pump limit of
+            700, effective January 1, 2025 (§84.54(a)(1)). Service of existing equipment continues; refrigerant
+            production declines on an allowance schedule rather than being banned outright.
           </p>
 
-          <h2>TEWI and LCCP — beyond direct GWP</h2>
+          <h2>Which assessment report applies?</h2>
           <p>
-            Total Equivalent Warming Impact (TEWI) and Life Cycle Climate Performance (LCCP)
-            account for both direct refrigerant emissions (from leakage and end-of-life
-            disposal) and indirect emissions from energy consumption over the equipment&apos;s
-            lifetime. A high-GWP refrigerant in a hermetic system with very low leak rate and
-            high efficiency can have a lower total impact than a low-GWP refrigerant in a
-            leakier or less efficient system.
+            US AIM Act exchange values are the IPCC AR4 values. The EU&apos;s 2024 F-gas Regulation uses AR4 for HFCs
+            and AR6 for other fluorinated gases (
+            <a href={EU_FGAS_2024} className="underline" target="_blank" rel="nofollow noopener">Regulation (EU)
+            2024/573</a>, recital 8). Because different regimes cite different reports, this table shows all three IPCC
+            columns alongside the US EPA headline; for a specific regulation, use the value that regulation cites.
           </p>
+
+          <h2>Beyond direct GWP — TEWI and LCCP</h2>
           <p>
-            For chillers, the indirect (energy) component typically dominates TEWI by 80-90%
-            — meaning chiller efficiency matters more than refrigerant GWP for total climate
-            impact. For residential AC and commercial refrigeration with higher leak rates,
-            the balance shifts: a 5-10% annual leak rate over a 15-year equipment life can
-            tip TEWI in favor of low-GWP refrigerants. The right metric depends on the
-            application.
+            Total Equivalent Warming Impact (TEWI) and Life Cycle Climate Performance (LCCP) account for both direct
+            refrigerant emissions (leakage, end-of-life) and indirect emissions from energy use over the equipment
+            lifetime. For chillers, the indirect (energy) component typically dominates TEWI by 80–90%, so efficiency
+            can matter more than refrigerant GWP. For higher-leak-rate equipment the balance shifts toward low-GWP
+            refrigerants. GWP alone is necessary but not sufficient for environmental decisions.
+          </p>
+
+          <h2>Lifetime context — why GWP tracks atmospheric persistence</h2>
+          <p>
+            Atmospheric lifetime is one of the three inputs to GWP (with radiative efficiency and the integration
+            horizon) and often the dominant one. On the US EPA headline basis: R-23 has a ~222-year lifetime and GWP
+            14,800; R-125 ~28 years and GWP 3,500; R-134a ~13 years and GWP 1,430; R-32 ~4.9 years and GWP 675;
+            R-1234yf ~11 days and GWP 1. The collapse from R-134a to R-1234yf comes almost entirely from the shorter
+            atmospheric lifetime — the basis of HFO chemistry.
           </p>
 
           <h2>International regulatory landscape</h2>
           <p>
-            The Kigali Amendment to the Montreal Protocol (signed 2016, entered force 2019)
-            commits 198 countries to a coordinated HFC phase-down. The schedule differs by
-            country group: developed countries (Article 5 non-parties) cut from 2019 with 85%
-            reduction by 2036; developing countries follow a delayed schedule. The AIM Act
-            (US) and EU F-Gas Regulation are the regional implementations of Kigali for those
-            jurisdictions.
-          </p>
-          <p>
-            Japan&apos;s Fluorocarbon Emissions Control Law (1998, amended several times) was
-            an early national HFC management framework. China&apos;s implementation of Kigali
-            started in 2024 with a freeze schedule. The international landscape continues
-            to evolve; for current compliance, check the regulatory framework in your
-            jurisdiction.
-          </p>
-
-          <h2>What&apos;s not in this table</h2>
-          <p>
-            Energy efficiency and operational emissions matter as much as direct refrigerant
-            emissions for total climate impact (TEWI, LCCP). A high-GWP refrigerant in a
-            hermetic system with very low leak rate can have a lower total impact than a
-            low-GWP refrigerant in a leakier system with worse efficiency. GWP alone is
-            necessary but not sufficient for environmental decision-making.
-          </p>
-        </section>
-
-        <section className="mb-10 prose prose-zinc max-w-none dark:prose-invert">
-          <h2>How GWP is actually computed</h2>
-          <p>
-            Global Warming Potential expresses the radiative forcing impact of a refrigerant
-            relative to CO₂ over a chosen time horizon. The default for HVAC regulatory use
-            is the 100-year value (GWP₁₀₀), though 20-year (GWP₂₀) is sometimes referenced
-            for short-lived refrigerants where the short-term impact dominates. The
-            calculation involves three factors: the refrigerant&apos;s radiative efficiency
-            (how strongly it absorbs infrared per molecule), its atmospheric lifetime (how
-            long it persists before decomposing), and the chosen integration horizon.
-          </p>
-          <p>
-            Higher radiative efficiency + longer lifetime = higher GWP. R-23 (trifluoromethane)
-            has a GWP of 14,800 because of its 222-year atmospheric lifetime; the much
-            stronger absorber R-32 has GWP 675 because its lifetime is only 4.9 years; the
-            HFOs (R-1234yf, R-1234ze) have very low GWP (1-7) primarily because of their
-            short atmospheric lifetimes (10-13 days for R-1234yf).
-          </p>
-          <p>
-            For zeotropic blends, GWP is computed as the mass-weighted average of the
-            component GWPs per IPCC AR5 methodology. R-454B (68.9% R-32 + 31.1% R-1234yf):
-            GWP = 0.689 × 675 + 0.311 × 4 = 466. R-454C (21.5% R-32 + 78.5% R-1234yf):
-            GWP = 0.215 × 675 + 0.785 × 4 = 148. Same components, different proportions,
-            very different GWPs.
-          </p>
-
-          <h2>Common GWP misconceptions</h2>
-          <p>
-            <strong>&quot;Low-GWP refrigerants are always better for the climate.&quot;</strong>{" "}
-            Not necessarily. Total Equivalent Warming Impact (TEWI) accounts for both direct
-            refrigerant emissions (leakage, end-of-life disposal) and indirect emissions
-            from equipment energy consumption. For chillers with low annual leak rates and
-            multi-decade equipment lifetimes, the indirect (energy) component dominates TEWI
-            by 80-90% — meaning chiller efficiency matters more than refrigerant GWP for
-            total climate impact. A 5% efficiency improvement on an R-134a chiller can offset
-            the climate benefit of switching to R-513A.
-          </p>
-          <p>
-            <strong>&quot;HFO refrigerants are zero-GWP.&quot;</strong> They&apos;re very low
-            GWP, not zero. R-1234yf is GWP 4 (AR5) — small but not zero. The atmospheric
-            decomposition product trifluoroacetic acid (TFA) is a separate environmental
-            concern under active study; current regulatory consensus is that TFA from R-1234yf
-            atmospheric breakdown is below ecotoxicity thresholds but ongoing monitoring
-            continues.
-          </p>
-          <p>
-            <strong>&quot;Natural refrigerants are GWP-free.&quot;</strong> Mostly true with
-            caveats. R-744 (CO₂) is GWP 1 by definition (it&apos;s the reference compound).
-            R-717 (NH₃) is GWP 0. R-290 (propane) is GWP 3 by AR5. R-1270 (propylene) is
-            GWP 2. The handling and safety implications of natural refrigerants
-            (flammability for hydrocarbons, toxicity for ammonia) shift the trade-off from
-            climate to equipment design — they&apos;re not strictly better, just different
-            constraints.
-          </p>
-          <p>
-            <strong>&quot;The AIM Act bans R-410A.&quot;</strong> Imprecise. The AIM Act caps
-            GWP at 700 for new residential AC equipment as of January 2025 — meaning
-            equipment manufacturers can no longer ship new R-410A residential AC. Service of
-            existing R-410A equipment continues indefinitely; refrigerant production is
-            declining via allocation schedule, not banned outright. Plan refrigerant cost
-            escalation over equipment lifetime.
-          </p>
-
-          <h2>Refrigerant lifetime context — why GWP differs from atmospheric persistence</h2>
-          <p>
-            Atmospheric lifetime is one of the three inputs to the GWP calculation but
-            it&apos;s often the dominant one for high-GWP refrigerants. Examples from IPCC
-            AR5: R-23 (HFC-23) has atmospheric lifetime 222 years and GWP 14,800; R-125 has
-            lifetime 28.2 years and GWP 3,170; R-134a has lifetime 13.4 years and GWP 1,430;
-            R-32 has lifetime 4.9 years and GWP 675; R-1234yf has lifetime 0.029 years
-            (~10.6 days) and GWP 4.
-          </p>
-          <p>
-            The dramatic drop in GWP from R-134a to R-1234yf comes primarily from the
-            atmospheric lifetime collapse — both have similar radiative efficiency on a
-            per-molecule basis, but R-1234yf decomposes in the atmosphere within weeks while
-            R-134a persists for over a decade. This is why HFO chemistry is the path to
-            ultra-low GWP refrigerants: short atmospheric lifetime drops the GWP arithmetic
-            even if radiative efficiency is similar.
-          </p>
-          <p>
-            For natural refrigerants, the lifetime argument is different. CO₂ has effectively
-            infinite atmospheric lifetime (it&apos;s the reference compound with GWP 1 by
-            definition); the climate impact of CO₂ is integrated into the GWP framework as
-            the baseline rather than computed from lifetime. Ammonia (R-717) has very short
-            atmospheric lifetime (decomposes rapidly), giving it GWP 0 in regulatory
-            accounting. Hydrocarbons (R-290 propane, R-600a isobutane) have short atmospheric
-            lifetimes giving low single-digit GWPs (3 for R-290 per AR5).
-          </p>
-
-          <h2>Methodology notes — IPCC AR5 vs AR6</h2>
-          <p>
-            IPCC publishes updated GWP values periodically as atmospheric chemistry
-            understanding improves. The shift from AR5 (2013) to AR6 (2021) updated many
-            HFC values slightly upward due to revised radiative-efficiency calculations that
-            account for additional atmospheric effects not previously included. The shift
-            from AR4 (2007) to AR5 was also non-trivial.
-          </p>
-          <p>
-            Regulatory bodies typically lag the IPCC updates by 5-10 years for compliance
-            stability. The EPA AIM Act, EU F-Gas Regulation, and Kigali Amendment all
-            currently use AR5 values; AR6 adoption is gradual. For ground-truth regulatory
-            compliance, use the value cited by the specific regulation. For scientific
-            analysis or forward-looking planning, AR6 represents the current best estimate.
-            The table on this page shows both where they differ meaningfully.
+            The Montreal Protocol has 198 parties; 174 of them have ratified the Kigali Amendment (as of 10 August
+            2026,{" "}
+            <a href={KIGALI_RATIFICATIONS} className="underline" target="_blank" rel="nofollow noopener">UNEP Ozone
+            Secretariat</a>). Kigali coordinates an HFC phase-down; the US AIM Act and the EU F-Gas Regulation are the
+            regional implementations. Schedules differ by country group and continue to evolve, so check the framework
+            in your jurisdiction for current compliance.
           </p>
         </section>
 
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">
-          <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Sources</h2>
+          <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Method &amp; sources</h2>
+          <p className="mt-2">{GWP_METHOD.headline} {GWP_METHOD.ar5}</p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
-            <li>IPCC AR5 Working Group I (2013), Chapter 8 Appendix 8.A.1</li>
-            <li>IPCC AR6 Working Group I (2021), Chapter 7 Supplementary Material Table 7.SM.7</li>
-            <li>US EPA AIM Act final rule (2021) and subsequent technology transition rules</li>
-            <li>EU Regulation 517/2014 on fluorinated greenhouse gases</li>
-            <li>Kigali Amendment to the Montreal Protocol (2016) — HFC phase-down baseline</li>
+            {Object.values(GWP_SOURCES).map((s) => (
+              <li key={s.url}>
+                <a href={s.url} className="underline" target="_blank" rel="nofollow noopener">{s.title}</a>
+              </li>
+            ))}
           </ul>
-          <p className="mt-3">
-            GWP values for blends are mass-weighted from component values per IPCC AR5 methodology. Values shown to
-            zero decimal places to match published EPA / IPCC figures; precision beyond this is not meaningful given
-            the underlying scientific uncertainty.
-          </p>
         </footer>
       </article>
     </>

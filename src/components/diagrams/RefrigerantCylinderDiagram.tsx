@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { getRefrigerant } from "@/data/refrigerants";
+import { getRefrigerant, gwpText } from "@/data/refrigerants";
 import { seoName } from "@/lib/schema/shared";
 
 /**
@@ -77,10 +77,7 @@ export function RefrigerantCylinderDiagram({
     r.safetyClass.startsWith("A2") || r.safetyClass.startsWith("A3");
 
   const designation = seoName(r.displayName);
-  const gwpText =
-    r.environmental.gwp100Ar5 !== null
-      ? `GWP ${r.environmental.gwp100Ar5}`
-      : "GWP —";
+  const gwpLabel = `GWP ${gwpText(r.environmental.gwp.headline)}`;
 
   const titleText =
     titleOverride ??
@@ -90,8 +87,8 @@ export function RefrigerantCylinderDiagram({
 
   const descText =
     variant === "legacy" && legacy
-      ? `Illustrated 25-pound DOT service cylinder for ${r.displayName} in the pre-2020 ${legacy.name} paint historically used for this refrigerant. ASHRAE 34 safety class ${r.safetyClass}${hasFlammabilityBand ? " — red flammability band on the shoulder per AHRI Guideline N" : " — no flammability band required"}. Label panel shows designation ${designation}, safety class ${r.safetyClass}, and 100-year GWP ${r.environmental.gwp100Ar5 ?? "unavailable"}.`
-      : `Illustrated 25-pound DOT service cylinder for ${r.displayName} in the current AHRI Guideline N standard paint (RAL 7044 light gray-green, industry-uniform since 2020). ASHRAE 34 safety class ${r.safetyClass}${hasFlammabilityBand ? " — red flammability band on the shoulder per AHRI Guideline N" : " — no flammability band required"}. Label panel shows designation ${designation}, safety class ${r.safetyClass}, and 100-year GWP ${r.environmental.gwp100Ar5 ?? "unavailable"}.`;
+      ? `Illustrated 25-pound DOT service cylinder for ${r.displayName} in the pre-2020 ${legacy.name} paint historically used for this refrigerant. ASHRAE 34 safety class ${r.safetyClass}${hasFlammabilityBand ? " — red flammability band on the shoulder per AHRI Guideline N" : " — no flammability band required"}. Label panel shows designation ${designation}, safety class ${r.safetyClass}, and 100-year GWP ${gwpText(r.environmental.gwp.headline)}.`
+      : `Illustrated 25-pound DOT service cylinder for ${r.displayName} in the current AHRI Guideline N standard paint (RAL 7044 light gray-green, industry-uniform since 2020). ASHRAE 34 safety class ${r.safetyClass}${hasFlammabilityBand ? " — red flammability band on the shoulder per AHRI Guideline N" : " — no flammability band required"}. Label panel shows designation ${designation}, safety class ${r.safetyClass}, and 100-year GWP ${gwpText(r.environmental.gwp.headline)}.`;
 
   return (
     <svg
@@ -185,7 +182,7 @@ export function RefrigerantCylinderDiagram({
           fill="currentColor"
           opacity="0.7"
         >
-          {gwpText}
+          {gwpLabel}
         </text>
         <text
           x="80"

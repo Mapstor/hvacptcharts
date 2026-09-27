@@ -196,7 +196,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
 
           <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
             <BarChart
-              title="GWP100 of common refrigerants (IPCC AR5) — AIM Act 700 threshold marked"
+              title="GWP (100-yr, US EPA basis) of common refrigerants"
               orientation="horizontal"
               data={[
                 { label: "R-1234yf (A2L)", value: 4, color: "#10b981" },

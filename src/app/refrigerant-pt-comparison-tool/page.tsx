@@ -331,7 +331,7 @@ function RichContent() {
           R-513A pressure envelope is closely matched to R-134a. POE lubricant compatible.
           Many chiller OEMs (Trane, Carrier, Daikin) certify R-513A as a drop-in
           replacement for R-134a in their centrifugal chiller lines with minor service
-          procedure updates. Lower GWP (631 vs R-134a&apos;s 1430).
+          procedure updates. Lower GWP (630 vs R-134a&apos;s 1430).
         </VerdictBanner>
       </ServiceProblem>
 
@@ -388,7 +388,7 @@ function RichContent() {
           </li>
           <li>
             <strong>GWP.</strong> R-22 (GWP 1810) vs R-407C (GWP 1774) — nearly identical
-            GWP, no climate benefit from retrofit. R-22 vs R-454C (GWP 148) — substantial
+            GWP, no climate benefit from retrofit. R-22 vs R-454C (GWP 146) — substantial
             climate benefit. The PT chart shows pressure, not climate impact.
           </li>
           <li>

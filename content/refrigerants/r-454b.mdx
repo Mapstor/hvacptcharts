@@ -55,10 +55,9 @@ keyStats:
     context: Near-azeotropic HFC/HFO blend
     sourceId: ashrae34
   - label: GWP (100-yr)
-    value: "466"
-    unit: IPCC AR5
+    value: "465"
+    unit: "100-yr"
     context: Below EPA AIM Act 700-GWP threshold; lower than pure R-32 (675)
-    sourceId: ipccar5
   - label: ODP
     value: "0"
     context: Fluorine-only HFC + HFO components
@@ -83,7 +82,7 @@ keyStats:
 
 narrative:
   whatItIs: |
-    R-454B is a near-azeotropic blend of 68.9% R-32 (HFC) and 31.1% R-1234yf (HFO) by mass [ashrae34]. The R-32 component provides capacity and pressure characteristics close to R-410A; the R-1234yf component pulls the blend's overall GWP down to 466 — well below the EPA AIM Act 700-GWP threshold for new residential AC equipment.
+    R-454B is a near-azeotropic blend of 68.9% R-32 (HFC) and 31.1% R-1234yf (HFO) by mass [ashrae34]. The R-32 component provides capacity and pressure characteristics close to R-410A; the R-1234yf component pulls the blend's overall GWP down to 465 — well below the EPA AIM Act 700-GWP threshold for new residential AC equipment.
 
     The blend is engineered for very small temperature glide (~2°F at typical operating pressures), close enough to azeotropic behavior that most service procedures designed for pure refrigerants apply without adjustment [coolprop]. Carrier markets R-454B as Puron Advance and led its US deployment as the R-410A replacement; Trane and Lennox followed [carrierpuron][trane].
 
@@ -94,7 +93,7 @@ narrative:
     - "Packaged rooftop units (new equipment)"
 
   phaseDownStatus: |
-    R-454B is among the lowest-GWP blends in the mainstream residential A2L choice set (R-32 at 675, R-454B at 466, R-452B at 698) [ipccar5]. The 466 GWP gives it more regulatory headroom than R-32 — useful as EU F-Gas regulations tighten threshold tiers beyond the current 750-GWP chiller cap.
+    R-454B is among the lowest-GWP blends in the mainstream residential A2L choice set (R-32 at 675, R-454B at 465, R-452B at 698) [ipccar5]. The 465 GWP gives it more regulatory headroom than R-32 — useful as EU F-Gas regulations tighten threshold tiers beyond the current 750-GWP chiller cap.
 
     The EPA AIM Act permits R-454B for new residential AC equipment under the 700-GWP technology transition threshold effective 1 January 2025 [aimact]. SNAP-listed acceptable for residential AC, light commercial AC, and heat pumps [snap].
 
@@ -108,15 +107,15 @@ faqs:
     a: |
       Very close to R-410A — generally within ±5% across the operating envelope. For the expected suction and discharge pressures by outdoor temperature, see [What pressure should R-454B be?](/what-pressure-should-r454b/), where the operating-pressure table is computed from the CoolProp-verified saturation dataset.
 
-  - q: "What does R-454B's GWP of 466 mean?"
+  - q: "What does R-454B's GWP of 465 mean?"
     a: |
-      Global Warming Potential is a relative atmospheric-warming metric over 100 years against CO₂ (defined as GWP 1). A 1 kg release of R-454B traps approximately 466 times more heat than 1 kg of CO₂ over that horizon (IPCC AR5, mass-weighted from 68.9% R-32 × 675 + 31.1% R-1234yf × 4) [ipccar5].
+      Global Warming Potential is a relative atmospheric-warming metric over 100 years against CO₂ (defined as GWP 1). A 1 kg release of R-454B traps approximately 465 times more heat than 1 kg of CO₂ over that horizon (mass-weighted from 68.9% R-32 × 675 + 31.1% R-1234yf × 1) [ipccar5].
 
-      The figure places R-454B well below the EPA AIM Act 700-GWP threshold for residential AC and approximately 33% below R-32 (675). It gives R-454B more regulatory headroom than R-32 as future thresholds tighten.
+      The figure places R-454B well below the EPA AIM Act 700-GWP threshold for residential AC and approximately 31% below R-32 (675). It gives R-454B more regulatory headroom than R-32 as future thresholds tighten.
 
   - q: "What's the difference between R-454B and R-32?"
     a: |
-      Both are A2L refrigerants for residential AC. R-32 is pure (no glide), GWP 675, preferred by Daikin / Mitsubishi / LG / Fujitsu. R-454B is a blend (68.9% R-32 + 31.1% R-1234yf), GWP 466, ~2°F glide, preferred by Carrier / Trane / Lennox [carrierpuron][trane].
+      Both are A2L refrigerants for residential AC. R-32 is pure (no glide), GWP 675, preferred by Daikin / Mitsubishi / LG / Fujitsu. R-454B is a blend (68.9% R-32 + 31.1% R-1234yf), GWP 465, ~2°F glide, preferred by Carrier / Trane / Lennox [carrierpuron][trane].
 
       Performance is comparable. R-454B's slightly lower GWP comes from the R-1234yf component; the small glide is the trade-off. Equipment availability in your market typically determines the choice.
 
@@ -170,9 +169,9 @@ Compare R-454B's 2°F glide to R-407C's 11°F or R-454C's 14°F — those zeotro
 
 <TechSection icon="composition" tone="purple" title="The 68.9 / 31.1 R-32 / R-1234yf composition is deliberate">
 
-R-454B combines two refrigerants: 68.9% R-32 (HFC, GWP 675, A2L) and 31.1% R-1234yf (HFO, GWP 4, A2L) by mass [ashrae34]. The composition was engineered against three constraints simultaneously: hit a target GWP below 500, preserve R-410A-comparable capacity, and maintain near-azeotropic behavior for service simplicity.
+R-454B combines two refrigerants: 68.9% R-32 (HFC, GWP 675, A2L) and 31.1% R-1234yf (HFO, GWP 1, A2L) by mass [ashrae34]. The composition was engineered against three constraints simultaneously: hit a target GWP below 500, preserve R-410A-comparable capacity, and maintain near-azeotropic behavior for service simplicity.
 
-The math works out cleanly. Mass-weighted GWP = 0.689 × 675 + 0.311 × 4 = 465.9, rounded to 466 [ipccar5]. R-32 dominates the blend's mass and provides most of its volumetric refrigerating capacity; R-1234yf dilutes the GWP without significantly changing pressure envelope or capacity.
+The math works out cleanly. Mass-weighted GWP = 0.689 × 675 + 0.311 × 1 = 465.4, rounded to 465 [ipccar5]. R-32 dominates the blend's mass and provides most of its volumetric refrigerating capacity; R-1234yf dilutes the GWP without significantly changing pressure envelope or capacity.
 
 <KeyInsight tone="amber" icon="warning" title="Both components are A2L — blending doesn't suppress flammability">
 A common misconception is that mixing R-32 (A2L) with R-1234yf (A2L) might cancel out the flammability. It doesn't — both components are mildly flammable individually, so the blend is A2L too. This differs from R-410A, where R-125 (A1) was added to R-32 (A2L) specifically to suppress flammability and yield an A1 blend.
@@ -190,14 +189,14 @@ For service technicians, the pressure-envelope match means R-410A-rated 800 PSI 
 
 </TechSection>
 
-<TechSection icon="climate" tone="emerald" title="GWP 466 — best AIM Act margin among mainstream residential refrigerants">
+<TechSection icon="climate" tone="emerald" title="GWP 465 — best AIM Act margin among mainstream residential refrigerants">
 
-R-454B's GWP of 466 (IPCC AR5, mass-weighted) places it at the low end of the mainstream A2L residential AC refrigerant tier. Compare to alternatives: pure R-32 at 675, R-452B (R-32/R-1234yf 67/33 with R-125) at 698, R-466A at 733 (which exceeds AIM Act). The 234-point margin below the AIM Act 700 threshold gives R-454B substantial regulatory headroom as future threshold tiers may tighten.
+R-454B's GWP of 465 (mass-weighted) places it at the low end of the mainstream A2L residential AC refrigerant tier. Compare to alternatives: pure R-32 at 675, R-452B (R-32/R-1234yf 67/33 with R-125) at 698, R-466A at 733 (which exceeds AIM Act). The 235-point margin below the AIM Act 700 threshold gives R-454B substantial regulatory headroom as future threshold tiers may tighten.
 
-The GWP advantage comes from the 31.1% R-1234yf content. R-1234yf is an HFO with very low GWP (4 per IPCC AR5) due to its short atmospheric lifetime (~11 days) — atmospheric chemistry breaks it down rapidly via reactions with OH radicals. Each kilogram of R-1234yf in the R-454B blend displaces R-32 (GWP 675) at the same mass fraction, pulling the total GWP linearly downward.
+The GWP advantage comes from the 31.1% R-1234yf content. R-1234yf is an HFO with very low GWP (1) due to its short atmospheric lifetime (~11 days) — atmospheric chemistry breaks it down rapidly via reactions with OH radicals. Each kilogram of R-1234yf in the R-454B blend displaces R-32 (GWP 675) at the same mass fraction, pulling the total GWP linearly downward.
 
 <KeyInsight tone="zinc" icon="climate" title="Regulatory headroom matters">
-EU F-Gas Regulation revisions through 2030 may tighten threshold tiers in some segments. R-454B's 466 GWP could comfortably accommodate a 500-GWP threshold; pure R-32 at 675 could not. This is one reason Carrier, Trane, and Lennox chose R-454B over pure R-32 for their residential lines — longer-term regulatory resilience.
+EU F-Gas Regulation revisions through 2030 may tighten threshold tiers in some segments. R-454B's 465 GWP could comfortably accommodate a 500-GWP threshold; pure R-32 at 675 could not. This is one reason Carrier, Trane, and Lennox chose R-454B over pure R-32 for their residential lines — longer-term regulatory resilience.
 </KeyInsight>
 
 </TechSection>
@@ -208,7 +207,7 @@ R-454B has zero ozone-depletion potential because neither component contains chl
 
 This contrasts with the legacy refrigerants that R-454B replaces. R-22 had ODP 0.055 (small but non-zero, from one chlorine atom per molecule); R-12 had ODP 1.0 (the reference value, from two chlorine atoms); R-502 had ODP 0.221 (from R-115 component). The Montreal Protocol HCFC and CFC phase-outs targeted those refrigerants for their chlorine-driven ozone depletion.
 
-Modern refrigerant policy has shifted from ozone-depletion concerns (largely solved by the Montreal Protocol) to climate concerns (EPA AIM Act, EU F-Gas Regulation, Kigali Amendment). R-454B's regulatory positioning is favorable on both axes: ODP zero (no ozone concern) and GWP 466 (well below current and reasonably-foreseeable GWP thresholds).
+Modern refrigerant policy has shifted from ozone-depletion concerns (largely solved by the Montreal Protocol) to climate concerns (EPA AIM Act, EU F-Gas Regulation, Kigali Amendment). R-454B's regulatory positioning is favorable on both axes: ODP zero (no ozone concern) and GWP 465 (well below current and reasonably-foreseeable GWP thresholds).
 
 </TechSection>
 
@@ -271,7 +270,7 @@ POE oil is hygroscopic: it absorbs atmospheric moisture rapidly when exposed to 
 
 The 2024-2025 US residential AC industry transition from R-410A to A2L refrigerants split the major OEMs into two camps. Carrier, Trane (Ingersoll Rand / Trane Technologies), and Lennox standardized on R-454B, marketed under Carrier's "Puron Advance" brand and equivalent OEM branding elsewhere [carrierpuron][trane]. Daikin Industries, Mitsubishi Electric, LG, and Fujitsu standardized on pure R-32 — leveraging Daikin's commercial R-32 deployment experience dating back to 2012.
 
-The OEM split reflects strategic choices rather than technical superiority. Pure R-32 offers slightly higher capacity and simpler chemistry but higher GWP (675 vs 466) and slightly higher discharge temperature. R-454B offers lower GWP and discharge temperature but adds the complexity of a blend (small glide, fractionation concern during partial charging). Daikin's R-32 patent portfolio gave the company a manufacturing-cost advantage; the R-454B camp pursued an independent technology path.
+The OEM split reflects strategic choices rather than technical superiority. Pure R-32 offers slightly higher capacity and simpler chemistry but higher GWP (675 vs 465) and slightly higher discharge temperature. R-454B offers lower GWP and discharge temperature but adds the complexity of a blend (small glide, fractionation concern during partial charging). Daikin's R-32 patent portfolio gave the company a manufacturing-cost advantage; the R-454B camp pursued an independent technology path.
 
 For homeowners and contractors, the choice between R-32 and R-454B is typically determined by equipment brand availability rather than refrigerant preference. Both refrigerants will be commercially serviceable through the 2030s; both clear the AIM Act 700-GWP threshold; both use POE oil and require A2L service procedures.
 
@@ -281,7 +280,7 @@ For homeowners and contractors, the choice between R-32 and R-454B is typically 
 
 R-454B is one of two dominant new-equipment residential AC refrigerants in 2026, alongside pure R-32. The Carrier / Trane / Lennox standardization gives R-454B substantial US market share — likely 50-60% of new residential AC installations through the late 2020s, with R-32 capturing the balance through Daikin / Mitsubishi / LG / Fujitsu sales.
 
-R-454B's GWP 466 provides the best regulatory headroom in the mainstream A2L tier. As future EU F-Gas thresholds may tighten beyond the current 750-GWP chiller cap and US AIM Act may add new technology transitions, R-454B's lower baseline gives the chemistry a longer regulatory runway than pure R-32. EU F-Gas Regulation revisions in 2024 already target tighter thresholds in some segments through 2030.
+R-454B's GWP 465 provides the best regulatory headroom in the mainstream A2L tier. As future EU F-Gas thresholds may tighten beyond the current 750-GWP chiller cap and US AIM Act may add new technology transitions, R-454B's lower baseline gives the chemistry a longer regulatory runway than pure R-32. EU F-Gas Regulation revisions in 2024 already target tighter thresholds in some segments through 2030.
 
 For technicians, R-454B work resembles R-32 work — A2L procedures, POE oil, ~800 PSI service equipment, near-azeotropic behavior. The small (~2°F) glide is operationally negligible compared to true zeotropic blends; field service can effectively treat R-454B as a pure refrigerant for routine superheat and subcooling measurement. R-454B-specific training is typically bundled with R-32 in distributor and OEM training courses.
 

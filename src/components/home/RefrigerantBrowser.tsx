@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { refrigerants, type RefrigerantType, type SafetyClass } from "@/data/refrigerants";
+import { refrigerants, gwpNum, gwpText, type RefrigerantType, type SafetyClass } from "@/data/refrigerants";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { typeLabel } from "@/components/refrigerant/TypeChip";
 
@@ -60,8 +60,9 @@ export function RefrigerantBrowser() {
       if (typeFilter !== "all" && r.type !== typeFilter) return false;
       if (safetyFilter !== "all" && r.safetyClass !== safetyFilter) return false;
       if (gwpBucket && gwpBucket.id !== "all") {
-        if (r.environmental.gwp100Ar5 === null) return false;
-        if (r.environmental.gwp100Ar5 < minGwp || r.environmental.gwp100Ar5 > maxGwp) return false;
+        const g = gwpNum(r.environmental.gwp.headline);
+        if (g === null) return false;
+        if (g < minGwp || g > maxGwp) return false;
       }
       if (q) {
         const hay = `${r.displayName} ${r.altSpellings.join(" ")} ${r.chemicalName} ${r.tradeNames.map((t) => t.name).join(" ")}`.toLowerCase();
@@ -132,7 +133,7 @@ export function RefrigerantBrowser() {
               </div>
               <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400 truncate">{r.chemicalName}</p>
               <p className="mt-1 text-xs text-zinc-500">
-                {typeLabel(r.type)} · GWP {r.environmental.gwp100Ar5 ?? "—"}
+                {typeLabel(r.type)} · GWP {gwpText(r.environmental.gwp.headline)}
               </p>
             </Link>
           </li>

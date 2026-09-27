@@ -1,5 +1,5 @@
 import { Info } from "lucide-react";
-import { getRefrigerant } from "@/data/refrigerants";
+import { getRefrigerant, gwpNum, gwpText } from "@/data/refrigerants";
 import { typeLabel } from "@/components/refrigerant/TypeChip";
 import { PhaseDownTimeline } from "@/components/svg/PhaseDownTimeline";
 import { getMilestonesForSlug } from "@/data/phase-down-milestones";
@@ -35,7 +35,7 @@ function NoMilestonesNotice({ slug }: { slug: string }) {
   const r = getRefrigerant(slug);
   if (!r) return null;
 
-  const gwp = r.environmental.gwp100Ar5;
+  const gwp = gwpNum(r.environmental.gwp.headline);
   const odp = r.environmental.odp;
   const aimAct = r.regulatoryStatus.aimActAffected;
   const type = r.type;
@@ -52,9 +52,9 @@ function NoMilestonesNotice({ slug }: { slug: string }) {
         <strong>{r.displayName} is not subject to AIM Act or EU F-Gas phase-down regulation.</strong>{" "}
         With a 100-year GWP of {gwp} ({isHydrocarbon ? "hydrocarbon / natural refrigerant" : "HFO"})
         and {odp === 0 ? "zero ozone-depletion potential" : "low ozone-depletion potential"}, it
-        sits below both the EU F-Gas 150 GWP cap and the EPA AIM Act 700 GWP cap. No phase-down
-        schedule applies — it is one of the refrigerants <em>chosen for</em> the transition away
-        from high-GWP HFCs.
+        sits well below the GWP thresholds in current US EPA and EU F-Gas restrictions. No
+        phase-down schedule applies — it is one of the refrigerants <em>chosen for</em> the
+        transition away from high-GWP HFCs.
       </>
     );
   } else if (type === "natural") {
@@ -106,7 +106,7 @@ function NoMilestonesNotice({ slug }: { slug: string }) {
           <p>{reason}</p>
           <div className="text-xs opacity-80">
             <strong>Properties:</strong>{" "}
-            {gwp !== null ? `GWP (AR5) ${gwp}` : "GWP not published"} ·{" "}
+            {`GWP (100-yr) ${gwpText(r.environmental.gwp.headline)}`} ·{" "}
             {odp !== null ? `ODP ${odp}` : "ODP not published"} ·{" "}
             {aimAct ? "AIM Act affected" : "Not AIM Act-affected"} ·{" "}
             type: {typeLabel(type)}

@@ -18,7 +18,7 @@ export default function GalleryIndex() {
         </li>
         <li>
           <code>GWPComparisonBar</code> — horizontal bar chart of refrigerants by GWP, colored by
-          safety class, with EU F-Gas 150 / AIM Act 700 reference lines.
+          safety class. GWP is the 100-year value on the US EPA basis.
         </li>
       </ul>
     </div>

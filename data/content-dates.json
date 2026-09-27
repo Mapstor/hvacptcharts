@@ -1,6 +1,6 @@
 {
   "/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/about-us/": {
@@ -16,7 +16,7 @@
     "published": "2026-07-13"
   },
   "/calculators-hub/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/carrier-410a-charging-chart/": {
@@ -32,7 +32,7 @@
     "published": "2026-06-11"
   },
   "/guides-hub/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/high-head-pressure-causes/": {
@@ -52,7 +52,7 @@
     "published": "2026-06-11"
   },
   "/hvac-refrigerant-recovery-guide/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-06-11"
   },
   "/hvac-troubleshooting-guide/": {
@@ -84,7 +84,7 @@
     "published": "2026-05-21"
   },
   "/pt-charts-tools-hub/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/pt-superheat-subcooling-calculator/": {
@@ -92,87 +92,87 @@
     "published": "2026-05-21"
   },
   "/r-12-vs-r-134a/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-07-13"
   },
   "/r-1234yf-vs-r-134a/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/r-134a-vs-r-1234ze/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-07-14"
   },
   "/r-134a-vs-r-513a/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/r-22-vs-r-32/": {
-    "updated": "2026-07-13",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/r-22-vs-r-407c/": {
-    "updated": "2026-07-13",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/r-22-vs-r-410a/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/r-22-vs-r-438a/": {
-    "updated": "2026-07-14",
+    "updated": "2026-09-27",
     "published": "2026-07-14"
   },
   "/r-22-vs-r-454b/": {
-    "updated": "2026-07-13",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/r-290-vs-r-600a/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-07-14"
   },
   "/r-32-vs-r-410a/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/r-32-vs-r-454b/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-22"
   },
   "/r-404a-vs-r-448a/": {
-    "updated": "2026-07-14",
+    "updated": "2026-09-27",
     "published": "2026-07-14"
   },
   "/r-404a-vs-r-449a/": {
-    "updated": "2026-07-13",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/r-404a-vs-r-452a/": {
-    "updated": "2026-07-14",
+    "updated": "2026-09-27",
     "published": "2026-07-14"
   },
   "/r-407c-vs-r-410a/": {
-    "updated": "2026-07-13",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/r-410a-vs-r-454b/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-22"
   },
   "/r-448a-vs-r-449a/": {
-    "updated": "2026-07-14",
+    "updated": "2026-09-27",
     "published": "2026-07-14"
   },
   "/r-454b-vs-r-454c/": {
-    "updated": "2026-07-14",
+    "updated": "2026-09-27",
     "published": "2026-07-14"
   },
   "/r-454c-vs-r-455a/": {
-    "updated": "2026-07-13",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/r-744-vs-r-290/": {
-    "updated": "2026-07-13",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/r22-superheat-chart/": {
@@ -192,267 +192,267 @@
     "published": "2026-06-08"
   },
   "/refrigerant-comparison-guide/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/refrigerant-gwp-rankings/": {
-    "updated": "2026-07-13",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/refrigerant-prices-guide/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-06-11"
   },
   "/refrigerant-pt-comparison-tool/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/refrigerant-retrofit-compatibility-calculator/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-22"
   },
   "/refrigerant-safety-classifications/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/refrigerant/r-11/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-1150/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-12/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-1224yd-z/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-123/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-1233zd-e/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-1234yf/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-1234ze-e/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-1234ze-z/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-1234ze/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-124/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-125/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-1270/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-13/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-1336mzz-z/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-134a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-143a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-152a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-218/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-22/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-236ea/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-236fa/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-245fa/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-290/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-32/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-365mfc/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-404a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-407a/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-407c/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-407f/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-410a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-417a/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-421a/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-422a/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-422b/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-422d/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-427a/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-438a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-448a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-449a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-450a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-452a/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-452b/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-454b/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-454c/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-455a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-457a/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-500/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-502/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-503/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-507a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-513a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-514a/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-515a/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-515b/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-516a/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-600a/": {
-    "updated": "2026-07-08",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-717/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-744/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/refrigerant/r-c318/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-27",
     "published": "2026-05-20"
   },
   "/saturation-properties-calculator/": {
@@ -484,47 +484,47 @@
     "published": "2026-05-21"
   },
   "/what-pressure-should-410a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/what-pressure-should-r1234yf/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-06-12"
   },
   "/what-pressure-should-r134a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/what-pressure-should-r22/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/what-pressure-should-r32/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/what-pressure-should-r404a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/what-pressure-should-r407c/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/what-pressure-should-r449a/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-06-15"
   },
   "/what-pressure-should-r454b/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-05-21"
   },
   "/what-pressure-should-r454c/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   },
   "/what-pressure-should-r744/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-27",
     "published": "2026-06-08"
   }
 }

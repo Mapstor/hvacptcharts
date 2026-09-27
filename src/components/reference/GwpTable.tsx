@@ -2,11 +2,12 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { refrigerants, type Refrigerant, type SafetyClass, type RefrigerantType } from "@/data/refrigerants";
+import { refrigerants, gwpNum, gwpText, type Refrigerant, type SafetyClass, type RefrigerantType } from "@/data/refrigerants";
+import { basisLabel } from "@/lib/gwp";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { typeLabel } from "@/components/refrigerant/TypeChip";
 
-type SortKey = "displayName" | "gwpAr5" | "gwpAr6" | "odp" | "safetyClass" | "type";
+type SortKey = "displayName" | "gwpHeadline" | "odp" | "safetyClass" | "type";
 type SortDir = "asc" | "desc";
 
 const TYPE_OPTIONS: Array<{ id: RefrigerantType | "all"; label: string }> = [
@@ -41,7 +42,7 @@ export function GwpTable() {
   const [typeFilter, setTypeFilter] = useState<RefrigerantType | "all">("all");
   const [bucketFilter, setBucketFilter] = useState("all");
   const [query, setQuery] = useState("");
-  const [sortKey, setSortKey] = useState<SortKey>("gwpAr5");
+  const [sortKey, setSortKey] = useState<SortKey>("gwpHeadline");
   const [sortDir, setSortDir] = useState<SortDir>("asc");
 
   const filteredSorted = useMemo(() => {
@@ -49,7 +50,7 @@ export function GwpTable() {
     const bucket = GWP_BUCKETS.find((b) => b.id === bucketFilter) ?? GWP_BUCKETS[0];
     const filtered = refrigerants.filter((r) => {
       if (typeFilter !== "all" && r.type !== typeFilter) return false;
-      const gwp = r.environmental.gwp100Ar5;
+      const gwp = gwpNum(r.environmental.gwp.headline);
       if (bucket.id !== "all") {
         if (gwp === null) return false;
         if (gwp < bucket.min || gwp > bucket.max) return false;
@@ -123,8 +124,11 @@ export function GwpTable() {
               <Th label="Type" k="type" sortKey={sortKey} sortDir={sortDir} toggleSort={toggleSort} />
               <Th label="Class" k="safetyClass" sortKey={sortKey} sortDir={sortDir} toggleSort={toggleSort} />
               <Th label="ODP" k="odp" sortKey={sortKey} sortDir={sortDir} toggleSort={toggleSort} align="right" />
-              <Th label="GWP (AR5)" k="gwpAr5" sortKey={sortKey} sortDir={sortDir} toggleSort={toggleSort} align="right" />
-              <Th label="GWP (AR6)" k="gwpAr6" sortKey={sortKey} sortDir={sortDir} toggleSort={toggleSort} align="right" />
+              <Th label="GWP (100-yr, US EPA basis)" k="gwpHeadline" sortKey={sortKey} sortDir={sortDir} toggleSort={toggleSort} align="right" />
+              <th className="px-3 py-2 font-medium text-right">AR4</th>
+              <th className="px-3 py-2 font-medium text-right">AR5</th>
+              <th className="px-3 py-2 font-medium text-right">AR6</th>
+              <th className="px-3 py-2 font-medium text-left">Basis</th>
               <th className="px-3 py-2 font-medium text-left">Status</th>
             </tr>
           </thead>
@@ -140,10 +144,19 @@ export function GwpTable() {
                 <td className="px-3 py-2"><SafetyClassChip safetyClass={r.safetyClass} size="sm" /></td>
                 <td className="px-3 py-2 text-right font-mono">{r.environmental.odp === null ? "—" : r.environmental.odp}</td>
                 <td className="px-3 py-2 text-right font-mono font-semibold">
-                  {r.environmental.gwp100Ar5 === null ? <span className="text-zinc-400">—</span> : r.environmental.gwp100Ar5.toLocaleString()}
+                  {gwpText(r.environmental.gwp.headline)}
                 </td>
                 <td className="px-3 py-2 text-right font-mono text-xs text-zinc-600 dark:text-zinc-400">
-                  {r.environmental.gwp100Ar6 === null ? "—" : r.environmental.gwp100Ar6.toLocaleString()}
+                  {gwpText(r.environmental.gwp.ar4)}
+                </td>
+                <td className="px-3 py-2 text-right font-mono text-xs text-zinc-600 dark:text-zinc-400">
+                  {gwpText(r.environmental.gwp.ar5)}
+                </td>
+                <td className="px-3 py-2 text-right font-mono text-xs text-zinc-600 dark:text-zinc-400">
+                  {gwpText(r.environmental.gwp.ar6)}
+                </td>
+                <td className="px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400">
+                  {basisLabel(r.environmental.gwp.headline.source)}
                 </td>
                 <td className="px-3 py-2 text-xs">
                   <StatusBadges r={r} />
@@ -181,7 +194,7 @@ function StatusBadges({ r }: { r: Refrigerant }) {
 }
 
 function rowTone(r: Refrigerant): string {
-  const g = r.environmental.gwp100Ar5;
+  const g = gwpNum(r.environmental.gwp.headline);
   if (g === null) return "";
   if (g <= 150) return "bg-emerald-50/30 dark:bg-emerald-950/10";
   if (g > 700) return "bg-amber-50/30 dark:bg-amber-950/10";
@@ -234,14 +247,9 @@ function compareRows(key: SortKey, dir: SortDir) {
         const bv = b.environmental.odp ?? -1;
         return mul * (av - bv);
       }
-      case "gwpAr5": {
-        const av = a.environmental.gwp100Ar5 ?? -1;
-        const bv = b.environmental.gwp100Ar5 ?? -1;
-        return mul * (av - bv);
-      }
-      case "gwpAr6": {
-        const av = a.environmental.gwp100Ar6 ?? -1;
-        const bv = b.environmental.gwp100Ar6 ?? -1;
+      case "gwpHeadline": {
+        const av = gwpNum(a.environmental.gwp.headline) ?? -1;
+        const bv = gwpNum(b.environmental.gwp.headline) ?? -1;
         return mul * (av - bv);
       }
     }

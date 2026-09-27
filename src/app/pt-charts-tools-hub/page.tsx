@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { refrigerants } from "@/data/refrigerants";
+import { refrigerants, gwpText } from "@/data/refrigerants";
 import { HubPage } from "@/components/hub/HubPage";
 import { pageMetadata } from "@/lib/schema/shared";
 
@@ -21,7 +21,7 @@ export default function PTChartsToolsHubPage() {
     return {
       href: `/refrigerant/${r.slug}/`,
       label: r.displayName,
-      blurb: `${r.type.replace("-", " ").toUpperCase()} · ASHRAE ${r.safetyClass} · GWP ${r.environmental.gwp100Ar5 ?? "—"}`,
+      blurb: `${r.type.replace("-", " ").toUpperCase()} · ASHRAE ${r.safetyClass} · GWP ${gwpText(r.environmental.gwp.headline)}`,
     };
   }).filter(Boolean) as Array<{ href: string; label: string; blurb: string }>;
 
@@ -61,7 +61,7 @@ export default function PTChartsToolsHubPage() {
           situation: "Looking up GWP for AIM Act compliance",
           href: "/refrigerant-gwp-rankings/",
           toolLabel: "GWP Rankings",
-          reasoning: "Sortable IPCC AR5/AR6 values with EU F-Gas 150 and AIM Act 700 thresholds marked.",
+          reasoning: "Sortable 100-year GWP on the US EPA basis, with IPCC AR4/AR5/AR6 columns.",
         },
         {
           situation: "Checking safety class for A2L equipment",
@@ -75,7 +75,7 @@ export default function PTChartsToolsHubPage() {
           heading: "Sortable reference tables",
           items: [
             { href: "/refrigerant-safety-classifications/", label: "Safety Classifications", blurb: "Every refrigerant's ASHRAE 34 class (A1 / A2L / A3 / B1 / B2L). Filter by type, search by name." },
-            { href: "/refrigerant-gwp-rankings/", label: "GWP Rankings", blurb: "Sortable by IPCC AR5, AR6, ODP. Highlights EU F-Gas 150 and EPA AIM Act 700 thresholds." },
+            { href: "/refrigerant-gwp-rankings/", label: "GWP Rankings", blurb: "Sortable by GWP (US EPA basis), IPCC AR4/AR5/AR6, and ODP." },
           ],
         },
         {
@@ -121,7 +121,7 @@ export default function PTChartsToolsHubPage() {
       aboutSections={[
         {
           heading: "About the dataset",
-          body: `The verified refrigerant dataset is the foundation under every page on this site. Each of the 60 refrigerants is represented by a single JSON record containing: ASHRAE 34 safety classification, refrigerant type, composition (mass fractions for blends), physical properties (boiling point, critical point, glide), environmental data (GWP per IPCC AR5/AR6, ODP, atmospheric lifetime), lubricant compatibility, applications, replacement options, regulatory status, and a 191-row PT chart (-40°F to 150°F in 1°F increments).
+          body: `The verified refrigerant dataset is the foundation under every page on this site. Each of the 60 refrigerants is represented by a single JSON record containing: ASHRAE 34 safety classification, refrigerant type, composition (mass fractions for blends), physical properties (boiling point, critical point, glide), environmental data (GWP on the US EPA basis plus IPCC AR4/AR5/AR6, ODP, atmospheric lifetime), lubricant compatibility, applications, replacement options, regulatory status, and a 191-row PT chart (-40°F to 150°F in 1°F increments).
 
 The PT chart is generated from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), a REFPROP-compatible Helmholtz EOS implementation. For 11 manufacturer-blend refrigerants not in CoolProp's reference library (R-448A, R-450A, R-1336mzz(Z), R-454C in blended-data mode, etc.), PT values come directly from the named manufacturer datasheets (Honeywell Solstice / Genetron, Chemours Opteon, Arkema Forane, AGC AMOLEA).
 
@@ -135,7 +135,7 @@ Every value is checked against reference values at build time. Safety class is s
 
 (2) Structure-level: every refrigerant record is validated at build time. PT values must be numbers (not text or blank). Safety class must be one of the ASHRAE 34 classes (A1, A2L, A2, A3, B1, B2L, B2, B3). GWP must be a non-negative number or blank (blank indicates no published value). Type must match a known refrigerant family.
 
-(3) Cross-check: PT values cross-checked against AHRI Standard 700-2019 specifications where available. Critical-point values cross-checked against NIST REFPROP 10.0. GWP values cross-checked between IPCC AR5 and AR6 with both shown where they differ meaningfully.
+(3) Cross-check: PT values cross-checked against AHRI Standard 700-2019 specifications where available. Critical-point values cross-checked against NIST REFPROP 10.0. GWP headline values on the US EPA basis (40 CFR 84 / IPCC AR4), with IPCC AR4/AR5/AR6 shown alongside.
 
 The previous WordPress version of this site shipped with approximately 25,000 fabricated quantitative errors. The current rebuild was structured to make those failure modes impossible: data comes from primary sources, validation runs at every build, and any value outside the chart range returns "out of range" rather than an extrapolated number.`,
         },

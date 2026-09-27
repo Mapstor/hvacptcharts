@@ -36,7 +36,7 @@ function renderInline(text: string): React.ReactNode[] {
   if (i < text.length) parts.push(text.slice(i));
   return parts.map((p, idx) => typeof p === "string" ? <Fragment key={idx}>{p}</Fragment> : p);
 }
-import { getRefrigerant, getPressureAtTempF, satPressure, type Refrigerant } from "@/data/refrigerants";
+import { getRefrigerant, getPressureAtTempF, satPressure, gwpText, type Refrigerant } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { Metadata } from "next";
 import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
@@ -226,7 +226,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
                 <tbody>
                   <PropertyRow label="Safety class" value={r.safetyClass} />
                   <PropertyRow label="Type" value={typeLabel(r.type)} />
-                  <PropertyRow label="GWP (IPCC AR5, 100-yr)" value={r.environmental.gwp100Ar5 !== null ? String(r.environmental.gwp100Ar5) : "—"} />
+                  <PropertyRow label="GWP (100-yr)" value={gwpText(r.environmental.gwp.headline)} />
                   <PropertyRow label="ODP" value={r.environmental.odp !== null ? String(r.environmental.odp) : "—"} />
                   <PropertyRow label="Normal boiling point" value={r.slug === "r-744" ? "none: CO₂ sublimes at −109.2°F at 1 atm (triple point 60.4 psig, −69.8°F)" : r.physical.boilingPointF !== null ? `${r.physical.boilingPointF.toFixed(1)}°F` : "—"} />
                   <PropertyRow label="Critical temperature" value={r.physical.critical.tempF !== null ? `${r.physical.critical.tempF.toFixed(1)}°F` : "—"} />
@@ -524,7 +524,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
             </li>
             <li>Saturation pressures: CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS</li>
             <li>Safety classification: ANSI/ASHRAE Standard 34-2022</li>
-            <li>GWP values: IPCC AR5 (2013) Working Group I, Table 8.A.1</li>
+            <li>GWP values: US EPA basis (AIM Act exchange values / 40 CFR 84.64(b) / IPCC AR4), with IPCC AR4/AR5/AR6 shown where listed</li>
             {fm.extraSources?.map((s, i) => <li key={`extra-${i}`}>{s}</li>)}
           </ul>
           <p className="mt-3">

@@ -16,7 +16,7 @@ export default function GuidesHubPage() {
       path="guides-hub"
       title="HVAC Guides"
       introHeadline="Reference material for HVAC technicians and engineers: the conceptual anchors behind the calculator pages, plus refrigerant comparisons and regulatory context."
-      introBody="Every guide is sourced — ASHRAE Handbook of Refrigeration 2022, ASHRAE Standard 34-2022, EPA AIM Act / SNAP, IPCC AR5/AR6, IIAR for ammonia, equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman). No 'general industry knowledge' filler; if a claim is in a guide, it carries an attribution. The guides pair with the calculator pages — guides provide the conceptual context, calculators do the math."
+      introBody="Every guide is sourced — ASHRAE Handbook of Refrigeration 2022, ASHRAE Standard 34-2022, EPA AIM Act / SNAP, IPCC AR4/AR5/AR6, IIAR for ammonia, equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman). No 'general industry knowledge' filler; if a claim is in a guide, it carries an attribution. The guides pair with the calculator pages — guides provide the conceptual context, calculators do the math."
       route="/guides-hub/"
       scenarios={[
         {
@@ -41,7 +41,7 @@ export default function GuidesHubPage() {
           situation: "Need to look up GWP for regulatory compliance",
           href: "/refrigerant-gwp-rankings/",
           toolLabel: "GWP Rankings",
-          reasoning: "Sortable IPCC AR5/AR6 values with EU F-Gas (150) and AIM Act (700) thresholds marked.",
+          reasoning: "Sortable 100-year GWP on the US EPA basis, with IPCC AR4/AR5/AR6 columns.",
         },
         {
           situation: "Choosing between A2L refrigerants for residential AC",
@@ -123,7 +123,7 @@ export default function GuidesHubPage() {
           heading: "Reference tables",
           items: [
             { href: "/refrigerant-safety-classifications/", label: "Safety Classifications", blurb: "All 60 refrigerants by ASHRAE 34 class, with full A vs B and 1/2L/2/3 explanation." },
-            { href: "/refrigerant-gwp-rankings/", label: "GWP Rankings", blurb: "Sortable IPCC AR5/AR6 values, EU F-Gas and AIM Act thresholds marked." },
+            { href: "/refrigerant-gwp-rankings/", label: "GWP Rankings", blurb: "Sortable GWP (US EPA basis) with IPCC AR4/AR5/AR6 columns." },
           ],
         },
         {
@@ -190,7 +190,7 @@ The 3 long-form HVAC guides on this site — troubleshooting, refrigerant recove
 
 (3) Industry best practice — ASHRAE Handbook of Refrigeration 2022, ASHRAE Handbook of Fundamentals 2021, ASHRAE HVAC Systems & Equipment 2024.
 
-(4) Regulatory references — EPA AIM Act (40 CFR Part 84), EPA Section 608 (40 CFR Part 82 Subpart F), EU F-Gas Regulation 517/2014 and 2024/573, Kigali Amendment to Montreal Protocol (2016), IPCC AR5/AR6 for GWP values.
+(4) Regulatory references — EPA AIM Act (40 CFR Part 84), EPA Section 608 (40 CFR Part 82 Subpart F), EU F-Gas Regulation 517/2014 and 2024/573, Kigali Amendment to Montreal Protocol (2016), IPCC AR4/AR5/AR6 for GWP values.
 
 (5) Equipment OEM service literature — Carrier, Trane, Lennox, Daikin, Goodman, Mitsubishi, LG, Fujitsu, Heatcraft, Hussmann for equipment-specific procedures and setpoints.
 

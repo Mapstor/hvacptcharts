@@ -38,7 +38,7 @@ const FAQS = [
   },
   {
     q: "Which refrigerants are affected by the AIM Act phase-down?",
-    a: "The AIM Act covers 18 specific HFCs and HFC blends as listed in its statutory schedule, weighted by 100-year global warming potential (GWP). The big ones for HVAC: R-410A (GWP 2088), R-404A (GWP 3922), R-407C (GWP 1774), R-134a (GWP 1430), R-507A (GWP 3985), R-32 (GWP 675, also affected but lower). NOT affected: HFOs (R-1234yf, R-1234ze, R-1233zd) which have GWP under 10, naturals (R-744 CO2, R-290 propane, R-717 ammonia) which aren't HFCs, and HFC/HFO blends below 700 GWP (R-454B at GWP 466, R-454C at GWP 148, R-455A at GWP 148) which are exempt from the EPA Technology Transitions rule's NEW EQUIPMENT prohibition but their constituents are still in the allowance pool. The phase-down affects the producer/importer level; downstream pricing reflects that constraint.",
+    a: "The AIM Act covers 18 specific HFCs and HFC blends as listed in its statutory schedule, weighted by 100-year global warming potential (GWP). The big ones for HVAC: R-410A (GWP 2088), R-404A (GWP 3922), R-407C (GWP 1774), R-134a (GWP 1430), R-507A (GWP 3985), R-32 (GWP 675, also affected but lower). NOT affected: HFOs (R-1234yf, R-1234ze, R-1233zd) which have GWP under 10, naturals (R-744 CO2, R-290 propane, R-717 ammonia) which aren't HFCs, and HFC/HFO blends below 700 GWP (R-454B at GWP 465, R-454C at GWP 146, R-455A at GWP 146) which are exempt from the EPA Technology Transitions rule's NEW EQUIPMENT prohibition but their constituents are still in the allowance pool. The phase-down affects the producer/importer level; downstream pricing reflects that constraint.",
   },
   {
     q: "Is R-22 still legal to buy?",
@@ -296,7 +296,7 @@ export default function RefrigerantPricesGuidePage() {
             Current state — where we are in the AIM Act phase-down
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
-            As of 2026, the US is in the second AIM Act tier: 60% of baseline (40% reduction from 2011-2013 average). The next tier (70% reduction / 30% of baseline) takes effect January 1, 2029. EPA&apos;s Technology Transitions Final Rule (October 2023, 40 CFR Part 84 Subpart B) added equipment-level prohibitions for new high-GWP HFC equipment in specific sectors: new residential AC/heat pump equipment with refrigerant GWP &gt; 700 prohibited from January 1, 2025; similar dates for chillers, commercial refrigeration, and other sectors over 2025-2027.
+            As of 2026, the US is in the second AIM Act tier: 60% of baseline (40% reduction from 2011-2013 average). The next tier (70% reduction / 30% of baseline) takes effect January 1, 2029. EPA&apos;s Technology Transitions Final Rule (October 2023, 40 CFR Part 84 Subpart B) added equipment-level prohibitions for new high-GWP HFC equipment in specific sectors. US EPA restricts the manufacture and import of new self-contained residential and light-commercial air conditioners and heat pumps that use a refrigerant with a GWP of 700 or more, effective January 1, 2025 (<a href="https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-B/section-84.54" className="underline" target="_blank" rel="noopener noreferrer">40 CFR 84.54(a)(1)</a>); limits differ by equipment type, with additional dates for chillers, commercial refrigeration, and other sectors falling over 2025-2027.
           </p>
 
           <ComparisonTable
@@ -308,8 +308,8 @@ export default function RefrigerantPricesGuidePage() {
               { label: "R-404A (GWP 3922)", cells: ["Subject to HFC allowance", "Equipment sales restricted in commercial refrigeration", "Virgin tight; reclaim premium"] },
               { label: "R-407C (GWP 1774)", cells: ["Subject to HFC allowance", "Equipment sales largely transitioned to A2L", "Virgin allowance-constrained"] },
               { label: "R-32 (GWP 675)", cells: ["Subject to HFC allowance (below 700 GWP threshold)", "New equipment allowed", "Virgin available; market scaling"] },
-              { label: "R-454B (GWP 466)", cells: ["Exempt from 700 GWP equipment ban", "New equipment allowed", "Virgin available; production ramping"] },
-              { label: "R-1234yf (GWP <1)", cells: ["Not subject to allowance", "All sectors allowed", "Virgin available; mobile AC standardized"] },
+              { label: "R-454B (GWP 465)", cells: ["Exempt from 700 GWP equipment ban", "New equipment allowed", "Virgin available; production ramping"] },
+              { label: "R-1234yf (GWP 1)", cells: ["Not subject to allowance", "All sectors allowed", "Virgin available; mobile AC standardized"] },
               { label: "R-744 / R-290 / R-717", cells: ["Naturals; not regulated", "All sectors allowed", "Commodity gas pricing"] },
             ]}
           />

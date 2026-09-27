@@ -93,8 +93,8 @@ export interface RefrigerantMetadataInput {
   dataStatus?: string;
   /** ASHRAE safety class — used in the empty-ptChart description one-liner. */
   safetyClass?: string;
-  /** IPCC AR5 100-year GWP — the one number in the empty-ptChart description. */
-  gwp100Ar5?: number | null;
+  /** Headline 100-year GWP (US EPA basis) — the one number in the empty-ptChart description. */
+  gwpHeadline?: number | null;
   /**
    * Primary datasheet attribution — used in the datasheet-resolution branch
    * title/description. When Wave 1.6b transcribes a fluid, populate this so
@@ -134,8 +134,8 @@ export function buildRefrigerantMetadata(input: RefrigerantMetadataInput): {
     let description: string;
     if (input.metaDescriptionOverride) {
       description = input.metaDescriptionOverride;
-    } else if (input.gwp100Ar5 != null && input.safetyClass) {
-      description = `${commonPrefix} refrigerant reference: ASHRAE ${input.safetyClass}, GWP ${input.gwp100Ar5} (AR5). Properties, safety-class detail, regulatory context, and retrofit or replacement paths.`;
+    } else if (input.gwpHeadline != null && input.safetyClass) {
+      description = `${commonPrefix} refrigerant reference: ASHRAE ${input.safetyClass}, GWP ${input.gwpHeadline} (100-yr). Properties, safety-class detail, regulatory context, and retrofit or replacement paths.`;
     } else if (input.safetyClass) {
       description = `${commonPrefix} refrigerant reference: ASHRAE ${input.safetyClass}. Physical properties, safety classification, ODP context, and retrofit paths per current regulatory status.`;
     } else {

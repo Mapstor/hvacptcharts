@@ -211,12 +211,15 @@ function RichContent() {
               </thead>
               <tbody>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Residential / light commercial AC</td><td className="py-1.5 font-mono">700</td><td className="py-1.5">2025-01-01 (new equipment)</td><td className="py-1.5 text-xs">R-410A out; R-32 / R-454B in</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Commercial refrigeration (most subsectors)</td><td className="py-1.5 font-mono">300-700</td><td className="py-1.5">2025-01-01 (new equipment)</td><td className="py-1.5 text-xs">R-404A out; R-454C / R-455A / R-448A / R-449A in</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Centrifugal chillers</td><td className="py-1.5 font-mono">700</td><td className="py-1.5">2025-01-01</td><td className="py-1.5 text-xs">R-134a → R-513A / R-1233zd / R-1234ze</td></tr>
-                <tr><td className="py-1.5">Mobile AC (passenger vehicles)</td><td className="py-1.5 font-mono">150</td><td className="py-1.5">SNAP delisted 2021</td><td className="py-1.5 text-xs">R-134a → R-1234yf (in production 2017+)</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Commercial refrigeration (most subsectors)</td><td className="py-1.5 font-mono">Varies</td><td className="py-1.5">2025-01-01 (new equipment)</td><td className="py-1.5 text-xs">R-404A out; R-454C / R-455A / R-448A / R-449A in</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Centrifugal chillers</td><td className="py-1.5 font-mono">Varies</td><td className="py-1.5">2025-01-01</td><td className="py-1.5 text-xs">R-134a → R-513A / R-1233zd / R-1234ze</td></tr>
+                <tr><td className="py-1.5">Mobile AC (passenger vehicles)</td><td className="py-1.5 font-mono">Varies</td><td className="py-1.5">SNAP delisted 2021</td><td className="py-1.5 text-xs">R-134a → R-1234yf (in production 2017+)</td></tr>
               </tbody>
             </table>
           </div>
+          <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+            The residential / light-commercial AC prohibition is the 700-GWP rule at 40 CFR 84.54(a)(1); limits differ by equipment type and subsector — see <a href="https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-B/section-84.54" className="underline" target="_blank" rel="noopener noreferrer">40 CFR 84.54</a>.
+          </p>
         </Panel>
       </TechSection>
 
@@ -376,7 +379,7 @@ function RichContent() {
           R-448A is engineered as a low-GWP drop-in replacement for R-404A in commercial
           refrigeration. Pressure / lubricant / safety match. The 6°F glide vs R-404A&apos;s
           near-azeotropic behavior requires TXV awareness and PT chart bubble / dew curve
-          selection. GWP drops from R-404A&apos;s 3922 to R-448A&apos;s 1387 — substantial
+          selection. GWP drops from R-404A&apos;s 3922 to R-448A&apos;s 1386 — substantial
           AIM Act compliance benefit.
         </VerdictBanner>
         <FixCallout>

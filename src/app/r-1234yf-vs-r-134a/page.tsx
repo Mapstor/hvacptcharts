@@ -9,7 +9,7 @@ const SLUG = "r-1234yf-vs-r-134a";
 export const metadata: Metadata = pageMetadata({
   title: "R1234yf vs R134a: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R1234yf vs R134a for mobile AC: A2L HFO replacement (GWP 4) for the legacy A1 HFC (GWP 1430). Similar pressure envelope, 99.7% GWP cut. Fleet-transition driver.",
+    "R1234yf vs R134a for mobile AC: A2L HFO replacement (GWP 1) for the legacy A1 HFC (GWP 1430). Similar pressure envelope, 99.9% GWP cut. Fleet-transition driver.",
   path: "/r-1234yf-vs-r-134a/",
 });
 

@@ -54,9 +54,8 @@ keyStats:
     sourceId: ashrae34
   - label: GWP (100-yr)
     value: "2088"
-    unit: IPCC AR5
+    unit: "100-yr"
     context: Above EPA AIM Act 700-GWP threshold for new residential AC
-    sourceId: ipccar5
   - label: ODP
     value: "0"
     context: Both R-32 and R-125 are fluorine-only HFCs; no chlorine
@@ -94,7 +93,7 @@ narrative:
     - "Some commercial chillers (less common; chiller market largely R-134a / R-1234ze)"
 
   phaseDownStatus: |
-    The EPA AIM Act (Public Law 116-260) and its implementing rules at 40 CFR Part 84 prohibit production and import of HFCs exceeding 700-GWP in new residential AC equipment manufactured on or after 1 January 2025 [aimact]. R-410A's GWP of 2088 places it almost 3× above the threshold; new equipment now ships with R-32 (GWP 675) or R-454B (GWP 466), both of which fall just under the regulatory line.
+    The EPA AIM Act (Public Law 116-260) and its implementing rules at 40 CFR Part 84 prohibit production and import of HFCs exceeding 700-GWP in new residential AC equipment manufactured on or after 1 January 2025 [aimact]. R-410A's GWP of 2088 places it almost 3× above the threshold; new equipment now ships with R-32 (GWP 675) or R-454B (GWP 465), both of which fall just under the regulatory line.
 
     The phase-down does not affect existing R-410A equipment. Service of installed R-410A systems remains legal indefinitely under current EPA rules — technicians can charge, repair, and recover R-410A from the installed base for as long as the equipment runs. What is changing is the supply side, not the legality side.
 
@@ -114,7 +113,7 @@ faqs:
 
   - q: "What does R-410A's GWP of 2088 mean in practical terms?"
     a: |
-      Global Warming Potential is a relative atmospheric-warming metric over 100 years against CO₂ (which is defined as GWP 1). A 1 kg release of R-410A traps roughly 2,088 times more heat than 1 kg of CO₂ over that horizon (IPCC AR5 Table 8.A.1). The EPA uses this figure to assign R-410A above the AIM Act's 700-GWP threshold for new residential AC equipment.
+      Global Warming Potential is a relative atmospheric-warming metric over 100 years against CO₂ (which is defined as GWP 1). A 1 kg release of R-410A traps roughly 2,088 times more heat than 1 kg of CO₂ over that horizon. The EPA uses this figure to assign R-410A above the AIM Act's 700-GWP threshold for new residential AC equipment.
 
   - q: "Can I retrofit an R-22 system to R-410A?"
     a: |
@@ -183,7 +182,7 @@ R-32 alone delivers excellent thermodynamic performance — high volumetric capa
 The 50/50 mass blend keeps R-410A in the A1 (non-flammable) safety classification by leveraging R-125's flame-suppression behavior against R-32's flammability. The trade-off is GWP — at 2088, R-410A carries roughly 3× the climate impact of pure R-32 (675), driven mostly by the R-125 contribution.
 
 <KeyInsight tone="amber" icon="climate" title="The engineering trade-off behind the phase-down">
-This is the engineering reason R-32 became the post-R-410A refrigerant of choice once the AIM Act's 700-GWP threshold made R-410A non-viable for new equipment. R-32 alone clears the threshold (675 < 700); the cost is moving residential AC equipment design from A1 to A2L [ul60335]. Carrier, Trane, and Lennox went a different direction with R-454B (R-32 + R-1234yf, GWP 466) — also A2L, slightly lower GWP, slightly more glide.
+This is the engineering reason R-32 became the post-R-410A refrigerant of choice once the AIM Act's 700-GWP threshold made R-410A non-viable for new equipment. R-32 alone clears the threshold (675 < 700); the cost is moving residential AC equipment design from A1 to A2L [ul60335]. Carrier, Trane, and Lennox went a different direction with R-454B (R-32 + R-1234yf, GWP 465) — also A2L, slightly lower GWP, slightly more glide.
 </KeyInsight>
 
 </TechSection>
@@ -198,14 +197,14 @@ Global warming potential is a separate environmental metric — climate impact r
 
 </TechSection>
 
-<TechSection icon="climate" tone="amber" title="IPCC AR5 vs AR6 — why the GWP number is debated">
+<TechSection icon="climate" tone="amber" title="Why the R-410A GWP number is debated across IPCC reports">
 
-The R-410A GWP value of 2088 comes from IPCC Fifth Assessment Report (AR5, 2014), specifically Table 8.A.1 in Working Group I, Chapter 8 [ipccar5]. This is the figure the EPA uses for AIM Act regulatory determinations, including the 700-GWP threshold for residential AC equipment.
+The R-410A GWP value of 2088 is the EPA regulatory figure — the AR4-basis / 40 CFR 84.64 exchange value the EPA uses for AIM Act determinations, including the 700-GWP threshold for residential AC equipment [ipccar5].
 
-IPCC Sixth Assessment Report (AR6, 2021) updated the atmospheric chemistry models that compute GWP and produced slightly different values for many HFCs — typically within ±15% of AR5 figures [ipccar6]. For R-410A specifically, AR6 figures vary by literature source; some publications cite ~1924 (mass-weighted from AR6 R-32 of 771 + R-125 of 3170). US regulation continues to use AR5 for compliance to keep policy values stable.
+Successive IPCC assessments produce somewhat different values as atmospheric chemistry models are updated — typically within ±15% for HFCs [ipccar6]. Mass-weighting the component GWPs gives roughly 1924 for R-410A on the IPCC AR5 basis and about 2256 on AR6 (R-32 of 771 + R-125 of 3740). US regulation continues to use the 2088 exchange value for compliance to keep policy values stable.
 
 <KeyInsight tone="zinc" icon="source" title="Which figure to cite">
-For US regulatory work, cite the AR5 value (2088) — that's what EPA, SNAP determinations, and AIM Act allocations use. For scientific or international communication referencing the most current radiative-forcing science, AR6 values may be more appropriate. The site uses AR5 to match the regulatory frame.
+For US regulatory work, cite the 2088 exchange value — that's what EPA, SNAP determinations, and AIM Act allocations use. For scientific or international communication referencing the most current radiative-forcing science, the AR6 value (~2256) may be more appropriate. The site uses the regulatory figure.
 </KeyInsight>
 
 </TechSection>

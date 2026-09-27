@@ -37,6 +37,74 @@ CONFIG_PATH = ROOT / "data" / "refrigerants.config.json"
 MANUAL_DIR = ROOT / "data" / "manufacturer-blends"
 PRECOMPUTED_PATH = ROOT / "data" / "precomputed" / "coolprop8-pt.json"
 OUTPUT_PATH = ROOT / "data" / "refrigerants.json"
+GWP_REF_PATH = ROOT / "data" / "reference" / "gwp-reference.json"
+
+# ── GWP (headline on the US EPA basis + IPCC AR4/AR5/AR6) ────────────────────
+# Mirrors scripts/reference/compute_gwp.mjs. Blends sum massFraction × constituent
+# GWP per 40 CFR 84.64(b): '<1' counts as 1, a column exists only when every
+# constituent has it, rounded half-up to an integer.
+GWP_REF = json.loads(GWP_REF_PATH.read_text())
+SLUG_TO_COMPONENT = {
+    "r-11": "R-11", "r-12": "R-12", "r-13": "R-13", "r-22": "R-22", "r-23": "R-23",
+    "r-32": "R-32", "r-115": "R-115", "r-123": "R-123", "r-124": "R-124", "r-125": "R-125",
+    "r-134a": "R-134a", "r-143a": "R-143a", "r-152a": "R-152a", "r-218": "R-218",
+    "r-227ea": "R-227ea", "r-236ea": "R-236ea", "r-236fa": "R-236fa", "r-245fa": "R-245fa",
+    "r-365mfc": "R-365mfc", "r-c318": "R-C318", "r-290": "R-290", "r-600": "R-600",
+    "r-600a": "R-600a", "r-601a": "R-601a", "r-1150": "R-1150", "r-1270": "R-1270",
+    "r-717": "R-717", "r-744": "R-744", "r-1234yf": "R-1234yf",
+    "r-1234ze": "R-1234ze(E)", "r-1234ze-e": "R-1234ze(E)", "r-1234ze-z": "R-1234ze(Z)",
+    "r-1233zd-e": "R-1233zd(E)", "r-1224yd-z": "R-1224yd(Z)", "r-1336mzz-z": "R-1336mzz(Z)",
+    "r-1130-e": "R-1130(E)",
+}
+COMPONENT_ALIAS = {"CO2": "R-744", "R-744": "R-744"}
+
+
+def _gwp_num(cell):
+    if cell is None:
+        return None
+    v = cell["value"] if isinstance(cell, dict) else cell
+    return 1.0 if v == "<1" else float(v)
+
+
+def _blend_column(comp, col):
+    total = 0.0
+    for part in comp:
+        cid = COMPONENT_ALIAS.get(part["component"], part["component"])
+        c = GWP_REF["components"][cid]
+        cell = c.get(col)
+        if cell is None:
+            return None
+        total += part["massFraction"] * _gwp_num(cell)
+    from decimal import Decimal, ROUND_HALF_UP
+    return int(Decimal(str(total)).quantize(Decimal(1), rounding=ROUND_HALF_UP))
+
+
+GWP_SOURCE_LABEL = {
+    "aim_app_a": "AIM Act exchange value = IPCC AR4 (40 CFR 84 Appendix A)",
+    "cfr_84_64b": "US EPA, 40 CFR 84.64(b)",
+    "ipcc_ar4": "IPCC AR4 Table 2.14",
+    "ipcc_ar5": "IPCC AR5 Table 8.A.1",
+}
+
+
+def gwp_source_label(slug, info):
+    src = gwp_for_slug(slug, info)["headline"]["source"]
+    return f'{GWP_SOURCE_LABEL.get(src, "US EPA basis")} (100-yr); AR4/AR5/AR6 in the gwp object'
+
+
+def gwp_for_slug(slug, info):
+    comp = info.get("composition", []) or []
+    if not comp:
+        c = GWP_REF["components"][SLUG_TO_COMPONENT[slug]]
+        g = {"headline": c["headline"], "ar4": c["ar4"], "ar5": c["ar5"], "ar6": c["ar6"]}
+        if "note" in c:
+            g["note"] = c["note"]
+        return g
+    g = {}
+    for col in ("headline", "ar4", "ar5", "ar6"):
+        v = _blend_column(comp, col)
+        g[col] = None if v is None else {"value": v, "source": "cfr_84_64b" if col == "headline" else f"ipcc_{col}"}
+    return g
 
 # CoolProp component identifiers -> site display designations, for the
 # "precomputed" strategy's EOS / mixture-model reference labels.
@@ -283,7 +351,7 @@ def main():
                     "ptChartGeneratedAt": datetime.now(timezone.utc).isoformat(),
                     "ptChartVerifiedAgainst": info.get("verifiedAgainst", []),
                     "propertiesSource": info.get("propertiesSource", "CoolProp 8.0.0"),
-                    "gwpSource": info.get("gwpSource", "IPCC AR5"),
+                    "gwpSource": gwp_source_label(slug, info),
                     "dataStatus": "complete",
                     "engine": "CoolProp",
                     "engineVersion": precomputed.get("engineVersion", "8.0.0"),
@@ -307,7 +375,12 @@ def main():
                 "tradeNames": info.get("tradeNames", []),
                 "composition": info.get("composition", []),
                 "physical": physical,
-                "environmental": info["environmental"],
+                "environmental": {
+                    "odp": info["environmental"]["odp"],
+                    "gwp": gwp_for_slug(slug, info),
+                    "atmosphericLifetimeYears": info["environmental"]["atmosphericLifetimeYears"],
+                    "snapStatus": info["environmental"]["snapStatus"],
+                },
                 "lubricants": info["lubricants"],
                 "applications": info["applications"],
                 "replacementOptions": info.get("replacementOptions", []),
@@ -321,7 +394,7 @@ def main():
                     "ptChartGeneratedAt": datetime.now(timezone.utc).isoformat(),
                     "ptChartVerifiedAgainst": info.get("verifiedAgainst", []),
                     "propertiesSource": info.get("propertiesSource", "CoolProp + ASHRAE 34"),
-                    "gwpSource": info.get("gwpSource", "IPCC AR5"),
+                    "gwpSource": gwp_source_label(slug, info),
                 },
             }
             output.append(record)

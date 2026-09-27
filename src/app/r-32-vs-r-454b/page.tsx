@@ -9,7 +9,7 @@ const SLUG = "r-32-vs-r-454b";
 export const metadata: Metadata = pageMetadata({
   title: "R32 vs R454B: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R32 vs R454B for new A2L residential AC: R32 pure (Daikin/Mitsubishi) vs R454B blend (Carrier/Trane), GWP 675 vs 466, similar pressures. OEM-choice decision.",
+    "R32 vs R454B for new A2L residential AC: R32 pure (Daikin/Mitsubishi) vs R454B blend (Carrier/Trane), GWP 675 vs 465, similar pressures. OEM-choice decision.",
   path: "/r-32-vs-r-454b/",
 });
 

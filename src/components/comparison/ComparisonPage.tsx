@@ -39,7 +39,7 @@ function renderInline(text: string): React.ReactNode[] {
   if (i < text.length) parts.push(text.slice(i));
   return parts.map((p, idx) => typeof p === "string" ? <Fragment key={idx}>{p}</Fragment> : p);
 }
-import { getRefrigerant, getPressureAtTempF, type Refrigerant } from "@/data/refrigerants";
+import { getRefrigerant, getPressureAtTempF, gwpNum, gwpText, type Refrigerant } from "@/data/refrigerants";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
 import { contentDates, UpdatedLine } from "@/lib/content-dates";
@@ -223,7 +223,7 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
                   valueA={a.composition.length === 0 ? "Pure" : a.composition.map((c) => `${(c.massFraction * 100).toFixed(1)}% ${c.component}`).join(" / ")}
                   valueB={b.composition.length === 0 ? "Pure" : b.composition.map((c) => `${(c.massFraction * 100).toFixed(1)}% ${c.component}`).join(" / ")}
                 />
-                <PropRow label="GWP (AR5)" valueA={String(a.environmental.gwp100Ar5 ?? "—")} valueB={String(b.environmental.gwp100Ar5 ?? "—")} />
+                <PropRow label="GWP (100-yr)" valueA={gwpText(a.environmental.gwp.headline)} valueB={gwpText(b.environmental.gwp.headline)} />
                 <PropRow label="ODP" valueA={String(a.environmental.odp ?? "—")} valueB={String(b.environmental.odp ?? "—")} />
                 <PropRow label="Lubricant" valueA={a.lubricants.compatible.join(", ")} valueB={b.lubricants.compatible.join(", ")} />
                 <PropRow
@@ -384,7 +384,7 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>Saturation pressures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999)</li>
             <li>Safety classifications per ANSI/ASHRAE Standard 34-2022</li>
-            <li>GWP values per IPCC AR5 (2013) Working Group I, Table 8.A.1</li>
+            <li>GWP values on the US EPA basis (40 CFR 84 / IPCC AR4), with IPCC AR4/AR5/AR6 shown where listed</li>
             <li>Regulatory context: EPA AIM Act (40 CFR Part 84), EU F-Gas Regulation 517/2014 + 2024/573, Kigali Amendment to Montreal Protocol</li>
             <li>{a.displayName}: {a.dataSource.ptChartSource}</li>
             <li>{b.displayName}: {b.dataSource.ptChartSource}</li>
@@ -409,8 +409,8 @@ function RefrigerantSummary({ r, color }: { r: Refrigerant; color: string }) {
         <SafetyClassChip safetyClass={r.safetyClass} size="sm" />
       </div>
       <dl className="mt-3 grid grid-cols-2 gap-1 text-xs">
-        <dt className="text-zinc-500">GWP (AR5)</dt>
-        <dd className="font-mono">{r.environmental.gwp100Ar5 ?? "—"}</dd>
+        <dt className="text-zinc-500">GWP (100-yr)</dt>
+        <dd className="font-mono">{gwpText(r.environmental.gwp.headline)}</dd>
         <dt className="text-zinc-500">Lubricant</dt>
         <dd className="font-mono">{r.lubricants.compatible.join(", ")}</dd>
         <dt className="text-zinc-500">Glide @ 0°C</dt>
@@ -568,8 +568,8 @@ function PressureDeltaBars({ a, b }: { a: Refrigerant; b: Refrigerant }) {
 }
 
 function PropertyDeltaPanel({ a, b }: { a: Refrigerant; b: Refrigerant }) {
-  const gwpA = a.environmental.gwp100Ar5 ?? 0;
-  const gwpB = b.environmental.gwp100Ar5 ?? 0;
+  const gwpA = gwpNum(a.environmental.gwp.headline) ?? 0;
+  const gwpB = gwpNum(b.environmental.gwp.headline) ?? 0;
   const gwpReduction = gwpA > 0 ? ((gwpB - gwpA) / gwpA) * 100 : 0;
 
   return (
@@ -631,7 +631,7 @@ function PropertyDeltaPanel({ a, b }: { a: Refrigerant; b: Refrigerant }) {
 
 function RegulatoryContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
   const aimAct = a.regulatoryStatus.aimActAffected || b.regulatoryStatus.aimActAffected;
-  const gwpAffected = (a.environmental.gwp100Ar5 ?? 0) > 700 || (b.environmental.gwp100Ar5 ?? 0) > 700;
+  const gwpAffected = (gwpNum(a.environmental.gwp.headline) ?? 0) > 700 || (gwpNum(b.environmental.gwp.headline) ?? 0) > 700;
 
   return (
     <div className="space-y-3">
@@ -644,16 +644,25 @@ function RegulatoryContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
           <strong>EPA AIM Act (40 CFR Part 84):</strong> US HFC production / import phase-down.
           Cap declines from 90% allocation (2022) to 15% by 2036.{" "}
           {aimAct ? `One or both refrigerants here are AIM Act-affected.` : `Neither refrigerant is directly affected.`}
-          {gwpAffected ? ` New residential AC equipment over 700 GWP prohibited as of 2025.` : ""}
+          {gwpAffected ? (
+            <>
+              {" "}US EPA restricts new self-contained residential and light-commercial air
+              conditioners and heat pumps using a refrigerant of GWP 700 or more, effective
+              January 1, 2025 (
+              <a href="https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-B/section-84.54" className="underline" target="_blank" rel="nofollow noopener">40 CFR 84.54(a)(1)</a>).
+              Limits for other equipment types differ.
+            </>
+          ) : null}
         </li>
         <li>
-          <strong>EU F-Gas Regulation (517/2014, updated 2024/573):</strong> European
-          stationary refrigeration GWP cap typically 150 (much tighter than AIM Act). Drives
-          earlier adoption of very-low-GWP options in European markets.
+          <strong>EU F-Gas Regulation (517/2014, updated 2024/573):</strong> European rules
+          restrict many new stationary applications by GWP (tighter than the US in most sectors);
+          the 2024 revision uses IPCC AR4 for HFCs and AR6 for other fluorinated gases.
         </li>
         <li>
           <strong>Kigali Amendment to Montreal Protocol (2016):</strong> international HFC
-          phase-down framework (198 countries). The AIM Act and EU F-Gas are regional
+          phase-down framework. The Montreal Protocol has 198 parties; 174 have ratified the
+          Kigali Amendment (as of 10 August 2026). The AIM Act and EU F-Gas are regional
           implementations. Schedules differ by country group.
         </li>
         <li>
@@ -1007,8 +1016,8 @@ function RetrofitNotFeasible({ a, b }: { a: Refrigerant; b: Refrigerant }) {
 }
 
 function LifecycleContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
-  const gwpA = a.environmental.gwp100Ar5 ?? 0;
-  const gwpB = b.environmental.gwp100Ar5 ?? 0;
+  const gwpA = gwpNum(a.environmental.gwp.headline) ?? 0;
+  const gwpB = gwpNum(b.environmental.gwp.headline) ?? 0;
   const aimAct = a.regulatoryStatus.aimActAffected || b.regulatoryStatus.aimActAffected;
   const aAffected = a.regulatoryStatus.aimActAffected;
   const bAffected = b.regulatoryStatus.aimActAffected;
@@ -1026,8 +1035,8 @@ function LifecycleContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
       <Panel title="Lifecycle and regulatory snapshot" icon={TableIcon}>
         <ul className="text-sm space-y-1.5">
           <li>
-            <strong>GWP profile:</strong> {a.displayName} = {gwpA.toLocaleString()} GWP
-            (AR5); {b.displayName} = {gwpB.toLocaleString()} GWP.{" "}
+            <strong>GWP profile:</strong> {a.displayName} = {gwpA.toLocaleString()} GWP;{" "}
+            {b.displayName} = {gwpB.toLocaleString()} GWP.{" "}
             {gwpA > 0 && gwpB > 0
               ? `Switching from ${a.displayName} to ${b.displayName} ${gwpB < gwpA ? "reduces" : "increases"} direct refrigerant climate impact by ${Math.abs(((gwpB - gwpA) / gwpA) * 100).toFixed(0)}%.`
               : ""}
@@ -1041,9 +1050,15 @@ function LifecycleContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
                   ? `${a.displayName} is AIM Act-affected; ${b.displayName} is not — the transition reduces regulatory exposure.`
                   : `${b.displayName} is AIM Act-affected; ${a.displayName} is not — the transition increases regulatory exposure (unusual direction).`}
               {" "}
-              {aGwpAboveCap || bGwpAboveCap
-                ? `One or both refrigerants exceed the 700 GWP cap for new residential AC equipment (in effect since January 1, 2025).`
-                : ``}
+              {aGwpAboveCap || bGwpAboveCap ? (
+                <>
+                  {" "}One or both have a GWP of 700 or more: US EPA restricts new self-contained
+                  residential and light-commercial AC and heat pumps at that level, effective
+                  January 1, 2025 (
+                  <a href="https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-B/section-84.54" className="underline" target="_blank" rel="nofollow noopener">40 CFR 84.54(a)(1)</a>).
+                  Limits for other equipment types differ.
+                </>
+              ) : null}
             </li>
           ) : (
             <li>
@@ -1082,7 +1097,7 @@ function LifecycleContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
       <p className="text-xs text-zinc-500 dark:text-zinc-400">
         Regulatory sources: EPA AIM Act (40 CFR Part 84), EU F-Gas Regulation 517/2014 and
         update 2024/573, Kigali Amendment to the Montreal Protocol (2016), Japan
-        Fluorocarbon Emissions Control Law. GWP values per IPCC AR5 (2013) WG-I Table 8.A.1.
+        Fluorocarbon Emissions Control Law. GWP values on the US EPA basis (40 CFR 84 / IPCC AR4).
       </p>
     </div>
   );

@@ -1,5 +1,5 @@
-import { getRefrigerant } from "@/data/refrigerants";
-import { GROUP_INFO, REGULATORY_THRESHOLDS, getPrimaryGroupForSlug, type GroupId } from "@/data/comparison-groups";
+import { getRefrigerant, gwpNum } from "@/data/refrigerants";
+import { GROUP_INFO, getPrimaryGroupForSlug, type GroupId } from "@/data/comparison-groups";
 import { GWPComparisonBar, type GWPBar } from "@/components/svg/GWPComparisonBar";
 
 export interface RefrigerantGWPComparisonProps {
@@ -7,7 +7,11 @@ export interface RefrigerantGWPComparisonProps {
   currentSlug?: string;
   /** Explicit group; overrides currentSlug's primary group lookup. */
   groupId?: GroupId;
-  /** Optional override for which regulatory reference lines to show. */
+  /**
+   * Optional regulatory reference lines. Default is none: GWP limits differ by
+   * equipment type and the US limits were revised in 2026, so a single "700" or
+   * "150" line on the chart would misrepresent the rule (task 7).
+   */
   referenceLines?: Array<{ value: number; label: string }>;
   className?: string;
 }
@@ -15,7 +19,7 @@ export interface RefrigerantGWPComparisonProps {
 export function RefrigerantGWPComparison({
   currentSlug,
   groupId,
-  referenceLines = REGULATORY_THRESHOLDS,
+  referenceLines = [],
   className,
 }: RefrigerantGWPComparisonProps) {
   const resolvedGroup = groupId ?? (currentSlug ? getPrimaryGroupForSlug(currentSlug) : null);
@@ -29,10 +33,11 @@ export function RefrigerantGWPComparison({
   const bars: GWPBar[] = [];
   for (const slug of group.members) {
     const r = getRefrigerant(slug);
-    if (!r || r.environmental.gwp100Ar5 === null) continue;
+    const gwp = r ? gwpNum(r.environmental.gwp.headline) : null;
+    if (!r || gwp === null) continue;
     bars.push({
       name: r.displayName,
-      gwp: r.environmental.gwp100Ar5,
+      gwp,
       safetyClass: r.safetyClass,
       isCurrent: slug === currentSlug,
     });
@@ -44,7 +49,7 @@ export function RefrigerantGWPComparison({
       <GWPComparisonBar
         bars={bars}
         referenceLines={referenceLines}
-        ariaLabel={`Global Warming Potential comparison for ${group.label}, IPCC AR5 100-year values, ${bars.length} refrigerants${currentSlug ? `, current selection ${currentSlug}` : ""}`}
+        ariaLabel={`Global Warming Potential comparison for ${group.label}, 100-year values on the US EPA basis, ${bars.length} refrigerants${currentSlug ? `, current selection ${currentSlug}` : ""}`}
       />
     </div>
   );

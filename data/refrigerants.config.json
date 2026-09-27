@@ -27,8 +27,6 @@
     "composition": [],
     "environmental": {
       "odp": 1,
-      "gwp100Ar5": 4750,
-      "gwp100Ar6": 5560,
       "atmosphericLifetimeYears": 45,
       "snapStatus": "Production banned under the Montreal Protocol (US: 1996)"
     },
@@ -86,8 +84,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 4,
-      "gwp100Ar6": null,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Industrial use; not SNAP-listed for HVAC"
     },
@@ -153,8 +149,6 @@
     "composition": [],
     "environmental": {
       "odp": 1,
-      "gwp100Ar5": 10900,
-      "gwp100Ar6": 12500,
       "atmosphericLifetimeYears": 100,
       "snapStatus": "Production banned under the Montreal Protocol (US: 1996)"
     },
@@ -216,8 +210,6 @@
     "composition": [],
     "environmental": {
       "odp": 0.00012,
-      "gwp100Ar5": 1,
-      "gwp100Ar6": null,
       "atmosphericLifetimeYears": 0.06,
       "snapStatus": "Listed acceptable for use as a substitute for R-123 in centrifugal chillers"
     },
@@ -290,8 +282,6 @@
     "composition": [],
     "environmental": {
       "odp": 0.02,
-      "gwp100Ar5": 77,
-      "gwp100Ar6": 79,
       "atmosphericLifetimeYears": 1.3,
       "snapStatus": "HCFC; US production for new equipment ended 2020; servicing of existing equipment allowed with reclaimed/stockpiled supply"
     },
@@ -357,8 +347,6 @@
     "composition": [],
     "environmental": {
       "odp": 0.00034,
-      "gwp100Ar5": 1,
-      "gwp100Ar6": 4,
       "atmosphericLifetimeYears": 0.07,
       "snapStatus": "Listed acceptable for use as a substitute for R-123 in centrifugal chillers and as a foam blowing agent"
     },
@@ -421,8 +409,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": null,
-      "gwp100Ar6": 0.501,
       "atmosphericLifetimeYears": 0.029,
       "snapStatus": "Listed acceptable for mobile AC; class A2L — mildly flammable"
     },
@@ -485,8 +471,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": null,
-      "gwp100Ar6": 1.37,
       "atmosphericLifetimeYears": 0.045,
       "snapStatus": "Listed acceptable for chillers and commercial refrigeration; class A2L"
     },
@@ -546,8 +530,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": null,
-      "gwp100Ar6": 1.37,
       "atmosphericLifetimeYears": 0.045,
       "snapStatus": "Listed acceptable for chillers and commercial refrigeration; class A2L"
     },
@@ -606,8 +588,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": null,
-      "gwp100Ar6": null,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Specialty applications; high-temperature heat pumps"
     },
@@ -655,8 +635,6 @@
     "composition": [],
     "environmental": {
       "odp": 0.022,
-      "gwp100Ar5": 527,
-      "gwp100Ar6": 597,
       "atmosphericLifetimeYears": 5.9,
       "snapStatus": "HCFC; production phased out"
     },
@@ -718,8 +696,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 3500,
-      "gwp100Ar6": 3740,
       "atmosphericLifetimeYears": 28.2,
       "snapStatus": "AIM Act phase-down affected; primarily used as a blend component"
     },
@@ -770,8 +746,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2,
-      "gwp100Ar6": null,
       "atmosphericLifetimeYears": 0.001,
       "snapStatus": "Listed acceptable for industrial refrigeration; class A3 — highly flammable"
     },
@@ -832,8 +806,6 @@
     "composition": [],
     "environmental": {
       "odp": 1,
-      "gwp100Ar5": 14400,
-      "gwp100Ar6": 16200,
       "atmosphericLifetimeYears": 640,
       "snapStatus": "Production banned under the Montreal Protocol (US: 1996)"
     },
@@ -901,8 +873,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2,
-      "gwp100Ar6": 18,
       "atmosphericLifetimeYears": 0.07,
       "snapStatus": "Listed acceptable for chillers and heat pumps; foam blowing applications"
     },
@@ -982,8 +952,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 1430,
-      "gwp100Ar6": 1530,
       "atmosphericLifetimeYears": 14,
       "snapStatus": "AIM Act phase-down affected; SNAP-listed for declining set of applications"
     },
@@ -1044,8 +1012,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 4470,
-      "gwp100Ar6": 5810,
       "atmosphericLifetimeYears": 51,
       "snapStatus": "Primarily used as a blend component; AIM Act phase-down affected"
     },
@@ -1099,8 +1065,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 124,
-      "gwp100Ar6": 164,
       "atmosphericLifetimeYears": 1.5,
       "snapStatus": "Listed acceptable for some applications; class A2 — flammable, restricted use"
     },
@@ -1149,8 +1113,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 8830,
-      "gwp100Ar6": 9290,
       "atmosphericLifetimeYears": 2600,
       "snapStatus": "Very high GWP; restricted to specialty uses"
     },
@@ -1216,8 +1178,6 @@
     "composition": [],
     "environmental": {
       "odp": 0.055,
-      "gwp100Ar5": 1810,
-      "gwp100Ar6": 1960,
       "atmosphericLifetimeYears": 11.9,
       "snapStatus": "HCFC; US production for new equipment ended 2010; virgin production for service ended 2020 (Montreal Protocol)"
     },
@@ -1277,8 +1237,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 1370,
-      "gwp100Ar6": 1500,
       "atmosphericLifetimeYears": 11,
       "snapStatus": "Specialty uses"
     },
@@ -1331,8 +1289,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 9810,
-      "gwp100Ar6": 8060,
       "atmosphericLifetimeYears": 242,
       "snapStatus": "Fire suppression and specialty applications; high GWP under restriction"
     },
@@ -1389,8 +1345,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 1030,
-      "gwp100Ar6": 962,
       "atmosphericLifetimeYears": 7.9,
       "snapStatus": "Approved for organic Rankine cycle and low-pressure chillers; AIM Act phase-down affected"
     },
@@ -1449,8 +1403,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 3,
-      "gwp100Ar6": 0.072,
       "atmosphericLifetimeYears": 0.04,
       "snapStatus": "Listed acceptable for household refrigerators, freezers, and small commercial refrigeration with charge limits; class A3 — highly flammable"
     },
@@ -1516,8 +1468,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 675,
-      "gwp100Ar6": 771,
       "atmosphericLifetimeYears": 5.2,
       "snapStatus": "Listed acceptable for residential and light commercial AC; class A2L — mildly flammable, special handling required"
     },
@@ -1579,8 +1529,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 794,
-      "gwp100Ar6": 914,
       "atmosphericLifetimeYears": 8.7,
       "snapStatus": "Primarily foam blowing applications"
     },
@@ -1655,8 +1603,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 3922,
-      "gwp100Ar6": 4728,
       "atmosphericLifetimeYears": null,
       "snapStatus": "AIM Act phase-down affected; SNAP delisted for many new equipment categories"
     },
@@ -1736,8 +1682,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2107,
-      "gwp100Ar6": 2298,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for some commercial refrigeration; AIM Act phase-down affected"
     },
@@ -1820,8 +1764,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 1774,
-      "gwp100Ar6": 1908,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable; AIM Act phase-down affected"
     },
@@ -1897,8 +1839,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 1825,
-      "gwp100Ar6": 1990,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for commercial refrigeration; AIM Act phase-down affected"
     },
@@ -1983,8 +1923,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2088,
-      "gwp100Ar6": 2256,
       "atmosphericLifetimeYears": null,
       "snapStatus": "AIM Act phase-down affected; SNAP delisted for new residential AC equipment as of Jan 1, 2025"
     },
@@ -2062,8 +2000,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2346,
-      "gwp100Ar6": 2530,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
     },
@@ -2131,8 +2067,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2630,
-      "gwp100Ar6": 2820,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
     },
@@ -2203,8 +2137,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 3143,
-      "gwp100Ar6": 3370,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed for R-502 / R-22 retrofit (low-temp); AIM Act phase-down affected"
     },
@@ -2272,8 +2204,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2526,
-      "gwp100Ar6": 2710,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
     },
@@ -2344,8 +2274,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2729,
-      "gwp100Ar6": 2930,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
     },
@@ -2422,8 +2350,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2138,
-      "gwp100Ar6": 2370,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
     },
@@ -2509,8 +2435,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2265,
-      "gwp100Ar6": 2440,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed for R-22 retrofit; AIM Act phase-down affected"
     },
@@ -2591,8 +2515,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 1387,
-      "gwp100Ar6": 1421,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for commercial refrigeration; replacement for R-404A and R-22 in medium/low-temp applications"
     },
@@ -2673,8 +2595,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 1282,
-      "gwp100Ar6": 1430,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for commercial refrigeration; R-404A and R-22 replacement"
     },
@@ -2747,8 +2667,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 605,
-      "gwp100Ar6": 645,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable; commercial refrigeration and chillers"
     },
@@ -2835,8 +2753,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2140,
-      "gwp100Ar6": 2293,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for transport refrigeration; R-404A replacement"
     },
@@ -2914,8 +2830,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 698,
-      "gwp100Ar6": 766,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for residential and light commercial AC; class A2L"
     },
@@ -2987,8 +2901,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 466,
-      "gwp100Ar6": 532,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for residential and light commercial AC; class A2L — leading R-410A replacement in US for 2025+ equipment"
     },
@@ -3057,8 +2969,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 148,
-      "gwp100Ar6": 167,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for commercial refrigeration; class A2L; below EU F-Gas 150 threshold"
     },
@@ -3131,8 +3041,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 148,
-      "gwp100Ar6": 167,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for commercial refrigeration; class A2L; below EU F-Gas 150 threshold"
     },
@@ -3198,8 +3106,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 139,
-      "gwp100Ar6": 156,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Below EU F-Gas 150 threshold; commercial refrigeration applications"
     },
@@ -3258,8 +3164,6 @@
     ],
     "environmental": {
       "odp": 0.605,
-      "gwp100Ar5": 8077,
-      "gwp100Ar6": null,
       "atmosphericLifetimeYears": null,
       "snapStatus": "CFC blend; production banned under the Montreal Protocol (US: 1996)"
     },
@@ -3320,8 +3224,6 @@
     ],
     "environmental": {
       "odp": 0.221,
-      "gwp100Ar5": 4657,
-      "gwp100Ar6": null,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Production banned under the Montreal Protocol (R-115 component is a CFC)"
     },
@@ -3387,8 +3289,6 @@
     ],
     "environmental": {
       "odp": 0.599,
-      "gwp100Ar5": 13600,
-      "gwp100Ar6": null,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Production banned under the Montreal Protocol (R-13 is a CFC)"
     },
@@ -3462,8 +3362,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 3985,
-      "gwp100Ar6": 4775,
       "atmosphericLifetimeYears": null,
       "snapStatus": "AIM Act phase-down affected; SNAP delisted for many new commercial refrigeration categories"
     },
@@ -3542,8 +3440,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 631,
-      "gwp100Ar6": 673,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for chillers, commercial refrigeration, and heat pumps"
     },
@@ -3616,8 +3512,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 2,
-      "gwp100Ar6": null,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for low-pressure centrifugal chillers; replacement for R-123"
     },
@@ -3691,8 +3585,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 392,
-      "gwp100Ar6": 416,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for centrifugal chillers and medium-temp commercial refrigeration"
     },
@@ -3771,8 +3663,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 293,
-      "gwp100Ar6": 311,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for centrifugal chillers"
     },
@@ -3849,8 +3739,6 @@
     ],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 142,
-      "gwp100Ar6": 161,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable for some commercial refrigeration; below EU F-Gas 150 threshold"
     },
@@ -3908,8 +3796,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 3,
-      "gwp100Ar6": 0.005,
       "atmosphericLifetimeYears": 0.02,
       "snapStatus": "Listed acceptable for household refrigeration and small commercial; class A3 — highly flammable"
     },
@@ -3965,8 +3851,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 0,
-      "gwp100Ar6": 0,
       "atmosphericLifetimeYears": 0.01,
       "snapStatus": "Listed acceptable for industrial refrigeration; class B2L — toxic and mildly flammable"
     },
@@ -4021,8 +3905,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 1,
-      "gwp100Ar6": 1,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Listed acceptable broadly; the GWP=1 reference refrigerant"
     },
@@ -4081,8 +3963,6 @@
     "composition": [],
     "environmental": {
       "odp": 0,
-      "gwp100Ar5": 10300,
-      "gwp100Ar6": 9540,
       "atmosphericLifetimeYears": 3200,
       "snapStatus": "Specialty applications; very high GWP and atmospheric lifetime"
     },

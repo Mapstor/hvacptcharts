@@ -38,7 +38,7 @@ const ENTRIES: FeedEntry[] = [
   { title: "Superheat & Subcooling Fundamentals", url: "/superheat-subcooling-fundamentals/", summary: "TXV vs fixed-orifice target ranges + measurement methodology.", updated: "2026-06-09" },
   { title: "Refrigerant Comparison Guide", url: "/refrigerant-comparison-guide/", summary: "A1/A2L/A2/A3/B safety classifications + GWP/ODP framework + AIM Act compliance.", updated: "2026-06-09" },
   { title: "Refrigerant Safety Classifications", url: "/refrigerant-safety-classifications/", summary: "All 60 refrigerants sortable by ASHRAE 34 safety class.", updated: "2026-06-09" },
-  { title: "Refrigerant GWP Rankings", url: "/refrigerant-gwp-rankings/", summary: "Refrigerants ranked by Global Warming Potential (AIM Act 700 GWP threshold marked).", updated: "2026-06-09" },
+  { title: "Refrigerant GWP Rankings", url: "/refrigerant-gwp-rankings/", summary: "Refrigerants ranked by 100-year GWP on the US EPA basis, with IPCC AR4/AR5/AR6 columns.", updated: "2026-06-09" },
   { title: "High Head Pressure Causes", url: "/high-head-pressure-causes/", summary: "8-root-cause decision tree for high-side pressure problems.", updated: "2026-06-09" },
 ];
 

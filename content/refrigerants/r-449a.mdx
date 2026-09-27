@@ -1,7 +1,7 @@
 ---
 slug: r-449a
 title: "R-449A Pressure Temperature Chart & Properties"
-introOneLiner: "Quaternary HFC/HFO blend marketed as Chemours Opteon XP40 — A1 safety, GWP 1397 (65% lower than R-404A), ~10°F glide. The Chemours competitor to Honeywell's R-448A for R-404A drop-in retrofit."
+introOneLiner: "Quaternary HFC/HFO blend marketed as Chemours Opteon XP40 — A1 safety, GWP 1396 (65% lower than R-404A), ~10°F glide. The Chemours competitor to Honeywell's R-448A for R-404A drop-in retrofit."
 
 sources:
   - id: ashrae34
@@ -42,10 +42,9 @@ keyStats:
     context: Quaternary HFC/HFO blend
     sourceId: ashrae34
   - label: GWP (100-yr)
-    value: "1397"
-    unit: IPCC AR5
+    value: "1396"
+    unit: "100-yr"
     context: Approximately 65% reduction from R-404A (3922)
-    sourceId: ipccar5
   - label: ODP
     value: "0"
     context: All components are zero-ODP
@@ -80,9 +79,9 @@ narrative:
     - "Supermarket refrigeration retrofit where Chemours equipment supply chain is established"
 
   phaseDownStatus: |
-    R-449A faces the same regulatory positioning as R-448A. GWP 1397 is substantially below R-404A's 3922 but above the EU F-Gas 150-GWP threshold for some commercial refrigeration categories [eufgas].
+    R-449A faces the same regulatory positioning as R-448A. GWP 1396 is substantially below R-404A's 3922 but above the EU F-Gas 150-GWP threshold for some commercial refrigeration categories [eufgas].
 
-    For existing R-404A installations through the late 2020s, R-449A remains a dominant A1 retrofit choice alongside R-448A. For new equipment requiring very-low GWP compliance, A2L alternatives (R-454C, R-455A at 148) or R-744 (CO₂, GWP 1) are required.
+    For existing R-404A installations through the late 2020s, R-449A remains a dominant A1 retrofit choice alongside R-448A. For new equipment requiring very-low GWP compliance, A2L alternatives (R-454C, R-455A at 146) or R-744 (CO₂, GWP 1) are required.
 
   serviceNotes: |
     POE oil required — same lubricant family as R-404A, so R-404A retrofit to R-449A typically does NOT require oil change. The 10°F temperature glide affects service measurement — use dew curve for superheat, bubble curve for subcooling.
@@ -100,7 +99,7 @@ faqs:
     a: |
       Both are A1 HFC/HFO blends marketed as R-404A retrofit refrigerants. R-448A (Honeywell Solstice N40) is quinary (5 components including R-1234ze). R-449A (Chemours Opteon XP40) is quaternary (4 components, no R-1234ze).
 
-      Performance is essentially equivalent — GWP 1387 vs 1397, both A1, both POE oil, both ~10°F glide, both ~5% below R-404A pressure across the range. The choice between them is typically driven by manufacturer brand preference and equipment OEM specification.
+      Performance is essentially equivalent — GWP 1386 vs 1396, both A1, both POE oil, both ~10°F glide, both ~5% below R-404A pressure across the range. The choice between them is typically driven by manufacturer brand preference and equipment OEM specification.
 
   - q: "Can I retrofit R-404A to R-449A without changing oil?"
     a: |
@@ -108,9 +107,9 @@ faqs:
 
       Verify oil condition before retrofit. If POE is degraded (moisture, acidity, color change), replace as part of the retrofit. But oil family compatibility is preserved across R-404A → R-449A transition.
 
-  - q: "What does R-449A's GWP of 1397 mean?"
+  - q: "What does R-449A's GWP of 1396 mean?"
     a: |
-      A 1 kg release of R-449A traps approximately 1,397 times more heat over 100 years than 1 kg of CO₂ (IPCC AR5, mass-weighted from the four components) [ipccar5]. The 1397 figure represents a ~65% reduction from R-404A's 3922.
+      A 1 kg release of R-449A traps approximately 1,396 times more heat over 100 years than 1 kg of CO₂ (mass-weighted from the four components) [ipccar5]. The 1396 figure represents a ~65% reduction from R-404A's 3922.
 
       The reduction is significant but not enough to clear EU F-Gas 150-GWP threshold for strictest commercial refrigeration categories. R-449A is a transitional refrigerant.
 
@@ -130,7 +129,7 @@ faqs:
 
   - q: "Which is better, R-448A or R-449A?"
     a: |
-      Neither is meaningfully better than the other for typical commercial refrigeration retrofit applications. R-448A has marginally lower GWP (1387 vs 1397) but the 10-point difference is not operationally significant. R-449A has slightly simpler composition (4 components vs 5) which marginally simplifies blend manufacturing.
+      Neither is meaningfully better than the other for typical commercial refrigeration retrofit applications. R-448A has marginally lower GWP (1386 vs 1396) but the 10-point difference is not operationally significant. R-449A has slightly simpler composition (4 components vs 5) which marginally simplifies blend manufacturing.
 
       Equipment OEM specification typically determines which one any installation uses. Honeywell-aligned OEMs lean toward R-448A; Chemours-aligned OEMs lean toward R-449A.
 
@@ -160,9 +159,9 @@ R-449A component roles:
 - **R-32 (24.3%, GWP 675)** — primary capacity contributor and pressure-envelope tuning
 - **R-125 (24.7%, GWP 3500)** — flammability suppressor for A1 classification
 - **R-134a (25.7%, GWP 1430)** — pressure tuning and capacity
-- **R-1234yf (25.3%, GWP 4)** — primary GWP-diluting HFO
+- **R-1234yf (25.3%, GWP 1)** — primary GWP-diluting HFO
 
-The mass-weighted GWP: 0.243 × 675 + 0.247 × 3500 + 0.257 × 1430 + 0.253 × 4 = 164 + 864 + 368 + 1 = 1397 [ipccar5]. R-125 is the GWP-heavy component but necessary for A1 flammability suppression — the same engineering trade-off as R-448A.
+The mass-weighted GWP: 0.243 × 675 + 0.247 × 3500 + 0.257 × 1430 + 0.253 × 1 = 164 + 864 + 368 + 0.3 = 1396 [ipccar5]. R-125 is the GWP-heavy component but necessary for A1 flammability suppression — the same engineering trade-off as R-448A.
 
 </TechSection>
 
@@ -176,13 +175,13 @@ The ~5% reduction below R-404A pressures is small enough to fall within R-404A e
 
 </TechSection>
 
-<TechSection icon="globe" tone="emerald" title="GWP 1397 — same ~65% reduction as R-448A">
+<TechSection icon="globe" tone="emerald" title="GWP 1396 — same ~65% reduction as R-448A">
 
-R-449A's GWP of 1397 is essentially equivalent to R-448A's 1387 (10-point difference, statistically meaningless for regulatory purposes). Both blends provide approximately 65% GWP reduction from R-404A's 3922 [ipccar5].
+R-449A's GWP of 1396 is essentially equivalent to R-448A's 1386 (10-point difference, statistically meaningless for regulatory purposes). Both blends provide approximately 65% GWP reduction from R-404A's 3922 [ipccar5].
 
-The reduction comes from the R-1234yf component (25.3% of R-449A by mass), which has GWP 4. Diluting the R-404A-class HFC majority with R-1234yf is the primary GWP-reduction mechanism in the entire R-448A/R-449A class of retrofit blends.
+The reduction comes from the R-1234yf component (25.3% of R-449A by mass), which has GWP 1. Diluting the R-404A-class HFC majority with R-1234yf is the primary GWP-reduction mechanism in the entire R-448A/R-449A class of retrofit blends.
 
-For regulatory compliance, R-449A faces the same constraints as R-448A. Both clear EPA AIM Act commercial refrigeration thresholds for most categories through the 2020s. Both fall above EU F-Gas 150-GWP threshold for the strictest categories. The long-term low-GWP destination remains A2L (R-454C, R-455A at 148) or R-744 (CO₂, GWP 1).
+For regulatory compliance, R-449A faces the same constraints as R-448A. Both clear EPA AIM Act commercial refrigeration thresholds for most categories through the 2020s. Both fall above EU F-Gas 150-GWP threshold for the strictest categories. The long-term low-GWP destination remains A2L (R-454C, R-455A at 146) or R-744 (CO₂, GWP 1).
 
 </TechSection>
 
@@ -235,7 +234,7 @@ R-449A occupies the R-404A retrofit niche alongside R-448A. For existing R-404A 
 
 The retrofit economics are favorable. The procedure is operationally simple, requires no equipment-level redesign, and preserves the existing lubricant. R-449A capacity matches R-404A within 5%; system efficiency is comparable; service technicians need only the dew/bubble curve discipline adjustment for the ~10°F glide.
 
-The long-term trajectory is replacement with A2L (R-454C, R-455A at 148 GWP) or R-744 transcritical (GWP 1) for new equipment. R-449A bridges the gap for existing R-404A equipment through the 2020s; new equipment installations from 2026+ increasingly specify the low-GWP A2L alternatives.
+The long-term trajectory is replacement with A2L (R-454C, R-455A at 146 GWP) or R-744 transcritical (GWP 1) for new equipment. R-449A bridges the gap for existing R-404A equipment through the 2020s; new equipment installations from 2026+ increasingly specify the low-GWP A2L alternatives.
 
 For service technicians, R-449A work is operationally interchangeable with R-448A — same safety class, same lubricant, same pressure envelope, same glide handling. Field practice can be standardized across both blends.
 

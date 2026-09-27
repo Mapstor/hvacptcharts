@@ -1,7 +1,7 @@
 ---
 slug: r-450a
 title: "R-450A Pressure Temperature Chart & Properties"
-introOneLiner: "Near-azeotropic R-134a/R-1234ze(E) blend (42/58 mass) marketed as Honeywell Solstice N13 — A1 safety, GWP 605 (~58% lower than R-134a), very small glide. The Honeywell alternative to Chemours R-513A for R-134a chiller drop-in retrofit."
+introOneLiner: "Near-azeotropic R-134a/R-1234ze(E) blend (42/58 mass) marketed as Honeywell Solstice N13 — A1 safety, GWP 601 (~58% lower than R-134a), very small glide. The Honeywell alternative to Chemours R-513A for R-134a chiller drop-in retrofit."
 
 sources:
   - id: ashrae34
@@ -42,10 +42,9 @@ keyStats:
     context: Binary near-azeotropic HFC/HFO blend
     sourceId: ashrae34
   - label: GWP (100-yr)
-    value: "605"
-    unit: IPCC AR5
+    value: "601"
+    unit: "100-yr"
     context: Approximately 58% reduction from R-134a (1430)
-    sourceId: ipccar5
   - label: ODP
     value: "0"
     context: Zero-ODP HFC + HFO components
@@ -72,7 +71,7 @@ narrative:
   whatItIs: |
     R-450A is a near-azeotropic binary blend of 42% R-134a (HFC) and 58% R-1234ze(E) (HFO) by mass [ashrae34]. The near-azeotropic composition produces very small temperature glide (~1.1°F) — service-equivalent to a pure refrigerant for practical measurement purposes.
 
-    R-450A was developed by Honeywell as a near-drop-in retrofit for R-134a centrifugal chillers and commercial refrigeration. The R-1234ze(E) component (GWP 7) is different from R-513A's R-1234yf component (GWP 4) but serves the same role: diluting the blend's overall GWP while preserving A1 safety classification and operational compatibility with R-134a equipment.
+    R-450A was developed by Honeywell as a near-drop-in retrofit for R-134a centrifugal chillers and commercial refrigeration. The R-1234ze(E) component is different from R-513A's R-1234yf component but serves the same role: diluting the blend's overall GWP while preserving A1 safety classification and operational compatibility with R-134a equipment.
 
   whereItsUsed:
     - "R-134a centrifugal chiller retrofit"
@@ -81,9 +80,9 @@ narrative:
     - "New chiller equipment installations where A1 classification is preferred"
 
   phaseDownStatus: |
-    R-450A's GWP of 605 is below the EPA AIM Act 700-GWP threshold for residential AC. For chiller and commercial refrigeration applications, R-450A provides moderate GWP reduction with A1 safety preservation [aimact][eufgas].
+    R-450A's GWP of 601 is below the EPA AIM Act 700-GWP threshold for residential AC. For chiller and commercial refrigeration applications, R-450A provides moderate GWP reduction with A1 safety preservation [aimact][eufgas].
 
-    Like R-513A, R-450A is a transitional refrigerant for R-134a equipment retrofit. New chiller equipment increasingly specifies R-515B (A1, GWP 287) or R-1234ze(E) (A2L, GWP 7) for lower long-term GWP positioning.
+    Like R-513A, R-450A is a transitional refrigerant for R-134a equipment retrofit. New chiller equipment increasingly specifies R-515B (A1, GWP 287) or R-1234ze(E) (A2L, GWP 1) for lower long-term GWP positioning.
 
   serviceNotes: |
     POE oil required — same lubricant family as R-134a, so R-134a retrofit to R-450A typically does NOT require oil change. The near-azeotropic composition (~1.1°F glide) is small enough that service measurement procedures from R-134a practice apply without modification.
@@ -99,17 +98,17 @@ faqs:
 
   - q: "What's the difference between R-450A and R-513A?"
     a: |
-      Both are A1 near-azeotropic HFC/HFO blends marketed as R-134a chiller retrofits. R-450A (Honeywell Solstice N13) uses R-134a/R-1234ze(E) 42/58, GWP 605, ~1.1°F glide. R-513A (Chemours Opteon XP10) uses R-134a/R-1234yf 44/56, GWP 631, azeotropic (~0°F glide).
+      Both are A1 near-azeotropic HFC/HFO blends marketed as R-134a chiller retrofits. R-450A (Honeywell Solstice N13) uses R-134a/R-1234ze(E) 42/58, GWP 601, ~1.1°F glide. R-513A (Chemours Opteon XP10) uses R-134a/R-1234yf 44/56, GWP 630, azeotropic (~0°F glide).
 
-      R-450A has slightly lower GWP (605 vs 631) and uses R-1234ze(E) (slightly higher GWP individually than R-1234yf but lower vapor pressure). R-513A has slightly higher pressure envelope match to R-134a. The choice between them is typically driven by manufacturer relationship.
+      R-450A has slightly lower GWP (601 vs 630) and uses R-1234ze(E) (slightly higher GWP individually than R-1234yf but lower vapor pressure). R-513A has slightly higher pressure envelope match to R-134a. The choice between them is typically driven by manufacturer relationship.
 
   - q: "Can I retrofit R-134a to R-450A without oil change?"
     a: |
       Yes — both refrigerants use POE oil. Standard retrofit procedure: recover R-134a, replace filter-drier, evacuate to 500 microns, recharge R-450A by weight to OEM nameplate.
 
-  - q: "What does R-450A's GWP of 605 mean?"
+  - q: "What does R-450A's GWP of 601 mean?"
     a: |
-      A 1 kg release of R-450A traps approximately 605 times more heat over 100 years than 1 kg of CO₂ (IPCC AR5, mass-weighted from 42% R-134a × 1430 + 58% R-1234ze(E) × 7) [ipccar5]. The 605 figure represents a ~58% reduction from R-134a's 1430.
+      A 1 kg release of R-450A traps approximately 601 times more heat over 100 years than 1 kg of CO₂ (mass-weighted from 42% R-134a × 1430 + 58% R-1234ze(E) × 1) [ipccar5]. The 601 figure represents a ~58% reduction from R-134a's 1430.
 
   - q: "Does R-450A have temperature glide?"
     a: |
@@ -149,9 +148,9 @@ R-450A's near-azeotropic behavior means R-134a service procedures apply without 
 
 <TechSection icon="composition" tone="purple" title="The 42/58 R-134a/R-1234ze(E) composition with R-450A vs R-513A differentiation">
 
-R-450A combines R-134a (42%, GWP 1430, A1) and R-1234ze(E) (58%, GWP 7, A2L) in near-azeotropic proportions. The mass-weighted GWP: 0.42 × 1430 + 0.58 × 7 = 600 + 4 = 605 [ipccar5].
+R-450A combines R-134a (42%, GWP 1430, A1) and R-1234ze(E) (58%, GWP 1, A2L) in near-azeotropic proportions. The mass-weighted GWP: 0.42 × 1430 + 0.58 × 1 = 600 + 1 = 601 [ipccar5].
 
-The R-1234ze(E) component differentiates R-450A from R-513A. R-1234ze(E) has slightly higher GWP than R-1234yf (7 vs 4 per IPCC AR5) but lower vapor pressure, producing a blend with slightly lower operating pressure than R-513A. The composition trade-offs:
+The R-1234ze(E) component differentiates R-450A from R-513A. R-1234ze(E) has marginally higher GWP than R-1234yf but lower vapor pressure, producing a blend with slightly lower operating pressure than R-513A. The composition trade-offs:
 
 - R-450A pressure envelope sits slightly below R-134a's
 - R-513A pressure envelope sits slightly above R-134a's
@@ -168,11 +167,11 @@ The lower pressure profile is mildly beneficial for chiller centrifugal compress
 
 </TechSection>
 
-<TechSection icon="globe" tone="emerald" title="GWP 605 — slightly lower than R-513A, same regulatory positioning">
+<TechSection icon="globe" tone="emerald" title="GWP 601 — slightly lower than R-513A, same regulatory positioning">
 
-R-450A's GWP of 605 is approximately 4% below R-513A's 631 and 58% below R-134a's 1430 [ipccar5]. The GWP reduction is marginally better than R-513A but operationally insignificant for regulatory compliance — both clear EPA AIM Act 700-GWP threshold and face similar EU F-Gas Regulation positioning.
+R-450A's GWP of 601 is approximately 5% below R-513A's 630 and 58% below R-134a's 1430 [ipccar5]. The GWP reduction is marginally better than R-513A but operationally insignificant for regulatory compliance — both clear EPA AIM Act 700-GWP threshold and face similar EU F-Gas Regulation positioning.
 
-For very-low-GWP chiller applications, R-515B (A1, GWP 287) and R-1234ze(E) (A2L, GWP 7) are the destinations beyond R-450A and R-513A. R-450A is a transitional refrigerant for R-134a equipment retrofit through the late 2020s.
+For very-low-GWP chiller applications, R-515B (A1, GWP 287) and R-1234ze(E) (A2L, GWP 1) are the destinations beyond R-450A and R-513A. R-450A is a transitional refrigerant for R-134a equipment retrofit through the late 2020s.
 
 </TechSection>
 
@@ -223,7 +222,7 @@ For end-user operators with established Honeywell or Chemours relationships acro
 
 R-450A occupies the R-134a chiller retrofit niche alongside R-513A. For existing R-134a centrifugal chillers and commercial refrigeration equipment with substantial remaining service life, R-450A provides ~58% GWP reduction with A1 safety preservation, POE oil compatibility, and operational simplicity.
 
-For new chiller equipment, the trajectory is toward lower-GWP alternatives. R-515B (A1, GWP 287) for A1 new equipment with substantial GWP reduction; R-1234ze(E) (A2L, GWP 7) for very-low-GWP applications with A2L-rated equipment.
+For new chiller equipment, the trajectory is toward lower-GWP alternatives. R-515B (A1, GWP 287) for A1 new equipment with substantial GWP reduction; R-1234ze(E) (A2L, GWP 1) for very-low-GWP applications with A2L-rated equipment.
 
 For service technicians, R-450A work is operationally interchangeable with R-134a and R-513A work. Field practice can be standardized across all three refrigerants. The retrofit transition is the easiest of any major HFC retrofit category.
 

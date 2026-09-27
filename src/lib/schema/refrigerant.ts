@@ -7,7 +7,7 @@
  * Per docs/spec/06-SCHEMA_INVENTORY.md §Page type 1.
  */
 
-import type { Refrigerant } from "@/data/refrigerants";
+import { gwpText, type Refrigerant } from "@/data/refrigerants";
 import type { FAQ } from "@/lib/mdx";
 import { contentDates } from "@/lib/content-dates";
 import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE } from "./shared";
@@ -19,7 +19,7 @@ function oneLineDescription(r: Refrigerant): string {
           .map((c) => `${(c.massFraction * 100).toFixed(c.massFraction * 100 < 10 ? 1 : 0)}% ${c.component}`)
           .join("/")
       : null;
-  const gwpPart = r.environmental.gwp100Ar5 !== null ? `GWP ${r.environmental.gwp100Ar5} (AR5)` : null;
+  const gwpPart = `GWP ${gwpText(r.environmental.gwp.headline)} (100-yr)`;
   const odpPart = r.environmental.odp !== null && r.environmental.odp !== 0 ? `ODP ${r.environmental.odp}` : null;
 
   const head =

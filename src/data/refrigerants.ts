@@ -93,17 +93,56 @@ export type PhysicalProperties = z.infer<typeof PhysicalProperties>;
 
 /* ─────────────── ENVIRONMENTAL ─────────────── */
 
+/**
+ * One GWP cell: a 100-yr value plus the source key it came from
+ * (data/reference/gwp-reference.json "sources"). Value is normally a number;
+ * IPCC AR5 lists some low-GWP fluids as "<1", carried through verbatim.
+ */
+export const GwpCell = z.object({
+  value: z.union([z.number(), z.literal("<1")]),
+  source: z.string(),
+});
+export type GwpCell = z.infer<typeof GwpCell>;
+
+/**
+ * 100-yr GWP on four bases. `headline` is the value US EPA uses (AIM Act
+ * exchange value = IPCC AR4 for regulated HFCs; 40 CFR 84.64(b) for HFOs/
+ * hydrocarbons/NH3/CO2; IPCC AR4 for CFC/HCFC/PFC; blends summed per
+ * 84.64(b)). `ar4`/`ar5`/`ar6` are the raw IPCC assessment-report values —
+ * null when the report does not list the substance (or, for a blend, when any
+ * constituent is missing from that report). See data/reference/gwp-reference.json.
+ */
+export const Gwp = z.object({
+  headline: GwpCell,
+  ar4: GwpCell.nullable(),
+  ar5: GwpCell.nullable(),
+  ar6: GwpCell.nullable(),
+  /** Substance-specific caveat shown verbatim (e.g. propane's indirect GWP). */
+  note: z.string().optional(),
+});
+export type Gwp = z.infer<typeof Gwp>;
+
 export const Environmental = z.object({
   /** Ozone Depletion Potential. R-11 = 1.0 (reference); HFCs = 0. Null only when no published figure exists for a specialty refrigerant. */
   odp: z.number().nullable(),
-  /** Global Warming Potential, 100-year, IPCC AR5 — the EPA / AIM Act figure. */
-  gwp100Ar5: z.number().nullable(),
-  /** IPCC AR6 100-year value if different. */
-  gwp100Ar6: z.number().nullable(),
+  /** 100-yr GWP on the US EPA headline basis plus IPCC AR4/AR5/AR6. */
+  gwp: Gwp,
   atmosphericLifetimeYears: z.number().nullable(),
   snapStatus: z.string().nullable(),
 });
 export type Environmental = z.infer<typeof Environmental>;
+
+/** Numeric form of a GWP cell for sorting / colour thresholds ("<1" → 0.5). */
+export function gwpNum(cell: GwpCell | null | undefined): number | null {
+  if (cell == null) return null;
+  return cell.value === "<1" ? 0.5 : cell.value;
+}
+
+/** Display string for a GWP cell ("<1" kept; numbers as-is). */
+export function gwpText(cell: GwpCell | null | undefined): string {
+  if (cell == null) return "not assessed";
+  return cell.value === "<1" ? "<1" : String(cell.value);
+}
 
 export const LubricantCompatibility = z.object({
   compatible: z.array(Lubricant),

@@ -9,7 +9,7 @@ const SLUG = "r-404a-vs-r-449a";
 export const metadata: Metadata = pageMetadata({
   title: "R404A vs R449A: Key Differences Explained (Pressure, GWP, Oil)",
   description:
-    "R404A vs R449A for commercial refrigeration: R449A is the HFO/HFC quaternary retrofit. Same POE oil, 9.5°F glide, GWP cut 67% (3922→1282). Standard retrofit.",
+    "R404A vs R449A for commercial refrigeration: R449A is the HFO/HFC quaternary retrofit. Same POE oil, 9.5°F glide, GWP cut 64% (3922→1396). Standard retrofit.",
   path: "/r-404a-vs-r-449a/",
 });
 

@@ -325,7 +325,7 @@ export default function SafetyClassificationsPage() {
             The AIM Act phase-down forces residential AC away from R-410A (A1, GWP 2088).
             The only sub-700 GWP refrigerants that satisfy residential AC&apos;s pressure
             envelope and equipment design constraints are A2L: R-32 (GWP 675, A2L) and
-            R-454B (GWP 466, A2L). There&apos;s no A1 path forward at sub-700 GWP — the
+            R-454B (GWP 465, A2L). There&apos;s no A1 path forward at sub-700 GWP — the
             chemistry of low-GWP refrigerants intrinsically includes mild flammability.
           </p>
           <KeyInsight tone="amber" icon="insight" title="First mainstream A1 → A2L shift in HVAC history">

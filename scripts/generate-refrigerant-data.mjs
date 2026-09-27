@@ -17,6 +17,17 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import cp from "coolprop-node/src/cp.js";
+import { gwpForSlug } from "./reference/compute_gwp.mjs";
+
+// Provenance label for dataSource.gwpSource, from the headline GWP basis.
+const GWP_SOURCE_LABEL = {
+  aim_app_a: "AIM Act exchange value = IPCC AR4 (40 CFR 84 Appendix A)",
+  cfr_84_64b: "US EPA, 40 CFR 84.64(b)",
+  ipcc_ar4: "IPCC AR4 Table 2.14",
+  ipcc_ar5: "IPCC AR5 Table 8.A.1",
+};
+const gwpSourceLabel = (slug, info) =>
+  `${GWP_SOURCE_LABEL[gwpForSlug(slug, info).headline.source] ?? "US EPA basis"} (100-yr); AR4/AR5/AR6 in the gwp object`;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -329,7 +340,7 @@ async function main() {
           ptChartGeneratedAt: new Date().toISOString(),
           ptChartVerifiedAgainst: info.verifiedAgainst ?? [],
           propertiesSource: info.propertiesSource ?? "CoolProp 8.0.0",
-          gwpSource: info.gwpSource ?? "IPCC AR5",
+          gwpSource: gwpSourceLabel(slug, info),
           dataStatus: "complete",
           engine: "CoolProp",
           engineVersion: precomputed.engineVersion ?? "8.0.0",
@@ -364,7 +375,15 @@ async function main() {
         tradeNames: info.tradeNames ?? [],
         composition: info.composition ?? [],
         physical,
-        environmental: info.environmental,
+        // GWP now comes from data/reference/gwp-reference.json (headline on the
+        // US EPA basis + IPCC AR4/AR5/AR6), computed for blends from the
+        // composition. The config's odp / lifetime / SNAP fields pass through.
+        environmental: {
+          odp: info.environmental.odp,
+          gwp: gwpForSlug(slug, info),
+          atmosphericLifetimeYears: info.environmental.atmosphericLifetimeYears,
+          snapStatus: info.environmental.snapStatus,
+        },
         lubricants: info.lubricants,
         applications: info.applications,
         replacementOptions: info.replacementOptions ?? [],
@@ -380,7 +399,7 @@ async function main() {
           ptChartGeneratedAt: new Date().toISOString(),
           ptChartVerifiedAgainst: info.verifiedAgainst ?? [],
           propertiesSource: info.propertiesSource ?? "CoolProp + ASHRAE 34",
-          gwpSource: info.gwpSource ?? "IPCC AR5",
+          gwpSource: gwpSourceLabel(slug, info),
           ...(dataStatus && { dataStatus }),
           ...(primarySources && { primarySources }),
         },

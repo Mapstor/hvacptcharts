@@ -304,8 +304,8 @@ export default function HomePage() {
             <FeatureCard
               icon={<Leaf className="h-5 w-5" />}
               accent="green"
-              title="IPCC AR5 GWP"
-              body="The figure EPA uses for the AIM Act 700-GWP threshold. AR6 values shown where they differ meaningfully."
+              title="GWP (100-yr)"
+              body="100-year GWP on the basis US EPA uses (AIM Act exchange values / 40 CFR 84.64(b) / IPCC AR4), with IPCC AR4, AR5 and AR6 shown alongside."
             />
             <FeatureCard
               icon={<EyeOff className="h-5 w-5" />}
