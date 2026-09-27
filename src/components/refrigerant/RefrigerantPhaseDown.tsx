@@ -45,7 +45,7 @@ function NoMilestonesNotice({ slug }: { slug: string }) {
   let reason: React.ReactNode;
   let category: "low-gwp" | "natural" | "not-yet-regulated" | "pending-documentation";
 
-  if (gwp !== null && gwp <= 10 && (isHydrocarbon || isHfo)) {
+  if (gwp !== null && gwp < 10 && (isHydrocarbon || isHfo)) {
     category = isHydrocarbon ? "natural" : "low-gwp";
     reason = (
       <>

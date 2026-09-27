@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -22,6 +21,7 @@ import { ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { TypeChip } from "@/components/refrigerant/TypeChip";
 import { RefrigerantBrowser } from "@/components/home/RefrigerantBrowser";
+import { RefrigerantAZList } from "@/components/refrigerant/RefrigerantAZList";
 
 const HERO_SLUGS = ["r-410a", "r-22", "r-134a", "r-32", "r-404a", "r-454b"];
 
@@ -179,8 +179,8 @@ export default function HomePage() {
           </ul>
         </section>
 
-        {/* Find a refrigerant — searchable browser */}
-        <section className="border-y border-zinc-200 bg-zinc-50/60 py-14 dark:border-zinc-800 dark:bg-zinc-900/40">
+        {/* Find a refrigerant — searchable browser + server-rendered A–Z index */}
+        <section id="find" className="scroll-mt-16 border-y border-zinc-200 bg-zinc-50/60 py-14 dark:border-zinc-800 dark:bg-zinc-900/40">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <SectionHeading
               icon={<ListChecks className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />}
@@ -188,9 +188,15 @@ export default function HomePage() {
               sub={`All ${refrigerants.length} refrigerants in the dataset. Filter by type, safety class, GWP bucket, or search by name / trade name / chemistry.`}
             />
             <div className="mt-7">
-              <Suspense fallback={<div className="h-32 animate-pulse rounded-md bg-zinc-100 dark:bg-zinc-900" />}>
-                <RefrigerantBrowser />
-              </Suspense>
+              <RefrigerantBrowser />
+            </div>
+
+            <div className="mt-12 border-t border-zinc-200 pt-8 dark:border-zinc-800">
+              <h3 className="text-lg font-semibold tracking-tight">All refrigerants A–Z</h3>
+              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                Every refrigerant PT chart, grouped by chemical family.
+              </p>
+              <RefrigerantAZList className="mt-6" />
             </div>
           </div>
         </section>

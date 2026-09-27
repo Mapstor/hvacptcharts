@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { refrigerants, gwpNum, gwpText, type RefrigerantType, type SafetyClass } from "@/data/refrigerants";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { typeLabel } from "@/components/refrigerant/TypeChip";
@@ -42,11 +42,17 @@ const FILTER_BTN_ACTIVE = "border-zinc-900 bg-zinc-900 text-white dark:border-zi
 const FILTER_BTN_IDLE = "border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800";
 
 export function RefrigerantBrowser() {
-  const sp = useSearchParams();
   const router = useRouter();
 
-  const initialQuery = sp.get("q") ?? "";
-  const [query, setQuery] = useState(initialQuery);
+  // Default (server + first client render) shows all refrigerants, so every
+  // link ships in the static HTML. The ?q= deep-link is read AFTER mount from
+  // window.location — reading it via useSearchParams() would force this subtree
+  // to bail out of static prerendering and ship an empty skeleton to crawlers.
+  const [query, setQuery] = useState("");
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("q");
+    if (q) setQuery(q);
+  }, []);
   const [typeFilter, setTypeFilter] = useState<RefrigerantType | "all">("all");
   const [safetyFilter, setSafetyFilter] = useState<SafetyClass | "all">("all");
   const [gwpFilter, setGwpFilter] = useState<typeof GWP_OPTIONS[number]["id"]>("all");

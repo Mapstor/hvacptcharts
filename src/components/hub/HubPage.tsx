@@ -68,6 +68,8 @@ export interface HubPageProps {
   route: string;
   /** Optional sources/provenance footer text. */
   sourcesNote?: string;
+  /** Optional server-rendered A–Z index block (e.g. <RefrigerantAZList/>). */
+  azList?: React.ReactNode;
 }
 
 export function HubPage({
@@ -84,6 +86,7 @@ export function HubPage({
   crosslinks,
   route,
   sourcesNote,
+  azList,
 }: HubPageProps) {
   const pageUrl = `${SITE_URL}/${path}/`;
   const { published, updated } = contentDates(route);
@@ -193,6 +196,16 @@ export function HubPage({
             </section>
           ))}
         </div>
+
+        {azList ? (
+          <section className="mt-12">
+            <h2 className="mb-1 text-xl font-semibold">All refrigerants A–Z</h2>
+            <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400">
+              Every refrigerant PT chart, grouped by chemical family.
+            </p>
+            {azList}
+          </section>
+        ) : null}
 
         {learningPaths && learningPaths.length > 0 ? (
           <section className="mt-12 rounded-xl border border-blue-200 bg-blue-50/40 p-5 dark:border-blue-900/40 dark:bg-blue-950/20">

@@ -108,6 +108,15 @@ function extract(html, headers) {
     const abs = norm(href);
     if (abs && sameHost(abs)) outLinks.add(abs);
   });
+  // Links inside the crawl-nav blocks (A–Z lists, per-template "Related" blocks
+  // marked data-crawl-block). Check (i) requires each to resolve 200-in-one-hop.
+  const blockLinks = new Set();
+  $("[data-crawl-block] a[href]").each((_, el) => {
+    const href = $(el).attr("href");
+    if (!href || href.startsWith("mailto:") || href.startsWith("tel:")) return;
+    const abs = norm(href);
+    if (abs && sameHost(abs)) blockLinks.add(abs);
+  });
   // visible text (drop scripts/styles)
   $("script, style, template, noscript").remove();
   const body = $("body").text().replace(/\s+/g, " ").trim();
@@ -119,7 +128,7 @@ function extract(html, headers) {
   const blanks = [];
   const unitRe = /(?:[—–]\s*(?:PSIG|psig|psia|°F|°C|inHg)\b)|\bNaN\b|\[object Object\]/g;
   let mm; while ((mm = unitRe.exec(body)) !== null) blanks.push(body.slice(Math.max(0, mm.index - 30), mm.index + 12).trim());
-  return { title, desc, canonical, robots, googlebot, h1, jsonldParses, types: [...types], dateModified, outLinks: [...outLinks], updated, words, xRobots: headers.get("x-robots-tag") || "", blanks };
+  return { title, desc, canonical, robots, googlebot, h1, jsonldParses, types: [...types], dateModified, outLinks: [...outLinks], blockLinks: [...blockLinks], updated, words, xRobots: headers.get("x-robots-tag") || "", blanks };
 }
 
 let processed = 0;
@@ -136,6 +145,7 @@ while (queue.length) {
     // also crawl the final URL of any redirect for content
   } else {
     rec.outLinks = [];
+    rec.blockLinks = [];
   }
   records.set(url, rec);
   if (finalUrl !== url && !enqueued.has(finalUrl)) { enqueued.add(finalUrl); queue.push(finalUrl); }
@@ -157,14 +167,26 @@ for (const r of [...records.values()].sort((a, b) => a.url.localeCompare(b.url))
 const outCsv = path.join(ROOT, "docs", "seo-fixes", `${OUT}-crawl.csv`);
 fs.writeFileSync(outCsv, rows.join("\n") + "\n");
 
-// ── checks a–f ──
-const fail = { a: [], b: [], c: [], d: [], e: [], f: [] };
+// ── checks a–i ──
+const fail = { a: [], b: [], c: [], d: [], e: [], f: [], g: [], h: [], i: [] };
 const cdKey = (u) => { const p = toPath(u); return p.endsWith("/") ? p : p + "/"; };
+// Indexable = self-canonical 200 HTML, not robots-noindex, not a dev/internal
+// path. NB: unlike check (c) — which additionally requires !isSitemap to find
+// pages MISSING from the sitemap — g/h target the real indexable pages, which
+// ARE in the sitemap, so isSitemap must NOT be excluded here.
+const isIndexable = (r) =>
+  r.finalStatus === 200 && (r.ct || "").includes("text/html") &&
+  !/noindex/i.test(r.robots || "") && r.url === r.finalUrl && !/^\/(dev|_)/.test(toPath(r.url));
 for (const r of records.values()) {
   // (a) internal links must resolve to a 200 in one hop (no 3xx/404/410/missing slash)
   for (const l of (r.outLinks || [])) {
     const t = records.get(l);
     if (t && t.initialStatus !== 200) fail.a.push(`${toPath(r.url)} → ${toPath(l)} [${t.initialStatus}${t.chain.length ? " " + t.chain.join(" ") : ""}]`);
+  }
+  // (i) links inside the new nav/related blocks must also resolve 200-in-one-hop
+  for (const l of (r.blockLinks || [])) {
+    const t = records.get(l);
+    if (t && t.initialStatus !== 200) fail.i.push(`${toPath(r.url)} (block) → ${toPath(l)} [${t.initialStatus}${t.chain.length ? " " + t.chain.join(" ") : ""}]`);
   }
   if (r.isSitemap) {
     // (b) sitemap URL: 200, self-canonical, not noindex, has content-dates, lastmod==updated
@@ -194,11 +216,31 @@ for (const r of records.values()) {
   // (e) blank computed values
   if (r.blanks && r.blanks.length) fail.e.push(`${toPath(r.url)}: ${[...new Set(r.blanks)].slice(0,3).join(" | ")}`);
 }
+// (g) the homepage and the PT hub must each link EVERY indexable refrigerant page
+const indexableRefrUrls = new Set(
+  [...records.values()].filter((r) => isIndexable(r) && toPath(r.url).startsWith("/refrigerant/")).map((r) => r.url),
+);
+for (const [label, u] of [["/", norm(`${BASE}/`)], ["/pt-charts-tools-hub/", norm(`${BASE}/pt-charts-tools-hub/`)]]) {
+  const rec = records.get(u);
+  if (!rec || rec.finalStatus !== 200) { fail.g.push(`${label}: not reachable (status ${rec ? rec.finalStatus : "missing"})`); continue; }
+  const linked = new Set(rec.outLinks || []);
+  const missing = [...indexableRefrUrls].filter((x) => !linked.has(x)).map(toPath).sort();
+  if (missing.length) fail.g.push(`${label}: server HTML missing links to ${missing.length}/${indexableRefrUrls.size} indexable refrigerant pages (${missing.slice(0, 5).join(", ")}${missing.length > 5 ? ", …" : ""})`);
+}
+
+// (h) every indexable refrigerant page needs >= 3 inbound internal links
+const refrInbound = [...indexableRefrUrls].map((u) => ({ p: toPath(u), n: inbound.get(u) || 0 }));
+for (const { p, n } of [...refrInbound].sort((a, b) => a.n - b.n)) if (n < 3) fail.h.push(`${p}: ${n} inbound`);
+const inCounts = refrInbound.map((x) => x.n).sort((a, b) => a - b);
+const medianOf = (arr) => (arr.length ? (arr.length % 2 ? arr[(arr.length - 1) / 2] : (arr[arr.length / 2 - 1] + arr[arr.length / 2]) / 2) : 0);
+const refrInboundStats = { pages: inCounts.length, min: inCounts[0] ?? 0, median: medianOf(inCounts), max: inCounts.at(-1) ?? 0 };
+
 const uniq = (a) => [...new Set(a)];
 for (const k of Object.keys(fail)) fail[k] = uniq(fail[k]);
 
 const summary = {
   base: BASE, urlsCrawled: records.size, sitemapUrls: sitemapSet.size,
+  refrigerantInbound: refrInboundStats,
   checks: Object.fromEntries(Object.entries(fail).map(([k, v]) => [k, v.length])),
   fail,
 };
@@ -209,7 +251,8 @@ fs.writeFileSync(path.join(ROOT, "docs", "seo-fixes", `${OUT}-crawl-findings.jso
 const CRAWL_FLOOR = Math.max(100, sitemapSet.size - 5);
 const belowFloor = records.size < CRAWL_FLOOR || sitemapSet.size < 100;
 console.log(`[crawl] node ${process.version} — crawled ${records.size} URLs, ${sitemapSet.size} in sitemap (floor ${CRAWL_FLOOR}). CSV → ${path.relative(ROOT, outCsv)}`);
-for (const [k, label] of [["a", "internal link not 200-in-one-hop"], ["b", "sitemap URL issues"], ["c", "indexable 200 missing from sitemap"], ["d", "JSON-LD parse / dateModified mismatch"], ["e", "blank computed values"], ["f", "sitemap orphans (0 inbound)"]]) {
+console.log(`[inbound] indexable /refrigerant/ pages: ${refrInboundStats.pages}; min ${refrInboundStats.min}, median ${refrInboundStats.median}, max ${refrInboundStats.max} inbound internal links`);
+for (const [k, label] of [["a", "internal link not 200-in-one-hop"], ["b", "sitemap URL issues"], ["c", "indexable 200 missing from sitemap"], ["d", "JSON-LD parse / dateModified mismatch"], ["e", "blank computed values"], ["f", "sitemap orphans (0 inbound)"], ["g", "homepage/PT-hub missing indexable refrigerant links"], ["h", "indexable refrigerant page with <3 inbound links"], ["i", "new-block link not 200-in-one-hop"]]) {
   console.log(`\n[${k}] ${label}: ${fail[k].length}`);
   for (const line of fail[k].slice(0, 40)) console.log(`   ${line}`);
   if (fail[k].length > 40) console.log(`   … +${fail[k].length - 40} more`);

@@ -54,6 +54,7 @@ import {
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { loadWhatPressure } from "@/lib/mdx-what-pressure";
+import { findComparisonsForRefrigerant } from "@/lib/mdx-comparison";
 import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { SystemGaugesDiagram } from "@/components/diagrams/SystemGaugesDiagram";
 import { getGaugeOperatingPoint } from "@/data/gauge-operating-points";
@@ -69,6 +70,10 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
   const fm = mdx.frontmatter;
   const r = getRefrigerant(fm.refrigerantSlug);
   if (!r) notFound();
+
+  // Every pair comparison that includes this refrigerant — surfaced in the
+  // Related block below with descriptive anchors (no ?query URLs).
+  const comparisons = findComparisonsForRefrigerant(r.slug);
 
   const pageUrl = `${SITE_URL}/what-pressure-should-${id}/`;
   const schemaGraph = buildSchema(pageUrl, fm, r, id);
@@ -473,10 +478,12 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
           </section>
         ) : null}
 
-        <section className="mb-10 grid gap-3 sm:grid-cols-3">
+        <section className="mb-10">
+          <h2 className="mb-3 text-xl font-semibold">Related</h2>
+          <div data-crawl-block className="grid gap-3 sm:grid-cols-3">
           <Link href={`/refrigerant/${r.slug}/`} className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
-            <h3 className="text-sm font-semibold">{r.displayName} full reference</h3>
-            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Saturation chart, properties, retrofit guidance.</p>
+            <h3 className="text-sm font-semibold">{r.displayName} PT chart</h3>
+            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Full reference: saturation chart, properties, retrofit guidance.</p>
           </Link>
           <Link href="/superheat-calculator/" className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
             <h3 className="text-sm font-semibold">Superheat Calculator</h3>
@@ -512,6 +519,17 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
               <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Fixed-orifice target SH by WB × DB.</p>
             </Link>
           ) : null}
+          {comparisons.map((c) => {
+            const partnerSlug = c.refrigerantA === r.slug ? c.refrigerantB : c.refrigerantA;
+            const partner = getRefrigerant(partnerSlug);
+            return (
+              <Link key={c.slug} href={`/${c.slug}/`} className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+                <h3 className="text-sm font-semibold">{r.displayName} vs {partner ? partner.displayName : partnerSlug}</h3>
+                <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Side-by-side pressure, GWP, safety, and retrofit comparison.</p>
+              </Link>
+            );
+          })}
+          </div>
         </section>
 
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">

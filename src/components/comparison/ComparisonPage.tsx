@@ -59,6 +59,7 @@ import {
 } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import type { ComparisonFrontmatter } from "@/lib/mdx-comparison";
+import { findWhatPressureForRefrigerant } from "@/lib/mdx-what-pressure";
 
 const SERIES_COLORS = ["var(--c-bubble)", "var(--c-safe-a3)"];
 
@@ -112,6 +113,11 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
       </article>
     );
   }
+
+  // What-pressure pages exist for only a subset of refrigerants; link them in
+  // the Related block only when present. NB: the route id is not the slug.
+  const wpA = findWhatPressureForRefrigerant(a.slug);
+  const wpB = findWhatPressureForRefrigerant(b.slug);
 
   const retrofitFeasible = fm.retrofitFeasible ?? deriveRetrofitFeasibility(a, b);
   // Transition/retrofit direction: default A → B, but B → A when the slug lists
@@ -368,15 +374,30 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
           </section>
         ) : null}
 
-        <section className="mb-10 grid gap-3 sm:grid-cols-2">
-          <Link href={`/refrigerant/${a.slug}/`} className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
-            <h3 className="text-sm font-semibold">{a.displayName} full reference</h3>
-            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">PT chart, properties, retrofit guidance.</p>
-          </Link>
-          <Link href={`/refrigerant/${b.slug}/`} className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
-            <h3 className="text-sm font-semibold">{b.displayName} full reference</h3>
-            <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">PT chart, properties, retrofit guidance.</p>
-          </Link>
+        <section className="mb-10">
+          <h2 className="mb-3 text-xl font-semibold">Related</h2>
+          <div data-crawl-block className="grid gap-3 sm:grid-cols-2">
+            <Link href={`/refrigerant/${a.slug}/`} className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+              <h3 className="text-sm font-semibold">{a.displayName} PT chart</h3>
+              <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Full reference: PT chart, properties, retrofit guidance.</p>
+            </Link>
+            <Link href={`/refrigerant/${b.slug}/`} className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+              <h3 className="text-sm font-semibold">{b.displayName} PT chart</h3>
+              <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Full reference: PT chart, properties, retrofit guidance.</p>
+            </Link>
+            {wpA ? (
+              <Link href={`/what-pressure-should-${wpA}/`} className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+                <h3 className="text-sm font-semibold">{a.displayName} operating pressures</h3>
+                <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Suction/discharge ranges by ambient + diagnostic procedure.</p>
+              </Link>
+            ) : null}
+            {wpB ? (
+              <Link href={`/what-pressure-should-${wpB}/`} className="rounded-lg border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
+                <h3 className="text-sm font-semibold">{b.displayName} operating pressures</h3>
+                <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Suction/discharge ranges by ambient + diagnostic procedure.</p>
+              </Link>
+            ) : null}
+          </div>
         </section>
 
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">

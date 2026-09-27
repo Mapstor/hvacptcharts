@@ -1250,7 +1250,7 @@ function RelatedResources({
       title={`More on ${displayName}`}
       number="12"
     >
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-2" data-crawl-block>
         {pairs.length > 0 ? (
           <ResourceGroup
             icon={<GitCompareArrows className="h-4 w-4" />}
@@ -1282,9 +1282,9 @@ function RelatedResources({
         ) : null}
 
         <ResourceGroup icon={<Calculator className="h-4 w-4" />} label="Calculators" tone="blue">
-          <ResourceLink href={`/pt-calculator/?refrigerant=${slug}`} label={`${displayName} PT calculator`} />
-          <ResourceLink href={`/superheat-calculator/?refrigerant=${slug}`} label={`${displayName} superheat`} />
-          <ResourceLink href={`/subcooling-calculator/?refrigerant=${slug}`} label={`${displayName} subcooling`} />
+          <ResourceLink href="/pt-calculator/" label="PT calculator" sub={`Bidirectional T ↔ P lookup (${displayName} selectable)`} />
+          <ResourceLink href="/superheat-calculator/" label="Superheat calculator" />
+          <ResourceLink href="/subcooling-calculator/" label="Subcooling calculator" />
           <ResourceLink href="/refrigerant-retrofit-compatibility-calculator/" label="Retrofit compatibility" />
         </ResourceGroup>
 
@@ -1303,9 +1303,6 @@ function RelatedResources({
           ) : null}
           {slug === "r-22" ? (
             <ResourceLink href="/r22-superheat-chart/" label="R-22 superheat chart" sub="Target SH by WB × DB matrix" />
-          ) : null}
-          {slug === "r-12" || slug === "r-134a" ? (
-            <ResourceLink href="/r-12-vs-r-134a/" label="R-12 vs R-134a" sub="Retrofit path, oil change, charge rule" />
           ) : null}
         </ResourceGroup>
       </div>

@@ -1,10 +1,31 @@
 import type { Metadata } from "next";
 import { refrigerants, gwpText } from "@/data/refrigerants";
 import { HubPage } from "@/components/hub/HubPage";
+import { RefrigerantAZList } from "@/components/refrigerant/RefrigerantAZList";
+import { listWhatPressureIds, loadWhatPressure } from "@/lib/mdx-what-pressure";
 import { pageMetadata } from "@/lib/schema/shared";
 
 
 const POPULAR_SLUGS = ["r-410a", "r-22", "r-134a", "r-32", "r-404a", "r-454b", "r-407c", "r-1234yf"];
+
+// All 11 operating-pressure ("what pressure should X be") pages, linked with a
+// descriptive "R-XXX operating pressures" anchor (not the old "What pressure
+// should X be?" placeholder). Built from the what-pressure MDX registry so it
+// stays complete as pages are added.
+const WHAT_PRESSURE_ITEMS: Array<{ href: string; label: string; blurb: string }> = listWhatPressureIds()
+  .map((id) => {
+    const wp = loadWhatPressure(id);
+    if (!wp) return null;
+    const r = refrigerants.find((x) => x.slug === wp.frontmatter.refrigerantSlug);
+    if (!r) return null;
+    return {
+      href: `/what-pressure-should-${id}/`,
+      label: `${r.displayName} operating pressures`,
+      blurb: wp.frontmatter.introOneLiner,
+    };
+  })
+  .filter((x): x is { href: string; label: string; blurb: string } => x !== null)
+  .sort((a, b) => a.label.localeCompare(b.label, "en", { numeric: true }));
 
 export const metadata: Metadata = pageMetadata({
   title: "PT Charts For 60 Refrigerants: Tables, Tools, PDFs (Free)",
@@ -54,8 +75,8 @@ export default function PTChartsToolsHubPage() {
         {
           situation: "Operating pressure reference for a service call",
           href: "/what-pressure-should-410a/",
-          toolLabel: "What pressure should X be?",
-          reasoning: "Per-refrigerant operating pressure ranges with diagnostic procedure (R-410A, R-22, R-32, R-454B, R-454C, R-134a, R-1234yf mobile A/C, R-449A Opteon XP40 retrofit, R-404a, R-407c, R-744).",
+          toolLabel: "R-410A operating pressures",
+          reasoning: "Per-refrigerant operating pressure ranges with diagnostic procedure (R-410A, R-22, R-32, R-454B, R-454C, R-134a, R-1234yf mobile A/C, R-449A Opteon XP40 retrofit, R-404A, R-407C, R-744) — all 11 linked below.",
         },
         {
           situation: "Looking up GWP for AIM Act compliance",
@@ -83,7 +104,7 @@ export default function PTChartsToolsHubPage() {
           items: popularItems,
         },
         {
-          heading: "Comparison and operating-pressure tools",
+          heading: "Comparison tools",
           items: [
             { href: "/refrigerant-pt-comparison-tool/", label: "PT Comparison Tool", blurb: "Overlay 2-4 refrigerants on one chart. Useful for retrofit feasibility scans." },
             { href: "/r-32-vs-r-410a/", label: "R-32 vs R-410A", blurb: "Side-by-side written comparison, the residential AC phase-down decision." },
@@ -95,12 +116,12 @@ export default function PTChartsToolsHubPage() {
             { href: "/r-22-vs-r-438a/", label: "R-22 vs MO99 (R-438A)", blurb: "Chemours mineral-oil-compatible R-22 retrofit — no oil change required in most systems." },
             { href: "/r-404a-vs-r-448a/", label: "R-404A vs R-448A", blurb: "Honeywell Solstice N40 R-404A retrofit — 65% GWP cut, A1 preserved." },
             { href: "/r-448a-vs-r-449a/", label: "R-448A vs R-449A", blurb: "Honeywell N40 vs Chemours XP40 — the two dominant A1 R-404A retrofits." },
-            { href: "/what-pressure-should-r22/", label: "R-22 operating pressures", blurb: "Operating pressure ranges by ambient + diagnostic HowTo guide." },
-            { href: "/what-pressure-should-410a/", label: "R-410A operating pressures", blurb: "Operating pressure ranges + A1-vs-A2L handling distinction." },
-            { href: "/what-pressure-should-r32/", label: "R-32 operating pressures", blurb: "A2L-specific operating ranges with handling notes." },
-            { href: "/what-pressure-should-r1234yf/", label: "R-1234yf operating pressures (mobile A/C)", blurb: "Indexed by ambient × engine RPM. EPA Section 609, SAE J2843, cross-contamination scenario." },
-            { href: "/what-pressure-should-r449a/", label: "R-449A operating pressures (Opteon XP40 retrofit)", blurb: "Commercial refrigeration retrofit from R-404A. Dew/bubble glide rule, phantom-undercharge scenario, 2026 EPA Tech Transitions threshold." },
           ],
+        },
+        {
+          heading: "Operating-pressure references — all 11",
+          description: "Typical suction and discharge pressures by ambient, with a diagnostic procedure, for every refrigerant that has a dedicated operating-pressure page.",
+          items: WHAT_PRESSURE_ITEMS,
         },
         {
           heading: "Charging charts",
@@ -228,6 +249,7 @@ Common integrations: HVAC service apps, training simulators, equipment OEM inter
         { href: "/calculators-hub/", label: "Calculators" },
         { href: "/guides-hub/", label: "Guides" },
       ]}
+      azList={<RefrigerantAZList />}
     />
   );
 }
