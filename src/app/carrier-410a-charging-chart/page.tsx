@@ -656,13 +656,13 @@ export default function CarrierChargingChartPage() {
               <li>{CARRIER_TRADEMARK_NOTICE}</li>
             </ul>
             <p className="mt-3">
-              <strong>R-410A saturation pressures:</strong> generated from CoolProp 7.2.0 with the HEOS backend (REFPROP-compatible Helmholtz equation of state for R-410A, based on Lemmon et al. 2003). Values are accurate to ±0.5% across the operating range (−40°F to +150°F). The verified PT data behind every pressure on this page lives at <Link href="/refrigerant/r-410a/" className="underline">our R-410A reference page</Link> and is downloadable as <Link href="/data/refrigerant/r-410a/csv/" className="underline">CSV</Link> or <Link href="/data/refrigerant/r-410a/json/" className="underline">JSON</Link> under CC BY 4.0.
+              <strong>R-410A saturation pressures:</strong> generated from CoolProp 7.2.0 with the HEOS backend (REFPROP-compatible Helmholtz equation of state for R-410A, based on Lemmon et al. 2003) across the operating range (−40°F to +150°F). The verified PT data behind every pressure on this page lives at <Link href="/refrigerant/r-410a/" className="underline">our R-410A reference page</Link> and is downloadable as <Link href="/data/refrigerant/r-410a/csv/" className="underline">CSV</Link> or <Link href="/data/refrigerant/r-410a/json/" className="underline">JSON</Link> under CC BY 4.0.
             </p>
             <p className="mt-3">
               <strong>Design approach assumptions:</strong> the 95°F outdoor dry-bulb design point is the AHRI Standard 210/240 cooling rating condition. The 17°F evaporator approach (indoor WB to saturated suction) and the condenser approach (outdoor DB to saturated condensing) are residential design rules of thumb, not chart values. The condenser approach runs 15–25°F; this chart uses the 25°F high end, and high-efficiency units run nearer the 15°F low end. Actual approaches vary with equipment age, coil sizing, and airflow.
             </p>
             <p className="mt-3">
-              <strong>Charging procedure references:</strong> ASHRAE Handbook of Refrigeration 2022 (Chapter 28, Refrigerant Charge) and the EPA Section 608 certification handbook for refrigerant handling requirements.
+              <strong>Charging procedure references:</strong> ASHRAE Handbook—Refrigeration (2022), “Equipment and System Dehydrating, Charging, and Testing”, and the EPA Section 608 certification handbook for refrigerant handling requirements.
             </p>
             <p className="mt-3">
               <strong>What this page is not:</strong> not a substitute for the specific equipment&apos;s installation manual or data-plate-stamped charging instructions. When the OEM chart for the unit being serviced is available (typically on a sticker inside the access panel or in the installation manual PDF), use that chart instead — it&apos;s tuned to that specific coil, orifice, and system design.

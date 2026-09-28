@@ -134,8 +134,9 @@ export default function GwpRankingsPage() {
           </p>
           <ul>
             <li>
-              <strong>HCFCs (ozone-depleting):</strong> R-22 (1810), R-123 (77). Production stopped in developed
-              countries in 2020; R-22 service continues from reclaimed stock.
+              <strong>HCFCs (ozone-depleting):</strong> R-22 (1810), R-123 (77). R-22: US production and import ended
+              January 1, 2020, and service continues from reclaimed stock. R-123: production for servicing existing
+              equipment continues until January 1, 2030.
             </li>
             <li>
               <strong>HFCs (high-GWP, no ozone depletion):</strong> R-410A (2088), R-134a (1430), R-404A (3922),
@@ -189,10 +190,10 @@ export default function GwpRankingsPage() {
           <h2>Lifetime context — why GWP tracks atmospheric persistence</h2>
           <p>
             Atmospheric lifetime is one of the three inputs to GWP (with radiative efficiency and the integration
-            horizon) and often the dominant one. On the US EPA headline basis: R-23 has a ~222-year lifetime and GWP
-            14,800; R-125 ~28 years and GWP 3,500; R-134a ~13 years and GWP 1,430; R-32 ~4.9 years and GWP 675;
-            R-1234yf ~11 days and GWP 1. The collapse from R-134a to R-1234yf comes almost entirely from the shorter
-            atmospheric lifetime — the basis of HFO chemistry.
+            horizon) and often the dominant one. Per IPCC AR5 WG1 Table 8.A.1: HFC-23 has a 222-year lifetime;
+            HFC-125, 28.2 years; HFC-134a, 13.4 years; HFC-32, 5.2 years; HFO-1234yf, 10.5 days. The collapse from
+            HFC-134a to HFO-1234yf comes almost entirely from the shorter atmospheric lifetime — the basis of HFO
+            chemistry.
           </p>
 
           <h2>International regulatory landscape</h2>
@@ -216,6 +217,15 @@ export default function GwpRankingsPage() {
               </li>
             ))}
           </ul>
+          <p className="mt-3">
+            <strong>Atmospheric lifetimes</strong> are from IPCC AR5 WG1 Table 8.A.1 (not the US EPA basis used for
+            the headline GWP column).
+          </p>
+          <p className="mt-2">
+            <strong>ODP for the near-zero HCFOs.</strong> R-1233zd(E): 0.00024–0.00034 per EPA SNAP Determination 29
+            (October 21, 2014); the table shows the conservative upper bound, 0.00034. R-1224yd(Z): 0.00012 per EPA
+            SNAP Determination 35 (84 FR 64765, November 25, 2019).
+          </p>
         </footer>
       </article>
     </>

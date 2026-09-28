@@ -130,7 +130,7 @@ export default function SubcoolingCalculatorPage() {
         formula:
           "Subcooling (°F) = T_sat(P_liquid) − T_liquid_line\n\nT_sat is read off the BUBBLE curve at the measured liquid pressure for zeotropic blends. For pure refrigerants and azeotropes, bubble ≡ dew, so the curve choice is moot.",
         sourceCitation:
-          "Saturation temperatures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Target subcooling per equipment manufacturer service literature (Carrier, Trane, Lennox, Daikin, Goodman), ASHRAE Handbook of Refrigeration 2022 (Chapter 23), and ASHRAE HVAC Systems & Equipment 2024 (Chapter 43, chillers).",
+          "Saturation temperatures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Target subcooling per equipment manufacturer service literature (Carrier, Trane, Lennox, Daikin, Goodman), the ASHRAE Handbook—Refrigeration (2022), “Equipment and System Dehydrating, Charging, and Testing”, and the ASHRAE Handbook—HVAC Systems and Equipment (2024), “Liquid-Chilling Systems”.",
         workedExample: `R-410A residential AC TXV system, 95°F outdoor:\n  Liquid pressure: 380 PSIG\n  Liquid-line temperature: 100°F\n  Saturation temperature at 380 PSIG: ${workedSat.toFixed(1)}°F (CoolProp 7.2.0)\n  Subcooling = ${workedSat.toFixed(1)} − 100 = ${(workedSat - 100).toFixed(1)}°F\n\nAt the top of the typical 8-12°F TXV target range. TXV systems are charged BY subcooling — adjust refrigerant in 1-2 oz increments until SC lands on target (usually 10°F).`,
       }}
       relatedTools={[
@@ -238,10 +238,10 @@ function RichContent() {
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Residential AC, TXV (R-410A, R-32, R-454B)</td><td className="py-1.5 text-right font-mono tabular-nums">8-12°F</td><td className="py-1.5 text-xs">Carrier, Trane, Lennox, Daikin OEM</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Heat pump, cooling mode</td><td className="py-1.5 text-right font-mono tabular-nums">8-15°F</td><td className="py-1.5 text-xs">Carrier / Trane heat-pump service guides</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Heat pump, heating mode (indoor coil = condenser)</td><td className="py-1.5 text-right font-mono tabular-nums">8-15°F</td><td className="py-1.5 text-xs">Carrier / Trane heat-pump service guides</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in cooler (medium-temp)</td><td className="py-1.5 text-right font-mono tabular-nums">5-15°F</td><td className="py-1.5 text-xs">ASHRAE Handbook of Refrigeration 2022 Ch. 23</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in freezer (low-temp)</td><td className="py-1.5 text-right font-mono tabular-nums">5-15°F</td><td className="py-1.5 text-xs">ASHRAE Handbook of Refrigeration 2022 Ch. 23</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in cooler (medium-temp)</td><td className="py-1.5 text-right font-mono tabular-nums">5-15°F</td><td className="py-1.5 text-xs">ASHRAE Handbook—Refrigeration (2022), “Charging &amp; Testing”</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in freezer (low-temp)</td><td className="py-1.5 text-right font-mono tabular-nums">5-15°F</td><td className="py-1.5 text-xs">ASHRAE Handbook—Refrigeration (2022), “Charging &amp; Testing”</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Mini-split with long line set (&gt;50 ft)</td><td className="py-1.5 text-right font-mono tabular-nums">12-15°F</td><td className="py-1.5 text-xs">Mitsubishi, Daikin, LG line-set adjustment tables</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Centrifugal chiller at condenser exit</td><td className="py-1.5 text-right font-mono tabular-nums">2-5°F</td><td className="py-1.5 text-xs">ASHRAE HVAC Systems &amp; Equipment 2024 Ch. 43</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Centrifugal chiller at condenser exit</td><td className="py-1.5 text-right font-mono tabular-nums">2-5°F</td><td className="py-1.5 text-xs">ASHRAE Handbook—HVAC Systems and Equipment (2024), “Liquid-Chilling Systems”</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Refrigerated transport (high SC for distance)</td><td className="py-1.5 text-right font-mono tabular-nums">15-25°F</td><td className="py-1.5 text-xs">Carrier Transicold service literature</td></tr>
                 <tr><td className="py-1.5">Mobile AC (R-1234yf, R-134a)</td><td className="py-1.5 text-right font-mono tabular-nums">5-10°F</td><td className="py-1.5 text-xs">SAE J2912 (MAC service procedures)</td></tr>
               </tbody>
@@ -299,13 +299,13 @@ function RichContent() {
             Always check approach before adjusting charge.
           </li>
           <li>
-            <strong>Ignoring line-set length on mini-splits.</strong> Long line sets
+            <strong>Ignoring line-set length on mini-splits.</strong>{" "}Long line sets
             (&gt;50 ft) require higher SC at the outdoor unit to deliver adequate SC at the
             indoor TXV. Mitsubishi, Daikin, LG, and Fujitsu all publish line-length
             correction tables — use them.
           </li>
           <li>
-            <strong>Reading before steady state.</strong> Subcooling stabilizes 10-20
+            <strong>Reading before steady state.</strong>{" "}Subcooling stabilizes 10-20
             minutes after compressor start. Brief transient values after defrost or cycle
             changes aren&apos;t charge-decision data — wait for steady state.
           </li>
@@ -367,15 +367,16 @@ function RichContent() {
           <li>
             <strong>CoolProp 7.2.0</strong> (Bell, Wronski, Quoilin, Lemort 2014,
             doi:10.1021/ie4033999) — REFPROP-compatible Helmholtz EOS for all saturation
-            temperatures. Accuracy typically better than ±0.5% across operating range.
+            temperatures.
           </li>
           <li>
-            <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Chapter 23 (service
-            procedures), target subcooling by application for commercial refrigeration.
+            <strong>ASHRAE Handbook—Refrigeration (2022)</strong> — “Equipment and System
+            Dehydrating, Charging, and Testing” (service procedures; target subcooling by
+            application for commercial refrigeration).
           </li>
           <li>
-            <strong>ASHRAE HVAC Systems &amp; Equipment 2024</strong> — Chapter 43 (chillers),
-            centrifugal chiller subcooling targets and condenser approach.
+            <strong>ASHRAE Handbook—HVAC Systems and Equipment (2024)</strong> — “Liquid-Chilling
+            Systems” (centrifugal chiller subcooling targets) and “Condensers” (condenser approach).
           </li>
           <li>
             <strong>EPA Section 608 (40 CFR Part 82 Subpart F)</strong> — refrigerant
@@ -512,7 +513,7 @@ function TargetSCBars() {
         );
       })}
       <text x={W / 2} y={H - 8} textAnchor="middle" fontSize="10" fill="currentColor" opacity={0.7}>
-        Source: ASHRAE Handbook of Refrigeration 2022, ASHRAE HVAC S&amp;E 2024, OEM literature.
+        Source: ASHRAE Handbook—Refrigeration (2022), ASHRAE HVAC S&amp;E 2024, OEM literature.
       </text>
     </svg>
   );

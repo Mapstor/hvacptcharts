@@ -389,7 +389,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
                 apparent subcooling.
               </li>
               <li>
-                <strong>Reading before steady state.</strong> Allow 10-20 minutes after
+                <strong>Reading before steady state.</strong>{" "}Allow 10-20 minutes after
                 compressor start for pressures and temperatures to stabilize.
               </li>
               <li>

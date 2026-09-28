@@ -217,11 +217,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
               <StatBox
                 icon={<Waves className="h-4 w-4" />}
                 label="Temperature glide"
-                value={
-                  r.physical.hasSignificantGlide
-                    ? Math.abs(r.physical.temperatureGlideF).toFixed(1)
-                    : "≈0"
-                }
+                value={Math.abs(r.physical.temperatureGlideF).toFixed(1)}
                 unit="°F"
                 tone={r.physical.hasSignificantGlide ? "purple" : "neutral"}
               />

@@ -333,12 +333,12 @@ export default function ComparisonGuidePage() {
             <strong>Global warming potential (GWP)</strong> measures the integrated radiative forcing of a molecule
             relative to CO₂ (defined as GWP 1.0) over a 100-year time horizon. GWP varies enormously across
             refrigerants: R-744 (CO₂) at 1, R-1234yf at 4, R-32 at 675, R-410A at 2088, R-404A at 3922, R-23 at 14800,
-            R-c318 at 10300. The EPA AIM Act and EU F-Gas Regulation phase down HFCs based on GWP thresholds.
+            R-C318 at 10300. The EPA AIM Act and EU F-Gas Regulation phase down HFCs based on GWP thresholds.
           </p>
           <p>
             <strong>Atmospheric lifetime</strong> is the average residence time of a molecule before atmospheric
             removal (typically OH-radical attack for HFCs). Lifetime directly drives GWP — longer lifetime means more
-            cumulative warming. Most HFCs have lifetimes of 5-50 years. PFCs (perfluorocarbons like R-218, R-c318) have
+            cumulative warming. Most HFCs have lifetimes of 5-50 years. PFCs (perfluorocarbons like R-218, R-C318) have
             lifetimes of 2000-50000 years because their fully-fluorinated structure resists atmospheric removal. CFCs
             and HCFCs have intermediate lifetimes (R-22 ~12 years, R-13 ~640 years).
           </p>
@@ -591,7 +591,7 @@ export default function ComparisonGuidePage() {
             <li>EPA SNAP — Significant New Alternatives Policy acceptable-use designations</li>
             <li>EU F-Gas Regulation 517/2014 (revised 2024) — EU HFC phase-down framework</li>
             <li>Montreal Protocol and Kigali Amendment — international ozone and HFC regulation</li>
-            <li>ASHRAE Handbook of Refrigeration 2022 — application-specific guidance and operating ranges</li>
+            <li>ASHRAE Handbook—Refrigeration (2022) — application-specific guidance and operating ranges</li>
             <li>Manufacturer technical literature (Honeywell, Chemours, Daikin, Carrier, Trane, Johnson Controls) for product-specific data</li>
           </ul>
           <p className="mt-3">All numerical values cited in tables are computed at build time from the verified refrigerant dataset (data/refrigerants.json, generated from CoolProp). Generated {PUBLISHED.slice(0, 10)}.</p>

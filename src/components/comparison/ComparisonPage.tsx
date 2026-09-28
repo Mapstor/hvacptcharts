@@ -829,7 +829,7 @@ function TransitionProcedure({ a, b }: { a: Refrigerant; b: Refrigerant }) {
       <Panel title={`Field-service transition procedure (${a.displayName} → ${b.displayName})`} icon={CalcIcon}>
         <ol className="list-decimal pl-5 text-sm space-y-2">
           <li>
-            <strong>EPA Section 608 leak-check first.</strong> Verify the existing system
+            <strong>EPA Section 608 leak-check first.</strong>{" "}Verify the existing system
             isn&apos;t leaking before any work. If it&apos;s leaking, find and repair the
             leak — adding refrigerant (existing or new) to a leaking system violates 40 CFR
             Part 82.

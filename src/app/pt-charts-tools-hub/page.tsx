@@ -4,6 +4,7 @@ import { HubPage } from "@/components/hub/HubPage";
 import { RefrigerantAZList } from "@/components/refrigerant/RefrigerantAZList";
 import { listWhatPressureIds, loadWhatPressure } from "@/lib/mdx-what-pressure";
 import { pageMetadata } from "@/lib/schema/shared";
+import { ptDataProvenance } from "@/lib/data-provenance";
 
 
 const POPULAR_SLUGS = ["r-410a", "r-22", "r-134a", "r-32", "r-404a", "r-454b", "r-407c", "r-1234yf"];
@@ -36,6 +37,7 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function PTChartsToolsHubPage() {
+  const prov = ptDataProvenance();
   const popularItems = POPULAR_SLUGS.map((slug) => {
     const r = refrigerants.find((x) => x.slug === slug);
     if (!r) return null;
@@ -144,7 +146,7 @@ export default function PTChartsToolsHubPage() {
           heading: "About the dataset",
           body: `The verified refrigerant dataset is the foundation under every page on this site. Each of the 60 refrigerants is represented by a single JSON record containing: ASHRAE 34 safety classification, refrigerant type, composition (mass fractions for blends), physical properties (boiling point, critical point, glide), environmental data (GWP on the US EPA basis plus IPCC AR4/AR5/AR6, ODP, atmospheric lifetime), lubricant compatibility, applications, replacement options, regulatory status, and a 191-row PT chart (-40°F to 150°F in 1°F increments).
 
-The PT chart is generated from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), a REFPROP-compatible Helmholtz EOS implementation. For 11 manufacturer-blend refrigerants not in CoolProp's reference library (R-448A, R-450A, R-1336mzz(Z), R-454C in blended-data mode, etc.), PT values come directly from the named manufacturer datasheets (Honeywell Solstice / Genetron, Chemours Opteon, Arkema Forane, AGC AMOLEA).
+The PT chart is generated from CoolProp, a REFPROP-compatible Helmholtz EOS implementation: ${prov.coolprop72} fluids on CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999) and ${prov.coolprop80} newer low-GWP fluids (R-450A, R-514A, R-515A/B, R-1224yd(Z), R-1336mzz(Z)) on CoolProp 8.0.0. For the ${prov.datasheet} R-404A retrofit blends CoolProp does not model — R-438A and R-448A — PT values come directly from the named manufacturer datasheets (Chemours ISCEON MO99, Honeywell Solstice N40).
 
 Every value is checked against reference values at build time. Safety class is stored as a fixed value — it's structurally impossible to render the wrong class for a refrigerant. PT values below the critical pressure are guaranteed to be non-negative; values above the critical temperature truncate rather than extrapolate.`,
         },
@@ -156,7 +158,7 @@ Every value is checked against reference values at build time. Safety class is s
 
 (2) Structure-level: every refrigerant record is validated at build time. PT values must be numbers (not text or blank). Safety class must be one of the ASHRAE 34 classes (A1, A2L, A2, A3, B1, B2L, B2, B3). GWP must be a non-negative number or blank (blank indicates no published value). Type must match a known refrigerant family.
 
-(3) Cross-check: PT values cross-checked against AHRI Standard 700-2019 specifications where available. Critical-point values cross-checked against NIST REFPROP 10.0. GWP headline values on the US EPA basis (40 CFR 84 / IPCC AR4), with IPCC AR4/AR5/AR6 shown alongside.
+(3) Cross-check: manufacturer-blend PT tables are checked against the published datasheet they were transcribed from; several CoolProp fluids are additionally cross-checked against the NIST WebBook and the ASHRAE Handbook—Refrigeration (each refrigerant record lists what its chart was verified against). Critical-point values cross-checked against NIST REFPROP 10.0. GWP headline values on the US EPA basis (40 CFR 84 / IPCC AR4), with IPCC AR4/AR5/AR6 shown alongside.
 
 The previous WordPress version of this site shipped with approximately 25,000 fabricated quantitative errors. The current rebuild was structured to make those failure modes impossible: data comes from primary sources, validation runs at every build, and any value outside the chart range returns "out of range" rather than an extrapolated number.`,
         },
@@ -218,9 +220,9 @@ For zeotropic blends, the critical point becomes a critical locus that varies wi
         },
         {
           q: "Are the manufacturer-blend PT values as accurate as CoolProp values?",
-          a: `Generally yes, since manufacturers publish PT data validated against the same Helmholtz EOS or equivalent measurement methods. The accuracy claim shifts: CoolProp values are typically ±0.5% across the operating range (REFPROP-compatible); manufacturer datasheets typically claim ±1-2% with the specific accuracy stated per datasheet.
+          a: `Generally yes, since manufacturers publish PT data validated against the same Helmholtz EOS or equivalent measurement methods. CoolProp values are REFPROP-compatible; manufacturer datasheets state their own accuracy per publication.
 
-For 11 blends not in CoolProp (R-448A, R-450A, R-1336mzz(Z), etc.), the manufacturer datasheet is the authoritative source — there's no "more accurate" reference to cross-check against. The dataset records the source manufacturer and publication URL per refrigerant.`,
+For the two R-404A retrofit blends CoolProp does not model (R-438A and R-448A), the manufacturer datasheet is the authoritative source — there's no "more accurate" reference to cross-check against. The dataset records the source manufacturer and publication URL per refrigerant.`,
         },
         {
           q: "How do I find a refrigerant by ASHRAE number or trade name?",

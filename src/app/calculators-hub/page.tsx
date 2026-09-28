@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
 import { HubPage } from "@/components/hub/HubPage";
 import { pageMetadata } from "@/lib/schema/shared";
+import { CALCULATOR_COUNT } from "@/lib/route-registry";
+import { ptDataProvenance } from "@/lib/data-provenance";
 
 export const metadata: Metadata = pageMetadata({
   title: "HVAC Calculators: Superheat, Subcooling, Charge, PT (Free)",
-  description:
-    "9 free HVAC calculators built on verified CoolProp 7.2.0 data: superheat, subcooling, PT lookup, combined diagnostic, refrigerant charge, retrofit compatibility.",
+  description: `${CALCULATOR_COUNT} free HVAC calculators built on verified CoolProp data: superheat, subcooling, PT lookup, combined diagnostic, refrigerant charge, retrofit compatibility.`,
   path: "/calculators-hub/",
   ogType: "website",
 });
 
 export default function CalculatorsHubPage() {
+  const prov = ptDataProvenance();
   return (
     <HubPage
       path="calculators-hub"
       title="HVAC Calculators"
       introHeadline="Free calculators for HVAC field work. Built on the verified refrigerant dataset — same source as the PT charts."
-      introBody="Each calculator reads from the same verified saturation data that drives the chart pages. Bubble vs dew curves are handled correctly for zeotropic blends. Fixed-orifice target superheat follows the standard field-approximation formula for charging charts (per California Title 24 Reference Appendix RA3.2); other targets and ranges cite ASHRAE Handbook of Refrigeration 2022 and equipment-specific manufacturer literature (Carrier, Trane, Lennox, Daikin, Goodman). Nine calculators total, each with worked service problems, reference tables, and SVG diagnostic visualizations."
+      introBody={`Each calculator reads from the same verified saturation data that drives the chart pages. Bubble vs dew curves are handled correctly for zeotropic blends. Fixed-orifice target superheat follows the standard field-approximation formula for charging charts (per California Title 24 Reference Appendix RA3.2); other targets and ranges cite the ASHRAE Handbook—Refrigeration and equipment-specific manufacturer literature (Carrier, Trane, Lennox, Daikin, Goodman). ${CALCULATOR_COUNT} calculators total, each with worked service problems, reference tables, and SVG diagnostic visualizations.`}
       route="/calculators-hub/"
       scenarios={[
         {
@@ -126,15 +128,15 @@ export default function CalculatorsHubPage() {
           heading: "Why these calculators",
           body: `HVAC service measurements are inherently quantitative — superheat, subcooling, condenser approach, and refrigerant charge all reduce to PT chart lookups plus arithmetic. The calculators on this site formalize that arithmetic with verified saturation data so the only thing a technician needs to bring to the field is accurate pressure and temperature readings.
 
-The previous WordPress version of this site shipped with approximately 25,000 fabricated quantitative errors — PT values wrong by 2-15×, some above critical pressure (physically impossible), several A2L/A3/B2L refrigerants classified as "A1 non-flammable" (safety-critical misclassifications). The current rebuild was structured specifically to make those failure modes impossible: every value comes from CoolProp 7.2.0 or a cited manufacturer datasheet, safety class is stored as a fixed value (impossible to display the wrong class), and any input outside the valid chart range returns "out of range" instead of an extrapolated number.
+The previous WordPress version of this site shipped with approximately 25,000 fabricated quantitative errors — PT values wrong by 2-15×, some above critical pressure (physically impossible), several A2L/A3/B2L refrigerants classified as "A1 non-flammable" (safety-critical misclassifications). The current rebuild was structured specifically to make those failure modes impossible: every value comes from CoolProp (7.2.0 or 8.0.0) or a cited manufacturer datasheet, safety class is stored as a fixed value (impossible to display the wrong class), and any input outside the valid chart range returns "out of range" instead of an extrapolated number.
 
 This means the calculators here are deliberately less "smart" than some competitors — they refuse to guess. That's the feature, not a bug.`,
         },
         {
           heading: "What the verification looks like",
-          body: `Saturation data: CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999) implements REFPROP-compatible Helmholtz EOS for pure refrigerants and predefined mixtures. Cross-checked against AHRI Standard 700-2019 specifications where applicable. For 11 manufacturer-blend refrigerants not in CoolProp's library (R-448A, R-450A, R-1336mzz(Z), etc.), values come from named manufacturer datasheets (Honeywell, Chemours, Arkema, AGC).
+          body: `Saturation data: CoolProp implements a REFPROP-compatible Helmholtz EOS for pure refrigerants and predefined mixtures — ${prov.coolprop72} fluids on CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999) and ${prov.coolprop80} newer low-GWP fluids (R-450A, R-514A, R-515A/B, R-1224yd(Z), R-1336mzz(Z)) on CoolProp 8.0.0. The ${prov.datasheet} R-404A retrofit blends CoolProp does not model — R-438A and R-448A — come from named manufacturer datasheets (Chemours, Honeywell).
 
-Target SH and SC ranges: fixed-orifice charging-chart superheat follows the standard field-approximation formula (per California Title 24 Reference Appendix RA3.2); ASHRAE Handbook of Refrigeration 2022 (Chapter 23) for application-specific target ranges; equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman, Mitsubishi) for equipment-specific setpoints and diagnostic patterns.
+Target SH and SC ranges: fixed-orifice charging-chart superheat follows the standard field-approximation formula (per California Title 24 Reference Appendix RA3.2); the ASHRAE Handbook—Refrigeration (2022), “Equipment and System Dehydrating, Charging, and Testing”, for application-specific target ranges; equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman, Mitsubishi) for equipment-specific setpoints and diagnostic patterns.
 
 Regulatory context: EPA AIM Act (40 CFR Part 84) for HFC phase-down dates and GWP caps; ASHRAE Standard 34-2022 for safety classifications; IEC 60335-2-40 for A2L equipment requirements; EPA Section 608 for refrigerant handling and leak repair.
 
@@ -186,7 +188,7 @@ Using the wrong curve introduces an error equal to the glide value: 11°F for R-
           q: "Can I trust these calculators for legal/compliance documentation?",
           a: `The calculators provide service-decision support; they don't replace EPA Section 608 documentation requirements or OEM-mandated charging procedures. For compliance documentation: keep a written record of recovery amounts, refrigerant added, leak repairs, and service procedures performed as required by 40 CFR Part 82 Subpart F.
 
-The calculators' diagnostic patterns and recommendations are sourced from the ASHRAE Handbook of Refrigeration 2022 and AHRI standards — the same primary sources EPA-certified technicians reference. Source citations on each calculator page identify the specific authority.`,
+The calculators' diagnostic patterns and recommendations are sourced from the ASHRAE Handbook—Refrigeration (2022) and AHRI standards — the same primary sources EPA-certified technicians reference. Source citations on each calculator page identify the specific authority.`,
         },
         {
           q: "Why don't you have a heat-load / sizing calculator?",

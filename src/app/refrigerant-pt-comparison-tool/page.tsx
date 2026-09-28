@@ -126,7 +126,7 @@ export default function ComparisonToolPage() {
         formula:
           "Each plotted curve = saturation pressure at given temperature for that refrigerant.\nFor pure refrigerants and azeotropes: P_sat = f(T) single curve.\nFor zeotropic blends: P_bubble = f(T) solid, P_dew = f(T) dashed.",
         sourceCitation:
-          "Saturation pressures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. For 11 manufacturer-blend refrigerants not in CoolProp's reference library, values from named manufacturer PT charts (Honeywell, Chemours, Arkema, AGC).",
+          "Saturation pressures from CoolProp (REFPROP-compatible Helmholtz EOS): CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999) for most fluids and CoolProp 8.0.0 for newer low-GWP fluids (R-450A, R-514A, R-515A/B, R-1224yd(Z), R-1336mzz(Z)). The two R-404A retrofit blends CoolProp does not model — R-438A and R-448A — come from named manufacturer PT charts (Chemours, Honeywell).",
         workedExample:
           "R-410A vs R-32 vs R-454B at 95°F (typical residential design ambient):\n  R-410A: 296 PSIG\n  R-32: 303 PSIG (+2% vs R-410A)\n  R-454B: 280 PSIG bubble / 270 PSIG dew (−5% vs R-410A)\n\nAt 40°F (evaporator):\n  R-410A: 119 PSIG\n  R-32: 121 PSIG\n  R-454B: 112 PSIG / 107 PSIG\n\nInterpretation: R-32 runs slightly higher pressure than R-410A; R-454B slightly lower. All three within standard 500 PSI service equipment ratings.",
       }}
@@ -429,7 +429,7 @@ function RichContent() {
             R-410A even though pressures are similar — equipment sizing matters.
           </li>
           <li>
-            <strong>Component pressure ratings.</strong> Beyond the refrigerant pressure
+            <strong>Component pressure ratings.</strong>{" "}Beyond the refrigerant pressure
             envelope, the system&apos;s line set, valves, accumulator, receiver, and
             compressor have their own pressure ratings. Equipment originally certified for
             R-22 (500 PSI design) cannot be retrofitted to R-410A or R-744 without
@@ -481,17 +481,17 @@ function RichContent() {
             pressures.
           </li>
           <li>
-            <strong>AHRI Standard 700-2019</strong> — refrigerant specifications and
-            cross-reference to CoolProp values.
+            <strong>CoolProp 8.0.0</strong> — same Helmholtz EOS engine, newer release,
+            for lower-GWP fluids CoolProp 7.2.0 did not yet ship (R-450A, R-514A, R-515A,
+            R-515B, R-1224yd(Z), and the pure HFO R-1336mzz(Z)).
           </li>
           <li>
             <strong>ASHRAE Standard 34-2022</strong> — refrigerant designation, safety
             classification, composition.
           </li>
           <li>
-            <strong>Manufacturer technical datasheets</strong> — Honeywell, Chemours,
-            Arkema, AGC PT charts for 11 manufacturer-blend refrigerants not in CoolProp&apos;s
-            library (R-448A, R-450A, R-1336mzz(Z), etc.).
+            <strong>Manufacturer technical datasheets</strong> — Chemours and Honeywell PT
+            charts for the two R-404A retrofit blends CoolProp does not model (R-438A, R-448A).
           </li>
           <li>
             <strong>EPA AIM Act (40 CFR Part 84)</strong> — phase-down schedule for

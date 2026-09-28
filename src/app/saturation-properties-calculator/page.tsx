@@ -178,8 +178,8 @@ function RichContent() {
           Pressure-temperature phase diagram for a pure refrigerant. The saturation curve
           (solid line) bounds the two-phase region. Above the critical point no phase
           distinction exists. Below the triple point the refrigerant cannot be liquid at
-          any pressure. Source: ASHRAE Handbook of Refrigeration 2022 Chapter 1
-          (vapor-compression cycle thermodynamics).
+          any pressure. Source: ASHRAE Handbook—Refrigeration (2022),
+          vapor-compression cycle thermodynamics.
         </p>
         <KeyInsight tone="emerald" icon="insight" title="One curve, everything follows">
           Superheat, subcooling, expansion-device sizing, charge calculations, retrofit
@@ -479,8 +479,8 @@ function RichContent() {
             of Refrigerants. Normal boiling points and reference designation.
           </li>
           <li>
-            <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Chapter 1
-            (vapor-compression cycle), Chapter 7 (lubricants), Chapter 23 (service
+            <strong>ASHRAE Handbook—Refrigeration (2022)</strong> — vapor-compression cycle,
+            lubricants, and “Equipment and System Dehydrating, Charging, and Testing” (service
             procedures). Phase diagram explanations, saturation property usage in cycle
             calculations.
           </li>
@@ -489,9 +489,10 @@ function RichContent() {
             references.
           </li>
           <li>
-            <strong>Manufacturer technical datasheets</strong> — Honeywell, Chemours,
-            Arkema, AGC saturation tables for 11 manufacturer-blend refrigerants not in
-            CoolProp&apos;s reference library.
+            <strong>Manufacturer technical datasheets</strong> — Chemours and Honeywell
+            saturation tables for the two R-404A retrofit blends CoolProp does not model
+            (R-438A, R-448A). Newer low-GWP fluids (R-450A, R-514A, R-515A/B, R-1224yd(Z),
+            R-1336mzz(Z)) are computed with CoolProp 8.0.0.
           </li>
         </ul>
       </TechSection>

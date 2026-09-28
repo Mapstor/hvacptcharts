@@ -115,7 +115,7 @@ export default function SuperheatCalculatorPage() {
         formula:
           "Superheat (°F) = T_suction_line − T_sat(P_suction)\n\nT_sat is read off the DEW curve at the measured suction pressure for zeotropic blends. For pure refrigerants and azeotropes, bubble ≡ dew, so the curve choice is moot.",
         sourceCitation:
-          "Saturation temperatures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Fixed-orifice target superheat is a field approximation of the OEM charging charts (see California Title 24 Reference Appendix RA3.2, Table RA3.2-2); application target ranges from ASHRAE Handbook of Refrigeration 2022 (Chapter 1, 23) and equipment-specific manufacturer charging charts (Carrier, Trane, Lennox, Daikin, Goodman).",
+          "Saturation temperatures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. Fixed-orifice target superheat is a field approximation of the OEM charging charts (see California Title 24 Reference Appendix RA3.2, Table RA3.2-2); application target ranges from the ASHRAE Handbook—Refrigeration (2022), “Equipment and System Dehydrating, Charging, and Testing”, and equipment-specific manufacturer charging charts (Carrier, Trane, Lennox, Daikin, Goodman).",
         workedExample:
           "R-410A residential AC, 95°F outdoor, TXV metering:\n  Suction pressure (gauge): 130 PSIG\n  Suction-line temperature: 60°F\n  Saturation temperature at 130 PSIG: 45°F (CoolProp 7.2.0)\n  Superheat = 60 − 45 = 15°F\n\nWithin the typical 8-15°F TXV target range and comfortably above the slugging threshold. For a fixed-orifice system, cross-check against the fixed-orifice charging chart for the specific indoor wet-bulb / outdoor dry-bulb combination.",
       }}
@@ -252,10 +252,10 @@ function RichContent() {
               <tbody>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Residential AC, TXV / EEV</td><td className="py-1.5 text-right font-mono tabular-nums">8-15°F</td><td className="py-1.5 text-xs">Carrier, Trane, Lennox, Daikin OEM literature</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Residential AC, fixed orifice</td><td className="py-1.5 text-right font-mono tabular-nums">per chart</td><td className="py-1.5 text-xs">fixed-orifice charging charts</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in cooler (MT), TXV</td><td className="py-1.5 text-right font-mono tabular-nums">6-12°F</td><td className="py-1.5 text-xs">ASHRAE Handbook of Refrigeration 2022 Ch. 23</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in freezer (LT), TXV</td><td className="py-1.5 text-right font-mono tabular-nums">8-15°F</td><td className="py-1.5 text-xs">ASHRAE Handbook of Refrigeration 2022 Ch. 23</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in cooler (MT), TXV</td><td className="py-1.5 text-right font-mono tabular-nums">6-12°F</td><td className="py-1.5 text-xs">ASHRAE Handbook—Refrigeration (2022), “Charging &amp; Testing”</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Walk-in freezer (LT), TXV</td><td className="py-1.5 text-right font-mono tabular-nums">8-15°F</td><td className="py-1.5 text-xs">ASHRAE Handbook—Refrigeration (2022), “Charging &amp; Testing”</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Heat pump, heating mode</td><td className="py-1.5 text-right font-mono tabular-nums">10-20°F</td><td className="py-1.5 text-xs">Carrier / Trane heat-pump service procedures</td></tr>
-                <tr><td className="py-1.5">Centrifugal chiller at evap</td><td className="py-1.5 text-right font-mono tabular-nums">2-5°F</td><td className="py-1.5 text-xs">ASHRAE HVAC Systems &amp; Equipment 2024 Ch. 43</td></tr>
+                <tr><td className="py-1.5">Centrifugal chiller at evap</td><td className="py-1.5 text-right font-mono tabular-nums">2-5°F</td><td className="py-1.5 text-xs">ASHRAE Handbook—HVAC Systems and Equipment (2024), “Liquid-Chilling Systems”</td></tr>
               </tbody>
             </table>
           </div>
@@ -305,7 +305,7 @@ function RichContent() {
           subcooling (liquid line). Source: CoolProp 7.2.0 saturation data for R-407C.
         </p>
         <p>
-          Glide values across common HVAC blends: R-454B ≈ 2°F, R-448A ≈ 6°F, R-449A ≈ 6°F,
+          Glide values across common HVAC blends: R-454B ≈ 2°F, R-448A ≈ 11°F, R-449A ≈ 10°F,
           R-407C ≈ 11°F, R-454C ≈ 14°F, R-455A ≈ 22°F. Wrong-curve selection on R-455A
           would shift superheat by 22°F — easily enough to invalidate a charging decision
           or trigger an unnecessary compressor protection shutdown.
@@ -321,7 +321,7 @@ function RichContent() {
             paper PT chart you reference shows both columns and use the dew column for SH.
           </li>
           <li>
-            <strong>Thermocouple at the wrong location.</strong> Industry standard is within
+            <strong>Thermocouple at the wrong location.</strong>{" "}Industry standard is within
             6 inches of the compressor suction inlet on the suction line; the OEM service
             literature for your equipment specifies the exact location. Probing at the
             evaporator outlet, at random elbows mid-line, or at the compressor body itself
@@ -334,7 +334,7 @@ function RichContent() {
             or insulation putty over the probe.
           </li>
           <li>
-            <strong>Reading before steady state.</strong> Superheat takes 10-20 minutes after
+            <strong>Reading before steady state.</strong>{" "}Superheat takes 10-20 minutes after
             compressor start to stabilize as the system reaches steady-state operation. Brief
             after-start spikes or transient values during defrost / cycle changes are not
             charging-decision data.
@@ -402,7 +402,7 @@ function RichContent() {
           <li>
             <strong>CoolProp 7.2.0</strong> (Bell, Wronski, Quoilin, Lemort 2014,
             doi:10.1021/ie4033999) — REFPROP-compatible Helmholtz EOS for all saturation
-            temperatures. Accuracy typically better than ±0.5% across the operating range.
+            temperatures.
           </li>
           <li>
             <strong>California Title 24 Reference Appendix RA3.2 (Table RA3.2-2)</strong> —
@@ -411,14 +411,14 @@ function RichContent() {
             specific unit always takes precedence over this approximation.
           </li>
           <li>
-            <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Chapter 1
-            (vapor-compression fundamentals), Chapter 23 (service procedures and target
-            superheat by application). The reference text for commercial refrigeration
-            service.
+            <strong>ASHRAE Handbook—Refrigeration (2022)</strong> — vapor-compression cycle
+            fundamentals and “Equipment and System Dehydrating, Charging, and Testing” (service
+            procedures and target superheat by application). The reference text for commercial
+            refrigeration service.
           </li>
           <li>
-            <strong>ASHRAE HVAC Systems &amp; Equipment 2024</strong> — Chapter 43
-            (chillers), centrifugal chiller evaporator approach and superheat targets.
+            <strong>ASHRAE Handbook—HVAC Systems and Equipment (2024)</strong> — “Liquid-Chilling
+            Systems” (centrifugal chiller evaporator approach and superheat targets).
           </li>
           <li>
             <strong>EPA Section 608 (40 CFR Part 82 Subpart F)</strong> — Refrigerant
@@ -566,7 +566,7 @@ function TargetSHBars() {
         );
       })}
       <text x={W / 2} y={H - 8} textAnchor="middle" fontSize="10" fill="currentColor" opacity={0.7}>
-        Source: ASHRAE Handbook of Refrigeration 2022, OEM service literature.
+        Source: ASHRAE Handbook—Refrigeration (2022), OEM service literature.
       </text>
     </svg>
   );

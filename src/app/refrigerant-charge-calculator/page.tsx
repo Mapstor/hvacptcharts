@@ -456,13 +456,13 @@ function RichContent() {
             or measurement tolerances are corrected at verification.
           </li>
           <li>
-            <strong>Charging by gauge feel.</strong> Adding refrigerant until pressures
+            <strong>Charging by gauge feel.</strong>{" "}Adding refrigerant until pressures
             &quot;look right&quot; produces frequent overcharge errors. Discharge pressure
             climbs with both charge AND ambient AND fouling — you can&apos;t tell which is
             elevating it from pressure alone. Charge by weight, verify by SC.
           </li>
           <li>
-            <strong>Ignoring vertical rise.</strong> Above 50 ft of vertical separation,
+            <strong>Ignoring vertical rise.</strong>{" "}Above 50 ft of vertical separation,
             the OEM&apos;s vertical-rise charge table applies. Linear per-foot adjustment
             from the calculator is not sufficient for tall installations.
           </li>

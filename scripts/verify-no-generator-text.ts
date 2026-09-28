@@ -65,6 +65,35 @@ const PATTERNS: { name: string; re: RegExp }[] = [
   { name: "lowercase-open-paren", re: /[a-z]\([a-z0-9]/ },
 ];
 
+// Looser run-together patterns (task 19 D3): a missing space after a sentence
+// period ("chart range.The") or an alphanumeric token jammed against "(Word"
+// ("CoolProp 7.2.0(Bell"). These fire on ordinary prose punctuation, so each
+// match is passed through skipFalsePositive() to drop URLs, emails, code
+// tokens, and file extensions before it counts. Allowlist genuine copy in
+// generator-text-allowlist.json.
+const LOOSE_PATTERNS: { name: string; re: RegExp }[] = [
+  { name: "period-run-into-word", re: /[a-z]\.[A-Z][a-z]/ },
+  { name: "alnum-open-paren-cap", re: /[0-9a-z]\([A-Z][a-z]/ },
+];
+
+// Return true when a loose-pattern hit sits inside a URL, email, code token, or
+// file path — legitimate text where "." / "(" abut letters by construction.
+function skipFalsePositive(s: string, idx: number): boolean {
+  // Widen to the surrounding non-whitespace token.
+  let start = idx;
+  while (start > 0 && !/\s/.test(s[start - 1])) start--;
+  let end = idx;
+  while (end < s.length && !/\s/.test(s[end])) end++;
+  const token = s.slice(start, end);
+  if (/https?:\/\//.test(token)) return true;                 // URL
+  if (/[\w.-]+@[\w.-]+/.test(token)) return true;             // email
+  if (/\.(com|org|gov|net|edu|io|pdf|json|csv|tsx?|mjs|html)\b/i.test(token)) return true; // domain / file ext
+  if (/^(e\.g|i\.e|etc|vs|al|no|fig|eq|cf|approx|in)\./i.test(token)) return true; // abbreviation (incl. in.Hg)
+  if (/^doi:/i.test(token)) return true;                      // DOI
+  if (/^[A-Za-z][A-Za-z0-9]*\([A-Za-z]/.test(token)) return true; // function notation, e.g. Ws(Twb), Pws(Tdp)
+  return false;
+}
+
 interface AllowEntry { pattern: string; contains: string; reason: string }
 const allowlist: AllowEntry[] = fs.existsSync(ALLOWLIST_FILE)
   ? (JSON.parse(fs.readFileSync(ALLOWLIST_FILE, "utf8")) as AllowEntry[])
@@ -179,6 +208,21 @@ for (const file of files) {
         const allowed = allowlist.some((a) => a.pattern === name && snip.includes(a.contains));
         counts[name] = (counts[name] ?? 0) + 1;
         if (!allowed) failures.push({ pattern: name, file: rel, snip });
+        if (m.index === g.lastIndex) g.lastIndex++;
+      }
+    }
+  }
+  for (const { name, re } of LOOSE_PATTERNS) {
+    const g = new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags + "g");
+    for (const s of strings) {
+      let m: RegExpExecArray | null;
+      while ((m = g.exec(s)) !== null) {
+        if (!skipFalsePositive(s, m.index)) {
+          const snip = snippet(s, m.index);
+          const allowed = allowlist.some((a) => a.pattern === name && snip.includes(a.contains));
+          counts[name] = (counts[name] ?? 0) + 1;
+          if (!allowed) failures.push({ pattern: name, file: rel, snip });
+        }
         if (m.index === g.lastIndex) g.lastIndex++;
       }
     }

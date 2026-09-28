@@ -27,7 +27,7 @@ const FAQS = [
   },
   {
     q: "Why does R-22 to R-410A return 'not recommended' instead of 'equipment modifications required'?",
-    a: "Because R-410A's pressures are roughly 60% higher than R-22's — exceeding the pressure ratings of R-22 system components by a margin that makes component replacement (essentially the whole system) more expensive than a new R-410A system. The verdict reflects field reality: R-22 to R-410A is full equipment replacement, not retrofit, in nearly every case.",
+    a: "Because R-410A's pressures are roughly 60-65% higher than R-22's — exceeding the pressure ratings of R-22 system components by a margin that makes component replacement (essentially the whole system) more expensive than a new R-410A system. The verdict reflects field reality: R-22 to R-410A is full equipment replacement, not retrofit, in nearly every case.",
   },
   {
     q: "Can I use this for residential AC retrofit planning?",
@@ -128,7 +128,7 @@ export default function RetrofitCompatibilityCalculatorPage() {
         formula:
           "verdict = synthesize(lubricantCheck, safetyClassCheck, pressureCheck, glideCheck, applicationCheck)\n\nEach check has severity ∈ {ok, warn, fail}. The synthesis prioritizes fails (application > safety > pressure > lubricant) and then collapses warns into 'retrofit with modifications' verdicts.",
         sourceCitation:
-          "Lubricant compatibility: refrigerant.lubricants.compatible arrays from manufacturer datasheets and ASHRAE Handbook of Refrigeration 2022. Safety class transitions: UL 60335-2-40 (A2L charge limits), ASHRAE Standard 15 (machine room ventilation), ASHRAE 34-2022 (classification definitions). Pressure thresholds (10%, 25%) reflect typical equipment pressure-rating margins per manufacturer service literature. Application family memberships: editorial groupings in src/data/comparison-groups.ts.",
+          "Lubricant compatibility: refrigerant.lubricants.compatible arrays from manufacturer datasheets and ASHRAE Handbook—Refrigeration (2022). Safety class transitions: UL 60335-2-40 (A2L charge limits), ASHRAE Standard 15 (machine room ventilation), ASHRAE 34-2022 (classification definitions). Pressure thresholds (10%, 25%) reflect typical equipment pressure-rating margins per manufacturer service literature. Application family memberships: editorial groupings in src/data/comparison-groups.ts.",
         workedExample:
           "R-22 → R-407C:\n  Lubricant: MO/AB vs POE — different families, oil change required (warn)\n  Safety: A1 → A1 unchanged (ok)\n  Pressure: 121.4 PSIG vs 140.5 / 117.3 PSIG at 70°F — within 10% (ok)\n  Glide: pure → 23 PSI glide blend — TXV concern (warn)\n  Application: both in residential-ac group (ok)\n  Verdict: 'Retrofit with oil change' — proceed with standard HFC retrofit procedure.\n\nR-22 → R-410A:\n  Lubricant: MO/AB vs POE — oil change required (warn)\n  Safety: A1 → A1 unchanged (ok)\n  Pressure: 121.4 PSIG vs 201.5 PSIG at 70°F — +66% (fail)\n  Glide: pure → near-azeotrope (ok)\n  Application: both residential-ac (ok)\n  Verdict: 'Not recommended (pressure)' — equipment not rated for R-410A pressures; full system replacement.",
       }}
@@ -173,7 +173,7 @@ function RichContent() {
               replacement with ammonia-specific design.
             </li>
             <li>
-              <strong>Pressure envelope.</strong> Within ±10% across operating range:
+              <strong>Pressure envelope.</strong>{" "}Within ±10% across operating range:
               drop-in capable. ±10-25%: standard retrofit (no component changes).
               ±25-40%: equipment-level review required (component pressure ratings,
               compressor capacity). &gt;40%: not feasible without equipment redesign.
@@ -482,7 +482,7 @@ function RichContent() {
             vary by jurisdiction. Check local code (IRC, IMC, state-specific amendments).
           </li>
           <li>
-            <strong>Economic analysis.</strong> The calculator reports feasibility, not
+            <strong>Economic analysis.</strong>{" "}The calculator reports feasibility, not
             ROI. A feasible retrofit may not pay back vs replacement; an &quot;equipment
             modifications required&quot; verdict may be cheaper than full replacement for
             specific systems.
@@ -530,8 +530,8 @@ function RichContent() {
       <TechSection icon="source" tone="zinc" title="Primary sources">
         <ul>
           <li>
-            <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Chapter 7
-            (lubricants), retrofit procedures, lubricant-refrigerant compatibility tables.
+            <strong>ASHRAE Handbook—Refrigeration (2022)</strong> — lubricants, retrofit
+            procedures, lubricant-refrigerant compatibility tables.
           </li>
           <li>
             <strong>ASHRAE Standard 34-2022</strong> — refrigerant designation and safety

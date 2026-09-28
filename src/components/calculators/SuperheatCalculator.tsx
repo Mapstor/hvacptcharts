@@ -198,8 +198,8 @@ export function SuperheatCalculator({ initialSlug = "r-410a" }: { initialSlug?: 
 function diagnoseSuperheat(superheatF: number): { label: string; note: string; toneClass: string } | null {
   if (superheatF < 0) {
     return {
-      label: "Negative superheat (liquid in suction line)",
-      note: "The suction-line temperature reads below saturation — liquid refrigerant is reaching the compressor. Slugging risk. Stop and investigate before continuing operation.",
+      label: "Negative superheat — check the reading first",
+      note: "Superheat is physically ≥0°F at steady state, so a negative value usually means a reading error, the wrong refrigerant selected, or the wrong saturation curve (use the dew curve for suction-side superheat). If the reading is correct, liquid refrigerant is reaching the compressor — slugging risk; stop and investigate before continuing operation.",
       toneClass: "border-red-300 bg-red-50 text-red-900 dark:border-red-900 dark:bg-red-950/40 dark:text-red-100",
     };
   }

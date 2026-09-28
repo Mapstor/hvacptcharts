@@ -22,6 +22,8 @@ import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { TypeChip } from "@/components/refrigerant/TypeChip";
 import { RefrigerantBrowser } from "@/components/home/RefrigerantBrowser";
 import { RefrigerantAZList } from "@/components/refrigerant/RefrigerantAZList";
+import { CALCULATOR_COUNT, COMPARISON_COUNT, LONG_FORM_GUIDE_COUNT } from "@/lib/route-registry";
+import { ptDataProvenance } from "@/lib/data-provenance";
 
 const HERO_SLUGS = ["r-410a", "r-22", "r-134a", "r-32", "r-404a", "r-454b"];
 
@@ -114,6 +116,7 @@ function buildSchema() {
 }
 
 export default function HomePage() {
+  const prov = ptDataProvenance();
   return (
     <>
       <JsonLd graph={buildSchema()} />
@@ -138,7 +141,7 @@ export default function HomePage() {
             </h1>
             <p className="mt-3 max-w-2xl text-base leading-snug text-zinc-700 dark:text-zinc-300 sm:text-lg">
               Verified saturation data for {refrigerants.length} refrigerants — every value sourced and cited.
-              9 calculators, 13 pair comparisons, 4 long-form guides. No signup, no paywall, CC BY 4.0.
+              {" "}{CALCULATOR_COUNT} calculators, {COMPARISON_COUNT} pair comparisons, {LONG_FORM_GUIDE_COUNT} long-form guides. No signup, no paywall, CC BY 4.0.
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-2.5">
               <Link
@@ -154,7 +157,7 @@ export default function HomePage() {
                 Open superheat calculator
               </Link>
               <ul className="ml-auto flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-zinc-600 dark:text-zinc-400">
-                <li className="flex items-center gap-1"><Database className="h-3 w-3 text-blue-600 dark:text-blue-400" /> CoolProp 7.2.0</li>
+                <li className="flex items-center gap-1"><Database className="h-3 w-3 text-blue-600 dark:text-blue-400" /> CoolProp 7.2.0 + 8.0.0</li>
                 <li className="flex items-center gap-1"><ShieldCheck className="h-3 w-3 text-emerald-600 dark:text-emerald-400" /> Validated data</li>
                 <li className="flex items-center gap-1"><EyeOff className="h-3 w-3 text-purple-600 dark:text-purple-400" /> No signup</li>
                 <li className="flex items-center gap-1"><Download className="h-3 w-3 text-amber-600 dark:text-amber-400" /> CC BY 4.0</li>
@@ -201,12 +204,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Calculators — 9 total, grouped */}
+        {/* Calculators — count from route registry, grouped */}
         <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
           <SectionHeading
             icon={<Calculator className="h-5 w-5 text-blue-600 dark:text-blue-400" />}
             title="Calculators"
-            sub="9 calculators built on the verified dataset. Bubble vs dew handled automatically for zeotropic blends. Imperial and metric units."
+            sub={`${CALCULATOR_COUNT} calculators built on the verified dataset. Bubble vs dew handled automatically for zeotropic blends. Imperial and metric units.`}
           />
 
           <GroupHeading label="Charging and diagnostic" />
@@ -232,7 +235,7 @@ export default function HomePage() {
             <SectionHeading
               icon={<GitCompareArrows className="h-5 w-5 text-amber-600 dark:text-amber-400" />}
               title="Refrigerant comparisons"
-              sub="Direct pair comparisons for the most-asked decisions. 13 pair pages total covering residential, commercial refrigeration, chillers, and naturals."
+              sub={`Direct pair comparisons for the most-asked decisions. ${COMPARISON_COUNT} pair pages total covering residential, commercial refrigeration, chillers, and naturals.`}
             />
             <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {FEATURED_COMPARISONS.map((c) => <ToolCard key={c.href} {...c} accent="amber" />)}
@@ -293,7 +296,7 @@ export default function HomePage() {
               icon={<Database className="h-5 w-5" />}
               accent="blue"
               title="Verified data"
-              body="CoolProp 7.2.0 (REFPROP-compatible Helmholtz EOS), plus named manufacturer datasheets (Honeywell, Chemours, Arkema, AGC) for blends CoolProp doesn't model."
+              body={`Saturation data from CoolProp 7.2.0 (${prov.coolprop72} fluids) and CoolProp 8.0.0 (${prov.coolprop80}) — both REFPROP-compatible Helmholtz EOS — plus named manufacturer datasheets (${prov.datasheet}) for blends CoolProp doesn't model.`}
             />
             <FeatureCard
               icon={<GitCompareArrows className="h-5 w-5" />}

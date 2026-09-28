@@ -197,13 +197,13 @@ export default function AboutPage() {
           <Panel title="What the structure guarantees" icon={TableIcon}>
             <ul className="list-disc pl-5 text-sm space-y-1">
               <li>
-                <strong>No fabricated PT values.</strong> Every saturation pressure comes
+                <strong>No fabricated PT values.</strong>{" "}Every saturation pressure comes
                 from CoolProp or a named manufacturer datasheet. When source data
                 isn&apos;t available, the page shows an honest disclosure naming the
                 missing source, not a guess.
               </li>
               <li>
-                <strong>No mixed-up copy.</strong> The writing specific to one
+                <strong>No mixed-up copy.</strong>{" "}The writing specific to one
                 refrigerant appears only on that refrigerant&apos;s page.
               </li>
               <li>

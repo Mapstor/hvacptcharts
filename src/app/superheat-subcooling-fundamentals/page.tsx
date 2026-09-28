@@ -179,8 +179,8 @@ export default function FundamentalsPage() {
             <p className="text-xs text-zinc-500 dark:text-zinc-400">
               Superheat and subcooling on the PT diagram: vapor superheats above the saturation
               curve (suction-side measurement), liquid subcools below the saturation curve
-              (condenser-side measurement). Source: ASHRAE Handbook of Refrigeration 2022
-              Ch. 1 (vapor-compression cycle).
+              (condenser-side measurement). Source: ASHRAE Handbook—Refrigeration (2022),
+              vapor-compression cycle.
             </p>
           </TechSection>
         </section>
@@ -243,8 +243,8 @@ export default function FundamentalsPage() {
               Target SH (blue) and SC (purple) ranges by application. Fixed-orifice SH targets are
               a field approximation of the OEM charging charts (indexed on indoor wet-bulb and
               outdoor dry-bulb); the chart or label on the unit always takes precedence. Source:
-              ASHRAE Handbook of Refrigeration 2022 Ch. 23, California Title 24 Reference Appendix
-              RA3.2, OEM service literature.
+              ASHRAE Handbook—Refrigeration (2022), “Equipment and System Dehydrating, Charging,
+              and Testing”; California Title 24 Reference Appendix RA3.2; OEM service literature.
             </p>
           </TechSection>
         </section>
@@ -282,7 +282,8 @@ export default function FundamentalsPage() {
               The four-pattern matrix visualized in the SH × SC plane. Each quadrant
               corresponds to a different root cause family. The center region (8-15°F SH
               and 8-12°F SC for TXV residential) is the &quot;properly charged&quot; window.
-              Source: ASHRAE Handbook of Refrigeration 2022 Ch. 23.
+              Source: ASHRAE Handbook—Refrigeration (2022), “Equipment and System Dehydrating,
+              Charging, and Testing”.
             </p>
           </TechSection>
         </section>
@@ -586,7 +587,7 @@ export default function FundamentalsPage() {
           <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Sources</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>California Title 24 Reference Appendix RA3.2 (Table RA3.2-2) — fixed-orifice target-superheat charging procedure (field approximation of OEM charging charts)</li>
-            <li>ASHRAE Handbook of Refrigeration 2022 — Chapters 1, 23 (vapor-compression cycle, service procedures)</li>
+            <li>ASHRAE Handbook—Refrigeration (2022) — Chapters 1, 23 (vapor-compression cycle, service procedures)</li>
             <li>ASHRAE Handbook of Fundamentals 2021 — vapor-compression cycle thermodynamics</li>
             <li>EPA Section 608 (40 CFR Part 82 Subpart F) — refrigerant handling, leak repair requirements</li>
             <li>CoolProp 7.2.0 (Bell et al. 2014, doi:10.1021/ie4033999) — saturation property source for site calculators</li>

@@ -8,6 +8,7 @@ import { pageMetadata } from "@/lib/schema/shared";
 import { MeasurementDiagram } from "@/components/diagrams/MeasurementDiagram";
 import { scenariosForPage } from "@/lib/scenarios";
 import { WorkedScenario } from "@/components/calculators/shared/WorkedScenario";
+import { SHSC_PATTERN_COUNT } from "@/lib/fault-patterns";
 
 const FAQS = [
   {
@@ -31,8 +32,8 @@ const FAQS = [
     a: "Yes, but apply commercial target ranges: 10-20°F superheat and 5-15°F subcooling depending on application (walk-in cooler, walk-in freezer, refrigerated transport). The diagnostic banner uses residential HVAC ranges by default — interpret commercial readings against the equipment OEM spec rather than the banner. Walk-in / commercial reference targets are tabulated below.",
   },
   {
-    q: "What about the eight-pattern diagnostic matrix?",
-    a: "The matrix correlates SH × SC × pressure patterns to root causes. There are eight common fingerprints: properly charged, undercharge, overcharge, liquid-line restriction, condenser fouling, slow leak (early stage), TXV failure, non-condensables. Each has a distinct combined pattern that this calculator's diagnostic banner detects. The full matrix is in the reference table below.",
+    q: "What about the SH × SC × pressure fingerprint matrix?",
+    a: "The SH × SC banner alone classifies the core charge patterns (properly charged, undercharge, overcharge, restriction, airflow/metering). Adding suction and discharge pressure trends refines these into eight service fingerprints: properly charged, undercharge, overcharge, liquid-line restriction, condenser fouling, slow leak (early stage), TXV failure, and non-condensables. The full matrix is in the reference table below.",
   },
   {
     q: "How does this relate to the system pressure diagnostic calculator?",
@@ -47,7 +48,7 @@ const FAQS = [
 export const metadata: Metadata = pageMetadata({
   title: "Superheat & Subcooling Calculator: Low & High Side (Any Refrigerant)",
   description:
-    "Enter both sides: suction + liquid PSIG and line temps → SH, SC, and an 8-pattern charge diagnosis (undercharge, overcharge, airflow, metering).",
+    `Enter both sides: suction + liquid PSIG and line temps → SH, SC, and a ${SHSC_PATTERN_COUNT}-pattern charge diagnosis (undercharge, overcharge, airflow, metering).`,
   path: "/pt-superheat-subcooling-calculator/",
 });
 
@@ -58,10 +59,10 @@ export default function CombinedCalculatorPage() {
         path: "pt-superheat-subcooling-calculator",
         name: "PT / Superheat / Subcooling Calculator",
         description:
-          "One form for all three diagnostic measurements: suction-line superheat, liquid-line subcooling, and saturation pressures. Eight-pattern diagnostic matrix correlates SH × SC × pressures to root causes (undercharge, overcharge, restriction, fouling, TXV failure, non-condensables).",
+          "One form for all three diagnostic measurements: suction-line superheat, liquid-line subcooling, and saturation pressures. An SH × SC × pressure fingerprint matrix correlates the readings to root causes (undercharge, overcharge, restriction, fouling, TXV failure, non-condensables).",
         featureList: [
           "Superheat (dew curve), subcooling (bubble curve), and pressures in one workflow",
-          "Eight-pattern diagnostic matrix: properly charged, undercharge, overcharge, restriction, fouling, slow leak, TXV failure, non-condensables",
+          "SH × SC × pressure fingerprint matrix: properly charged, undercharge, overcharge, restriction, fouling, slow leak, TXV failure, non-condensables",
           "Supports all 49 CoolProp-modeled refrigerants",
           "Imperial (°F, PSIG) and metric (°C, kPa) units",
           "Correct curve selection for zeotropic blends (dew for SH, bubble for SC)",
@@ -71,7 +72,7 @@ export default function CombinedCalculatorPage() {
         ],
         breadcrumbLabel: "Combined Calculator",
       }}
-      introOneLiner="One form for both the low side (suction, superheat) and the high side (liquid, subcooling). The eight-pattern diagnostic matrix maps the combined SH × SC × pressure fingerprint to the root cause: properly charged, undercharge, overcharge, restriction, fouling, TXV failure, or non-condensables."
+      introOneLiner={`One form for both the low side (suction, superheat) and the high side (liquid, subcooling). The combined SH × SC banner classifies ${SHSC_PATTERN_COUNT} charge patterns; the SH × SC × pressure fingerprint matrix below maps the full picture to the root cause: properly charged, undercharge, overcharge, restriction, fouling, TXV failure, or non-condensables.`}
       route="/pt-superheat-subcooling-calculator/"
       howToReadResults={[
         {
@@ -112,14 +113,14 @@ export default function CombinedCalculatorPage() {
           "Measuring at the wrong service port — suction is the LOW-side port on the larger insulated line; liquid is the HIGH-side port on the smaller uninsulated line.",
           "Reading before steady state — let the system run 10-20 minutes after compressor start.",
           "Probing without insulating thermocouples — ambient pickup inflates SH and depresses SC.",
-          "Adjusting charge based on a single reading. The eight-pattern matrix needs both SH and SC to identify the right root cause.",
+          "Adjusting charge based on a single reading. The fingerprint matrix needs both SH and SC (and pressure trends) to identify the right root cause.",
         ],
       }}
       math={{
         formula:
-          "Superheat = T_suction_line − T_sat(P_suction, dew)\nSubcooling = T_sat(P_liquid, bubble) − T_liquid_line\n\nDiagnostic pattern from {SH, SC, P_suction, P_liquid} via the eight-pattern matrix.",
+          "Superheat = T_suction_line − T_sat(P_suction, dew)\nSubcooling = T_sat(P_liquid, bubble) − T_liquid_line\n\nDiagnostic pattern from {SH, SC, P_suction, P_liquid} via the SH × SC × pressure fingerprint matrix.",
         sourceCitation:
-          "Saturation values from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999). Target ranges per the ASHRAE Handbook of Refrigeration 2022 (Chapter 23) and equipment-specific manufacturer charging procedures (Carrier, Trane, Lennox, Daikin, Goodman).",
+          "Saturation values from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999). Target ranges per the ASHRAE Handbook—Refrigeration (2022), “Equipment and System Dehydrating, Charging, and Testing”, and equipment-specific manufacturer charging procedures (Carrier, Trane, Lennox, Daikin, Goodman).",
         workedExample:
           "R-410A residential TXV system, 95°F outdoor:\n  Suction 130 PSIG / line 60°F  →  SH = 60 − 45 = 15°F (in 8-15°F TXV range)\n  Liquid 380 PSIG / line 100°F  →  SC = 111 − 100 = 11°F (in 8-12°F TXV range)\n  Diagnostic pattern: SH normal, SC normal, pressures normal\n  Verdict: properly charged.",
       }}
@@ -169,13 +170,13 @@ function RichContent() {
         </KeyInsight>
       </TechSection>
 
-      <TechSection icon="data" tone="purple" title="The eight-pattern diagnostic matrix">
+      <TechSection icon="data" tone="purple" title="The SH × SC × pressure fingerprint matrix">
         <p>
-          Combining SH × SC × pressure trends yields eight common fingerprints that cover
+          Combining SH × SC × pressure trends yields the common service fingerprints that cover
           the majority of HVAC service issues. Each fingerprint has a distinct root cause
           and a corresponding service action.
         </p>
-        <Panel title="Eight-pattern diagnostic matrix" icon={TableIcon}>
+        <Panel title="SH × SC × pressure fingerprint matrix" icon={TableIcon}>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -205,8 +206,8 @@ function RichContent() {
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
           The SH × SC plane visualized: each quadrant corresponds to a different root cause
           family. The center region (10°F SH ±5, 10°F SC ±3) is the &quot;properly
-          charged&quot; window for residential TXV systems. Source: ASHRAE Handbook of Refrigeration 2022 (Ch. 23),
-          ASHRAE Handbook of Refrigeration 2022.
+          charged&quot; window for residential TXV systems. Source: ASHRAE Handbook—Refrigeration
+          (2022), “Equipment and System Dehydrating, Charging, and Testing”.
         </p>
       </TechSection>
 
@@ -236,7 +237,7 @@ function RichContent() {
         </Panel>
       </TechSection>
 
-      <TechSection icon="service" tone="amber" title="Real service problems — eight-pattern matrix in action">
+      <TechSection icon="service" tone="amber" title="Real service problems — the fingerprint matrix in action">
         <p>
           Eight scenarios — one per pattern in the matrix — show what each fingerprint looks
           like in actual field readings and how to use the combined SH + SC + pressure data
@@ -269,7 +270,7 @@ function RichContent() {
             resolve once airflow is corrected.
           </li>
           <li>
-            <strong>Look at the trend, not just the snapshot.</strong> If this is a
+            <strong>Look at the trend, not just the snapshot.</strong>{" "}If this is a
             recurring service visit, compare today&apos;s readings to previous service logs.
             A slowly drifting pattern (Pattern 6 fingerprint) tells you something different
             than a snapshot that just happens to be off.
@@ -324,7 +325,7 @@ function RichContent() {
           <li>
             <strong>CoolProp 7.2.0</strong> (Bell, Wronski, Quoilin, Lemort 2014,
             doi:10.1021/ie4033999) — REFPROP-compatible Helmholtz EOS for all saturation
-            temperatures. Accuracy typically better than ±0.5% across operating range.
+            temperatures.
           </li>
           <li>
             <strong>Fixed-orifice charging-chart target superheat</strong> — standard
@@ -335,8 +336,9 @@ function RichContent() {
             precedence.
           </li>
           <li>
-            <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Chapter 23 (service
-            procedures), eight-pattern fingerprint discussion, non-condensable detection.
+            <strong>ASHRAE Handbook—Refrigeration (2022)</strong> — “Equipment and System
+            Dehydrating, Charging, and Testing” (service procedures), fingerprint-matrix
+            discussion, non-condensable detection.
           </li>
           <li>
             <strong>EPA Section 608 (40 CFR Part 82 Subpart F)</strong> — refrigerant
@@ -385,12 +387,12 @@ function DiagnosticMatrixVisual() {
     <svg
       viewBox={`0 0 ${W} ${H}`}
       role="img"
-      aria-label="The eight-pattern SH-by-SC diagnostic matrix visualized as a scatter chart, with each pattern positioned by its typical SH and SC values."
+      aria-label="The SH-by-SC fingerprint matrix visualized as a scatter chart, with each pattern positioned by its typical SH and SC values."
       className="my-3 h-auto w-full text-zinc-700 dark:text-zinc-300"
       preserveAspectRatio="xMidYMid meet"
     >
       <text x={W / 2} y={24} textAnchor="middle" fontSize="14" fontWeight={600} fill="currentColor">
-        Eight-pattern diagnostic matrix (SH × SC plane)
+        SH × SC × pressure fingerprint matrix (SH × SC plane)
       </text>
       {/* properly-charged target zone */}
       <rect

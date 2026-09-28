@@ -178,8 +178,8 @@ export function SubcoolingCalculator({ initialSlug = "r-410a" }: { initialSlug?:
 function diagnoseSubcooling(subcoolingF: number): { label: string; note: string; toneClass: string } | null {
   if (subcoolingF < 0) {
     return {
-      label: "Negative subcooling (vapor in liquid line)",
-      note: "The liquid-line temperature reads above saturation — vapor is forming in the liquid line, starving the metering device. Common causes: significant undercharge, restriction at the filter-drier, or non-condensables. Stop and diagnose before adding refrigerant.",
+      label: "Negative subcooling — check the reading first",
+      note: "Subcooling is physically ≥0°F at steady state, so a negative value usually means a reading error, the wrong refrigerant selected, or the wrong saturation curve (use the bubble curve for liquid-side subcooling). If the reading is correct, vapor is forming in the liquid line (significant undercharge, a filter-drier restriction, or non-condensables) — stop and diagnose before adding refrigerant.",
       toneClass: "border-red-300 bg-red-50 text-red-900 dark:border-red-900 dark:bg-red-950/40 dark:text-red-100",
     };
   }

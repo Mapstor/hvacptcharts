@@ -486,7 +486,7 @@ export default function RefrigerantPricesGuidePage() {
                 <li><strong>Look up current refrigerant wholesale.</strong> Call any of the named distributors in Section 13, or check an online retailer (HVACDirect, Refrigerant Depot). Get the current 25 lb cylinder price for your refrigerant. Typical residential contractor markup is 2-3× wholesale.</li>
                 <li><strong>Validate labor.</strong> Local prevailing HVAC billed service rate varies by market (higher in coastal CA, NY, MA) and runs above the technician wage because it covers overhead. 1-2 hours is normal for a recharge with leak detection; 3+ hours suggests a complicated leak diagnosis or system condition issue.</li>
                 <li><strong>Check for double-charging.</strong> A &quot;recovery fee&quot; on a system that lost all charge before the tech arrived is bogus — there&apos;s nothing to recover. A &quot;leak detection&quot; charge after the contractor has already found the leak is bogus. A repeated trip charge is reasonable only if multiple visits were necessary.</li>
-                <li><strong>Compare against the validation envelope.</strong> Total quote should be within ±20% of (refrigerant cost × pounds × markup) + (labor rate × hours) + (one-time fees). Outside that envelope, get a second quote.</li>
+                <li><strong>Compare against the validation envelope.</strong>{" "}Total quote should be within ±20% of (refrigerant cost × pounds × markup) + (labor rate × hours) + (one-time fees). Outside that envelope, get a second quote.</li>
               </ol>
             </Panel>
             <VerdictBanner status="info" title="The non-pricing red flag">

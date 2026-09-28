@@ -305,7 +305,7 @@ export default function LowSuctionPressurePage() {
               </li>
             ))}
             <li>ACCA technician charging references.</li>
-            <li>ASHRAE Handbook of Refrigeration 2022 — TXV behavior and evaporator design.</li>
+            <li>ASHRAE Handbook—Refrigeration (2022) — TXV behavior and evaporator design.</li>
             <li>EPA 40 CFR Part 82 Subpart F — Section 608 leak-repair requirements before recharge.</li>
             <li>CoolProp 7.2.0 — R-410A and R-22 PT chart values.</li>
           </ul>

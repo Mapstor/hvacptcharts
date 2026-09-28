@@ -20,6 +20,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { getPressureAtTempF, getRefrigerant, refrigerants } from "@/data/refrigerants";
+import { GLIDE_DEFINITION } from "@/lib/glide";
 import { RefrigerantPTCurve } from "@/components/refrigerant/RefrigerantPTCurve";
 
 const PAGE_URL = `${SITE_URL}/pt-chart-guide/`;
@@ -306,7 +307,7 @@ export default function PtChartGuidePage() {
           </h3>
           <GlideTable />
           <p className="mt-3 text-xs text-zinc-500">
-            Values pulled live from the verified dataset (CoolProp 7.2.0). Glide column shows the bubble-minus-dew
+            Values pulled live from the verified dataset (CoolProp 7.2.0). Glide column shows the dew-minus-bubble
             spread at 0°C from <code>r.physical.temperatureGlideF</code>.
           </p>
         </Section>
@@ -320,7 +321,7 @@ export default function PtChartGuidePage() {
         >
           <Prose>
             <p>
-              Glide is the spread between bubble and dew temperatures at the same pressure. For a zeotropic blend at
+              {GLIDE_DEFINITION}{" "}For a zeotropic blend at
               constant pressure, the refrigerant doesn&apos;t boil or condense at a single temperature — it does so
               across a range. The first vapor appears at the bubble temperature; the last liquid disappears at the dew
               temperature.
@@ -441,18 +442,16 @@ export default function PtChartGuidePage() {
               this range and are addressed on per-refrigerant pages.
             </p>
             <p>
-              <strong>Source provenance.</strong> Every value on this site traces to a published source: CoolProp
-              7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999) for pure refrigerants and predefined
-              mixtures; ASHRAE 34-2022 for composition specifications and safety classifications; AHRI Standard 700
-              for refrigerant specifications; manufacturer technical datasheets (Honeywell Solstice / Genetron,
-              Chemours Opteon, Arkema Forane, AGC AMOLEA) for the 11 blends not in CoolProp&apos;s library. CoolProp
-              data is REFPROP-compatible (validated against NIST&apos;s reference database) with typical accuracy
-              better than ±0.5% across the operating range.
+              <strong>Source provenance.</strong>{" "}Every value on this site traces to a published source: CoolProp
+              7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999) for most fluids and CoolProp 8.0.0
+              for newer low-GWP fluids (R-450A, R-514A, R-515A/B, R-1224yd(Z), R-1336mzz(Z)); ASHRAE 34-2022 for
+              composition specifications and safety classifications; manufacturer technical datasheets (Chemours
+              ISCEON MO99, Honeywell Solstice N40) for the two R-404A retrofit blends CoolProp does not model
+              (R-438A, R-448A). CoolProp data is REFPROP-compatible, validated against NIST&apos;s reference database.
             </p>
             <p>
               Verification policy: every value is recorded in <code>data/refrigerants.json</code>{" "}(the generated data
-              layer), validated against a strict schema at build time, and cross-checked against AHRI 700 specifications
-              where applicable. The previous WordPress version of this site shipped with approximately 25,000
+              layer) and validated against a strict schema at build time. The previous WordPress version of this site shipped with approximately 25,000
               fabricated quantitative errors including PT values wrong by 2-15×, some above critical pressure (a
               physical impossibility), and several A2L / A3 / B2L refrigerants classified as &quot;A1
               non-flammable&quot;. The current rebuild was structured specifically to make those failure modes
@@ -465,7 +464,7 @@ export default function PtChartGuidePage() {
             tone="emerald"
             icon={<Lightbulb className="h-4 w-4" />}
             title="Manufacturer-blend handling"
-            body="For the 11 blends CoolProp doesn't model (R-448A, R-450A, R-1336mzz(Z), etc.), PT charts come directly from the named manufacturer datasheet. Where transcription is pending, the chart is empty and the page says so — never invented."
+            body="For the two R-404A retrofit blends CoolProp doesn't model (R-438A, R-448A), PT charts come directly from the named manufacturer datasheet. Where transcription is pending, the chart is empty and the page says so — never invented."
             className="mt-5"
           />
         </Section>
@@ -565,7 +564,7 @@ export default function PtChartGuidePage() {
           <ul className="mt-3 list-disc space-y-1.5 pl-5">
             <li>ASHRAE Handbook of Fundamentals 2021 — thermodynamic property reference</li>
             <li>CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014) — saturation property calculations</li>
-            <li>ASHRAE Handbook of Refrigeration 2022 — application context and PT tables for cross-check</li>
+            <li>ASHRAE Handbook—Refrigeration (2022) — application context and PT tables for cross-check</li>
             <li>Manufacturer datasheets (Honeywell, Chemours, Arkema, AGC) — for the manufacturer-blend refrigerants</li>
           </ul>
         </footer>

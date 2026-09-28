@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HubPage } from "@/components/hub/HubPage";
 import { pageMetadata } from "@/lib/schema/shared";
+import { COMPARISON_COUNT } from "@/lib/route-registry";
 
 export const metadata: Metadata = pageMetadata({
   title: "HVAC Guides: Commissioning, Safety, Troubleshooting (Free)",
@@ -16,7 +17,7 @@ export default function GuidesHubPage() {
       path="guides-hub"
       title="HVAC Guides"
       introHeadline="Reference material for HVAC technicians and engineers: the conceptual anchors behind the calculator pages, plus refrigerant comparisons and regulatory context."
-      introBody="Every guide is sourced — ASHRAE Handbook of Refrigeration 2022, ASHRAE Standard 34-2022, EPA AIM Act / SNAP, IPCC AR4/AR5/AR6, IIAR for ammonia, equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman). No 'general industry knowledge' filler; if a claim is in a guide, it carries an attribution. The guides pair with the calculator pages — guides provide the conceptual context, calculators do the math."
+      introBody="Every guide is sourced — ASHRAE Handbook—Refrigeration (2022), ASHRAE Standard 34-2022, EPA AIM Act / SNAP, IPCC AR4/AR5/AR6, IIAR for ammonia, equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman). No 'general industry knowledge' filler; if a claim is in a guide, it carries an attribution. The guides pair with the calculator pages — guides provide the conceptual context, calculators do the math."
       route="/guides-hub/"
       scenarios={[
         {
@@ -188,7 +189,7 @@ The 3 long-form HVAC guides on this site — troubleshooting, refrigerant recove
 
 (2) Industry standards — ANSI/ASHRAE Standard 34-2022 (refrigerant designation and safety classification), AHRI Standard 700-2019 (refrigerant specifications), IEC 60335-2-40 (A2L equipment), IIAR 2/9 (ammonia installation), ASTM B280 (copper tubing).
 
-(3) Industry best practice — ASHRAE Handbook of Refrigeration 2022, ASHRAE Handbook of Fundamentals 2021, ASHRAE HVAC Systems & Equipment 2024.
+(3) Industry best practice — ASHRAE Handbook—Refrigeration (2022), ASHRAE Handbook of Fundamentals 2021, ASHRAE Handbook—HVAC Systems and Equipment (2024).
 
 (4) Regulatory references — EPA AIM Act (40 CFR Part 84), EPA Section 608 (40 CFR Part 82 Subpart F), EU F-Gas Regulation 517/2014 and 2024/573, Kigali Amendment to Montreal Protocol (2016), IPCC AR4/AR5/AR6 for GWP values.
 
@@ -202,7 +203,7 @@ If a guide makes a specific quantitative claim ("R-407C glide is 11°F", "TXV re
 
 For specific service problems: use the "Quick picks" section at the top to jump to the most relevant guide for your situation (high discharge pressure, A2L compliance question, GWP regulatory lookup, etc.).
 
-For refrigerant transitions: the "Refrigerant transition planning" learning path walks through GWP rankings → comparison guide → specific pair comparisons. The 13 pair-comparison guides cover the most common transitions (R-22→R-407C, R-410A→R-454B, R-404A→R-449A, R-134a→R-513A, etc.).
+For refrigerant transitions: the "Refrigerant transition planning" learning path walks through GWP rankings → comparison guide → specific pair comparisons. The ${COMPARISON_COUNT} pair-comparison guides cover the most common transitions (R-22→R-407C, R-410A→R-454B, R-404A→R-449A, R-134a→R-513A, etc.).
 
 For long-form reference: the comparison guide and operating pressure pages are designed to be readable end-to-end as background — not just quick lookups.`,
         },

@@ -7,8 +7,14 @@ import { RefrigerantGlide } from "@/components/refrigerant/RefrigerantGlide";
 import { pageMetadata } from "@/lib/schema/shared";
 import { scenariosForPage } from "@/lib/scenarios";
 import { WorkedScenario } from "@/components/calculators/shared/WorkedScenario";
+import { ptDataProvenance } from "@/lib/data-provenance";
 
 /* ── Computed reference-table data (no typed pressures) ─────────────────── */
+
+// PT-data source split, counted from the dataset at build time so the sources
+// copy can't drift from what actually ships (51 CoolProp 7.2.0, 6 CoolProp
+// 8.0.0, 2 manufacturer-datasheet fluids at time of writing).
+const PROV = ptDataProvenance();
 
 // Quick-reference: saturation PSIG at these temps for these fluids, computed
 // live from the dataset via satPressure (bubble/dew for zeotropic blends).
@@ -65,7 +71,7 @@ const FAQS = [
   },
   {
     q: "How accurate is the calculator?",
-    a: "Saturation pressures come from CoolProp 7.2.0 (REFPROP-compatible Helmholtz EOS). For pure refrigerants and predefined CoolProp mixtures, accuracy is typically better than ±0.5% across the operating range. For the 11 manufacturer-blend refrigerants not modeled by CoolProp (R-448A, R-450A, R-1336mzz(Z), etc.) values come directly from the named manufacturer's PT chart with the same accuracy as the source datasheet.",
+    a: `Saturation pressures come from CoolProp, a REFPROP-compatible Helmholtz-energy EOS: CoolProp 7.2.0 for ${PROV.coolprop72} fluids and CoolProp 8.0.0 for ${PROV.coolprop80} newer low-GWP fluids (including R-450A and the pure HFO R-1336mzz(Z)). The remaining ${PROV.datasheet} refrigerants — R-438A (Chemours ISCEON MO99) and R-448A (Honeywell Solstice N40) — are transcribed from the named manufacturer PT charts and match the source datasheet.`,
   },
   {
     q: "What temperature range does the calculator cover?",
@@ -158,7 +164,7 @@ export default function PtCalculatorPage() {
           "Pick a refrigerant from the dropdown. Defaults to R-410A.",
           "Choose direction: 'Pressure from temperature' (PT chart lookup) or 'Temperature from pressure' (inverse).",
           "Adjust unit toggles if you need metric values (°C / kPa).",
-          "Enter your value. The result updates immediately, with both bubble and dew for zeotropic blends.",
+          "Enter your value and click Calculate. The result shows both bubble and dew for zeotropic blends.",
           "Cross-reference against the equipment data plate and the worked examples below to interpret the result for your specific scenario.",
         ],
         commonErrors: [
@@ -171,8 +177,7 @@ export default function PtCalculatorPage() {
       math={{
         formula:
           "P_sat = f(T)  or  T_sat = f(P)\n\nLinear interpolation between adjacent 1°F data points in the refrigerant's PT chart. For zeotropic blends, both bubble (saturated liquid) and dew (saturated vapor) curves are interpolated independently.",
-        sourceCitation:
-          "Saturation pressures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999), REFPROP-compatible Helmholtz EOS. For the 11 manufacturer-blend refrigerants not in CoolProp's reference library (R-448A, R-450A, R-1336mzz(Z), R-454C blended-data-mode, etc.), values come from the named manufacturer PT charts cited on each refrigerant's detail page. Cross-checked against AHRI Standard 700-2019 refrigerant specifications.",
+        sourceCitation: `Saturation pressures from CoolProp — ${PROV.coolprop72} fluids on CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999) and ${PROV.coolprop80} newer low-GWP fluids on CoolProp 8.0.0, both REFPROP-compatible Helmholtz EOS. The ${PROV.datasheet} manufacturer-datasheet fluids (R-438A, R-448A) come from the named manufacturer PT charts cited on each refrigerant's detail page.`,
         workedExample: `R-410A at 70°F: CoolProp returns P_bubble = 201.76 PSIG, P_dew = 201.07 PSIG (0.7 PSI glide — near-azeotropic).\n\nR-407C at 70°F: CoolProp returns P_bubble = 140.52 PSIG, P_dew = 117.29 PSIG (23 PSI glide — significant zeotrope).\n\nR-744 (CO2) at 70°F: P_sat = 838.13 PSIG. Above 87.8°F (the critical point) no saturation state exists and the chart truncates.\n\nR-32 at 95°F: ${satPressure("r-32", 95, "bubble")!.toFixed(1)} PSIG saturation. R-410A at 95°F: ${satPressure("r-410a", 95, "bubble")!.toFixed(1)} PSIG. R-32 runs about ${Math.round(((satPressure("r-32", 95, "bubble")! / satPressure("r-410a", 95, "bubble")!) - 1) * 100)}% higher than R-410A, consistent across the operating envelope.`,
       }}
       relatedTools={[
@@ -251,7 +256,7 @@ function RichContent() {
         </p>
         <GlideBars />
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Temperature glide across common HVAC blends, measured as bubble-minus-dew at 0°C
+          Temperature glide across common HVAC blends, measured as dew-minus-bubble at 0°C
           (CoolProp 7.2.0 dataset value). Pure refrigerants and azeotropes have zero glide and
           are omitted.
         </p>
@@ -412,7 +417,7 @@ function RichContent() {
             line pressure drop. Saturation is the reference; operating values vary around it.
           </li>
           <li>
-            <strong>Extrapolating beyond chart range.</strong> The calculator returns
+            <strong>Extrapolating beyond chart range.</strong>{" "}The calculator returns
             &quot;out of range&quot; outside the chart&apos;s valid temperature range — this is
             correct physics, not a bug. R-744 has no saturation state above 87.8°F (its
             critical point); other refrigerants have similar validity limits at extremes.
@@ -525,25 +530,26 @@ function RichContent() {
           <li>
             <strong>CoolProp 7.2.0</strong> (Bell, Wronski, Quoilin, Lemort 2014,
             doi:10.1021/ie4033999) — REFPROP-compatible Helmholtz EOS implementation. Source
-            for pure refrigerants (R-22, R-32, R-134a, R-744, etc.) and CoolProp&apos;s
-            predefined mixtures (R-410A, R-407C, R-404A, etc.). Accuracy typically better than
-            ±0.5 percent across the operating range.
+            for {PROV.coolprop72} fluids: pure refrigerants (R-22, R-32, R-134a, R-744, etc.)
+            and CoolProp&apos;s predefined mixtures (R-410A, R-407C, R-404A, etc.).
           </li>
           <li>
-            <strong>AHRI Standard 700-2019</strong> — Specifications for Refrigerants. Used to
-            verify CoolProp values against the manufacturer-specification standard.
+            <strong>CoolProp 8.0.0</strong> — same Helmholtz EOS engine, newer release. Source
+            for {PROV.coolprop80} lower-GWP fluids CoolProp 7.2.0 did not yet ship, including
+            R-450A, R-514A, R-515A, R-515B, R-1224yd(Z), and the pure HFO R-1336mzz(Z).
           </li>
           <li>
-            <strong>Manufacturer technical datasheets</strong> — for the 11 blends not modeled
-            by CoolProp (R-448A, R-450A, R-1336mzz(Z), R-454C blended mode, etc.). Honeywell,
-            Chemours, Arkema, and AGC PT charts cited on each refrigerant detail page.
+            <strong>Manufacturer technical datasheets</strong> — for the {PROV.datasheet}{" "}
+            R-404A retrofit blends CoolProp does not model: R-438A (Chemours ISCEON MO99) and
+            R-448A (Honeywell Solstice N40). The published PT tables are cited on each
+            refrigerant&apos;s detail page.
           </li>
           <li>
             <strong>ASHRAE Standard 34-2022</strong> — Designation and Safety Classification of
             Refrigerants. Source for composition specifications and safety class assignments.
           </li>
           <li>
-            <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Application context,
+            <strong>ASHRAE Handbook—Refrigeration (2022)</strong> — Application context,
             operating range references, service procedure guidance.
           </li>
         </ul>

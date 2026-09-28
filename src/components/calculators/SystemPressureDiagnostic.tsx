@@ -37,6 +37,7 @@ export function SystemPressureDiagnostic() {
   const [suctionT, setSuctionT] = useState("60");
   const [liquidP, setLiquidP] = useState("380");
   const [liquidT, setLiquidT] = useState("100");
+  const [submitted, setSubmitted] = useState(false);
 
   const result = useMemo(() => {
     const inputs = {
@@ -104,8 +105,22 @@ export function SystemPressureDiagnostic() {
         </div>
       </div>
 
+      <button
+        type="button"
+        onClick={() => setSubmitted(true)}
+        className="w-full rounded-md bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 sm:w-auto"
+      >
+        Calculate
+      </button>
+
+      {!submitted ? (
+        <p className="text-sm text-zinc-500">Enter all six measurements, then click Calculate.</p>
+      ) : !result ? (
+        <p className="text-sm text-zinc-500">Enter a finite number in every field to compute the diagnostic.</p>
+      ) : null}
+
       {/* Derived values */}
-      {result ? (
+      {submitted && result ? (
         <div className="rounded-md border border-zinc-300 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-950/40">
           <h3 className="mb-3 text-sm font-semibold">Derived values</h3>
           <dl className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm sm:grid-cols-4">
@@ -120,7 +135,7 @@ export function SystemPressureDiagnostic() {
       ) : null}
 
       {/* Flags */}
-      {result && result.flags.length > 0 ? (
+      {submitted && result && result.flags.length > 0 ? (
         <section className="space-y-3">
           <h3 className="text-base font-semibold">Diagnostic findings</h3>
           {result.flags.map((flag, i) => (

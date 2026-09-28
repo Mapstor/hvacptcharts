@@ -129,7 +129,7 @@ export default function SystemPressureDiagnosticPage() {
           "Record outdoor ambient at the condenser inlet (not in direct sun) and indoor return-air at the air handler.",
           "Let the system run 10-20 minutes under load to stabilize. Connect manifold gauges to suction and discharge ports.",
           "Read suction pressure (low side) and discharge pressure (high side). Clamp temperature probes to suction line (within 6 inches of compressor) and liquid line (at condenser outlet). Insulate probes from ambient.",
-          "Enter all six measurements. The diagnostic flags update immediately. Read flags in priority order — alarms first.",
+          "Enter all six measurements and click Calculate. The diagnostic flags appear after you click Calculate — read them in priority order, alarms first.",
           "Follow the numbered recommendations for the highest-severity flag first.",
         ],
         commonErrors: [
@@ -319,13 +319,14 @@ function RichContent() {
             temperatures.
           </li>
           <li>
-            <strong>ASHRAE Handbook of Refrigeration 2022</strong> — Chapter 23 (service
-            procedures), Chapter 39 (condensers, approach temperatures), Chapter 40
-            (evaporators).
+            <strong>ASHRAE Handbook—Refrigeration (2022)</strong> — “Equipment and System
+            Dehydrating, Charging, and Testing” (service and charging procedures).
           </li>
           <li>
-            <strong>ASHRAE HVAC Systems &amp; Equipment 2024</strong> — Chapter 43
-            (chillers), water-cooled condenser approach targets.
+            <strong>ASHRAE Handbook—HVAC Systems and Equipment (2024)</strong> — “Condensers”
+            (air- and water-cooled condenser approach temperatures), “Air-Cooling and
+            Dehumidifying Coils” (evaporators), and “Liquid-Chilling Systems” (chiller approach
+            targets).
           </li>
           <li>
             <strong>EPA Section 608</strong> — refrigerant handling certification, leak

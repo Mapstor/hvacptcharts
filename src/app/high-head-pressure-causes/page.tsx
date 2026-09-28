@@ -248,7 +248,7 @@ export default function HighHeadPressurePage() {
             Decision tree flow for high-head diagnosis. Start with the easiest, most common
             causes (condenser airflow, overcharge); only after ruling those out move to the
             less common causes (non-condensables, restriction, compressor wear). Source:
-            ASHRAE Handbook of Refrigeration 2022 (service procedures) and equipment
+            ASHRAE Handbook—Refrigeration (2022) (service procedures) and equipment
             manufacturer service literature.
           </p>
         </TechSection>
@@ -507,7 +507,7 @@ export default function HighHeadPressurePage() {
         <footer className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400">
           <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Sources</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
-            <li>ASHRAE Handbook of Refrigeration 2022 — Chapters 23, 39 (service procedures, condensers)</li>
+            <li>ASHRAE Handbook—Refrigeration (2022), “Equipment and System Dehydrating, Charging, and Testing” (service procedures); ASHRAE Handbook—HVAC Systems and Equipment (2024), “Condensers”</li>
             <li>EPA Section 608 (40 CFR Part 82 Subpart F) — refrigerant handling, evacuation procedures</li>
             <li>CoolProp 7.2.0 — saturation property source for site calculators</li>
             <li>Manufacturer service literature — Carrier, Trane, Lennox, Daikin, Goodman residential AC service manuals; commercial OEMs (Heatcraft, Hussmann) for walk-in / refrigeration high-side procedures</li>
