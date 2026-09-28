@@ -38,6 +38,8 @@ import { loadRefrigerantMdx } from "@/lib/mdx";
 import { findComparisonsForRefrigerant, type ComparisonSummary } from "@/lib/mdx-comparison";
 import { findWhatPressureForRefrigerant } from "@/lib/mdx-what-pressure";
 import { buildRefrigerantSchema } from "@/lib/schema/refrigerant";
+import { showsAimBadge } from "@/lib/us-regulation";
+import { RegulatoryTimeline, UsNewEquipmentRules, newEquipmentFactValue } from "@/components/refrigerant/UsRegulation";
 import { SITE_URL, buildRefrigerantMetadata, pageMetadata, seoName, COMMON_NAME } from "@/lib/schema/shared";
 import { UpdatedLine } from "@/lib/content-dates";
 
@@ -50,7 +52,6 @@ import { PTDatasheetTable } from "@/components/refrigerant/PTDatasheetTable";
 import { QuickPTLookup } from "@/components/refrigerant/QuickPTLookup";
 import { RefrigerantCylinderStory } from "@/components/diagrams/RefrigerantCylinderStory";
 import { RefrigerantCycle } from "@/components/refrigerant/RefrigerantCycle";
-import { RefrigerantPhaseDown } from "@/components/refrigerant/RefrigerantPhaseDown";
 import { RefrigerantGlide } from "@/components/refrigerant/RefrigerantGlide";
 import { RefrigerantGWPComparison } from "@/components/refrigerant/RefrigerantGWPComparison";
 import { mdxComponents } from "@/components/refrigerant/mdx-components";
@@ -166,7 +167,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
             <div className="mt-4 flex flex-wrap items-center gap-2">
               <SafetyClassChip safetyClass={r.safetyClass} size="md" />
               <TypeChip type={r.type} />
-              {r.regulatoryStatus.aimActAffected && !r.regulatoryStatus.epaPhaseoutComplete ? (
+              {showsAimBadge(r) && !r.regulatoryStatus.epaPhaseoutComplete ? (
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-900 dark:border-amber-800 dark:bg-amber-950/50 dark:text-amber-200">
                   <AlertTriangle className="h-3 w-3" /> AIM Act phase-down
                 </span>
@@ -606,8 +607,9 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
           number="08"
         >
           <div className="rounded-xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-950">
-            <RefrigerantPhaseDown slug={slug} />
+            <RegulatoryTimeline r={r} />
           </div>
+          <UsNewEquipmentRules r={r} />
         </Section>
 
         {/* ───────────────── GWP comparison ───────────────── */}
@@ -1160,6 +1162,12 @@ function PropertiesGrid({ r }: { r: Refrigerant }) {
       tone: "neutral",
     });
   }
+  rows.push({
+    icon: <ShieldAlert className="h-3.5 w-3.5" />,
+    label: "New-equipment status (US)",
+    value: <span className="text-xs">{newEquipmentFactValue(r)}</span>,
+    tone: "neutral",
+  });
 
   return (
     <ul data-src="dataset" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

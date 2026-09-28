@@ -4,8 +4,19 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { refrigerants, gwpNum, gwpText, type Refrigerant, type SafetyClass, type RefrigerantType } from "@/data/refrigerants";
 import { basisLabel } from "@/lib/gwp";
+import { regulatoryClass } from "@/lib/us-regulation";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { typeLabel } from "@/components/refrigerant/TypeChip";
+
+// A CFC/HCFC-containing blend's headline is a mass-weighted AR4 figure that
+// includes the CFC/HCFC constituents; the "US EPA value" (84.64(b)) basis does
+// not apply to it because 84.64(c) excludes those constituents for US thresholds.
+function basisForRow(r: Refrigerant): string {
+  if (r.type === "cfc-blend" || r.type === "hcfc-blend") {
+    return "IPCC AR4, mass-weighted (incl. CFC/HCFC constituents)";
+  }
+  return basisLabel(r.environmental.gwp.headline.source);
+}
 
 type SortKey = "displayName" | "gwpHeadline" | "odp" | "safetyClass" | "type";
 type SortDir = "asc" | "desc";
@@ -156,7 +167,7 @@ export function GwpTable() {
                   {gwpText(r.environmental.gwp.ar6)}
                 </td>
                 <td className="px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400">
-                  {basisLabel(r.environmental.gwp.headline.source)}
+                  {basisForRow(r)}
                 </td>
                 <td className="px-3 py-2 text-xs">
                   <StatusBadges r={r} />
@@ -172,25 +183,27 @@ export function GwpTable() {
         (40 CFR 84.54(a)(1), (c)(1)). Green: GWP &lt; 150. The 0 (CO2 reference) and
         natural-refrigerant tier dominates the bottom of the table; the CFC/HCFC legacy refrigerants dominate the top.
       </p>
+      <p className="text-xs text-zinc-500">
+        Status is derived: an AIM Act HFC is one of the 18 regulated HFCs (42 U.S.C. 7675(c)) or a blend containing one.
+        For US 40 CFR 84.54 thresholds the blend GWP is recomputed under 84.64(c), which excludes CFC/HCFC/PFC
+        constituents — so a CFC/HCFC blend&apos;s headline (mass-weighted IPCC AR4) is not the value used against those limits.
+      </p>
     </div>
   );
 }
 
+// Derived from the regulatory engine: AIM Act HFC (regulated substance / blend
+// containing one), ODS — CFC, ODS — HCFC, or — (none).
+const STATUS_META: Record<string, { label: string; tone: string }> = {
+  "aim-hfc": { label: "AIM Act HFC", tone: "bg-amber-100 text-amber-900 dark:bg-amber-900/30 dark:text-amber-200" },
+  "ods-cfc": { label: "ODS — CFC", tone: "bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300" },
+  "ods-hcfc": { label: "ODS — HCFC", tone: "bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300" },
+};
 function StatusBadges({ r }: { r: Refrigerant }) {
-  const items: Array<{ label: string; tone: string }> = [];
-  if (r.regulatoryStatus.epaPhaseoutComplete) {
-    items.push({ label: "Phased out", tone: "bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300" });
-  }
-  if (r.regulatoryStatus.aimActAffected) {
-    items.push({ label: "AIM Act", tone: "bg-amber-100 text-amber-900 dark:bg-amber-900/30 dark:text-amber-200" });
-  }
-  return (
-    <span className="inline-flex flex-wrap gap-1">
-      {items.length === 0 ? <span className="text-zinc-400">—</span> : items.map((b) => (
-        <span key={b.label} className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium ${b.tone}`}>{b.label}</span>
-      ))}
-    </span>
-  );
+  const k = regulatoryClass(r);
+  if (k === "none") return <span className="text-zinc-400">—</span>;
+  const m = STATUS_META[k];
+  return <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium ${m.tone}`}>{m.label}</span>;
 }
 
 function rowTone(r: Refrigerant): string {

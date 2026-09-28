@@ -1,0 +1,767 @@
+{
+  "meta": {
+    "verified": "2026-09-28",
+    "rule": "Every entry below was checked against the cited primary text on the verified date. Do not add, reword or extend entries without a primary source; add new facts only through this file."
+  },
+  "us": {
+    "technologyTransitions": {
+      "title": "US Technology Transitions restrictions (AIM Act) — 40 CFR 84.54",
+      "currentThrough": "91 FR 31329 (May 26, 2026); section history: 88 FR 73205 (Oct. 24, 2023); 88 FR 88832 (Dec. 26, 2023); 89 FR 100392 (Dec. 12, 2024); 90 FR 41724 (Aug. 26, 2025); 91 FR 31329 (May 26, 2026)",
+      "verified": "2026-09-28 against the eCFR text as reproduced by Cornell LII (law.cornell.edu/cfr/text/40/84.54)",
+      "sourceUrl": "https://www.ecfr.gov/current/title-40/section-84.54",
+      "appliesTo": "Only products/systems using a 'regulated substance' (one of the 18 HFCs listed in the AIM Act, 42 U.S.C. 7675(c)) or a blend containing one. Pure HFOs/HCFOs, hydrocarbons, R-717, R-744, CFCs, HCFCs and PFCs are not regulated substances.",
+      "regulatedSubstances": [
+        "HFC-134",
+        "HFC-134a",
+        "HFC-143",
+        "HFC-245fa",
+        "HFC-365mfc",
+        "HFC-227ea",
+        "HFC-236cb",
+        "HFC-236ea",
+        "HFC-236fa",
+        "HFC-245ca",
+        "HFC-43-10mee",
+        "HFC-32",
+        "HFC-125",
+        "HFC-143a",
+        "HFC-41",
+        "HFC-152",
+        "HFC-152a",
+        "HFC-23"
+      ],
+      "gwpBasis": "40 CFR 84.64: exchange values (appendix A) for regulated substances; blends = sum of constituent GWP x nominal mass fraction (84.64(b)); constituents without a listed GWP are excluded (84.64(c)). Compare the refrigerant's headline (US EPA basis) GWP against 'gwpAtLeast'.",
+      "restrictionTypes": {
+        "manufacture_import": "84.54(a): No person may manufacture or import any product in the listed subsector that uses a regulated substance as listed.",
+        "sale_distribution": "84.54(b): Effective three years after each (a) date, no person may sell, distribute, offer for sale or distribution, or export any product that uses a regulated substance as listed in (a).",
+        "installation": "84.54(c): No person may install any system (or have it installed as its designer, owner, or operator) in the listed subsector that uses a regulated substance as listed."
+      },
+      "installationDefinition": "84.54(e): upon charging the system to full charge, installation includes (1) assembling a system for the first time from used or new components; (2) increasing the cooling capacity (BTU/h) of an existing supermarket system by more than 15 percent, or increasing the cooling capacity of any other type of existing system; (3) replacing 75 percent or more of evaporators (by number) and 100 percent of the compressor racks, condensers, and connected evaporator loads of an existing system.",
+      "permitExtension": "84.54(d): the installation compliance date is extended one year for industrial process refrigeration systems with a January 1, 2026 compliance date and for the retail food — supermarket, cold storage warehouse and ice rink subsectors when an approved building permit issued prior to October 5, 2023 specifies the restricted refrigerant.",
+      "servicing": "84.54 restricts new manufacture/import, later sale/distribution, and installation (as defined in 84.54(e)). Servicing and repairing existing equipment is not an 'installation' unless it meets 84.54(e).",
+      "matching": "Match 'named' lists by exact designation; normalize 'HFC-134a' -> 'R-134a', 'HFC-227ea' -> 'R-227ea'. Ignore list items the dataset does not contain.",
+      "entries": [
+        {
+          "cfr": "40 CFR 84.54(a)(1)",
+          "type": "manufacture_import",
+          "subsector": "Self-contained residential and light commercial air-conditioning and heat pump products",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(1)",
+          "type": "installation",
+          "subsector": "Residential or light commercial air-conditioning or heat pump systems (except variable refrigerant flow)",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "note": "New systems may continue to be installed where all specified components of that system were manufactured or imported prior to January 1, 2025."
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(2)",
+          "type": "installation",
+          "subsector": "Variable refrigerant flow systems used as residential or light commercial air-conditioning or heat pumps",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "note": "May be installed prior to January 1, 2027 where all specified components were manufactured or imported prior to January 1, 2026; prior to January 1, 2028 when an approved building permit issued prior to October 5, 2023 specifies the restricted refrigerant and all specified components were manufactured or imported prior to January 1, 2026."
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(3)",
+          "type": "manufacture_import",
+          "subsector": "Household refrigerators and freezers",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(4)",
+          "type": "manufacture_import",
+          "subsector": "Retail food refrigeration — stand-alone units",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(5)",
+          "type": "manufacture_import",
+          "subsector": "Vending machines",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(6)",
+          "type": "manufacture_import",
+          "subsector": "Refrigerated transport — intermodal containers with a box temperature of −35 °C (−31 °F) or higher",
+          "effective": "2026-07-27",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(7)",
+          "type": "installation",
+          "subsector": "Refrigerated transport — intermodal containers with a box temperature of −35 °C (−31 °F) or higher",
+          "effective": "2026-07-27",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(7)",
+          "type": "manufacture_import",
+          "subsector": "Refrigerated transport — road and marine (self-contained products)",
+          "effective": "2025-01-01",
+          "rule": {
+            "named": [
+              "R-402A",
+              "R-402B",
+              "R-404A",
+              "R-407B",
+              "R-408A",
+              "R-410B",
+              "R-417A",
+              "R-421A",
+              "R-421B",
+              "R-422A",
+              "R-422B",
+              "R-422C",
+              "R-422D",
+              "R-424A",
+              "R-428A",
+              "R-434A",
+              "R-438A",
+              "R-507A",
+              "R-125/290/134a/600a (55/1/42.5/1.5)",
+              "RS-44 (2003 formulation)",
+              "GHG-X5"
+            ]
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(8)",
+          "type": "installation",
+          "subsector": "Refrigerated transport — road or marine systems",
+          "effective": "2025-01-01",
+          "rule": {
+            "named": [
+              "R-402A",
+              "R-402B",
+              "R-404A",
+              "R-407B",
+              "R-408A",
+              "R-410B",
+              "R-417A",
+              "R-421A",
+              "R-421B",
+              "R-422A",
+              "R-422B",
+              "R-422C",
+              "R-422D",
+              "R-424A",
+              "R-428A",
+              "R-434A",
+              "R-438A",
+              "R-507A",
+              "R-125/290/134a/600a (55/1/42.5/1.5)",
+              "RS-44 (2003 formulation)",
+              "GHG-X5"
+            ]
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(8)(i)",
+          "type": "manufacture_import",
+          "subsector": "Ice makers — batch type up to 1,000 lb of ice per 24 h and continuous type up to 1,200 lb per 24 h",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(8)(ii)",
+          "type": "manufacture_import",
+          "subsector": "Ice makers — batch type above 1,000 lb of ice per 24 h and continuous type above 1,200 lb per 24 h",
+          "effective": "2027-01-01",
+          "rule": {
+            "named": [
+              "R-402A",
+              "R-402B",
+              "R-404A",
+              "R-407A",
+              "R-407B",
+              "R-407C",
+              "R-407F",
+              "R-408A",
+              "R-410A",
+              "R-410B",
+              "R-411A",
+              "R-411B",
+              "R-417A",
+              "R-417C",
+              "R-420A",
+              "R-421A",
+              "R-421B",
+              "R-422A",
+              "R-422B",
+              "R-422C",
+              "R-422D",
+              "R-424A",
+              "R-426A",
+              "R-428A",
+              "R-434A",
+              "R-437A",
+              "R-438A",
+              "R-442A",
+              "R-507A",
+              "HFC-134a",
+              "R-125/290/134a/600a (55/1/42.5/1.5)",
+              "RB-276",
+              "RS-24 (2002 formulation)",
+              "RS-44 (2003 formulation)",
+              "GHG-X5",
+              "G2018C",
+              "Freeze 12"
+            ]
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(14)",
+          "type": "installation",
+          "subsector": "Automatic commercial ice machines with a remote condenser",
+          "effective": "2027-01-01",
+          "rule": {
+            "named": [
+              "R-402A",
+              "R-402B",
+              "R-404A",
+              "R-407B",
+              "R-408A",
+              "R-410B",
+              "R-417A",
+              "R-421A",
+              "R-421B",
+              "R-422A",
+              "R-422B",
+              "R-422C",
+              "R-422D",
+              "R-424A",
+              "R-428A",
+              "R-434A",
+              "R-438A",
+              "R-507A",
+              "R-125/290/134a/600a (55/1/42.5/1.5)",
+              "RS-44 (2003 formulation)",
+              "GHG-X5"
+            ]
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(9)(i)",
+          "type": "manufacture_import",
+          "subsector": "Refrigerated food processing and dispensing products outside the scope of UL 621, charge 500 g or less",
+          "effective": "2027-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(9)(ii)",
+          "type": "manufacture_import",
+          "subsector": "Refrigerated food processing and dispensing products outside the scope of UL 621, charge greater than 500 g",
+          "effective": "2027-01-01",
+          "rule": {
+            "named": [
+              "R-402A",
+              "R-402B",
+              "R-404A",
+              "R-407A",
+              "R-407B",
+              "R-407C",
+              "R-407F",
+              "R-407H",
+              "R-408A",
+              "R-410A",
+              "R-410B",
+              "R-411A",
+              "R-411B",
+              "R-417A",
+              "R-417C",
+              "R-420A",
+              "R-421A",
+              "R-421B",
+              "R-422A",
+              "R-422B",
+              "R-422C",
+              "R-422D",
+              "R-424A",
+              "R-426A",
+              "R-427A",
+              "R-428A",
+              "R-434A",
+              "R-437A",
+              "R-438A",
+              "R-507A",
+              "HFC-134a",
+              "HFC-227ea",
+              "R-125/290/134a/600a (55/1/42.5/1.5)",
+              "RB-276",
+              "RS-24 (2002 formulation)",
+              "RS-44 (2003 formulation)",
+              "GHG-X5",
+              "Freeze 12"
+            ]
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(9)(iii)",
+          "type": "manufacture_import",
+          "subsector": "Refrigerated food processing and dispensing products within the scope of UL 621 (ice cream makers)",
+          "effective": "2028-01-01",
+          "rule": {
+            "named": [
+              "R-402A",
+              "R-402B",
+              "R-404A",
+              "R-407A",
+              "R-407B",
+              "R-407C",
+              "R-407F",
+              "R-407H",
+              "R-408A",
+              "R-410A",
+              "R-410B",
+              "R-411A",
+              "R-411B",
+              "R-417A",
+              "R-417C",
+              "R-420A",
+              "R-421A",
+              "R-421B",
+              "R-422A",
+              "R-422B",
+              "R-422C",
+              "R-422D",
+              "R-424A",
+              "R-426A",
+              "R-427A",
+              "R-428A",
+              "R-434A",
+              "R-437A",
+              "R-438A",
+              "R-507A",
+              "HFC-134a",
+              "HFC-227ea",
+              "R-125/290/134a/600a (55/1/42.5/1.5)",
+              "RB-276",
+              "RS-24 (2002 formulation)",
+              "RS-44 (2003 formulation)",
+              "GHG-X5",
+              "Freeze 12"
+            ]
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(15)",
+          "type": "installation",
+          "subsector": "Refrigerated food processing and dispensing equipment with a remote condenser",
+          "effective": "2027-01-01",
+          "rule": {
+            "named": [
+              "R-402A",
+              "R-402B",
+              "R-404A",
+              "R-407A",
+              "R-407B",
+              "R-407C",
+              "R-407F",
+              "R-407H",
+              "R-408A",
+              "R-410A",
+              "R-410B",
+              "R-411A",
+              "R-411B",
+              "R-417A",
+              "R-417C",
+              "R-420A",
+              "R-421A",
+              "R-421B",
+              "R-422A",
+              "R-422B",
+              "R-422C",
+              "R-422D",
+              "R-424A",
+              "R-426A",
+              "R-427A",
+              "R-428A",
+              "R-434A",
+              "R-437A",
+              "R-438A",
+              "R-507A",
+              "HFC-134a",
+              "HFC-227ea",
+              "R-125/290/134a/600a (55/1/42.5/1.5)",
+              "RB-276",
+              "RS-24 (2002 formulation)",
+              "RS-44 (2003 formulation)",
+              "GHG-X5",
+              "Freeze 12"
+            ]
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(10)(i)",
+          "type": "manufacture_import",
+          "subsector": "Chillers for comfort cooling",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(3)",
+          "type": "installation",
+          "subsector": "Chillers for comfort cooling",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(10)(ii)",
+          "type": "manufacture_import",
+          "subsector": "Chillers for ice rinks",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(4)",
+          "type": "installation",
+          "subsector": "Ice rinks",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(10)(iii)",
+          "type": "manufacture_import",
+          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(5)(i)",
+          "type": "installation",
+          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(10)(iv)",
+          "type": "manufacture_import",
+          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller from −50 °C to −30 °C (−58 °F to −22 °F)",
+          "effective": "2028-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(6)(i)",
+          "type": "installation",
+          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller from −50 °C to −30 °C (−58 °F to −22 °F)",
+          "effective": "2028-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(12)(i)",
+          "type": "manufacture_import",
+          "subsector": "Industrial process refrigeration products (non-chiller), charge 200 lb or greater, refrigerant entering the evaporator warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(12)(ii)",
+          "type": "manufacture_import",
+          "subsector": "Industrial process refrigeration products (non-chiller), charge less than 200 lb, refrigerant entering the evaporator warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 300
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(12)(iii)",
+          "type": "manufacture_import",
+          "subsector": "Industrial process refrigeration products (non-chiller), refrigerant entering the evaporator from −50 °C to −30 °C (−58 °F to −22 °F)",
+          "effective": "2028-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(10)(i)",
+          "type": "installation",
+          "subsector": "Industrial process refrigeration systems (non-chiller), charge 200 lb or greater, evaporator inlet warmer than −30 °C (−22 °F), not the high-temperature side of a cascade",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(10)(ii)",
+          "type": "installation",
+          "subsector": "Industrial process refrigeration systems (non-chiller), charge less than 200 lb, evaporator inlet warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 300
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(10)(iii)",
+          "type": "installation",
+          "subsector": "Industrial process refrigeration — high-temperature side of cascade systems, evaporator inlet warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 300
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(10)(iv)",
+          "type": "installation",
+          "subsector": "Industrial process refrigeration systems (non-chiller), evaporator inlet from −50 °C to −30 °C (−58 °F to −22 °F)",
+          "effective": "2028-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(9)(i)",
+          "type": "installation",
+          "subsector": "Cold storage warehouse systems",
+          "effective": "2026-07-27",
+          "rule": {
+            "gwpAtLeast": 700
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(9)(ii)",
+          "type": "installation",
+          "subsector": "Cold storage warehouse systems",
+          "effective": "2032-01-01",
+          "rule": {
+            "tiered": [
+              {
+                "condition": "refrigerant charge capacity 200 lb or greater, not the high-temperature side of a cascade system",
+                "gwpAtLeast": 150
+              },
+              {
+                "condition": "refrigerant charge capacity less than 200 lb",
+                "gwpAtLeast": 300
+              },
+              {
+                "condition": "high-temperature side of a cascade system",
+                "gwpAtLeast": 300
+              }
+            ]
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(11)(i)",
+          "type": "installation",
+          "subsector": "Retail food refrigeration — remote condensing units",
+          "effective": "2026-07-27",
+          "rule": {
+            "gwpAtLeast": 1400
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(11)(ii)",
+          "type": "installation",
+          "subsector": "Retail food refrigeration — remote condensing units",
+          "effective": "2032-01-01",
+          "rule": {
+            "tiered": [
+              {
+                "condition": "refrigerant charge capacity 200 lb or greater, not the high-temperature side of a cascade system",
+                "gwpAtLeast": 150
+              },
+              {
+                "condition": "refrigerant charge capacity less than 200 lb",
+                "gwpAtLeast": 300
+              },
+              {
+                "condition": "high-temperature side of a cascade system",
+                "gwpAtLeast": 300
+              }
+            ]
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(12)(i)",
+          "type": "installation",
+          "subsector": "Retail food refrigeration — supermarket systems",
+          "effective": "2027-01-01",
+          "rule": {
+            "gwpAtLeast": 1400
+          }
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(12)(ii)",
+          "type": "installation",
+          "subsector": "Retail food refrigeration — supermarket systems",
+          "effective": "2032-01-01",
+          "rule": {
+            "tiered": [
+              {
+                "condition": "refrigerant charge capacity 200 lb or greater, not the high-temperature side of a cascade system",
+                "gwpAtLeast": 150
+              },
+              {
+                "condition": "refrigerant charge capacity less than 200 lb",
+                "gwpAtLeast": 300
+              },
+              {
+                "condition": "high-temperature side of a cascade system",
+                "gwpAtLeast": 300
+              }
+            ]
+          }
+        }
+      ],
+      "phasedown": {
+        "source": "AIM Act, 42 U.S.C. 7675(e)(2)(C) (production and consumption allowances as a percentage of baseline)",
+        "schedule": [
+          {
+            "years": "2020-2023",
+            "percentOfBaseline": 90
+          },
+          {
+            "years": "2024-2028",
+            "percentOfBaseline": 60
+          },
+          {
+            "years": "2029-2033",
+            "percentOfBaseline": 30
+          },
+          {
+            "years": "2034-2035",
+            "percentOfBaseline": 20
+          },
+          {
+            "years": "2036 and after",
+            "percentOfBaseline": 15
+          }
+        ]
+      }
+    },
+    "ods": {
+      "entries": [
+        {
+          "substances": "CFCs and other class I ozone-depleting substances (excluding methyl bromide)",
+          "event": "US ban on production and import took effect",
+          "date": "1996-01-01",
+          "source": "US EPA, Phaseout of Class I Ozone-Depleting Substances",
+          "url": "https://www.epa.gov/ods-phaseout/phaseout-class-i-ozone-depleting-substances"
+        },
+        {
+          "substances": "HCFC-22 and HCFC-142b",
+          "event": "No production or import, except for use in equipment manufactured before January 1, 2010",
+          "date": "2010-01-01",
+          "source": "US EPA, Phaseout of Class II Ozone-Depleting Substances",
+          "url": "https://www.epa.gov/ods-phaseout/phaseout-class-ii-ozone-depleting-substances"
+        },
+        {
+          "substances": "HCFC-22 and HCFC-142b",
+          "event": "No production or import",
+          "date": "2020-01-01",
+          "source": "US EPA, Phaseout of Class II Ozone-Depleting Substances",
+          "url": "https://www.epa.gov/ods-phaseout/phaseout-class-ii-ozone-depleting-substances"
+        },
+        {
+          "substances": "All HCFCs (including HCFC-123)",
+          "event": "No production or import",
+          "date": "2030-01-01",
+          "source": "US EPA, Phaseout of Class II Ozone-Depleting Substances",
+          "url": "https://www.epa.gov/ods-phaseout/phaseout-class-ii-ozone-depleting-substances"
+        }
+      ],
+      "servicingNote": "EPA: HCFC uses continue, such as for servicing refrigeration and air-conditioning equipment (production/import limits apply, not a ban on using existing equipment)."
+    }
+  },
+  "eu": {
+    "regulation517_2014": {
+      "name": "Regulation (EU) No 517/2014 (F-gas Regulation, 2014)",
+      "status": "Reviewed and replaced by Regulation (EU) 2024/573, which started to apply on 11 March 2024 (European Commission).",
+      "gwpBasis": "Compare against the refrigerant's AR4-based headline GWP.",
+      "annexIII": [
+        {
+          "row": 11,
+          "product": "Refrigerators and freezers for commercial use (hermetically sealed equipment)",
+          "condition": "that contain HFCs with GWP of 2 500 or more",
+          "gwpAtLeast": 2500,
+          "date": "2020-01-01"
+        },
+        {
+          "row": 11,
+          "product": "Refrigerators and freezers for commercial use (hermetically sealed equipment)",
+          "condition": "that contain HFCs with GWP of 150 or more",
+          "gwpAtLeast": 150,
+          "date": "2022-01-01"
+        },
+        {
+          "row": 12,
+          "product": "Stationary refrigeration equipment",
+          "condition": "that contains, or whose functioning relies upon, HFCs with GWP of 2 500 or more except equipment intended for application designed to cool products to temperatures below – 50 °C",
+          "gwpAtLeast": 2500,
+          "date": "2020-01-01"
+        },
+        {
+          "row": 13,
+          "product": "Multipack centralised refrigeration systems for commercial use with a rated capacity of 40 kW or more",
+          "condition": "that contain, or whose functioning relies upon, fluorinated greenhouse gases with GWP of 150 or more, except in the primary refrigerant circuit of cascade systems where fluorinated greenhouse gases with a GWP of less than 1 500 may be used",
+          "gwpAtLeast": 150,
+          "date": "2022-01-01"
+        }
+      ],
+      "annexIIIType": "Prohibitions on placing on the market (new products/equipment).",
+      "article13_3": {
+        "gwpAtLeast": 2500,
+        "date": "2020-01-01",
+        "text": "From 1 January 2020, the use of fluorinated greenhouse gases, with a global warming potential of 2 500 or more, to service or maintain refrigeration equipment with a charge size of 40 tonnes of CO2 equivalent or more, shall be prohibited. This paragraph shall not apply to military equipment or equipment intended for applications designed to cool products to temperatures below – 50 °C. The prohibition shall not apply until 1 January 2030 to (a) reclaimed fluorinated greenhouse gases with a GWP of 2 500 or more used for the maintenance or servicing of existing refrigeration equipment, provided that they have been labelled in accordance with Article 12(6); (b) recycled fluorinated greenhouse gases with a GWP of 2 500 or more used for the maintenance or servicing of existing refrigeration equipment provided they have been recovered from such equipment."
+      },
+      "url": "https://www.legislation.gov.uk/eur/2014/517/annex/III/adopted",
+      "urlNote": "Text as adopted by the EU (legislation.gov.uk 'Original (As adopted by EU)' view)."
+    },
+    "regulation2024_573": {
+      "name": "Regulation (EU) 2024/573",
+      "applies": "2024-03-11",
+      "summary": "Started to apply on 11 March 2024 and adds further prohibitions on F-gas equipment, products and use; its Annex IV is the current EU list — not reproduced here.",
+      "gwpBasisNote": "Recital 8: AR4 values for HFCs, AR6 for other fluorinated gases.",
+      "url": "https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases/f-gas-legislation_en"
+    }
+  },
+  "kigali": {
+    "montrealProtocolParties": 198,
+    "kigaliRatifications": 174,
+    "asOf": "2026-08-10",
+    "source": "UNEP Ozone Secretariat"
+  }
+}

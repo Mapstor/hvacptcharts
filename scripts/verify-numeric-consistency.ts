@@ -861,6 +861,11 @@ function checkGwp(unit: string, masked: string, mentions: RefMention[], page: Pa
     if (evaluated.has(numIdx)) return;
     evaluated.add(numIdx);
     if (!subject) return;
+    // "40 CFR 84.64 ... GWP N" is the AIM Act blend GWP (84.64(c) excludes CFC/
+    // HCFC/PFC constituents) — a distinct regulatory value the us-regulation
+    // engine renders and verify-regulatory checks, NOT the refrigerant's headline
+    // GWP. "84.64" may sit a few words before the number ("84.64 its blend GWP is N").
+    if (/84\.64/.test(unit.slice(Math.max(0, numIdx - 42), numIdx))) return;
     // Threshold ("GWP below 150", "GWP above 700") — a regulatory bound, not a
     // refrigerant's own GWP.
     if (precededByBound(masked, numIdx) || precededByBound(unit, numIdx)) return;

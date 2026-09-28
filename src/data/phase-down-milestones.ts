@@ -38,16 +38,16 @@ export const PHASE_DOWN_MILESTONES: Record<string, PhaseDownMilestone[]> = {
     { date: "2036-01-01", label: "AIM Act phase-down: 85% reduction baseline", severity: "critical", citation: "epa-aim-act" },
   ],
   "r-404a": [
-    { date: "2025-01-01", label: "AIM Act: most new commercial refrigeration uses prohibited (GWP > 700)", severity: "critical", citation: "epa-aim-act" },
+    { date: "2025-01-01", label: "AIM Act 40 CFR 84.54: new-equipment restrictions phase in by subsector", severity: "critical", citation: "epa-aim-act" },
     { date: "2029-01-01", label: "AIM Act phase-down: 70% reduction baseline", severity: "warning", citation: "epa-aim-act" },
     { date: "2036-01-01", label: "AIM Act phase-down: 85% reduction baseline", severity: "critical", citation: "epa-aim-act" },
   ],
   "r-134a": [
-    { date: "2021-01-01", label: "EPA SNAP delisting of R-134a in new mobile AC (per 2015 rule, after MVAC industry transition)", severity: "warning", citation: "epa-snap" },
+    { date: "2021-01-01", label: "R-134a restricted in new mobile AC; industry transitioned to R-1234yf", severity: "warning", citation: "epa-aim-act" },
     { date: "2029-01-01", label: "AIM Act phase-down: 70% reduction baseline", severity: "warning", citation: "epa-aim-act" },
   ],
   "r-507a": [
-    { date: "2025-01-01", label: "AIM Act: most new commercial refrigeration uses prohibited", severity: "critical", citation: "epa-aim-act" },
+    { date: "2025-01-01", label: "AIM Act 40 CFR 84.54: new-equipment restrictions phase in by subsector", severity: "critical", citation: "epa-aim-act" },
     { date: "2036-01-01", label: "AIM Act phase-down: 85% reduction baseline", severity: "critical", citation: "epa-aim-act" },
   ],
 };
