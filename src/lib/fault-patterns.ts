@@ -35,6 +35,29 @@ export const RESIDENTIAL_CONDENSER_APPROACH_F: [number, number] = [15, 25];
 export const RESIDENTIAL_CONDENSER_APPROACH_TEXT =
   "condensing temperature 15–25°F above outdoor air (high-efficiency units near the low end)";
 
+/**
+ * A condenser approach this many °F above the target max is an ALARM (heat-
+ * rejection failure / high-pressure-cutout risk). The single source for the
+ * alarm threshold rendered in the severity table and the approach figure so the
+ * page can never print a different number than the classifier uses.
+ */
+export const CONDENSER_APPROACH_ALARM_DELTA_F = 15;
+/** Absolute alarm threshold for residential condenser approach (target max + delta). */
+export const RESIDENTIAL_CONDENSER_APPROACH_ALARM_F =
+  RESIDENTIAL_CONDENSER_APPROACH_F[1] + CONDENSER_APPROACH_ALARM_DELTA_F;
+
+/**
+ * Evaporator approach = return-air (or box) temperature − suction saturation
+ * temperature. Residential AC runs 20–40°F depending on indoor humidity. A HIGH
+ * approach means the coil can't pull the air temperature down toward the
+ * refrigerant (low indoor airflow, dirty filter, failed blower, or evaporator
+ * starvation from undercharge/restriction); a LOW approach means the air is over
+ * the coil too briefly relative to the boiling refrigerant (high airflow,
+ * overcharge, high load, or a compressor not pumping).
+ */
+export const RESIDENTIAL_EVAPORATOR_APPROACH_F: [number, number] = [20, 40];
+export const COMMERCIAL_EVAPORATOR_APPROACH_F: [number, number] = [5, 20];
+
 export type FaultPatternId =
   | "normal"
   | "overcharge"
@@ -153,6 +176,13 @@ export const FAULT_PATTERN_TABLE: FaultPatternId[] = [
   "airflow-metering",
   "slugging-alarm",
 ];
+
+/**
+ * The number of SH×SC fingerprints the combined calculator classifies and shows
+ * in its reference table — the single source for the "N-pattern" copy so the
+ * page can't say both "eight-pattern" and "four-pattern". Derived from the table.
+ */
+export const SHSC_PATTERN_COUNT = FAULT_PATTERN_TABLE.length;
 
 /**
  * Classify a superheat/subcooling pair against the given targets. Values are

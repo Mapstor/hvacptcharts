@@ -3,17 +3,6 @@
   "mismatches": [],
   "info": [
     {
-      "route": "/pt-calculator/",
-      "category": "calculator",
-      "claimType": "a",
-      "refrigerant": "r-134a",
-      "sentence": "R-1234yf was engineered to preserve R-134a's pressure envelope (R-134a at 35 PSIG = 40°F;",
-      "claimed": "35 psig @ 40°F",
-      "dataset": "matches r-134a (35.0)",
-      "severity": "info",
-      "classification": "attributed to another named refrigerant"
-    },
-    {
       "route": "/r-22-vs-r-407c/",
       "category": "comparison",
       "claimType": "c",

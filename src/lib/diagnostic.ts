@@ -22,6 +22,9 @@ import {
   classifyShSc,
   round1,
   RESIDENTIAL_CONDENSER_APPROACH_F,
+  CONDENSER_APPROACH_ALARM_DELTA_F,
+  RESIDENTIAL_EVAPORATOR_APPROACH_F,
+  COMMERCIAL_EVAPORATOR_APPROACH_F,
   type FlagSeverity,
   type ShScTargets,
 } from "@/lib/fault-patterns";
@@ -65,6 +68,7 @@ export interface DiagnosticOutput {
   /** Targets used for interpretation (varies by system type). */
   targets: ShScTargets & {
     condenserApproachF: [number, number];
+    evaporatorApproachF: [number, number];
   };
 }
 
@@ -73,26 +77,31 @@ const TARGETS_BY_TYPE: Record<SystemType, DiagnosticOutput["targets"]> = {
     superheatF: [8, 15],
     subcoolingF: [8, 12],
     condenserApproachF: RESIDENTIAL_CONDENSER_APPROACH_F,
+    evaporatorApproachF: RESIDENTIAL_EVAPORATOR_APPROACH_F,
   },
   "fixed-orifice-residential": {
     superheatF: [8, 25],
     subcoolingF: [8, 14],
     condenserApproachF: RESIDENTIAL_CONDENSER_APPROACH_F,
+    evaporatorApproachF: RESIDENTIAL_EVAPORATOR_APPROACH_F,
   },
   "exv-residential": {
     superheatF: [8, 15],
     subcoolingF: [8, 14],
     condenserApproachF: RESIDENTIAL_CONDENSER_APPROACH_F,
+    evaporatorApproachF: RESIDENTIAL_EVAPORATOR_APPROACH_F,
   },
   "commercial-refrig-medium": {
     superheatF: [10, 20],
     subcoolingF: [5, 15],
     condenserApproachF: RESIDENTIAL_CONDENSER_APPROACH_F,
+    evaporatorApproachF: COMMERCIAL_EVAPORATOR_APPROACH_F,
   },
   "commercial-refrig-low": {
     superheatF: [10, 20],
     subcoolingF: [5, 12],
     condenserApproachF: RESIDENTIAL_CONDENSER_APPROACH_F,
+    evaporatorApproachF: COMMERCIAL_EVAPORATOR_APPROACH_F,
   },
 };
 
@@ -164,15 +173,16 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
   if (superheatF !== null && superheatF < 0) {
     flags.push({
       severity: "alarm",
-      label: "Negative superheat — slugging risk",
+      label: "Negative superheat — check the reading, then slugging risk",
       evidence: [
-        `Suction-line temperature ${inputs.suctionLineF}°F is below saturation temperature ${derived.suctionSatF?.toFixed(1)}°F at the measured suction pressure.`,
-        "Liquid refrigerant is reaching the compressor.",
+        `Superheat is ${superheatF.toFixed(1)}°F. Superheat is physically ≥0°F at steady state — a negative result means a reading error (wrong line, poor probe contact), the wrong refrigerant selected, or the wrong saturation curve (use the dew curve for suction-side superheat).`,
+        `Suction-line temperature ${inputs.suctionLineF}°F is below the dew saturation temperature ${derived.suctionSatF?.toFixed(1)}°F at the measured suction pressure.`,
+        "If the reading is correct, liquid refrigerant is reaching the compressor.",
       ],
       recommendations: [
-        "Stop the system. Continued operation damages compressor valves and bearings.",
-        "Verify charge with subcooling — overcharge is a common cause.",
-        "Check for stuck-open TXV or flooded evaporator.",
+        "Re-verify the measurement first: insulated suction-line probe, correct refrigerant, dew curve.",
+        "If genuine: stop the system — continued operation damages compressor valves and bearings.",
+        "Verify charge with subcooling — overcharge or a stuck-open TXV/flooded evaporator are the common causes.",
       ],
     });
   }
@@ -180,15 +190,16 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
   if (subcoolingF !== null && subcoolingF < 0) {
     flags.push({
       severity: "alarm",
-      label: "Negative subcooling — vapor in liquid line",
+      label: "Negative subcooling — check the reading, then vapor in liquid line",
       evidence: [
-        `Liquid-line temperature ${inputs.liquidLineF}°F is above saturation temperature ${derived.dischargeSatF?.toFixed(1)}°F at the measured discharge pressure.`,
-        "Vapor bubbles are forming in the liquid line.",
+        `Subcooling is ${subcoolingF.toFixed(1)}°F. Subcooling is physically ≥0°F at steady state — a negative result means a reading error, the wrong refrigerant selected, or the wrong saturation curve (use the bubble curve for liquid-side subcooling).`,
+        `Liquid-line temperature ${inputs.liquidLineF}°F is above the bubble saturation temperature ${derived.dischargeSatF?.toFixed(1)}°F at the measured discharge pressure.`,
+        "If the reading is correct, vapor bubbles are forming in the liquid line.",
       ],
       recommendations: [
-        "Severe undercharge or restriction at the filter-drier/expansion device is the typical cause.",
-        "Do not add refrigerant until the leak or restriction is identified.",
-        "Verify with superheat — high superheat alongside negative subcooling is the strong undercharge fingerprint.",
+        "Re-verify the measurement first: insulated liquid-line probe, correct refrigerant, bubble curve.",
+        "If genuine: severe undercharge or a restriction at the filter-drier/expansion device is the typical cause.",
+        "Do not add refrigerant until the leak or restriction is identified; high superheat alongside negative subcooling is the strong undercharge fingerprint.",
       ],
     });
   }
@@ -214,6 +225,39 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
         ],
         recommendations: pattern.recommendations,
       });
+    } else if (subcoolingF > scMax && superheatF >= shMin) {
+      // SC high with SH in/above range isn't the clean overcharge fingerprint
+      // (which needs LOW SH), but elevated subcooling is still a chargeable
+      // finding — surface it so a "dirty filter + overcharge" reading shows both
+      // the airflow and the charge cause.
+      flags.push({
+        severity: "concern",
+        label: "Elevated subcooling — overcharge or condenser-side restriction",
+        evidence: [
+          `Subcooling ${subcoolingF.toFixed(1)}°F is above target range ${scMin}-${scMax}°F while superheat is within or above target.`,
+          "Liquid is backing up in the condenser — most often overcharge, sometimes a condenser-side restriction.",
+        ],
+        recommendations: [
+          "Verify condenser airflow and coil cleanliness first — both raise subcooling without excess charge.",
+          "If airflow and cleanliness are good, recover refrigerant in measured amounts and re-check subcooling.",
+          "Confirm the reading in steady state before adjusting charge.",
+        ],
+      });
+    } else if (superheatF > shMax && subcoolingF >= scMin && subcoolingF <= scMax) {
+      // High SH with SC in range — evaporator starvation short of the full
+      // undercharge fingerprint (undercharge also needs LOW SC).
+      flags.push({
+        severity: "concern",
+        label: "Elevated superheat — evaporator starvation",
+        evidence: [
+          `Superheat ${superheatF.toFixed(1)}°F is above target range ${shMin}-${shMax}°F while subcooling is within target.`,
+          "The evaporator is being underfed — low indoor airflow, a metering-device restriction, or the early stage of undercharge.",
+        ],
+        recommendations: [
+          "Check indoor airflow (filter, blower, coil) and the metering device before touching the charge.",
+          "Cross-check evaporator approach and subcooling; a developing leak will drop subcooling next.",
+        ],
+      });
     }
   }
 
@@ -221,7 +265,20 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
   if (derived.condenserApproachF !== null) {
     const [caMin, caMax] = targets.condenserApproachF;
     const ca = derived.condenserApproachF;
-    if (ca > caMax + 15) {
+    if (ca < 0) {
+      flags.push({
+        severity: "alarm",
+        label: "Check readings — condensing saturation below outdoor air",
+        evidence: [
+          `Discharge saturation ${derived.dischargeSatF?.toFixed(1)}°F is BELOW outdoor air ${inputs.ambientF}°F (approach ${ca.toFixed(1)}°F).`,
+          "A condenser cannot reject heat while running colder than the air. This is only possible if the condenser outlet is vapor (severe undercharge) or a reading / refrigerant selection is wrong.",
+        ],
+        recommendations: [
+          "Re-verify the discharge pressure, the ambient reading, and the selected refrigerant.",
+          "If correct, suspect severe undercharge (no liquid in the condenser) — leak-search before adding refrigerant.",
+        ],
+      });
+    } else if (ca > caMax + CONDENSER_APPROACH_ALARM_DELTA_F) {
       flags.push({
         severity: "alarm",
         label: "Very high condenser approach — heat rejection failure",
@@ -261,6 +318,43 @@ export function diagnose(inputs: DiagnosticInputs): DiagnosticOutput {
           "Low approach can indicate undercharge or low ambient operation.",
           "Verify with subcooling — low subcooling alongside low approach reinforces undercharge.",
           "If subcooling is normal, the low ambient condition is the likely cause — no action needed.",
+        ],
+      });
+    }
+  }
+
+  // Evaporator approach analysis. HIGH approach = the coil can't pull the air
+  // down to the refrigerant (low indoor airflow, dirty filter, blower fault, or
+  // evaporator starvation from undercharge/restriction). LOW approach = air over
+  // the coil too briefly relative to the boiling refrigerant (high airflow,
+  // overcharge, high indoor load, or a compressor not pumping).
+  if (derived.evaporatorApproachF !== null) {
+    const [eaMin, eaMax] = targets.evaporatorApproachF;
+    const ea = derived.evaporatorApproachF;
+    if (ea > eaMax) {
+      flags.push({
+        severity: "concern",
+        label: "High evaporator approach — low airflow or evaporator starvation",
+        evidence: [
+          `Return air ${inputs.returnAirF}°F is ${ea.toFixed(1)}°F above suction saturation ${derived.suctionSatF?.toFixed(1)}°F (target ${eaMin}-${eaMax}°F).`,
+          "The evaporator cannot pull the air temperature down toward the refrigerant — the air is either not moving enough over the coil, or the coil is being underfed.",
+        ],
+        recommendations: [
+          "Check indoor airflow first: dirty filter, blocked return, closed dampers, or a slow/failed blower.",
+          "If airflow is good, check for evaporator starvation — undercharge or a liquid-line/metering restriction (cross-check superheat and subcooling).",
+        ],
+      });
+    } else if (ea < eaMin) {
+      flags.push({
+        severity: "caution",
+        label: "Low evaporator approach — high airflow, overcharge, or load",
+        evidence: [
+          `Return air ${inputs.returnAirF}°F is only ${ea.toFixed(1)}°F above suction saturation ${derived.suctionSatF?.toFixed(1)}°F (target ${eaMin}-${eaMax}°F).`,
+          "The air is spending too little time over the coil relative to the boiling refrigerant, or the evaporator is flooded.",
+        ],
+        recommendations: [
+          "Check for excessive indoor airflow (oversized blower, ductwork changes) or unusually high indoor load.",
+          "Consider overcharge (flooded evaporator) or a compressor not pumping to capacity — cross-check subcooling and discharge pressure.",
         ],
       });
     }

@@ -1,32 +1,35 @@
 import type { Metadata } from "next";
-import { Activity, Calculator as CalcIcon, Gauge, Table as TableIcon } from "lucide-react";
+import { Table as TableIcon } from "lucide-react";
 import { CalculatorShell } from "@/components/calculators/shared/CalculatorShell";
 import { SystemPressureDiagnostic } from "@/components/calculators/SystemPressureDiagnostic";
-import {
-  ComparisonTable,
-  Derived,
-  FixCallout,
-  Gauges,
-  Lookups,
-  Panel,
-  ServiceProblem,
-  VerdictBanner,
-} from "@/components/calculators/shared/ServiceProblem";
+import { Panel } from "@/components/calculators/shared/ServiceProblem";
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { pageMetadata } from "@/lib/schema/shared";
+import { scenariosForPage } from "@/lib/scenarios";
+import { WorkedScenario } from "@/components/calculators/shared/WorkedScenario";
+import {
+  RESIDENTIAL_CONDENSER_APPROACH_F,
+  RESIDENTIAL_CONDENSER_APPROACH_ALARM_F,
+  RESIDENTIAL_EVAPORATOR_APPROACH_F,
+  SHSC_PATTERN_COUNT,
+} from "@/lib/fault-patterns";
+
+const [CA_MIN, CA_MAX] = RESIDENTIAL_CONDENSER_APPROACH_F;
+const CA_ALARM = RESIDENTIAL_CONDENSER_APPROACH_ALARM_F;
+const [EA_MIN, EA_MAX] = RESIDENTIAL_EVAPORATOR_APPROACH_F;
 
 const FAQS = [
   {
     q: "What does this calculator do that the combined PT/SH/SC calculator doesn't?",
-    a: "The combined PT/SH/SC calculator computes superheat and subcooling and shows a four-pattern interpretation. This diagnostic calculator extends the analysis with two more dimensions: condenser approach (discharge saturation vs ambient) and evaporator approach (return air vs suction saturation), then produces structured flags with severity, evidence, and ordered recommendations. The combined calculator answers 'is the charge correct?'; the diagnostic answers 'what's wrong and what should I do about it?'.",
+    a: `The combined PT/SH/SC calculator computes superheat and subcooling and shows a ${SHSC_PATTERN_COUNT}-pattern interpretation. This diagnostic calculator extends the analysis with two more dimensions: condenser approach (discharge saturation vs ambient) and evaporator approach (return air vs suction saturation), then produces structured flags with severity, evidence, and ordered recommendations. The combined calculator answers 'is the charge correct?'; the diagnostic answers 'what's wrong and what should I do about it?'.`,
   },
   {
     q: "What is condenser approach and why does it matter?",
-    a: "Condenser approach is the discharge saturation temperature minus the outdoor ambient. On a properly-running residential AC, the approach is typically 15-25°F (high-efficiency units near the low end) — the condenser needs that delta to reject heat to the air. An approach significantly above this range indicates the condenser can't reject heat as fast as the system is generating it: dirty coil, blocked airflow, non-condensables, or compressor inefficiency. Above ~40°F approach raises high-pressure-cutout risk and warrants stopping the system. ASHRAE Handbook of Refrigeration 2022 Chapter 39 (condensers) and equipment OEM service literature are the authoritative references.",
+    a: "Condenser approach is the discharge saturation temperature minus the outdoor ambient. On a properly-running residential AC, the approach is typically 15-25°F (high-efficiency units near the low end) — the condenser needs that delta to reject heat to the air. An approach significantly above this range indicates the condenser can't reject heat as fast as the system is generating it: dirty coil, blocked airflow, non-condensables, or compressor inefficiency. Above ~40°F approach raises high-pressure-cutout risk and warrants stopping the system. These bands are hvacptcharts diagnostic heuristics drawn from OEM service practice, not a published standard; the equipment OEM service literature is the authoritative reference.",
   },
   {
     q: "What is evaporator approach and why does it matter?",
-    a: "Evaporator approach is the return-air temperature minus the suction saturation temperature. For residential AC the approach is typically 20-40°F depending on indoor humidity — the evap needs that delta to absorb heat from the air. An approach significantly below 20°F suggests low indoor airflow (dirty filter, failed blower) — the air spends too long over the coil. Above 40°F suggests evap starvation (undercharge, TXV restriction, blocked liquid line). The approach is independent of charge in a way that SH is not, so it gives an orthogonal diagnostic dimension.",
+    a: "Evaporator approach is the return-air temperature minus the suction saturation temperature. For residential AC the approach is typically 20-40°F depending on indoor humidity — the evap needs that delta to absorb heat from the air. A HIGH approach (above ~40°F) means the coil can't pull the air down toward the refrigerant: low indoor airflow (dirty filter, failed blower) or evaporator starvation (undercharge, TXV restriction, blocked liquid line). A LOW approach (below ~20°F) means the air is over the coil too briefly relative to the boiling refrigerant: high airflow, overcharge, high indoor load, or a compressor not pumping. The approach is independent of charge in a way that SH is not, so it gives an orthogonal diagnostic dimension.",
   },
   {
     q: "Why does the calculator ask for system type?",
@@ -34,7 +37,7 @@ const FAQS = [
   },
   {
     q: "How accurate are the diagnostic patterns?",
-    a: "The patterns reflect well-established HVAC diagnostic conventions from the ASHRAE Handbook of Refrigeration 2022 — high SH + low SC = undercharge is the textbook fingerprint, repeated across decades of service literature. The calculator surfaces these patterns reliably from the input combination, but doesn't account for every real-world variable (system age, recent service, equipment-specific quirks, ambient changes during the reading). Treat the flags as 'here's what to investigate' rather than 'definitive diagnosis'.",
+    a: "The patterns reflect well-established HVAC field-service conventions — high SH + low SC = undercharge is the textbook fingerprint, repeated across decades of service literature. The calculator surfaces these patterns reliably from the input combination, but doesn't account for every real-world variable (system age, recent service, equipment-specific quirks, ambient changes during the reading). Treat the flags as 'here's what to investigate' rather than 'definitive diagnosis'.",
   },
   {
     q: "What if multiple flags appear at the same time?",
@@ -76,7 +79,7 @@ export default function SystemPressureDiagnosticPage() {
           "Severity-ranked flags: alarm / concern / caution / OK",
           "Each flag includes evidence + ordered service recommendations",
           "Six multi-flag service problems showing diagnostic synthesis",
-          "ASHRAE Handbook of Refrigeration 2022 sourced",
+          "Field-service diagnostic heuristics (OEM practice)",
           "Mobile-friendly, no signup",
         ],
         breadcrumbLabel: "System Pressure Diagnostic",
@@ -112,7 +115,7 @@ export default function SystemPressureDiagnosticPage() {
         {
           output: "Evaporator approach (°F)",
           meaning:
-            "Return-air temperature minus the suction saturation temperature — how much warmer the entering air is than the boiling refrigerant. Roughly 20-40°F on residential AC; below range points to low indoor airflow (dirty filter or failing blower), while above range points to evaporator starvation from undercharge or a liquid-line restriction.",
+            "Return-air temperature minus the suction saturation temperature — how much warmer the entering air is than the boiling refrigerant. Roughly 20-40°F on residential AC. HIGH (above range) points to low indoor airflow (dirty filter, failing blower) or evaporator starvation (undercharge, liquid-line restriction) — the coil can't pull the air down to the refrigerant. LOW (below range) points to high airflow, overcharge, high indoor load, or a compressor not pumping.",
         },
         {
           output: "Diagnostic findings (severity-ranked flags)",
@@ -141,12 +144,12 @@ export default function SystemPressureDiagnosticPage() {
         formula:
           "Superheat = T_suction_line − T_sat(P_suction, dew)\nSubcooling = T_sat(P_liquid, bubble) − T_liquid_line\nCondenser approach = T_sat(P_liquid, bubble) − T_ambient\nEvaporator approach = T_return_air − T_sat(P_suction, dew)\n\nDiagnostic flags fire when derived values fall outside per-system-type target ranges, with severity ranked by magnitude × consequence.",
         sourceCitation:
-          "Saturation values from CoolProp 7.2.0. Diagnostic patterns and recommended actions from the ASHRAE Handbook of Refrigeration 2022 (Chapters 23, 39) and equipment manufacturer service literature.",
+          "Saturation values from CoolProp 7.2.0. Diagnostic patterns and recommended actions are hvacptcharts diagnostic heuristics from field service practice and equipment manufacturer service literature — not a published standard.",
         workedExample:
-          "R-410A TXV residential AC, 95°F outdoor, 75°F return air:\n  Suction: 110 PSIG, 62°F\n  Discharge: 340 PSIG, 98°F\n\nDerived:\n  Suction sat (dew): 37°F → SH = 62 − 37 = 25°F (above 8-15°F target)\n  Discharge sat (bubble): 102°F → SC = 102 − 98 = 4°F (below 8-12°F target)\n  Condenser approach = 102 − 95 = 7°F (LOW — should be 15-25°F)\n  Evap approach = 75 − 37 = 38°F (high end of normal)\n\nFlags (priority-sorted):\n  CONCERN — Likely undercharge (high SH + low SC fingerprint, supported by low condenser approach)\n  CAUTION — Verify with leak search before adjusting charge\n\nRecommendation order:\n  1. Leak search before adding refrigerant\n  2. Repair leak per EPA 608\n  3. Evacuate to 500 microns, charge by weight to nameplate",
+          "R-410A TXV residential AC, 95°F outdoor, 75°F return air:\n  Suction: 110 PSIG, 62°F\n  Discharge: 340 PSIG, 98°F\n\nDerived:\n  Suction sat (dew): 36.2°F → SH = 62 − 36.2 = 25.8°F (above 8-15°F target)\n  Discharge sat (bubble): 104.6°F → SC = 104.6 − 98 = 6.6°F (below 8-12°F target)\n  Condenser approach = 104.6 − 95 = 9.6°F (LOW — should be 15-25°F)\n  Evap approach = 75 − 36.2 = 38.8°F (high end of normal)\n\nFlags (priority-sorted):\n  CONCERN — Likely undercharge (high SH + low SC fingerprint, supported by low condenser approach)\n  CAUTION — Verify with leak search before adjusting charge\n\nRecommendation order:\n  1. Leak search before adding refrigerant\n  2. Repair leak per EPA 608\n  3. Evacuate to 500 microns, charge by weight to nameplate",
       }}
       relatedTools={[
-        { href: "/pt-superheat-subcooling-calculator/", label: "Combined PT/SH/SC", blurb: "Simpler four-pattern view of SH + SC without approach temperatures." },
+        { href: "/pt-superheat-subcooling-calculator/", label: "Combined PT/SH/SC", blurb: `Simpler ${SHSC_PATTERN_COUNT}-pattern view of SH + SC without approach temperatures.` },
         { href: "/superheat-calculator/", label: "Superheat Calculator", blurb: "Suction-side measurement alone." },
         { href: "/subcooling-calculator/", label: "Subcooling Calculator", blurb: "Liquid-side measurement alone." },
         { href: "/high-head-pressure-causes/", label: "High Head Pressure Causes", blurb: "Decision-tree narrative behind condenser-side flags." },
@@ -222,10 +225,11 @@ function RichContent() {
         </Panel>
         <ApproachVisual />
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Condenser approach visualized for a residential AC: refrigerant saturates 15-25°F
-          above ambient on a properly-running condenser. Approach climbing into the 30-45°F
-          range indicates a condenser-side problem; above 45°F is approaching the
-          high-pressure cutout. Source: ASHRAE Handbook of Refrigeration 2022 Ch. 39
+          Condenser approach visualized for a residential AC: refrigerant saturates {CA_MIN}-{CA_MAX}°F
+          above ambient on a properly-running condenser. Approach climbing into the {CA_MAX}-{CA_ALARM}°F
+          range indicates a condenser-side problem; above {CA_ALARM}°F is approaching the
+          high-pressure cutout. These bands are this site&apos;s diagnostic heuristics from OEM
+          service practice (Carrier, Trane), not a published standard.
           (condensers), Carrier / Trane / Lennox service literature.
         </p>
       </TechSection>
@@ -248,8 +252,8 @@ function RichContent() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 text-red-700 dark:text-red-300 font-semibold">ALARM</td><td className="py-1.5">Zero / negative SH, negative SC, condenser approach &gt; 40°F, discharge P near cutout</td><td className="py-1.5">Stop the system, investigate before restart.</td></tr>
-                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 text-amber-700 dark:text-amber-300 font-semibold">CONCERN</td><td className="py-1.5">SH 20-30°F above target, SC &lt; 3°F, condenser approach 25-40°F</td><td className="py-1.5">Identify root cause, plan service action.</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 text-red-700 dark:text-red-300 font-semibold">ALARM</td><td className="py-1.5">Zero / negative SH, negative SC, condenser approach &gt; {CA_ALARM}°F, discharge P near cutout</td><td className="py-1.5">Stop the system, investigate before restart.</td></tr>
+                <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 text-amber-700 dark:text-amber-300 font-semibold">CONCERN</td><td className="py-1.5">SH 20-30°F above target, SC &lt; 3°F, condenser approach {CA_MAX}-{CA_ALARM}°F</td><td className="py-1.5">Identify root cause, plan service action.</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 text-sky-700 dark:text-sky-300 font-semibold">CAUTION</td><td className="py-1.5">SH or SC 5-10°F off target, approach slightly elevated, pressure trends mismatched</td><td className="py-1.5">Verify with additional measurement, schedule follow-up.</td></tr>
                 <tr><td className="py-1.5 text-emerald-700 dark:text-emerald-300 font-semibold">OK</td><td className="py-1.5">All metrics in target range</td><td className="py-1.5">No action; document baseline.</td></tr>
               </tbody>
@@ -266,242 +270,9 @@ function RichContent() {
         </p>
       </TechSection>
 
-      <ServiceProblem
-        number={1}
-        refrigerant="R-410A (TXV)"
-        title="Single-cause undercharge — three flags, one root cause"
-        scenario="R-410A TXV residential AC, 95°F outdoor, 75°F return air. Customer reports poor cooling. You take the full set of readings."
-      >
-        <Panel title="Measured" icon={Gauge}>
-          <Gauges
-            items={[
-              { label: "Suction P", value: "110 PSIG", side: "low" },
-              { label: "Suction line", value: "62°F", side: "low" },
-              { label: "Discharge P", value: "340 PSIG", side: "high" },
-              { label: "Liquid line", value: "98°F", side: "high" },
-            ]}
-          />
-        </Panel>
-        <Panel title="Derived" icon={Activity}>
-          <Derived
-            rows={[
-              { formula: "SH = 62 − 37 = 25°F", verdict: "bad", note: "above 8-15°F TXV target" },
-              { formula: "SC = 102 − 98 = 4°F", verdict: "bad", note: "below 8-12°F TXV target" },
-              { formula: "Cond approach = 102 − 95 = 7°F", verdict: "warn", note: "below 15-25°F target" },
-              { formula: "Evap approach = 75 − 37 = 38°F", verdict: "warn", note: "high end normal" },
-            ]}
-          />
-        </Panel>
-        <VerdictBanner status="bad" title="CONCERN — undercharge (all three flags share one cause)">
-          High SH + low SC + low condenser approach all point to one cause: insufficient
-          refrigerant. The low condenser approach is a direct consequence of the
-          undercharge — less refrigerant means less condensing happening per pass, so the
-          condenser doesn&apos;t need to climb above ambient to reject heat (because
-          it&apos;s not rejecting much heat).
-        </VerdictBanner>
-        <FixCallout>
-          Find and repair the leak per EPA Section 608, then evacuate and charge by weight.
-          All three flags should clear once charge is correct.
-        </FixCallout>
-      </ServiceProblem>
-
-      <ServiceProblem
-        number={2}
-        refrigerant="R-410A (TXV)"
-        title="Two independent causes — dirty filter + slight overcharge"
-        scenario="R-410A TXV system. Customer reports the AC cools but cycles on and off more than it should. Some readings look like overcharge, but evap approach is also low — hinting at two issues."
-      >
-        <Panel title="Measured" icon={Gauge}>
-          <Gauges
-            items={[
-              { label: "Suction P", value: "145 PSIG", side: "low" },
-              { label: "Suction line", value: "56°F", side: "low" },
-              { label: "Discharge P", value: "410 PSIG", side: "high" },
-              { label: "Liquid line", value: "98°F", side: "high" },
-            ]}
-          />
-        </Panel>
-        <Panel title="Derived" icon={Activity}>
-          <Derived
-            rows={[
-              { formula: "SH = 56 − 50 = 6°F", verdict: "warn", note: "below 8-15°F target" },
-              { formula: "SC = 116 − 98 = 18°F", verdict: "warn", note: "above 8-12°F target" },
-              { formula: "Cond approach = 116 − 95 = 21°F", verdict: "ok", note: "in 15-25°F target — coil clean" },
-              { formula: "Evap approach = 75 − 50 = 25°F", verdict: "warn", note: "low end of 20-40°F — airflow restricted" },
-            ]}
-          />
-        </Panel>
-        <VerdictBanner status="warn" title="CAUTION — two independent issues (overcharge + low airflow)">
-          The SH × SC pattern looks like overcharge (low SH, high SC), but normal condenser
-          approach + low evap approach reveals a second cause: indoor airflow restriction
-          (low evap approach because air spends too long over the coil and cools further).
-          Just recovering refrigerant won&apos;t fully fix this — you also need to address
-          airflow.
-        </VerdictBanner>
-        <FixCallout>
-          Change air filter first, verify blower wheel is clean and operating at correct
-          speed, then re-test. After airflow is restored, recover refrigerant in
-          increments until SC reaches 10°F target. Two fixes for two causes.
-        </FixCallout>
-      </ServiceProblem>
-
-      <ServiceProblem
-        number={3}
-        refrigerant="R-410A (TXV)"
-        title="Condenser fouling — high SC but condenser approach is the smoking gun"
-        scenario="R-410A TXV system. SC is high (looks like overcharge) but the system has no recent service history. Could be overcharge — but the condenser-approach flag distinguishes overcharge from fouling cleanly."
-      >
-        <Panel title="Measured" icon={Gauge}>
-          <Gauges
-            items={[
-              { label: "Suction P", value: "130 PSIG", side: "low" },
-              { label: "Suction line", value: "60°F", side: "low" },
-              { label: "Discharge P", value: "445 PSIG", side: "high" },
-              { label: "Liquid line", value: "98°F", side: "high" },
-            ]}
-          />
-        </Panel>
-        <Panel title="Derived" icon={Activity}>
-          <Derived
-            rows={[
-              { formula: "SH = 60 − 45 = 15°F", verdict: "ok", note: "TXV in target" },
-              { formula: "SC = 121 − 98 = 23°F", verdict: "warn", note: "above 8-12°F target" },
-              { formula: "Cond approach = 121 − 95 = 26°F", verdict: "bad", note: "above 15-25°F target — condenser bottleneck" },
-              { formula: "Evap approach = 75 − 45 = 30°F", verdict: "ok", note: "in 20-40°F target" },
-            ]}
-          />
-        </Panel>
-        <VerdictBanner status="bad" title="CONCERN — condenser fouling, NOT overcharge">
-          High SC + high condenser approach is fouling (heat-transfer impedance forces
-          condenser saturation higher to reject the same heat). Overcharge would show high
-          SC + NORMAL condenser approach (excess liquid in coil but coil still rejects heat
-          efficiently). Service action differs: clean the condenser, don&apos;t recover
-          refrigerant.
-        </VerdictBanner>
-        <FixCallout>
-          Clean condenser coil per OEM procedure. Re-test all four metrics. If SC drops to
-          target after cleaning, charge was correct all along. If SC remains high after
-          cleaning, then recover refrigerant in increments.
-        </FixCallout>
-      </ServiceProblem>
-
-      <ServiceProblem
-        number={4}
-        refrigerant="R-410A (TXV)"
-        title="ALARM — zero superheat with elevated condenser approach"
-        scenario="R-410A TXV system. Compressor making loud knocking sounds. You connect gauges and find immediate red flags."
-      >
-        <Panel title="Measured" icon={Gauge}>
-          <Gauges
-            items={[
-              { label: "Suction P", value: "175 PSIG", side: "low" },
-              { label: "Suction line", value: "60°F", side: "low" },
-              { label: "Discharge P", value: "510 PSIG", side: "high" },
-              { label: "Liquid line", value: "92°F", side: "high" },
-            ]}
-          />
-        </Panel>
-        <Panel title="Derived" icon={Activity}>
-          <Derived
-            rows={[
-              { formula: "SH = 60 − 60 = 0°F", verdict: "bad", note: "ALARM — saturated mixture in suction" },
-              { formula: "SC = 136 − 92 = 44°F", verdict: "bad", note: "ALARM — extreme overcharge" },
-              { formula: "Cond approach = 136 − 95 = 41°F", verdict: "bad", note: "ALARM — approaching cutout" },
-              { formula: "Evap approach = 75 − 60 = 15°F", verdict: "bad", note: "very low — coil flooded" },
-            ]}
-          />
-        </Panel>
-        <VerdictBanner status="bad" title="ALARM — stop the system, multiple severe alarms">
-          Zero SH (slugging compressor), 44°F SC (extreme overcharge), 41°F condenser
-          approach (approaching high-pressure cutout) are all simultaneously alarming.
-          Compressor knocking confirms hydraulic events. Continued operation risks
-          immediate compressor failure.
-        </VerdictBanner>
-        <FixCallout>
-          Shut the system down immediately. Recover refrigerant to nameplate weight,
-          inspect compressor for valve damage (oil sample, current draw test on restart),
-          consider adding a suction accumulator if not present. Identify how the system
-          became this severely overcharged — likely multiple service adds by gauge without
-          weight reference.
-        </FixCallout>
-      </ServiceProblem>
-
-      <ServiceProblem
-        number={5}
-        refrigerant="R-410A (fixed orifice)"
-        title="Fixed-orifice system at 105°F outdoor — ACCA chart vs flags"
-        scenario="R-410A fixed-orifice (piston) residential AC, hot 105°F outdoor day, indoor 75°F / 65°F WB. You're charging by SH against the fixed-orifice charging-chart field target — but the diagnostic shows additional flags. How to interpret?"
-      >
-        <Panel title="Measured" icon={Gauge}>
-          <Gauges
-            items={[
-              { label: "Suction P", value: "115 PSIG", side: "low" },
-              { label: "Suction line", value: "55°F", side: "low" },
-              { label: "Discharge P", value: "440 PSIG", side: "high" },
-              { label: "Liquid line", value: "108°F", side: "high" },
-            ]}
-          />
-        </Panel>
-        <Panel title="Derived" icon={Activity}>
-          <Derived
-            rows={[
-              { formula: "SH = 55 − 39 = 16°F", verdict: "ok", note: "vs fixed-orifice field target from (3·WB − 80 − DB) / 2 for 65°F WB / 105°F DB" },
-              { formula: "SC = 120 − 108 = 12°F", verdict: "ok", note: "informational on FXO system" },
-              { formula: "Cond approach = 120 − 105 = 15°F", verdict: "ok", note: "lower end of target" },
-              { formula: "Evap approach = 75 − 39 = 36°F", verdict: "ok", note: "normal" },
-            ]}
-          />
-        </Panel>
-        <VerdictBanner status="ok" title="OK — properly charged fixed-orifice system at hot ambient">
-          SH is read against the fixed-orifice charging-chart field target for the
-          WB / DB combination, all four metrics in their respective ranges. The system is operating correctly despite
-          the high ambient pressures (which would look concerning without context). This
-          is why system type matters in the diagnostic — fixed-orifice systems at hot
-          ambient run pressures that would flag as overcharge on a TXV system.
-        </VerdictBanner>
-      </ServiceProblem>
-
-      <ServiceProblem
-        number={6}
-        refrigerant="R-454C (LT walk-in freezer)"
-        title="Commercial LT — diagnostic at the low end of operating envelope"
-        scenario="R-454C walk-in freezer LT (low-temp commercial), -20°F box target, 95°F ambient. You're checking diagnostic flags for a system the operator says is running but not maintaining box temp."
-      >
-        <Panel title="Measured" icon={Gauge}>
-          <Gauges
-            items={[
-              { label: "Suction P", value: "7 PSIG", side: "low" },
-              { label: "Suction line", value: "−5°F", side: "low" },
-              { label: "Discharge P", value: "200 PSIG", side: "high" },
-              { label: "Liquid line", value: "85°F", side: "high" },
-            ]}
-          />
-        </Panel>
-        <Panel title="Derived (R-454C zeotropic — dew for SH, bubble for SC)" icon={Activity}>
-          <Derived
-            rows={[
-              { formula: "SH (dew) = −5 − (−20) = 15°F", verdict: "ok", note: "in 8-20°F LT range" },
-              { formula: "SC (bubble) = 88 − 85 = 3°F", verdict: "warn", note: "below 5-15°F LT range" },
-              { formula: "Cond approach = 88 − 95 = −7°F", verdict: "bad", note: "negative — impossible without low charge" },
-              { formula: "Evap approach = box T (−10°F) − (−20°F) = 10°F", verdict: "ok", note: "in 10-20°F LT range" },
-            ]}
-          />
-        </Panel>
-        <VerdictBanner status="bad" title="CONCERN — low refrigerant charge on LT system">
-          Low SC with negative condenser approach (condenser saturation BELOW ambient)
-          indicates the condenser is not building a liquid column — system is undercharged.
-          Even though SH looks normal, the high-side metrics fail. Negative condenser
-          approach is only possible when there&apos;s essentially no liquid in the
-          condenser to back up.
-        </VerdictBanner>
-        <FixCallout>
-          Leak search on the LT system. For R-454C, use POE-compatible leak detection
-          (UV dye is rated for POE oil). After repair, evacuate to 500 microns and charge
-          R-454C by weight to nameplate. The R-454C bubble curve is approximately 14°F
-          above the dew curve at the same pressure — confirm your service software uses
-          the correct curves for the LT setpoint.
-        </FixCallout>
-      </ServiceProblem>
+      {scenariosForPage("/system-pressure-diagnostic-calculator/").map((s) => (
+        <WorkedScenario key={s.id} scenario={s} />
+      ))}
 
       <TechSection icon="book" tone="emerald" title="When to use this calculator vs the others">
         <ul>
@@ -583,11 +354,10 @@ function ApproachVisual() {
   const yMin = 0, yMax = 60;
   const yScale = (v: number) => PAD_T + PLOT_H - ((v - yMin) / (yMax - yMin)) * PLOT_H;
   const zones: { from: number; to: number; fill: string; label: string }[] = [
-    { from: 0, to: 15, fill: "#5a8a3a", label: "Low (look for undercharge)" },
-    { from: 15, to: 25, fill: "#5a8a3a", label: "Normal — properly charged" },
-    { from: 25, to: 35, fill: "#d49a2b", label: "Slightly elevated — investigate" },
-    { from: 35, to: 45, fill: "#c45757", label: "High — fouling / overcharge" },
-    { from: 45, to: 60, fill: "#7a3a3a", label: "ALARM — approaching cutout" },
+    { from: 0, to: CA_MIN, fill: "#5a8a3a", label: "Low (look for undercharge)" },
+    { from: CA_MIN, to: CA_MAX, fill: "#5a8a3a", label: "Normal — properly charged" },
+    { from: CA_MAX, to: CA_ALARM, fill: "#d49a2b", label: "Elevated — fouling / overcharge" },
+    { from: CA_ALARM, to: 60, fill: "#7a3a3a", label: "ALARM — approaching cutout" },
   ];
 
   return (
@@ -623,7 +393,7 @@ function ApproachVisual() {
       ))}
       <line x1={PAD_L} y1={PAD_T} x2={PAD_L} y2={PAD_T + PLOT_H} stroke="currentColor" opacity={0.6} />
       <text x={W / 2} y={H - 12} textAnchor="middle" fontSize="10" fill="currentColor" opacity={0.7}>
-        Source: ASHRAE Handbook of Refrigeration 2022 Ch. 39, Carrier / Trane service literature
+        These bands are this site&apos;s diagnostic heuristics from OEM service practice (Carrier, Trane), not a published standard
       </text>
     </svg>
   );

@@ -102,6 +102,51 @@ assert(
   `approach: RESIDENTIAL_CONDENSER_APPROACH_F should be [15,25], got [${RESIDENTIAL_CONDENSER_APPROACH_F.join(",")}]`,
 );
 
+// ── 5. Evaporator approach direction (B1): HIGH = low airflow / starvation;
+//        LOW = high airflow / overcharge. Both must fire the right flag. ──────
+{
+  // HIGH approach: suction sat low, return air high (return − suctionSat large).
+  const outHigh = diagnose({
+    slug: "r-410a", systemType: "txv-residential",
+    suctionPsig: 100, suctionLineF: getSaturationTempAtPsigF("r-410a", 100, "dew")! + 12,
+    liquidPsig: 400, liquidLineF: getSaturationTempAtPsigF("r-410a", 400, "bubble")! - 10,
+    ambientF: 95, returnAirF: 85,
+  });
+  const eaHigh = outHigh.derived.evaporatorApproachF ?? 0;
+  assert(eaHigh > 40, `evap approach HIGH case: expected >40°F, got ${eaHigh}`);
+  assert(outHigh.flags.some((f) => /High evaporator approach/i.test(f.label)),
+    `evap approach HIGH should flag low-airflow/starvation — flags: ${outHigh.flags.map((f) => f.label).join(", ")}`);
+  console.log(`  evap approach HIGH ${eaHigh.toFixed(1)}°F → ${outHigh.flags.some((f) => /High evaporator approach/i.test(f.label)) ? "flagged" : "MISSED"}`);
+
+  // LOW approach: suction sat high relative to return air.
+  const outLow = diagnose({
+    slug: "r-410a", systemType: "txv-residential",
+    suctionPsig: 145, suctionLineF: getSaturationTempAtPsigF("r-410a", 145, "dew")! + 10,
+    liquidPsig: 400, liquidLineF: getSaturationTempAtPsigF("r-410a", 400, "bubble")! - 10,
+    ambientF: 95, returnAirF: 60,
+  });
+  const eaLow = outLow.derived.evaporatorApproachF ?? 99;
+  assert(eaLow < 20, `evap approach LOW case: expected <20°F, got ${eaLow}`);
+  assert(outLow.flags.some((f) => /Low evaporator approach/i.test(f.label)),
+    `evap approach LOW should flag high-airflow/overcharge — flags: ${outLow.flags.map((f) => f.label).join(", ")}`);
+  console.log(`  evap approach LOW ${eaLow.toFixed(1)}°F → ${outLow.flags.some((f) => /Low evaporator approach/i.test(f.label)) ? "flagged" : "MISSED"}`);
+}
+
+// ── 6. Condenser approach below zero (B2): flag the reading-check alarm. ──────
+{
+  const out = diagnose({
+    slug: "r-410a", systemType: "txv-residential",
+    suctionPsig: 130, suctionLineF: getSaturationTempAtPsigF("r-410a", 130, "dew")! + 12,
+    liquidPsig: 350, liquidLineF: getSaturationTempAtPsigF("r-410a", 350, "bubble")! - 5,
+    ambientF: 120, returnAirF: 75,
+  });
+  const ca = out.derived.condenserApproachF ?? 0;
+  assert(ca < 0, `condenser approach <0 case: expected negative, got ${ca}`);
+  assert(out.flags.some((f) => /condensing saturation below outdoor air/i.test(f.label)),
+    `condenser approach <0 should flag the reading-check alarm — flags: ${out.flags.map((f) => f.label).join(", ")}`);
+  console.log(`  condenser approach ${ca.toFixed(1)}°F (<0) → ${out.flags.some((f) => /below outdoor air/i.test(f.label)) ? "flagged" : "MISSED"}`);
+}
+
 if (failures.length) {
   console.error(`\n[verify-diagnostics] FAIL — ${failures.length} assertion(s):`);
   for (const f of failures) console.error(`  ✗ ${f}`);
