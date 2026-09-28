@@ -138,7 +138,7 @@ This means the calculators here are deliberately less "smart" than some competit
 
 Target SH and SC ranges: fixed-orifice charging-chart superheat follows the standard field-approximation formula (per California Title 24 Reference Appendix RA3.2); the ASHRAE Handbook—Refrigeration (2022), “Equipment and System Dehydrating, Charging, and Testing”, for application-specific target ranges; equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman, Mitsubishi) for equipment-specific setpoints and diagnostic patterns.
 
-Regulatory context: EPA AIM Act (40 CFR Part 84) for HFC phase-down dates and GWP caps; ASHRAE Standard 34-2022 for safety classifications; IEC 60335-2-40 for A2L equipment requirements; EPA Section 608 for refrigerant handling and leak repair.
+Regulatory context: AIM Act (40 CFR Part 84) for HFC phase-down dates and GWP caps; ASHRAE Standard 34-2022 for safety classifications; IEC 60335-2-40 for A2L equipment requirements; EPA Section 608 for refrigerant handling and leak repair.
 
 Every claim on every calculator page traces to one of these primary sources. The footer of each calculator lists the specific sources used.`,
         },

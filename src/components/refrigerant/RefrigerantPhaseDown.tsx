@@ -64,7 +64,7 @@ function NoMilestonesNotice({ slug }: { slug: string }) {
         <strong>{r.displayName} is a natural refrigerant not subject to climate-driven phase-down.</strong>{" "}
         With {odp === 0 ? "zero ODP" : "low ODP"} and{" "}
         {gwp !== null ? `GWP of ${gwp}` : "negligible direct climate impact"}, it sits outside the
-        EPA AIM Act (40 CFR Part 84) and EU F-Gas Regulation phase-down schedules. Its
+        AIM Act (40 CFR Part 84) and EU F-Gas Regulation phase-down schedules. Its
         availability is governed by ordinary commodity dynamics and equipment-specific
         installation standards (e.g., IIAR 2/9 for ammonia, IEC 60335-2-89 for hydrocarbons).
       </>
@@ -87,7 +87,7 @@ function NoMilestonesNotice({ slug }: { slug: string }) {
         This may mean: (a) no regulatory phase-down currently published; (b) the refrigerant has
         local regulatory schedules not yet transcribed into the site dataset; or (c) it is a
         specialty refrigerant outside the main regulatory frameworks. For authoritative current
-        status, consult the EPA AIM Act allocations (40 CFR Part 84), EU F-Gas Regulation
+        status, consult the AIM Act allocations (40 CFR Part 84), EU F-Gas Regulation
         517/2014 + 2024/573, and the relevant national implementations of the Kigali Amendment.
       </>
     );

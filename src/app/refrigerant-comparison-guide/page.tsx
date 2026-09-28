@@ -23,7 +23,7 @@ const FAQS = [
   },
   {
     q: "Why is the industry transitioning from R-410A to R-32 and R-454B?",
-    a: "GWP. R-410A is GWP 2088 and is restricted under the EPA AIM Act for new equipment beginning January 1, 2025 (with regulatory phase-down through 2036). R-32 (GWP 675) and R-454B (GWP 465) are the dominant A2L replacements. R-32 is the pure-component choice (Daikin's preference); R-454B is a R-32/R-1234yf blend (Carrier, Trane, Lennox preference). Both require A2L-rated equipment with sealed motors, charge limits, and leak-detection accommodations. Equipment built before the transition uses R-410A and continues to be serviceable with reclaimed R-410A indefinitely.",
+    a: "GWP. R-410A is GWP 2088 and is restricted under the AIM Act for new equipment beginning January 1, 2025 (with regulatory phase-down through 2036). R-32 (GWP 675) and R-454B (GWP 465) are the dominant A2L replacements. R-32 is the pure-component choice (Daikin's preference); R-454B is a R-32/R-1234yf blend (Carrier, Trane, Lennox preference). Both require A2L-rated equipment with sealed motors, charge limits, and leak-detection accommodations. Equipment built before the transition uses R-410A and continues to be serviceable with reclaimed R-410A indefinitely.",
   },
   {
     q: "Is a lower-GWP refrigerant always better?",
@@ -212,7 +212,7 @@ export default function ComparisonGuidePage() {
               These determine equipment design requirements and field handling practices.</li>
             <li><strong>Environmental impact</strong> — ozone-depletion potential (ODP), global warming potential
               (GWP), atmospheric lifetime. These drive regulatory phase-downs.</li>
-            <li><strong>Regulatory status</strong> — Montreal Protocol (ozone), EPA AIM Act / EU F-Gas Regulation
+            <li><strong>Regulatory status</strong> — Montreal Protocol (ozone), AIM Act / EU F-Gas Regulation
               (climate), SNAP acceptable-use designations. These determine what&apos;s legal for new equipment and
               service.</li>
             <li><strong>Practical service factors</strong> — lubricant compatibility, equipment availability and cost,
@@ -333,7 +333,7 @@ export default function ComparisonGuidePage() {
             <strong>Global warming potential (GWP)</strong> measures the integrated radiative forcing of a molecule
             relative to CO₂ (defined as GWP 1.0) over a 100-year time horizon. GWP varies enormously across
             refrigerants: R-744 (CO₂) at 1, R-1234yf at 4, R-32 at 675, R-410A at 2088, R-404A at 3922, R-23 at 14800,
-            R-C318 at 10300. The EPA AIM Act and EU F-Gas Regulation phase down HFCs based on GWP thresholds.
+            R-C318 at 10300. The AIM Act and EU F-Gas Regulation phase down HFCs based on GWP thresholds.
           </p>
           <p>
             <strong>Atmospheric lifetime</strong> is the average residence time of a molecule before atmospheric
@@ -364,7 +364,7 @@ export default function ComparisonGuidePage() {
             Montreal Protocol&apos;s Kigali Amendment (2016, US ratified 2022) extends to HFC phase-down.
           </p>
           <p>
-            <strong>EPA AIM Act (2020, implementing Kigali Amendment).</strong> US HFC phase-down under EPA SNAP
+            <strong>AIM Act (2020, implementing Kigali Amendment).</strong> US HFC phase-down under EPA SNAP
             implementation. Targets include R-410A, R-404A, R-134a, R-407C, R-32, R-125, R-143a, R-227ea, others.
             Key dates: 2022-2024 production allocation reductions; January 1, 2025 new-equipment restrictions for
             residential AC (R-410A new equipment significantly restricted, transitioning to A2L); January 1, 2025
@@ -586,8 +586,8 @@ export default function ComparisonGuidePage() {
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>CoolProp 7.2.0 — saturation pressures, critical points, physical properties (PT values in tables)</li>
             <li>ASHRAE Standard 34-2022 — refrigerant designations, safety classifications, composition specifications</li>
-            <li>IPCC AR4 — the values the US AIM Act uses as exchange values; IPCC AR5 and AR6 shown alongside for reference</li>
-            <li>EPA AIM Act (Public Law 116-260) and EPA implementation rulemaking — HFC phase-down schedule</li>
+            <li>IPCC AR4 — the values the AIM Act uses as exchange values; IPCC AR5 and AR6 shown alongside for reference</li>
+            <li>AIM Act (Public Law 116-260) and EPA implementation rulemaking — HFC phase-down schedule</li>
             <li>EPA SNAP — Significant New Alternatives Policy acceptable-use designations</li>
             <li>EU F-Gas Regulation 517/2014 (revised 2024) — EU HFC phase-down framework</li>
             <li>Montreal Protocol and Kigali Amendment — international ozone and HFC regulation</li>

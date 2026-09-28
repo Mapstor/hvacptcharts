@@ -494,7 +494,7 @@ function RichContent() {
             charts for the two R-404A retrofit blends CoolProp does not model (R-438A, R-448A).
           </li>
           <li>
-            <strong>EPA AIM Act (40 CFR Part 84)</strong> — phase-down schedule for
+            <strong>AIM Act (40 CFR Part 84)</strong> — phase-down schedule for
             high-GWP refrigerants driving retrofit and new-equipment decisions.
           </li>
           <li>

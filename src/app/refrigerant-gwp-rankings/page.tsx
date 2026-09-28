@@ -130,7 +130,7 @@ export default function GwpRankingsPage() {
           <p>
             HVAC refrigerants cluster into families with characteristic GWP ranges, tracking the history of
             transitions: chlorine-bearing CFCs and HCFCs phased out for ozone depletion (Montreal Protocol 1987),
-            then high-GWP HFCs phased down for climate impact (Kigali Amendment 2016, EU F-Gas, US AIM Act 2020).
+            then high-GWP HFCs phased down for climate impact (Kigali Amendment 2016, EU F-Gas, AIM Act 2020).
           </p>
           <ul>
             <li>
@@ -171,7 +171,7 @@ export default function GwpRankingsPage() {
 
           <h2>Which assessment report applies?</h2>
           <p>
-            US AIM Act exchange values are the IPCC AR4 values. The EU&apos;s 2024 F-gas Regulation uses AR4 for HFCs
+            AIM Act exchange values are the IPCC AR4 values. The EU&apos;s 2024 F-gas Regulation uses AR4 for HFCs
             and AR6 for other fluorinated gases (
             <a href={EU_FGAS_2024} className="underline" target="_blank" rel="nofollow noopener">Regulation (EU)
             2024/573</a>, recital 8). Because different regimes cite different reports, this table shows all three IPCC
@@ -201,7 +201,7 @@ export default function GwpRankingsPage() {
             The Montreal Protocol has 198 parties; 174 of them have ratified the Kigali Amendment (as of 10 August
             2026,{" "}
             <a href={KIGALI_RATIFICATIONS} className="underline" target="_blank" rel="nofollow noopener">UNEP Ozone
-            Secretariat</a>). Kigali coordinates an HFC phase-down; the US AIM Act and the EU F-Gas Regulation are the
+            Secretariat</a>). Kigali coordinates an HFC phase-down; the AIM Act and the EU F-Gas Regulation are the
             regional implementations. Schedules differ by country group and continue to evolve, so check the framework
             in your jurisdiction for current compliance.
           </p>

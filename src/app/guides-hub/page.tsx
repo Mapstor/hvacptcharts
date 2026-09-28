@@ -17,7 +17,7 @@ export default function GuidesHubPage() {
       path="guides-hub"
       title="HVAC Guides"
       introHeadline="Reference material for HVAC technicians and engineers: the conceptual anchors behind the calculator pages, plus refrigerant comparisons and regulatory context."
-      introBody="Every guide is sourced — ASHRAE Handbook—Refrigeration (2022), ASHRAE Standard 34-2022, EPA AIM Act / SNAP, IPCC AR4/AR5/AR6, IIAR for ammonia, equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman). No 'general industry knowledge' filler; if a claim is in a guide, it carries an attribution. The guides pair with the calculator pages — guides provide the conceptual context, calculators do the math."
+      introBody="Every guide is sourced — ASHRAE Handbook—Refrigeration (2022), ASHRAE Standard 34-2022, AIM Act / SNAP, IPCC AR4/AR5/AR6, IIAR for ammonia, equipment OEM service literature (Carrier, Trane, Lennox, Daikin, Goodman). No 'general industry knowledge' filler; if a claim is in a guide, it carries an attribution. The guides pair with the calculator pages — guides provide the conceptual context, calculators do the math."
       route="/guides-hub/"
       scenarios={[
         {
@@ -191,7 +191,7 @@ The 3 long-form HVAC guides on this site — troubleshooting, refrigerant recove
 
 (3) Industry best practice — ASHRAE Handbook—Refrigeration (2022), ASHRAE Handbook of Fundamentals 2021, ASHRAE Handbook—HVAC Systems and Equipment (2024).
 
-(4) Regulatory references — EPA AIM Act (40 CFR Part 84), EPA Section 608 (40 CFR Part 82 Subpart F), EU F-Gas Regulation 517/2014 and 2024/573, Kigali Amendment to Montreal Protocol (2016), IPCC AR4/AR5/AR6 for GWP values.
+(4) Regulatory references — AIM Act (40 CFR Part 84), EPA Section 608 (40 CFR Part 82 Subpart F), EU F-Gas Regulation 517/2014 and 2024/573, Kigali Amendment to Montreal Protocol (2016), IPCC AR4/AR5/AR6 for GWP values.
 
 (5) Equipment OEM service literature — Carrier, Trane, Lennox, Daikin, Goodman, Mitsubishi, LG, Fujitsu, Heatcraft, Hussmann for equipment-specific procedures and setpoints.
 
@@ -221,7 +221,7 @@ The structural consistency is intentional: it lets a technician form a mental mo
       faqs={[
         {
           q: "How often are the guides updated?",
-          a: `The guides update when underlying sources change. CoolProp is updated periodically; ASHRAE handbooks refresh on a 4-year cycle (Refrigeration 2022, Fundamentals 2021, HVAC S&E 2024); ASHRAE Standard 34 updates every 3-4 years (most recent 2022); EPA AIM Act technology transition rules update as sectors phase in; equipment OEM service literature updates per-model.
+          a: `The guides update when underlying sources change. CoolProp is updated periodically; ASHRAE handbooks refresh on a 4-year cycle (Refrigeration 2022, Fundamentals 2021, HVAC S&E 2024); ASHRAE Standard 34 updates every 3-4 years (most recent 2022); AIM Act technology transition rules update as sectors phase in; equipment OEM service literature updates per-model.
 
 The page footer on each guide shows the dataset generation date, which corresponds to the most recent CoolProp / source refresh.`,
         },

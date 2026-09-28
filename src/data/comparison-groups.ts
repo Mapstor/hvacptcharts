@@ -130,5 +130,5 @@ export function getPrimaryGroupForSlug(slug: string): GroupId | null {
 /** Regulatory thresholds to render as reference lines on GWP charts. */
 export const REGULATORY_THRESHOLDS: Array<{ value: number; label: string; source: string }> = [
   { value: 150, label: "EU F-Gas", source: "EU Regulation 517/2014 Annex III (stationary refrigeration)" },
-  { value: 700, label: "EPA AIM Act", source: "US EPA AIM Act Subsection (i) (new residential AC, 2025+)" },
+  { value: 700, label: "AIM Act", source: "AIM Act Subsection (i) (new residential AC, 2025+)" },
 ];

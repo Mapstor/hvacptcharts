@@ -410,7 +410,7 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
             <li>Saturation pressures from CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014, doi:10.1021/ie4033999)</li>
             <li>Safety classifications per ANSI/ASHRAE Standard 34-2022</li>
             <li>GWP values on the US EPA basis (40 CFR 84 / IPCC AR4), with IPCC AR4/AR5/AR6 shown where listed</li>
-            <li>Regulatory context: EPA AIM Act (40 CFR Part 84), EU F-Gas Regulation 517/2014 + 2024/573, Kigali Amendment to Montreal Protocol</li>
+            <li>Regulatory context: AIM Act (40 CFR Part 84), EU F-Gas Regulation 517/2014 + 2024/573, Kigali Amendment to Montreal Protocol</li>
             <li>{a.displayName}: {a.dataSource.ptChartSource}</li>
             <li>{b.displayName}: {b.dataSource.ptChartSource}</li>
           </ul>
@@ -666,7 +666,7 @@ function RegulatoryContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
       </p>
       <ul className="text-sm space-y-1">
         <li>
-          <strong>EPA AIM Act (40 CFR Part 84):</strong> US HFC production / import phase-down.
+          <strong>AIM Act (40 CFR Part 84):</strong> US HFC production / import phase-down.
           Cap declines from 90% allocation (2022) to 15% by 2036.{" "}
           {aimAct ? `One or both refrigerants here are AIM Act-affected.` : `Neither refrigerant is directly affected.`}
           {gwpAffected ? (
@@ -1106,7 +1106,7 @@ function LifecycleContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
             <strong>Service supply outlook:</strong>{" "}
             {aimAct
               ? `Service supply of AIM Act-affected refrigerants persists during phase-down via reclaimed and allocated production, with prices rising as supply tightens. Plan for refrigerant cost escalation over equipment lifetime.`
-              : `Neither refrigerant faces near-term supply constraints from US AIM Act phase-down. Pricing follows normal commodity dynamics.`}
+              : `Neither refrigerant faces near-term supply constraints from AIM Act phase-down. Pricing follows normal commodity dynamics.`}
           </li>
           <li>
             <strong>TEWI / LCCP framing:</strong> Total Equivalent Warming Impact accounts
@@ -1120,7 +1120,7 @@ function LifecycleContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
         </ul>
       </Panel>
       <p className="text-xs text-zinc-500 dark:text-zinc-400">
-        Regulatory sources: EPA AIM Act (40 CFR Part 84), EU F-Gas Regulation 517/2014 and
+        Regulatory sources: AIM Act (40 CFR Part 84), EU F-Gas Regulation 517/2014 and
         update 2024/573, Kigali Amendment to the Montreal Protocol (2016), Japan
         Fluorocarbon Emissions Control Law. GWP values on the US EPA basis (40 CFR 84 / IPCC AR4).
       </p>

@@ -1,7 +1,7 @@
 ---
 slug: r-410a
 title: "R-410A Pressure Temperature Chart & Properties"
-introOneLiner: "Near-azeotropic 50/50 R-32 / R-125 blend that replaced R-22 in residential AC from 2010 through January 2025, now phased down for new equipment under the EPA AIM Act."
+introOneLiner: "Near-azeotropic 50/50 R-32 / R-125 blend that replaced R-22 in residential AC from 2010 through January 2025, now phased down for new equipment under the AIM Act."
 
 sources:
   - id: ashrae34
@@ -17,16 +17,16 @@ sources:
     url: "https://www.ipcc.ch/report/ar6/wg1/"
     date: "2021"
   - id: aimact
-    label: "EPA AIM Act — 40 CFR Part 84 Subpart B (HFC Phase-down Allocation and Trading)"
-    url: "https://www.epa.gov/climate-hfcs-reduction"
-    date: "Final Rule Oct 2021, amended 2023; technology transitions rule Oct 2023"
+    label: "AIM Act, 42 U.S.C. 7675 — Technology Transitions rule at 40 CFR 84.54 (current through 91 FR 31329, May 26, 2026)"
+    url: "https://www.ecfr.gov/current/title-40/section-84.54"
+    date: "Technology Transitions rule, 40 CFR 84.54 (2023–2026)"
   - id: snap
     label: "EPA Significant New Alternatives Policy (SNAP) — Acceptable substitutes by end-use"
     url: "https://www.epa.gov/snap"
   - id: kigali
     label: "Kigali Amendment to the Montreal Protocol (2016) — HFC phase-down framework"
     url: "https://ozone.unep.org/treaties/montreal-protocol/amendments/kigali-amendment-2016"
-    date: "2016 (US ratified Sep 2022)"
+    date: "2016"
   - id: coolprop
     label: "CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014) — REFPROP-compatible Helmholtz EOS"
     url: "http://www.coolprop.org/"
@@ -55,7 +55,7 @@ keyStats:
   - label: GWP (100-yr)
     value: "2088"
     unit: "100-yr"
-    context: Above EPA AIM Act 700-GWP threshold for new residential AC
+    context: Above AIM Act 700-GWP threshold for new residential AC
   - label: ODP
     value: "0"
     context: Both R-32 and R-125 are fluorine-only HFCs; no chlorine
@@ -70,7 +70,7 @@ keyStats:
     context: Polyolester; mineral oil is not miscible
   - label: New-equipment status (US)
     value: Discontinued
-    context: New residential AC equipment manufactured ≥1 Jan 2025 must use ≤700-GWP refrigerant
+    context: New residential AC manufactured or imported from Jan 1, 2025 must use a refrigerant below 700 GWP (40 CFR 84.54(a)(1))
     sourceId: aimact
   - label: Service availability
     value: Indefinite
@@ -93,11 +93,11 @@ narrative:
     - "Some commercial chillers (less common; chiller market largely R-134a / R-1234ze)"
 
   phaseDownStatus: |
-    The EPA AIM Act (Public Law 116-260) and its implementing rules at 40 CFR Part 84 prohibit production and import of HFCs exceeding 700-GWP in new residential AC equipment manufactured on or after 1 January 2025 [aimact]. R-410A's GWP of 2088 places it almost 3× above the threshold; new equipment now ships with R-32 (GWP 675) or R-454B (GWP 465), both of which fall just under the regulatory line.
+    Under the AIM Act (Public Law 116-260) and its Technology Transitions rule at 40 CFR 84.54, R-410A (40 CFR 84.64 GWP 2088) is restricted in new residential and light-commercial AC and heat pumps: manufacture or import from January 1, 2025 (84.54(a)(1), 700-GWP threshold), installation from January 1, 2025 (84.54(c)(1)), and variable refrigerant flow (VRF) systems from January 1, 2026 (84.54(c)(2)) [aimact]. New equipment now ships with R-32 (GWP 675) or R-454B (GWP 465), both below 700. See the US new-equipment rules (40 CFR 84.54) section on this page for the full mapped table.
 
-    The phase-down does not affect existing R-410A equipment. Service of installed R-410A systems remains legal indefinitely under current EPA rules — technicians can charge, repair, and recover R-410A from the installed base for as long as the equipment runs. What is changing is the supply side, not the legality side.
+    One installation exception applies: new R-410A systems may still be installed where all specified components were manufactured or imported before January 1, 2025 (84.54(c)(1) note), and the rule sets no end date for installing such pre-2025 component systems. Servicing existing R-410A equipment stays legal (40 CFR 84.54(e)) — technicians can charge, repair, and recover R-410A from the installed base for as long as the equipment runs.
 
-    AIM Act production allocations step down through the next decade — 70% of baseline by 2029, 80% by 2034, and 85% by 2036 [aimact]. As virgin HFC production tightens, reclaimed R-410A (recovered from end-of-life equipment, processed back to AHRI 700 spec, and resold) will fill an increasing share of the service supply. Pricing will track scarcity — expect rising costs through the 2030s.
+    Separately, the AIM Act phases down total US HFC production and consumption: allowances step down to 30% of baseline in 2029-2033, 20% in 2034-2035, and 15% of baseline in 2036 and after (42 U.S.C. 7675(e)(2)(C)) [aimact]. As virgin HFC supply tightens, reclaimed R-410A (recovered from end-of-life equipment, reprocessed to AHRI 700 spec, and resold) will fill an increasing share of the service supply. Pricing will track scarcity — expect rising costs through the 2030s.
 
   serviceNotes: |
     Polyolester (POE) oil is the only lubricant compatible with R-410A — mineral oil and alkylbenzene, the historical R-22 lubricants, are not miscible with R-410A and will not return to the compressor. Typical residential R-410A systems use ISO 32 viscosity POE; commercial applications may use ISO 22 or ISO 46. Verify viscosity grade against the equipment OEM service literature.
@@ -127,7 +127,7 @@ faqs:
 
   - q: "When will R-410A be phased out completely?"
     a: |
-      New residential AC equipment using R-410A has not been produced since 1 January 2025 under the EPA AIM Act technology transitions rule [aimact]. R-410A itself remains legal to service existing equipment indefinitely under current US regulations. Total US HFC production is capped at 30% of baseline by 2029, 20% by 2034, and 15% by 2036 — reclaimed R-410A will fill the gap for the installed base.
+      New residential AC equipment using R-410A has not been manufactured or imported since January 1, 2025 (40 CFR 84.54(a)(1), 700-GWP threshold) [aimact]. R-410A itself stays legal to service existing equipment (40 CFR 84.54(e)). Under the HFC phase-down, production and consumption allowances step down to 30% of baseline in 2029-2033, 20% in 2034-2035, and 15% of baseline in 2036 and after (42 U.S.C. 7675(e)(2)(C)) — reclaimed R-410A will fill the gap for the installed base.
 
   - q: "What lubricant does R-410A use?"
     a: |
@@ -150,7 +150,7 @@ retrofitGuidance:
   notes: |
     Direct R-22 to R-410A refrigerant-only retrofit is not feasible — R-410A's pressure envelope exceeds R-22 equipment design ratings and its POE lubricant is incompatible with R-22's mineral oil residue. The standard path forward is full system replacement.
 
-    For new residential AC installations from 2025 forward, the choice is R-32 or R-454B (both A2L); R-410A is no longer offered in new equipment under the AIM Act. Existing R-410A systems remain serviceable indefinitely with reclaimed R-410A.
+    For new residential AC, R-410A manufacture and import ended January 1, 2025 (40 CFR 84.54(a)(1), 700-GWP threshold); the choice is now R-32 or R-454B (both A2L). Existing R-410A systems remain serviceable with reclaimed R-410A (40 CFR 84.54(e)).
 ---
 
 <TechSection icon="chart" tone="blue" title="Reading the pressure-temperature chart">
@@ -191,7 +191,7 @@ This is the engineering reason R-32 became the post-R-410A refrigerant of choice
 
 Ozone-depletion potential (ODP) measures a refrigerant's capacity to deplete the stratospheric ozone layer. R-410A's ODP is 0 because both R-32 and R-125 are fluorine-only HFCs with no chlorine — chlorine atoms released in the stratosphere are what catalytically destroy ozone, and R-410A has none [ashrae34].
 
-The ozone-depletion problem is what drove the Montreal Protocol phase-out of R-22 (an HCFC with ODP 0.055) and R-12 (a CFC with ODP 1.0) in 1996. R-410A was designed specifically to be ozone-friendly, which is why it became the new-equipment replacement for R-22 starting in 2010.
+The ozone-depletion problem drove the Montreal Protocol phase-out of chlorine-bearing refrigerants like the HCFC R-22 (ODP 0.055) and the CFC R-12 (ODP 1.0); US production and import of CFCs ended January 1, 1996 (EPA). R-410A was designed specifically to be ozone-friendly, which is why it became the new-equipment replacement for R-22 starting in 2010.
 
 Global warming potential is a separate environmental metric — climate impact rather than ozone depletion. R-410A's GWP of 2088 means a 1 kg release contributes the same atmospheric warming over 100 years as 2,088 kg of CO₂. The two metrics are independent: a refrigerant can have zero ODP and still high GWP (R-410A), high ODP and low GWP (some legacy CFCs), or both low (R-744 CO₂, R-290 propane, modern HFOs).
 
@@ -204,7 +204,7 @@ The R-410A GWP value of 2088 is the EPA regulatory figure — the AR4-basis / 40
 Successive IPCC assessments produce somewhat different values as atmospheric chemistry models are updated — typically within ±15% for HFCs [ipccar6]. Mass-weighting the component GWPs gives roughly 1924 for R-410A on the IPCC AR5 basis and about 2256 on AR6 (R-32 of 771 + R-125 of 3740). US regulation continues to use the 2088 exchange value for compliance to keep policy values stable.
 
 <KeyInsight tone="zinc" icon="source" title="Which figure to cite">
-For US regulatory work, cite the 2088 exchange value — that's what EPA, SNAP determinations, and AIM Act allocations use. For scientific or international communication referencing the most current radiative-forcing science, the AR6 value (~2256) may be more appropriate. The site uses the regulatory figure.
+For US regulatory work, cite the 2088 exchange value — that's what EPA and AIM Act allocations use. For scientific or international communication referencing the most current radiative-forcing science, the AR6 value (~2256) may be more appropriate. The site uses the regulatory figure.
 </KeyInsight>
 
 </TechSection>
@@ -241,12 +241,10 @@ R-410A's service-equipment requirements are not subtle adjustments to R-22 pract
 | Equipment | R-22 | R-410A |
 | --- | --- | --- |
 | Manifold gauge high-side rating | 500 PSI | 800 PSI |
-| Recovery cylinder | 400 PSI service / 500 PSI burst | 600 PSI service / 800 PSI burst |
 | Charging hose | 500 PSI working | 800 PSI working |
 | Recovery machine | R-22 rated | R-410A rated (separate certification) |
 | Lubricant | Mineral oil or alkylbenzene | POE only (ISO 32 typical) |
 | Vacuum target | 500 microns | 500 microns held 30+ min (POE hygroscopic) |
-| Service port type | Standard 1/4" SAE | 5/16" SAE (R-410A-specific) |
 
 The R-22 to R-410A transition between 2003-2010 forced contractors to replace entire service-tool inventories. Using R-22-rated equipment on R-410A risks rupture and is not permitted under any HVAC service standard. POE oil's moisture sensitivity adds vacuum-procedure discipline beyond R-22 practice.
 
@@ -264,9 +262,9 @@ The service defense is two-part. First, minimize oil exposure to atmospheric hum
 
 <TechSection icon="recycle" tone="amber" title="AIM Act timeline — what happens through 2036">
 
-The EPA AIM Act technology transitions rule prohibits new residential AC equipment using ≤700-GWP refrigerants effective 1 January 2025 [aimact]. R-410A's GWP of 2088 placed it well outside the allowed range; new equipment now uses R-32 or R-454B.
+The AIM Act Technology Transitions rule restricts new residential and light-commercial AC and heat pumps to refrigerants below 700 GWP — manufacture and import of higher-GWP refrigerants like R-410A ended January 1, 2025 (40 CFR 84.54(a)(1)), with variable refrigerant flow (VRF) systems following January 1, 2026 (84.54(c)(2)) [aimact]. R-410A's GWP of 2088 placed it well outside the allowed range; new equipment now uses R-32 or R-454B.
 
-Separately, the AIM Act caps total US HFC production and import on a baseline-percentage schedule. The baseline was set at the 2011-2013 US HFC consumption average, and the schedule reduces allocations over time: 40% reduction by 2024 (already in effect), 70% by 2029, 80% by 2034, and 85% by 2036. Each step tightens the legally available supply of all HFCs across all end-uses.
+Separately, the AIM Act phases down total US HFC production and consumption against the 2011-2013 baseline. Production and consumption allowances step down to 30% of baseline in 2029-2033, 20% in 2034-2035, and 15% of baseline in 2036 and after (42 U.S.C. 7675(e)(2)(C)). Each step tightens the legally available supply of all HFCs across all end-uses.
 
 For R-410A specifically, this means service refrigerant pricing will rise gradually as the share of virgin R-410A in total HFC allocations drops. Reclaimed R-410A — recovered from end-of-life equipment, reprocessed back to AHRI 700 purity spec, and resold — will fill an increasing share of the service market. By 2036 the service market is expected to be majority-reclaimed.
 

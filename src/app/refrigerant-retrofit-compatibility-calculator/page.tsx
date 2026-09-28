@@ -228,7 +228,7 @@ function RichContent() {
 
       <TechSection icon="climate" tone="amber" title="AIM Act phase-down — the regulatory driver">
         <p>
-          The EPA AIM Act (40 CFR Part 84) caps HFC production and import in the US on a
+          The AIM Act (40 CFR Part 84) caps HFC production and import in the US on a
           declining schedule: 90% allocation in 2022, 60% in 2024, 30% in 2029, 15% in
           2036. The phase-down forces transitions from high-GWP HFCs (R-410A, R-404A,
           R-134a) to lower-GWP A2L alternatives (R-32, R-454B, R-454C, R-1234yf). The
@@ -250,7 +250,7 @@ function RichContent() {
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Residential / light commercial AC</td><td className="py-1.5 font-mono">700</td><td className="py-1.5">2025-01-01 (new equipment)</td><td className="py-1.5 text-xs">R-410A out; R-32 / R-454B in</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Commercial refrigeration (most subsectors)</td><td className="py-1.5 font-mono">Varies</td><td className="py-1.5">2025-01-01 (new equipment)</td><td className="py-1.5 text-xs">R-404A out; R-454C / R-455A / R-448A / R-449A in</td></tr>
                 <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">Centrifugal chillers</td><td className="py-1.5 font-mono">Varies</td><td className="py-1.5">2025-01-01</td><td className="py-1.5 text-xs">R-134a → R-513A / R-1233zd / R-1234ze</td></tr>
-                <tr><td className="py-1.5">Mobile AC (passenger vehicles)</td><td className="py-1.5 font-mono">Varies</td><td className="py-1.5">SNAP delisted 2021</td><td className="py-1.5 text-xs">R-134a → R-1234yf (in production 2017+)</td></tr>
+                <tr><td className="py-1.5">Mobile AC (passenger vehicles)</td><td className="py-1.5 font-mono">Varies</td><td className="py-1.5">Restricted (new MVAC)</td><td className="py-1.5 text-xs">R-134a → R-1234yf (in production 2017+)</td></tr>
               </tbody>
             </table>
           </div>
@@ -546,7 +546,7 @@ function RichContent() {
             installation safety requirements.
           </li>
           <li>
-            <strong>EPA AIM Act (40 CFR Part 84)</strong> — HFC phase-down schedule, sector
+            <strong>AIM Act (40 CFR Part 84)</strong> — HFC phase-down schedule, sector
             compliance dates, allowance allocations.
           </li>
           <li>

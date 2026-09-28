@@ -13,14 +13,14 @@ sources:
     url: "https://www.ipcc.ch/report/ar5/wg1/"
     date: "2014"
   - id: aimact
-    label: "EPA AIM Act — 40 CFR Part 84 Subpart B"
-    url: "https://www.epa.gov/climate-hfcs-reduction"
-    date: "Final Rule Oct 2021"
+    label: "AIM Act, 42 U.S.C. 7675 — Technology Transitions rule at 40 CFR 84.54 (current through 91 FR 31329, May 26, 2026)"
+    url: "https://www.ecfr.gov/current/title-40/section-84.54"
+    date: "Technology Transitions rule, 40 CFR 84.54 (2023–2026)"
   - id: eufgas
-    label: "EU F-Gas Regulation 517/2014 (revised 2024)"
-    url: "https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases_en"
+    label: "Regulation (EU) No 517/2014, since replaced by (EU) 2024/573 (applying from 11 March 2024)"
+    url: "https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases/f-gas-legislation_en"
   - id: snap
-    label: "EPA SNAP — R-449A acceptable for commercial refrigeration"
+    label: "EPA SNAP — Significant New Alternatives Policy program"
     url: "https://www.epa.gov/snap"
   - id: coolprop
     label: "CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014)"
@@ -79,9 +79,9 @@ narrative:
     - "Supermarket refrigeration retrofit where Chemours equipment supply chain is established"
 
   phaseDownStatus: |
-    R-449A faces the same regulatory positioning as R-448A. GWP 1396 is substantially below R-404A's 3922 but above the EU F-Gas 150-GWP threshold for some commercial refrigeration categories [eufgas].
+    R-449A is a regulated HFC under the AIM Act [aimact]. Its GWP of 1396 (40 CFR 84.64) sits below the 1,400-GWP limits for remote condensing units and supermarket systems, so R-449A stays installable in new remote condensing units and supermarket systems until January 1, 2032, when the tiered limits at 40 CFR 84.54(c)(11)(ii) and (c)(12)(ii) take effect. New cold storage warehouses are restricted earlier, from July 27, 2026, under 40 CFR 84.54(c)(9)(i) (GWP ≥700). See the US new-equipment rules (40 CFR 84.54) section on this page for the full mapped table; servicing existing equipment stays legal under 40 CFR 84.54(e).
 
-    For existing R-404A installations through the late 2020s, R-449A remains a dominant A1 retrofit choice alongside R-448A. For new equipment requiring very-low GWP compliance, A2L alternatives (R-454C, R-455A at 146) or R-744 (CO₂, GWP 1) are required.
+    In the EU, Regulation (EU) No 517/2014, since replaced by (EU) 2024/573 applying from 11 March 2024, restricts high-GWP equipment on the market: row 11 covers hermetically sealed commercial refrigerators and freezers with GWP ≥150 from 2022, and row 13 covers multipack centralised systems of 40 kW or more with GWP ≥150 from 2022 [eufgas]. R-449A's GWP is above 150, so both apply. For existing R-404A installations, R-449A remains a common A1 retrofit alongside R-448A; for new equipment targeting the lowest GWP, A2L alternatives (R-454C, R-455A at 146) or R-744 (CO₂, GWP 1) are the destination.
 
   serviceNotes: |
     POE oil required — same lubricant family as R-404A, so R-404A retrofit to R-449A typically does NOT require oil change. The 10°F temperature glide affects service measurement — use dew curve for superheat, bubble curve for subcooling.
@@ -111,7 +111,7 @@ faqs:
     a: |
       A 1 kg release of R-449A traps approximately 1,396 times more heat over 100 years than 1 kg of CO₂ (mass-weighted from the four components) [ipccar5]. The 1396 figure represents a ~65% reduction from R-404A's 3922.
 
-      The reduction is significant but not enough to clear EU F-Gas 150-GWP threshold for strictest commercial refrigeration categories. R-449A is a transitional refrigerant.
+      The reduction is significant but does not clear the 150-GWP threshold that Regulation (EU) No 517/2014, since replaced by (EU) 2024/573 applying from 11 March 2024, applies to commercial refrigerators and freezers (row 11) and to multipack centralised systems of 40 kW or more (row 13) from 2022 [eufgas]. R-449A is a transitional refrigerant.
 
   - q: "How do I measure superheat on R-449A?"
     a: |
@@ -181,7 +181,7 @@ R-449A's GWP of 1396 is essentially equivalent to R-448A's 1386 (10-point differ
 
 The reduction comes from the R-1234yf component (25.3% of R-449A by mass), which has GWP 1. Diluting the R-404A-class HFC majority with R-1234yf is the primary GWP-reduction mechanism in the entire R-448A/R-449A class of retrofit blends.
 
-For regulatory compliance, R-449A faces the same constraints as R-448A. Both clear EPA AIM Act commercial refrigeration thresholds for most categories through the 2020s. Both fall above EU F-Gas 150-GWP threshold for the strictest categories. The long-term low-GWP destination remains A2L (R-454C, R-455A at 146) or R-744 (CO₂, GWP 1).
+For regulatory compliance, R-449A faces the same constraints as R-448A. Under the AIM Act its GWP of 1396 falls below the 1,400-GWP limits for remote condensing units and supermarket systems, so it stays installable in new remote condensing units and supermarket systems until January 1, 2032, when 40 CFR 84.54(c)(11)(ii) and (c)(12)(ii) take effect; new cold storage warehouses are restricted from July 27, 2026 under 40 CFR 84.54(c)(9)(i) (GWP ≥700) [aimact]. In the EU, Regulation (EU) No 517/2014, since replaced by (EU) 2024/573 applying from 11 March 2024, restricts R-449A above the 150-GWP threshold (row 11 from 2022; multipack centralised systems of 40 kW or more, row 13, from 2022) [eufgas]. The long-term low-GWP destination remains A2L (R-454C, R-455A at 146) or R-744 (CO₂, GWP 1). See the US new-equipment rules (40 CFR 84.54) section on this page.
 
 </TechSection>
 
@@ -207,7 +207,6 @@ R-449A service procedures are identical to R-448A practice — both blends have 
 | Equipment / procedure | R-449A | R-448A |
 | --- | --- | --- |
 | Manifold gauge rating | 500-800 PSI | 500-800 PSI (identical) |
-| Recovery cylinder | Standard 600 PSI | Standard 600 PSI (identical) |
 | Lubricant | POE | POE (identical family) |
 | Curve selection for superheat | Dew curve | Dew curve (identical) |
 | Curve selection for subcooling | Bubble curve | Bubble curve (identical) |

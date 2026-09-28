@@ -13,16 +13,16 @@ sources:
     url: "https://www.ipcc.ch/report/ar5/wg1/"
     date: "2014"
   - id: aimact
-    label: "EPA AIM Act — 40 CFR Part 84 Subpart B + Technology Transitions Rule"
-    url: "https://www.epa.gov/climate-hfcs-reduction"
-    date: "Final Rule Oct 2021, Technology Transitions Rule Oct 2023"
+    label: "AIM Act, 42 U.S.C. 7675 — Technology Transitions rule at 40 CFR 84.54 (current through 91 FR 31329, May 26, 2026)"
+    url: "https://www.ecfr.gov/current/title-40/section-84.54"
+    date: "Technology Transitions rule, 40 CFR 84.54 (2023–2026)"
   - id: snap
-    label: "EPA SNAP — Significant New Alternatives Policy delistings for R-404A end-uses"
+    label: "EPA Significant New Alternatives Policy (SNAP) — acceptability listings by end-use"
     url: "https://www.epa.gov/snap"
-    date: "Multiple delisting rules 2015-2024"
+    date: "SNAP program, ongoing"
   - id: eufgas
-    label: "EU F-Gas Regulation 517/2014 (revised 2024) — Banned R-404A in new sub-40 kW commercial refrigeration since 1 Jan 2020"
-    url: "https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases_en"
+    label: "Regulation (EU) No 517/2014, since replaced by (EU) 2024/573 (applying from 11 March 2024)"
+    url: "https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases/f-gas-legislation_en"
     date: "2014, revised 2024 (517/2014, 2024 amendment)"
   - id: coolprop
     label: "CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014) — REFPROP-compatible Helmholtz EOS"
@@ -39,7 +39,7 @@ sources:
   - id: kigali
     label: "Kigali Amendment to the Montreal Protocol (2016) — HFC phase-down framework"
     url: "https://ozone.unep.org/treaties/montreal-protocol/amendments/kigali-amendment-2016"
-    date: "2016 (US ratified Sep 2022)"
+    date: "2016"
   - id: nistwebbook
     label: "NIST Chemistry WebBook — R-404A component thermophysical properties"
     url: "https://webbook.nist.gov/chemistry/fluid/"
@@ -77,14 +77,14 @@ keyStats:
     context: Polyolester; mineral oil not miscible
   - label: New-equipment status (US)
     value: Restricted
-    context: SNAP delisted for many commercial refrigeration categories 2024-2025
-    sourceId: snap
+    context: Restricted in new equipment by subsector and date under the AIM Act (40 CFR 84.54); existing equipment can still be serviced — see the US new-equipment rules section on this page
+    sourceId: aimact
 
 narrative:
   whatItIs: |
     R-404A is a near-azeotropic ternary HFC blend — 44% pentafluoroethane (R-125), 52% 1,1,1-trifluoroethane (R-143a), and 4% 1,1,1,2-tetrafluoroethane (R-134a) by mass [ashrae34]. It was developed in the early 1990s as the new-equipment replacement for the CFC/HCFC azeotrope R-502 in low-temperature commercial refrigeration, ahead of the Montreal Protocol CFC phase-out.
 
-    The defining characteristic in 2026 is GWP 3922 — among the highest of mainstream HFC blends [ipccar5]. The high GWP stems mostly from the high R-143a content (R-143a GWP 4470) and the high R-125 content (GWP 3500), and has made R-404A the most aggressively phased-down refrigerant under both US AIM Act and EU F-Gas regulations.
+    The defining characteristic in 2026 is GWP 3922 — among the highest of mainstream HFC blends [ipccar5]. The high GWP stems mostly from the high R-143a content (R-143a GWP 4470) and the high R-125 content (GWP 3500), and has made R-404A the most aggressively phased-down refrigerant under both AIM Act and EU F-Gas regulations.
 
   whereItsUsed:
     - "Low-temperature commercial refrigeration — walk-in freezers, frozen food cases, ice machines (legacy)"
@@ -94,9 +94,9 @@ narrative:
     - "Service supply for the large installed base still in operation"
 
   phaseDownStatus: |
-    EU F-Gas Regulation 517/2014 banned R-404A in new commercial refrigeration under 40 kW from 1 January 2020 [eufgas]. EPA SNAP has delisted R-404A for multiple commercial refrigeration end-use categories through 2024-2025 [snap]; the EPA AIM Act Technology Transitions Rule restricts R-404A for new equipment manufacturing in most categories from 2025 [aimact].
+    Under the AIM Act, R-404A (GWP 3922) exceeds every 40 CFR 84.54 limit and is restricted in new equipment subsector by subsector — for example refrigerated transport road/marine self-contained from January 1, 2025 (84.54(a)(7)/(c)(8)), automatic commercial ice makers from January 1, 2026 (84.54(a)(8)(i)), retail food remote condensing units and cold storage warehouses from July 27, 2026 (84.54(c)(11)(i)/(c)(9)(i)), and supermarket systems from January 1, 2027 (84.54(c)(12)(i)) [aimact]. See the US new-equipment rules (40 CFR 84.54) section on this page for the full mapped table. Under Regulation (EU) No 517/2014, since replaced by (EU) 2024/573, applying from 11 March 2024, R-404A (GWP ≥2,500) was restricted in new stationary refrigeration from 1 January 2020 (Annex III row 12) and in multipack centralised systems ≥40 kW from 2022 (row 13) [eufgas].
 
-    Service of existing R-404A equipment remains legal under current US rules. The standard retrofit path is R-448A or R-449A (A1 HFC blends, GWP ~1390) — both mineral-oil-incompatible (POE required like R-404A); for new equipment R-454C / R-455A (A2L, GWP 146) or R-744 (CO₂ transcritical) are the long-term low-GWP destinations.
+    Service of existing R-404A equipment remains legal under current US rules (installation is defined at 40 CFR 84.54(e)). The standard retrofit path is R-448A or R-449A (A1 HFC blends, GWP ~1390) — both mineral-oil-incompatible (POE required like R-404A); for new equipment R-454C / R-455A (A2L, GWP 146) or R-744 (CO₂ transcritical) are the long-term low-GWP destinations.
 
   serviceNotes: |
     POE oil is required — same lubricant family as R-410A; mineral oil and alkylbenzene are not miscible. Typical viscosity is ISO 32 for medium-temperature applications, ISO 22 or 46 for some low-temperature equipment.
@@ -112,7 +112,7 @@ faqs:
 
   - q: "Why is R-404A being phased out so aggressively?"
     a: |
-      GWP. R-404A's GWP of 3922 [ipccar5] is among the highest of mainstream HFC blends, driven by its high R-125 (44%, GWP 3500) and R-143a (52%, GWP 4470) content. The EU F-Gas Regulation banned R-404A in new sub-40 kW commercial refrigeration in 2020 [eufgas], and the EPA AIM Act + SNAP have delisted R-404A for most US commercial refrigeration categories through 2024-2025 [snap][aimact].
+      GWP. R-404A's GWP of 3922 [ipccar5] is among the highest of mainstream HFC blends, driven by its high R-125 (44%, GWP 3500) and R-143a (52%, GWP 4470) content. Under Regulation (EU) No 517/2014, since replaced by (EU) 2024/573, applying from 11 March 2024, R-404A (GWP ≥2,500) was restricted in new stationary refrigeration from 1 January 2020 (Annex III row 12) [eufgas], and under the AIM Act it is restricted in new equipment subsector by subsector under 40 CFR 84.54 — see the US new-equipment rules section on this page [aimact].
 
       Modern low-temp commercial refrigeration uses R-448A or R-449A (A1 retrofit, GWP ~1390), R-454C or R-455A (A2L, GWP 146), or R-744 (CO₂ transcritical, GWP 1).
 
@@ -124,9 +124,9 @@ faqs:
 
   - q: "Is R-404A still legal in the US?"
     a: |
-      Production and service of existing equipment remain legal under current EPA rules [aimact]. EPA SNAP has delisted R-404A for new equipment in most commercial refrigeration categories through 2024-2025 — manufacturers can no longer produce new R-404A equipment in those categories, but existing equipment continues to be serviceable indefinitely with reclaimed or remaining stockpile R-404A.
+      Servicing existing equipment stays legal under current EPA rules (installation is defined at 40 CFR 84.54(e)) [aimact]. Under the AIM Act, new R-404A equipment is restricted subsector by subsector under 40 CFR 84.54 — for example refrigerated transport road/marine self-contained from January 1, 2025 (84.54(a)(7)/(c)(8)) and supermarket systems from January 1, 2027 (84.54(c)(12)(i)); see the US new-equipment rules section on this page for the full mapped table. Existing equipment continues to be serviceable with reclaimed or remaining stockpile R-404A.
 
-      The AIM Act 70% / 80% / 85% production reductions through 2036 will tighten R-404A availability progressively.
+      AIM Act production and consumption allowances step down over time — a 70% reduction from baseline in 2029, 80% in 2034, and 85% in 2036 (equivalently 30%, 20%, and 15% of baseline; 42 U.S.C. 7675(e)(2)(C)) — tightening R-404A availability progressively [aimact].
 
   - q: "What lubricant does R-404A use?"
     a: |
@@ -142,7 +142,7 @@ faqs:
 
   - q: "Why was R-404A originally developed?"
     a: |
-      To replace R-502 — a CFC-containing azeotropic blend (R-22/R-115) that was the dominant low-temperature commercial refrigerant from the 1960s. R-502 was banned in 1996 under the Montreal Protocol (R-115 is a CFC) [kigali].
+      To replace R-502 — a CFC-containing azeotropic blend (R-22/R-115) that was the dominant low-temperature commercial refrigerant from the 1960s. US production and import of CFCs ended January 1, 1996 (EPA class I phaseout), retiring R-502 for its CFC R-115 content.
 
       R-404A was engineered to match R-502's pressure envelope and capacity in low-temperature commercial refrigeration while eliminating the chlorine. It became the dominant low-temp HFC for ~25 years before the GWP phase-down pressure overtook it.
 
@@ -194,7 +194,7 @@ For service technicians transitioning from R-502 service (the CFC predecessor R-
 
 R-404A has zero ozone-depletion potential because all three component refrigerants (R-125, R-143a, R-134a) are fluorine-only HFCs with no chlorine [ashrae34]. This was R-404A's original raison d'être: eliminate the chlorine that gave R-502 (R-404A's predecessor) its ozone-depletion problem.
 
-R-502 was a CFC/HCFC azeotropic blend: 48.8% R-22 (HCFC, one chlorine) and 51.2% R-115 (CFC, one chlorine). The blend ODP was 0.21 — high enough to trigger Montreal Protocol Annex A controls. R-502 was banned in 1996 in developed countries [kigali]; without a replacement, low-temperature commercial refrigeration would have lost its primary refrigerant.
+R-502 was a CFC/HCFC azeotropic blend: 48.8% R-22 (HCFC, one chlorine) and 51.2% R-115 (CFC, one chlorine). The blend ODP was ≈0.33 (HCFC-22 0.055, CFC-115 0.6, mass-weighted) — high enough to trigger ozone controls. US production and import of CFCs ended January 1, 1996 (EPA class I phaseout), retiring R-502 for its CFC-115 content; without a replacement, low-temperature commercial refrigeration would have lost its primary refrigerant.
 
 R-404A solved the ozone problem but baked in a new one: GWP 3922 versus R-502's 4657 — slightly lower but still very high. Modern policy is now phasing R-404A down on GWP grounds, just as the original Montreal Protocol phased R-502 down on ODP grounds. The two problems are environmentally distinct but both led to refrigerant phase-out programs targeting the same equipment class.
 
@@ -204,7 +204,7 @@ R-404A solved the ozone problem but baked in a new one: GWP 3922 versus R-502's 
 
 R-404A's GWP of 3922 (mass-weighted) is one of the highest among mainstream HFC blends in commercial use. For context: R-410A is 2088 (≈53% of R-404A); R-407C is 1774 (≈45%); R-134a is 1430 (≈36%); modern A2L alternatives like R-454C are 146 (≈4%). Each kilogram of R-404A released to atmosphere has roughly the climate impact of 4 tonnes of CO₂.
 
-The very high GWP made R-404A the most aggressively phased-down refrigerant under both US AIM Act and EU F-Gas frameworks. EU F-Gas Regulation 517/2014 banned R-404A in new sub-40 kW commercial refrigeration from 1 January 2020 [eufgas]; subsequent 2024 amendments tightened restrictions across more equipment categories through 2030. US EPA SNAP delisted R-404A for multiple end-uses through 2024-2025 rulemakings; the EPA AIM Act Technology Transitions Rule (2023) restricted R-404A for new equipment manufacturing in most commercial refrigeration categories from 2025 [snap][aimact].
+The very high GWP made R-404A the most aggressively phased-down refrigerant under both AIM Act and EU F-Gas frameworks. Under Regulation (EU) No 517/2014, since replaced by (EU) 2024/573, applying from 11 March 2024, R-404A (GWP ≥2,500) was restricted in new stationary refrigeration from 1 January 2020 (Annex III row 12) and in multipack centralised systems ≥40 kW from 2022 (row 13) [eufgas]. Under the AIM Act, R-404A exceeds every 40 CFR 84.54 GWP limit and is restricted in new equipment subsector by subsector — from January 1, 2025 for refrigerated transport road/marine self-contained (84.54(a)(7)/(c)(8)) through January 1, 2027 for supermarket systems (84.54(c)(12)(i)); see the US new-equipment rules section on this page [aimact].
 
 <KeyInsight tone="amber" icon="recycle" title="High GWP, but pure-refrigerant service simplicity">
 R-404A's regulatory profile is harsh but its operational profile is favorable — A1 safety class, near-azeotropic glide, standard pressure envelope, well-understood service procedures. This combination is why R-404A persisted as the low-temperature commercial standard for 25 years despite the GWP problem: the day-to-day service economics were excellent. The phase-down represents a regulatory choice to weight climate impact above operational convenience.
@@ -244,8 +244,6 @@ R-404A's pressure envelope is comfortable for standard HVAC service equipment. M
 | Equipment / procedure | R-22 (era) | R-404A | R-410A |
 | --- | --- | --- | --- |
 | Manifold gauge high-side | 500 PSI | 500-800 PSI | 800 PSI |
-| Recovery cylinder | 400 PSI service | 500 PSI service | 600 PSI service |
-| Service port | 1/4" SAE | 1/4" SAE (R-404A typically uses same as R-22) | 5/16" SAE |
 | Lubricant | MO or AB | POE only | POE only |
 | Vacuum target | 500 microns | 500 microns held 30+ min | 500 microns held 30+ min |
 | Safety class | A1 | A1 | A1 |
@@ -266,7 +264,7 @@ POE oil's hygroscopic chemistry creates the same moisture-management discipline 
 
 <TechSection icon="recycle" tone="amber" title="The R-502 → R-404A → R-448A/R-449A history">
 
-R-404A occupies a specific historical position as the second-generation low-temperature commercial refrigerant. The chain runs: R-502 (1961, dominant 1960s-1996, banned for Montreal Protocol CFC content) → R-404A (1994, dominant 1996-2020, phased down for AIM Act and EU F-Gas GWP content) → R-448A and R-449A (2014+, retrofit replacements, A1, ~1390 GWP) → R-454C, R-455A, R-744 (new equipment, A2L or natural, sub-150 GWP) [snap].
+R-404A occupies a specific historical position as the second-generation low-temperature commercial refrigerant. The chain runs: R-502 (1961, dominant 1960s-1996, retired for its CFC content — US CFC production and import ended January 1, 1996, EPA class I phaseout) → R-404A (1994, dominant 1996-2020, phased down for AIM Act and EU F-Gas GWP content) → R-448A and R-449A (2014+, retrofit replacements, A1, ~1390 GWP) → R-454C, R-455A, R-744 (new equipment, A2L or natural, sub-150 GWP).
 
 Each generational change addressed the dominant environmental concern of its era. R-502 was developed for low-temperature capacity in the 1960s, before ozone concerns. R-404A was developed in the 1990s specifically to be ozone-friendly, accepting high GWP as a trade-off because GWP wasn't yet a regulatory binding constraint. R-448A and R-449A in the 2010s were developed to substantially reduce GWP while preserving A1 safety class for retrofit of existing equipment. R-454C and R-455A in the late 2010s sacrificed the A1 classification (moving to A2L) to achieve very-low GWP for new equipment.
 
@@ -276,24 +274,24 @@ For supermarket-scale commercial refrigeration, R-744 (CO₂ transcritical) is i
 
 </TechSection>
 
-<TechSection icon="recycle" tone="amber" title="EU F-Gas vs US AIM Act — different timing, similar destination">
+<TechSection icon="recycle" tone="amber" title="EU F-Gas vs AIM Act — different timing, similar destination">
 
-EU and US regulatory schedules for R-404A phase-down differ in timing but converge on similar end-states. The EU acted first and more aggressively; the US lagged but caught up through SNAP delistings and the AIM Act Technology Transitions Rule.
+EU and US regulatory schedules for R-404A phase-down differ in timing but converge on similar end-states. The EU acted first through its F-Gas Regulation; the US followed through the AIM Act Technology Transitions Rule at 40 CFR 84.54.
 
-EU timeline [eufgas]:
-- **2015** — EU F-Gas Regulation 517/2014 enters force
-- **2020** — R-404A banned in new commercial refrigeration under 40 kW
-- **2022** — R-404A banned in new commercial refrigeration over 40 kW with limited exceptions
-- **2024** — F-Gas Regulation revision tightens thresholds, expands restrictions to additional equipment categories through 2030
+EU — Regulation (EU) No 517/2014, since replaced by (EU) 2024/573, applying from 11 March 2024 [eufgas]:
+- **From 1 Jan 2020** — R-404A (GWP ≥2,500) restricted in new stationary refrigeration (Annex III row 12) and in commercial fridges/freezers (row 11)
+- **From 2022** — R-404A restricted in new multipack centralised systems ≥40 kW (GWP ≥150, row 13)
+- **Servicing** — Art. 13(3) restricts servicing of equipment ≥40 t CO₂e with virgin GWP ≥2,500 gas from 2020
 
-US timeline [snap][aimact]:
-- **2015-2018** — EPA SNAP delisting rules for various R-404A end-uses (mostly vacated by court challenges 2017-2020)
-- **2020** — EPA AIM Act enacted (Public Law 116-260)
-- **2021** — AIM Act Final Rule (HFC phase-down framework)
-- **2023** — AIM Act Technology Transitions Rule restricts R-404A for new equipment in most commercial refrigeration categories from 2025
-- **2025** — Most new R-404A commercial refrigeration equipment no longer permitted in US
+US — AIM Act, 40 CFR 84.54 (R-404A GWP 3922 exceeds every 84.54 limit) [aimact]:
+- **From January 1, 2025** — refrigerated transport, road/marine self-contained (84.54(a)(7) manufacture/import, (c)(8) installation)
+- **From January 1, 2026** — automatic commercial ice makers, GWP ≥150 (84.54(a)(8)(i)); remote-condenser ice machines from January 1, 2027 (84.54(c)(14))
+- **From July 27, 2026** — refrigerated transport intermodal (84.54(a)(6)/(c)(7)); retail food remote condensing units (84.54(c)(11)(i)); cold storage warehouses (84.54(c)(9)(i))
+- **From January 1, 2027** — retail food supermarket systems (84.54(c)(12)(i))
 
-For multinational operators, the EU restrictions arrived ~5 years ahead of US restrictions, giving European supermarket and food-service operators more lead time on R-744 / R-454C / R-455A transitions. US operators are catching up through 2025-2027.
+See the US new-equipment rules (40 CFR 84.54) section on this page for the full mapped table and servicing note. Servicing existing R-404A equipment stays legal (installation is defined at 84.54(e)).
+
+For multinational operators, the EU restrictions arrived ahead of US restrictions, giving European supermarket and food-service operators more lead time on R-744 / R-454C / R-455A transitions.
 
 </TechSection>
 

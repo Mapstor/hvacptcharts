@@ -17,9 +17,9 @@ sources:
     url: "https://www.ipcc.ch/report/ar6/wg1/"
     date: "2021"
   - id: aimact
-    label: "EPA AIM Act — 40 CFR Part 84 Subpart B (HFC Phase-down)"
-    url: "https://www.epa.gov/climate-hfcs-reduction"
-    date: "Final Rule Oct 2021"
+    label: "AIM Act, 42 U.S.C. 7675 — Technology Transitions rule at 40 CFR 84.54 (current through 91 FR 31329, May 26, 2026)"
+    url: "https://www.ecfr.gov/current/title-40/section-84.54"
+    date: "Technology Transitions rule, 40 CFR 84.54 (2023–2026)"
   - id: eumac
     label: "EU Mobile Air Conditioning Directive 2006/40/EC — Banned R-134a in new MAC vehicle types after 1 Jan 2017"
     url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32006L0040"
@@ -54,7 +54,7 @@ keyStats:
   - label: GWP (100-yr)
     value: "1430"
     unit: "100-yr"
-    context: Above EPA AIM Act 700-GWP threshold for residential AC; phased in MAC (EU)
+    context: Above AIM Act 700-GWP limit for new residential/light-commercial AC; EU cars on R-1234yf since 2017
   - label: GWP (AR6)
     value: "1530"
     unit: IPCC AR6
@@ -92,9 +92,9 @@ narrative:
     - "Aerosol propellant in some medical and specialty applications"
 
   phaseDownStatus: |
-    Mobile AC: EU banned R-134a in new vehicle types after 1 January 2017 under Directive 2006/40/EC; new vehicles use R-1234yf [eumac]. US OEMs transitioned to R-1234yf for most new light-duty vehicles by 2021 ahead of AIM Act pressure.
+    Mobile AC: the EU banned R-134a in new car (MVAC) types from 1 January 2017 under the MAC Directive 2006/40/EC; new cars use R-1234yf [eumac]. US new light-duty vehicles likewise transitioned to R-1234yf.
 
-    Stationary applications: R-134a's GWP of 1430 places it above the EPA AIM Act 700-GWP threshold for residential AC categories (R-134a isn't widely used in residential AC anyway), with phase-down restrictions affecting some chiller and commercial refrigeration categories from 2025-2030 [aimact]. R-450A, R-513A, R-515B, R-1234ze(E) are the chiller replacement options.
+    Stationary applications: R-134a (GWP 1430) is a regulated HFC under the AIM Act. New residential & light-commercial AC/heat pumps are restricted from January 1, 2025 (40 CFR 84.54(a)(1)/(c)(1), ≥700 GWP; VRF (c)(2) from 2026), and new comfort-cooling chillers from January 1, 2025 (84.54(a)(10)(i)/(c)(3), ≥700; industrial-process chillers (a)(10)(iii)/(c)(5) from 2026 and (a)(10)(iv)/(c)(6) from 2028) — see the US new-equipment rules (40 CFR 84.54) section on this page [aimact]. Servicing existing equipment stays legal (84.54(e)). R-450A, R-513A, R-515B, R-1234ze(E) are the chiller replacement options.
 
   serviceNotes: |
     Polyolester (POE) oil is standard for stationary HVAC; polyalkylene glycol (PAG) oil is standard for mobile AC due to better oil return in variable-displacement automotive compressors [saej639]. The two are not interchangeable — verify lubricant grade against equipment OEM.
@@ -140,9 +140,9 @@ faqs:
 
   - q: "Is R-134a still legal in the US?"
     a: |
-      Yes for now. R-134a remains legal to produce, import, and use in the US under current EPA AIM Act schedules — though it is in active phase-down through the 2030s. Service of existing R-134a equipment is unrestricted; new equipment in some categories (especially mobile AC) has transitioned to lower-GWP alternatives [aimact].
+      Yes for now. R-134a remains legal to produce, import, and use in the US under current AIM Act allowances, which step down over the 2030s. Servicing existing R-134a equipment stays legal (40 CFR 84.54(e)); new equipment is restricted in specific subsectors — new residential & light-commercial AC/heat pumps and new comfort-cooling chillers from January 1, 2025 — see the US new-equipment rules (40 CFR 84.54) section on this page [aimact].
 
-      EU regulation is more aggressive — most new MAC vehicles have used R-1234yf since 2017 [eumac].
+      EU rules moved earlier on cars: new car (MVAC) types have required refrigerant below 150 GWP since 1 January 2017 under the MAC Directive 2006/40/EC, so new cars use R-1234yf [eumac].
 
   - q: "What is R-134a used for besides cars?"
     a: |
@@ -190,19 +190,19 @@ R-134a's hydrogen atoms make it less stable than fully-saturated CFCs — atmosp
 
 <TechSection icon="globe" tone="emerald" title="ODP 0 — the chlorine-elimination success story">
 
-R-134a has zero ozone-depletion potential because the molecule contains no chlorine [ashrae34]. The Montreal Protocol CFC phase-out (R-12 banned 1996 in developed countries) was specifically targeting chlorine — atmospheric chemistry research in the 1970s-1980s linked CFC chlorine atoms to stratospheric ozone destruction at catalytic rates.
+R-134a has zero ozone-depletion potential because the molecule contains no chlorine [ashrae34]. The Montreal Protocol CFC phase-out — US production and import of CFCs ended January 1, 1996 (EPA) — was specifically targeting chlorine; atmospheric chemistry research in the 1970s-1980s linked CFC chlorine atoms to stratospheric ozone destruction at catalytic rates.
 
 R-134a's HFC chemistry preserves R-12's refrigeration performance (moderate pressure envelope, single-component simplicity, A1 safety) while eliminating the chlorine. The atmospheric lifetime is also shorter than R-12 because R-134a's hydrogen atoms create breakdown pathways via OH radical reactions in the lower atmosphere — R-134a never reaches the stratosphere in significant quantities.
 
-For practical purposes, R-134a's ODP 0 placed it outside Montreal Protocol restrictions. The follow-on policy framework — the Kigali Amendment (2016) and EPA AIM Act (2020) — added climate-based restrictions (GWP) on top of the existing ozone-based framework. R-134a is restricted under these newer climate-focused rules for some applications, not for ozone reasons.
+For practical purposes, R-134a's ODP 0 placed it outside Montreal Protocol restrictions. The follow-on framework — the Kigali Amendment (2016) HFC phase-down and the AIM Act (2020) — added climate-based (GWP) restrictions on top of the existing ozone-based framework. R-134a is restricted in specific new-equipment subsectors under the AIM Act (see the US new-equipment rules section on this page), not for ozone reasons.
 
 </TechSection>
 
 <TechSection icon="climate" tone="amber" title="GWP 1430 vs 1530 (AR6) — both above policy thresholds">
 
-R-134a's GWP value depends on which IPCC assessment you reference. The regulatory value is 1430 (the AR4 / AIM Act exchange figure); AR6 (2021) updated it to approximately 1530 — a ~7% revision driven by improved atmospheric chemistry modeling [ipccar5][ipccar6]. The EPA AIM Act and EU F-Gas Regulation both use the 1430 figure for regulatory determinations.
+R-134a's GWP value depends on which IPCC assessment you reference. The regulatory value is 1430 (the AR4 / AIM Act exchange figure); AR6 (2021) updated it to approximately 1530 — a ~7% revision driven by improved atmospheric chemistry modeling [ipccar5][ipccar6]. The AIM Act and EU F-Gas Regulation both use the 1430 figure for regulatory determinations.
 
-Both figures place R-134a above the policy thresholds in major segments. EU F-Gas Regulation 517/2014 banned R-134a in new MAC vehicle types from 1 January 2017 under a 150-GWP threshold [eumac]. EPA AIM Act 700-GWP threshold for residential AC doesn't materially affect R-134a (which wasn't used in residential AC anyway), but commercial refrigeration and some chiller categories see R-134a restrictions through 2025-2030 phase-downs.
+Both figures place R-134a above the policy thresholds in major segments. The EU banned R-134a in new car (MVAC) types from 1 January 2017 under the MAC Directive 2006/40/EC (150-GWP cap) [eumac]. Under the AIM Act, R-134a is restricted in new residential & light-commercial AC/heat pumps and new comfort-cooling chillers from January 1, 2025 (40 CFR 84.54, ≥700 GWP) — see the US new-equipment rules section on this page.
 
 <KeyInsight tone="zinc" icon="climate" title="Two transitions running in parallel">
 For mobile AC, the regulatory pressure drove industry standardization on R-1234yf (GWP 1) — a single global replacement. For stationary chillers, the regulatory pressure is spread across multiple replacement chemistries with different trade-offs: R-513A and R-450A as A1 retrofits; R-1234ze(E) as A2L new-equipment; R-515B as A1 lower-GWP than R-513A.
@@ -249,17 +249,17 @@ POE and PAG are chemically incompatible — mixing them produces oil-return fail
 
 <TechSection icon="recycle" tone="amber" title="The EU MAC Directive — landmark refrigerant policy">
 
-EU Directive 2006/40/EC, commonly called the MAC Directive (Mobile Air Conditioning Directive), was the first major refrigerant regulation to use GWP as the binding compliance threshold [eumac]. The directive required all new vehicle types receiving EU type approval from 1 January 2011 to use refrigerants with GWP below 150, and all new vehicles regardless of type from 1 January 2017.
+EU Directive 2006/40/EC, commonly called the MAC Directive (Mobile Air Conditioning Directive), was the first major refrigerant regulation to use GWP as the binding compliance threshold [eumac]. It required new car (MVAC) types to use refrigerants with GWP below 150 from 1 January 2017.
 
-R-134a's GWP of 1430 placed it well above the 150 threshold. The chosen replacement was R-1234yf (HFO, A2L, GWP 1), which became the dominant new-vehicle MAC refrigerant in the EU from 2011 onward and globally over the following decade. Daimler initially resisted R-1234yf adoption (citing flammability concerns) but ultimately conformed; the broader industry standardized rapidly.
+R-134a's GWP of 1430 placed it well above the 150 threshold. The chosen replacement was R-1234yf (HFO, A2L, GWP 1), which became the dominant new-vehicle MAC refrigerant in the EU from 2017 and globally over the following decade. Daimler initially resisted R-1234yf adoption (citing flammability concerns) but ultimately conformed; the broader industry standardized rapidly.
 
-The MAC Directive's significance extended beyond mobile AC. It established the regulatory template for the EU F-Gas Regulation (517/2014, revised 2024) and ultimately influenced the US EPA AIM Act framework — using GWP thresholds tied to specific end-uses rather than blanket refrigerant bans. The 150-GWP threshold remains the EU benchmark for the most aggressive refrigerant categories.
+The MAC Directive's significance extended beyond mobile AC. It established the regulatory template for the EU F-Gas Regulation (Regulation (EU) No 517/2014, since replaced by (EU) 2024/573, applying from 11 March 2024) and ultimately influenced the AIM Act framework — using GWP thresholds tied to specific end-uses rather than blanket refrigerant bans. The 150-GWP threshold remains the EU benchmark for the most aggressive refrigerant categories.
 
 </TechSection>
 
 <TechSection icon="service" tone="blue" title="Chiller retrofit paths — R-513A, R-450A, R-515B, R-1234ze(E)">
 
-For centrifugal chillers using R-134a, the EU F-Gas and EPA AIM Act phase-down pressure creates four established retrofit / replacement paths:
+For centrifugal chillers using R-134a, the EU F-Gas and AIM Act phase-down pressure creates four established retrofit / replacement paths:
 
 - **R-513A** (R-134a/R-1234yf 56/44, A1, GWP 630) — near-azeotropic blend designed as a true drop-in for R-134a. POE oil; pressure envelope within 5% of R-134a; minimal compressor adjustment needed. Most common R-134a chiller retrofit.
 - **R-450A** (R-134a/R-1234ze(E) 42/58, A1, GWP 601) — small glide (~0.9°F), POE oil, similar pressure envelope to R-134a. Slightly lower GWP than R-513A.
@@ -276,6 +276,6 @@ R-134a's installed base is large and aging. Mobile AC: vehicles built before 201
 
 Domestic refrigeration: the market has been transitioning to R-600a (isobutane) for household refrigerators since the 2010s; R-134a use in new household appliances has largely ended. Commercial refrigeration (vending, beverage coolers, display cases): transitioning to R-1234yf-based low-GWP blends or R-290 (propane) where charge limits permit.
 
-Service-supply economics for R-134a will track the AIM Act production schedule — 70% reduction by 2029, 80% by 2034, 85% by 2036. Reclaimed R-134a will fill an increasing share of the service market. Pricing will rise gradually but stays below the steep curve R-22 has followed since 2020, because the R-134a installed base is much larger and the phase-down is more gradual.
+Service-supply economics for R-134a will track the AIM Act allowance schedule — production and consumption allowances step down to 30% of baseline in 2029-2033, 20% in 2034-2035, and 15% in 2036 and after (42 U.S.C. 7675(e)(2)(C)). Reclaimed R-134a will fill an increasing share of the service market. Pricing will rise gradually but stays below the steep curve R-22 has followed since 2020, because the R-134a installed base is much larger and the phase-down is more gradual.
 
 </TechSection>

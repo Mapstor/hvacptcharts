@@ -63,7 +63,7 @@ export default function TermsPage() {
             on a specific system, contact a local HVAC contractor or EPA Section 608 certified technician.
           </p>
           <p>
-            <strong>Not an authoritative regulatory source.</strong> Regulatory status (EPA AIM Act, SNAP, Montreal
+            <strong>Not an authoritative regulatory source.</strong> Regulatory status (AIM Act, SNAP, Montreal
             Protocol, EU F-Gas) is reported as a reference; for compliance decisions, consult the original
             regulation and a qualified compliance professional.
           </p>

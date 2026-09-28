@@ -712,7 +712,7 @@
       "category": "refrigerant",
       "claimType": "e",
       "refrigerant": "r-503",
-      "sentence": "The R-23 component is HFC (zero ODP) and would not have been banned on ozone grounds, but is now itself subject to EPA AIM Act phase-down for its very high GWP (14,800).",
+      "sentence": "The R-23 component is HFC (zero ODP) and would not have been banned on ozone grounds, but is now itself subject to AIM Act phase-down for its very high GWP (14,800).",
       "claimed": "GWP 14,800",
       "dataset": "r-503 headline 14560, AR5 13299, AR4 14560, AR6 15558",
       "severity": "info",

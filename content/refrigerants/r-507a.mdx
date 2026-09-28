@@ -13,15 +13,15 @@ sources:
     url: "https://www.ipcc.ch/report/ar5/wg1/"
     date: "2014"
   - id: aimact
-    label: "EPA AIM Act — 40 CFR Part 84 Subpart B + Technology Transitions Rule"
-    url: "https://www.epa.gov/climate-hfcs-reduction"
-    date: "Final Rule Oct 2021, Technology Transitions Rule Oct 2023"
+    label: "AIM Act, 42 U.S.C. 7675 — Technology Transitions rule at 40 CFR 84.54 (current through 91 FR 31329, May 26, 2026)"
+    url: "https://www.ecfr.gov/current/title-40/section-84.54"
+    date: "Technology Transitions rule, 40 CFR 84.54 (2023–2026)"
   - id: snap
-    label: "EPA SNAP — R-507A delistings for commercial refrigeration end-uses"
+    label: "EPA Significant New Alternatives Policy (SNAP) — acceptability listings by end-use"
     url: "https://www.epa.gov/snap"
   - id: eufgas
-    label: "EU F-Gas Regulation 517/2014 (revised 2024)"
-    url: "https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases_en"
+    label: "Regulation (EU) No 517/2014, since replaced by (EU) 2024/573 (applying from 11 March 2024)"
+    url: "https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases/f-gas-legislation_en"
   - id: coolprop
     label: "CoolProp 7.2.0"
     url: "http://www.coolprop.org/"
@@ -63,14 +63,14 @@ keyStats:
     context: Polyolester; mineral oil not miscible
   - label: New-equipment status
     value: Restricted
-    context: SNAP delisted for many commercial refrigeration categories
-    sourceId: snap
+    context: New equipment restricted by subsector and date under AIM Act 40 CFR 84.54; existing equipment can still be serviced (84.54(e))
+    sourceId: aimact
 
 narrative:
   whatItIs: |
     R-507A is an azeotropic binary blend of 50% R-125 and 50% R-143a by mass [ashrae34]. The composition produces zero temperature glide — operationally equivalent to a pure refrigerant for service measurement purposes. R-507A was developed alongside R-404A in the early 1990s as a CFC R-502 replacement for low-temperature commercial refrigeration.
 
-    The defining characteristic in 2026 is very high GWP — 3985, slightly above R-404A's 3922 and among the highest of mainstream HFC refrigerants [ipccar5]. The azeotropic composition is operationally simpler than R-404A's near-azeotropic ternary blend but the GWP positioning is essentially identical — both are aggressively phased down under EPA AIM Act and EU F-Gas Regulation.
+    The defining characteristic in 2026 is very high GWP — 3985, slightly above R-404A's 3922 and among the highest of mainstream HFC refrigerants [ipccar5]. The azeotropic composition is operationally simpler than R-404A's near-azeotropic ternary blend but the GWP positioning is essentially identical — both are aggressively phased down under AIM Act and EU F-Gas Regulation.
 
   whereItsUsed:
     - "Low-temperature commercial refrigeration — walk-in freezers, frozen food cases (legacy installations)"
@@ -79,9 +79,9 @@ narrative:
     - "Service supply for the existing R-507A installed base"
 
   phaseDownStatus: |
-    EU F-Gas Regulation 517/2014 banned R-507A in new sub-40 kW commercial refrigeration from 1 January 2020 [eufgas]. EPA SNAP has delisted R-507A for multiple commercial refrigeration end-use categories through 2024-2025 [snap]; the EPA AIM Act Technology Transitions Rule restricts R-507A for new equipment manufacturing in most categories from 2025 [aimact].
+    Under the AIM Act, R-507A (40 CFR 84.64 GWP 3985, above every 84.54 limit) is restricted for new equipment subsector by subsector at 40 CFR 84.54 — for example, new ice makers from January 1, 2026 (84.54(a)(8)(i)) and new supermarket systems from January 1, 2027 (84.54(c)(12)(i)). See the "US new-equipment rules (40 CFR 84.54)" section on this page for the full mapped table [aimact]. Under Regulation (EU) No 517/2014, since replaced by (EU) 2024/573, applying from 11 March 2024, Annex III row 12 restricts all stationary refrigeration with GWP ≥2,500 from 2020 [eufgas].
 
-    Service of existing R-507A equipment remains legal under current US rules. The standard retrofit path is R-448A or R-449A (A1 HFC blends, GWP ~1390); for new equipment R-454C / R-455A (A2L, GWP 146) or R-744 (CO₂ transcritical) are the long-term low-GWP destinations.
+    Servicing existing R-507A equipment stays legal (40 CFR 84.54(e)). The standard retrofit path is R-448A or R-449A (A1 HFC blends, GWP ~1390); for new equipment R-454C / R-455A (A2L, GWP 146) or R-744 (CO₂ transcritical) are the long-term low-GWP destinations.
 
   serviceNotes: |
     POE oil required — same lubricant family as R-404A and R-410A; mineral oil and alkylbenzene are not miscible. The azeotropic composition means service measurement procedures from pure-refrigerant practice apply directly — no bubble/dew curve discipline needed.
@@ -105,13 +105,13 @@ faqs:
     a: |
       The 50% R-125 content (GWP 3500) and 50% R-143a content (GWP 4470) combine to produce mass-weighted GWP 3985 [ipccar5]. Both components are high-GWP HFCs — R-125 was chosen for flammability suppression (A1 classification), R-143a for low-temperature capacity.
 
-      The trade-off was acceptable when R-507A was developed (early 1990s) because GWP wasn't yet a regulatory constraint. Modern EPA AIM Act and EU F-Gas Regulation target the high GWP and have made R-507A non-viable for new equipment.
+      The trade-off was acceptable when R-507A was developed (early 1990s) because GWP wasn't yet a regulatory constraint. Modern AIM Act and EU F-Gas Regulation target the high GWP and have made R-507A non-viable for new equipment.
 
   - q: "Is R-507A still legal?"
     a: |
-      Production and service of existing equipment remain legal under current EPA rules [aimact]. EPA SNAP has delisted R-507A for new equipment in most commercial refrigeration categories through 2024-2025 [snap].
+      Servicing existing R-507A equipment stays legal under current EPA rules (40 CFR 84.54(e)) [aimact]. New equipment is restricted subsector by subsector under the AIM Act at 40 CFR 84.54 — for example, new supermarket systems from January 1, 2027 (84.54(c)(12)(i)). See the "US new-equipment rules (40 CFR 84.54)" section on this page for each subsector, date, and paragraph.
 
-      For existing R-507A installations, service supply will continue via reclaimed R-507A through the AIM Act production schedule (70%/80%/85% reductions through 2036).
+      For existing R-507A installations, service supply continues via reclaimed R-507A as production and consumption allowances step down to 30% of baseline in 2029-2033, 20% in 2034-2035, and 15% in 2036 and after (42 U.S.C. 7675(e)(2)(C)).
 
   - q: "What lubricant does R-507A use?"
     a: |
@@ -131,7 +131,7 @@ faqs:
 
   - q: "Why was R-507A developed?"
     a: |
-      As an azeotropic alternative to R-404A for R-502 replacement. R-502 was banned in 1996 under the Montreal Protocol (R-115 component is CFC). Both R-404A and R-507A were developed in the early 1990s as HFC-only replacements; R-507A's azeotropic composition matched R-502's azeotropic behavior more closely, while R-404A's near-azeotropic ternary blend offered slightly different capacity characteristics.
+      As an azeotropic alternative to R-404A for R-502 replacement. R-502 contains the CFC R-115, so US production and import of R-502 ended January 1, 1996 (EPA). Both R-404A and R-507A were developed in the early 1990s as HFC-only replacements; R-507A's azeotropic composition matched R-502's azeotropic behavior more closely, while R-404A's near-azeotropic ternary blend offered slightly different capacity characteristics.
 
       Both refrigerants captured market share in low-temperature commercial refrigeration through 1995-2020. R-404A captured larger overall market share; R-507A remained a meaningful alternative through the late 2010s.
 
@@ -177,7 +177,7 @@ Standard 500-800 PSI manifold gauges handle the operating range. A1 classificati
 
 R-507A's GWP of 3985 places it slightly above R-404A's 3922 — among the very highest of mainstream HFC refrigerants. The high GWP is the binding constraint on R-507A's continued use under modern regulatory frameworks.
 
-EPA SNAP has delisted R-507A for new equipment in most commercial refrigeration categories through 2024-2025 [snap]. EU F-Gas Regulation 517/2014 banned R-507A in new sub-40 kW commercial refrigeration from 1 January 2020 [eufgas]. The EPA AIM Act Technology Transitions Rule restricts R-507A for new equipment manufacturing in most categories from 2025 [aimact].
+Under the AIM Act, R-507A is restricted for new equipment subsector by subsector at 40 CFR 84.54 — refrigerated transport from January 1, 2025 (84.54(a)(7)/(c)(8)), ice makers from January 1, 2026 (84.54(a)(8)(i)), remote condensing units (≥1,400) and cold storage (≥700) from July 27, 2026 (84.54(c)(11)(i) and 84.54(c)(9)(i)), and supermarket systems from January 1, 2027 (84.54(c)(12)(i)); see the "US new-equipment rules (40 CFR 84.54)" section on this page for the full table [aimact]. Under Regulation (EU) No 517/2014, since replaced by (EU) 2024/573, applying from 11 March 2024, Annex III row 12 restricts all stationary refrigeration with GWP ≥2,500 from 2020, and row 13 covers multipack centralized systems ≥40 kW with GWP ≥150 from 2022 [eufgas].
 
 For existing R-507A equipment, the situation parallels R-404A: service supply will continue via reclaimed refrigerant; retrofit to R-448A or R-449A (A1, GWP ~1390) is the standard path for GWP reduction without equipment redesign. For long-term low-GWP, new equipment with R-454C / R-455A (A2L, GWP 146) or R-744 (CO₂, GWP 1) is the replacement direction.
 
@@ -205,7 +205,6 @@ R-507A service procedures are essentially interchangeable with R-404A practice. 
 | Equipment / procedure | R-404A | R-507A |
 | --- | --- | --- |
 | Manifold gauge rating | 500-800 PSI | 500-800 PSI |
-| Recovery cylinder | Standard 600 PSI | Standard 600 PSI |
 | Lubricant | POE | POE (identical family) |
 | Glide handling | Single curve (near-azeotropic) | Single curve (azeotropic) |
 | Safety class | A1 | A1 |
@@ -218,11 +217,11 @@ Service technicians familiar with R-404A can work on R-507A without procedural c
 
 <TechSection icon="recycle" tone="amber" title="R-507A in the commercial refrigeration phase-down chain">
 
-R-507A's history parallels R-404A's: R-502 (CFC, banned 1996) → R-507A and R-404A (HFC, dominant 1996-2020) → R-448A and R-449A (HFC retrofit, GWP ~1390) → R-454C and R-455A (A2L new equipment, GWP 146) → R-744 (CO₂ transcritical, GWP 1, supermarket scale).
+R-507A's history parallels R-404A's: R-502 (CFC, US production/import ended 1996) → R-507A and R-404A (HFC, dominant 1996-2020) → R-448A and R-449A (HFC retrofit, GWP ~1390) → R-454C and R-455A (A2L new equipment, GWP 146) → R-744 (CO₂ transcritical, GWP 1, supermarket scale).
 
 R-507A captured smaller overall market share than R-404A through the 1995-2020 era but remained a meaningful alternative for operators preferring azeotropic composition. The phase-down trajectory is essentially identical to R-404A's — both refrigerants face the same regulatory pressures and the same retrofit and replacement paths.
 
-For new commercial refrigeration installations, R-507A is no longer a viable option in most categories under SNAP delistings and AIM Act provisions. The market has moved to A2L low-GWP blends (R-454C, R-455A) or R-744 CO₂ transcritical at supermarket scale.
+For new equipment, R-507A is restricted subsector by subsector under the AIM Act at 40 CFR 84.54 — see the "US new-equipment rules (40 CFR 84.54)" section on this page. The market has moved to A2L low-GWP blends (R-454C, R-455A) or R-744 CO₂ transcritical at supermarket scale.
 
 </TechSection>
 

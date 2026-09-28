@@ -3223,7 +3223,7 @@
       }
     ],
     "environmental": {
-      "odp": 0.221,
+      "odp": 0.33,
       "atmosphericLifetimeYears": null,
       "snapStatus": "Production banned under the Montreal Protocol (R-115 component is a CFC)"
     },
