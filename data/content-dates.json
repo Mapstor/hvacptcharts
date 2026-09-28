@@ -1,10 +1,10 @@
 {
   "/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/about-us/": {
-    "updated": "2026-07-07",
+    "updated": "2026-09-28",
     "published": "2026-05-21"
   },
   "/ac-compressor-short-cycling/": {
@@ -16,11 +16,11 @@
     "published": "2026-07-13"
   },
   "/calculators-hub/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-21"
   },
   "/carrier-410a-charging-chart/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-06-11"
   },
   "/contact-us/": {
@@ -32,15 +32,15 @@
     "published": "2026-06-11"
   },
   "/guides-hub/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-21"
   },
   "/high-head-pressure-causes/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-28",
     "published": "2026-05-22"
   },
   "/high-suction-low-head-pressure/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-07-13"
   },
   "/hvac-ductless-mini-split-guide/": {
@@ -60,7 +60,7 @@
     "published": "2026-06-11"
   },
   "/low-suction-pressure/": {
-    "updated": "2026-07-18",
+    "updated": "2026-09-28",
     "published": "2026-07-13"
   },
   "/overcharged-ac-symptoms/": {
@@ -80,11 +80,11 @@
     "published": "2026-05-21"
   },
   "/pt-chart-guide/": {
-    "updated": "2026-09-26",
+    "updated": "2026-09-28",
     "published": "2026-05-21"
   },
   "/pt-charts-tools-hub/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-21"
   },
   "/pt-superheat-subcooling-calculator/": {
@@ -112,7 +112,7 @@
     "published": "2026-06-08"
   },
   "/r-22-vs-r-407c/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-06-08"
   },
   "/r-22-vs-r-410a/": {
@@ -124,7 +124,7 @@
     "published": "2026-07-14"
   },
   "/r-22-vs-r-454b/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-06-08"
   },
   "/r-290-vs-r-600a/": {
@@ -180,7 +180,7 @@
     "published": "2026-07-13"
   },
   "/r410a-charging-chart/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-07-13"
   },
   "/r410a-superheat-chart/": {
@@ -188,27 +188,27 @@
     "published": "2026-07-13"
   },
   "/refrigerant-charge-calculator/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-06-08"
   },
   "/refrigerant-comparison-guide/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-06-08"
   },
   "/refrigerant-gwp-rankings/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-21"
   },
   "/refrigerant-prices-guide/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-06-11"
   },
   "/refrigerant-pt-comparison-tool/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-21"
   },
   "/refrigerant-retrofit-compatibility-calculator/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-22"
   },
   "/refrigerant-safety-classifications/": {
@@ -288,7 +288,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-218/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-22/": {
@@ -328,7 +328,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-407c/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-407f/": {
@@ -336,7 +336,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-410a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-417a/": {
@@ -364,7 +364,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-438a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-448a/": {
@@ -388,7 +388,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-454b/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-454c/": {
@@ -400,19 +400,19 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-457a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-500/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-502/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-503/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-507a/": {
@@ -452,7 +452,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-c318/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/saturation-properties-calculator/": {
@@ -468,7 +468,7 @@
     "published": "2026-05-21"
   },
   "/superheat-subcooling-fundamentals/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-28",
     "published": "2026-05-21"
   },
   "/system-pressure-diagnostic-calculator/": {
@@ -484,7 +484,7 @@
     "published": "2026-05-21"
   },
   "/what-pressure-should-410a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-21"
   },
   "/what-pressure-should-r1234yf/": {
@@ -492,11 +492,11 @@
     "published": "2026-06-12"
   },
   "/what-pressure-should-r134a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-25",
     "published": "2026-05-21"
   },
   "/what-pressure-should-r22/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-25",
     "published": "2026-05-21"
   },
   "/what-pressure-should-r32/": {
@@ -508,7 +508,7 @@
     "published": "2026-05-21"
   },
   "/what-pressure-should-r407c/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-06-08"
   },
   "/what-pressure-should-r449a/": {
@@ -524,7 +524,7 @@
     "published": "2026-06-08"
   },
   "/what-pressure-should-r744/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-26",
     "published": "2026-06-08"
   }
 }
