@@ -17,8 +17,8 @@ const TYPE_GROUPS: Array<{ label: string; types: string[] }> = [
   { label: "HFC blend", types: ["hfc-blend"] },
   { label: "HFO / HCFO", types: ["hfo-pure", "hfo-blend", "hcfo"] },
   { label: "PFC", types: ["pfc"] },
-  { label: "HCFC (legacy)", types: ["hcfc"] },
-  { label: "CFC (banned)", types: ["cfc"] },
+  { label: "HCFC (legacy)", types: ["hcfc", "hcfc-blend"] },
+  { label: "CFC (production ended)", types: ["cfc", "cfc-blend"] },
   { label: "Natural", types: ["natural"] },
   { label: "Hydrocarbon (flammable)", types: ["hc"] },
 ];

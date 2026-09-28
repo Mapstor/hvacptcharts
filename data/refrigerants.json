@@ -33762,7 +33762,7 @@
     "chemicalName": "Octafluoropropane",
     "chemicalFormula": "C3F8",
     "ashraeNumber": "R-218",
-    "type": "hfc-pure",
+    "type": "pfc",
     "safetyClass": "A1",
     "tradeNames": [],
     "composition": [],
@@ -57758,7 +57758,7 @@
         "MO",
         "AB"
       ],
-      "notes": "POE required. Near-azeotropic (glide <1°F) so it behaves close to a pure refrigerant. Operating pressures roughly 60% higher than equivalent R-22 systems — gauges, hoses, and recovery equipment must be appropriately rated."
+      "notes": "POE required. Near-azeotropic (glide <1°F) so it behaves close to a pure refrigerant. Operating pressures roughly 60-65% higher than equivalent R-22 systems — gauges, hoses, and recovery equipment must be appropriately rated."
     },
     "applications": [
       "Residential central air conditioning (existing equipment)",
@@ -88919,7 +88919,7 @@
     "chemicalName": "Azeotropic CFC/HFC blend",
     "chemicalFormula": "R-12/R-152a (73.8/26.2)",
     "ashraeNumber": "R-500",
-    "type": "cfc",
+    "type": "cfc-blend",
     "safetyClass": "A1",
     "tradeNames": [],
     "composition": [
@@ -90929,7 +90929,7 @@
     "chemicalName": "Azeotropic HCFC/CFC blend",
     "chemicalFormula": "R-22/R-115 (48.8/51.2)",
     "ashraeNumber": "R-502",
-    "type": "hcfc",
+    "type": "cfc-blend",
     "safetyClass": "A1",
     "tradeNames": [],
     "composition": [
@@ -92944,7 +92944,7 @@
     "chemicalName": "Binary HFC/CFC azeotropic blend",
     "chemicalFormula": "R-23/R-13 (40.1/59.9)",
     "ashraeNumber": "R-503",
-    "type": "cfc",
+    "type": "cfc-blend",
     "safetyClass": "A1",
     "tradeNames": [],
     "composition": [
@@ -110578,7 +110578,7 @@
     "slug": "r-c318",
     "indexable": false,
     "noindexReason": "Known content errors and a template that does not fit this fluid; page to be rebuilt.",
-    "displayName": "R-c318",
+    "displayName": "R-C318",
     "altSpellings": [
       "Rc318",
       "R-C318",

@@ -26,8 +26,8 @@ const TYPE_OPTIONS: Array<{ id: RefrigerantType | "all"; label: string }> = [
 
 const GWP_BUCKETS: Array<{ id: string; label: string; min: number; max: number }> = [
   { id: "all", label: "All", min: -1, max: Infinity },
-  { id: "u150", label: "< 150 (EU F-Gas)", min: -1, max: 150 },
-  { id: "u700", label: "< 700 (AIM Act)", min: -1, max: 700 },
+  { id: "u150", label: "GWP < 150", min: -1, max: 150 },
+  { id: "u700", label: "GWP < 700", min: -1, max: 700 },
   { id: "150-2000", label: "150–2000", min: 150, max: 2000 },
   { id: "2000+", label: "> 2000", min: 2000, max: Infinity },
 ];
@@ -168,8 +168,8 @@ export function GwpTable() {
       </div>
 
       <p className="text-xs text-zinc-500">
-        Row tinted amber if GWP exceeds the EPA AIM Act threshold (700) for new residential AC equipment. Tinted green
-        if below the EU F-Gas Regulation threshold (150) for stationary refrigeration. The 0 (CO2 reference) and
+        Amber: GWP ≥ 700, the US limit for new residential/light-commercial AC and heat pumps
+        (40 CFR 84.54(a)(1), (c)(1)). Green: GWP &lt; 150. The 0 (CO2 reference) and
         natural-refrigerant tier dominates the bottom of the table; the CFC/HCFC legacy refrigerants dominate the top.
       </p>
     </div>

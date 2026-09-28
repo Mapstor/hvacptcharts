@@ -16,7 +16,9 @@ const TYPE_OPTIONS: Array<{ id: RefrigerantType | "all"; label: string }> = [
   { id: "hcfo", label: "HCFO" },
   { id: "pfc", label: "PFC" },
   { id: "hcfc", label: "HCFC (legacy)" },
-  { id: "cfc", label: "CFC (banned)" },
+  { id: "hcfc-blend", label: "HCFC blend" },
+  { id: "cfc", label: "CFC (production ended)" },
+  { id: "cfc-blend", label: "CFC blend (azeotrope)" },
   { id: "hc", label: "Hydrocarbon" },
   { id: "natural", label: "Natural" },
 ];
@@ -32,9 +34,9 @@ const SAFETY_OPTIONS: Array<{ id: SafetyClass | "all"; label: string }> = [
 
 const GWP_OPTIONS = [
   { id: "all", label: "Any GWP" },
-  { id: "u150", label: "< 150 (EU F-Gas)", min: -1, max: 150 },
-  { id: "u700", label: "< 700 (AIM Act)", min: -1, max: 700 },
-  { id: "g700", label: "≥ 700", min: 700, max: Infinity },
+  { id: "u150", label: "GWP < 150", min: -1, max: 150 },
+  { id: "u700", label: "GWP < 700", min: -1, max: 700 },
+  { id: "g700", label: "GWP ≥ 700", min: 700, max: Infinity },
 ] as const;
 
 const FILTER_BTN = "rounded-full border px-3 py-1 text-xs font-medium transition-colors";

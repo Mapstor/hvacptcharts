@@ -18,7 +18,7 @@ const TYPE_OPTIONS: Array<{ id: RefrigerantType | "all"; label: string }> = [
   { id: "hcfo", label: "HCFO" },
   { id: "pfc", label: "PFC" },
   { id: "hcfc", label: "HCFC (legacy)" },
-  { id: "cfc", label: "CFC (banned)" },
+  { id: "cfc", label: "CFC (production ended)" },
   { id: "hc", label: "Hydrocarbon" },
   { id: "natural", label: "Natural" },
 ];

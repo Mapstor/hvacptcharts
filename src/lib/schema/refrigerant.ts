@@ -33,7 +33,9 @@ function oneLineDescription(r: Refrigerant): string {
 function typeLabel(t: Refrigerant["type"]): string {
   switch (t) {
     case "cfc": return "Chlorofluorocarbon (CFC)";
+    case "cfc-blend": return "CFC blend";
     case "hcfc": return "Hydrochlorofluorocarbon (HCFC)";
+    case "hcfc-blend": return "HCFC blend";
     case "hfc-pure": return "Hydrofluorocarbon (HFC)";
     case "hfc-blend": return "HFC";
     case "hfo-pure": return "Hydrofluoroolefin (HFO)";

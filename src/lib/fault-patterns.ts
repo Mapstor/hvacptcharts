@@ -90,7 +90,7 @@ export const FAULT_PATTERNS: Record<FaultPatternId, FaultPattern> = {
     label: "Negative superheat or subcooling — stop and diagnose",
     severity: "alarm",
     signature: "SH < 0 or SC < 0",
-    note: "Negative superheat (liquid reaching the compressor — slugging) or negative subcooling (vapor in the liquid line). Stop the system and diagnose before continuing.",
+    note: "Superheat and subcooling are physically ≥0°F at steady state — a negative value usually means a reading error, the wrong refrigerant, or the wrong saturation curve. If the readings are correct: negative superheat means liquid reaching the compressor (slugging), negative subcooling means vapor in the liquid line. Re-verify, then stop the system and diagnose before continuing.",
     recommendations: [
       "Stop the system — continued operation risks compressor damage from liquid slugging.",
       "Verify charge with subcooling; overcharge or a stuck-open TXV are common causes of negative superheat.",

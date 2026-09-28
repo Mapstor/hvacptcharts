@@ -66,6 +66,32 @@ const round = (n, d) => {
   return Math.round(n * f) / f;
 };
 
+// Types of blend components that are not standalone entries in the dataset.
+const FALLBACK_COMPONENT_TYPE = {
+  "r-115": "cfc",
+  "r-13b1": "cfc",
+  "r-13": "cfc",
+  "r-23": "hfc",
+};
+function componentType(name, config) {
+  const slug = name.trim().toLowerCase().replace(/^r-?/, "r-");
+  return config[slug]?.type ?? FALLBACK_COMPONENT_TYPE[slug] ?? null;
+}
+/**
+ * Blend type derived from the components: any CFC component → "cfc-blend"; else
+ * any HCFC component → "hcfc-blend"; otherwise keep the config's blend/pure type.
+ * This is the single rule that classifies R-500/502/503 as CFC blends. Pure
+ * fluids (no composition) keep their config type verbatim.
+ */
+function deriveType(info, config) {
+  const comp = info.composition ?? [];
+  if (comp.length === 0) return info.type;
+  const types = comp.map((c) => componentType(c.component, config));
+  if (types.some((t) => t && t.startsWith("cfc"))) return "cfc-blend";
+  if (types.some((t) => t && t.startsWith("hcfc"))) return "hcfc-blend";
+  return info.type;
+}
+
 function safePropsSI(...args) {
   try {
     const v = cp.PropsSI(...args);
@@ -370,7 +396,7 @@ async function main() {
         chemicalName: info.chemicalName,
         chemicalFormula: info.chemicalFormula,
         ashraeNumber: info.ashraeNumber ?? info.displayName,
-        type: info.type,
+        type: deriveType(info, config),
         safetyClass: info.safetyClass,
         tradeNames: info.tradeNames ?? [],
         composition: info.composition ?? [],

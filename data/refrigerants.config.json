@@ -1105,7 +1105,7 @@
     "chemicalName": "Octafluoropropane",
     "chemicalFormula": "C3F8",
     "ashraeNumber": "R-218",
-    "type": "hfc-pure",
+    "type": "pfc",
     "safetyClass": "A1",
     "strategy": "coolprop",
     "cpIdentifier": "R218",
@@ -1934,7 +1934,7 @@
         "MO",
         "AB"
       ],
-      "notes": "POE required. Near-azeotropic (glide <1°F) so it behaves close to a pure refrigerant. Operating pressures roughly 60% higher than equivalent R-22 systems — gauges, hoses, and recovery equipment must be appropriately rated."
+      "notes": "POE required. Near-azeotropic (glide <1°F) so it behaves close to a pure refrigerant. Operating pressures roughly 60-65% higher than equivalent R-22 systems — gauges, hoses, and recovery equipment must be appropriately rated."
     },
     "applications": [
       "Residential central air conditioning (existing equipment)",
@@ -3945,7 +3945,7 @@
   "r-c318": {
     "indexable": false,
     "noindexReason": "Known content errors and a template that does not fit this fluid; page to be rebuilt.",
-    "displayName": "R-c318",
+    "displayName": "R-C318",
     "altSpellings": [
       "Rc318",
       "R-C318",
