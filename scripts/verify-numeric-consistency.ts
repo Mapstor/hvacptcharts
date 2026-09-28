@@ -322,12 +322,9 @@ const ALLOWLIST: AllowEntry[] = [
   // GWPs of fluids not in the dataset, the CO₂ GWP-1 reference, approximate
   // rules of thumb, and extractor mis-parses (spreads/differences/labels).
   { route: "/r-134a-vs-r-1234ze/", claimType: "b", number: "25% lower R-134a", refrigerant: "r-1234ze", reason: "The '25% lower' is R-1234ze's volumetric capacity vs R-134a, explicitly attributed to Chemours Opteon and Honeywell Solstice technical literature — a sourced manufacturer figure for a distinct quantity, not the saturation-pressure delta (which the prose separately and correctly gives as ~37% at 40°F, matching the dataset)." },
-  { route: "/r-22-vs-r-407c/", claimType: "b", number: "10% higher R-22", refrigerant: "r-407c", reason: "On the mean/display saturation curve R-407C runs only ~5-9% above R-22 across the -20 to 130F operating range (it reaches ~15% only on the high-side bubble curve, and is roughly equal or lower on the dew curve), so the tilde-hedged \"~5-10% higher\" is a legitimate loose characterization of the overall pressure envelope rather than a saturation-pressure error." },
-  { route: "/r-22-vs-r-454b/", claimType: "b", number: "60% higher R-22", refrigerant: "r-454b", reason: "The prose hedges with \"approximately\" and the dataset delta of 56.9% (191 vs 121 psig @70°F) rounds to ~57%, well within the loose rule-of-thumb tolerance of \"~60% higher,\" so forcing over-precise 57% is unwarranted." },
   { route: "/r-404a-vs-r-448a/", claimType: "b", number: "68% lower R-404A (GWP)", refrigerant: "r-448a", reason: "The prose explicitly quotes and attributes this figure to the Honeywell Solstice N40 Technical Data Sheet 'using slightly different GWP accounting,' and separately states the dataset-derived ~65% (64.7%); it is a sourced manufacturer figure, not the author's own calculation." },
   { route: "/r-407c-vs-r-410a/", claimType: "b", number: "60% higher R-410A", refrigerant: "r-407c", reason: "The '~60% higher' in this sentence compares R-410A's pressure envelope to R-22's (not R-407C), which is the widely-cited rule-of-thumb (R-410A runs ~67% higher than R-22 at 70°F, 202 vs ~121 psig); the extractor mis-compared it against the R-407C/R-410A pair." },
   { route: "/refrigerant-retrofit-compatibility-calculator/", claimType: "c", number: "6°F glide", refrigerant: "r-404a", reason: "The 6°F glide is attributed to the retrofit refrigerant R-448A (its manufacturer-cited average operating glide; dataset max 11.5°F), not R-404A, which the same sentence correctly calls near-azeotropic per its dataset glide of ~0.9°F." },
-  { route: "/refrigerant-retrofit-compatibility-calculator/", claimType: "b", number: "60% higher R-22", refrigerant: "r-410a", reason: "\"roughly 60% higher than R-22\" is a loosely-intended widely-cited rule-of-thumb against a dataset delta of 66.1%, which the instructions direct to allowlist rather than over-precisely correct." },
   { route: "/refrigerant/r-123/", claimType: "e", number: "GWP 4", refrigerant: "r-123", reason: "In 'GWP 4 vs 77' the '4' is the GWP of R-1233zd(E) — the named replacement refrigerant, not R-123 (whose 77 is correctly stated); GWP ~4 for R-1233zd(E) is a legitimate published value and the fluid is not in this dataset." },
   { route: "/refrigerant/r-123/", claimType: "e", number: "GWP 4", refrigerant: "r-123", reason: "The 'very low GWP (4)' describes R-1233zd(E)'s HCFO chemistry (the sentence's subject), not R-123; it is a correctly attributed value for a different refrigerant not in this dataset." },
   { route: "/refrigerant/r-13/", claimType: "e", number: "GWP 14,800", refrigerant: "r-13", reason: "The 14,800 figure is R-23's GWP (AR4 value ~14,800), explicitly attributed to R-23 which is named in the sentence as R-13's replacement; R-13's own GWP is correctly stated as 14,400 (matching the dataset headline) in the introOneLiner and the dedicated GWP FAQ." },
@@ -335,7 +332,6 @@ const ALLOWLIST: AllowEntry[] = [
   { route: "/refrigerant/r-22/", claimType: "e", number: "GWP 2729", refrigerant: "r-22", reason: "This GWP belongs to the retrofit blend R-422D (Chemours Freon MO29), a different refrigerant named in the same sentence, not to R-22; 2729 is the correct AR4 GWP for R-422D." },
   { route: "/refrigerant/r-22/", claimType: "e", number: "GWP 2265", refrigerant: "r-22", reason: "This GWP belongs to the retrofit blend R-438A (Chemours Freon MO99), a different refrigerant named in the same sentence, not to R-22; 2265 is the correct GWP for R-438A." },
   { route: "/refrigerant/r-404a/", claimType: "e", number: "GWP 1390", refrigerant: "r-404a", reason: "In 'approximately 65% lower GWP (1390 vs 3922)', the 1390 is the GWP of the R-448A/R-449A retrofit blends ('both' in the sentence), not R-404A; R-448A≈1387 and R-449A≈1397 so ~1390 is correct, and the R-404A value 3922 is correctly stated." },
-  { route: "/refrigerant/r-410a/", claimType: "b", number: "60% higher R-22", refrigerant: "r-410a", reason: "Widely-cited approximate rule-of-thumb the author intends loosely (prose says 'roughly 60%' / '60-65%'); the dataset delta of 66.1% falls in the acceptable 63-66% range." },
   { route: "/refrigerant/r-410a/", claimType: "e", number: "GWP 1", refrigerant: "r-410a", reason: "This is the CO2 reference value used to define GWP ('against CO2, which is defined as GWP 1'), not a claimed GWP for R-410A — the sentence correctly states R-410A's GWP as 2088 right after." },
   { route: "/refrigerant/r-421a/", claimType: "e", number: "GWP 2346", refrigerant: "r-421a", reason: "The value is explicitly attributed to R-417A ('R-417A: GWP 2346') in an R-421A-vs-R-417A comparison FAQ, and the dataset confirms R-417A's headline GWP is 2346; R-421A's own GWP is correctly stated as 2631 in the same sentence." },
   { route: "/refrigerant/r-422a/", claimType: "c", number: "4°F glide", refrigerant: "r-422a", reason: "The '4' is the upper end of the loose approximate range '~3-4°F' (qualified by '~' and 'small to moderate'), which legitimately brackets the dataset glide of 2.62-3.43°F since the max 3.43°F falls between 3 and 4." },
@@ -351,14 +347,10 @@ const ALLOWLIST: AllowEntry[] = [
   { route: "/refrigerant/r-515a/", claimType: "e", number: "GWP 3220", refrigerant: "r-1234ze-e", reason: "3220 is the GWP of the R-227ea blend component, a related fluid not in the dataset, correctly cited to explain why the R-227ea addition raises the blend GWP." },
   { route: "/refrigerant/r-515a/", claimType: "e", number: "GWP 3220", refrigerant: "r-515a", reason: "3220 is the GWP of the R-227ea component (a fluid not in the dataset); the blend's own GWP of 387 is stated correctly and matches the dataset headline." },
   { route: "/refrigerant/r-717/", claimType: "a", number: "180 psig @ 95°F", refrigerant: "r-717", reason: "'approximately 180 PSIG' is a legitimate loose rounding of the dataset 181.1 psig (0.6% off, hedged with 'approximately'), and the page's service-temperature section already states the exact 181 PSIG, so correcting to 181 would be over-precise." },
-  { route: "/refrigerant/r-717/", claimType: "b", number: "80% higher R-717", refrigerant: "r-410a", reason: "'roughly 80% higher' rounds the dataset's ~77% delta (202 vs 114 psig at 70°F) to the nearest 10 and is hedged with 'roughly', a rule-of-thumb the author intends loosely per the allowlist guidance for approximate percentage comparisons." },
-  { route: "/what-pressure-should-410a/", claimType: "b", number: "60% higher R-22", refrigerant: "r-410a", reason: "The prose says 'roughly 60% higher than equivalent R-22 systems' — a widely-cited approximate rule-of-thumb explicitly hedged with 'roughly', close enough to the dataset's 66.1% delta that over-precising it is unwarranted." },
-  { route: "/what-pressure-should-410a/", claimType: "b", number: "60% higher R-22", refrigerant: "r-410a", reason: "The FAQ answer says 'roughly 60% higher pressures than R-22 across the envelope' — the same hedged rule-of-thumb, an intentionally loose approximation (dataset delta 66.1%) that the guidance directs to allowlist rather than over-precise." },
   { route: "/what-pressure-should-r404a/", claimType: "e", number: "GWP 1390", refrigerant: "r-404a", reason: "In \"Both have GWP ~1390 vs R-404A's 3922\", 1390 is the GWP of the R-448A/R-449A retrofit blends (actual ~1387/~1397), not R-404A; R-404A's own GWP (3922) is stated correctly in the same sentence — an attribution artifact." },
   { route: "/what-pressure-should-r449a/", claimType: "b", number: "5% lower R-404A", refrigerant: "r-449a", reason: "Sourced Chemours retrofit-guideline operating comparison (Tables 4/5) of running-system suction/discharge; confirmed by the dataset at true operating conditions (25°F evap dew ~19% lower, 110°F condensing display ~3.5% lower), whereas the 70°F saturation tie is not an operating condition." },
   // ── residual extractor false positives (spreads, inter-refrigerant differences,
   //    component-span, year, rounded CO₂ service refs, mean-curve envelope) ──
-  { route: "/r-407c-vs-r-410a/", claimType: "b", number: "40% higher R-407C", refrigerant: "r-410a", reason: "Approximate rule of thumb (hedged \"~40% higher\"); R-410A runs 43.6% above R-407C at 70°F, within loose tolerance." },
   { route: "/refrigerant/r-449a/", claimType: "b", number: "5% below R-404A (GWP)", refrigerant: "r-449a", reason: "The \"~5% below R-404A\" is a PRESSURE difference (R-449A vs R-404A, dataset-consistent); the sentence's GWP mention mis-triggered GWP-context, and the real ~64% GWP reduction is stated separately." },
   { route: "/refrigerant/r-454b/", claimType: "b", number: "5% lower R-454B", refrigerant: "r-410a", reason: "Comparator is R-410A (not R-454B): R-454B bubble runs ~5% below R-410A (190.5 vs 201.8 psig = 5.6%); the extractor captured R-454B as the comparator." },
   { route: "/refrigerant/r-454c/", claimType: "d", number: "40°F boiling point", refrigerant: "r-1234yf", reason: "40°F is the SPAN between the two component normal boiling points (R-32 −61°F, R-1234yf −21°F), not a boiling point; the component NBPs are stated correctly." },
@@ -368,7 +360,6 @@ const ALLOWLIST: AllowEntry[] = [
   { route: "/refrigerant/r-744/", claimType: "a", number: "480 psig @ 30°F", refrigerant: "r-744", reason: "CO₂ service-reference pressure rounded to the nearest 10 PSIG (dataset 476.1)." },
   { route: "/what-pressure-should-r1234yf/", claimType: "a", number: "3 psig @ 70°F", refrigerant: "r-134a", reason: "+3 PSIG is the R-1234yf-minus-R-134a saturation DIFFERENCE at 70°F (74 vs 71), not an absolute saturation pressure." },
   { route: "/what-pressure-should-r1234yf/", claimType: "a", number: "-10 psig @ 130°F", refrigerant: "r-1234yf", reason: "−10 PSIG is the R-1234yf-minus-R-134a saturation difference at condenser temperatures, not an absolute pressure." },
-  { route: "/what-pressure-should-r407c/", claimType: "b", number: "10% above R-22", refrigerant: "r-407c", reason: "\"~5-10% above R-22 across the envelope\" characterizes the overall (mean-curve) operating envelope; R-407C is ~5-9% above R-22 on the mean/display curve." },
   { route: "/what-pressure-should-r454b/", claimType: "b", number: "10% below R-454B", refrigerant: "r-410a", reason: "The \"5-10% below\" describes R-454B's dew-point gap vs R-410A (actual 8-9.6%); comparator is R-410A, which the extractor mis-captured as R-454B." },
   { route: "/what-pressure-should-r744/", claimType: "f", number: "1700 psig critical pressure", refrigerant: "r-744", reason: "1700 PSIG is the transcritical gas-cooler optimum (1.2-1.5× critical), not the critical pressure (1055 PSIG), which is stated correctly." },
 ];
@@ -426,6 +417,21 @@ function glideCandidates(r: Refrigerant): number[] {
 function glideRange(r: Refrigerant): [number, number] {
   const c = glideCandidates(r);
   return [Math.min(...c), Math.max(...c)];
+}
+
+/** Representative "headline" glide for list/column claims (task 19 E1): the
+ *  stored 0°C value the facts tables render, plus the 1-atm spread for CoolProp
+ *  fluids. Deliberately EXCLUDES the operating-range extremes that
+ *  glideCandidates() allows — a bare "R-448A ≈ 6°F" in a glide list should
+ *  reflect the ~11.5°F headline glide, not the smallest spread at the top of the
+ *  manufacturer pressure table. */
+function glideRepresentative(r: Refrigerant): number[] {
+  const out = new Set<number>();
+  out.add(Math.abs(r.physical.temperatureGlideF));
+  const dew0 = satTemp(r.slug, 0, "dew");
+  const bub0 = satTemp(r.slug, 0, "bubble");
+  if (dew0 !== null && bub0 !== null) out.add(Math.abs(dew0 - bub0));
+  return [...out];
 }
 
 /* ─────────────────────── subject resolution ─────────────────────── */
@@ -509,7 +515,12 @@ const OPERATING_CTX = /operating|suction|discharge|head pressure|manifold|ambien
 /** (a) temperature paired with a pressure → saturation pressure. `masked` has
  *  refrigerant designations blanked so "R-22" is not read as "22 psig". */
 function checkTempPressure(unit: string, masked: string, mentions: RefMention[], page: PageInfo) {
-  const temps = [...masked.matchAll(TEMP_RE)].map((m) => ({ v: numOf(m[1]), s: m[1], i: m.index ?? 0, end: (m.index ?? 0) + m[0].length }));
+  const temps = [...masked.matchAll(TEMP_RE)]
+    .map((m) => ({ v: numOf(m[1]), s: m[1], i: m.index ?? 0, end: (m.index ?? 0) + m[0].length }))
+    // A temperature immediately followed by "glide" is a glide magnitude
+    // ("~11°F glide"), not a saturation temperature — never pair a pressure with
+    // it (task 19 E2: the widened ladder window must not reach a glide value).
+    .filter((t) => !/^\s*glide/i.test(masked.slice(t.end, t.end + 8)));
   const presses = [...masked.matchAll(PRESS_RE)].map((m) => ({ v: numOf(m[1]), s: m[1], i: m.index ?? 0, end: (m.index ?? 0) + m[0].length }));
   if (!temps.length || !presses.length) return;
 
@@ -521,13 +532,21 @@ function checkTempPressure(unit: string, masked: string, mentions: RefMention[],
     // not a vacuum negative sign — skip.
     if (p.s.startsWith("-") && p.i > 0 && /\d/.test(masked[p.i - 1])) continue;
     if (precededByBound(masked, p.i)) continue;
+    // Ladder-bullet form (task 19 E2): "30°F (label) — R-404A saturation
+    // approximately 80 PSIG" puts a label + "saturation approximately" between
+    // the temperature and the pressure, so the pair sits beyond the default
+    // 45-char window. Widen to 80 chars only when the pressure is cued by a
+    // saturation / approximation word — a strong signal it IS a saturation claim
+    // — so an equipment "500 PSIG rating" clause is not pulled in.
+    const preCue = /(?:saturation|approximately|about|roughly|≈|~|\bsat\b)[\s.,]*$/i.test(masked.slice(Math.max(0, p.i - 24), p.i));
+    const window = preCue ? 80 : 45;
     // Nearest temperature within a proximity window (either order).
     let best: { v: number; s: string; i: number } | null = null;
     let bestDist = Infinity;
     for (const t of temps) {
       const dist = t.i < p.i ? p.i - t.end : t.i - p.end;
       if (dist < 0) continue;
-      if (dist <= 45 && dist < bestDist) {
+      if (dist <= window && dist < bestDist) {
         bestDist = dist;
         best = t;
       }
@@ -727,6 +746,42 @@ function checkGlide(unit: string, masked: string, mentions: RefMention[], page: 
   }
 }
 
+// (c-list) Glide stated in a list/table form where each value is attached to its
+// own designation rather than the word "glide": "R-448A ≈ 6°F", "R-448A (~6°F)",
+// "R-448A: 6°F". These are only checked inside a segment that already names
+// "glide" (a glide list header or column), so superheat-target / approach lists
+// like "R-410A ≈ 10°F" are never touched. Each pair is verified against ITS OWN
+// designation's dataset glide — the subject is unambiguous, so no attribution
+// leniency applies. Per task 19 E1, only the evaporator-inlet-to-dew glide
+// sentence may be allowlisted here.
+const GLIDE_LIST_RE =
+  /(R[-‑–—\s]?\d{1,4}[A-Za-z]{0,4}(?:\([A-Za-z]\))?)\s*(?:≈|~|:|\(\s*~?)\s*(\d+(?:\.\d+)?)\s*°?\s*F/gi;
+
+function checkGlideList(unit: string, page: PageInfo) {
+  if (!/glide/i.test(unit)) return; // fast reject: block has no glide context at all
+  for (const m of unit.matchAll(GLIDE_LIST_RE)) {
+    const desig = m[1], valStr = m[2], at = m.index ?? 0;
+    // Localize: the word "glide" must appear shortly before this pair (a list
+    // header or column label). Keeps superheat-target / approach lists that
+    // happen to share a block with unrelated glide prose from being flagged.
+    if (!/glide/i.test(unit.slice(Math.max(0, at - 200), at))) continue;
+    // Skip pairs the word-adjacent checkGlide already handles (avoid double count).
+    if (/\bglide\b/i.test(unit.slice(at, at + m[0].length + 14)) || /\bglide\b/i.test(unit.slice(Math.max(0, at - 14), at))) continue;
+    const slug = DESIG_TO_SLUG.get(normDesig(desig));
+    if (!slug) continue;
+    const r = getRefrigerant(slug);
+    if (!r) continue;
+    const cands = glideRepresentative(r);
+    if (!cands.length) continue;
+    const v = numOf(valStr);
+    // Slightly looser than the prose glide check: a bare list value rounds the
+    // headline glide to an integer (11.5 → 11 or 12), but 6 vs 11.5 still fails.
+    const tol = 0.75;
+    const ok = cands.some((c) => Math.abs(v - c) <= tol);
+    push(page, "c", slug, unit, valStr + "°F glide (list)", `${cands.map((c) => c.toFixed(2)).join(" / ")}°F`, ok, "glide list mismatch");
+  }
+}
+
 const BOIL_RE1 = /(?:boils?\s+at|boiling\s+point[^.]{0,22}?)\s*(-?\d+(?:\.\d+)?)\s*°\s*F/gi;
 const BOIL_RE2 = /(-?\d+(?:\.\d+)?)\s*°\s*F\b[^.]{0,18}?(?:normal\s+)?boiling\s+point/gi;
 
@@ -897,6 +952,10 @@ function checkUnit(unit: string, page: PageInfo) {
  *  claim from pairing a number with a value in an adjacent clause). */
 function checkText(text: string, page: PageInfo) {
   for (const s of sentences(text)) checkUnit(s, page);
+  // Glide list/column claims (task 19 E1) run on the WHOLE block: the sentence
+  // splitter cuts the "Glide values:" header off the "R-XXX ≈ N°F" pairs, so a
+  // per-sentence scope would lose the glide context.
+  checkGlideList(text, page);
 }
 
 /* ─────────────────────── extractor self-tests ─────────────────────── */
@@ -931,6 +990,14 @@ function selfTest(): string[] {
   // (c) glide
   run("R-404A 0.9 glide ok", body("R-404A has a temperature glide of 0.9°F."), "/refrigerant/r-404a/", false, "c");
   run("R-404A 2 glide wrong", body("R-404A has roughly 2°F glide across the coil."), "/refrigerant/r-404a/", true, "c");
+  // (c) glide stated in list/table form (task 19 E1)
+  run("R-448A 6 glide-list wrong", body("Glide values across blends: R-448A ≈ 6°F."), "/refrigerant/r-448a/", true, "c");
+  run("R-448A 11 glide-list ok", body("Glide values across blends: R-448A ≈ 11°F."), "/refrigerant/r-448a/", false, "c");
+  run("R-410A 10 SH-list not-glide", body("Target superheat by blend: R-410A ≈ 10°F."), "/superheat-calculator/", false, "c");
+  // (a) saturation ladder bullet with a label between temp and pressure (task 19 E2)
+  run("R-404A 80@30 ladder wrong", body("30°F (refrigerated) — R-404A saturation approximately 80 PSIG."), "/refrigerant/r-404a/", true, "a");
+  run("R-404A 70@30 ladder ok", body("30°F (refrigerated) — R-404A saturation approximately 70 PSIG."), "/refrigerant/r-404a/", false, "a");
+  run("no pair with glide temp", body("R-448A is approximately 89 PSIG bubble / 72 PSIG dew — the ~11°F glide spreads the dew side."), "/r-404a-vs-r-448a/", false, "a");
   // (d) boiling point
   run("R-134a boil ok", body("R-134a boils at -14.9°F at atmospheric pressure."), "/refrigerant/r-134a/", false, "d");
   run("R-134a boil wrong", body("R-134a boils at -20°F at atmospheric pressure."), "/refrigerant/r-134a/", true, "d");
@@ -957,7 +1024,7 @@ function main() {
     for (const e of selfErrs) console.error("  ✗ " + e);
     process.exit(1);
   }
-  console.log(`[verify-numeric-consistency] self-tests passed (${13} extractor cases).`);
+  console.log(`[verify-numeric-consistency] self-tests passed (${19} extractor cases).`);
 
   const files = walkHtml(HTML_ROOT).sort();
   const pages: PageInfo[] = [];

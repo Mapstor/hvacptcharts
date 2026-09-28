@@ -3,6 +3,17 @@
   "mismatches": [],
   "info": [
     {
+      "route": "/carrier-410a-charging-chart/",
+      "category": "chart",
+      "claimType": "a",
+      "refrigerant": "r-22",
+      "sentence": "At a typical ~50°F evaporator saturation the low side sits near 143 PSIG on R-410A versus about 84 PSIG on R-22 (roughly 70% higher), and R-22 condensers, line sets, and compressors are not rated f…",
+      "claimed": "84 psig @ 50°F",
+      "dataset": "matches r-22 (84.1)",
+      "severity": "info",
+      "classification": "attributed to another named refrigerant"
+    },
+    {
       "route": "/r-22-vs-r-407c/",
       "category": "comparison",
       "claimType": "c",
@@ -14,18 +25,6 @@
       "classification": "attributed to another named refrigerant"
     },
     {
-      "route": "/r-22-vs-r-407c/",
-      "category": "comparison",
-      "claimType": "b",
-      "refrigerant": "r-407c",
-      "sentence": "The pressure envelope is similar enough (R-407C is ~5-10% higher than R-22) that R-22-rated components handle it.",
-      "claimed": "10% higher R-22",
-      "dataset": "@70°F 141 vs 121 → 15.7% higher",
-      "severity": "info",
-      "classification": "allowlisted",
-      "allowlisted": "On the mean/display saturation curve R-407C runs only ~5-9% above R-22 across the -20 to 130F operating range (it reaches ~15% only on the high-side bubble curve, and is roughly equal or lower on the dew curve), so the tilde-hedged \"~5-10% higher\" is a legitimate loose characterization of the overall pressure envelope rather than a saturation-pressure error."
-    },
-    {
       "route": "/r-22-vs-r-438a/",
       "category": "comparison",
       "claimType": "c",
@@ -35,18 +34,6 @@
       "dataset": "matches r-438a glide",
       "severity": "info",
       "classification": "attributed to another named refrigerant"
-    },
-    {
-      "route": "/r-22-vs-r-454b/",
-      "category": "comparison",
-      "claimType": "b",
-      "refrigerant": "r-454b",
-      "sentence": "R-454B operates at approximately 60% higher pressures than R-22 across the operating envelope.",
-      "claimed": "60% higher R-22",
-      "dataset": "@70°F 191 vs 121 → 56.9% higher",
-      "severity": "info",
-      "classification": "allowlisted",
-      "allowlisted": "The prose hedges with \"approximately\" and the dataset delta of 56.9% (191 vs 121 psig @70°F) rounds to ~57%, well within the loose rule-of-thumb tolerance of \"~60% higher,\" so forcing over-precise 57% is unwarranted."
     },
     {
       "route": "/r-22-vs-r-454b/",
@@ -128,18 +115,6 @@
       "allowlisted": "The '~60% higher' in this sentence compares R-410A's pressure envelope to R-22's (not R-407C), which is the widely-cited rule-of-thumb (R-410A runs ~67% higher than R-22 at 70°F, 202 vs ~121 psig); the extractor mis-compared it against the R-407C/R-410A pair."
     },
     {
-      "route": "/r-407c-vs-r-410a/",
-      "category": "comparison",
-      "claimType": "b",
-      "refrigerant": "r-410a",
-      "sentence": "They have very different pressure envelopes — R-410A operates at ~40% higher pressures than R-407C across the operating range.",
-      "claimed": "40% higher R-407C",
-      "dataset": "@70°F 202 vs 141 → 43.6% higher",
-      "severity": "info",
-      "classification": "allowlisted",
-      "allowlisted": "Approximate rule of thumb (hedged \"~40% higher\"); R-410A runs 43.6% above R-407C at 70°F, within loose tolerance."
-    },
-    {
       "route": "/r-454b-vs-r-454c/",
       "category": "comparison",
       "claimType": "c",
@@ -216,18 +191,6 @@
       "severity": "info",
       "classification": "allowlisted",
       "allowlisted": "The 6°F glide is attributed to the retrofit refrigerant R-448A (its manufacturer-cited average operating glide; dataset max 11.5°F), not R-404A, which the same sentence correctly calls near-azeotropic per its dataset glide of ~0.9°F."
-    },
-    {
-      "route": "/refrigerant-retrofit-compatibility-calculator/",
-      "category": "calculator",
-      "claimType": "b",
-      "refrigerant": "r-410a",
-      "sentence": "Because R-410A's pressures are roughly 60% higher than R-22's — exceeding the pressure ratings of R-22 system components by a margin that makes component replacement (essentially the whole system) …",
-      "claimed": "60% higher R-22",
-      "dataset": "@70°F 202 vs 121 → 66.1% higher",
-      "severity": "info",
-      "classification": "allowlisted",
-      "allowlisted": "\"roughly 60% higher than R-22\" is a loosely-intended widely-cited rule-of-thumb against a dataset delta of 66.1%, which the instructions direct to allowlist rather than over-precisely correct."
     },
     {
       "route": "/refrigerant/r-123/",
@@ -335,39 +298,6 @@
       "allowlisted": "This GWP belongs to the retrofit blend R-438A (Chemours Freon MO99), a different refrigerant named in the same sentence, not to R-22; 2265 is the correct GWP for R-438A."
     },
     {
-      "route": "/refrigerant/r-290/",
-      "category": "refrigerant",
-      "claimType": "a",
-      "refrigerant": "r-290",
-      "sentence": "at 95°F outdoor ambient, approximately 175 PSIG.",
-      "claimed": "175 psig @ 95°F",
-      "dataset": "bubble 161.9 / dew 161.9 psig",
-      "severity": "info",
-      "classification": "operating-context (not saturation)"
-    },
-    {
-      "route": "/refrigerant/r-404a/",
-      "category": "refrigerant",
-      "claimType": "a",
-      "refrigerant": "r-404a",
-      "sentence": "at 95°F ambient, approximately 232 PSIG bubble / 230 PSIG dew.",
-      "claimed": "232 psig @ 95°F",
-      "dataset": "bubble 220.2 / dew 218.1 / mean 219.2 psig",
-      "severity": "info",
-      "classification": "operating-context (not saturation)"
-    },
-    {
-      "route": "/refrigerant/r-404a/",
-      "category": "refrigerant",
-      "claimType": "a",
-      "refrigerant": "r-404a",
-      "sentence": "at 95°F ambient, approximately 232 PSIG bubble / 230 PSIG dew.",
-      "claimed": "230 psig @ 95°F",
-      "dataset": "bubble 220.2 / dew 218.1 / mean 219.2 psig",
-      "severity": "info",
-      "classification": "operating-context (not saturation)"
-    },
-    {
       "route": "/refrigerant/r-404a/",
       "category": "refrigerant",
       "claimType": "e",
@@ -415,14 +345,13 @@
     {
       "route": "/refrigerant/r-410a/",
       "category": "refrigerant",
-      "claimType": "b",
-      "refrigerant": "r-410a",
-      "sentence": "Operating pressures roughly 60% higher than equivalent R-22 systems — gauges, hoses, and recovery equipment must be appropriately rated.",
-      "claimed": "60% higher R-22",
-      "dataset": "@70°F 202 vs 121 → 66.1% higher",
+      "claimType": "a",
+      "refrigerant": "r-22",
+      "sentence": "At a 95°F outdoor design ambient, an R-22 system runs about 181 PSIG saturation versus R-410A's 296 PSIG (CoolProp 7.2.0).",
+      "claimed": "181 psig @ 95°F",
+      "dataset": "matches r-22 (181.8)",
       "severity": "info",
-      "classification": "allowlisted",
-      "allowlisted": "Widely-cited approximate rule-of-thumb the author intends loosely (prose says 'roughly 60%' / '60-65%'); the dataset delta of 66.1% falls in the acceptable 63-66% range."
+      "classification": "attributed to another named refrigerant"
     },
     {
       "route": "/refrigerant/r-410a/",
@@ -932,23 +861,11 @@
       "category": "refrigerant",
       "claimType": "a",
       "refrigerant": "r-410a",
-      "sentence": "R-410A at 70°F is 202 PSIG, roughly 80% higher than R-717.",
+      "sentence": "R-410A at 70°F is 202 PSIG, roughly 77% higher than R-717.",
       "claimed": "202 psig @ 70°F",
       "dataset": "matches r-410a (201.8)",
       "severity": "info",
       "classification": "attributed to another named refrigerant"
-    },
-    {
-      "route": "/refrigerant/r-717/",
-      "category": "refrigerant",
-      "claimType": "b",
-      "refrigerant": "r-410a",
-      "sentence": "R-410A at 70°F is 202 PSIG, roughly 80% higher than R-717.",
-      "claimed": "80% higher R-717",
-      "dataset": "@70°F 202 vs 114 → 76.9% higher",
-      "severity": "info",
-      "classification": "allowlisted",
-      "allowlisted": "'roughly 80% higher' rounds the dataset's ~77% delta (202 vs 114 psig at 70°F) to the nearest 10 and is hedged with 'roughly', a rule-of-thumb the author intends loosely per the allowlist guidance for approximate percentage comparisons."
     },
     {
       "route": "/refrigerant/r-744/",
@@ -997,28 +914,16 @@
       "classification": "operating/out-of-range"
     },
     {
-      "route": "/what-pressure-should-410a/",
-      "category": "what-pressure",
-      "claimType": "b",
-      "refrigerant": "r-410a",
-      "sentence": "Pressures roughly 60% higher than equivalent R-22 systems;",
-      "claimed": "60% higher R-22",
-      "dataset": "@70°F 202 vs 121 → 66.1% higher",
+      "route": "/refrigerant/r-744/",
+      "category": "refrigerant",
+      "claimType": "a",
+      "refrigerant": "r-744",
+      "sentence": "0°F (medium-low temp evaporator) — R-744 saturation approximately 290 PSIG.",
+      "claimed": "290 psig @ 0°F",
+      "dataset": "bubble 291.0 / dew 291.0 psig",
       "severity": "info",
       "classification": "allowlisted",
-      "allowlisted": "The prose says 'roughly 60% higher than equivalent R-22 systems' — a widely-cited approximate rule-of-thumb explicitly hedged with 'roughly', close enough to the dataset's 66.1% delta that over-precising it is unwarranted."
-    },
-    {
-      "route": "/what-pressure-should-410a/",
-      "category": "what-pressure",
-      "claimType": "b",
-      "refrigerant": "r-410a",
-      "sentence": "R-410A operates at roughly 60% higher pressures than R-22 across the envelope — both suction and discharge sit well above the equivalent R-22 readings at the same ambient (see the operating-pressur…",
-      "claimed": "60% higher R-22",
-      "dataset": "@70°F 202 vs 121 → 66.1% higher",
-      "severity": "info",
-      "classification": "allowlisted",
-      "allowlisted": "The prose says 'roughly 60% higher than equivalent R-22 systems' — a widely-cited approximate rule-of-thumb explicitly hedged with 'roughly', close enough to the dataset's 66.1% delta that over-precising it is unwarranted."
+      "allowlisted": "CO₂ service-reference pressure rounded to the nearest 10 PSIG (dataset 291.0); rounding is conventional at CO₂'s pressure magnitudes."
     },
     {
       "route": "/what-pressure-should-r1234yf/",
@@ -1121,30 +1026,6 @@
       "dataset": "matches r-448a glide",
       "severity": "info",
       "classification": "attributed to another named refrigerant"
-    },
-    {
-      "route": "/what-pressure-should-r407c/",
-      "category": "what-pressure",
-      "claimType": "b",
-      "refrigerant": "r-407c",
-      "sentence": "Pressures sit ~5-10% above R-22 across the envelope.",
-      "claimed": "10% above R-22",
-      "dataset": "@70°F 141 vs 121 → 15.7% higher",
-      "severity": "info",
-      "classification": "allowlisted",
-      "allowlisted": "\"~5-10% above R-22 across the envelope\" characterizes the overall (mean-curve) operating envelope; R-407C is ~5-9% above R-22 on the mean/display curve."
-    },
-    {
-      "route": "/what-pressure-should-r407c/",
-      "category": "what-pressure",
-      "claimType": "b",
-      "refrigerant": "r-407c",
-      "sentence": "R-407C operating pressures sit about 5-10% above R-22 across the operating envelope, which is consistent with R-407C's design intent as an R-22 retrofit refrigerant.",
-      "claimed": "10% above R-22",
-      "dataset": "@70°F 141 vs 121 → 15.7% higher",
-      "severity": "info",
-      "classification": "allowlisted",
-      "allowlisted": "\"~5-10% above R-22 across the envelope\" characterizes the overall (mean-curve) operating envelope; R-407C is ~5-9% above R-22 on the mean/display curve."
     },
     {
       "route": "/what-pressure-should-r449a/",
