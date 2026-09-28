@@ -92,7 +92,7 @@
     "published": "2026-05-21"
   },
   "/r-12-vs-r-134a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-07-13"
   },
   "/r-1234yf-vs-r-134a/": {
@@ -108,7 +108,7 @@
     "published": "2026-06-08"
   },
   "/r-22-vs-r-32/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-06-08"
   },
   "/r-22-vs-r-407c/": {
@@ -116,7 +116,7 @@
     "published": "2026-06-08"
   },
   "/r-22-vs-r-410a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-06-08"
   },
   "/r-22-vs-r-438a/": {
@@ -136,7 +136,7 @@
     "published": "2026-05-21"
   },
   "/r-32-vs-r-454b/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-22"
   },
   "/r-404a-vs-r-448a/": {
@@ -144,7 +144,7 @@
     "published": "2026-07-14"
   },
   "/r-404a-vs-r-449a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-06-08"
   },
   "/r-404a-vs-r-452a/": {
@@ -156,7 +156,7 @@
     "published": "2026-06-08"
   },
   "/r-410a-vs-r-454b/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-22"
   },
   "/r-448a-vs-r-449a/": {
@@ -240,7 +240,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-1234yf/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-1234ze-e/": {
@@ -252,7 +252,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-1234ze/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-124/": {
@@ -276,7 +276,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-134a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-143a/": {
@@ -296,15 +296,15 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-236ea/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-236fa/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-245fa/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-290/": {
@@ -340,11 +340,11 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-417a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-421a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-422a/": {
@@ -352,7 +352,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-422b/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-422d/": {
@@ -376,7 +376,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-450a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-452a/": {
@@ -428,11 +428,11 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-515a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-515b/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-516a/": {
@@ -440,7 +440,7 @@
     "published": "2026-05-20"
   },
   "/refrigerant/r-600a/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-05-20"
   },
   "/refrigerant/r-717/": {
@@ -480,7 +480,7 @@
     "published": "2026-07-13"
   },
   "/terms-of-service/": {
-    "updated": "2026-07-07",
+    "updated": "2026-09-28",
     "published": "2026-05-21"
   },
   "/what-pressure-should-410a/": {
@@ -488,11 +488,11 @@
     "published": "2026-05-21"
   },
   "/what-pressure-should-r1234yf/": {
-    "updated": "2026-09-27",
+    "updated": "2026-09-28",
     "published": "2026-06-12"
   },
   "/what-pressure-should-r134a/": {
-    "updated": "2026-09-25",
+    "updated": "2026-09-28",
     "published": "2026-05-21"
   },
   "/what-pressure-should-r22/": {
