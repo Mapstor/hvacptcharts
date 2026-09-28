@@ -17,12 +17,10 @@ sources:
     url: "http://www.coolprop.org/"
     date: "2014 (continually updated)"
     note: "doi:10.1021/ie4033999"
-  - id: snap
-    label: "EPA SNAP — R-152a acceptable for limited refrigeration end-uses"
-    url: "https://www.epa.gov/snap"
-  - id: nistwebbook
-    label: "NIST Chemistry WebBook — 1,1-Difluoroethane (CAS 75-37-6)"
-    url: "https://webbook.nist.gov/chemistry/fluid/"
+  - id: aimact
+    label: "AIM Act, 42 U.S.C. 7675 — Technology Transitions rule at 40 CFR 84.54 (current through 91 FR 31329, May 26, 2026)"
+    url: "https://www.ecfr.gov/current/title-40/section-84.54"
+    date: "Technology Transitions rule, 40 CFR 84.54 (2023–2026)"
 
 keyStats:
   - label: ASHRAE safety class
@@ -49,7 +47,6 @@ keyStats:
   - label: Primary applications
     value: Aerosol / foam
     context: Dominantly used as aerosol propellant and foam blowing agent rather than refrigerant
-    sourceId: snap
 
 narrative:
   whatItIs: |
@@ -65,9 +62,9 @@ narrative:
     - "Limited use in mobile AC research and prototype applications"
 
   phaseDownStatus: |
-    R-152a faces minimal phase-down pressure — GWP 124 is below most regulatory thresholds [snap]. The constraints on R-152a use are safety-related (A2 flammability) rather than environmental.
+    R-152a is a regulated HFC under the AIM Act, but its 40 CFR 84.64 GWP of 124 is below the 150-GWP threshold used by every 84.54 category that carries a limit — including new motor vehicle A/C (84.54(a)(13)) and aerosol products (84.54(a)(16)) — so no 84.54 category restricts it [aimact]. See the US new-equipment rules (40 CFR 84.54) section on this page. The constraints on R-152a use are safety-related (A2 flammability) rather than environmental.
 
-    R-152a is not on AIM Act priority targeting lists for restriction. EU F-Gas Regulation does not specifically restrict R-152a as a refrigerant. The market position is stable but limited by the flammability classification.
+    EU F-Gas Regulation does not specifically restrict R-152a as a refrigerant. The market position is stable but limited by the flammability classification.
 
   serviceNotes: |
     R-152a is rarely encountered as a standalone refrigerant in commercial HVAC service. When encountered, A2 flammability procedures apply — A2 is more flammable than A2L, requiring stricter ignition-source controls during service.
@@ -138,7 +135,7 @@ R-152a's A2 classification places it between A2L (mildly flammable, low burning 
 - **Higher burning velocity than A2L** (typically 10-100 cm/s vs A2L's ≤10 cm/s)
 - **Lower minimum ignition energy** than A2L
 - **Stricter equipment-design requirements** than A2L (more stringent ignition-source isolation, charge limits)
-- **More limited EPA SNAP approval** scope than A2L
+- **More restricted end-use approvals** than A2L
 
 The A2 classification is the primary reason R-152a hasn't captured commercial refrigeration market share comparable to its low GWP positioning would suggest. Most refrigerant markets choose A2L (manageable flammability) or A1 (no flammability) over A2 (more flammable than A2L) when alternatives exist.
 

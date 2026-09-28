@@ -38,7 +38,7 @@ import { loadRefrigerantMdx } from "@/lib/mdx";
 import { findComparisonsForRefrigerant, type ComparisonSummary } from "@/lib/mdx-comparison";
 import { findWhatPressureForRefrigerant } from "@/lib/mdx-what-pressure";
 import { buildRefrigerantSchema } from "@/lib/schema/refrigerant";
-import { showsAimBadge } from "@/lib/us-regulation";
+import { regulatoryStatusTags, regulatoryStatusTagline } from "@/lib/us-regulation";
 import { RegulatoryTimeline, UsNewEquipmentRules, newEquipmentFactValue } from "@/components/refrigerant/UsRegulation";
 import { SITE_URL, buildRefrigerantMetadata, pageMetadata, seoName, COMMON_NAME } from "@/lib/schema/shared";
 import { UpdatedLine } from "@/lib/content-dates";
@@ -167,9 +167,9 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
             <div className="mt-4 flex flex-wrap items-center gap-2">
               <SafetyClassChip safetyClass={r.safetyClass} size="md" />
               <TypeChip type={r.type} />
-              {showsAimBadge(r) && !r.regulatoryStatus.epaPhaseoutComplete ? (
+              {regulatoryStatusTags(r).length > 0 ? (
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-900 dark:border-amber-800 dark:bg-amber-950/50 dark:text-amber-200">
-                  <AlertTriangle className="h-3 w-3" /> AIM Act phase-down
+                  <AlertTriangle className="h-3 w-3" /> {regulatoryStatusTagline(r)}
                 </span>
               ) : null}
               {r.regulatoryStatus.epaPhaseoutComplete ? (

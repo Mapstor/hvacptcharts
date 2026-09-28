@@ -24,9 +24,6 @@ sources:
     label: "EU Mobile Air Conditioning Directive 2006/40/EC — Banned R-134a in new MAC vehicle types after 1 Jan 2017"
     url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32006L0040"
     date: "2006 (full ban 1 Jan 2017 for new vehicle types)"
-  - id: snap
-    label: "EPA Significant New Alternatives Policy (SNAP) — R-134a end-use determinations"
-    url: "https://www.epa.gov/snap"
   - id: coolprop
     label: "CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014) — REFPROP-compatible Helmholtz EOS"
     url: "http://www.coolprop.org/"
@@ -38,9 +35,6 @@ sources:
   - id: chemoursfreon
     label: "Chemours Suva 134a / Honeywell Genetron 134a Technical Information"
     url: "https://www.chemours.com/en/products/refrigerants"
-  - id: nistwebbook
-    label: "NIST Chemistry WebBook — 1,1,1,2-Tetrafluoroethane (CAS 811-97-2)"
-    url: "https://webbook.nist.gov/chemistry/fluid/"
 
 keyStats:
   - label: ASHRAE safety class
@@ -85,14 +79,14 @@ narrative:
     R-134a operates at moderate pressures (saturation 71 PSIG at 70°F per CoolProp 7.2.0) and uses POE oil for stationary applications, PAG oil for mobile AC. Its A1 non-flammable safety class made it operationally easy across diverse equipment types.
 
   whereItsUsed:
-    - "Mobile AC — vehicles built before EU 2017 / US 2021 R-1234yf transitions"
+    - "Mobile AC — legacy vehicles built before the R-1234yf changeover (EU new car types 2017; US light-duty new-equipment restriction from Model Year 2025, 40 CFR 84.54(a)(13))"
     - "Centrifugal chillers — water-cooled, large commercial cooling"
     - "Domestic refrigeration — household refrigerators (legacy)"
     - "Vending machines, beverage coolers, and commercial display refrigeration"
     - "Aerosol propellant in some medical and specialty applications"
 
   phaseDownStatus: |
-    Mobile AC: the EU banned R-134a in new car (MVAC) types from 1 January 2017 under the MAC Directive 2006/40/EC; new cars use R-1234yf [eumac]. US new light-duty vehicles likewise transitioned to R-1234yf.
+    Mobile AC: the EU banned R-134a in new car (MVAC) types from 1 January 2017 under the MAC Directive 2006/40/EC; new cars use R-1234yf [eumac]. In the US, 40 CFR 84.54(a)(13)(i) bars manufacture or import of R-134a (GWP ≥150) motor vehicle A/C for Model Year 2025 and later light-duty passenger cars and trucks (effective October 24, 2024); Model Year 2028 and later medium-duty passenger vehicles, heavy-duty pickups and complete heavy-duty vans follow, and certain nonroad vehicles from January 1, 2028 [aimact]. New light-duty vehicles use R-1234yf; servicing existing vehicles is not an 84.54 restriction.
 
     Stationary applications: R-134a (GWP 1430) is a regulated HFC under the AIM Act. New residential & light-commercial AC/heat pumps are restricted from January 1, 2025 (40 CFR 84.54(a)(1)/(c)(1), ≥700 GWP; VRF (c)(2) from 2026), and new comfort-cooling chillers from January 1, 2025 (84.54(a)(10)(i)/(c)(3), ≥700; industrial-process chillers (a)(10)(iii)/(c)(5) from 2026 and (a)(10)(iv)/(c)(6) from 2028) — see the US new-equipment rules (40 CFR 84.54) section on this page [aimact]. Servicing existing equipment stays legal (84.54(e)). R-450A, R-513A, R-515B, R-1234ze(E) are the chiller replacement options.
 
@@ -118,7 +112,7 @@ faqs:
     a: |
       GWP. The EU Mobile Air Conditioning Directive 2006/40/EC mandated 150-GWP cap for refrigerants in new MAC vehicle types from 1 January 2017 [eumac]. R-134a's 1430 GWP is well above that threshold.
 
-      The chosen MAC replacement is R-1234yf (HFO, A2L, GWP 1). US OEMs transitioned to R-1234yf for most new light-duty vehicles starting around 2017-2021. R-134a remains legal for service of existing MAC systems indefinitely.
+      The chosen MAC replacement is R-1234yf (HFO, A2L, GWP 1). In the US, 40 CFR 84.54(a)(13)(i) bars new R-134a light-duty motor vehicle A/C from Model Year 2025 (effective October 24, 2024), with medium- and heavy-duty vehicles from Model Year 2028 and certain nonroad vehicles from January 1, 2028 [aimact]. Servicing existing MAC systems with R-134a remains legal indefinitely.
 
   - q: "What lubricant does R-134a use?"
     a: |
@@ -272,7 +266,7 @@ The choice among these depends on whether the equipment is being retrofitted (in
 
 <TechSection icon="insight" tone="emerald" title="How to think about R-134a in 2026 and beyond">
 
-R-134a's installed base is large and aging. Mobile AC: vehicles built before 2017 (EU) or 2021 (US) use R-134a; this base will service with R-134a through the 2030s as vehicles age out. New vehicles use R-1234yf. Chillers: water-cooled centrifugal chillers installed from 1995-2020 use R-134a; replacement and retrofit decisions through 2030 favor R-513A / R-450A / R-1234ze(E) depending on capital availability.
+R-134a's installed base is large and aging. Mobile AC: older vehicles built before the R-1234yf changeover use R-134a; this base will service with R-134a through the 2030s as vehicles age out. New US light-duty vehicles use R-1234yf under 40 CFR 84.54(a)(13)(i) (Model Year 2025 and later). Chillers: water-cooled centrifugal chillers installed from 1995-2020 use R-134a; replacement and retrofit decisions through 2030 favor R-513A / R-450A / R-1234ze(E) depending on capital availability.
 
 Domestic refrigeration: the market has been transitioning to R-600a (isobutane) for household refrigerators since the 2010s; R-134a use in new household appliances has largely ended. Commercial refrigeration (vending, beverage coolers, display cases): transitioning to R-1234yf-based low-GWP blends or R-290 (propane) where charge limits permit.
 

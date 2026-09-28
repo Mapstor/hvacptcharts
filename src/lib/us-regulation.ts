@@ -24,13 +24,16 @@ type NamedRule = { named: string[] };
 export type Tier = { condition: string; gwpAtLeast: number };
 type TieredRule = { tiered: Tier[] };
 type Rule = GwpRule | NamedRule | TieredRule;
+export type Sector = "refrigeration_ac" | "mvac" | "foam" | "aerosol";
 interface RawEntry {
   cfr: string;
   type: "manufacture_import" | "installation";
   subsector: string;
-  effective: string;
+  effective: string | null; // null for model-year entries (see effectiveModelYear)
   rule: Rule;
   note?: string;
+  sector: Sector;
+  effectiveModelYear?: number;
 }
 const TT = regulatory.us.technologyTransitions as unknown as {
   title: string;
@@ -70,6 +73,14 @@ export const AIM_ACT_CITE = "AIM Act, 42 U.S.C. 7675";
 export const INSTALLATION_DEFINITION = TT.installationDefinition;
 export const SERVICING_NOTE = TT.servicing;
 export const PHASEDOWN = TT.phasedown;
+
+export const SECTOR_LABEL: Record<Sector, string> = {
+  refrigeration_ac: "Refrigeration, air conditioning & heat pumps",
+  mvac: "Motor vehicle air conditioning",
+  foam: "Foam blowing agents",
+  aerosol: "Aerosol propellants / solvents",
+};
+export const SECTOR_ORDER: Sector[] = ["refrigeration_ac", "mvac", "foam", "aerosol"];
 
 /* ─────────────────────────── designation resolver ───────────────────────── */
 
@@ -158,7 +169,9 @@ export interface AppliedRestriction {
   type: "manufacture_import" | "installation";
   action: string; // "Manufacture / import" | "Installation" | "Sale / distribution"
   subsector: string;
-  effective: string; // ISO date
+  effective: string | null; // ISO date, or null for model-year entries
+  effectiveModelYear?: number; // set when effective is null (e.g. MY2028)
+  sector: Sector;
   ruleKind: RuleKind;
   limit: number | null; // gwpAtLeast for gwp rules; null for named
   tiers?: Tier[]; // for tiered rules, the tiers that apply to this refrigerant
@@ -201,6 +214,8 @@ function toApplied(entry: RawEntry, tiers?: Tier[]): AppliedRestriction {
     action: ACTION_LABEL[entry.type],
     subsector: entry.subsector,
     effective: entry.effective,
+    effectiveModelYear: entry.effectiveModelYear,
+    sector: entry.sector,
     ruleKind,
     limit: "gwpAtLeast" in rule ? rule.gwpAtLeast : null,
     tiers: ruleKind === "tiered" ? tiers ?? (rule as TieredRule).tiered : undefined,
@@ -215,6 +230,10 @@ function toApplied(entry: RawEntry, tiers?: Tier[]): AppliedRestriction {
  */
 export function restrictions(r: Refrigerant): AppliedRestriction[] {
   if (!isRegulated(r)) return [];
+  // 84.54's refrigeration categories (incl. industrial process) have a −50 °C
+  // scope floor; a refrigerant used only in ultra-low-temperature cascade /
+  // cryogenic service falls below every category, so none list it (e.g. R-503).
+  if (isUltraLowTempOnly(r)) return [];
   const g8 = gwp8464(r);
   const out: AppliedRestriction[] = [];
   for (const e of TT.entries) {
@@ -229,6 +248,7 @@ export function derivedSaleRows(applied: AppliedRestriction[]): AppliedRestricti
   const out: AppliedRestriction[] = [];
   for (const a of applied) {
     if (a.type !== "manufacture_import") continue;
+    if (a.effective === null) continue; // model-year entries create no derived (b) row
     const y = Number(a.effective.slice(0, 4));
     out.push({
       ...a,
@@ -267,7 +287,25 @@ export const SUBSECTORS: Subsector[] = [
   { id: "industrial", label: "Industrial process refrigeration", keyword: /industrial process/i, prefixes: ["(a)(12)", "(c)(10)"] },
   { id: "food-processing", label: "Refrigerated food processing & dispensing", keyword: /food processing|dispensing|food service/i, prefixes: ["(a)(9)", "(c)(15)"] },
   { id: "ice-rinks", label: "Ice rinks", keyword: /ice rink/i, prefixes: ["(a)(10)(ii)", "(c)(4)"] },
+  // v2 additions
+  { id: "vehicle-ac", label: "Motor vehicle air conditioning", keyword: /mobile air|mobile a\/?c|automotive|motor vehicle|vehicle air|car air|car a\/?c|passenger vehicle/i, prefixes: ["(a)(13)"] },
+  { id: "dehumidifiers", label: "Residential dehumidifiers", keyword: /dehumidif/i, prefixes: ["(a)(2)"] },
+  { id: "data-center", label: "Data center / IT / computer-room cooling", keyword: /data cent|information technology|computer[- ]room|\bIT equipment|it cooling/i, prefixes: ["(a)(11)", "(c)(13)"] },
+  { id: "foam", label: "Foam blowing agents", keyword: /foam[- ]?blow|blowing agent|foam expansion|insulation foam|foam agent/i, prefixes: ["(a)(14)", "(a)(15)"] },
+  { id: "aerosol", label: "Aerosol propellants / solvents", keyword: /aerosol|propellant/i, prefixes: ["(a)(16)"] },
 ];
+
+/** Sort key for entries that may have a null effective date (model-year entries). */
+export function effKey(e: { effective: string | null; effectiveModelYear?: number }): string {
+  return e.effective ?? (e.effectiveModelYear ? `${e.effectiveModelYear}-01-01` : "9999-99-99");
+}
+
+/** Human label for an entry's effective timing (date or model year). */
+export function effectiveLabel(a: { effective: string | null; effectiveModelYear?: number }): string {
+  if (a.effective) return fmtDate(a.effective);
+  if (a.effectiveModelYear) return `Model Year ${a.effectiveModelYear} and later`;
+  return "—";
+}
 
 function prefixMatches(para: string, prefix: string): boolean {
   return para === prefix || para.startsWith(prefix + "(");
@@ -279,11 +317,29 @@ export function usSubsectors(r: Refrigerant): Subsector[] {
   return SUBSECTORS.filter((s) => s.keyword.test(hay));
 }
 
+const ULTRA_LOW_RE = /ultra-?low|cryogenic|cascade low-stage/i;
+
+/**
+ * True when a refrigerant is used only in ultra-low-temperature / cryogenic /
+ * cascade low-stage service (below 84.54's −50 °C industrial-process floor) and
+ * maps to no in-scope 84.54 end-use. R-503 is the only regulated example.
+ */
+export function isUltraLowTempOnly(r: Refrigerant): boolean {
+  const apps = (r.applications ?? []).join(" • ");
+  if (!ULTRA_LOW_RE.test(apps)) return false;
+  return usSubsectors(r).length === 0;
+}
+
+/** Exact ultra-low-temperature explanation sentence for the 84.54 section. */
+export function ultraLowTempNote(r: Refrigerant): string {
+  return `84.54's industrial-process categories cover −50 °C (−58 °F) and warmer; ${r.displayName}'s ultra-low-temperature cascade use is below that, so no 84.54 category lists it.`;
+}
+
 /** All 84.54 entries (any refrigerant) belonging to a subsector, date-sorted. */
 function entriesForSubsector(s: Subsector): RawEntry[] {
   return TT.entries
     .filter((e) => s.prefixes.some((p) => prefixMatches(paraKey(e.cfr), p)))
-    .sort((a, b) => a.effective.localeCompare(b.effective));
+    .sort((a, b) => effKey(a).localeCompare(effKey(b)));
 }
 
 export interface SubsectorStatus {
@@ -307,7 +363,7 @@ export function subsectorStatus(r: Refrigerant, s: Subsector): SubsectorStatus {
     if (applies) applied.push(toApplied(e, tiers));
     else hasEarlierNonApplicable = true;
   }
-  applied.sort((a, b) => a.effective.localeCompare(b.effective));
+  applied.sort((a, b) => effKey(a).localeCompare(effKey(b)));
   const earliest = applied[0] ?? null;
   return {
     subsector: s,
@@ -420,6 +476,28 @@ export function regulatoryStatusLabel(r: Refrigerant): string {
   }
 }
 
+/**
+ * ODS-first status tags. Order: "ODS — CFC" if the refrigerant is or contains a
+ * CFC; otherwise "ODS — HCFC" if it is or contains an HCFC; then "AIM Act HFC"
+ * when the refrigerant is AIM Act regulated. A blend can carry both an ODS tag
+ * and the AIM tag (e.g. R-500, R-503 = "ODS — CFC · AIM Act HFC").
+ */
+export function regulatoryStatusTags(r: Refrigerant): string[] {
+  const tags: string[] = [];
+  const hasCfc = containsType(r, (t) => t === "cfc" || t === "cfc-blend");
+  const hasHcfc = containsType(r, (t) => t === "hcfc" || t === "hcfc-blend");
+  if (hasCfc) tags.push("ODS — CFC");
+  else if (hasHcfc) tags.push("ODS — HCFC");
+  if (isRegulated(r)) tags.push("AIM Act HFC");
+  return tags;
+}
+
+/** ODS-first status tags joined with " · " (or "—" when none apply). */
+export function regulatoryStatusTagline(r: Refrigerant): string {
+  const tags = regulatoryStatusTags(r);
+  return tags.length ? tags.join(" · ") : "—";
+}
+
 /** True when the hero "AIM Act phase-down" badge should show (regulated HFCs only). */
 export function showsAimBadge(r: Refrigerant): boolean {
   return isRegulated(r);
@@ -442,12 +520,15 @@ export function newEquipmentStatusLine(r: Refrigerant): string {
     return "Not an AIM Act regulated substance; 40 CFR 84.54 GWP limits don't apply.";
   }
   const g8 = Math.round(gwp8464(r));
+  if (isUltraLowTempOnly(r)) {
+    return `AIM Act HFC (84.64 GWP ${g8}): its ultra-low-temperature cascade use is below the −50 °C floor of 84.54's industrial-process categories, so no 84.54 category lists it.`;
+  }
   const applied = restrictions(r);
   if (applied.length === 0) {
     return `AIM Act HFC, but its 40 CFR 84.64 GWP (${g8}) is below every 84.54 limit — no new-equipment restriction applies.`;
   }
-  const dates = [...new Set(applied.map((a) => a.effective))].sort();
-  return `AIM Act HFC (84.64 GWP ${g8}): restricted in ${applied.length} new-equipment categories under 40 CFR 84.54, starting ${fmtDate(dates[0])}.`;
+  const sorted = [...applied].sort((a, b) => effKey(a).localeCompare(effKey(b)));
+  return `AIM Act HFC (84.64 GWP ${g8}): restricted in ${applied.length} new-equipment categories under 40 CFR 84.54, starting ${effectiveLabel(sorted[0])}.`;
 }
 
 /** Full evaluation bundle for a refrigerant (used by pages + the gate). */

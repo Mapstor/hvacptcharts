@@ -3,12 +3,14 @@ import { AlertTriangle, CalendarClock, CheckCircle2, FileText, Info } from "luci
 import type { Refrigerant } from "@/data/refrigerants";
 import {
   isRegulated,
-  regulatoryClass,
+  regulatoryStatusTags,
   gwp8464,
   restrictions,
   derivedSaleRows,
   usSubsectors,
   subsectorStatus,
+  isUltraLowTempOnly,
+  ultraLowTempNote,
   ods,
   ODS_SERVICING_NOTE,
   eu,
@@ -19,6 +21,11 @@ import {
   AIM_SOURCE_LINE,
   AIM_SOURCE_URL,
   fmtDate,
+  effKey,
+  effectiveLabel,
+  SECTOR_LABEL,
+  SECTOR_ORDER,
+  type Sector,
   type AppliedRestriction,
   type Tier,
 } from "@/lib/us-regulation";
@@ -43,14 +50,27 @@ const ACTION_SHORT: Record<string, string> = {
 /* ── facts-row one-liner ───────────────────────────────────────────────── */
 
 export function newEquipmentFactValue(r: Refrigerant): React.ReactNode {
-  const klass = regulatoryClass(r);
-  if (klass === "none") {
+  const tags = regulatoryStatusTags(r);
+  // ODS first: a CFC/HCFC (or blend containing one) leads with its ODS status.
+  if (tags.includes("ODS — CFC")) {
+    return <span>Class I ODS (CFC) — US production/import ended January 1, 1996.</span>;
+  }
+  if (tags.includes("ODS — HCFC")) {
+    return <span>Class II ODS (HCFC) — US production/import phased out (see timeline).</span>;
+  }
+  if (!isRegulated(r)) {
     return <span>Not an AIM Act regulated substance; 40 CFR 84.54 GWP limits don&apos;t apply.</span>;
   }
-  if (klass === "ods-cfc") return <span>Class I ODS (CFC) — US production/import ended January 1, 1996.</span>;
-  if (klass === "ods-hcfc") return <span>Class II ODS (HCFC) — US production/import phased out (see timeline).</span>;
-  const n = restrictions(r).length;
   const g8 = Math.round(gwp8464(r));
+  if (isUltraLowTempOnly(r)) {
+    return (
+      <span>
+        AIM Act HFC (84.64 GWP {g8}) — ultra-low-temperature cascade use below 84.54&apos;s −50 °C floor;{" "}
+        <Link href="#us-new-equipment" className="underline">no 84.54 category lists it</Link>.
+      </span>
+    );
+  }
+  const n = restrictions(r).length;
   if (n === 0) {
     return (
       <span>
@@ -85,50 +105,50 @@ function AllowanceSteps() {
   );
 }
 
-/* ── phase-down timeline (section 08 content) ──────────────────────────── */
+/* ── ODS milestones block (class I / II) ───────────────────────────────── */
 
-export function RegulatoryTimeline({ r }: { r: Refrigerant }) {
-  const klass = regulatoryClass(r);
+function OdsMilestonesBlock({ r, isCfc, alsoAim }: { r: Refrigerant; isCfc: boolean; alsoAim: boolean }) {
+  const milestones = ods(r);
+  if (milestones.length === 0) return null;
+  return (
+    <div className="space-y-3">
+      <p className="text-sm text-zinc-700 dark:text-zinc-300">
+        {r.displayName} is {alsoAim ? "also " : ""}an ozone-depleting substance controlled under the US Clean Air Act (class {isCfc ? "I — CFC" : "II — HCFC"}). Milestones below are US production/import limits.
+      </p>
+      <ul className="space-y-2">
+        {milestones.map((m) => (
+          <li key={m.date + m.event} className="flex gap-3 rounded-md border border-zinc-200 bg-white p-3 text-sm dark:border-zinc-800 dark:bg-zinc-950">
+            <CalendarClock className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
+            <span>
+              <strong>{fmtDate(m.date)}</strong> — {m.event}.{" "}
+              <a href={m.url} className="text-blue-700 underline dark:text-blue-300" target="_blank" rel="nofollow noopener">{m.source}</a>
+            </span>
+          </li>
+        ))}
+      </ul>
+      <p className="text-xs text-zinc-500">{ODS_SERVICING_NOTE}</p>
+    </div>
+  );
+}
 
-  if (klass === "ods-cfc" || klass === "ods-hcfc") {
-    const milestones = ods(r);
+/* ── AIM (regulated HFC) block ─────────────────────────────────────────── */
+
+function AimTimelineBlock({ r }: { r: Refrigerant }) {
+  const g8 = Math.round(gwp8464(r));
+
+  // Ultra-low-temperature cascade refrigerants (e.g. R-503) fall below the
+  // −50 °C scope floor of 84.54's industrial-process categories.
+  if (isUltraLowTempOnly(r)) {
     return (
       <div className="space-y-3">
         <p className="text-sm text-zinc-700 dark:text-zinc-300">
-          {r.displayName} is an ozone-depleting substance controlled under the US Clean Air Act (class {klass === "ods-cfc" ? "I — CFC" : "II — HCFC"}),
-          not the AIM Act. Milestones below are US production/import limits.
+          {r.displayName} is a <strong>regulated HFC under the AIM Act</strong>{" "}(42 U.S.C. 7675). Its 40 CFR 84.64 GWP is <strong>{g8}</strong>. {ultraLowTempNote(r)}
         </p>
-        <ul className="space-y-2">
-          {milestones.map((m) => (
-            <li key={m.date + m.event} className="flex gap-3 rounded-md border border-zinc-200 bg-white p-3 text-sm dark:border-zinc-800 dark:bg-zinc-950">
-              <CalendarClock className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
-              <span>
-                <strong>{fmtDate(m.date)}</strong> — {m.event}.{" "}
-                <a href={m.url} className="text-blue-700 underline dark:text-blue-300" target="_blank" rel="nofollow noopener">{m.source}</a>
-              </span>
-            </li>
-          ))}
-        </ul>
-        <p className="text-xs text-zinc-500">{ODS_SERVICING_NOTE}</p>
+        <AllowanceSteps />
       </div>
     );
   }
 
-  if (klass === "none") {
-    return (
-      <div className="rounded-md border border-emerald-200 bg-emerald-50/40 p-4 text-sm text-emerald-900 dark:border-emerald-900/40 dark:bg-emerald-950/20 dark:text-emerald-200">
-        <div className="flex items-start gap-2">
-          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
-          <p>
-            <strong>{r.displayName} is not an AIM Act regulated substance</strong>{" "}(not one of the 18 HFCs in 42 U.S.C. 7675(c), and not a blend containing one). The 40 CFR 84.54 GWP limits don&apos;t apply. Its availability is governed by ordinary commodity dynamics and equipment-specific installation standards, not a climate phase-down.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  // regulated HFC
-  const g8 = Math.round(gwp8464(r));
   const mapped = usSubsectors(r).map((s) => ({ s, st: subsectorStatus(r, s) }));
   const restricted = mapped.filter((m) => m.st.earliestRestricted);
   const allowedUntil = mapped.filter((m) => m.st.allowedUntil);
@@ -156,7 +176,7 @@ export function RegulatoryTimeline({ r }: { r: Refrigerant }) {
                 <li key={m.s.id} className="flex gap-3 rounded-md border border-amber-200 bg-amber-50/40 p-3 text-sm text-amber-900 dark:border-amber-900/40 dark:bg-amber-950/20 dark:text-amber-100">
                   <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
                   <span>
-                    <strong>From {fmtDate(m.st.earliestRestricted!)}</strong> — new {m.s.label.toLowerCase()}: {first.action.toLowerCase()} restricted ({limitLabel(first)}) [{first.para}].
+                    <strong>From {effectiveLabel(first)}</strong> — new {m.s.label.toLowerCase()}: {first.action.toLowerCase()} restricted ({limitLabel(first)}) [{first.para}].
                   </span>
                 </li>
               );
@@ -188,11 +208,110 @@ export function RegulatoryTimeline({ r }: { r: Refrigerant }) {
   );
 }
 
+/* ── phase-down timeline (section 08 content) ──────────────────────────── */
+
+export function RegulatoryTimeline({ r }: { r: Refrigerant }) {
+  const tags = regulatoryStatusTags(r);
+  const isReg = isRegulated(r);
+  const isCfc = tags.includes("ODS — CFC");
+  const isHcfc = tags.includes("ODS — HCFC");
+  const isOds = isCfc || isHcfc;
+
+  if (!isReg && !isOds) {
+    return (
+      <div className="rounded-md border border-emerald-200 bg-emerald-50/40 p-4 text-sm text-emerald-900 dark:border-emerald-900/40 dark:bg-emerald-950/20 dark:text-emerald-200">
+        <div className="flex items-start gap-2">
+          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
+          <p>
+            <strong>{r.displayName} is not an AIM Act regulated substance</strong>{" "}(not one of the 18 HFCs in 42 U.S.C. 7675(c), and not a blend containing one). The 40 CFR 84.54 GWP limits don&apos;t apply. Its availability is governed by ordinary commodity dynamics and equipment-specific installation standards, not a climate phase-down.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      {isReg && <AimTimelineBlock r={r} />}
+      {isOds && <OdsMilestonesBlock r={r} isCfc={isCfc} alsoAim={isReg} />}
+    </div>
+  );
+}
+
+/* ── grouped "all categories" details table ────────────────────────────── */
+
+function AllCategoriesBySector({ all }: { all: AppliedRestriction[] }) {
+  const bySector = SECTOR_ORDER
+    .map((sector) => ({ sector, rows: all.filter((a) => a.sector === sector).sort((a, b) => effKey(a).localeCompare(effKey(b)) || a.para.localeCompare(b.para)) }))
+    .filter((g) => g.rows.length > 0);
+  return (
+    <div className="overflow-x-auto border-t border-zinc-100 dark:border-zinc-800">
+      <table className="w-full text-sm">
+        <tbody>
+          {bySector.map((g) => (
+            <SectorGroup key={g.sector} sector={g.sector} rows={g.rows} />
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function SectorGroup({ sector, rows }: { sector: Sector; rows: AppliedRestriction[] }) {
+  return (
+    <>
+      <tr className="border-t border-zinc-100 bg-zinc-50 first:border-t-0 dark:border-zinc-800 dark:bg-zinc-900">
+        <td colSpan={4} className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-500">
+          {SECTOR_LABEL[sector]} ({rows.length})
+        </td>
+      </tr>
+      {rows.map((a, i) => (
+        <tr key={a.para + i} className="border-t border-zinc-100 dark:border-zinc-800">
+          <td className="px-3 py-1.5 font-mono tabular-nums whitespace-nowrap text-xs">{effectiveLabel(a)}</td>
+          <td className="px-3 py-1.5 text-xs">{a.subsector}</td>
+          <td className="px-3 py-1.5 text-xs">{limitLabel(a)}</td>
+          <td className="px-3 py-1.5 font-mono text-xs whitespace-nowrap">{a.para}</td>
+        </tr>
+      ))}
+    </>
+  );
+}
+
 /* ── "US new-equipment rules (40 CFR 84.54)" section ───────────────────── */
 
 export function UsNewEquipmentRules({ r }: { r: Refrigerant }) {
   if (!isRegulated(r)) return null;
   const g8 = Math.round(gwp8464(r));
+
+  // Ultra-low-temperature cascade refrigerants (e.g. R-503): no 84.54 category
+  // lists them, so render the scope explanation instead of an (empty) table.
+  if (isUltraLowTempOnly(r)) {
+    return (
+      <section id="us-new-equipment" className="mt-10 scroll-mt-24">
+        <h2 className="flex items-center gap-2 text-lg font-semibold">
+          <FileText className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+          US new-equipment rules (40 CFR 84.54)
+        </h2>
+        <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+          {r.displayName} is a regulated HFC (AIM Act, 42 U.S.C. 7675). Under 40 CFR 84.64 its blend GWP is <strong>{g8}</strong> (constituent GWP × mass fraction; CFC/HCFC/PFC constituents excluded per 84.64(c)).
+        </p>
+        <p className="mt-3 rounded-md border border-blue-200 bg-blue-50/40 p-3 text-sm text-blue-900 dark:border-blue-900/40 dark:bg-blue-950/20 dark:text-blue-100">
+          {ultraLowTempNote(r)}
+        </p>
+        <div className="mt-4 flex items-start gap-2 rounded-md border border-blue-200 bg-blue-50/40 p-3 text-sm text-blue-900 dark:border-blue-900/40 dark:bg-blue-950/20 dark:text-blue-100">
+          <Info className="mt-0.5 h-4 w-4 shrink-0" />
+          <p>
+            <strong>Servicing.</strong> 40 CFR 84.54 restricts new manufacture/import, later sale/distribution, and installation; repairing or servicing existing {r.displayName} equipment is not restricted by 84.54.
+          </p>
+        </div>
+        <p className="mt-4 text-xs text-zinc-500">
+          Source:{" "}
+          <a href={AIM_SOURCE_URL} className="underline" target="_blank" rel="nofollow noopener">{AIM_SOURCE_LINE}</a>. Installation defined at 40 CFR 84.54(e).
+        </p>
+      </section>
+    );
+  }
+
   const all = restrictions(r);
   const mapped = usSubsectors(r).map((s) => ({ s, st: subsectorStatus(r, s) }));
 
@@ -206,7 +325,7 @@ export function UsNewEquipmentRules({ r }: { r: Refrigerant }) {
     return true;
   });
   const withDerived = [...dedupMapped, ...derivedSaleRows(dedupMapped)].sort(
-    (a, b) => a.effective.localeCompare(b.effective) || a.para.localeCompare(b.para)
+    (a, b) => effKey(a).localeCompare(effKey(b)) || a.para.localeCompare(b.para)
   );
 
   const allowedUntil = mapped.filter((m) => m.st.allowedUntil);
@@ -238,7 +357,7 @@ export function UsNewEquipmentRules({ r }: { r: Refrigerant }) {
             <tbody>
               {withDerived.map((a, i) => (
                 <tr key={a.para + a.action + i} className="border-t border-zinc-100 dark:border-zinc-800">
-                  <td className="px-3 py-2 font-mono tabular-nums whitespace-nowrap">{fmtDate(a.effective)}</td>
+                  <td className="px-3 py-2 font-mono tabular-nums whitespace-nowrap">{effectiveLabel(a)}</td>
                   <td className="px-3 py-2">{a.subsector}</td>
                   <td className="px-3 py-2 text-xs">{limitLabel(a)}</td>
                   <td className="px-3 py-2 text-xs">{ACTION_SHORT[a.action] ?? a.action}</td>
@@ -275,20 +394,7 @@ export function UsNewEquipmentRules({ r }: { r: Refrigerant }) {
         <summary className="cursor-pointer px-3 py-2 text-sm font-medium">
           All 84.54 categories restricting {r.displayName} ({all.length})
         </summary>
-        <div className="overflow-x-auto border-t border-zinc-100 dark:border-zinc-800">
-          <table className="w-full text-sm">
-            <tbody>
-              {[...all].sort((a, b) => a.effective.localeCompare(b.effective) || a.para.localeCompare(b.para)).map((a, i) => (
-                <tr key={a.para + i} className="border-t border-zinc-100 first:border-t-0 dark:border-zinc-800">
-                  <td className="px-3 py-1.5 font-mono tabular-nums whitespace-nowrap text-xs">{fmtDate(a.effective)}</td>
-                  <td className="px-3 py-1.5 text-xs">{a.subsector}</td>
-                  <td className="px-3 py-1.5 text-xs">{limitLabel(a)}</td>
-                  <td className="px-3 py-1.5 font-mono text-xs whitespace-nowrap">{a.para}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <AllCategoriesBySector all={all} />
       </details>
 
       <div className="mt-4 flex items-start gap-2 rounded-md border border-blue-200 bg-blue-50/40 p-3 text-sm text-blue-900 dark:border-blue-900/40 dark:bg-blue-950/20 dark:text-blue-100">

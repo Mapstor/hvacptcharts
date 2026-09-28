@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { refrigerants, gwpNum, gwpText, type Refrigerant, type SafetyClass, type RefrigerantType } from "@/data/refrigerants";
 import { basisLabel } from "@/lib/gwp";
-import { regulatoryClass } from "@/lib/us-regulation";
+import { regulatoryStatusTags } from "@/lib/us-regulation";
 import { SafetyClassChip } from "@/components/svg/SafetyClassChip";
 import { typeLabel } from "@/components/refrigerant/TypeChip";
 
@@ -192,18 +192,26 @@ export function GwpTable() {
   );
 }
 
-// Derived from the regulatory engine: AIM Act HFC (regulated substance / blend
-// containing one), ODS — CFC, ODS — HCFC, or — (none).
-const STATUS_META: Record<string, { label: string; tone: string }> = {
-  "aim-hfc": { label: "AIM Act HFC", tone: "bg-amber-100 text-amber-900 dark:bg-amber-900/30 dark:text-amber-200" },
-  "ods-cfc": { label: "ODS — CFC", tone: "bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300" },
-  "ods-hcfc": { label: "ODS — HCFC", tone: "bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300" },
+// Derived from the regulatory engine: ODS-first status tags joined with " · ".
+// A blend can be both an ODS (CFC/HCFC) and an AIM Act HFC (e.g. R-500, R-503).
+const TAG_TONE: Record<string, string> = {
+  "AIM Act HFC": "bg-amber-100 text-amber-900 dark:bg-amber-900/30 dark:text-amber-200",
+  "ODS — CFC": "bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300",
+  "ODS — HCFC": "bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300",
 };
 function StatusBadges({ r }: { r: Refrigerant }) {
-  const k = regulatoryClass(r);
-  if (k === "none") return <span className="text-zinc-400">—</span>;
-  const m = STATUS_META[k];
-  return <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium ${m.tone}`}>{m.label}</span>;
+  const tags = regulatoryStatusTags(r);
+  if (tags.length === 0) return <span className="text-zinc-400">—</span>;
+  return (
+    <span className="inline-flex flex-wrap items-center gap-x-1 gap-y-1">
+      {tags.map((t, i) => (
+        <span key={t} className="inline-flex items-center">
+          {i > 0 ? <span className="mx-0.5 text-zinc-400">·</span> : null}
+          <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium ${TAG_TONE[t] ?? ""}`}>{t}</span>
+        </span>
+      ))}
+    </span>
+  );
 }
 
 function rowTone(r: Refrigerant): string {

@@ -1,7 +1,9 @@
 {
   "meta": {
     "verified": "2026-09-28",
-    "rule": "Every entry below was checked against the cited primary text on the verified date. Do not add, reword or extend entries without a primary source; add new facts only through this file."
+    "rule": "Every entry below was checked against the cited primary text on the verified date. Do not add, reword or extend entries without a primary source; add new facts only through this file.",
+    "version": 2,
+    "changes": "v2 (2026-09-28): added (a)(2), (a)(11), (a)(13)(i)-(iii), (a)(14), (a)(15), (a)(16)(i)-(ii), (c)(13); semiconductor compliance notes (a)(10)(v), (a)(12)(iv), (c)(5)(ii), (c)(6)(ii), (c)(10)(v); 'sector' field on every entry."
   },
   "us": {
     "technologyTransitions": {
@@ -48,27 +50,18 @@
           "effective": "2025-01-01",
           "rule": {
             "gwpAtLeast": 700
-          }
+          },
+          "sector": "refrigeration_ac"
         },
         {
-          "cfr": "40 CFR 84.54(c)(1)",
-          "type": "installation",
-          "subsector": "Residential or light commercial air-conditioning or heat pump systems (except variable refrigerant flow)",
+          "cfr": "40 CFR 84.54(a)(2)",
+          "type": "manufacture_import",
+          "subsector": "Residential dehumidifiers",
           "effective": "2025-01-01",
           "rule": {
             "gwpAtLeast": 700
           },
-          "note": "New systems may continue to be installed where all specified components of that system were manufactured or imported prior to January 1, 2025."
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(2)",
-          "type": "installation",
-          "subsector": "Variable refrigerant flow systems used as residential or light commercial air-conditioning or heat pumps",
-          "effective": "2026-01-01",
-          "rule": {
-            "gwpAtLeast": 700
-          },
-          "note": "May be installed prior to January 1, 2027 where all specified components were manufactured or imported prior to January 1, 2026; prior to January 1, 2028 when an approved building permit issued prior to October 5, 2023 specifies the restricted refrigerant and all specified components were manufactured or imported prior to January 1, 2026."
+          "sector": "refrigeration_ac"
         },
         {
           "cfr": "40 CFR 84.54(a)(3)",
@@ -77,7 +70,8 @@
           "effective": "2025-01-01",
           "rule": {
             "gwpAtLeast": 150
-          }
+          },
+          "sector": "refrigeration_ac"
         },
         {
           "cfr": "40 CFR 84.54(a)(4)",
@@ -86,7 +80,8 @@
           "effective": "2025-01-01",
           "rule": {
             "gwpAtLeast": 150
-          }
+          },
+          "sector": "refrigeration_ac"
         },
         {
           "cfr": "40 CFR 84.54(a)(5)",
@@ -95,7 +90,8 @@
           "effective": "2025-01-01",
           "rule": {
             "gwpAtLeast": 150
-          }
+          },
+          "sector": "refrigeration_ac"
         },
         {
           "cfr": "40 CFR 84.54(a)(6)",
@@ -104,16 +100,8 @@
           "effective": "2026-07-27",
           "rule": {
             "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(7)",
-          "type": "installation",
-          "subsector": "Refrigerated transport — intermodal containers with a box temperature of −35 °C (−31 °F) or higher",
-          "effective": "2026-07-27",
-          "rule": {
-            "gwpAtLeast": 700
-          }
+          },
+          "sector": "refrigeration_ac"
         },
         {
           "cfr": "40 CFR 84.54(a)(7)",
@@ -144,38 +132,8 @@
               "RS-44 (2003 formulation)",
               "GHG-X5"
             ]
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(8)",
-          "type": "installation",
-          "subsector": "Refrigerated transport — road or marine systems",
-          "effective": "2025-01-01",
-          "rule": {
-            "named": [
-              "R-402A",
-              "R-402B",
-              "R-404A",
-              "R-407B",
-              "R-408A",
-              "R-410B",
-              "R-417A",
-              "R-421A",
-              "R-421B",
-              "R-422A",
-              "R-422B",
-              "R-422C",
-              "R-422D",
-              "R-424A",
-              "R-428A",
-              "R-434A",
-              "R-438A",
-              "R-507A",
-              "R-125/290/134a/600a (55/1/42.5/1.5)",
-              "RS-44 (2003 formulation)",
-              "GHG-X5"
-            ]
-          }
+          },
+          "sector": "refrigeration_ac"
         },
         {
           "cfr": "40 CFR 84.54(a)(8)(i)",
@@ -184,7 +142,8 @@
           "effective": "2026-01-01",
           "rule": {
             "gwpAtLeast": 150
-          }
+          },
+          "sector": "refrigeration_ac"
         },
         {
           "cfr": "40 CFR 84.54(a)(8)(ii)",
@@ -231,38 +190,8 @@
               "G2018C",
               "Freeze 12"
             ]
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(14)",
-          "type": "installation",
-          "subsector": "Automatic commercial ice machines with a remote condenser",
-          "effective": "2027-01-01",
-          "rule": {
-            "named": [
-              "R-402A",
-              "R-402B",
-              "R-404A",
-              "R-407B",
-              "R-408A",
-              "R-410B",
-              "R-417A",
-              "R-421A",
-              "R-421B",
-              "R-422A",
-              "R-422B",
-              "R-422C",
-              "R-422D",
-              "R-424A",
-              "R-428A",
-              "R-434A",
-              "R-438A",
-              "R-507A",
-              "R-125/290/134a/600a (55/1/42.5/1.5)",
-              "RS-44 (2003 formulation)",
-              "GHG-X5"
-            ]
-          }
+          },
+          "sector": "refrigeration_ac"
         },
         {
           "cfr": "40 CFR 84.54(a)(9)(i)",
@@ -271,7 +200,8 @@
           "effective": "2027-01-01",
           "rule": {
             "gwpAtLeast": 150
-          }
+          },
+          "sector": "refrigeration_ac"
         },
         {
           "cfr": "40 CFR 84.54(a)(9)(ii)",
@@ -319,7 +249,8 @@
               "GHG-X5",
               "Freeze 12"
             ]
-          }
+          },
+          "sector": "refrigeration_ac"
         },
         {
           "cfr": "40 CFR 84.54(a)(9)(iii)",
@@ -367,7 +298,458 @@
               "GHG-X5",
               "Freeze 12"
             ]
-          }
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(10)(i)",
+          "type": "manufacture_import",
+          "subsector": "Chillers for comfort cooling",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(10)(ii)",
+          "type": "manufacture_import",
+          "subsector": "Chillers for ice rinks",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(10)(iii)",
+          "type": "manufacture_import",
+          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac",
+          "note": "(a)(10)(v): chillers with a charge of 100 lb or less used in the manufacture of semiconductors must comply by January 1, 2030."
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(10)(iv)",
+          "type": "manufacture_import",
+          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller from −50 °C to −30 °C (−58 °F to −22 °F)",
+          "effective": "2028-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac",
+          "note": "(a)(10)(v): chillers with a charge of 100 lb or less used in the manufacture of semiconductors must comply by January 1, 2030."
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(11)",
+          "type": "manufacture_import",
+          "subsector": "Self-contained products in data center, information technology equipment facility, and computer room cooling",
+          "effective": "2027-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(12)(i)",
+          "type": "manufacture_import",
+          "subsector": "Industrial process refrigeration products (non-chiller), charge 200 lb or greater, refrigerant entering the evaporator warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(12)(ii)",
+          "type": "manufacture_import",
+          "subsector": "Industrial process refrigeration products (non-chiller), charge less than 200 lb, refrigerant entering the evaporator warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 300
+          },
+          "sector": "refrigeration_ac",
+          "note": "(a)(12)(iv): products with a charge of 100 lb or less used in the manufacture of semiconductors must comply by January 1, 2030."
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(12)(iii)",
+          "type": "manufacture_import",
+          "subsector": "Industrial process refrigeration products (non-chiller), refrigerant entering the evaporator from −50 °C to −30 °C (−58 °F to −22 °F)",
+          "effective": "2028-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac",
+          "note": "(a)(12)(iv): products with a charge of 100 lb or less used in the manufacture of semiconductors must comply by January 1, 2030."
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(13)(i)",
+          "type": "manufacture_import",
+          "subsector": "Motor vehicle air-conditioning — Model Year 2025 and later light-duty passenger cars and trucks (gross vehicle weight rating less than 8,500 lb)",
+          "effective": "2024-10-24",
+          "rule": {
+            "gwpAtLeast": 150
+          },
+          "sector": "mvac"
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(13)(ii)",
+          "type": "manufacture_import",
+          "subsector": "Motor vehicle air-conditioning — Model Year 2028 and later medium-duty passenger vehicles, heavy-duty pick-up trucks, and complete heavy-duty vans whose air conditioning equipment will not be modified by upfitters",
+          "effective": null,
+          "rule": {
+            "gwpAtLeast": 150
+          },
+          "sector": "mvac",
+          "note": "Applies by model year (MY2028 and later), not by calendar date; no derived 84.54(b) row.",
+          "effectiveModelYear": 2028
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(13)(iii)",
+          "type": "manufacture_import",
+          "subsector": "Motor vehicle air-conditioning — certain nonroad vehicles (agricultural tractors greater than 40 horsepower; self-propelled agricultural machinery; compact equipment; construction, forestry, and mining equipment; and commercial utility vehicles)",
+          "effective": "2028-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          },
+          "sector": "mvac"
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(14)",
+          "type": "manufacture_import",
+          "subsector": "Foam products: rigid polyurethane appliance foam, commercial refrigeration foam, laminated boardstock, marine flotation foam, sandwich panels, slabstock; flexible polyurethane; integral skin polyurethane; polystyrene (extruded boardstock, billet, extruded sheet); phenolic insulation board and bunstock; polyisocyanurate laminated boardstock; polyolefin; rigid polyurethane spray foam",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          },
+          "sector": "foam",
+          "note": "Excludes foam products for space and military applications, which are covered by (a)(15)."
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(15)",
+          "type": "manufacture_import",
+          "subsector": "Foam products in the (a)(14) formulations for use in space and military applications",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          },
+          "sector": "foam",
+          "note": "Except spray and pour foams for use in space vehicles as defined in 84.3, which are not subject to a use restriction. Threshold is that of (a)(14)."
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(16)(i)",
+          "type": "manufacture_import",
+          "subsector": "Aerosol products",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          },
+          "sector": "aerosol",
+          "note": "Except products that use HFC-43-10mee or HFC-245fa as an aerosol solvent, defense sprays (84.3), or products that use HFC-134a in these specific uses: cleaning products for removal of grease, flux and other soils from electrical equipment or electronics; refrigerant flushes; products for sensitivity testing of smoke detectors; lubricants and freeze sprays for electrical equipment or electronics; sprays for aircraft maintenance; sprays containing corrosion preventive compounds used in the maintenance of aircraft, electrical equipment or electronics, or military equipment; certain pesticides (near electrical wires or in aircraft, total release insecticide foggers, certified organic uses where EPA has disallowed all other lower-GWP propellants); mold release agents and mold cleaners; lubricants and cleaners for spinnerets for synthetic fabrics; duster sprays specifically for photographic negatives, semiconductor chips, specimens under electron microscopes, and energized electrical equipment; adhesives and sealants in large canisters; document preservation sprays; wound care sprays; topical coolant sprays for pain relief; products for removing bandage adhesives from skin."
+        },
+        {
+          "cfr": "40 CFR 84.54(a)(16)(ii)",
+          "type": "manufacture_import",
+          "subsector": "Aerosol products (all, except defense sprays as defined in 84.3)",
+          "effective": "2028-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          },
+          "sector": "aerosol",
+          "note": "Ends the (a)(16)(i) exceptions except defense sprays."
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(1)",
+          "type": "installation",
+          "subsector": "Residential or light commercial air-conditioning or heat pump systems (except variable refrigerant flow)",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "note": "New systems may continue to be installed where all specified components of that system were manufactured or imported prior to January 1, 2025.",
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(2)",
+          "type": "installation",
+          "subsector": "Variable refrigerant flow systems used as residential or light commercial air-conditioning or heat pumps",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "note": "May be installed prior to January 1, 2027 where all specified components were manufactured or imported prior to January 1, 2026; prior to January 1, 2028 when an approved building permit issued prior to October 5, 2023 specifies the restricted refrigerant and all specified components were manufactured or imported prior to January 1, 2026.",
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(3)",
+          "type": "installation",
+          "subsector": "Chillers for comfort cooling",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(4)",
+          "type": "installation",
+          "subsector": "Ice rinks",
+          "effective": "2025-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(5)(i)",
+          "type": "installation",
+          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac",
+          "note": "(c)(5)(ii): chillers with a charge of 100 lb or less used in the manufacture of semiconductors must comply by January 1, 2030."
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(6)(i)",
+          "type": "installation",
+          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller from −50 °C to −30 °C (−58 °F to −22 °F)",
+          "effective": "2028-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac",
+          "note": "(c)(6)(ii): chillers with a charge of 100 lb or less used in the manufacture of semiconductors must comply by January 1, 2030."
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(7)",
+          "type": "installation",
+          "subsector": "Refrigerated transport — intermodal containers with a box temperature of −35 °C (−31 °F) or higher",
+          "effective": "2026-07-27",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(8)",
+          "type": "installation",
+          "subsector": "Refrigerated transport — road or marine systems",
+          "effective": "2025-01-01",
+          "rule": {
+            "named": [
+              "R-402A",
+              "R-402B",
+              "R-404A",
+              "R-407B",
+              "R-408A",
+              "R-410B",
+              "R-417A",
+              "R-421A",
+              "R-421B",
+              "R-422A",
+              "R-422B",
+              "R-422C",
+              "R-422D",
+              "R-424A",
+              "R-428A",
+              "R-434A",
+              "R-438A",
+              "R-507A",
+              "R-125/290/134a/600a (55/1/42.5/1.5)",
+              "RS-44 (2003 formulation)",
+              "GHG-X5"
+            ]
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(9)(i)",
+          "type": "installation",
+          "subsector": "Cold storage warehouse systems",
+          "effective": "2026-07-27",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(9)(ii)",
+          "type": "installation",
+          "subsector": "Cold storage warehouse systems",
+          "effective": "2032-01-01",
+          "rule": {
+            "tiered": [
+              {
+                "condition": "refrigerant charge capacity 200 lb or greater, not the high-temperature side of a cascade system",
+                "gwpAtLeast": 150
+              },
+              {
+                "condition": "refrigerant charge capacity less than 200 lb",
+                "gwpAtLeast": 300
+              },
+              {
+                "condition": "high-temperature side of a cascade system",
+                "gwpAtLeast": 300
+              }
+            ]
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(10)(i)",
+          "type": "installation",
+          "subsector": "Industrial process refrigeration systems (non-chiller), charge 200 lb or greater, evaporator inlet warmer than −30 °C (−22 °F), not the high-temperature side of a cascade",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 150
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(10)(ii)",
+          "type": "installation",
+          "subsector": "Industrial process refrigeration systems (non-chiller), charge less than 200 lb, evaporator inlet warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 300
+          },
+          "sector": "refrigeration_ac",
+          "note": "(c)(10)(v): systems used in the manufacture of semiconductors with a charge of 100 lb or less must comply by January 1, 2030."
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(10)(iii)",
+          "type": "installation",
+          "subsector": "Industrial process refrigeration — high-temperature side of cascade systems, evaporator inlet warmer than −30 °C (−22 °F)",
+          "effective": "2026-01-01",
+          "rule": {
+            "gwpAtLeast": 300
+          },
+          "sector": "refrigeration_ac",
+          "note": "(c)(10)(v): systems used in the manufacture of semiconductors with a charge of 100 lb or less must comply by January 1, 2030."
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(10)(iv)",
+          "type": "installation",
+          "subsector": "Industrial process refrigeration systems (non-chiller), evaporator inlet from −50 °C to −30 °C (−58 °F to −22 °F)",
+          "effective": "2028-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac",
+          "note": "(c)(10)(v): systems used in the manufacture of semiconductors with a charge of 100 lb or less must comply by January 1, 2030."
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(11)(i)",
+          "type": "installation",
+          "subsector": "Retail food refrigeration — remote condensing units",
+          "effective": "2026-07-27",
+          "rule": {
+            "gwpAtLeast": 1400
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(11)(ii)",
+          "type": "installation",
+          "subsector": "Retail food refrigeration — remote condensing units",
+          "effective": "2032-01-01",
+          "rule": {
+            "tiered": [
+              {
+                "condition": "refrigerant charge capacity 200 lb or greater, not the high-temperature side of a cascade system",
+                "gwpAtLeast": 150
+              },
+              {
+                "condition": "refrigerant charge capacity less than 200 lb",
+                "gwpAtLeast": 300
+              },
+              {
+                "condition": "high-temperature side of a cascade system",
+                "gwpAtLeast": 300
+              }
+            ]
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(12)(i)",
+          "type": "installation",
+          "subsector": "Retail food refrigeration — supermarket systems",
+          "effective": "2027-01-01",
+          "rule": {
+            "gwpAtLeast": 1400
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(12)(ii)",
+          "type": "installation",
+          "subsector": "Retail food refrigeration — supermarket systems",
+          "effective": "2032-01-01",
+          "rule": {
+            "tiered": [
+              {
+                "condition": "refrigerant charge capacity 200 lb or greater, not the high-temperature side of a cascade system",
+                "gwpAtLeast": 150
+              },
+              {
+                "condition": "refrigerant charge capacity less than 200 lb",
+                "gwpAtLeast": 300
+              },
+              {
+                "condition": "high-temperature side of a cascade system",
+                "gwpAtLeast": 300
+              }
+            ]
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(13)",
+          "type": "installation",
+          "subsector": "Data center, information technology equipment facility, and computer room cooling systems",
+          "effective": "2027-01-01",
+          "rule": {
+            "gwpAtLeast": 700
+          },
+          "sector": "refrigeration_ac"
+        },
+        {
+          "cfr": "40 CFR 84.54(c)(14)",
+          "type": "installation",
+          "subsector": "Automatic commercial ice machines with a remote condenser",
+          "effective": "2027-01-01",
+          "rule": {
+            "named": [
+              "R-402A",
+              "R-402B",
+              "R-404A",
+              "R-407B",
+              "R-408A",
+              "R-410B",
+              "R-417A",
+              "R-421A",
+              "R-421B",
+              "R-422A",
+              "R-422B",
+              "R-422C",
+              "R-422D",
+              "R-424A",
+              "R-428A",
+              "R-434A",
+              "R-438A",
+              "R-507A",
+              "R-125/290/134a/600a (55/1/42.5/1.5)",
+              "RS-44 (2003 formulation)",
+              "GHG-X5"
+            ]
+          },
+          "sector": "refrigeration_ac"
         },
         {
           "cfr": "40 CFR 84.54(c)(15)",
@@ -415,235 +797,8 @@
               "GHG-X5",
               "Freeze 12"
             ]
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(a)(10)(i)",
-          "type": "manufacture_import",
-          "subsector": "Chillers for comfort cooling",
-          "effective": "2025-01-01",
-          "rule": {
-            "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(3)",
-          "type": "installation",
-          "subsector": "Chillers for comfort cooling",
-          "effective": "2025-01-01",
-          "rule": {
-            "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(a)(10)(ii)",
-          "type": "manufacture_import",
-          "subsector": "Chillers for ice rinks",
-          "effective": "2025-01-01",
-          "rule": {
-            "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(4)",
-          "type": "installation",
-          "subsector": "Ice rinks",
-          "effective": "2025-01-01",
-          "rule": {
-            "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(a)(10)(iii)",
-          "type": "manufacture_import",
-          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller warmer than −30 °C (−22 °F)",
-          "effective": "2026-01-01",
-          "rule": {
-            "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(5)(i)",
-          "type": "installation",
-          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller warmer than −30 °C (−22 °F)",
-          "effective": "2026-01-01",
-          "rule": {
-            "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(a)(10)(iv)",
-          "type": "manufacture_import",
-          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller from −50 °C to −30 °C (−58 °F to −22 °F)",
-          "effective": "2028-01-01",
-          "rule": {
-            "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(6)(i)",
-          "type": "installation",
-          "subsector": "Chillers for industrial process refrigeration, fluid exiting the chiller from −50 °C to −30 °C (−58 °F to −22 °F)",
-          "effective": "2028-01-01",
-          "rule": {
-            "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(a)(12)(i)",
-          "type": "manufacture_import",
-          "subsector": "Industrial process refrigeration products (non-chiller), charge 200 lb or greater, refrigerant entering the evaporator warmer than −30 °C (−22 °F)",
-          "effective": "2026-01-01",
-          "rule": {
-            "gwpAtLeast": 150
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(a)(12)(ii)",
-          "type": "manufacture_import",
-          "subsector": "Industrial process refrigeration products (non-chiller), charge less than 200 lb, refrigerant entering the evaporator warmer than −30 °C (−22 °F)",
-          "effective": "2026-01-01",
-          "rule": {
-            "gwpAtLeast": 300
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(a)(12)(iii)",
-          "type": "manufacture_import",
-          "subsector": "Industrial process refrigeration products (non-chiller), refrigerant entering the evaporator from −50 °C to −30 °C (−58 °F to −22 °F)",
-          "effective": "2028-01-01",
-          "rule": {
-            "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(10)(i)",
-          "type": "installation",
-          "subsector": "Industrial process refrigeration systems (non-chiller), charge 200 lb or greater, evaporator inlet warmer than −30 °C (−22 °F), not the high-temperature side of a cascade",
-          "effective": "2026-01-01",
-          "rule": {
-            "gwpAtLeast": 150
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(10)(ii)",
-          "type": "installation",
-          "subsector": "Industrial process refrigeration systems (non-chiller), charge less than 200 lb, evaporator inlet warmer than −30 °C (−22 °F)",
-          "effective": "2026-01-01",
-          "rule": {
-            "gwpAtLeast": 300
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(10)(iii)",
-          "type": "installation",
-          "subsector": "Industrial process refrigeration — high-temperature side of cascade systems, evaporator inlet warmer than −30 °C (−22 °F)",
-          "effective": "2026-01-01",
-          "rule": {
-            "gwpAtLeast": 300
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(10)(iv)",
-          "type": "installation",
-          "subsector": "Industrial process refrigeration systems (non-chiller), evaporator inlet from −50 °C to −30 °C (−58 °F to −22 °F)",
-          "effective": "2028-01-01",
-          "rule": {
-            "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(9)(i)",
-          "type": "installation",
-          "subsector": "Cold storage warehouse systems",
-          "effective": "2026-07-27",
-          "rule": {
-            "gwpAtLeast": 700
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(9)(ii)",
-          "type": "installation",
-          "subsector": "Cold storage warehouse systems",
-          "effective": "2032-01-01",
-          "rule": {
-            "tiered": [
-              {
-                "condition": "refrigerant charge capacity 200 lb or greater, not the high-temperature side of a cascade system",
-                "gwpAtLeast": 150
-              },
-              {
-                "condition": "refrigerant charge capacity less than 200 lb",
-                "gwpAtLeast": 300
-              },
-              {
-                "condition": "high-temperature side of a cascade system",
-                "gwpAtLeast": 300
-              }
-            ]
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(11)(i)",
-          "type": "installation",
-          "subsector": "Retail food refrigeration — remote condensing units",
-          "effective": "2026-07-27",
-          "rule": {
-            "gwpAtLeast": 1400
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(11)(ii)",
-          "type": "installation",
-          "subsector": "Retail food refrigeration — remote condensing units",
-          "effective": "2032-01-01",
-          "rule": {
-            "tiered": [
-              {
-                "condition": "refrigerant charge capacity 200 lb or greater, not the high-temperature side of a cascade system",
-                "gwpAtLeast": 150
-              },
-              {
-                "condition": "refrigerant charge capacity less than 200 lb",
-                "gwpAtLeast": 300
-              },
-              {
-                "condition": "high-temperature side of a cascade system",
-                "gwpAtLeast": 300
-              }
-            ]
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(12)(i)",
-          "type": "installation",
-          "subsector": "Retail food refrigeration — supermarket systems",
-          "effective": "2027-01-01",
-          "rule": {
-            "gwpAtLeast": 1400
-          }
-        },
-        {
-          "cfr": "40 CFR 84.54(c)(12)(ii)",
-          "type": "installation",
-          "subsector": "Retail food refrigeration — supermarket systems",
-          "effective": "2032-01-01",
-          "rule": {
-            "tiered": [
-              {
-                "condition": "refrigerant charge capacity 200 lb or greater, not the high-temperature side of a cascade system",
-                "gwpAtLeast": 150
-              },
-              {
-                "condition": "refrigerant charge capacity less than 200 lb",
-                "gwpAtLeast": 300
-              },
-              {
-                "condition": "high-temperature side of a cascade system",
-                "gwpAtLeast": 300
-              }
-            ]
-          }
+          },
+          "sector": "refrigeration_ac"
         }
       ],
       "phasedown": {
@@ -670,6 +825,13 @@
             "percentOfBaseline": 15
           }
         ]
+      },
+      "completeness": "Covers every numbered paragraph of 84.54(a)(1)-(a)(16) and (c)(1)-(c)(15), plus (b), (d), (e), as of 91 FR 31329 (May 26, 2026). Sectors: refrigeration_ac, mvac, foam, aerosol.",
+      "sectors": {
+        "refrigeration_ac": "Refrigeration, air conditioning and heat pumps",
+        "mvac": "Motor vehicle air-conditioning",
+        "foam": "Foam blowing agents",
+        "aerosol": "Aerosol propellants/solvents"
       }
     },
     "ods": {

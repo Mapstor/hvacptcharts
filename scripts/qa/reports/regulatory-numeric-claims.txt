@@ -1,0 +1,253 @@
+# Regulatory / numeric claim sentences harvested from built HTML
+# Scanned 134 HTML files. 963 unique sentences (after R-X normalization + whitespace collapse).
+# Format: <route-count>\t<sentence>. Sorted by route count, highest first. Showing 250 of 963.
+37	R-X is a regulated HFC (AIM Act, 42 U.S.C. 7675).
+37	R-X is a regulated HFC under the AIM Act (42 U.S.C. 7675).
+21	AIM Act (40 CFR Part 84): US HFC production / import phase-down.
+21	AIM Act, 42 U.S.C. 7675 — Technology Transitions rule at 40 CFR 84.54 (current through 91 FR 31329, May 26, 2026)
+21	EU F-Gas Regulation (517/2014, updated 2024/573): European rules restrict many new stationary applications by GWP (tighter than the US in most sectors); the 2024 revision uses IPCC AR4 for HFCs and AR6 for other fluorinated gases.
+21	For A2L refrigerants like R-X, R-X, R-X, R-X: equipment must be A2L-certified, charge limits per IEC 60335-2-40 apply.
+21	Kigali Amendment to Montreal Protocol (2016): international HFC phase-down framework.
+21	Regulatory context: AIM Act (40 CFR Part 84), EU F-Gas Regulation 517/2014 + 2024/573, Kigali Amendment to Montreal Protocol
+21	Regulatory sources: AIM Act (40 CFR Part 84), EU F-Gas Regulation 517/2014 and update 2024/573, Kigali Amendment to the Montreal Protocol (2016), Japan Fluorocarbon Emissions Control Law.
+21	The Montreal Protocol has 198 parties; 174 have ratified the Kigali Amendment (as of 10 August 2026).
+18	A1Non-flammableHFC blend AIM Act HFC
+16	Not an AIM Act regulated substance; 40 CFR 84.54 GWP limits don't apply.
+15	EU F-Gas Regulation: Both refrigerants exceed the EU F-Gas 150 GWP cap for new stationary refrigeration.
+12	Requires A2L-rated equipment, leak detection, and charge limits per UL 60335-2-40 and ASHRAE 15.
+11	GWP values: US EPA basis (AIM Act exchange values / 40 CFR 84.64(b) / IPCC AR4), with IPCC AR4/AR5/AR6 shown where listed
+10	R-X is not an AIM Act regulated substance (not one of the 18 HFCs in 42 U.S.C. 7675(c), and not a blend containing one).
+9	AIM Act exchange value (IPCC AR4) · IPCC AR4/AR5/AR6 on the GWP rankings
+9	AIM Act status: R-X is affected by AIM Act phase-down; the other is not.
+9	Regulation (EU) No 517/2014, since replaced by (EU) 2024/573 (applying from 11 March 2024)
+8	Regulation (EU) No 517/2014.
+8	Under Regulation (EU) No 517/2014, since replaced by (EU) 2024/573, applying from 11 March 2024 (compared against the AR4 headline GWP), R-X meets:
+7	AIM Act exposure: Both refrigerants are subject to the AIM Act phase-down (HFC allocation declining toward 15% of baseline by 2036).
+6	›Is R-X being phased out?
+6	A2LMildly flammableHFO blend AIM Act HFC
+6	AIM Act exposure: R-X is AIM Act-affected; R-X is not — the transition increases regulatory exposure (unusual direction).
+6	January 1, 1996 — US ban on production and import took effect.
+5	Regulatory status: R-X is subject to the AIM Act phase-down (40 CFR Part 84).
+4	›Why is R-X being phased out?
+4	›Why was R-X banned?
+4	A1Non-flammableHFC (pure) AIM Act HFC
+4	A2L equipment requirements apply: sealed motors, charge limits, leak detection per IEC 60335-2-40.
+4	Field retrofit isn't possible — A2L safety classification requires equipment-level certification (sealed motors, charge limits, leak detection).
+4	R-X requires equipment certified to UL/IEC 60335-2-40 for A2L: sealed electrical, room-volume charge limits, and (on larger systems) integrated leak detection.
+3	A1Non-flammableCFC ODS — CFC Production banned · 1996
+3	AIM Act exposure: R-X is AIM Act-affected; R-X is not — the transition reduces regulatory exposure.
+3	EU F-Gas Regulation: Both refrigerants are below the EU F-Gas 150 GWP cap — compliant for European stationary refrigeration.
+3	EU F-Gas Regulation: R-X exceeds the EU F-Gas 150 GWP cap; R-X is compliant.
+3	R-X production has been banned for almost three decades.
+3	R-X(Z) is not an AIM Act regulated substance (not one of the 18 HFCs in 42 U.S.C. 7675(c), and not a blend containing one).
+2	›Is R-X AIM Act compliant?
+2	›Is R-X subject to phase-down?
+2	›Why was R-X phased out?
+2	A1Non-flammableCFC blend (azeotrope) ODS — CFC · AIM Act HFC Production banned · 1996
+2	A1Non-flammableHFO blend AIM Act HFC
+2	A2FlammableHFC (pure) AIM Act HFC
+2	A2L safety class requires sealed motors, charge limits per UL 60335-2-89 and ASHRAE 15, A2L-rated leak detection in some installations, and nitrogen-purged brazing[6][7].
+2	A2LMildly flammableHFC (pure) AIM Act HFC
+2	AIM Act HFC, 84.64 GWP 146 — below every 40 CFR 84.54 limit; no new-equipment restriction.
+2	ASHRAE Standard 15-2022 — A2L charge limits
+2	Banned for production.
+2	EPA Significant New Alternatives Policy (SNAP) — R-X acceptable for commercial refrigeration
+2	R-X equipment is A1-rated (no flammability accommodations); R-X is A2L and requires sealed motors and A2L-rated safety design per UL 60335-2-40.
+2	R-X in the commercial refrigeration phase-down chain
+2	R-X(E) is not an AIM Act regulated substance (not one of the 18 HFCs in 42 U.S.C. 7675(c), and not a blend containing one).
+2	Regulatory status: R-X is not directly affected by the AIM Act.
+2	Required in some installations per UL 60335-2-40
+2	Scaled to smallest enclosed space per ASHRAE 15
+2	Sealed motor in refrigerant circuit per UL 60335-2-40
+2	UL 60335-2-89 / IEC 60335-2-89 — Safety standard for commercial refrigerating appliances using A2L refrigerants
+1	- Application fit: Residential heat pumps (especially EU market with established R-X equipment ecosystem), small commercial refrigeration (vending coolers, ice machines, beverage merchandisers), and some industrial process refrigeration where flammability can be managed through engineering controls.
+1	- Charge limits: Per IEC 60335-2-40, residential applications limited to small charges (typically <150g, expanding to <500g under recent revisions for some configurations).
+1	- Full system replacement — new R-X equipment (or R-X, depending on OEM preference); 20-30% efficiency improvement vs R-X-era equipment; eliminates phase-down risk
+1	- New vehicles (EU new car types 2017+; US light-duty Model Year 2025+ under 84.54(a)(13)): R-X-equipped from factory.
+1	- R-X retrofit blend — R-X, R-X, R-X, R-X; preserves equipment chassis, adds 5-10 year service life, still faces HFC phase-down
+1	›Are R-X and R-X affected by AIM Act or EU F-Gas?
+1	›Is R-X affected by the AIM Act?
+1	›Is R-X AIM Act and EU F-Gas compliant?
+1	›Is R-X being phased out too?
+1	›What are typical R-X and R-X charge sizes?
+1	›When will R-X be phased out completely?
+1	›Why does R-X have a charge limit?
+1	›Why is R-X being phased out so aggressively?
+1	›Why is R-X growing in EU heat pumps?
+1	›Why was R-X originally banned?
+1	(1) GWP: R-X at 675 falls below the AIM Act 700 threshold for new residential AC; R-X at 2088 does not[4].
+1	(1) GWP: R-X's high GWP (3922) creates regulatory phase-down pressure under both AIM Act and EU F-Gas; R-X at GWP 1 has no future regulatory risk.
+1	(1) Very small charge size — typical household refrigerator uses 30-100g of R-X, well below IEC 60335-2-89 limits and below the amount that could produce LFL concentration in any reasonable kitchen volume[4].
+1	(3) AIM Act 40 CFR Part 84 mandated GWP ≤700 for new equipment manufactured after January 1, 2025 — R-X (GWP 2088) failed; R-X (675) and R-X (466) pass.
+1	(4) Refrigerant management: longer linesets (200+ ft); larger refrigerant charges (which trigger ASHRAE 15 + UL 60335-2-40 safety + charge limit considerations); leak detection systems required.
+1	(4) Regulatory references — AIM Act (40 CFR Part 84), EPA Section 608 (40 CFR Part 82 Subpart F), EU F-Gas Regulation 517/2014 and 2024/573, Kigali Amendment to Montreal Protocol (2016), IPCC AR4/AR5/AR6 for GWP values.
+1	(5) Cylinders must be designated for A2L use; mixing A2L with A1 in the same cylinder is prohibited.
+1	(5) Existing R-X mini-splits CANNOT be converted to R-X — equipment safety design (UL 60335-2-40 + ASHRAE 15) differs substantially for A2L vs A1 refrigerants.
+1	0.001079215732364314GWP100AIM Act thresholdR-1234yf (A2L)4.00R-744 (CO₂)1.00R-290 (propane)3.00R-454B (A2L)466R-32 (A2L)675R-134a (HFC)1430R-22 (HCFC)1810R-410A (HFC)2088R-404A (HFC)3922
+1	02The AIM Act phase-down schedule (40 CFR Part 84)
+1	03EU F-Gas — the parallel mechanism (and its accelerating recast)
+1	05Current state — where we are in the AIM Act phase-down
+1	1 January 2025 — AIM Act 40 CFR 84.54(a)(1)/(c)(1) effective; new residential AC and heat pumps restricted to refrigerants below the 700-GWP limit (R-X, GWP 2088, no longer qualifies)
+1	100-year GWP on the basis US EPA uses (AIM Act exchange values / 40 CFR 84.64(b) / IPCC AR4), with IPCC AR4, AR5 and AR6 shown alongside.
+1	1030AIM Act exchange value (IPCC AR4)
+1	1030AIM Act exchange value (IPCC AR4)IPCC: AR4 1030 · AR5 858 · AR6 962
+1	124AIM Act exchange value (IPCC AR4)
+1	124AIM Act exchange value (IPCC AR4)IPCC: AR4 124 · AR5 138 · AR6 164
+1	1370AIM Act exchange value (IPCC AR4)
+1	1370AIM Act exchange value (IPCC AR4)IPCC: AR4 1370 · AR5 1330 · AR6 1500Not in the original AR4 Table 2.14; value from the 2012 AR4 errata table, identical to the AIM Act exchange value.
+1	1430AIM Act exchange value (IPCC AR4)
+1	1430AIM Act exchange value (IPCC AR4)IPCC: AR4 1430 · AR5 1300 · AR6 1530
+1	1987, amended 1992https://ozone.unep.org/treaties/montreal-protocol
+1	1987, amended through 2016https://ozone.unep.org/treaties/montreal-protocol
+1	1987, full CFC ban 1 Jan 1996 in developed countrieshttps://ozone.unep.org/treaties/montreal-protocol
+1	2006 (full ban 1 Jan 2017 for new vehicle types)https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32006L0040
+1	2006 (full ban 2017)https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32006L0040
+1	2014-2016 — Mitsubishi Electric and LG follow in Asia; EU market entry begins
+1	2014, revised 2024 (517/2014, 2024 amendment)https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases/f-gas-legislation_en
+1	2017-2019 — EU deployment expands ahead of EU F-Gas threshold tightening
+1	3500AIM Act exchange value (IPCC AR4)
+1	3500AIM Act exchange value (IPCC AR4)IPCC: AR4 3500 · AR5 3170 · AR6 3740
+1	4 on the EPA / AIM Act exchange basis; the strict IPCC AR5 value is 1[2].
+1	40 CFR Part 84 (AIM Act HFC phase-down; January 2025 GWP ≤700 requirement for new equipment manufacture).
+1	40 CFR Part 84, Appendix A — Regulated Substances (AIM Act exchange values, equal to IPCC AR4)
+1	4470AIM Act exchange value (IPCC AR4)
+1	4470AIM Act exchange value (IPCC AR4)IPCC: AR4 4470 · AR5 4800 · AR6 5810
+1	675 (the AIM Act regulatory figure).
+1	675AIM Act exchange value (IPCC AR4)
+1	675AIM Act exchange value (IPCC AR4)IPCC: AR4 675 · AR5 677 · AR6 771
+1	794AIM Act exchange value (IPCC AR4)
+1	794AIM Act exchange value (IPCC AR4)IPCC: AR4 794 · AR5 804 · AR6 914
+1	9810AIM Act exchange value (IPCC AR4)
+1	9810AIM Act exchange value (IPCC AR4)IPCC: AR4 9810 · AR5 8060 · AR6 8690
+1	A primary-source guide to refrigerant recovery under EPA Section 608 (40 CFR Part 82 Subpart F): the four technician certification types, the legal distinctions between recovery / recycling / reclamation, equipment requirements per AHRI Standard 740, evacuation levels by equipment type, the recovery procedure step-by-step for typical residential and small commercial systems, recordkeeping requirements per § 82.166, A2L refrigerant safety for the current AIM Act transition, and the penalty exposure for violations.
+1	A1 (non-flammable, low-toxicity) vs A2L (mildly flammable) vs A3 (flammable) vs B (toxic) shift charge limits, leak detection requirements, and installation procedures.
+1	A1 → A2L (R-X → R-X): A2L equipment (sealed motors, IEC 60335-2-40 charge limits, leak detection in some jurisdictions).
+1	A1 chillers don't require sealed motors, A2L-rated leak detection, or charge limits per ASHRAE 15 A2L provisions.
+1	A1Non-flammableCFC blend (azeotrope) ODS — CFC Production banned · 1996
+1	A1Non-flammableHCFC ODS — HCFC Production banned · 2015
+1	A1Non-flammableHCFC ODS — HCFC Production banned · 2020
+1	A2L (the modern transition class): Equipment must be A2L-rated — sealed motors, ignition-source isolation, leak detection where appropriate, charge limits per IEC 60335-2-40 and ASHRAE 15.
+1	A2L charge limits (IEC 60335-2-40) affect closet vs distributed-indoor-unit decision.
+1	A2L charge limits in small rooms
+1	A2L charge limits per ASHRAE Standard 15 are important for mini-splits in small rooms: Refrigerant Concentration Limit (RCL) for R-X calculated based on room volume; large refrigerant charges in small rooms may exceed safety limits without additional ventilation.
+1	A2L charge limits per refrigerant (IEC 60335-2-40 Table CC.1)
+1	A2L equipment design (sealed motors, leak detection in some installations, charge limits per UL 60335-2-89) mitigates the flammability risk to acceptable levels for commercial refrigeration[6][7].
+1	A2L equipment design (sealed motors, leak detection, charge limits, ignition-source isolation per UL 60335-2-40) mitigates the flammability risk to acceptable levels for residential applications[5].
+1	A2L equipment design (sealed motors, leak detection, charge limits, ignition-source isolation) mitigates the flammability risk to acceptable levels.
+1	A2L equipment design requirements apply per UL 60335-2-40 — sealed compressor motors, A2L-rated leak detection in some installations, ignition-source isolation in the refrigerant circuit[6].
+1	A2L equipment design, charge limits, leak detection, and service procedures apply per UL 60335-2-40 and ASHRAE 15.
+1	A2L equipment includes sealed motors, leak detection sensors, charge limits, and ignition-source isolation that mitigate the flammability risk to acceptable levels.
+1	A2L equipment requirements per UL 60335-2-89
+1	A2L handling requires charge limits per UL 60335-2-40, leak detection, no open flames in the service environment, and A2L-rated recovery cylinders.
+1	A2L installations have charge limits, mechanical room ventilation requirements, and leak detection mandates that vary by jurisdiction.
+1	A2L mild flammability: low burning velocity, but requires A2L-rated equipment, leak detection, and ventilation per UL 60335-2-40 / ASHRAE 15.
+1	A2L mildly flammable, GWP 1 (EPA SNAP / AIM Act basis; <1 per strict AR5), no temperature glide.
+1	A2L refrigerant safety (the AIM Act transition)
+1	A2L refrigerants — R-X, R-X, R-X, R-X, R-X, R-X and others — are the new-equipment replacements for high-GWP A1 refrigerants under the AIM Act phase-down.
+1	A2L requires equipment-level safety design — sealed motors, charge limits per ASHRAE 15, and refrigerant leak detection where applicable[5].
+1	A2L safety class requires nitrogen-purged brazing (standard HFC practice anyway), A2L-rated leak detection, A2L recovery cylinders (yellow with red stripe), and charge limits per UL 60335-2-40 and ASHRAE 15[5][6].
+1	A2L safety class requires specific procedures: no open flames during service (nitrogen purge for brazing — standard practice for any HFC), A2L-rated leak detection sensors, charge limits per UL 60335-2-40 and ASHRAE 15[5][6].
+1	A2L safety class requires: A2L-rated charge limits per UL 60335-2-40 and ASHRAE 15; refrigerant leak detection sensors; no open flames during service (brazing requires evacuation and venting); A2L-rated recovery cylinders (yellow with red top stripe); technician training on A2L handling beyond standard EPA Section 608.
+1	A2L safety class requires: A2L-rated charge limits per UL 60335-2-40 and ASHRAE 15; refrigerant leak detection sensors; no open flames during service; A2L-rated recovery cylinders (yellow with red top stripe); technician A2L handling training beyond standard EPA Section 608.
+1	A2L safety class requires: A2L-rated equipment design (sealed motors or appropriate ignition-source isolation), leak detection per ASHRAE 15, A2L-rated recovery cylinders (yellow with red top stripe), and no open flames during refrigerant service.
+1	A2L-rated equipment, charge limits, leak detection (IEC 60335-2-40)
+1	A2Ls like R-X and R-X are the AIM Act's intended replacement chemistry — they're below the 700 GWP threshold that triggers Technology Transitions equipment-sale restrictions, so production and import are not under the same quota pressure.
+1	A3 hydrocarbon equipment (R-X) is widely available in EU markets but more limited in the US.
+1	Acceleration is expected through 2026-2030 as standards align with EU practice.
+1	AIM Act (2020, implementing Kigali Amendment).
+1	AIM Act (2020) and EU F-Gas Regulation (2014, revised 2024): ammonia unaffected.
+1	AIM Act (40 CFR Part 84) — HFC phase-down schedule, sector compliance dates, allowance allocations.
+1	AIM Act (40 CFR Part 84) — phase-down schedule for high-GWP refrigerants driving retrofit and new-equipment decisions.
+1	AIM Act (American Innovation and Manufacturing Act of 2020), Public Law 116-260 Division S.
+1	AIM Act (Public Law 116-260) and EPA implementation rulemaking — HFC phase-down schedule
+1	AIM Act 700-GWP threshold, EU F-Gas 150-GWP threshold marked.
+1	AIM Act directed EPA to phase down US production and consumption of 18 specific HFCs by 85% over 15 years.
+1	AIM Act exchange value (IPCC AR4)
+1	AIM Act exchange values are the IPCC AR4 values.
+1	AIM Act exposure, current allowance status, A2L transition timeline.
+1	AIM Act HFC production phase-down — % of 2011-2013 baseline
+1	AIM Act HFC, 84.64 GWP 124 — below every 40 CFR 84.54 limit; no new-equipment restriction.
+1	AIM Act HFC, 84.64 GWP 137 — below every 40 CFR 84.54 limit; no new-equipment restriction.
+1	AIM Act HFC, 84.64 GWP 140 — below every 40 CFR 84.54 limit; no new-equipment restriction.
+1	AIM Act production and consumption allowances step down over time — a 70% reduction from baseline in 2029, 80% in 2034, and 85% in 2036 (equivalently 30%, 20%, and 15% of baseline; 42 U.S.C. 7675(e)(2)(C)) — tightening R-X availability progressively[3].
+1	AIM Act production and consumption allowances step down to 30% of baseline in 2029-2033, 20% in 2034-2035, and 15% of baseline in 2036 and after (42 U.S.C. 7675(e)(2)(C))[3].
+1	AIM Act prohibits R-X in new commercial refrigeration.
+1	AIM Act prohibits R-X in new equipment; for existing equipment, low-GWP retrofit options include R-X (Solstice N40) and R-X (Opteon XP40).
+1	AIM Act restrictions begin in 2025 for many commercial refrigeration end-use categories; EU F-Gas Regulation has restricted R-X since 2020 for most new equipment.
+1	AIM Act timeline — what happens through 2036
+1	All 60 refrigerants sorted by ASHRAE class with phase-down status.
+1	Although R-X's ODP is low compared to R-X's 0.055 or R-X's 1.0, the Montreal Protocol's structure phased out all HCFCs on a defined timeline regardless of relative ODP magnitude.
+1	An R-X system retrofitted with R-X would need a new compressor, new safety systems, and new charge limits — at which point the economics favor a full equipment replacement.
+1	And R-X's charge limit under IEC 60335-2-24 aligns well with the ~50–150 g charge sizes used in domestic units.
+1	Application-specific suitability: R-X for commercial refrigeration; R-X for industrial; R-X/R-X/R-X for small commercial and EU residential heat pumps.
+1	As a CFC-containing blend, R-X was banned alongside pure CFCs even though its bulk is the HCFC R-X.
+1	As a CFC-containing blend, R-X was banned alongside pure R-X.
+1	As future EU F-Gas thresholds may tighten beyond the current 750-GWP chiller cap and AIM Act may add new technology transitions, R-X's lower baseline gives the chemistry a longer regulatory runway than pure R-X.
+1	As of 2026, the US is in the second AIM Act tier: 60% of baseline (40% reduction from 2011-2013 average).
+1	As R-X, R-X, R-X face AIM Act and EU F-Gas restrictions, R-X production volumes decrease.
+1	As these blends face AIM Act and EU F-Gas restrictions, R-X production volumes decrease.
+1	ASHRAE 15 charge limits for R-X in occupied spaces address this[5].
+1	ASHRAE 15 machine-room monitoring
+1	ASHRAE 15 sets occupancy-based refrigerant quantity limits by safety class.
+1	ASHRAE 15 specifies maximum refrigerant concentration limits per occupied space; R-X system installations must comply with these limits or include refrigerant leak detection with ventilation interlock[5].
+1	ASHRAE 34-2022 class for every refrigerant with A2L deep-dive and IEC 60335-2-40 charge limits.
+1	ASHRAE A2L, GWP 1 (EPA SNAP / AIM Act basis; ≈1 per strict AR5/AR6).
+1	ASHRAE A2L, GWP 140 — meets the EU F-Gas Regulation 150 threshold.
+1	ASHRAE Standard 15-2022 — A2L charge limits for refrigeration systems
+1	ASHRAE Standard 15-2022 — Safety Standard for Refrigeration Systems (A2L charge limits)
+1	ASHRAE standards: ANSI/ASHRAE Standard 15-2022 (Safety Standard for Refrigeration Systems — A2L charge limits + RCL calculations).
+1	B1 refrigerants require enhanced machine-room ventilation and leak detection per ASHRAE 15 — the design refrigerant concentration limit is lower for B1 than for A1, meaning more aggressive ventilation rates and lower-setpoint sensors.
+1	B1 toxicity — equipment-room provisions per ASHRAE 15
+1	B1 toxicity classification requires: (1) machine-room ventilation per ASHRAE 15 with B1-appropriate design; (2) leak detection with sensors set below the B1 refrigerant concentration limit; (3) industrial hygiene practices during service (avoid prolonged inhalation, use fume extraction during repairs).
+1	B1Toxic, non-flammableHFC (pure) AIM Act HFC
+1	Banned (US)1 Jan 2020[4]
+1	Banned because R-X is a CFC.
+1	Banned for production in 1996 under the Montreal Protocol because the R-X component is a CFC.
+1	Banned for production in the US on January 1, 1996 under the Montreal Protocol.
+1	Banned globally under Montreal Protocol since 1 January 1996.
+1	Banned globally1 Jan 1996[4]
+1	Banned1 Jan 2020[4]
+1	Below current chiller-segment thresholds in the US (AIM Act 700-GWP threshold) and EU (F-Gas chiller 750-GWP threshold) — R-X is permitted for new equipment in those categories.
+1	Both are A2L, both have GWP < 1, but they're not interchangeable — R-X for automotive AC (mandated on new light vehicles in EU and US), R-X for stationary chillers.
+1	Both are ASHRAE class A3 (higher flammability), so equipment and handling are governed by A3 charge limits per IEC 60335-2-40, but they serve different applications: R-X in commercial refrigeration and heat pumps, R-X in small domestic appliances.
+1	Both are below the 1500 threshold that some EU F-Gas quotas key on; the difference is negligible in either direction.
+1	Both are designed to be just under the EU F-Gas 150-GWP threshold for some commercial refrigeration categories.
+1	Both are pure HFOs with very low GWP — GWP 1 for both on the EPA SNAP / AIM Act basis, and below 1 (R-X) to about 1 (R-X) under strict IPCC AR5/AR6.
+1	Both are very-low-GWP A2L blends below the EU F-Gas 150 threshold.
+1	Both face phase-down restrictions for new equipment beginning 2025.
+1	Both have GWP 146 (below the EU F-Gas 150-GWP threshold); R-X is the lower-glide of the two (~14°F vs R-X's ~22°F).
+1	Both have GWP 146 (published on the AR4 / EPA SNAP exchange basis used for blend GWP math).
+1	Both R-X and R-X are HFC blends facing AIM Act phase-down for new equipment categories.
+1	Both R-X and R-X face AIM Act phase-down pressure for new equipment specification.
+1	Both refrigerants use POE lubricant and A2L-certified equipment per UL 60335-2-40 / IEC 60335-2-40.
+1	Both refrigerants will be commercially serviceable through the 2030s; both clear the AIM Act 700-GWP threshold; both use POE oil and require A2L service procedures.
+1	Both require A2L-rated equipment with sealed motors, charge limits, and leak-detection accommodations.
+1	Both well above the AIM Act 700-GWP threshold for new residential AC equipment.
+1	Building insurance + equipment warranty often reference compliance with ASHRAE 15 + UL 60335-2-40 (A2L) + IIAR 2/9 (ammonia).
+1	By 2026 standards R-X is unviable on multiple criteria (ODP, GWP) — the 1996 ban removed it from new equipment well before GWP became the constraining concern.
+1	Cannot be sold to third parties without first being reclaimed (a § 82.158 prohibition that protects buyers from mixed/contaminated material).
+1	Capital cost is higher than R-X / R-X alternatives but operating cost and zero phase-down risk favor R-X for installations expected to operate 15-25 years.
+1	Carrier's original "Puron" brand was applied to R-X starting in 1996; "Puron Advance" extends the brand to the AIM Act-compliant R-X replacement.
+1	CFC production banned 1 Jan 1996https://www.epa.gov/ods-phaseout
+1	CFC production banned 1996.
+1	Charge limit calculation per room floor area: m_max = LFL × 4 × A^0.5 × h_0 (LFL = lower flammability limit, A = room area, h_0 = installation height).
+1	Charge limit revisions to UL 60335 are working through the standards-development process; residential US R-X heat pump availability is currently limited to small monobloc units.
+1	Charge limits — the practical A2L constraint
+1	Charge limits in IEC 60335-2-40 ensure that even total refrigerant release into the smallest enclosed space served by the equipment can't reach the lower flammability limit.
+1	Charge limits per ASHRAE 15 and IEC 60335-2-40 typically 150–500 g for consumer-facing self-contained equipment.
+1	Charge limits per IEC 60335-2-24 typically 150 g maximum for household refrigerators.
+1	Charge limits per IEC 60335-2-40/89 are equipment-specific — verify against the equipment data plate before adding refrigerant[4][5].
+1	Charge limits per IEC 60335-2-89 are workable for these applications (typically 150-500g) and the equipment design (sealed system, no field service of refrigerant) handles A3 safety naturally.
+1	Charge limits per UL 60335-2-40 (typically ~1.84 kg / 4 lb maximum in unventilated rooms for residential split systems; larger systems require A2L-compliant equipment design with sealed circuits and leak detection).
+1	Charge limits typically <150g for general applications under IEC 60335-2-40; commercial refrigeration limits per IEC 60335-2-89 allow somewhat larger charges in sealed equipment.
+1	Charge limits under IEC and ASHRAE typically cap residential A3 systems at very small sizes — appropriate for small refrigerators (R-X) but not split-system AC.
+1	Commercial refrigeration (vending, beverage coolers, display cases): transitioning to R-X-based low-GWP blends or R-X (propane) where charge limits permit.
+1	Commercial refrigeration with A2L (R-X, R-X) follows IEC 60335-2-89 with its own charge limit framework — higher limits because equipment typically sits in dedicated rooms or large commercial spaces.
+1	Compare to alternatives: pure R-X at 675, R-X (R-X/R-X 67/33 with R-X) at 698, R-X at 733 (which exceeds AIM Act).
+1	Complete ductless mini-split + variable refrigerant flow (VRF) reference: 5-type system taxonomy (single-zone wall-mount + multi-zone + ducted mini-split + ceiling cassette + floor-mount), cold-climate mini-split deep dive covering Mitsubishi Electric Hyper-Heat (H2i), Daikin LV Series + Aurora, Bosch Climate 5000 BHP, Fujitsu Halcyon, LG Multi V S, Carrier Performance, with honest assessment of -13°F to -15°F rated capacities, multi-zone branch box architecture + sizing pitfalls (the oversized-outdoor-unit problem), commercial VRF systems (Mitsubishi City Multi, Daikin VRV, LG Multi V, Samsung DVM, Toshiba Carrier, Hitachi, Panasonic) including heat recovery vs heat pump VRF, Manual J + Manual S sizing methodology (still required for mini-splits), refrigerant lineset specifications (length, lift, insulation), electrical service + dedicated circuit requirements, condensate drainage including pump considerations, A2L refrigerant transition (R-X dominant + R-X emerging + R-X legacy) with ASHRAE 15 Refrigerant Concentration Limit calculations for small rooms, complete 14-manufacturer brand vendor comparison, DIY mini-splits (MrCool, Pioneer, Senville) with explicit EPA Section 608 caveats, 9 common installation failures specific to mini-splits, AHRI Directory + ENERGY STAR Most Efficient equipment verification, cost framework by system class, mini-split-specific maintenance procedures.
+1	Complete mini-split + variable refrigerant flow reference: 5-type taxonomy (single-zone, multi-zone, ducted mini, ceiling cassette, floor-mount), cold-climate mini-split deep dive (Mitsubishi Hyper-Heat H2i, Daikin LV Series, Bosch Climate 5000 BHP, Fujitsu Halcyon — rated to -13°F to -15°F), multi-zone branch box architecture + sizing pitfalls, commercial VRF (Mitsubishi City Multi, Daikin VRV, LG Multi V, Samsung DVM, Toshiba), Manual J sizing (still required), refrigerant lineset specs, electrical + condensate considerations, A2L charge limits per ASHRAE 15, 14-brand vendor comparison, DIY mini-splits with EPA 608 caveats (MrCool, Pioneer, Senville), 9 common installation failures.
+1	Confirm the indoor equipment is A2L-rated and the room volume meets the charge-limit table (UL 60335-2-40 in the US / IEC 60335-2-40).
+1	CoolProp is updated periodically; ASHRAE handbooks refresh on a 4-year cycle (Refrigeration 2022, Fundamentals 2021, HVAC S&E 2024); ASHRAE Standard 34 updates every 3-4 years (most recent 2022); AIM Act technology transition rules update as sectors phase in; equipment OEM service literature updates per-model.
+1	Copeland's AE4-1388 R-X (Feb 2025) sets the field rule for heater energization above documented refrigerant-charge limits — the heater must be powered a minimum of 12 hours before first start (also required after any long power outage or extended off period) to boil the migrated refrigerant out of the crankcase oil before the compressor sees load.
+1	Decision factors: (1) equipment age — over 15 years and full replacement is usually more cost-effective; (2) leak history — multiple leaks point to system condition issues that retrofit won't fix; (3) future-proofing — R-X faces its own AIM Act phase-down, so retrofit buys time but not permanently; (4) energy cost differential — new R-X or R-X equipment is ~20-30% more efficient than R-X era equipment.
+1	Despite R-X's relatively low ODP (0.02), the Montreal Protocol HCFC schedule mandated complete phase-out[3].
