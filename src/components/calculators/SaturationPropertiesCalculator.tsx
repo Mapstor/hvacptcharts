@@ -39,7 +39,7 @@ export function SaturationPropertiesCalculator({ initialSlug = "r-410a" }: { ini
   }, [r, slug, tempInput, tempUnit]);
 
   return (
-    <div className="space-y-4">
+    <div data-src="dataset" className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
         <label htmlFor="sp-refrig" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Refrigerant</label>
         <RefrigerantSelector id="sp-refrig" value={slug} onChange={setSlug} />

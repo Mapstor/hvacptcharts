@@ -198,6 +198,7 @@ export function PTDataTable({ displayName, ptChart, hasGlide, applicationGroup }
   return (
     <div
       ref={containerRef}
+      data-src="dataset"
       className="pt-print-target rounded-xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
     >
       {/* Print-only header — hidden on screen, shown in print/PDF output.

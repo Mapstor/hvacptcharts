@@ -53,7 +53,7 @@ export function SubcoolingCalculator({ initialSlug = "r-410a" }: { initialSlug?:
   const diagnostic = computation.kind === "ok" ? diagnoseSubcooling(computation.subcoolingF) : null;
 
   return (
-    <div className="space-y-4">
+    <div data-src="dataset" className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
         <label htmlFor="sc-refrig" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Refrigerant</label>
         <RefrigerantSelector id="sc-refrig" value={slug} onChange={setSlug} />

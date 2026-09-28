@@ -54,7 +54,7 @@ export function SuperheatCalculator({ initialSlug = "r-410a" }: { initialSlug?: 
   const diagnostic = computation.kind === "ok" ? diagnoseSuperheat(computation.superheatF) : null;
 
   return (
-    <div className="space-y-4">
+    <div data-src="dataset" className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
         <label htmlFor="sh-refrig" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Refrigerant</label>
         <RefrigerantSelector id="sh-refrig" value={slug} onChange={setSlug} />

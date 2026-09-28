@@ -23,7 +23,7 @@ export function PTDatasheetTable({ displayName, rows, primaryDatasheet }: PTData
     ? `${sorted[0].psig} to ${sorted[sorted.length - 1].psig} psig`
     : "empty";
   return (
-    <div>
+    <div data-src="dataset">
       <div className="mb-3 rounded-md border border-emerald-200 bg-emerald-50/50 p-3 text-sm dark:border-emerald-900/40 dark:bg-emerald-950/20">
         <p className="text-emerald-900 dark:text-emerald-100">
           <strong>Reproduced at datasheet resolution</strong> from the

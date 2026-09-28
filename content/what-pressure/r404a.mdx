@@ -32,7 +32,7 @@ operatingRanges:
 narrativeIntro: |
   Commercial refrigeration on R-404A differs from residential AC in two ways that affect pressure interpretation. First, the evaporator setpoint varies by application — a walk-in cooler at 25°F has very different suction pressure than a frozen-food case at -15°F. Second, refrigeration cases cycle on and off through their differential band, so steady-state readings need the system to be in the "on" portion of the cycle for at least 10-15 minutes.
 
-  R-404A is a near-azeotropic blend (~2°F glide), so single-curve saturation values are adequate for most service work. Saturation pressure at 70°F: 149 PSIG. Operating pressures depend on evaporator setpoint, ambient, condenser cleanliness, charge, and the system's specific design.
+  R-404A is a near-azeotropic blend (~1°F glide), so single-curve saturation values are adequate for most service work. Saturation pressure at 70°F: 149 PSIG. Operating pressures depend on evaporator setpoint, ambient, condenser cleanliness, charge, and the system's specific design.
 
 diagnosticSteps:
   - title: "Identify the evaporator setpoint and verify the case is running"
@@ -43,7 +43,7 @@ diagnosticSteps:
   - title: "Compare to expected ranges by evaporator setpoint AND ambient"
     text: "Use the operating-range table for the closest matching combination. For temperatures between the listed values, interpolate roughly. High discharge with low suction at a typical evaporator setpoint suggests undercharge or restriction. Low discharge with normal suction suggests low ambient or compressor inefficiency."
   - title: "Verify with superheat and subcooling, account for the small glide"
-    text: "R-404A has ~2°F glide — small enough that bubble vs dew distinction is operationally minor but worth accounting for on precise charge measurements. Use the dew curve for superheat math, bubble for subcooling. Classic patterns: high SH + low SC = undercharge; low SH + high SC = overcharge."
+    text: "R-404A has ~1°F glide — small enough that bubble vs dew distinction is operationally minor but worth accounting for on precise charge measurements. Use the dew curve for superheat math, bubble for subcooling. Classic patterns: high SH + low SC = undercharge; low SH + high SC = overcharge."
     tools: ["Contact temperature probe with insulation", "Pipe clamp adapters for commercial refrigeration line sizes"]
 
 faqs:

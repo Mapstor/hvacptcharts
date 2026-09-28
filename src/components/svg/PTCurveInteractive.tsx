@@ -41,7 +41,7 @@ export function PTCurveInteractive({
   const maxTempF = useMemo(() => Math.max(...points.map((p) => p.tempF)), [points]);
 
   return (
-    <div className={`space-y-3 ${className}`}>
+    <div data-src="dataset" className={`space-y-3 ${className}`}>
       <div className="flex flex-wrap items-center gap-3 text-sm">
         <div className="flex items-center gap-2">
           <span className="text-xs uppercase tracking-wide text-zinc-500">Pressure</span>

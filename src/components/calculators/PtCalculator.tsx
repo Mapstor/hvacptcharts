@@ -64,7 +64,7 @@ export function PtCalculator({ initialSlug = "r-410a" }: { initialSlug?: string 
   }, [r, slug, direction, tempInput, tempUnit, pressureInput, pUnit]);
 
   return (
-    <div className="space-y-4">
+    <div data-src="dataset" className="space-y-4">
       {/* Refrigerant */}
       <div className="flex flex-wrap items-center gap-3">
         <label htmlFor="pt-refrig" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Refrigerant</label>

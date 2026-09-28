@@ -727,7 +727,7 @@ function RichContent() {
           depend on charge, ambient, load, superheat, subcooling, and equipment-specific
           conditions.
         </p>
-        <div className="overflow-x-auto">
+        <div data-src="dataset" className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr>
@@ -773,7 +773,7 @@ function RichContent() {
           refrigerants. All values are PSIG from CoolProp 7.2.0. For zeotropic blends,
           bubble / dew values shown.
         </p>
-        <div className="overflow-x-auto">
+        <div data-src="dataset" className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr>
@@ -875,7 +875,7 @@ function RichContent() {
           The PT calculator supports °F / PSIG and °C / kPa unit pairs. Other pressure unit
           conversions are sometimes needed in HVAC service:
         </p>
-        <div className="overflow-x-auto">
+        <div data-src="dataset" className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr>

@@ -193,7 +193,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
             ) : null}
 
             {/* Stats strip — 4 derived from data layer, always present */}
-            <div className="mt-5 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+            <div data-src="dataset" className="mt-5 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
               <StatBox
                 icon={<Gauge className="h-4 w-4" />}
                 label="Saturation @ 70°F"
@@ -320,7 +320,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                 <div className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-zinc-500">
                   Common service temperatures
                 </div>
-                <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
+                <div data-src="dataset" className="grid grid-cols-3 gap-2 sm:grid-cols-6">
                   {QUICK_TEMPS_F.map((t) => (
                     <QuickLookup
                       key={t}
@@ -1166,7 +1166,7 @@ function PropertiesGrid({ r }: { r: Refrigerant }) {
   }
 
   return (
-    <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <ul data-src="dataset" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {rows.map((row) => (
         <li
           key={row.label}

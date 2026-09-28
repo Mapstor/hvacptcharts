@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "node -v && pnpm run verify-redirects && pnpm run verify-data && pnpm run verify-diagnostics && pnpm run verify-gauge-operating-points && pnpm run verify-no-psig-literals && pnpm run verify-no-overlay && next build && pnpm run verify-metadata && pnpm run verify-content-dates && pnpm run verify-no-generator-text && pnpm run validate-schema",
+    "build": "node -v && pnpm run verify-redirects && pnpm run verify-data && pnpm run verify-diagnostics && pnpm run verify-gauge-operating-points && pnpm run verify-no-psig-literals && pnpm run verify-no-overlay && next build && pnpm run verify-metadata && pnpm run verify-content-dates && pnpm run verify-no-generator-text && pnpm run verify-numeric-consistency && pnpm run validate-schema",
     "start": "next start",
     "lint": "eslint",
     "generate-data": "node scripts/generate-refrigerant-data.mjs",
@@ -20,6 +20,7 @@
     "update-content-dates": "node scripts/update-content-dates.mjs",
     "verify-redirects": "tsx scripts/verify-redirects.ts",
     "verify-no-psig-literals": "tsx scripts/verify-no-psig-literals.ts",
+    "verify-numeric-consistency": "tsx scripts/verify-numeric-consistency.ts",
     "verify-no-overlay": "tsx scripts/verify-no-overlay.ts",
     "verify-gauge-operating-points": "tsx scripts/verify-gauge-operating-points.ts",
     "validate-schema": "tsx scripts/validate-schema.ts"

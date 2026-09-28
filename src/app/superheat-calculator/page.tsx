@@ -50,7 +50,7 @@ const FAQS = [
   },
   {
     q: "Does this calculator work with R-1234yf and R-454B?",
-    a: "Yes — R-1234yf (mobile AC) and R-454B (residential AC A2L replacement for R-410A) are both supported, along with the full 49 CoolProp-modeled refrigerants in the dataset. For R-454B (zeotropic, ~3°F glide) the calculator uses the dew curve automatically, though the glide is small enough that bubble vs dew rarely changes the SH reading by more than 2-3°F. R-1234yf is pure and uses a single saturation curve.",
+    a: "Yes — R-1234yf (mobile AC) and R-454B (residential AC A2L replacement for R-410A) are both supported, along with the full 49 CoolProp-modeled refrigerants in the dataset. For R-454B (zeotropic, ~2°F glide) the calculator uses the dew curve automatically, though the glide is small enough that bubble vs dew rarely changes the SH reading by more than 2-3°F. R-1234yf is pure and uses a single saturation curve.",
   },
 ];
 
@@ -734,7 +734,7 @@ function RichContent() {
         number={10}
         refrigerant="R-32 / R-454B (A2L)"
         title="R-32 vs R-454B superheat targets — same as R-410A?"
-        scenario="New installation choosing between R-32 (pure) and R-454B (zeotropic ~3°F glide) for residential AC. Field tech asks: do these A2L refrigerants need different superheat targets than R-410A?"
+        scenario="New installation choosing between R-32 (pure) and R-454B (zeotropic ~2°F glide) for residential AC. Field tech asks: do these A2L refrigerants need different superheat targets than R-410A?"
       >
         <Panel title="Target SH comparison" icon={TableIcon}>
           <ComparisonTable
@@ -742,14 +742,14 @@ function RichContent() {
             rows={[
               { label: "R-410A", cells: ["~0°F (near-az)", "8-15°F", "fixed-orifice chart target"] },
               { label: "R-32 (pure)", cells: ["0°F", "8-15°F", "fixed-orifice chart target"] },
-              { label: "R-454B (zeotropic)", cells: ["~3°F", "8-15°F (dew curve)", "fixed-orifice chart target"] },
+              { label: "R-454B (zeotropic)", cells: ["~2°F", "8-15°F (dew curve)", "fixed-orifice chart target"] },
             ]}
           />
         </Panel>
         <VerdictBanner status="info" title="Same target ranges, dew-curve math for R-454B">
           R-32 and R-454B both use the same 8-15°F TXV target as R-410A — OEMs (Carrier,
           Trane, Daikin, Mitsubishi) specify nearly identical service procedures. R-454B&apos;s
-          3°F glide is small enough that bubble vs dew rarely matters at residential
+          2°F glide is small enough that bubble vs dew rarely matters at residential
           operating pressures, but use the dew curve to be exact. This calculator handles
           R-454B&apos;s dew curve automatically.
         </VerdictBanner>
@@ -784,7 +784,7 @@ function RichContent() {
           subcooling (liquid line). Source: CoolProp 7.2.0 saturation data for R-407C.
         </p>
         <p>
-          Glide values across common HVAC blends: R-454B ≈ 3°F, R-448A ≈ 6°F, R-449A ≈ 6°F,
+          Glide values across common HVAC blends: R-454B ≈ 2°F, R-448A ≈ 6°F, R-449A ≈ 6°F,
           R-407C ≈ 11°F, R-454C ≈ 14°F, R-455A ≈ 22°F. Wrong-curve selection on R-455A
           would shift superheat by 22°F — easily enough to invalidate a charging decision
           or trigger an unnecessary compressor protection shutdown.

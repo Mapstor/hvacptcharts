@@ -346,13 +346,13 @@ function RichContent() {
             rows={[
               { input: "R-134a NBP", output: "−15.2°F", note: "standard chiller HFC" },
               { input: "R-1234ze NBP", output: "+0.0°F (15.4°F warmer)", note: "low-pressure HFO" },
-              { input: "R-1234ze P @ 45°F evap", output: "~5 PSIG (vs R-134a 40 PSIG)", note: "much lower" },
+              { input: "R-1234ze P @ 45°F evap", output: "~26 PSIG (vs R-134a 40 PSIG)", note: "much lower" },
             ]}
           />
         </Panel>
         <VerdictBanner status="info" title="R-1234ze runs in mild vacuum on the evaporator side">
           R-1234ze&apos;s NBP at 0°F means at typical chiller evaporator temperatures
-          (45°F), the saturation pressure is only ~5 PSIG — barely above atmospheric and
+          (45°F), the saturation pressure is only ~26 PSIG — barely above atmospheric and
           close to entering vacuum for slightly colder evap temps. R-1234ze chiller
           systems are designed with low-pressure refrigerant management in mind:
           larger-bore piping, purge units to handle non-condensables that enter through

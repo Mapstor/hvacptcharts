@@ -57,7 +57,7 @@ export function RetrofitCompatibilityCalculator({
   };
 
   return (
-    <div className="space-y-5">
+    <div data-src="dataset" className="space-y-5">
       {/* Selectors */}
       <div className="grid grid-cols-1 items-end gap-4 sm:grid-cols-[1fr_auto_1fr]">
         <div>

@@ -44,7 +44,7 @@ export function RefrigerantGWPComparison({
   }
 
   return (
-    <div className={className}>
+    <div className={className} data-src="dataset">
       <p className="mb-2 text-xs uppercase tracking-wide text-zinc-500">{group.label}</p>
       <GWPComparisonBar
         bars={bars}

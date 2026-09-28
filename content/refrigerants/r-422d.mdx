@@ -52,7 +52,7 @@ keyStats:
     context: At 1 atm; close to R-22 pressure envelope
     sourceId: coolprop
   - label: Temperature glide
-    value: "≈8"
+    value: "≈7"
     unit: °F
     context: Zeotropic; use dew curve for superheat, bubble curve for subcooling
     sourceId: coolprop
@@ -84,7 +84,7 @@ narrative:
   serviceNotes: |
     Mineral oil, alkylbenzene, or POE all compatible — the primary retrofit advantage. R-422D can be charged into R-22 equipment without oil change when the existing mineral oil is in good condition.
 
-    The 8°F glide affects service measurement — use dew curve for superheat, bubble curve for subcooling. A1 classification means no A2L procedures required.
+    The 7°F glide affects service measurement — use dew curve for superheat, bubble curve for subcooling. A1 classification means no A2L procedures required.
 
 faqs:
   - q: "What is R-422D used for?"
@@ -117,7 +117,7 @@ faqs:
 
   - q: "Does R-422D have temperature glide?"
     a: |
-      Yes, approximately 8°F at typical operating pressures (CoolProp 7.2.0). Use dew curve for superheat measurement (suction line) and bubble curve for subcooling (liquid line). Modern PT calculators handle this automatically when R-422D is selected.
+      Yes, approximately 7°F at typical operating pressures (CoolProp 7.2.0). Use dew curve for superheat measurement (suction line) and bubble curve for subcooling (liquid line). Modern PT calculators handle this automatically when R-422D is selected.
 
   - q: "Should I use R-422D or R-407C for R-22 retrofit?"
     a: |
@@ -135,9 +135,9 @@ retrofitGuidance:
 
 <TechSection icon="chart" tone="blue" title="Reading the R-422D PT chart">
 
-R-422D's PT chart shows two curves (bubble and dew) — the blend is zeotropic with approximately 8°F glide. Use dew curve at suction pressure for superheat measurement; use bubble curve at discharge pressure for subcooling.
+R-422D's PT chart shows two curves (bubble and dew) — the blend is zeotropic with approximately 7°F glide. Use dew curve at suction pressure for superheat measurement; use bubble curve at discharge pressure for subcooling.
 
-The pressure envelope is close to R-22. At 70°F R-422D bubble is approximately 132 PSIG / dew approximately 118 PSIG (CoolProp 7.2.0); compare to R-22 at 70°F (121 PSIG). Standard 500 PSI manifold gauges handle R-422D — same gauge equipment as R-22 service works for R-422D retrofit.
+The pressure envelope is close to R-22. At 70°F R-422D bubble is approximately 133 PSIG / dew approximately 121 PSIG (CoolProp 7.2.0); compare to R-22 at 70°F (121 PSIG). Standard 500 PSI manifold gauges handle R-422D — same gauge equipment as R-22 service works for R-422D retrofit.
 
 </TechSection>
 
@@ -153,7 +153,7 @@ The A1 safety classification is preserved because the 3.4% R-600a is well below 
 
 <TechSection icon="trending" tone="amber" title="Pressure envelope close to R-22 — retrofit-compatible">
 
-R-422D's pressure envelope tracks R-22 within 10-15% across typical AC operating ranges. At 70°F R-422D bubble (132 PSIG) is 9% above R-22 (121 PSIG); dew (118 PSIG) is 2% below R-22. At 95°F outdoor design, R-422D bubble is approximately 215 PSIG vs R-22's 181 PSIG.
+R-422D's pressure envelope tracks R-22 within 10-15% across typical AC operating ranges. At 70°F R-422D bubble (133 PSIG) is 10% above R-22 (121 PSIG); dew (121 PSIG) is roughly equal to R-22. At 95°F outdoor design, R-422D bubble is approximately 198 PSIG vs R-22's 181 PSIG.
 
 The pressure-envelope match is close enough that R-22 equipment can accept R-422D without compressor or expansion-valve modification. Standard 500 PSI service equipment (R-22 era) handles R-422D operating envelope.
 

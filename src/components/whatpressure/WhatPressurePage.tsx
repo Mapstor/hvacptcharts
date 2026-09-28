@@ -125,7 +125,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
 
         <section className="mb-10">
           <h2 className="mb-3 text-xl font-semibold">Operating pressure ranges</h2>
-          <div className="overflow-x-auto rounded-md border border-zinc-200 dark:border-zinc-800">
+          <div data-src="dataset" className="overflow-x-auto rounded-md border border-zinc-200 dark:border-zinc-800">
             <table className="w-full text-sm">
               <thead className="bg-zinc-50 text-left text-xs uppercase tracking-wide text-zinc-500 dark:bg-zinc-900">
                 <tr>
@@ -181,13 +181,15 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
         {gaugePoint ? (
           <section className="mb-10">
             <h2 className="mb-3 text-xl font-semibold">Design-point view</h2>
-            <SystemGaugesDiagram
-              slug={r.slug}
-              evapTempF={gaugePoint.evapTempF}
-              condTempF={gaugePoint.condTempF}
-              contextLabel={gaugePoint.contextLabel}
-              altDutyNote={gaugePoint.altDutyNote}
-            />
+            <div data-src="dataset">
+              <SystemGaugesDiagram
+                slug={r.slug}
+                evapTempF={gaugePoint.evapTempF}
+                condTempF={gaugePoint.condTempF}
+                contextLabel={gaugePoint.contextLabel}
+                altDutyNote={gaugePoint.altDutyNote}
+              />
+            </div>
           </section>
         ) : null}
 
@@ -206,7 +208,9 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
             readings — operating pressure on a running system varies around these saturation
             values based on charge, ambient, and load.
           </p>
-          <SaturationQuickRefTable r={r} />
+          <div data-src="dataset">
+            <SaturationQuickRefTable r={r} />
+          </div>
           <PtCurveSnapshot r={r} />
           <p className="text-xs text-zinc-500 dark:text-zinc-400">
             {r.displayName} saturation curve over the service temperature range. Source:
@@ -226,7 +230,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
 
         <TechSection icon="thermometer" tone="emerald" title={`${r.displayName} property snapshot`}>
           <Panel title="Quick property reference" icon={TableIcon}>
-            <div className="overflow-x-auto">
+            <div data-src="dataset" className="overflow-x-auto">
               <table className="w-full text-sm">
                 <tbody>
                   <PropertyRow label="Safety class" value={r.safetyClass} />
@@ -299,7 +303,7 @@ export function WhatPressurePage({ id }: WhatPressurePageProps) {
                 ))}
               </ul>
             ) : (
-              <ul className="text-sm space-y-1.5">
+              <ul data-src="dataset" className="text-sm space-y-1.5">
                 <li>
                   <strong>Saturation envelope:</strong> {r.displayName} saturation pressure
                   ranges from{" "}

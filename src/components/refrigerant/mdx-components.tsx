@@ -19,16 +19,16 @@ import { getPressureAtTempF, getRefrigerant } from "@/data/refrigerants";
 function PressureAtTemp({ slug, tempF }: { slug: string; tempF: number | string }) {
   const t = typeof tempF === "number" ? tempF : Number(tempF);
   const p = Number.isFinite(t) ? getPressureAtTempF(slug, t) : null;
-  if (!p) return <span>—</span>;
+  if (!p) return <span data-src="dataset">—</span>;
   const r = getRefrigerant(slug);
   if (r?.physical.hasSignificantGlide) {
     return (
-      <span className="font-mono">
+      <span className="font-mono" data-src="dataset">
         {p.bubble.toFixed(1)}/{p.dew.toFixed(1)} PSIG
       </span>
     );
   }
-  return <span className="font-mono">{p.bubble.toFixed(1)} PSIG</span>;
+  return <span className="font-mono" data-src="dataset">{p.bubble.toFixed(1)} PSIG</span>;
 }
 
 export const mdxComponents = {

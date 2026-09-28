@@ -53,7 +53,7 @@ export function ChargingChartMatrix({
   const reliable = result !== null && result.tsh !== null;
 
   return (
-    <div className="overflow-hidden rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50/50 to-white dark:border-blue-900/40 dark:from-blue-950/20 dark:to-zinc-950">
+    <div data-src="dataset" className="overflow-hidden rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50/50 to-white dark:border-blue-900/40 dark:from-blue-950/20 dark:to-zinc-950">
       <div className="flex items-center gap-2 border-b border-blue-200/60 bg-blue-100/40 px-3 py-2 dark:border-blue-900/30 dark:bg-blue-950/30">
         <Calculator className="h-3.5 w-3.5 text-blue-700 dark:text-blue-300" />
         <span className="text-xs font-semibold uppercase tracking-wider text-blue-900 dark:text-blue-200">

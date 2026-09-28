@@ -35,7 +35,7 @@ export function RefrigerantCharge() {
   }, [slug, nameplateLb, standardLengthFt, actualLengthFt, liquidLineOD, verticalRise]);
 
   return (
-    <div className="space-y-5">
+    <div data-src="dataset" className="space-y-5">
       {/* Refrigerant + nameplate */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>

@@ -59,7 +59,7 @@ export function CombinedCalculator({ initialSlug = "r-410a" }: { initialSlug?: s
   }, [r, slug, liquidP, liquidT, pUnit, tempUnit]);
 
   return (
-    <div className="space-y-5">
+    <div data-src="dataset" className="space-y-5">
       <div className="flex flex-wrap items-center gap-3">
         <label htmlFor="cb-refrig" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Refrigerant</label>
         <RefrigerantSelector id="cb-refrig" value={slug} onChange={setSlug} />

@@ -195,7 +195,9 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
             component pressure-rating review.
           </p>
           <Panel title="Saturation pressure (PSIG) at common service temperatures" icon={TableIcon}>
-            <PressureCompareTable a={a} b={b} />
+            <div data-src="dataset">
+              <PressureCompareTable a={a} b={b} />
+            </div>
           </Panel>
           <PressureDeltaBars a={a} b={b} />
           <p className="text-xs text-zinc-500 dark:text-zinc-400">
@@ -207,12 +209,14 @@ export function ComparisonPage({ fm }: ComparisonPageProps) {
         </TechSection>
 
         <TechSection icon="composition" tone="purple" title="Property differences side by side">
-          <PropertyDeltaPanel a={a} b={b} />
+          <div data-src="dataset">
+            <PropertyDeltaPanel a={a} b={b} />
+          </div>
         </TechSection>
 
         <section className="mb-10">
           <h2 className="mb-3 text-xl font-semibold">Properties side by side</h2>
-          <div className="overflow-x-auto rounded-md border border-zinc-200 dark:border-zinc-800">
+          <div data-src="dataset" className="overflow-x-auto rounded-md border border-zinc-200 dark:border-zinc-800">
             <table className="w-full text-sm">
               <thead className="bg-zinc-50 dark:bg-zinc-900">
                 <tr>
@@ -429,7 +433,7 @@ function RefrigerantSummary({ r, color }: { r: Refrigerant; color: string }) {
         <TypeChip type={r.type} />
         <SafetyClassChip safetyClass={r.safetyClass} size="sm" />
       </div>
-      <dl className="mt-3 grid grid-cols-2 gap-1 text-xs">
+      <dl data-src="dataset" className="mt-3 grid grid-cols-2 gap-1 text-xs">
         <dt className="text-zinc-500">GWP (100-yr)</dt>
         <dd className="font-mono">{gwpText(r.environmental.gwp.headline)}</dd>
         <dt className="text-zinc-500">Lubricant</dt>

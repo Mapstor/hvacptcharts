@@ -55,6 +55,18 @@ pnpm run generate-data  # CoolProp script regenerates data/refrigerants.json
 pnpm run verify-data    # build-time anchor check + critical-pressure invariant
 ```
 
+## Process & port hygiene (non-negotiable)
+
+- **Never kill processes you did not start, and never free a port by force.** Do
+  not run `pkill`/`kill -9` against `next-server`, `node`, dev servers, or
+  anything else — another session or the user may own it. (Task 9 ran
+  `pkill -9 -f next-server` to free a port; that is exactly the failure this rule
+  exists to prevent.)
+- **If a port is busy, use the next free one** (`next dev -p 3201`, `--base
+  http://localhost:3201`, etc.). Do not clear the port; step around it.
+- **Only stop a server you started yourself, in this session**, and stop it
+  gracefully (Ctrl-C / SIGTERM to that specific PID) — never a broad pattern kill.
+
 ## Content dates & commit hygiene (non-negotiable)
 
 Page dates come from `data/content-dates.json`, generated from git history by

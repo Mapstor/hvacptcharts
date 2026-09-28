@@ -110,7 +110,7 @@ export interface GaugeItem {
 
 export function Gauges({ items }: { items: GaugeItem[] }) {
   return (
-    <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+    <div data-src="dataset" className="grid grid-cols-2 gap-2 sm:grid-cols-4">
       {items.map((g, i) => {
         const tone =
           g.side === "high"
@@ -141,7 +141,7 @@ export interface LookupRow {
 
 export function Lookups({ rows }: { rows: LookupRow[] }) {
   return (
-    <div className="space-y-1.5">
+    <div data-src="dataset" className="space-y-1.5">
       {rows.map((r, i) => (
         <div key={i} className="flex flex-wrap items-center gap-2 text-sm">
           <span className="rounded bg-zinc-200/70 px-2 py-0.5 font-mono tabular-nums dark:bg-zinc-800/60">
@@ -168,7 +168,7 @@ export interface DerivedRow {
 
 export function Derived({ rows }: { rows: DerivedRow[] }) {
   return (
-    <div className="space-y-1.5">
+    <div data-src="dataset" className="space-y-1.5">
       {rows.map((r, i) => {
         const Icon = VERDICT_ICON[r.verdict];
         return (
@@ -193,7 +193,7 @@ export interface ComparisonRow {
 
 export function ComparisonTable({ headers, rows }: { headers: string[]; rows: ComparisonRow[] }) {
   return (
-    <div className="overflow-x-auto">
+    <div data-src="dataset" className="overflow-x-auto">
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-zinc-200 text-[10px] uppercase tracking-wider text-zinc-500 dark:border-zinc-800">
