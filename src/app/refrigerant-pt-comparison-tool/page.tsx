@@ -284,7 +284,7 @@ function RichContent() {
         <VerdictBanner status="info" title="R-32 runs 4-8% higher than R-410A">
           Within the drop-in range. R-410A-rated 800 PSI service equipment handles R-32
           without modification. Equipment-design accommodations for R-32 are A2L
-          flammability (sealed motors, IEC 60335-2-40 charge limits) rather than pressure
+          flammability (A2L-listed equipment, IEC 60335-2-40 charge limits) rather than pressure
           ratings.
         </VerdictBanner>
       </ServiceProblem>
@@ -293,7 +293,7 @@ function RichContent() {
         number={3}
         refrigerant="R-404A → R-454C"
         title="Commercial LT walk-in low-GWP transition"
-        scenario="Supermarket R-404A walk-in freezer. AIM Act prohibits R-404A in new commercial refrigeration. Comparing R-454C (sub-150 GWP, A2L) as the replacement for new equipment specification."
+        scenario="Supermarket R-404A walk-in freezer. Under the AIM Act, new R-404A equipment is restricted across 40 CFR 84.54 categories by subsector and date (e.g. retail-food remote condensing units from July 27, 2026, 84.54(c)(11)(i)). Comparing R-454C (sub-150 GWP, A2L) as the replacement for new equipment specification."
       >
         <Panel title="Comparison at LT operating points" icon={TableIcon}>
           <ComparisonTable
@@ -322,7 +322,7 @@ function RichContent() {
         number={4}
         refrigerant="R-134a → R-1234yf"
         title="Mobile AC R-134a to R-1234yf — pressure envelope was engineered to match"
-        scenario="2017+ vehicle production transitioned from R-134a to R-1234yf for global GWP compliance (EU MAC Directive, US EPA SNAP). R-1234yf was engineered specifically to preserve R-134a-compatible mobile AC equipment design."
+        scenario="Vehicle production transitioned from R-134a to R-1234yf for GWP compliance under the EU MAC Directive — new vehicle types from 1 January 2011 and all new vehicles from 1 January 2017 (Directive 2006/40/EC) — and under US EPA SNAP. R-1234yf was engineered specifically to preserve R-134a-compatible mobile AC equipment design."
       >
         <Panel title="Comparison at MAC operating points" icon={TableIcon}>
           <ComparisonTable
@@ -414,8 +414,8 @@ function RichContent() {
           </li>
           <li>
             <strong>Safety classification.</strong> A1 (non-flammable, low-toxicity) vs A2L
-            (mildly flammable) vs A3 (flammable) vs B (toxic) shift charge limits, leak
-            detection requirements, and installation procedures. R-32 / R-454B are A2L;
+            (mildly flammable) vs A3 (flammable) vs B (toxic) shift charge limits, refrigerant
+            detection where the standard requires it, and installation procedures. R-32 / R-454B are A2L;
             R-410A is A1. Same pressure envelope, different safety regime.
           </li>
           <li>

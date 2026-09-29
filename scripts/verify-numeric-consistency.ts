@@ -907,6 +907,96 @@ function checkGwp(unit: string, masked: string, mentions: RefMention[], page: Pa
     const subject = near ?? (hasDesigBefore ? null : page.primaries.length === 1 ? page.primaries[0] : null);
     evaluate(m[1], subject, numIdx);
   }
+
+  // (N1) "R-xxx (NNN)" and "R-xxx at NNN" — a GWP figure attached DIRECTLY to a
+  // designation without the word "GWP", but ONLY inside a GWP / AIM / threshold
+  // sentence so a year "(1987)", a charge "(2 lb)" or a paragraph "(a)(1)" is not
+  // read as a GWP. A direct value label is not a cross-basis rounding, so it must
+  // match one of the refrigerant's OFFICIAL GWP values exactly (±0.5 for integer
+  // values, ±0.06 for the sub-unity HFO/HC decimals) — catching e.g. R-454B (466)
+  // when the dataset (headline 465, AR5 467) has no 466.
+  if (/gwp|aim act|\b700\b|\b150\b/i.test(unit)) {
+    const evaluateExact = (valStr: string, subject: string | null, numIdx: number) => {
+      if (evaluated.has(numIdx)) return;
+      evaluated.add(numIdx);
+      if (!subject) return;
+      if (/84\.64/.test(unit.slice(Math.max(0, numIdx - 42), numIdx))) return;
+      if (precededByBound(masked, numIdx) || precededByBound(unit, numIdx)) return;
+      const claimed = parseFloat(valStr.replace(/,/g, ""));
+      const subjVals = gwpValuesOf(subject);
+      if (subjVals.some((v) => gwpTight(claimed, v))) return; // matches an official value
+      const other = [...relevant].filter((s) => s !== subject).find((s) => gwpValuesOf(s).some((v) => gwpTight(claimed, v)));
+      if (other) { pushInfo(page, "e", other, unit, `GWP ${valStr}`, `matches ${other}`, "attributed to another named refrigerant"); return; }
+      const headline = gwpNum(getRefrigerant(subject)!.environmental.gwp.headline);
+      push(page, "e", subject, unit, `GWP ${valStr}`, `${subject} headline ${headline} (official ${subjVals.join("/")})`, false, "GWP-by-name mismatch");
+    };
+    const PAREN_RE = /(R[-‑–—\s]?\d{1,4}[A-Za-z]{0,4}(?:\([A-Za-z]\))?)\s*\(\s*(\d{1,3}(?:,\d{3})+|\d{1,5})\s*\)/gi;
+    for (const m of unit.matchAll(PAREN_RE)) {
+      const subject = DESIG_TO_SLUG.get(normDesig(m[1])) ?? null;
+      const numIdx = (m.index ?? 0) + m[0].lastIndexOf(m[2]);
+      evaluateExact(m[2], subject, numIdx);
+    }
+    // The value after "at" must be a complete integer GWP: not followed by a
+    // digit / decimal / ratio-slash / percent / degree (so a mass-fraction list
+    // "at 3/21.5/75.5", a decimal "24.3", or "at 15°F" is not read as a GWP).
+    const AT_RE = /(R[-‑–—\s]?\d{1,4}[A-Za-z]{0,4}(?:\([A-Za-z]\))?)\s+at\s+(\d{1,3}(?:,\d{3})+|\d{1,5})(?![0-9/,%°]|\.\d|\s*(?:psi|yr|year|ppm|lb|kg|hp|mm|cm))/gi;
+    for (const m of unit.matchAll(AT_RE)) {
+      const subject = DESIG_TO_SLUG.get(normDesig(m[1])) ?? null;
+      const numIdx = (m.index ?? 0) + m[0].lastIndexOf(m[2]);
+      evaluateExact(m[2], subject, numIdx);
+    }
+  }
+}
+
+/** Tight GWP match for direct value labels (charts, "R-xxx (NNN)"): within
+ *  integer display rounding (±0.5), NOT the 1% cross-basis leniency — so a bar
+ *  or paren value that rounds a decimal headline (R-290 3.3 → "3") passes while
+ *  an off-by-one like R-454B "466" vs 465 is caught. */
+function gwpTight(claimed: number, v: number): boolean {
+  return Math.abs(claimed - v) <= 0.5;
+}
+
+/**
+ * (N1) GWP chart / SVG check. extractUnits() strips <svg>, so the chart bars are
+ * checked here on the raw HTML: for every SVG whose accessible text mentions GWP,
+ * each bar's designation is paired with the number that labels it and checked
+ * against that refrigerant's dataset GWP values. Display-rounded "k" values
+ * (e.g. "1.4k") are skipped — only exact numeric labels are verified.
+ */
+function checkGwpChartsHtml(html: string, page: PageInfo) {
+  const $ = cheerio.load(html);
+  $("svg").each((_, svg) => {
+    const $svg = $(svg);
+    const texts = $svg.find("text, tspan").map((_, t) => $(t).text().trim()).get().filter(Boolean);
+    const aria = `${$svg.attr("aria-label") ?? ""} ${$svg.find("title").text()} ${texts.join(" ")}`;
+    if (!/\bGWP\b/i.test(aria)) return; // not a GWP chart
+    for (let i = 0; i < texts.length; i++) {
+      const dm = texts[i].match(/^(R[-‑–—\s]?\d{1,4}[A-Za-z]{0,4}(?:\([A-Za-z]\))?)\b/);
+      if (!dm) continue;
+      const slug = DESIG_TO_SLUG.get(normDesig(dm[1]));
+      if (!slug) continue;
+      // The bar's value is the text IMMEDIATELY after its label (label <text>,
+      // then value <text>). If that text is not a plain number — e.g. a
+      // display-rounded "4.8k" — skip this bar rather than scanning ahead into
+      // axis ticks (a scan-ahead would wrongly pair the largest bar with the "0"
+      // tick).
+      let valStr: string | null = null;
+      const inline = texts[i].slice(dm[1].length).match(/(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s*$/);
+      if (inline) valStr = inline[1];
+      else if (i + 1 < texts.length) {
+        const vm = texts[i + 1].match(/^(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)$/);
+        if (vm) valStr = vm[1];
+      }
+      if (valStr == null) continue;
+      const claimed = parseFloat(valStr.replace(/,/g, ""));
+      // N1: chart bars are checked against the dataset HEADLINE (tight — a bar is
+      // a direct value render, not a cross-basis rounding).
+      const headline = gwpNum(getRefrigerant(slug)!.environmental.gwp.headline);
+      if (headline == null) continue;
+      const ok = gwpTight(claimed, headline);
+      push(page, "e", slug, `GWP chart: ${dm[1]} = ${valStr}`, `chart ${valStr}`, `${slug} headline GWP ${headline}`, ok, "GWP chart value mismatch");
+    }
+  });
 }
 
 const CRIT_T_RE = /critical\s+temperature[^.]{0,24}?(-?\d+(?:\.\d+)?)\s*°\s*F/gi;
@@ -1009,6 +1099,12 @@ function selfTest(): string[] {
   // (e) GWP
   run("R-410A gwp ok", body("R-410A carries a GWP of 2088 on the EPA basis."), "/refrigerant/r-410a/", false, "e");
   run("R-410A gwp wrong", body("R-410A carries a GWP of 1500."), "/refrigerant/r-410a/", true, "e");
+  // (e, N1) "R-xxx (NNN)" / "R-xxx at NNN" in a GWP/AIM/threshold context
+  run("R-454B (466) wrong", body("Under the AIM Act 700 limit, R-454B (466) is a common comparison — but note the GWP figure."), "/refrigerant/r-454b/", true, "e");
+  run("R-454B (465) ok", body("Under the AIM Act 700 limit, R-454B (465) is the GWP figure."), "/refrigerant/r-454b/", false, "e");
+  run("R-32 at 675 gwp ok", body("For AIM Act purposes R-32 at 675 sits under the 700 GWP limit."), "/refrigerant/r-32/", false, "e");
+  run("R-32 at 900 gwp wrong", body("For AIM Act purposes R-32 at 900 GWP would fail."), "/refrigerant/r-32/", true, "e");
+  run("R-410A (2 lb) not-gwp", body("Charge the R-410A (2 lb) system; GWP is discussed elsewhere."), "/refrigerant/r-410a/", false, "e");
   // (f) critical
   run("R-134a crit T ok", body("R-134a has a critical temperature of 213.9°F."), "/refrigerant/r-134a/", false, "f");
   run("R-134a crit T wrong", body("R-134a has a critical temperature of 250°F."), "/refrigerant/r-134a/", true, "f");
@@ -1029,16 +1125,24 @@ function main() {
     for (const e of selfErrs) console.error("  ✗ " + e);
     process.exit(1);
   }
-  console.log(`[verify-numeric-consistency] self-tests passed (${19} extractor cases).`);
+  console.log(`[verify-numeric-consistency] self-tests passed (${23} extractor cases).`);
 
   const files = walkHtml(HTML_ROOT).sort();
   const pages: PageInfo[] = [];
   for (const f of files) {
-    const page = classifyRoute(fileToRoute(f));
-    if (!page) continue;
-    pages.push(page);
+    const route = fileToRoute(f);
+    const page = classifyRoute(route);
     const html = readFileSync(f, "utf8");
-    for (const u of extractUnits(html)) checkText(u.text, page);
+    if (page) {
+      pages.push(page);
+      for (const u of extractUnits(html)) checkText(u.text, page);
+      checkGwpChartsHtml(html, page); // N1: GWP chart/SVG bars (extractUnits strips svg)
+    } else if (route.startsWith("/dev/")) {
+      // dev-only preview routes — skip.
+    } else {
+      // Unclassified pages (guides, hubs): still verify any GWP chart bars.
+      checkGwpChartsHtml(html, { route, category: "chart", primaries: [] });
+    }
   }
 
   banner("verify-numeric-consistency", pages.length, Math.min(80, Math.max(1, htmlFloor() - 40)), "scanned pages");

@@ -40,6 +40,7 @@ function renderInline(text: string): React.ReactNode[] {
   return parts.map((p, idx) => typeof p === "string" ? <Fragment key={idx}>{p}</Fragment> : p);
 }
 import { getRefrigerant, getPressureAtTempF, gwpNum, gwpText, type Refrigerant } from "@/data/refrigerants";
+import { eu, fmtDate, type EuRow } from "@/lib/us-regulation";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AHRI_GUIDELINE_N_CITATION, ORG, SITE_URL, WEBSITE } from "@/lib/schema/shared";
 import { contentDates, UpdatedLine } from "@/lib/content-dates";
@@ -606,7 +607,7 @@ function PropertyDeltaPanel({ a, b }: { a: Refrigerant; b: Refrigerant }) {
               <strong>Safety class change:</strong> {a.displayName} ({a.safetyClass}) →{" "}
               {b.displayName} ({b.safetyClass}).{" "}
               {b.safetyClass.startsWith("A2") && a.safetyClass === "A1"
-                ? "A2L equipment requirements apply: sealed motors, charge limits, leak detection per IEC 60335-2-40."
+                ? "A2L equipment requirements apply: A2L-listed equipment, charge limits set by the refrigerant's LFL and room, and refrigerant detection where the standard requires it (IEC 60335-2-40)."
                 : a.safetyClass.startsWith("B") || b.safetyClass.startsWith("B")
                   ? "Class B refrigerants require purpose-built equipment, machine-room compliance, specialized handling."
                   : "Same toxicity class, different flammability characteristics."}
@@ -680,9 +681,9 @@ function RegulatoryContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
           ) : null}
         </li>
         <li>
-          <strong>EU F-Gas Regulation (517/2014, updated 2024/573):</strong> European rules
-          restrict many new stationary applications by GWP (tighter than the US in most sectors);
-          the 2024 revision uses IPCC AR4 for HFCs and AR6 for other fluorinated gases.
+          <strong>EU:</strong> Regulation (EU) No 517/2014, replaced by (EU) 2024/573
+          (applying from 11 March 2024); 2024/573 uses AR4 GWPs for HFCs and AR6 for other
+          fluorinated gases (recital 8).
         </li>
         <li>
           <strong>Kigali Amendment to Montreal Protocol (2016):</strong> international HFC
@@ -795,7 +796,7 @@ function generateComparisonScenarios(a: Refrigerant, b: Refrigerant): Comparison
         : !sameLubricant
           ? `Standard HFC retrofit: drain old oil, flush system, replace with new lubricant family, charge by weight.`
           : safetyChange
-            ? `Field retrofit isn't possible — A2L safety classification requires equipment-level certification (sealed motors, charge limits, leak detection). Replace equipment at end-of-life with A2L-certified unit.`
+            ? `Field retrofit isn't possible — A2L safety classification requires equipment-level certification (A2L-listed equipment, charge limits, refrigerant detection where the standard requires it). Replace equipment at end-of-life with A2L-certified unit.`
             : `Service procedures essentially the same. Retrofit is mostly a refrigerant swap without equipment changes.`,
     },
   });
@@ -904,7 +905,7 @@ function TransitionProcedure({ a, b }: { a: Refrigerant; b: Refrigerant }) {
               <strong>A2L safety compliance.</strong> {b.displayName} is{" "}
               {b.safetyClass} (mildly flammable). Field retrofit of A1-only equipment to
               A2L generally isn&apos;t possible — equipment must be A2L-certified per UL /
-              IEC 60335-2-40 (sealed motors, charge limits per room volume, leak detection
+              IEC 60335-2-40 (A2L-listed equipment, charge limits per room volume, leak detection
               on larger systems). The realistic path is full equipment replacement, not
               refrigerant swap.
             </li>
@@ -978,7 +979,7 @@ function RetrofitNotFeasible({ a, b }: { a: Refrigerant; b: Refrigerant }) {
       <li key="safety">
         <strong>ASHRAE safety class change ({a.safetyClass} → {b.safetyClass}).</strong>{" "}
         {b.displayName} requires equipment certified to UL/IEC 60335-2-40 for
-        {" "}{b.safetyClass}: sealed electrical, room-volume charge limits, and (on
+        {" "}{b.safetyClass}: A2L-listed equipment, room-volume charge limits, and (on
         larger systems) integrated leak detection. Field retrofit of {a.safetyClass}
         -only equipment is not permitted; new equipment must ship with the
         {" "}{b.safetyClass} certification from the factory.
@@ -1092,16 +1093,21 @@ function LifecycleContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
               implementations) may still apply.
             </li>
           )}
-          <li>
-            <strong>EU F-Gas Regulation:</strong>{" "}
-            {gwpA > 150 && gwpB > 150
-              ? `Both refrigerants exceed the EU F-Gas 150 GWP cap for new stationary refrigeration. Selection in European market favors very-low-GWP HFOs and natural refrigerants.`
-              : gwpA > 150
-                ? `${a.displayName} exceeds the EU F-Gas 150 GWP cap; ${b.displayName} is compliant. The switch aligns with EU regulatory direction.`
-                : gwpB > 150
-                  ? `${b.displayName} exceeds the EU F-Gas 150 GWP cap; ${a.displayName} is compliant.`
-                  : `Both refrigerants are below the EU F-Gas 150 GWP cap — compliant for European stationary refrigeration.`}
-          </li>
+          {(() => {
+            const euA = eu(a).filter((row) => row.kind === "market");
+            const euB = eu(b).filter((row) => row.kind === "market");
+            if (euA.length === 0 && euB.length === 0) return null; // neither meets an Annex III threshold
+            const line = (r: Refrigerant, rows: EuRow[]) =>
+              rows.length === 0
+                ? `${r.displayName} (GWP ${gwpText(r.environmental.gwp.headline)}) is below every Regulation (EU) No 517/2014 Annex III GWP threshold.`
+                : `${r.displayName} (GWP ${gwpText(r.environmental.gwp.headline)}) meets ${rows.length} Annex III placing-on-the-market prohibition${rows.length > 1 ? "s" : ""}; the earliest is ${rows[0].product} (GWP ≥ ${rows[0].gwpAtLeast}) from ${fmtDate(rows[0].date)}.`;
+            return (
+              <li>
+                <strong>EU (Regulation (EU) No 517/2014, replaced by (EU) 2024/573):</strong>{" "}
+                {line(a, euA)} {line(b, euB)}
+              </li>
+            );
+          })()}
           <li>
             <strong>Service supply outlook:</strong>{" "}
             {aimAct
@@ -1121,8 +1127,8 @@ function LifecycleContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
       </Panel>
       <p className="text-xs text-zinc-500 dark:text-zinc-400">
         Regulatory sources: AIM Act (40 CFR Part 84), EU F-Gas Regulation 517/2014 and
-        update 2024/573, Kigali Amendment to the Montreal Protocol (2016), Japan
-        Fluorocarbon Emissions Control Law. GWP values on the US EPA basis (40 CFR 84 / IPCC AR4).
+        update 2024/573, Kigali Amendment to the Montreal Protocol (2016). GWP values on
+        the US EPA basis (40 CFR 84 / IPCC AR4).
       </p>
     </div>
   );

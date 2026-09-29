@@ -19,7 +19,7 @@ import * as cheerio from "cheerio";
 const ROOT = process.cwd();
 const APP_DIR = process.argv[2] ? path.resolve(process.argv[2]) : path.join(ROOT, ".next", "server", "app");
 const OUT = path.join(ROOT, "scripts", "qa", "reports", "regulatory-numeric-claims.txt");
-const MAX_LINES = 250;
+const MAX_LINES = Infinity; // Task 22: write ALL sentences (no cap)
 
 /* keyword tests (mixed case-sensitivity to avoid matching inside words) */
 const KEYWORDS = [
@@ -138,7 +138,7 @@ const shown = rows.slice(0, MAX_LINES);
 const header = [
   `# Regulatory / numeric claim sentences harvested from built HTML`,
   `# Scanned ${scanned} HTML files. ${total} unique sentences (after R-X normalization + whitespace collapse).`,
-  `# Format: <route-count>\\t<sentence>. Sorted by route count, highest first. Showing ${shown.length} of ${total}.`,
+  `# Format: <route-count>\\t<sentence>. Sorted by route count, highest first. All ${total} unique sentences listed (no cap).`,
   ``,
 ].join("\n");
 const body = shown.map((r) => `${r.count}\t${r.sentence}`).join("\n");

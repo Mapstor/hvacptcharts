@@ -23,7 +23,7 @@ sources:
     label: "EPA Significant New Alternatives Policy (SNAP) — R-455A acceptable for commercial refrigeration"
     url: "https://www.epa.gov/snap"
   - id: ul60335
-    label: "UL 60335-2-89 / IEC 60335-2-89 — Safety standard for commercial refrigerating appliances using A2L refrigerants"
+    label: "UL 60335-2-89 / IEC 60335-2-89 — Safety standard for commercial refrigerating appliances"
     url: "https://www.ul.com/services/ul-60335-standards"
   - id: ashrae15
     label: "ASHRAE Standard 15-2022 — A2L charge limits"
@@ -88,7 +88,7 @@ narrative:
     R-454C and R-455A serve as competing low-GWP A2L choices with identical GWP. The differences are composition-specific: R-455A includes the 3% R-744 component for capacity and slightly different pressure characteristics; R-454C is a binary R-32/R-1234yf blend with simpler chemistry. OEM preference and equipment optimization typically drive the choice between them.
 
   serviceNotes: |
-    POE oil required — same lubricant family as R-410A and R-32. A2L safety class requires sealed motors, charge limits per UL 60335-2-89 and ASHRAE 15, A2L-rated leak detection in some installations, and nitrogen-purged brazing [ul60335][ashrae15].
+    POE oil required — same lubricant family as R-410A and R-32. A2L safety class requires A2L-listed equipment, charge limits per UL 60335-2-89 and ASHRAE 15, and A2L-rated leak detection in some installations [ul60335][ashrae15].
 
     The 22°F temperature glide is the largest among mainstream commercial refrigerants and significantly affects service measurement. Use dew temperature for superheat math (suction line) and bubble temperature for subcooling (liquid line). The R-744 component requires attention to fractionation behavior during partial charging — full recovery and recharge is the correct service approach.
 
@@ -131,7 +131,7 @@ faqs:
 
   - q: "Is R-455A safe to handle?"
     a: |
-      ASHRAE class A2L — mildly flammable with low burning velocity. Equipment design accommodates per UL 60335-2-89 (sealed motors, charge limits, A2L-rated leak detection in some installations) [ul60335]. Service procedures include nitrogen-purged brazing and A2L-rated leak detection.
+      ASHRAE class A2L — mildly flammable with low burning velocity. Equipment design accommodates per UL 60335-2-89 (A2L-listed equipment, charge limits, A2L-rated leak detection in some installations) [ul60335]. Service procedures include refrigerant detection where the standard requires it.
 
       The 3% R-744 component doesn't change the overall safety class — the blend is A2L. Treating R-455A as if it were A1 R-404A is a safety error.
 
@@ -187,7 +187,7 @@ R-455A's GWP 146 matches R-454C's exactly — both blends are engineered to the 
 
 The composition strategies differ: R-454C uses high R-1234yf content (78.5%) with R-32 (21.5%) only. R-455A uses similar R-32 content (21.5%) with high R-1234yf (75.5%) and the small R-744 addition (3%). Both arrive at GWP 146 through different mass-weighted arithmetic paths.
 
-For practical regulatory compliance, R-454C and R-455A are interchangeable — both clear EU F-Gas thresholds and AIM Act provisions for new commercial refrigeration equipment. The differentiation between them is operational (binary simplicity vs ternary capacity boost; 14°F vs 22°F glide; OEM patent and supply preferences) rather than regulatory.
+In practical regulatory terms, R-454C and R-455A are interchangeable — both clear EU F-Gas thresholds and AIM Act provisions for new commercial refrigeration equipment. The differentiation between them is operational (binary simplicity vs ternary capacity boost; 14°F vs 22°F glide; OEM patent and supply preferences) rather than regulatory.
 
 </TechSection>
 
@@ -218,7 +218,7 @@ R-455A service uses standard A2L procedures with additional attention to the ver
 | Curve selection for subcooling | Bubble curve at discharge pressure | Bubble curve at discharge pressure |
 | Charge by weight | Required | Required (fractionation concern with 3-component blend) |
 | Top-off charging | Not recommended | Strongly not recommended (fractionation risk) |
-| Compressor motor | Sealed per UL 60335-2-89 | Sealed per UL 60335-2-89 |
+| Compressor motor | A2L-listed per UL 60335-2-89 | A2L-listed per UL 60335-2-89 |
 | Vacuum target | 500 microns held 30+ min | 500 microns held 30+ min |
 
 The fractionation concern is real for R-455A. Charging the system with vapor from a partially-emptied cylinder draws preferentially from the higher-pressure components (R-744, R-32), shifting the remaining cylinder composition toward R-1234yf-rich. Subsequent charging draws progressively shifted composition. Always charge as liquid from a full cylinder, or recover and recharge by weight from a fresh container.
@@ -246,7 +246,7 @@ R-454C is operationally simpler; R-455A offers slightly more capacity per equipm
 
 <TechSection icon="insight" tone="emerald" title="How to think about R-455A in 2026 and beyond">
 
-R-455A is one of the two dominant A2L low-GWP commercial refrigeration refrigerants in 2026, alongside R-454C. The 146 GWP provides structural regulatory compliance under EU F-Gas 150-GWP threshold and AIM Act commercial refrigeration provisions [eufgas][aimact].
+R-455A is one of the two dominant A2L low-GWP commercial refrigeration refrigerants in 2026, alongside R-454C. The 146 GWP sits below the EU F-Gas 150-GWP threshold and within AIM Act commercial refrigeration provisions [eufgas][aimact].
 
 For new commercial refrigeration equipment, R-455A is a natural choice when slightly higher capacity per compressor displacement justifies the more difficult service handling. Walk-in freezers, refrigerated cases, and ice machines all see R-455A deployment, particularly in Honeywell-aligned OEM equipment lines.
 

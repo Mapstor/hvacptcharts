@@ -34,12 +34,13 @@ Federal law governing refrigerant handling in the US. Key provisions:
 ### AIM Act (40 CFR Part 84)
 American Innovation and Manufacturing Act of 2020 (15 USC 7675). HFC phase-down schedule:
 - 2024: HFC production capped at 60% of 2011-2013 baseline
-- **January 1, 2025**: Manufacturing transition — new residential AC + heat pump equipment must use refrigerants with GWP ≤700 (R-410A at 2088 fails; R-32 at 675 + R-454B at 466 pass)
+- **January 1, 2025**: new self-contained residential and light-commercial AC and heat pumps may not use a refrigerant with GWP 700 or more (40 CFR 84.54(a)(1)); R-410A (2088) is over, R-32 (675) and R-454B (465) are under
 - 2029: 30% of baseline
 - 2036: 15% of baseline
 
 ### R-22 Phase-Out
 - January 1, 2010 (EPA Section 605): ban on new HCFC R-22 equipment manufacture
+- 2010: no production or import of HCFC-22/142b except for equipment made before 2010 (EPA)
 - January 1, 2020 (EPA Section 606): ban on production + import of virgin R-22
 - Existing R-22 equipment legally serviceable indefinitely via reclaim
 - R-22 reclaim prices have risen substantially since phase-out
@@ -61,7 +62,7 @@ ASHRAE Standard 34-2022 classifies refrigerants by toxicity (A/B) and flammabili
 - **B2L**: Toxic, mildly flammable
 - **B3**: Toxic, flammable (R-717 ammonia is B2L but heavily regulated)
 
-A2L equipment safety design per UL 60335-2-40 + ASHRAE 15 requires refrigerant leak detection systems, ventilation interlocks, charge limits based on room volume, dedicated wiring for fault detection, specific service valve design. Existing R-410A equipment cannot be safely converted to A2L (different equipment safety classification).
+A2L equipment safety design per UL 60335-2-40 + ASHRAE 15 includes refrigerant detection where the standard requires it, ventilation interlocks, charge limits based on room volume, dedicated wiring for fault detection, specific service valve design. Existing R-410A equipment cannot be safely converted to A2L (different equipment safety classification).
 
 ---
 

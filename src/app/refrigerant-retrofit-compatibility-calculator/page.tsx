@@ -87,7 +87,7 @@ export default function RetrofitCompatibilityCalculatorPage() {
         {
           output: "Safety class transition",
           meaning:
-            "Compares the two ASHRAE 34 classes. Green is the same class with no safety-driven changes; amber is a manageable shift or a downgrade in flammability; red is a blocking change such as A1 to A2L (needs A2L-rated electrical, leak detection, and charge limits per UL 60335-2-40) or any A-to-B cross-class move, which is not a swap at all.",
+            "Compares the two ASHRAE 34 classes. Green is the same class with no safety-driven changes; amber is a manageable shift or a downgrade in flammability; red is a blocking change such as A1 to A2L (needs A2L-rated electrical, refrigerant detection where the standard requires it, and charge limits per UL 60335-2-40) or any A-to-B cross-class move, which is not a swap at all.",
         },
         {
           output: "Pressure envelope",
@@ -168,7 +168,7 @@ function RichContent() {
             <li>
               <strong>Safety classification transition.</strong> A1 → A1 (R-22 → R-407C):
               no equipment changes for safety. A1 → A2L (R-410A → R-454B): A2L equipment
-              (sealed motors, IEC 60335-2-40 charge limits, leak detection in some
+              (A2L-listed equipment, IEC 60335-2-40 charge limits, leak detection in some
               jurisdictions). A → B (any HFC → R-717): not a retrofit, complete equipment
               replacement with ammonia-specific design.
             </li>
@@ -381,7 +381,7 @@ function RichContent() {
         <VerdictBanner status="warn" title="Equipment modifications required — A2L compliance">
           Pressure / lubricant / glide are all compatible. The blocker is safety
           classification: R-454B is A2L (mildly flammable). Existing R-410A equipment is
-          not A2L-certified — sealed motor, leak detection, IEC 60335-2-40 charge limit
+          not A2L-certified — A2L-listed equipment, refrigerant detection where the standard requires it, IEC 60335-2-40 charge limit
           compliance are required for A2L equipment certification.
         </VerdictBanner>
         <FixCallout>
@@ -397,7 +397,7 @@ function RichContent() {
         number={5}
         refrigerant="R-404A → R-448A"
         title="R-404A to R-448A — commercial low-GWP retrofit"
-        scenario="Supermarket R-404A commercial refrigeration system. AIM Act prohibits R-404A in new equipment; for existing equipment, low-GWP retrofit options include R-448A (Solstice N40) and R-449A (Opteon XP40)."
+        scenario="Supermarket R-404A commercial refrigeration system. Under the AIM Act, new R-404A equipment is restricted across 40 CFR 84.54 categories by subsector and date (e.g. supermarket systems from January 1, 2027, 84.54(c)(12)(i)); for existing equipment, lower-GWP retrofit options include R-448A (Solstice N40) and R-449A (Opteon XP40)."
       >
         <Panel title="Five-criterion analysis" icon={TableIcon}>
           <ComparisonTable

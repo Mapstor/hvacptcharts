@@ -58,7 +58,19 @@ const EU = regulatory.eu as unknown as {
     article13_3: { gwpAtLeast: number; date: string; text: string };
     url: string;
   };
-  regulation2024_573: { name: string; applies: string; url: string };
+  regulation2024_573: { name: string; applies: string; gwpBasisNote?: string; url: string };
+  macDirective: {
+    name: string;
+    rule: string;
+    newVehicleTypes: string;
+    allNewVehicles: string;
+    text: string;
+    url: string;
+  };
+};
+const SECTION608 = regulatory.us.section608 as unknown as {
+  usedRefrigerantSale: { cfr: string; text: string; url: string };
+  recoveryEquipmentStandards: { cfr: string; heading: string; url: string };
 };
 const KIGALI = regulatory.kigali as unknown as {
   montrealProtocolParties: number;
@@ -419,18 +431,50 @@ export function ods(r: Refrigerant): OdsMilestone[] {
     const s = e.substances;
     if (hasCfc && /CFC/i.test(s) && !/HCFC/i.test(s)) out.push(e);
     else if (isHcfc22or142b && /HCFC-22/i.test(s)) out.push(e);
-    else if (otherHcfc && /All HCFCs/i.test(s)) out.push(e);
+    // Other HCFCs (R-123, R-124): the 2015 "except for equipment made before 2020"
+    // step and the 2030 all-HCFC end. Not the R-22/R-142b 2010/2020 rows.
+    else if (otherHcfc && (/HCFCs other than/i.test(s) || /All HCFCs/i.test(s))) out.push(e);
   }
   return out.sort(byDate);
 }
 export const ODS_SERVICING_NOTE = ODS.servicingNote;
 
+/**
+ * Hero-badge label for an ODS refrigerant's US production/import status (O3),
+ * derived from us.ods. CFC → "Production banned · 1996"; R-22/R-142b →
+ * "Production/import ended · 2020"; other HCFCs (R-123, R-124) → the 2015 step
+ * with the 2030 end. Returns null for non-ODS refrigerants.
+ */
+export function odsPhaseoutBadge(r: Refrigerant): string | null {
+  const hasCfc = containsType(r, (t) => t === "cfc" || t === "cfc-blend");
+  if (hasCfc) return "Production banned · 1996";
+  const isHcfc22or142b = isOrContains(r, ["R-22", "R-142b"]);
+  if (isHcfc22or142b) return "Production/import ended · 2020";
+  const otherHcfc = containsType(r, (t) => t === "hcfc" || t === "hcfc-blend");
+  if (otherHcfc) return "Since 2015: production/import only as refrigerant for equipment made before 2020 · ends January 1, 2030";
+  return null;
+}
+
 /* ─────────────────────────── EU 517/2014 ────────────────────────────────── */
 
 export interface EuRow { row: number; product: string; condition: string; gwpAtLeast: number; date: string; kind: "market" | "servicing" }
 export const EU_FRAMING = "Regulation (EU) No 517/2014, since replaced by (EU) 2024/573, applying from 11 March 2024";
+/** One-line EU framing (E2): 517/2014 replaced by 2024/573 + the 2024/573 GWP basis. */
+export const EU_REGULATION_SUMMARY =
+  "Regulation (EU) No 517/2014, replaced by (EU) 2024/573 (applying from 11 March 2024); 2024/573 uses AR4 GWPs for HFCs and AR6 for other fluorinated gases (recital 8).";
 export const EU_URL = EU.regulation517_2014.url;
 export const EU_2024_URL = EU.regulation2024_573.url;
+
+/* ─────────────────────── EU mobile A/C directive (2006/40/EC) ────────────── */
+export const MAC_DIRECTIVE = EU.macDirective;
+/** E4 phrasing: new vehicle types 2011, all new vehicles 2017. */
+export const MAC_DIRECTIVE_TEXT =
+  "EU Directive 2006/40/EC restricts MVAC refrigerant above 150 GWP: from 1 January 2011 for new vehicle types, and from 1 January 2017 for all new vehicles put on the EU market.";
+
+/* ─────────────────────── US Section 608 (40 CFR 82) ─────────────────────── */
+export const SECTION_608 = SECTION608;
+export const USED_REFRIGERANT_SALE_RULE = SECTION608.usedRefrigerantSale; // 40 CFR 82.154(d)
+export const RECOVERY_EQUIPMENT_STANDARD = SECTION608.recoveryEquipmentStandards; // 40 CFR 82.158 heading
 
 /** EU 517/2014 Annex III rows 11–13 + Art. 13(3) where the refrigerant's headline
  *  (AR4) GWP meets the threshold. Only meaningful for retail-food / cold-storage

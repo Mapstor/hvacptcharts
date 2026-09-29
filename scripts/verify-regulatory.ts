@@ -132,6 +132,21 @@ const PATTERNS: { name: string; re: RegExp }[] = [
   { name: "ratified-Sep", re: /ratified Sep/i },
   { name: "EPA-AIM-Act", re: /EPA AIM Act/ },
   { name: "under-40-kW", re: /under 40 kW/i },
+  // ── Task 22 eliminations (unverified / mis-framed regulatory claims) ──
+  { name: "eu-150-gwp-cap", re: /150[ \-]?GWP cap|F-Gas 150 GWP cap/i },       // E1
+  { name: "eu-750-gwp", re: /750[ \-]?GWP/i },                                 // E3
+  { name: "eu-1500-threshold", re: /1,?500 threshold/i },                      // E3
+  { name: "standards-align-eu", re: /standards align with EU/i },             // E3
+  { name: "japan-fluorocarbon", re: /Japan Fluorocarbon/i },                  // E5
+  { name: "snap-aim-basis", re: /EPA SNAP \/ AIM Act|AR4 \/ EPA SNAP|EPA \/ AIM Act exchange/i }, // U1
+  { name: "aim-act-prohibits", re: /AIM Act prohibits R-/i },                 // U5
+  { name: "implementing-kigali", re: /implementing Kigali/i },                // U6
+  { name: "no-regulatory-risk", re: /no future regulatory risk/i },          // U7
+  { name: "banned-globally", re: /banned globally|globally under Montreal/i }, // O1
+  { name: "section-82158-prohibition", re: /82\.158[^.]{0,30}prohibition/i }, // O5
+  { name: "cylinder-colour", re: /yellow with (?:a )?red/i },                 // S3
+  { name: "nitrogen-purged-brazing", re: /nitrogen-purged brazing/i },        // S3
+  { name: "lfl-charge-formula", re: /m_?max\s*=\s*LFL/i },                    // S1
 ];
 
 const BLOCK_TAGS = new Set(["p","div","section","article","li","td","th","tr","h1","h2","h3","h4","h5","h6","ul","ol","dl","dt","dd","header","footer","main","nav","details","summary","figcaption","blockquote","table","br"]);

@@ -95,7 +95,7 @@ export default function SafetyClassificationsPage() {
           <p className="mt-3 text-lg text-zinc-700 dark:text-zinc-300">
             ANSI/ASHRAE Standard 34-2022 classifies refrigerants by toxicity (Class A or B) and flammability
             (Subclass 1, 2L, 2, or 3). The combination — A1, A2L, A3, B1, B2L, and so on — determines equipment
-            requirements, charge limits, leak detection, and machine room ventilation under codes including UL
+            requirements, charge limits, refrigerant detection where the standard requires it, and machine room ventilation under codes including UL
             60335-2-40 and ASHRAE 15.
           </p>
         </header>
@@ -166,35 +166,19 @@ export default function SafetyClassificationsPage() {
           </p>
           <Panel title="A2L equipment requirements (UL / IEC 60335-2-40)" icon={TableIcon}>
             <ul className="list-disc pl-5 text-sm space-y-1">
-              <li>Sealed motor enclosures or ignition-source isolation in any enclosure with potential refrigerant accumulation.</li>
+              <li>A2L-listed equipment or ignition-source isolation in any enclosure with potential refrigerant accumulation.</li>
               <li>Leak detection (refrigerant sensor + alarm) on larger systems above a charge threshold.</li>
-              <li>Charge limit calculation per room floor area: m_max = LFL × 4 × A^0.5 × h_0 (LFL = lower flammability limit, A = room area, h_0 = installation height).</li>
+              <li>Charge limit calculation from the lower flammability limit (LFL), room floor area, and installation height.</li>
               <li>Mechanical ventilation requirements in some occupancy categories above threshold charge.</li>
               <li>Labeling and installer training (EPA revised the Section 608 technician exam to add A2L and A3 questions — the current question bank is usable only through January 1, 2027, and there is no new Type IV certification).</li>
             </ul>
           </Panel>
-          <Panel title="A2L charge limits per refrigerant (IEC 60335-2-40 Table CC.1)" icon={TableIcon}>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-zinc-200 text-[10px] uppercase tracking-wider text-zinc-500 dark:border-zinc-800">
-                    <th className="py-1.5 text-left">Refrigerant</th>
-                    <th className="py-1.5 text-right">m_max (kg)</th>
-                    <th className="py-1.5 text-right">m_max (lb)</th>
-                    <th className="py-1.5 text-left">Note</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">R-32</td><td className="py-1.5 text-right font-mono tabular-nums">1.84</td><td className="py-1.5 text-right font-mono tabular-nums">4.05</td><td className="py-1.5 text-xs">2-3 ton residential AC</td></tr>
-                  <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">R-454B</td><td className="py-1.5 text-right font-mono tabular-nums">2.18</td><td className="py-1.5 text-right font-mono tabular-nums">4.81</td><td className="py-1.5 text-xs">Slightly higher than R-32</td></tr>
-                  <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5">R-1234yf</td><td className="py-1.5 text-right font-mono tabular-nums">1.10</td><td className="py-1.5 text-right font-mono tabular-nums">2.42</td><td className="py-1.5 text-xs">Most stringent</td></tr>
-                  <tr><td className="py-1.5">R-1234ze</td><td className="py-1.5 text-right font-mono tabular-nums">1.50</td><td className="py-1.5 text-right font-mono tabular-nums">3.31</td><td className="py-1.5 text-xs">Mid-range</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-              Values for a typical 25 m² room at 2.2 m installation height. Different room
-              geometries produce different limits per the formula.
+          <Panel title="A2L charge limits (IEC 60335-2-40)" icon={TableIcon}>
+            <p className="text-sm">
+              The maximum permitted charge is not a fixed number per refrigerant — it depends on
+              the refrigerant&apos;s lower flammability limit (LFL) and the size of the room the
+              equipment serves. A refrigerant with a lower LFL permits less charge in a given
+              room, and a larger room permits more charge.
             </p>
           </Panel>
           <p>
@@ -223,9 +207,9 @@ export default function SafetyClassificationsPage() {
                 </thead>
                 <tbody>
                   <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A1</td><td className="py-1.5 text-xs">Residential AC (R-22, R-410A), commercial refrigeration (R-404A, R-448A, R-449A), mobile AC (R-134a), chillers (R-134a, R-513A, R-1233zd)</td><td className="py-1.5 text-xs">Standard ASHRAE 15 — no special equipment</td></tr>
-                  <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A2L</td><td className="py-1.5 text-xs">Residential AC (R-32, R-454B), commercial refrigeration (R-454C, R-455A), mobile AC (R-1234yf)</td><td className="py-1.5 text-xs">A2L-rated equipment, charge limits, leak detection (IEC 60335-2-40)</td></tr>
+                  <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A2L</td><td className="py-1.5 text-xs">Residential AC (R-32, R-454B), commercial refrigeration (R-454C, R-455A), mobile AC (R-1234yf)</td><td className="py-1.5 text-xs">A2L-rated equipment, charge limits, refrigerant detection where the standard requires it (IEC 60335-2-40)</td></tr>
                   <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A2</td><td className="py-1.5 text-xs">Uncommon in HVAC. R-152a (limited mobile AC use)</td><td className="py-1.5 text-xs">Higher burning velocity than A2L; A2L preferred</td></tr>
-                  <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A3</td><td className="py-1.5 text-xs">Hydrocarbons — R-290 (propane), R-600a (isobutane), R-1270 (propylene). Hermetic chest freezers, domestic refrigerators</td><td className="py-1.5 text-xs">Small-charge only per IEC 60335-2-89; spark-controlled service</td></tr>
+                  <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A3</td><td className="py-1.5 text-xs">Hydrocarbons — R-290 (propane), R-600a (isobutane), R-1270 (propylene). Hermetic chest freezers, domestic refrigerators</td><td className="py-1.5 text-xs">Small-charge only per IEC 60335-2-24; spark-controlled service</td></tr>
                   <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">B1</td><td className="py-1.5 text-xs">R-123 (centrifugal chillers in dedicated mechanical rooms)</td><td className="py-1.5 text-xs">Machine-room monitoring per ASHRAE 15; R-123 production ends 2030</td></tr>
                   <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">B2L</td><td className="py-1.5 text-xs">R-717 (ammonia) industrial refrigeration — food processing, cold storage, ice rinks</td><td className="py-1.5 text-xs">IIAR 2/9 installation, machine room, full-face SCBA for service</td></tr>
                   <tr><td className="py-1.5 font-mono font-semibold">B3</td><td className="py-1.5 text-xs">Rare. R-1140 historical, specialty industrial only</td><td className="py-1.5 text-xs">Not used in modern HVAC</td></tr>
@@ -252,7 +236,7 @@ export default function SafetyClassificationsPage() {
                 <tbody>
                   <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A1</td><td className="py-1.5 text-xs">Standard EPA Section 608 procedures. Recovery, recycling, reclaiming per 40 CFR Part 82. Standard electronic leak detectors.</td></tr>
                   <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A2L</td><td className="py-1.5 text-xs">EPA Section 608 (the technician exam was revised to add A2L/A3 questions; no new Type IV certification). A2L-rated recovery cylinders. No ignition sources during service (no torch-brazing near open refrigerant, no electrical sparks). Refrigerant-specific leak detectors.</td></tr>
-                  <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A3</td><td className="py-1.5 text-xs">Hydrocarbon-specific training. Spark-resistant tools or all-tools-removed during service. Ventilated spaces only. Small-charge limit (~150 g hermetic).</td></tr>
+                  <tr className="border-b border-zinc-100 dark:border-zinc-900"><td className="py-1.5 font-mono font-semibold">A3</td><td className="py-1.5 text-xs">Hydrocarbon-specific training. Spark-resistant tools or all-tools-removed during service. Ventilated spaces only. Small-charge limit (hermetic).</td></tr>
                   <tr><td className="py-1.5 font-mono font-semibold">B-class</td><td className="py-1.5 text-xs">Class-specific certification (IIAR for ammonia). PPE includes full-face SCBA for ammonia, vapor-resistant suit for fluorinated B. Machine-room procedures and emergency response plans required.</td></tr>
                 </tbody>
               </table>
@@ -330,8 +314,8 @@ export default function SafetyClassificationsPage() {
           </p>
           <KeyInsight tone="amber" icon="insight" title="First mainstream A1 → A2L shift in HVAC history">
             HVAC residential equipment design has remained A1 for decades. The
-            AIM-Act-driven move to A2L requires equipment re-certification (sealed motor
-            enclosures, charge limits per IEC 60335-2-40), installation procedure updates
+            AIM-Act-driven move to A2L requires equipment re-certification (A2L-listed
+            equipment, charge limits per IEC 60335-2-40), installation procedure updates
             (room volume calculations, A2L-rated leak detectors), service training (EPA revised
             the Section 608 technician exam to add A2L and A3 questions — the current question
             bank can be used only through January 1, 2027, and there is no new Type IV
@@ -341,20 +325,16 @@ export default function SafetyClassificationsPage() {
 
         <TechSection icon="data" tone="purple" title="Charge limits — the practical A2L constraint">
           <p>
-            UL / IEC 60335-2-40 specifies maximum refrigerant charge per room volume based
-            on refrigerant flammability characteristics. The formula:{" "}
-            <code className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-xs dark:bg-zinc-800">
-              m_max = LFL × 4 × A^0.5 × h_0
-            </code>{" "}
-            where LFL is the lower flammability limit (kg/m³), A is room floor area (m²),
-            and h_0 is installation height (m).
+            UL / IEC 60335-2-40 specifies a maximum refrigerant charge per room based on the
+            refrigerant&apos;s lower flammability limit (LFL), the room floor area, and the
+            installation height.
           </p>
           <p>
-            For typical residential rooms (25 m² at 2.2 m height): about 1.8 kg (4 lb) for
-            R-32 and 2.2 kg (4.8 lb) for R-454B — sufficient for 2-3 ton residential AC.
-            Larger systems (5+ ton, large multi-zone) split charge across multiple indoor
-            units or use central-ducted systems where refrigerant charge concentrates in
-            outdoor / attic-mounted air handlers with only liquid line at the indoor coil.
+            For typical residential rooms, the calculated limit is generally sufficient for
+            2-3 ton residential AC using R-32 or R-454B. Larger systems (5+ ton, large
+            multi-zone) split charge across multiple indoor units or use central-ducted
+            systems where refrigerant charge concentrates in outdoor / attic-mounted air
+            handlers with only liquid line at the indoor coil.
           </p>
           <p>
             Commercial refrigeration with A2L (R-454C, R-455A) follows IEC 60335-2-89 with
@@ -487,7 +467,7 @@ function countByClass() {
 function shortGloss(c: string): string {
   switch (c) {
     case "A1": return "Lower toxicity, no flame propagation. The safest category.";
-    case "A2L": return "Lower toxicity, low burning velocity. Requires A2L-rated equipment + leak detection.";
+    case "A2L": return "Lower toxicity, low burning velocity. Requires A2L-rated equipment + refrigerant detection where the standard requires it.";
     case "A2": return "Lower toxicity, flammable. Uncommon in HVAC.";
     case "A3": return "Lower toxicity, highly flammable. Hydrocarbon class — propane, isobutane, ethylene, propylene.";
     case "B1": return "Higher toxicity, no flame propagation. R-123 and other centrifugal-chiller refrigerants.";

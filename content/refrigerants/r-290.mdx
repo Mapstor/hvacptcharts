@@ -66,16 +66,15 @@ keyStats:
     context: Moderate pressure envelope; lower than R-22
     sourceId: coolprop
   - label: Residential charge limit
-    value: "≈500"
-    unit: g (typical, application-dependent)
-    context: IEC 60335-2-40 amendment allows up to 988g in some configurations; old limit was 150g
+    value: "Application-dependent"
+    context: Set by the refrigerant's LFL and the room size/volume per IEC 60335-2-40
     sourceId: iec60335240
 
 narrative:
   whatItIs: |
     R-290 is pure propane (C₃H₈) — a natural hydrocarbon refrigerant with GWP 3, zero ODP, and A3 (highly flammable) safety classification [ashrae34][ipccar5]. It is a single-component refrigerant with no temperature glide, used historically in industrial refrigeration and increasingly in residential heat pumps and small commercial refrigeration as climate policy pressures HFC alternatives.
 
-    R-290's defining trade-off is environmental excellence against operational safety constraints. The GWP is so low it imposes no phase-down risk, but the A3 flammability triggers strict equipment charge limits under IEC 60335-2-40 (heat pumps and AC) and IEC 60335-2-89 (commercial refrigeration). New equipment must be specifically designed for R-290 — sealed motors, no internal ignition sources, refrigerant detection in some installations, charge volume scaled to enclosed space.
+    R-290's defining trade-off is environmental excellence against operational safety constraints. The GWP is so low it imposes no phase-down risk, but the A3 flammability triggers strict equipment charge limits under IEC 60335-2-40 (heat pumps and AC) and IEC 60335-2-89 (commercial refrigeration). New equipment must be specifically designed for R-290 — ignition-protected equipment, no internal ignition sources, refrigerant detection in some installations, charge volume scaled to enclosed space.
 
   whereItsUsed:
     - "Residential heat pumps (R-290 monobloc air-source units common in EU)"
@@ -89,7 +88,7 @@ narrative:
     Market growth is driven primarily by heat pump expansion in EU markets (R-290 dominant in many monobloc heat pump categories) and by ongoing displacement of HFCs in small commercial refrigeration. US adoption has been slower due to historically conservative charge limits, though IEC 60335 amendments through 2019-2022 raised allowable charges for many residential applications, accelerating R-290 deployment.
 
   serviceNotes: |
-    R-290 is highly flammable — concentrations of 2.1% to 9.5% in air ignite readily. Equipment design and service procedures must eliminate all potential ignition sources. Sealed compressor motors, electrical components physically separated from the refrigerant circuit, brazing only with refrigerant fully recovered and the system inerted with nitrogen.
+    R-290 is highly flammable — concentrations of 2.1% to 9.5% in air ignite readily. Equipment design and service procedures must eliminate all potential ignition sources. Ignition-protected compressor motors, electrical components physically separated from the refrigerant circuit, brazing only with refrigerant fully recovered and the system inerted with nitrogen.
 
     Standard HVAC manifold gauges work for R-290 pressure-wise (moderate envelope, 110 PSIG at 70°F). Lubricant is typically mineral oil or alkylbenzene (compatible with hydrocarbons); POE is incompatible. Recovery cylinders must be hydrocarbon-rated and grounded against static discharge during transfer.
 
@@ -104,7 +103,7 @@ faqs:
 
   - q: "How much R-290 can I use in a residential heat pump?"
     a: |
-      Depends on installation specifics. The 2022 IEC 60335-2-40 revision raised charge limits significantly above the previous 150g cap. For sealed-system residential heat pumps with appropriate safety design (low-leak components, refrigerant detection), charges up to 988g are permitted in many configurations [iec60335240].
+      Depends on installation specifics. The 2022 IEC 60335-2-40 revision raised charge limits significantly above earlier levels. For sealed-system residential heat pumps with appropriate safety design (low-leak components, refrigerant detection), larger charges are permitted in many configurations — the allowable charge depends on the refrigerant's LFL and the room size/volume [iec60335240].
 
       Actual allowed charge depends on room volume, installation mounting (floor/wall/ceiling), and equipment certification. Verify against equipment OEM data plate and local code.
 
@@ -134,18 +133,18 @@ faqs:
     a: |
       Highly flammable — A3 classification (ASHRAE 34). Concentrations between 2.1% and 9.5% by volume in air will ignite if exposed to sufficient ignition energy. Service procedures must eliminate all potential ignition sources: no open flames, no electrical sparks, no static discharge during refrigerant transfer.
 
-      Equipment-installed safety controls (sealed motors, refrigerant detection with ventilation interlock, isolation valves) reduce risk to acceptable levels for normal operation. Service procedures parallel hydrocarbon storage tank service in their fire-safety discipline.
+      Equipment-installed safety controls (ignition-protected equipment, refrigerant detection with ventilation interlock, isolation valves) reduce risk to acceptable levels for normal operation. Service procedures parallel hydrocarbon storage tank service in their fire-safety discipline.
 
   - q: "Can I retrofit an R-22 system to R-290?"
     a: |
-      Not safely as a refrigerant-only retrofit. R-22 equipment has electrical components in the refrigerant circuit (motor windings, contactors, switches) that are potential ignition sources for R-290's flammable mixture. R-290 systems require sealed motor design and ignition-source isolation per IEC 60335.
+      Not safely as a refrigerant-only retrofit. R-22 equipment has electrical components in the refrigerant circuit (motor windings, contactors, switches) that are potential ignition sources for R-290's flammable mixture. R-290 systems require ignition-protected motor design and ignition-source isolation per IEC 60335.
 
       For an R-22 system, the practical paths are continued service with reclaimed R-22 (legal indefinitely), retrofit to a mineral-oil-compatible HFC blend (R-407C, R-422D, R-438A — A1 safety preserved), or full replacement with new R-32 / R-454B equipment (A2L) or R-290 equipment (A3, more restrictive).
 
 retrofitGuidance:
   fromRefrigerant: ""
   notes: |
-    R-290 is a new-equipment refrigerant, not a field retrofit target. The A3 highly-flammable safety classification requires equipment-level design accommodations (sealed motors, ignition-source isolation, refrigerant detection in some installations, charge limits per IEC 60335-2-40 or 60335-2-89). Existing R-22, R-410A, R-404A, or R-134a equipment cannot be safely retrofitted to R-290 without complete equipment replacement.
+    R-290 is a new-equipment refrigerant, not a field retrofit target. The A3 highly-flammable safety classification requires equipment-level design accommodations (ignition-protected equipment, ignition-source isolation, refrigerant detection in some installations, charge limits per IEC 60335-2-40 or 60335-2-89). Existing R-22, R-410A, R-404A, or R-134a equipment cannot be safely retrofitted to R-290 without complete equipment replacement.
 ---
 
 <TechSection icon="chart" tone="blue" title="Reading the R-290 pressure-temperature chart">
@@ -198,7 +197,7 @@ R-290 is ASHRAE class A3 — highly flammable [ashrae34]. The lower flammability
 
 The flammability classification triggers strict equipment design constraints. IEC 60335-2-40 (heat pumps, AC) and IEC 60335-2-89 (commercial refrigeration) specify charge limits scaled to the smallest enclosed space the equipment serves, with the goal of keeping the worst-case release concentration below 50% of LFL [iec60335240][iec60335289]. Below this limit, even total refrigerant release cannot reach flammable concentration in the served space.
 
-The 2019-2022 amendments to IEC 60335 significantly relaxed residential charge limits — from a long-standing 150g cap to up to 988g for certain configurations — by recognizing that monobloc and ductless architectures with refrigerant leak detection can safely handle larger charges. This regulatory relaxation accelerated R-290 deployment in residential heat pumps through 2023-2026.
+The 2019-2022 amendments to IEC 60335 significantly relaxed residential charge limits — the allowable charge depends on the refrigerant's LFL and the room size/volume — by recognizing that monobloc and ductless architectures with refrigerant leak detection can safely handle larger charges. This regulatory relaxation accelerated R-290 deployment in residential heat pumps through 2023-2026.
 
 </TechSection>
 
@@ -225,7 +224,7 @@ R-290 service equipment uses standard HVAC pressure ratings (500 PSI manifold ga
 | --- | --- | --- |
 | Manifold gauge rating | 800 PSI | 500 PSI adequate |
 | Lubricant | POE | Mineral oil or alkylbenzene |
-| Compressor motor | Standard hermetic | Sealed motor per IEC 60335 |
+| Compressor motor | Standard hermetic | Ignition-protected motor per IEC 60335 |
 | Brazing during service | Nitrogen purge | Full recovery + nitrogen inerting; no open flames during charging |
 | Leak detection | Electronic A1 detector | Combustible gas detector (LEL meter) |
 | Charge limits | None (A1) | Per IEC 60335-2-40 or 60335-2-89 |
@@ -249,11 +248,11 @@ Some R-290 commercial refrigeration systems use synthetic polyolefin (PAO) lubri
 
 EU residential heat pump installation rates have grown substantially through 2020-2026 as part of the REPowerEU climate policy framework — annual installation rates roughly doubled from pre-2020 baselines. The dominant new-equipment refrigerant in this growth is R-290.
 
-The drivers: (1) EU F-Gas Regulation 2024 revisions target sub-150-GWP refrigerants in residential heat pump categories through 2030 — R-290 at GWP 3 clears the threshold with maximum margin; (2) IEC 60335-2-40 charge limit relaxation through 2019-2022 amendments permitted larger residential R-290 systems than the legacy 150g cap; (3) monobloc heat pump architecture (outdoor-only refrigerant circuit) addresses indoor flammability concerns that limited split-system R-290 deployment.
+The drivers: (1) EU F-Gas Regulation 2024 revisions target sub-150-GWP refrigerants in residential heat pump categories through 2030 — R-290 at GWP 3 clears the threshold with maximum margin; (2) IEC 60335-2-40 charge limit relaxation through 2019-2022 amendments permitted larger residential R-290 systems than the legacy limit; (3) monobloc heat pump architecture (outdoor-only refrigerant circuit) addresses indoor flammability concerns that limited split-system R-290 deployment.
 
 Major EU heat pump OEMs (Vaillant aroTHERM plus, Daikin Altherma 3 R MT, Mitsubishi Ecodan R290, Bosch Compress 7400i AW, Viessmann Vitocal 250-A) shipped R-290 monobloc heat pumps extensively through 2023-2026. Market analysts expect R-290 to take majority share of new EU residential heat pump installations by 2027-2028.
 
-US adoption is lagging EU by approximately 3-5 years. Charge limit revisions to UL 60335 are working through the standards-development process; residential US R-290 heat pump availability is currently limited to small monobloc units. Acceleration is expected through 2026-2030 as standards align with EU practice.
+US adoption is lagging EU by approximately 3-5 years. Acceleration is expected through 2026-2030.
 
 </TechSection>
 
@@ -261,7 +260,7 @@ US adoption is lagging EU by approximately 3-5 years. Charge limit revisions to 
 
 R-290 is the structurally low-GWP refrigerant for applications where the A3 charge limits can be managed through equipment design. EU residential heat pumps are the largest growth market; US adoption is expected to follow through 2026-2030 as charge limit standards converge.
 
-For commercial refrigeration, R-290 dominates in self-contained equipment — bottle coolers, vending machines, ice makers, plug-in commercial display cases. Charge limits per IEC 60335-2-89 are workable for these applications (typically 150-500g) and the equipment design (sealed system, no field service of refrigerant) handles A3 safety naturally.
+For commercial refrigeration, R-290 dominates in self-contained equipment — bottle coolers, vending machines, ice makers, plug-in commercial display cases. Charge limits per IEC 60335-2-89 are workable for these applications and the equipment design (sealed system, no field service of refrigerant) handles A3 safety naturally.
 
 For larger commercial and industrial refrigeration, the choice between R-290 (charge-limited but lowest GWP) and R-744 CO₂ (no charge limit but higher equipment cost) depends on application scale and capital structure. R-290 fits small-to-medium installations; R-744 dominates supermarket-scale.
 

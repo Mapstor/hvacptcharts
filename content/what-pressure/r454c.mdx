@@ -43,7 +43,7 @@ diagnosticSteps:
     text: "Commercial refrigeration goes through defrost cycles and load swings (door openings, product loading). Measure after 30+ minutes of stable operation between defrost cycles, with normal product load. Transient readings during defrost recovery are not representative of normal operation."
     tools: ["Refrigeration controller status display"]
   - title: "Read pressures with A2L-rated manifold gauge set"
-    text: "A2L-rated manifold (yellow with red top stripe indicator). Standard pressure rating (500-800 PSI high-side) is adequate. Avoid open flames during service. A2L-rated leak detection sensors are mandatory in machine-room or refrigerated-space installations."
+    text: "A2L-rated manifold. Standard pressure rating (500-800 PSI high-side) is adequate. Avoid open flames during service. A2L-rated leak detection sensors are mandatory in machine-room or refrigerated-space installations."
     tools: ["A2L-rated manifold gauge set", "A2L leak detector"]
   - title: "Compute superheat using the DEW curve (R-454C's 14°F glide matters)"
     text: "R-454C has ~14°F glide. Using the bubble curve for superheat measurement produces a value ~14°F too high — a meaningfully wrong answer. Use the DEW curve. The dew temperature at the measured suction pressure is the proper saturation reference for superheat math. The [superheat calculator](/superheat-calculator/) handles this when R-454C is selected."
@@ -60,9 +60,9 @@ faqs:
   - q: "How does R-454C glide affect service?"
     a: "R-454C has ~14°F glide between bubble and dew points at typical operating pressures. Service implications: (1) use dew curve for superheat measurement; (2) use bubble curve for subcooling; (3) TXV systems generally accommodate the glide without adjustment; (4) fixed-orifice systems are not well-matched to high-glide blends — use TXV or EXV equipment with R-454C; (5) leak-induced composition shift (fractionation) is a concern for any zeotropic blend, especially when topping off a leaked system — recover and recharge by weight rather than topping off."
   - q: "Is R-454C safe to handle?"
-    a: "It's ASHRAE class A2L — mildly flammable with low burning velocity. Safe to handle with A2L procedures: no open flames during service, A2L-rated leak detection sensors, sealed-motor equipment design, charge limits per IEC 60335-2-89. The flammability risk is real but manageable with proper equipment and training. Treating R-454C as if it were A1 (R-404A's class) is a safety-critical error."
+    a: "It's ASHRAE class A2L — mildly flammable with low burning velocity. Safe to handle with A2L procedures: no open flames during service, refrigerant detection where the standard requires it, A2L-listed equipment, charge limits per IEC 60335-2-89. The flammability risk is real but manageable with proper equipment and training. Treating R-454C as if it were A1 (R-404A's class) is a safety-critical error."
   - q: "Can R-454C replace R-404A in existing equipment?"
-    a: "Generally no — most R-404A equipment is A1-rated and is not approved for A2L refrigerants without OEM evaluation. Equipment built with A2L safety design (sealed motors, leak detection, charge limit compliance) is the path forward. For R-404A retrofit of existing A1 equipment, R-448A or R-449A (both A1, GWP ~1390) are the medium-GWP options that keep the safety class consistent."
+    a: "Generally no — most R-404A equipment is A1-rated and is not approved for A2L refrigerants without OEM evaluation. Equipment built with A2L safety design (A2L-listed equipment, refrigerant detection where the standard requires it, charge limit compliance) is the path forward. For R-404A retrofit of existing A1 equipment, R-448A or R-449A (both A1, GWP ~1390) are the medium-GWP options that keep the safety class consistent."
   - q: "What lubricant does R-454C use?"
     a: "Polyolester (POE) oil — same as R-404A. Mineral oil is not compatible. POE oil is hygroscopic; vacuum to 500 microns and filter-drier replacement are standard service practice."
   - q: "What's the GWP of R-454C?"

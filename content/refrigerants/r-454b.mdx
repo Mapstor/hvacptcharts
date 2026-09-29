@@ -93,14 +93,14 @@ narrative:
     - "Packaged rooftop units (new equipment)"
 
   phaseDownStatus: |
-    R-454B is among the lowest-GWP blends in the mainstream residential A2L choice set (R-32 at 675, R-454B at 465, R-452B at 698) [ipccar5]. The 465 GWP gives it more regulatory headroom than R-32 — useful as EU F-Gas regulations tighten threshold tiers beyond the current 750-GWP chiller cap.
+    R-454B is among the lowest-GWP blends in the mainstream residential A2L choice set (R-32 at 675, R-454B at 465, R-452B at 698) [ipccar5]. The 465 GWP gives it more regulatory headroom than R-32 — useful as EU F-Gas regulations tighten threshold tiers over time.
 
     The AIM Act permits R-454B for new residential AC equipment under the 700-GWP technology transition threshold effective 1 January 2025 [aimact]. SNAP-listed acceptable for residential AC, light commercial AC, and heat pumps [snap].
 
   serviceNotes: |
     POE oil required — same lubricant family as R-410A and R-32. Typical viscosity is ISO 32 for residential split systems; OEM-specific viscosity grades apply.
 
-    A2L safety class requires nitrogen-purged brazing (standard HFC practice anyway), A2L-rated leak detection, A2L recovery cylinders (yellow with red stripe), and charge limits per UL 60335-2-40 and ASHRAE 15 [ul60335][ashrae15]. Operating pressures track R-410A within ±5%; R-410A-rated 800 PSI service equipment handles R-454B without modification.
+    A2L safety class requires refrigerant detection where the standard requires it, A2L recovery cylinders, and charge limits per UL 60335-2-40 and ASHRAE 15 [ul60335][ashrae15]. Operating pressures track R-410A within ±5%; R-410A-rated 800 PSI service equipment handles R-454B without modification.
 
 faqs:
   - q: "What is the normal operating pressure of R-454B?"
@@ -121,9 +121,9 @@ faqs:
 
   - q: "Is R-454B safe to handle?"
     a: |
-      R-454B is ASHRAE class A2L, mildly flammable with low burning velocity. A2L equipment design (sealed motors, leak detection, charge limits, ignition-source isolation per UL 60335-2-40) mitigates the flammability risk to acceptable levels for residential applications [ul60335].
+      R-454B is ASHRAE class A2L, mildly flammable with low burning velocity. A2L equipment design (A2L-listed equipment, refrigerant detection where the standard requires it, charge limits, ignition-source isolation per UL 60335-2-40) mitigates the flammability risk to acceptable levels for residential applications [ul60335].
 
-      R-454B has been deployed extensively in US residential AC since 2024 with a strong safety record. For technicians: A2L procedures (no open flames near refrigerant, A2L-rated leak detection, nitrogen-purged brazing) apply; treating R-454B as if it were A1 R-410A is a safety-critical error.
+      R-454B has been deployed extensively in US residential AC since 2024 with a strong safety record. For technicians: A2L procedures (no open flames near refrigerant, refrigerant detection where the standard requires it) apply; treating R-454B as if it were A1 R-410A is a safety-critical error.
 
   - q: "Does R-454B have temperature glide?"
     a: |
@@ -139,7 +139,7 @@ faqs:
 
   - q: "Can I retrofit an R-410A system to R-454B?"
     a: |
-      No, not safely. R-410A equipment is A1-rated (no flammability accommodations); R-454B is A2L and requires sealed motors and A2L-rated safety design per UL 60335-2-40. Retrofitting an A1-rated chassis to an A2L refrigerant is not authorized by OEMs and is non-compliant with code in most jurisdictions [ul60335].
+      No, not safely. R-410A equipment is A1-rated (no flammability accommodations); R-454B is A2L and requires A2L-listed equipment and A2L-rated safety design per UL 60335-2-40. Retrofitting an A1-rated chassis to an A2L refrigerant is not authorized by OEMs and is non-compliant with code in most jurisdictions [ul60335].
 
       For R-410A equipment needing replacement, new R-454B or R-32 systems are the path forward.
 
@@ -185,7 +185,7 @@ R-454B was deliberately engineered to match R-410A's pressure envelope so equipm
 
 At a 95°F outdoor design ambient, R-454B saturation is <PressureAtTemp slug="r-454b" tempF="95" />, compared to R-410A's <PressureAtTemp slug="r-410a" tempF="95" />. At 70°F bench-test conditions, R-454B is <PressureAtTemp slug="r-454b" tempF="70" />, versus R-410A's <PressureAtTemp slug="r-410a" tempF="70" />. The 5% lower pressure means R-454B equipment can use slightly less robust pressure-rated components than R-410A — though in practice most OEMs use R-410A-rated component designs for inventory and supplier-chain efficiency.
 
-For service technicians, the pressure-envelope match means R-410A-rated 800 PSI manifold gauges, hoses, and recovery cylinders handle R-454B without modification. The only equipment differences from R-410A practice are A2L-specific items: A2L-rated leak detection sensors, yellow-with-red-stripe recovery cylinders, and ignition-source-isolated procedures during service.
+For service technicians, the pressure-envelope match means R-410A-rated 800 PSI manifold gauges, hoses, and recovery cylinders handle R-454B without modification. The only equipment differences from R-410A practice are A2L-specific items: refrigerant detection where the standard requires it, recovery cylinders, and ignition-source-isolated procedures during service.
 
 </TechSection>
 
@@ -238,15 +238,14 @@ Compare to R-410A at the same temperatures: R-454B values run 4-6% below R-410A 
 
 <TechSection icon="service" tone="blue" title="A2L equipment requirements — same as R-32, slightly different from R-410A">
 
-R-454B's A2L safety class requires the same equipment-level safety design as pure R-32 — sealed motors, charge limits per ASHRAE 15, A2L-rated leak detection in some installations, and ignition-source isolation per UL 60335-2-40 [ul60335][ashrae15]. From a service-tool perspective, R-454B and R-32 are essentially interchangeable: same pressure ratings, same lubricant family, same A2L procedures.
+R-454B's A2L safety class requires the same equipment-level safety design as pure R-32 — A2L-listed equipment, charge limits per ASHRAE 15, A2L-rated leak detection in some installations, and ignition-source isolation per UL 60335-2-40 [ul60335][ashrae15]. From a service-tool perspective, R-454B and R-32 are essentially interchangeable: same pressure ratings, same lubricant family, same A2L procedures.
 
 | Equipment / procedure | R-410A (A1) | R-454B (A2L) |
 | --- | --- | --- |
 | Manifold gauge rating | 800 PSI | 800 PSI |
-| Compressor motor | Standard hermetic | Sealed motor in refrigerant circuit per UL 60335-2-40 |
+| Compressor motor | Standard hermetic | A2L-listed equipment in refrigerant circuit per UL 60335-2-40 |
 | Charge limits | None (A1) | Scaled to smallest enclosed space per ASHRAE 15 |
 | Leak detection | Optional | Required in some installations per UL 60335-2-40 |
-| Brazing during service | Nitrogen purge standard | Nitrogen purge mandatory; no open flames near system |
 | Lubricant | POE | POE (same family) |
 | Vacuum target | 500 microns held 30+ min | 500 microns held 30+ min |
 
@@ -278,7 +277,7 @@ For homeowners and contractors, the choice between R-32 and R-454B is typically 
 
 R-454B is one of two dominant new-equipment residential AC refrigerants in 2026, alongside pure R-32. The Carrier / Trane / Lennox standardization gives R-454B substantial US market share — likely 50-60% of new residential AC installations through the late 2020s, with R-32 capturing the balance through Daikin / Mitsubishi / LG / Fujitsu sales.
 
-R-454B's GWP 465 provides the best regulatory headroom in the mainstream A2L tier. As future EU F-Gas thresholds may tighten beyond the current 750-GWP chiller cap and AIM Act may add new technology transitions, R-454B's lower baseline gives the chemistry a longer regulatory runway than pure R-32. EU F-Gas Regulation revisions in 2024 already target tighter thresholds in some segments through 2030.
+R-454B's GWP 465 provides the best regulatory headroom in the mainstream A2L tier. As future EU F-Gas thresholds may tighten and the AIM Act may add new technology transitions, R-454B's lower baseline gives the chemistry a longer regulatory runway than pure R-32. EU F-Gas Regulation revisions in 2024 already target tighter thresholds in some segments through 2030.
 
 For technicians, R-454B work resembles R-32 work — A2L procedures, POE oil, ~800 PSI service equipment, near-azeotropic behavior. The small (~2°F) glide is operationally negligible compared to true zeotropic blends; field service can effectively treat R-454B as a pure refrigerant for routine superheat and subcooling measurement. R-454B-specific training is typically bundled with R-32 in distributor and OEM training courses.
 

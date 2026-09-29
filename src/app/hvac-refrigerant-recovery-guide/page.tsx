@@ -4,7 +4,7 @@ import { Activity, AlertTriangle, BookOpen, ShieldCheck, ListChecks, FileCheck, 
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { contentDates, UpdatedLine } from "@/lib/content-dates";
-import { refrigerants } from "@/data/refrigerants";
+import { refrigerants, getRefrigerant, gwpNum } from "@/data/refrigerants";
 import {
   ComparisonTable,
   FixCallout,
@@ -53,7 +53,7 @@ const FAQS = [
   },
   {
     q: "Are there special procedures for A2L refrigerants?",
-    a: "Yes — A2L refrigerants (R-32, R-454B, R-454C, R-455A, R-1234yf and others) are mildly flammable per ASHRAE Standard 34 classification, with auto-ignition temperatures of 700-1000°F+ and burning velocities limited to 10 cm/s. Special handling requirements: (1) Recovery equipment must be UL-listed for A2L use — older A1-only machines should not be used. (2) No open flames or ignition sources during service (brazing, soldering, electric tools that spark). For A2L brazing, the area must be ventilated and the refrigerant fully recovered before any open-flame work. (3) Gas detection / ventilation in confined service spaces. (4) Modified leak-detection procedures — soap bubbles and electronic detectors work, but follow OSHA and manufacturer A2L safe-work practices. (5) Cylinders must be designated for A2L use; mixing A2L with A1 in the same cylinder is prohibited. AHRI Safe Refrigerant Transition guidance + ASHRAE Standard 15 + manufacturer instructions cover specifics. EPA Section 608 certification covers A2L recovery; some states are adding additional A2L-specific training requirements.",
+    a: "Yes — A2L refrigerants (R-32, R-454B, R-454C, R-455A, R-1234yf and others) are mildly flammable per ASHRAE Standard 34 classification, with auto-ignition temperatures of 700-1000°F+ and burning velocities limited to 10 cm/s. Special handling requirements: (1) Recovery equipment must be UL-listed for A2L use — older A1-only machines should not be used. (2) No open flames or ignition sources during service (brazing, soldering, electric tools that spark). For A2L brazing, the area must be ventilated and the refrigerant fully recovered before any open-flame work. (3) Gas detection / ventilation in confined service spaces. (4) Modified leak-detection procedures — soap bubbles and electronic detectors work, but follow OSHA and manufacturer A2L safe-work practices. (5) Cylinders must be designated for A2L use; don't mix A2L with A1 in the same cylinder. AHRI Safe Refrigerant Transition guidance + ASHRAE Standard 15 + manufacturer instructions cover specifics. EPA Section 608 certification covers A2L recovery; some states are adding additional A2L-specific training requirements.",
   },
   {
     q: "What's the penalty for venting refrigerant?",
@@ -199,19 +199,24 @@ export default function HvacRefrigerantRecoveryGuidePage() {
               title="GWP (100-yr, US EPA basis) of common refrigerants"
               orientation="horizontal"
               data={[
-                { label: "R-1234yf (A2L)", value: 4, color: "#10b981" },
-                { label: "R-744 (CO₂)", value: 1, color: "#10b981" },
-                { label: "R-290 (propane)", value: 3, color: "#10b981" },
-                { label: "R-454B (A2L)", value: 466, color: "#3b82f6" },
-                { label: "R-32 (A2L)", value: 675, color: "#3b82f6" },
-                { label: "R-134a (HFC)", value: 1430, color: "#f59e0b" },
-                { label: "R-22 (HCFC)", value: 1810, color: "#ef4444" },
-                { label: "R-410A (HFC)", value: 2088, color: "#dc2626", emphasis: true },
-                { label: "R-404A (HFC)", value: 3922, color: "#7c2d12" },
-              ]}
+                { slug: "r-1234yf", label: "R-1234yf (A2L)", color: "#10b981" },
+                { slug: "r-744", label: "R-744 (CO₂)", color: "#10b981" },
+                { slug: "r-290", label: "R-290 (propane)", color: "#10b981" },
+                { slug: "r-454b", label: "R-454B (A2L)", color: "#3b82f6" },
+                { slug: "r-32", label: "R-32 (A2L)", color: "#3b82f6" },
+                { slug: "r-134a", label: "R-134a (HFC)", color: "#f59e0b" },
+                { slug: "r-22", label: "R-22 (HCFC)", color: "#ef4444" },
+                { slug: "r-410a", label: "R-410A (HFC)", color: "#dc2626", emphasis: true },
+                { slug: "r-404a", label: "R-404A (HFC)", color: "#7c2d12" },
+              ].map(({ slug, label, color, emphasis }) => ({
+                label,
+                color,
+                emphasis,
+                value: gwpNum(getRefrigerant(slug)!.environmental.gwp.headline) ?? 0,
+              }))}
               axisLabel="GWP100"
               reference={{ value: 700, label: "AIM Act threshold", color: "#dc2626" }}
-              caption="The AIM Act requires new residential AC + heat pump equipment manufactured after January 2025 to use refrigerants with GWP ≤700. R-410A at 2,088 fails decisively; R-32 (675) and R-454B (466) replace it. Recovery prevents these high-GWP gases from venting to atmosphere."
+              caption="From January 1, 2025, new self-contained residential and light-commercial AC and heat pumps may not use a refrigerant with GWP 700 or more (40 CFR 84.54(a)(1)). R-410A (2,088) is over; R-32 (675) and R-454B (465) are under. Recovery prevents these high-GWP gases from venting to atmosphere."
             />
           </div>
 
@@ -255,7 +260,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
           </h2>
 
           <TechSection icon="insight" tone="blue" title="Recovery — moving refrigerant out">
-            Per 40 CFR § 82.152, recovery is the process of removing refrigerant from equipment in any condition and storing it in an external container without testing or processing. Recovery is what happens any time you open a refrigerant circuit. Required practice for all qualifying service work under § 82.156. Recovered refrigerant can be reused per the recycling rules, or transferred for reclamation, or sent for destruction. Cannot be sold to third parties without first being reclaimed (a § 82.158 prohibition that protects buyers from mixed/contaminated material).
+            Per 40 CFR § 82.152, recovery is the process of removing refrigerant from equipment in any condition and storing it in an external container without testing or processing. Recovery is what happens any time you open a refrigerant circuit. Required practice for all qualifying service work under § 82.156. Recovered refrigerant can be reused per the recycling rules, or transferred for reclamation, or sent for destruction. Cannot be sold to third parties without first being reclaimed (a 40 CFR 82.154(d) requirement that protects buyers from mixed/contaminated material).
           </TechSection>
 
           <TechSection icon="insight" tone="blue" title="Recycling — cleaning for in-house reuse">
@@ -447,7 +452,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
           </TechSection>
 
           <TechSection icon="problem" tone="amber" title="A3 refrigerants — fully flammable">
-            R-290 (propane), R-1270 (propylene), R-600a (isobutane) are A3 refrigerants — fully flammable with no upper concentration limit. Used in small appliances (chest freezers, household refrigerators) where the charge is limited per IEC 60335-2-89 (typically &lt;150 g for A3) to limit explosion-equivalent energy if released. A3 recovery requires specialized A3-rated equipment, separate cylinders, and extensive ventilation. Not common in US residential HVAC as of 2026, but increasingly common in commercial refrigeration in Europe and entering US market.
+            R-290 (propane), R-1270 (propylene), R-600a (isobutane) are A3 refrigerants — fully flammable with no upper concentration limit. Used in small appliances (chest freezers, household refrigerators) where the refrigerant charge is limited per the applicable IEC 60335 standard (household refrigerators, 60335-2-24; commercial refrigerating appliances, 60335-2-89) to limit explosion-equivalent energy if released. A3 recovery requires specialized A3-rated equipment, separate cylinders, and extensive ventilation. Not common in US residential HVAC as of 2026, but increasingly common in commercial refrigeration in Europe and entering US market.
           </TechSection>
         </section>
 

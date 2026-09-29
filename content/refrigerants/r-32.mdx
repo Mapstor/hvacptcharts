@@ -76,7 +76,7 @@ narrative:
   whatItIs: |
     R-32 is pure difluoromethane (CH₂F₂), a single-molecule HFC with no temperature glide and no chlorine [ashrae34]. It is also one of the two components of R-410A (50% by mass) — pure R-32 has been adopted as the new-equipment replacement for R-410A in many residential AC markets.
 
-    The defining trade-off vs R-410A is the safety class change from A1 (non-flammable) to A2L (mildly flammable, low burning velocity). A2L requires equipment-level safety design — sealed motors, charge limits per ASHRAE 15, and refrigerant leak detection where applicable [ul60335].
+    The defining trade-off vs R-410A is the safety class change from A1 (non-flammable) to A2L (mildly flammable, low burning velocity). A2L requires equipment-level safety design — A2L-listed equipment, charge limits per ASHRAE 15, and refrigerant leak detection where applicable [ul60335].
 
   whereItsUsed:
     - "Residential central AC — new equipment 2025+ (Daikin, Mitsubishi, LG, Fujitsu lead)"
@@ -93,7 +93,7 @@ narrative:
   serviceNotes: |
     POE oil is required (same lubricant family as R-410A) — mineral oil and alkylbenzene are not miscible. ISO 32 viscosity is typical for residential split systems.
 
-    A2L safety class requires specific procedures: no open flames during service (nitrogen purge for brazing — standard practice for any HFC), A2L-rated leak detection sensors, charge limits per UL 60335-2-40 and ASHRAE 15 [ul60335][ashrae15]. R-32 operating pressures are approximately 2% above R-410A; R-410A-rated service equipment (800 PSI manifold) handles R-32 without modification.
+    A2L safety class requires specific procedures: no open flames during service, refrigerant detection where the standard requires it, charge limits per UL 60335-2-40 and ASHRAE 15 [ul60335][ashrae15]. R-32 operating pressures are approximately 2% above R-410A; R-410A-rated service equipment (800 PSI manifold) handles R-32 without modification.
 
 faqs:
   - q: "What is the normal operating pressure of R-32?"
@@ -104,7 +104,7 @@ faqs:
     a: |
       Yes — R-32 is ASHRAE class A2L, mildly flammable with low burning velocity (≤10 cm/s) and limited heat of combustion [ashrae34]. The classification reflects flammability conditions that require sustained ignition source and specific concentration in air to propagate flame.
 
-      Equipment design accommodates the flammability per UL 60335-2-40: sealed motors in the refrigerant circuit, A2L-rated leak detection in some installations, and charge limits scaled to the smallest enclosed space the system serves [ul60335]. Treating R-32 as if it were A1 R-410A is a safety-critical error.
+      Equipment design accommodates the flammability per UL 60335-2-40: A2L-listed equipment in the refrigerant circuit, A2L-rated leak detection in some installations, and charge limits scaled to the smallest enclosed space the system serves [ul60335]. Treating R-32 as if it were A1 R-410A is a safety-critical error.
 
   - q: "What is R-32's GWP?"
     a: |
@@ -120,7 +120,7 @@ faqs:
 
   - q: "What gauges and recovery equipment do I need for R-32?"
     a: |
-      R-410A-rated 800 PSI manifolds work for R-32 from a pressure-rating standpoint. Recovery cylinders are color-coded yellow with a red top stripe for A2L refrigerants (distinct from R-410A's pink cylinder).
+      R-410A-rated 800 PSI manifolds work for R-32 from a pressure-rating standpoint. Recovery cylinders are color-coded for A2L refrigerants (distinct from R-410A's pink cylinder).
 
       A2L-specific recovery machines exist; R-410A recovery machines can be used for A2L only if specifically certified by the manufacturer — check the equipment marking. Hoses must be rated for working pressure and resistant to refrigerant permeation.
 
@@ -132,7 +132,7 @@ faqs:
 
   - q: "Can I retrofit an R-410A system to R-32?"
     a: |
-      No, not safely. R-410A equipment is A1-rated (no flammability accommodations); R-32 is A2L and requires sealed motors and A2L-rated safety design per UL 60335-2-40. Retrofitting an A1-rated chassis to an A2L refrigerant is not permitted by most equipment OEMs and is non-compliant with code in most jurisdictions [ul60335].
+      No, not safely. R-410A equipment is A1-rated (no flammability accommodations); R-32 is A2L and requires A2L-listed equipment and A2L-rated safety design per UL 60335-2-40. Retrofitting an A1-rated chassis to an A2L refrigerant is not permitted by most equipment OEMs and is non-compliant with code in most jurisdictions [ul60335].
 
       For an R-410A system needing major work, the path is full replacement with new R-32 or R-454B equipment.
 
@@ -234,10 +234,9 @@ R-32's A2L safety class requires equipment-level accommodations that R-410A's A1
 | Equipment / procedure | R-410A (A1) | R-32 (A2L) |
 | --- | --- | --- |
 | Manifold gauge rating | 800 PSI | 800 PSI |
-| Compressor motor | Standard hermetic | Sealed motor in refrigerant circuit per UL 60335-2-40 |
+| Compressor motor | Standard hermetic | A2L-listed equipment per UL 60335-2-40 |
 | Charge limits | None (A1) | Scaled to smallest enclosed space per ASHRAE 15 |
 | Leak detection | Optional | Required in some installations per UL 60335-2-40 |
-| Brazing during service | Nitrogen purge standard | Nitrogen purge mandatory; no open flames near system |
 | Lubricant | POE | POE (same family) |
 | Vacuum target | 500 microns held 30+ min | 500 microns held 30+ min |
 
@@ -278,6 +277,6 @@ R-32 is one of the two dominant new-equipment residential AC refrigerants in 202
 
 R-32's regulatory positioning is stable through 2035 at minimum. GWP 675 sits below the AIM Act 700 threshold; the AIM Act production schedule reaches 85% reduction by 2036 but R-32 (being a low-GWP HFC) consumes less production allocation per kg than higher-GWP refrigerants. EU F-Gas Regulation revisions (2024) target tighter thresholds in some segments — small split AC may face sub-150-GWP requirements by 2030, which would push beyond R-32 toward pure HFO blends or natural refrigerants. The US is not on that trajectory in 2026.
 
-For technicians, R-32 work resembles R-410A work with A2L procedures added on top: same pressures (within about 2%), same lubricant family (POE), same vacuum discipline, same gauge ratings, same charging-by-weight approach. The A2L safety procedures (no open flames near refrigerant, A2L-rated leak detection, charge limits) are the meaningful operational difference from R-410A practice.
+For technicians, R-32 work resembles R-410A work with A2L procedures added on top: same pressures (within about 2%), same lubricant family (POE), same vacuum discipline, same gauge ratings, same charging-by-weight approach. The A2L safety procedures (no open flames near refrigerant, refrigerant detection where the standard requires it, charge limits) are the meaningful operational difference from R-410A practice.
 
 </TechSection>

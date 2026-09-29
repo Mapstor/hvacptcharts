@@ -23,11 +23,11 @@ operatingRanges:
 narrativeIntro: |
   R-454B and R-410A operate at very similar pressures — the blend was specifically engineered for this near-equivalence to simplify the OEM transition from R-410A residential AC. Across the typical ambient range, R-454B bubble-point pressures run about 5% below R-410A's and dew-point pressures about 9–10% below (the wider dew-side gap reflects R-454B's glide).
 
-  The substantive difference is the A2L safety class. R-454B is mildly flammable; R-410A is non-flammable. A2L handling requires charge limits per UL 60335-2-40, leak detection, no open flames in the service environment, and A2L-rated recovery cylinders. Treating R-454B as if it were R-410A from a safety standpoint is a structural error.
+  The substantive difference is the A2L safety class. R-454B is mildly flammable; R-410A is non-flammable. A2L handling requires charge limits per UL 60335-2-40, refrigerant detection where the standard requires it, no open flames in the service environment, and A2L-rated recovery cylinders. Treating R-454B as if it were R-410A from a safety standpoint is a structural error.
 
 diagnosticSteps:
   - title: "Confirm A2L procedures before opening the system"
-    text: "Before disconnecting any service connection or recovering refrigerant, verify the environment is suitable for A2L work: no open flames within the service area (brazing or torch work requires the system to be evacuated first); A2L-rated recovery cylinder available (yellow with red top stripe); leak detector calibrated for A2L hydrofluoroolefins. Most A2L service incidents trace back to skipping these confirmation steps."
+    text: "Before disconnecting any service connection or recovering refrigerant, verify the environment is suitable for A2L work: no open flames within the service area (brazing or torch work requires the system to be evacuated first); A2L-rated recovery cylinder available; leak detector calibrated for A2L hydrofluoroolefins. Most A2L service incidents trace back to skipping these confirmation steps."
     tools: ["A2L-rated recovery cylinder", "A2L-calibrated leak detector", "Ventilation if working indoors"]
   - title: "Measure outdoor ambient and indoor return-air temperatures"
     text: "Record outdoor dry-bulb at the condenser unit (not in direct sun) and indoor return-air dry-bulb at the air handler. Rating conditions are 95°F outdoor / 80°F indoor dry-bulb per AHRI 210/240 — same as R-410A and R-32 residential AC."
@@ -44,7 +44,7 @@ faqs:
     a: "Use the operating-pressure table above (computed from the CoolProp-verified saturation dataset) and read the 95°F outdoor row. Suction follows the evaporator setpoint and load; head tracks the outdoor ambient and condenser condition. R-454B runs very close to R-410A across the envelope, and its small temperature glide means the dew and bubble saturation values differ only slightly."
 
   - q: "Can I use my R-410A gauges and recovery equipment for R-454B?"
-    a: "Pressure ratings: yes. R-410A manifolds rated 800 PSI are pressure-appropriate for R-454B. Recovery cylinders: NO — must use A2L-rated cylinders (yellow with red top stripe), distinct from R-410A's pink. Recovery machines: only if specifically A2L-certified by the manufacturer; check the equipment marking. Hoses: must be rated for working pressure and resistant to refrigerant permeation; R-410A hoses generally work."
+    a: "Pressure ratings: yes. R-410A manifolds rated 800 PSI are pressure-appropriate for R-454B. Recovery cylinders: NO — must use A2L-rated cylinders. Recovery machines: only if specifically A2L-certified by the manufacturer; check the equipment marking. Hoses: must be rated for working pressure and resistant to refrigerant permeation; R-410A hoses generally work."
 
   - q: "How does R-454B compare to R-32?"
     a: "Both are A2L; both are POE-compatible; both are R-410A replacements. R-32 is pure (no glide, GWP 675). R-454B is a near-azeotrope (~2.3°F glide, GWP 465). The OEM split: Carrier favors R-454B (Puron Advance brand continuity); Daikin and Mitsubishi favor R-32. Operating pressures and service procedures are very similar between the two."
@@ -56,7 +56,7 @@ faqs:
     a: "Polyolester (POE) oil — the same as R-410A. Mineral oil and alkylbenzene are not miscible. POE is hygroscopic; pull vacuum to 500 microns and verify it holds for 30+ minutes before charging."
 
   - q: "What does the A2L safety class mean for installers?"
-    a: "Charge limits per UL 60335-2-40 (typically ~1.84 kg / 4 lb maximum in unventilated rooms for residential split systems; larger systems require A2L-compliant equipment design with sealed circuits and leak detection). No open flames during service — brazing requires evacuation first. A2L-rated recovery cylinders (yellow with red top stripe). Technician training specific to A2L handling beyond standard EPA Section 608."
+    a: "Charge limits per UL 60335-2-40 depend on the refrigerant's LFL and the room size/volume; larger systems require A2L-compliant equipment design with sealed circuits and leak detection. No open flames during service — brazing requires evacuation first. A2L-rated recovery cylinders. Technician training specific to A2L handling beyond standard EPA Section 608."
 
   - q: "Can I retrofit my R-410A system to R-454B?"
     a: "Not as a drop-in despite the very close pressure envelope. R-410A (A1) equipment lacks the A2L safety features required for R-454B operation: A2L-rated compressor electrical, integrated leak detection, charge limits per UL 60335-2-40. Retrofit in practice means replacing the compressor and safety systems — at which point full equipment replacement with new R-454B equipment is the standard path."

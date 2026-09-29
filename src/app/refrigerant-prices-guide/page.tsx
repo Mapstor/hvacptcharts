@@ -46,7 +46,7 @@ const FAQS = [
   },
   {
     q: "What's the difference between virgin, reclaimed, and recycled refrigerant?",
-    a: "Three legally and technically distinct grades. (1) Virgin: newly manufactured from raw chemical feedstocks. Highest purity, AHRI 700 spec by default. Subject to AIM Act allowance for HFCs. (2) Reclaimed: recovered from existing equipment, processed back to AHRI 700 spec (95%+ purity, 0.5% moisture max, etc. per AHRI Standard 700-2019), tested, and re-sold for service use. Legal for use in any equipment. Reclaimed is the price-relief mechanism as virgin supply tightens. (3) Recycled (also called \"reclaimed in field\"): recovered from one piece of equipment and put back into the same or different equipment without full processing. Legal for service in the SAME owner's equipment only (per EPA Section 608 §82.158). Typically priced lower than reclaimed because the chain-of-custody is simpler. Reclaimed wholesale typically trades at 60-80% of virgin price (with substantial market variation); recycled is generally not commercially traded.",
+    a: "Three legally and technically distinct grades. (1) Virgin: newly manufactured from raw chemical feedstocks. Highest purity, AHRI 700 spec by default. Subject to AIM Act allowance for HFCs. (2) Reclaimed: recovered from existing equipment, processed back to AHRI 700 spec (95%+ purity, 0.5% moisture max, etc. per AHRI Standard 700-2019), tested, and re-sold for service use. Legal for use in any equipment. Reclaimed is the price-relief mechanism as virgin supply tightens. (3) Recycled (also called \"reclaimed in field\"): recovered from one piece of equipment and put back into the same or different equipment without full processing. Legal for service in the SAME owner's equipment only (per EPA Section 608). Typically priced lower than reclaimed because the chain-of-custody is simpler. Reclaimed wholesale typically trades at 60-80% of virgin price (with substantial market variation); recycled is generally not commercially traded.",
   },
   {
     q: "How do I tell if I'm being overcharged on a recharge service quote?",
@@ -58,7 +58,7 @@ const FAQS = [
   },
   {
     q: "Will A2L refrigerant prices follow the same curve as R-22 did?",
-    a: "Probably not. R-22 prices rose because production was prohibited globally under Montreal Protocol Annex C. A2Ls like R-32 and R-454B are the AIM Act's intended replacement chemistry — they're below the 700 GWP threshold that triggers Technology Transitions equipment-sale restrictions, so production and import are not under the same quota pressure. A2Ls will see normal supply-chain price evolution (manufacturing scale-up, distribution build-out, training labor costs) but not the structural supply collapse that R-22 experienced. As of 2026 A2L wholesale prices are above legacy HFCs by 30-80% but stabilizing as production scales; the differential should continue narrowing through 2028-2030. Source: AIM Act statutory exemption structure + AHRI A2L Transition guidance + manufacturer pricing trends in publicly traded refrigerant producer SEC filings.",
+    a: "Probably not. R-22 prices rose because its US production and import were phased out (HCFC-22 ended January 1, 2020). A2Ls like R-32 and R-454B are the AIM Act's intended replacement chemistry — R-32 (675) and R-454B (465) are below the 700 limit for new residential/light-commercial AC and heat pumps (84.54(a)(1), (c)(1)); both are still regulated HFCs whose production and import count against AIM Act allowances. A2Ls will see normal supply-chain price evolution (manufacturing scale-up, distribution build-out, training labor costs) but not the structural supply collapse that R-22 experienced. As of 2026 A2L wholesale prices are above legacy HFCs by 30-80% but stabilizing as production scales; the differential should continue narrowing through 2028-2030. Source: AIM Act statutory exemption structure + AHRI A2L Transition guidance + manufacturer pricing trends in publicly traded refrigerant producer SEC filings.",
   },
 ];
 
@@ -338,7 +338,7 @@ export default function RefrigerantPricesGuidePage() {
           </TechSection>
 
           <TechSection icon="insight" tone="blue" title="Tier 3 — Recycled refrigerant (a.k.a. &quot;reclaimed in field&quot;)">
-            Recovered from one piece of equipment and reused (in the same equipment after service, or in another piece of equipment owned by the same end-user) without full off-site reclamation. Permitted under EPA Section 608 § 82.158 only within the same owner&apos;s equipment, and only when the refrigerant has been &quot;recycled&quot; using approved on-site equipment (filter-driers, oil separators per EPA SNAP). Not commercially traded. Lowest cost tier when feasible. Typical use: large commercial / industrial sites with their own service teams where recovery + on-site recycling + immediate reuse avoids the full reclaim supply chain. Not relevant to residential service.
+            Recovered from one piece of equipment and reused (in the same equipment after service, or in another piece of equipment owned by the same end-user) without full off-site reclamation. Permitted under EPA Section 608 only within the same owner&apos;s equipment, and only when the refrigerant has been &quot;recycled&quot; using approved on-site recovery/recycling equipment (the standards for that equipment are at 40 CFR 82.158). Not commercially traded. Lowest cost tier when feasible. Typical use: large commercial / industrial sites with their own service teams where recovery + on-site recycling + immediate reuse avoids the full reclaim supply chain. Not relevant to residential service.
           </TechSection>
 
           <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
@@ -623,7 +623,7 @@ export default function RefrigerantPricesGuidePage() {
             </Link>
             <Link href="/refrigerant-gwp-rankings/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
               <div className="flex items-center gap-2 font-semibold"><TrendingUp className="h-4 w-4 text-blue-600" /> GWP rankings (all 60)</div>
-              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">AIM Act 700-GWP threshold, EU F-Gas 150-GWP threshold marked.</p>
+              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">AIM Act 700-GWP threshold marked; the 150-GWP level used by several 40 CFR 84.54 categories also shown.</p>
             </Link>
             <Link href="/r-22-vs-r-410a/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
               <div className="flex items-center gap-2 font-semibold"><Activity className="h-4 w-4 text-blue-600" /> R-22 vs R-410A</div>

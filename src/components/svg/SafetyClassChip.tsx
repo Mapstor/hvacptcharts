@@ -40,7 +40,7 @@ const CLASS_INFO: Record<SafetyClass, ClassInfo> = {
     label: "Mildly flammable",
     shortDescription: "Lower toxicity, low burning velocity (≤ 10 cm/s).",
     longDescription:
-      "Lower toxicity. Flame propagates in air at 60°C, but with a low burning velocity (≤ 10 cm/s) and a heat of combustion < 19,000 kJ/kg. Requires A2L-rated equipment, leak detection, and charge limits per UL 60335-2-40 and ASHRAE 15. R-32, R-454B, R-1234yf, R-1234ze(E), R-452B, R-454C, R-455A, R-516A are A2L.",
+      "Lower toxicity. Flame propagates in air at 60°C, but with a low burning velocity (≤ 10 cm/s) and a heat of combustion < 19,000 kJ/kg. Requires A2L-rated equipment, refrigerant detection where the standard requires it, and charge limits per UL 60335-2-40 and ASHRAE 15. R-32, R-454B, R-1234yf, R-1234ze(E), R-452B, R-454C, R-455A, R-516A are A2L.",
     flammability: "Low (burning velocity ≤ 10 cm/s)",
     toxicity: "Lower (OEL ≥ 400 ppm)",
     darkBg: false,
@@ -60,7 +60,7 @@ const CLASS_INFO: Record<SafetyClass, ClassInfo> = {
     label: "Highly flammable",
     shortDescription: "Lower toxicity, highly flammable. Hydrocarbon class.",
     longDescription:
-      "Lower toxicity. High burning velocity (> 100 cm/s) or high heat of combustion. Includes hydrocarbons R-290 (propane), R-600a (isobutane), R-1150 (ethylene), R-1270 (propylene). EPA charge limits, HC-rated equipment design, sealed systems, and leak detection are mandatory.",
+      "Lower toxicity. High burning velocity (> 100 cm/s) or high heat of combustion. Includes hydrocarbons R-290 (propane), R-600a (isobutane), R-1150 (ethylene), R-1270 (propylene). EPA charge limits, HC-rated equipment design, and sealed systems are mandatory, along with refrigerant detection where the standard requires it.",
     flammability: "High (burning velocity > 100 cm/s)",
     toxicity: "Lower",
     darkBg: true,

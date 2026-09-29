@@ -2,8 +2,8 @@
   "meta": {
     "verified": "2026-09-28",
     "rule": "Every entry below was checked against the cited primary text on the verified date. Do not add, reword or extend entries without a primary source; add new facts only through this file.",
-    "version": 2,
-    "changes": "v2 (2026-09-28): added (a)(2), (a)(11), (a)(13)(i)-(iii), (a)(14), (a)(15), (a)(16)(i)-(ii), (c)(13); semiconductor compliance notes (a)(10)(v), (a)(12)(iv), (c)(5)(ii), (c)(6)(ii), (c)(10)(v); 'sector' field on every entry."
+    "version": 3,
+    "changes": "v2 (2026-09-28): added (a)(2), (a)(11), (a)(13)(i)-(iii), (a)(14), (a)(15), (a)(16)(i)-(ii), (c)(13); semiconductor compliance notes (a)(10)(v), (a)(12)(iv), (c)(5)(ii), (c)(6)(ii), (c)(10)(v); 'sector' field on every entry. | v3 (2026-09-29): us.ods 2015 HCFC milestone (EPA); us.section608 82.154(d) used-refrigerant sale rule + 82.158 heading; eu.macDirective 2006/40/EC dates (2011 new types, 2017 all new vehicles)."
   },
   "us": {
     "technologyTransitions": {
@@ -851,6 +851,13 @@
           "url": "https://www.epa.gov/ods-phaseout/phaseout-class-ii-ozone-depleting-substances"
         },
         {
+          "substances": "HCFCs other than HCFC-22 and HCFC-142b (e.g. HCFC-123, HCFC-124)",
+          "event": "No production or import, except as refrigerants in equipment manufactured before January 1, 2020",
+          "date": "2015-01-01",
+          "source": "US EPA, Phaseout of Class II Ozone-Depleting Substances",
+          "url": "https://www.epa.gov/ods-phaseout/phaseout-class-ii-ozone-depleting-substances"
+        },
+        {
           "substances": "HCFC-22 and HCFC-142b",
           "event": "No production or import",
           "date": "2020-01-01",
@@ -866,6 +873,18 @@
         }
       ],
       "servicingNote": "EPA: HCFC uses continue, such as for servicing refrigeration and air-conditioning equipment (production/import limits apply, not a ban on using existing equipment)."
+    },
+    "section608": {
+      "usedRefrigerantSale": {
+        "cfr": "40 CFR 82.154(d)",
+        "text": "No person may sell or distribute, or offer for sale or distribution, for use as a refrigerant any class I or class II substance or non-exempt substitute consisting wholly or in part of used refrigerant unless the refrigerant has been reclaimed by a person certified as a reclaimer under 40 CFR 82.164 (limited exceptions are listed in 82.154(d)).",
+        "url": "https://www.law.cornell.edu/cfr/text/40/82.154"
+      },
+      "recoveryEquipmentStandards": {
+        "cfr": "40 CFR 82.158",
+        "heading": "Standards for recovery and/or recycling equipment.",
+        "url": "https://www.law.cornell.edu/cfr/text/40/82.158"
+      }
     }
   },
   "eu": {
@@ -918,6 +937,14 @@
       "summary": "Started to apply on 11 March 2024 and adds further prohibitions on F-gas equipment, products and use; its Annex IV is the current EU list — not reproduced here.",
       "gwpBasisNote": "Recital 8: AR4 values for HFCs, AR6 for other fluorinated gases.",
       "url": "https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases/f-gas-legislation_en"
+    },
+    "macDirective": {
+      "name": "Directive 2006/40/EC (mobile air-conditioning)",
+      "rule": "Mobile air-conditioning systems using fluorinated greenhouse gases with a GWP higher than 150",
+      "newVehicleTypes": "2011-01-01",
+      "allNewVehicles": "2017-01-01",
+      "text": "From 1 January 2011 for new vehicle types, and from 1 January 2017 for all new vehicles put on the EU market (European Commission).",
+      "url": "https://single-market-economy.ec.europa.eu/sectors/automotive-industry/environmental-protection/mobile-air-conditioning-systems-macs_en"
     }
   },
   "kigali": {

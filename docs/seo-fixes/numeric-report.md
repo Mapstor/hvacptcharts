@@ -96,7 +96,7 @@ These are NOT failures. Operating-context pressures legitimately differ from sat
 | /refrigerant/r-513a/ | a | r-134a | 71 psig @ 70°F | matches r-134a (71.1) | At 70°F R-513A saturation is 77 PSIG vs R-134a's 71 PSIG (CoolProp 7.2.0) — approximately 8% higher. |
 | /refrigerant/r-513a/ | a | r-134a | 71 psig @ 70°F | matches r-134a (71.1) | Compare to R-134a at 70°F (71 PSIG) — R-513A is about 8% higher. |
 | /refrigerant/r-515a/ | e | r-1234ze-e | GWP 3220 | r-1234ze-e headline 1, AR5 0.5, AR6 1.37 | R-515A adds 12% R-227ea (heptafluoropropane, a non-flammable A1 HFC with GWP 3220) to the R-1234ze(E) base, raising the blend's overall flammability classification to A1. |
-| /refrigerant/r-515a/ | e | r-515a | GWP 3220 | r-515a headline 387, AR5 403, AR6 433 | R-515A's GWP of 387 is substantially higher than R-1234ze(E)'s 1 (EPA SNAP basis, or ≈1 under strict AR5) — the R-227ea component (GWP 3220) drives most of R-515A's GWP. |
+| /refrigerant/r-515a/ | e | r-515a | GWP 3220 | r-515a headline 387, AR5 403, AR6 433 | R-515A's GWP of 387 is substantially higher than R-1234ze(E)'s 1 (US EPA basis, 40 CFR 84.64, or ≈1 under strict AR5) — the R-227ea component (GWP 3220) drives most of R-515A's GWP. |
 | /refrigerant/r-515b/ | a | r-515b | 0.6 psig @ 170°F | temp out of PT range | largest difference 0.6 psi at the four published points (0–170°F). |
 | /refrigerant/r-516a/ | a | r-134a | 71 psig @ 70°F | matches r-134a (71.1) | R-516A's saturation pressures are very close to R-134a — at 70°F approximately 75 PSIG vs R-134a's 71 PSIG. |
 | /refrigerant/r-516a/ | a | r-134a | 71 psig @ 70°F | matches r-134a (71.1) | Pressures within a few PSI — at 70°F R-516A is 75 PSIG vs R-134a's 71 PSIG. |

@@ -21,9 +21,9 @@ sources:
     url: "https://www.ecfr.gov/current/title-40/section-84.54"
     date: "Technology Transitions rule, 40 CFR 84.54 (2023–2026)"
   - id: eumac
-    label: "EU Mobile Air Conditioning Directive 2006/40/EC — Banned R-134a in new MAC vehicle types after 1 Jan 2017"
+    label: "EU Mobile Air Conditioning Directive 2006/40/EC — Banned R-134a in new vehicle types from 1 January 2011 and all new vehicles from 1 January 2017"
     url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32006L0040"
-    date: "2006 (full ban 1 Jan 2017 for new vehicle types)"
+    date: "2006 (new vehicle types from 1 January 2011; all new vehicles from 1 January 2017)"
   - id: coolprop
     label: "CoolProp 7.2.0 (Bell, Wronski, Quoilin, Lemort 2014) — REFPROP-compatible Helmholtz EOS"
     url: "http://www.coolprop.org/"
@@ -79,14 +79,14 @@ narrative:
     R-134a operates at moderate pressures (saturation 71 PSIG at 70°F per CoolProp 7.2.0) and uses POE oil for stationary applications, PAG oil for mobile AC. Its A1 non-flammable safety class made it operationally easy across diverse equipment types.
 
   whereItsUsed:
-    - "Mobile AC — legacy vehicles built before the R-1234yf changeover (EU new car types 2017; US light-duty new-equipment restriction from Model Year 2025, 40 CFR 84.54(a)(13))"
+    - "Mobile AC — legacy vehicles built before the R-1234yf changeover (EU new vehicle types from 1 January 2011 and all new vehicles from 1 January 2017, Directive 2006/40/EC; US light-duty new-equipment restriction from Model Year 2025, 40 CFR 84.54(a)(13))"
     - "Centrifugal chillers — water-cooled, large commercial cooling"
     - "Domestic refrigeration — household refrigerators (legacy)"
     - "Vending machines, beverage coolers, and commercial display refrigeration"
     - "Aerosol propellant in some medical and specialty applications"
 
   phaseDownStatus: |
-    Mobile AC: the EU banned R-134a in new car (MVAC) types from 1 January 2017 under the MAC Directive 2006/40/EC; new cars use R-1234yf [eumac]. In the US, 40 CFR 84.54(a)(13)(i) bars manufacture or import of R-134a (GWP ≥150) motor vehicle A/C for Model Year 2025 and later light-duty passenger cars and trucks (effective October 24, 2024); Model Year 2028 and later medium-duty passenger vehicles, heavy-duty pickups and complete heavy-duty vans follow, and certain nonroad vehicles from January 1, 2028 [aimact]. New light-duty vehicles use R-1234yf; servicing existing vehicles is not an 84.54 restriction.
+    Mobile AC: the EU banned R-134a in new vehicle types from 1 January 2011 and all new vehicles from 1 January 2017 under the MAC Directive 2006/40/EC; new cars use R-1234yf [eumac]. In the US, 40 CFR 84.54(a)(13)(i) bars manufacture or import of R-134a (GWP ≥150) motor vehicle A/C for Model Year 2025 and later light-duty passenger cars and trucks (effective October 24, 2024); Model Year 2028 and later medium-duty passenger vehicles, heavy-duty pickups and complete heavy-duty vans follow, and certain nonroad vehicles from January 1, 2028 [aimact]. New light-duty vehicles use R-1234yf; servicing existing vehicles is not an 84.54 restriction.
 
     Stationary applications: R-134a (GWP 1430) is a regulated HFC under the AIM Act. New residential & light-commercial AC/heat pumps are restricted from January 1, 2025 (40 CFR 84.54(a)(1)/(c)(1), ≥700 GWP; VRF (c)(2) from 2026), and new comfort-cooling chillers from January 1, 2025 (84.54(a)(10)(i)/(c)(3), ≥700; industrial-process chillers (a)(10)(iii)/(c)(5) from 2026 and (a)(10)(iv)/(c)(6) from 2028) — see the US new-equipment rules (40 CFR 84.54) section on this page [aimact]. Servicing existing equipment stays legal (84.54(e)). R-450A, R-513A, R-515B, R-1234ze(E) are the chiller replacement options.
 
@@ -110,7 +110,7 @@ faqs:
 
   - q: "Why is R-134a being replaced in cars?"
     a: |
-      GWP. The EU Mobile Air Conditioning Directive 2006/40/EC mandated 150-GWP cap for refrigerants in new MAC vehicle types from 1 January 2017 [eumac]. R-134a's 1430 GWP is well above that threshold.
+      GWP. The EU Mobile Air Conditioning Directive 2006/40/EC set a 150-GWP threshold for refrigerants in new vehicle types from 1 January 2011 and all new vehicles from 1 January 2017 [eumac]. R-134a's 1430 GWP is well above that threshold.
 
       The chosen MAC replacement is R-1234yf (HFO, A2L, GWP 1). In the US, 40 CFR 84.54(a)(13)(i) bars new R-134a light-duty motor vehicle A/C from Model Year 2025 (effective October 24, 2024), with medium- and heavy-duty vehicles from Model Year 2028 and certain nonroad vehicles from January 1, 2028 [aimact]. Servicing existing MAC systems with R-134a remains legal indefinitely.
 
@@ -136,7 +136,7 @@ faqs:
     a: |
       Yes for now. R-134a remains legal to produce, import, and use in the US under current AIM Act allowances, which step down over the 2030s. Servicing existing R-134a equipment stays legal (40 CFR 84.54(e)); new equipment is restricted in specific subsectors — new residential & light-commercial AC/heat pumps and new comfort-cooling chillers from January 1, 2025 — see the US new-equipment rules (40 CFR 84.54) section on this page [aimact].
 
-      EU rules moved earlier on cars: new car (MVAC) types have required refrigerant below 150 GWP since 1 January 2017 under the MAC Directive 2006/40/EC, so new cars use R-1234yf [eumac].
+      EU rules moved earlier on cars: the MAC Directive 2006/40/EC restricts refrigerant above 150 GWP in new vehicle types from 1 January 2011 and all new vehicles from 1 January 2017, so new cars use R-1234yf [eumac].
 
   - q: "What is R-134a used for besides cars?"
     a: |
@@ -194,9 +194,9 @@ For practical purposes, R-134a's ODP 0 placed it outside Montreal Protocol restr
 
 <TechSection icon="climate" tone="amber" title="GWP 1430 vs 1530 (AR6) — both above policy thresholds">
 
-R-134a's GWP value depends on which IPCC assessment you reference. The regulatory value is 1430 (the AR4 / AIM Act exchange figure); AR6 (2021) updated it to approximately 1530 — a ~7% revision driven by improved atmospheric chemistry modeling [ipccar5][ipccar6]. The AIM Act and EU F-Gas Regulation both use the 1430 figure for regulatory determinations.
+R-134a's GWP value depends on which IPCC assessment you reference. The regulatory value is 1430 (US EPA basis, 40 CFR 84.64); AR6 (2021) updated it to approximately 1530 — a ~7% revision driven by improved atmospheric chemistry modeling [ipccar5][ipccar6]. The AIM Act and EU F-Gas Regulation both use the 1430 figure for regulatory determinations.
 
-Both figures place R-134a above the policy thresholds in major segments. The EU banned R-134a in new car (MVAC) types from 1 January 2017 under the MAC Directive 2006/40/EC (150-GWP cap) [eumac]. Under the AIM Act, R-134a is restricted in new residential & light-commercial AC/heat pumps and new comfort-cooling chillers from January 1, 2025 (40 CFR 84.54, ≥700 GWP) — see the US new-equipment rules section on this page.
+Both figures place R-134a above the policy thresholds in major segments. The EU banned R-134a in new vehicle types from 1 January 2011 and all new vehicles from 1 January 2017 under the MAC Directive 2006/40/EC (150-GWP threshold) [eumac]. Under the AIM Act, R-134a is restricted in new residential & light-commercial AC/heat pumps and new comfort-cooling chillers from January 1, 2025 (40 CFR 84.54, ≥700 GWP) — see the US new-equipment rules section on this page.
 
 <KeyInsight tone="zinc" icon="climate" title="Two transitions running in parallel">
 For mobile AC, the regulatory pressure drove industry standardization on R-1234yf (GWP 1) — a single global replacement. For stationary chillers, the regulatory pressure is spread across multiple replacement chemistries with different trade-offs: R-513A and R-450A as A1 retrofits; R-1234ze(E) as A2L new-equipment; R-515B as A1 lower-GWP than R-513A.
@@ -243,7 +243,7 @@ POE and PAG are chemically incompatible — mixing them produces oil-return fail
 
 <TechSection icon="recycle" tone="amber" title="The EU MAC Directive — landmark refrigerant policy">
 
-EU Directive 2006/40/EC, commonly called the MAC Directive (Mobile Air Conditioning Directive), was the first major refrigerant regulation to use GWP as the binding compliance threshold [eumac]. It required new car (MVAC) types to use refrigerants with GWP below 150 from 1 January 2017.
+EU Directive 2006/40/EC, commonly called the MAC Directive (Mobile Air Conditioning Directive), was the first major refrigerant regulation to use GWP as the binding compliance threshold [eumac]. It required refrigerants with GWP below 150 in new vehicle types from 1 January 2011 and all new vehicles from 1 January 2017.
 
 R-134a's GWP of 1430 placed it well above the 150 threshold. The chosen replacement was R-1234yf (HFO, A2L, GWP 1), which became the dominant new-vehicle MAC refrigerant in the EU from 2017 and globally over the following decade. Daimler initially resisted R-1234yf adoption (citing flammability concerns) but ultimately conformed; the broader industry standardized rapidly.
 

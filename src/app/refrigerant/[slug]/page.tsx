@@ -38,7 +38,7 @@ import { loadRefrigerantMdx } from "@/lib/mdx";
 import { findComparisonsForRefrigerant, type ComparisonSummary } from "@/lib/mdx-comparison";
 import { findWhatPressureForRefrigerant } from "@/lib/mdx-what-pressure";
 import { buildRefrigerantSchema } from "@/lib/schema/refrigerant";
-import { regulatoryStatusTags, regulatoryStatusTagline } from "@/lib/us-regulation";
+import { regulatoryStatusTags, regulatoryStatusTagline, odsPhaseoutBadge } from "@/lib/us-regulation";
 import { RegulatoryTimeline, UsNewEquipmentRules, newEquipmentFactValue } from "@/components/refrigerant/UsRegulation";
 import { SITE_URL, buildRefrigerantMetadata, pageMetadata, seoName, COMMON_NAME } from "@/lib/schema/shared";
 import { UpdatedLine } from "@/lib/content-dates";
@@ -172,9 +172,9 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                   <AlertTriangle className="h-3 w-3" /> {regulatoryStatusTagline(r)}
                 </span>
               ) : null}
-              {r.regulatoryStatus.epaPhaseoutComplete ? (
+              {odsPhaseoutBadge(r) ? (
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-red-300 bg-red-50 px-2.5 py-1 text-xs font-medium text-red-900 dark:border-red-800 dark:bg-red-950/50 dark:text-red-200">
-                  <ShieldAlert className="h-3 w-3" /> Production banned {r.regulatoryStatus.epaPhaseoutDate ? `· ${r.regulatoryStatus.epaPhaseoutDate.slice(0, 4)}` : ""}
+                  <ShieldAlert className="h-3 w-3" /> {odsPhaseoutBadge(r)}
                 </span>
               ) : null}
             </div>

@@ -159,7 +159,7 @@ function checkSafetyClass(a: Refrigerant, b: Refrigerant): Check {
     return {
       ok: false,
       severity: "fail",
-      note: `A1 → A2L safety class change. Existing A1 equipment lacks A2L-rated compressor electrical, integrated refrigerant leak detection, charge limits per UL 60335-2-40, and machine-room ventilation per ASHRAE 15. Effectively requires new equipment, not refrigerant swap.`,
+      note: `A1 → A2L safety class change. Existing A1 equipment lacks A2L-rated compressor electrical, refrigerant detection where the standard requires it, charge limits per UL 60335-2-40, and machine-room ventilation per ASHRAE 15. Effectively requires new equipment, not refrigerant swap.`,
     };
   }
   if (a.safetyClass === "A2L" && b.safetyClass === "A1") {
@@ -339,7 +339,7 @@ function synthesizeVerdict(
       verdict: "equipment-mods-required",
       verdictLabel: "Equipment modifications required (A1 → A2L)",
       verdictTone: "warn",
-      summary: `${a.displayName} is A1 (non-flammable); ${b.displayName} is A2L (mildly flammable). Equipment-level changes required — A2L-rated compressor electrical, integrated leak detection, charge limits per UL 60335-2-40. Effectively new equipment.`,
+      summary: `${a.displayName} is A1 (non-flammable); ${b.displayName} is A2L (mildly flammable). Equipment-level changes required — A2L-rated compressor electrical, refrigerant detection where the standard requires it, charge limits per UL 60335-2-40. Effectively new equipment.`,
     };
   }
   if (lub.severity === "fail") {
@@ -404,7 +404,7 @@ function buildRecommendations(
   }
 
   if (verdict === "equipment-mods-required") {
-    recs.push(`A2L safety class change requires: A2L-rated compressor electrical components; integrated refrigerant leak detection per UL 60335-2-40; charge limits per the equipment's installation environment.`);
+    recs.push(`A2L safety class change requires: A2L-rated compressor electrical components; refrigerant detection where UL 60335-2-40 requires it; charge limits per the equipment's installation environment.`);
     recs.push(`Practical reality: in most cases the cost of A2L-compliant component replacement approaches the cost of a new ${b.displayName} system. Verify the economic case before retrofitting.`);
     if (b.lubricants.compatible.length > 0) {
       recs.push(`Lubricant: ${b.displayName} uses ${b.lubricants.compatible.join(" or ")}. ${lub.severity === "warn" ? "Oil change required." : "Existing lubricant may be compatible."}`);

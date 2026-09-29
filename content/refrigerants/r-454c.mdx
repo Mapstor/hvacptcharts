@@ -23,7 +23,7 @@ sources:
     label: "EPA Significant New Alternatives Policy (SNAP) — R-454C acceptable for commercial refrigeration"
     url: "https://www.epa.gov/snap"
   - id: ul60335
-    label: "UL 60335-2-89 / IEC 60335-2-89 — Safety standard for commercial refrigerating appliances using A2L refrigerants"
+    label: "UL 60335-2-89 / IEC 60335-2-89 — Safety standard for commercial refrigerating appliances"
     url: "https://www.ul.com/services/ul-60335-standards"
   - id: ashrae15
     label: "ASHRAE Standard 15-2022 — A2L charge limits"
@@ -80,15 +80,15 @@ narrative:
     - "Low-temperature commercial refrigeration — walk-in freezers, frozen food cases (new equipment)"
     - "Medium-temperature commercial refrigeration — refrigerated cases (new equipment)"
     - "Self-contained commercial refrigeration equipment with managed A2L charge"
-    - "R-404A replacement in new equipment installations under EU F-Gas 150-GWP cap"
+    - "R-404A replacement in new equipment installations under EU F-Gas 150-GWP threshold"
 
   phaseDownStatus: |
     R-454C is one of the dominant low-GWP A2L blends for new commercial refrigeration equipment under AIM Act and EU F-Gas Regulation. GWP 146 sits below the EU F-Gas 150-GWP threshold for several commercial refrigeration categories and provides comfortable headroom under the AIM Act 700-GWP threshold [eufgas][aimact].
 
-    Long-term regulatory positioning is strong. The 146 GWP figure was deliberately engineered to fit just under the EU 150-GWP cap — providing structural compliance for the foreseeable regulatory horizon.
+    Long-term regulatory positioning is strong. The 146 GWP figure was deliberately engineered to fit just under the EU 150-GWP threshold — providing structural compliance for the foreseeable regulatory horizon.
 
   serviceNotes: |
-    POE oil required — same lubricant family as R-410A and R-32. A2L safety class requires sealed motors, charge limits per UL 60335-2-89 and ASHRAE 15, A2L-rated leak detection in some installations, and nitrogen-purged brazing [ul60335][ashrae15].
+    POE oil required — same lubricant family as R-410A and R-32. A2L safety class requires A2L-listed equipment, charge limits per UL 60335-2-89 and ASHRAE 15, and A2L-rated leak detection in some installations [ul60335][ashrae15].
 
     The 14°F temperature glide significantly affects superheat and subcooling measurement. Use dew temperature for superheat math (suction line) and bubble temperature for subcooling (liquid line). Single-curve approximation introduces measurement error equal to the glide — for R-454C this is large enough to invalidate charging decisions on systems where superheat or subcooling targets are tight.
 
@@ -131,7 +131,7 @@ faqs:
 
   - q: "Is R-454C safe to handle?"
     a: |
-      ASHRAE class A2L — mildly flammable with low burning velocity. A2L equipment design (sealed motors, leak detection in some installations, charge limits per UL 60335-2-89) mitigates the flammability risk to acceptable levels for commercial refrigeration [ul60335][ashrae15]. Service procedures include nitrogen-purged brazing and A2L-rated leak detection.
+      ASHRAE class A2L — mildly flammable with low burning velocity. A2L equipment design (A2L-listed equipment, leak detection in some installations, charge limits per UL 60335-2-89) mitigates the flammability risk to acceptable levels for commercial refrigeration [ul60335][ashrae15]. Service procedures include refrigerant detection where the standard requires it.
 
       Treating R-454C as if it were A1 R-404A is a safety error — A2L equipment design and procedures are required.
 
@@ -204,15 +204,14 @@ For service measurement: use dew for superheat (suction line); use bubble for su
 
 <TechSection icon="service" tone="blue" title="A2L equipment requirements per UL 60335-2-89">
 
-R-454C commercial refrigeration equipment is designed under UL 60335-2-89 / IEC 60335-2-89 — the A2L-specific safety standard for commercial refrigerating appliances. The standard specifies sealed motor design, charge limits scaled to the enclosed space, refrigerant leak detection in some installations, and emergency ventilation interlocks [ul60335].
+R-454C commercial refrigeration equipment is designed under UL 60335-2-89 / IEC 60335-2-89 — the safety standard for commercial refrigerating appliances. The standard specifies A2L-listed equipment, charge limits scaled to the enclosed space, refrigerant leak detection in some installations, and emergency ventilation interlocks [ul60335].
 
 | Equipment / procedure | R-404A (A1) | R-454C (A2L) |
 | --- | --- | --- |
 | Manifold gauge rating | 500-800 PSI | 500-800 PSI |
-| Compressor motor | Standard hermetic | Sealed motor in refrigerant circuit per UL 60335-2-89 |
+| Compressor motor | Standard hermetic | A2L-listed equipment per UL 60335-2-89 |
 | Charge limits | None (A1) | Scaled to served space per UL 60335-2-89 |
 | Leak detection | Optional | Required in some installations |
-| Brazing during service | Nitrogen purge standard | Nitrogen purge mandatory; no open flames near system |
 | Lubricant | POE | POE (same family) |
 | Vacuum target | 500 microns held 30+ min | 500 microns held 30+ min |
 | Metering device | TXV or fixed-orifice | TXV strongly preferred (glide handling) |
@@ -237,7 +236,7 @@ R-454C is the dominant low-GWP A2L choice for new commercial refrigeration equip
 
 For new equipment specification, R-454C is a natural choice for medium-to-large self-contained commercial refrigeration (walk-in freezers, refrigerated cases, ice machines) where R-744 transcritical's equipment cost is unjustified. R-455A is the alternative A2L low-GWP blend with a slightly different glide profile and the R-744 small-fraction component for capacity tuning.
 
-For technicians, R-454C work resembles R-404A work but with two adjustments: A2L procedures (sealed motors, leak detection, charge limits, no open flames) and zeotropic blend handling (dew vs bubble curve selection for superheat and subcooling). Equipment-OEM training programs through 2024-2027 cover both adjustments explicitly.
+For technicians, R-454C work resembles R-404A work but with two adjustments: A2L procedures (A2L-listed equipment, refrigerant detection where the standard requires it, charge limits, no open flames) and zeotropic blend handling (dew vs bubble curve selection for superheat and subcooling). Equipment-OEM training programs through 2024-2027 cover both adjustments explicitly.
 
 For R-404A retrofit decisions, R-454C is NOT the right answer — the A2L safety class change requires equipment-level redesign. Use R-448A or R-449A (A1, GWP ~1390) for R-404A retrofit; specify R-454C for new equipment.
 

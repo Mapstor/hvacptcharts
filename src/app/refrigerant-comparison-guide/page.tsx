@@ -23,7 +23,7 @@ const FAQS = [
   },
   {
     q: "Why is the industry transitioning from R-410A to R-32 and R-454B?",
-    a: "GWP. R-410A is GWP 2088 and is restricted under the AIM Act for new equipment beginning January 1, 2025 (with regulatory phase-down through 2036). R-32 (GWP 675) and R-454B (GWP 465) are the dominant A2L replacements. R-32 is the pure-component choice (Daikin's preference); R-454B is a R-32/R-1234yf blend (Carrier, Trane, Lennox preference). Both require A2L-rated equipment with sealed motors, charge limits, and leak-detection accommodations. Equipment built before the transition uses R-410A and continues to be serviceable with reclaimed R-410A indefinitely.",
+    a: "GWP. R-410A is GWP 2088 and is restricted under the AIM Act for new equipment beginning January 1, 2025 (with regulatory phase-down through 2036). R-32 (GWP 675) and R-454B (GWP 465) are the dominant A2L replacements. R-32 is the pure-component choice (Daikin's preference); R-454B is a R-32/R-1234yf blend (Carrier, Trane, Lennox preference). Both require A2L-listed equipment with charge limits and leak-detection accommodations. Equipment built before the transition uses R-410A and continues to be serviceable with reclaimed R-410A indefinitely.",
   },
   {
     q: "Is a lower-GWP refrigerant always better?",
@@ -31,7 +31,7 @@ const FAQS = [
   },
   {
     q: "Should I retrofit an R-22 system or replace it?",
-    a: "Depends on age, condition, and economics. For systems under 10 years with no leaks and intact compressor, retrofit to an HFC like R-422D or R-407C is reasonable — but only buys time, because those refrigerants face their own AIM Act restrictions. For systems over 15 years, multiple leaks, or with compressor concerns, full replacement with new R-32 or R-454B equipment is typically more cost-effective. New equipment is also 20-30% more efficient than R-22-era equipment, which improves the payback.",
+    a: "Depends on age, condition, and economics. For systems under 10 years with no leaks and intact compressor, retrofit to an HFC like R-422D or R-407C is reasonable — but only buys time, because those refrigerants face their own AIM Act restrictions. For systems over 15 years, multiple leaks, or with compressor concerns, full replacement with new R-32 or R-454B equipment is typically more cost-effective. New equipment is also more efficient than R-22-era equipment, which improves the payback.",
   },
   {
     q: "Why do natural refrigerants get so much attention if they're not widely deployed?",
@@ -298,13 +298,13 @@ export default function ComparisonGuidePage() {
           <ul className="mt-2 list-disc space-y-2 pl-5 text-sm">
             <li><strong>A1 (most legacy and current HVAC):</strong> No special equipment design required for
               flammability; standard service procedures.</li>
-            <li><strong>A2L (the modern transition class):</strong> Equipment must be A2L-rated — sealed motors,
+            <li><strong>A2L (the modern transition class):</strong> Equipment must be A2L-rated — A2L-listed equipment,
               ignition-source isolation, leak detection where appropriate, charge limits per IEC 60335-2-40 and ASHRAE
-              15. Field service uses nitrogen-purged brazing (already standard for HFC service), A2L-compatible leak
+              15. Field service uses A2L-compatible leak
               detectors. Retrofits from A1 to A2L are generally not permitted without OEM authorization.</li>
             <li><strong>A2 (R-152a, R-365mfc):</strong> Substantially more restrictive than A2L due to faster flame
               propagation. Limited HVAC equipment uses A2.</li>
-            <li><strong>A3 (hydrocarbons):</strong> Highly flammable. Charge limits typically &lt;150g for general
+            <li><strong>A3 (hydrocarbons):</strong> Highly flammable. Charge limits apply for general
               applications under IEC 60335-2-40; commercial refrigeration limits per IEC 60335-2-89 allow somewhat
               larger charges in sealed equipment. Industrial refrigeration with proper engineering controls can use
               larger charges.</li>
@@ -364,7 +364,7 @@ export default function ComparisonGuidePage() {
             Montreal Protocol&apos;s Kigali Amendment (2016, US ratified 2022) extends to HFC phase-down.
           </p>
           <p>
-            <strong>AIM Act (2020, implementing Kigali Amendment).</strong> US HFC phase-down under EPA SNAP
+            <strong>AIM Act (2020), aligned with the Kigali Amendment&apos;s HFC phase-down.</strong> US HFC phase-down under EPA SNAP
             implementation. Targets include R-410A, R-404A, R-134a, R-407C, R-32, R-125, R-143a, R-227ea, others.
             Key dates: 2022-2024 production allocation reductions; January 1, 2025 new-equipment restrictions for
             residential AC (R-410A new equipment significantly restricted, transitioning to A2L); January 1, 2025
@@ -374,8 +374,8 @@ export default function ComparisonGuidePage() {
           <p>
             <strong>EU F-Gas Regulation 517/2014 (revised 2024).</strong> European HFC phase-down with quota-based
             production controls and equipment-segment GWP thresholds. 150-GWP threshold for some commercial
-            refrigeration and small split AC; 750-GWP threshold for chillers; 2500-GWP threshold for centralized
-            commercial refrigeration. The 2024 revision tightens schedules further through 2030.
+            refrigeration and small split AC; 2500-GWP threshold for centralized commercial refrigeration.
+            The 2024 revision tightens schedules further through 2030.
           </p>
           <p>
             <strong>EPA SNAP (Significant New Alternatives Policy).</strong> US program listing acceptable substitutes
@@ -431,7 +431,7 @@ export default function ComparisonGuidePage() {
           </p>
           <p>
             <strong>Service complexity</strong> increases with safety class: A1 is simplest, A2L adds modest
-            procedures (nitrogen-purged brazing, A2L leak detector, A2L recovery cylinders), A3 requires intrinsically
+            procedures (A2L leak detector, A2L recovery cylinders), A3 requires intrinsically
             safe equipment in the refrigerant space and explicit hydrocarbon-rated training, B1 requires industrial
             hygiene practices, B2L (ammonia) requires extensive industrial-scale safety infrastructure.
           </p>
@@ -466,7 +466,7 @@ export default function ComparisonGuidePage() {
             </p>
             <p className="mt-2 text-sm">
               R-22 retrofit blends face their own AIM Act restrictions — they&apos;re a bridge, not a destination.
-              Replacement with new low-GWP equipment also delivers 20-30% efficiency improvement that aids payback.
+              Replacement with new low-GWP equipment also delivers an efficiency improvement that aids payback.
             </p>
           </div>
 

@@ -793,7 +793,7 @@
       "category": "refrigerant",
       "claimType": "e",
       "refrigerant": "r-515a",
-      "sentence": "R-515A's GWP of 387 is substantially higher than R-1234ze(E)'s 1 (EPA SNAP basis, or ≈1 under strict AR5) — the R-227ea component (GWP 3220) drives most of R-515A's GWP.",
+      "sentence": "R-515A's GWP of 387 is substantially higher than R-1234ze(E)'s 1 (US EPA basis, 40 CFR 84.64, or ≈1 under strict AR5) — the R-227ea component (GWP 3220) drives most of R-515A's GWP.",
       "claimed": "GWP 3220",
       "dataset": "r-515a headline 387, AR5 403, AR6 433",
       "severity": "info",
