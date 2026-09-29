@@ -53,7 +53,7 @@ const BRANCHES = [
   {
     title: "Undercharge (most common cause)",
     signature: `Suction below normal band. On R-410A at 40°F evap norm ${R410A_40F} PSIG, undercharge might show 30°F evap saturation (${R410A_30F} PSIG) or lower. Superheat high (>20°F). Subcooling low or zero.`,
-    body: "Insufficient refrigerant means less mass moved per cycle; the evaporator can't be filled, saturation temp drops, superheat climbs. Diagnostic: measure SH and SC together — high SH + low SC = undercharge. Fix: leak-check (EPA Section 608 required), repair leak, evacuate to 500 microns held 30 minutes, recharge to nameplate weight or to target SC.",
+    body: "Insufficient refrigerant means less mass moved per cycle; the evaporator can't be filled, saturation temp drops, superheat climbs. Diagnostic: measure SH and SC together — high SH + low SC = undercharge. Fix: leak-check (federal leak-repair duties are size-based — 40 CFR 82.157 and 84.106 — not a blanket requirement), repair leak, evacuate to 500 microns held 30 minutes, recharge to nameplate weight or to target SC.",
   },
   {
     title: "Liquid-line restriction (filter-drier, crimp, or ice)",
@@ -107,7 +107,7 @@ const FAQS = [
   },
   {
     q: "Should I add refrigerant if suction is low?",
-    a: "Only after verifying (a) it's an undercharge, not a restriction or airflow issue, (b) a leak has been located and repaired (EPA Section 608 prohibits topping-off a leaking system), and (c) the system has been evacuated properly. Adding refrigerant to a leaking system violates Section 608 and doesn't fix the underlying problem — you'll be back in 2–4 weeks.",
+    a: "Only after verifying (a) it's an undercharge, not a restriction or airflow issue, (b) a leak has been located and repaired, and (c) the system has been evacuated properly. There's no blanket federal no-top-off rule — leak-repair duties are size-based: 40 CFR 82.157 (appliances with 50 lb or more of class I/II refrigerant) and 40 CFR 84.106 (from January 1, 2026, appliances with 15 lb or more of HFC refrigerant with GWP above 53; residential and light-commercial AC and heat pumps exempt). Regardless, topping off a leaking system doesn't fix the underlying problem — you'll be back in 2–4 weeks.",
   },
   {
     q: "How is low suction pressure different from 'high suction low head'?",
@@ -306,7 +306,7 @@ export default function LowSuctionPressurePage() {
             ))}
             <li>ACCA technician charging references.</li>
             <li>ASHRAE Handbook—Refrigeration (2022) — TXV behavior and evaporator design.</li>
-            <li>EPA 40 CFR Part 82 Subpart F — Section 608 leak-repair requirements before recharge.</li>
+            <li>EPA 40 CFR Part 82 Subpart F — Section 608 refrigerant recovery and size-based leak-repair requirements (40 CFR 82.157).</li>
             <li>CoolProp 7.2.0 — R-410A and R-22 PT chart values.</li>
           </ul>
         </footer>

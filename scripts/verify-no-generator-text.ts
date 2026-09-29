@@ -63,6 +63,11 @@ const PATTERNS: { name: string; re: RegExp }[] = [
   // exceptions in generator-text-allowlist.json.
   { name: "refrigerant-run-into-word", re: /R-\d+[A-Z][a-z]/ },
   { name: "lowercase-open-paren", re: /[a-z]\([a-z0-9]/ },
+  // Task 23 (G10): literal Markdown bold that leaked into rendered text, and any
+  // visible number with 8+ decimal places (an unrounded computed ratio leaking
+  // into an SVG/label, e.g. "0.001079215732364314").
+  { name: "literal-markdown-bold", re: /\*\*/ },
+  { name: "excessive-decimals", re: /\d\.\d{8,}/ },
 ];
 
 // Looser run-together patterns (task 19 D3): a missing space after a sentence

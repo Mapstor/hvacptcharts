@@ -34,15 +34,15 @@ const FAQS = [
   },
   {
     q: "What is the AIM Act and why is it driving HFC prices up?",
-    a: "The American Innovation and Manufacturing Act of 2020 (Public Law 116-260 Division S, signed December 27, 2020) directed EPA to phase down US production and consumption of hydrofluorocarbons (HFCs) to 15% of historical baseline by 2036. EPA's implementing regulations at 40 CFR Part 84 created an allowance system: producers and importers receive (or buy) allowances that limit how much HFC they can put on the market. Allowance quantities drop on a schedule (60% in 2024, 70% reduction by 2029, 85% reduction by 2036). When supply is artificially capped while demand persists, prices rise — the textbook mechanism of a cap-and-trade or quota system. This is the same mechanism the EU has used since 2014 under F-Gas Regulation 517/2014 (now superseded by EU 2024/573 with an accelerated schedule).",
+    a: "The American Innovation and Manufacturing Act of 2020 (Public Law 116-260 Division S, signed December 27, 2020) directed EPA to phase down US production and consumption of hydrofluorocarbons (HFCs) to 15% of historical baseline by 2036. EPA's implementing regulations at 40 CFR Part 84 created an allowance system: producers and importers receive (or buy) allowances that limit how much HFC they can put on the market. Allowance quantities drop on a schedule (60% in 2024, 70% reduction by 2029, 85% reduction by 2036). When supply is artificially capped while demand persists, prices rise — the textbook mechanism of a cap-and-trade or quota system. This is the same mechanism the EU has used since 2014 under F-Gas Regulation 517/2014 (replaced by (EU) 2024/573, applying from 11 March 2024).",
   },
   {
     q: "Which refrigerants are affected by the AIM Act phase-down?",
-    a: "The AIM Act covers 18 specific HFCs and HFC blends as listed in its statutory schedule, weighted by 100-year global warming potential (GWP). The big ones for HVAC: R-410A (GWP 2088), R-404A (GWP 3922), R-407C (GWP 1774), R-134a (GWP 1430), R-507A (GWP 3985), R-32 (GWP 675, also affected but lower). NOT affected: HFOs (R-1234yf, R-1234ze, R-1233zd) which have GWP under 10, naturals (R-744 CO2, R-290 propane, R-717 ammonia) which aren't HFCs, and HFC/HFO blends below 700 GWP (R-454B at GWP 465, R-454C at GWP 146, R-455A at GWP 146) which are exempt from the EPA Technology Transitions rule's NEW EQUIPMENT prohibition but their constituents are still in the allowance pool. The phase-down affects the producer/importer level; downstream pricing reflects that constraint.",
+    a: "The AIM Act covers 18 HFCs (blends are covered through their HFC components), weighted by 100-year global warming potential (GWP). The big ones for HVAC: R-410A (GWP 2088), R-404A (GWP 3922), R-407C (GWP 1774), R-134a (GWP 1430), R-507A (GWP 3985), R-32 (GWP 675, also affected but lower). NOT affected: HFOs (R-1234yf, R-1234ze, R-1233zd) which have GWP under 10, naturals (R-744 CO2, R-290 propane, R-717 ammonia) which aren't HFCs. Only R-454C and R-455A (146) fall below every 84.54 limit; R-454B (465) is allowed in new residential AC but restricted where the limit is 150 or 300. The phase-down affects the producer/importer level; downstream pricing reflects that constraint.",
   },
   {
     q: "Is R-22 still legal to buy?",
-    a: "Reclaimed R-22 remains legal indefinitely under EPA Section 608 rules (40 CFR Part 82 Subpart F) for servicing existing R-22 equipment. Virgin R-22 production and import was prohibited in the US on January 1, 2020 under the Montreal Protocol HCFC phase-out — there is no legal source of new R-22 in the US market. Service supply comes entirely from reclaimed material extracted from recovered equipment, purified to AHRI Standard 700-2019 specification, and resold. The reclaim pool is finite and shrinks as R-22 equipment retires; that shrinking supply against persistent service demand is what produced the 8-15× wholesale price increase post-phaseout. See our R-22 page for the full regulatory and technical context.",
+    a: "Reclaimed R-22 remains legal indefinitely under EPA Section 608 rules (40 CFR Part 82 Subpart F) for servicing existing R-22 equipment. Virgin R-22 production and import was prohibited in the US on January 1, 2020 under the Montreal Protocol HCFC phase-out — there is no legal source of new R-22 in the US market. Service supply comes from reclaimed material (purified to AHRI Standard 700-2019 specification) and remaining pre-2020 inventory. The reclaim pool is finite and shrinks as R-22 equipment retires; that shrinking supply against persistent service demand is what produced the 8-15× wholesale price increase post-phaseout. See our R-22 page for the full regulatory and technical context.",
   },
   {
     q: "What's the difference between virgin, reclaimed, and recycled refrigerant?",
@@ -168,7 +168,7 @@ export default function RefrigerantPricesGuidePage() {
             Why refrigerant pricing became a moving target after 2020
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
-            For 30 years between the Montreal Protocol&apos;s entry into force (1989) and the AIM Act&apos;s passage (2020), HVAC refrigerant pricing was largely stable. CFC pricing collapsed as the Montreal Protocol phased CFCs out. HCFC (R-22) pricing followed the same downward path as Montreal Protocol&apos;s Annex C schedule reduced supply, then reversed sharply after the 2020 US production ban. HFCs (R-410A, R-134a, R-404A) entered the market as the Montreal-compliant replacement and traded at commodity-style pricing through the 2010s.
+            Before the AIM Act&apos;s passage in 2020, HVAC refrigerant pricing was comparatively predictable. CFCs were phased out under the Montreal Protocol; HCFC-22 (R-22) followed, with US production and import ending January 1, 2020. HFCs (R-410A, R-134a, R-404A) entered the market as the Montreal-compliant replacement chemistry.
           </p>
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             That changed structurally on December 27, 2020 when the American Innovation and Manufacturing Act (AIM Act) was signed into law as part of the Consolidated Appropriations Act, 2021 (Public Law 116-260 Division S). AIM Act directed EPA to phase down US production and consumption of 18 specific HFCs by 85% over 15 years. EPA implemented the phase-down through 40 CFR Part 84 (Final Rule published October 2021, updated annually). The implementing regulation created an allowance system — producers and importers receive (or buy) allowances each year, and those allowances are the legal mechanism that caps total HFC supply.
@@ -195,7 +195,7 @@ export default function RefrigerantPricesGuidePage() {
           </div>
 
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
-            The European Union runs a parallel mechanism under EU Regulation 517/2014 (entered into force January 2015, recently superseded by EU 2024/573 in March 2024 with an accelerated schedule). The EU mechanism is technically a quota system rather than US-style allowances, but the macroeconomic effect is identical: cap supply, prices rise. Together AIM Act and EU F-Gas affect roughly 60% of global HFC consumption. The supply pressure they create propagates through global chemical supply chains to wholesale prices in every other jurisdiction.
+            The European Union runs a parallel mechanism under EU Regulation 517/2014 (applied from 1 January 2015; replaced by (EU) 2024/573, applying from 11 March 2024). The EU mechanism is technically a quota system rather than US-style allowances, but the macroeconomic effect is identical: cap supply, prices rise. The supply pressure they create propagates through global chemical supply chains to wholesale prices in every other jurisdiction.
           </p>
         </section>
 
@@ -206,7 +206,7 @@ export default function RefrigerantPricesGuidePage() {
             The AIM Act phase-down schedule (40 CFR Part 84)
           </h2>
           <p className="mb-4 text-zinc-700 dark:text-zinc-300">
-            EPA&apos;s implementing regulations set the allowance pool for each year. The statutory schedule from AIM Act Section 60(e)(2)(C):
+            EPA&apos;s implementing regulations set the allowance pool for each year. The statutory schedule from the AIM Act (42 U.S.C. 7675(e)(2)(C)):
           </p>
 
           <ComparisonTable
@@ -221,7 +221,7 @@ export default function RefrigerantPricesGuidePage() {
           />
 
           <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
-            Baseline is the average of US HFC production + consumption (in CO2-equivalent metric tons) for the three calendar years 2011-2013. Annual EPA Allowance Allocation Final Rules implement the schedule and divide the year&apos;s pool among regulated producers and importers. As of January 2024 we are in the second tier (60% of baseline / 40% reduction); the next major step is January 2029 (70% reduction). Source: AIM Act Section 60, codified at 42 USC § 7675; implementing regulations at 40 CFR § 84.7.
+            Baseline is the average of US HFC production + consumption (in CO2-equivalent metric tons) for the three calendar years 2011-2013. Annual EPA Allowance Allocation Final Rules implement the schedule and divide the year&apos;s pool among regulated producers and importers. As of January 2024 we are in the second tier (60% of baseline / 40% reduction); the next major step is January 2029 (70% reduction). Source: AIM Act, 42 U.S.C. 7675; phasedown schedule at 40 CFR 84.7.
           </p>
 
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
@@ -236,22 +236,11 @@ export default function RefrigerantPricesGuidePage() {
             EU F-Gas — the parallel mechanism (and its accelerating recast)
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
-            EU Regulation 517/2014 (effective January 2015) established the European HFC phase-down on a similar schedule to AIM Act, also denominated in CO2-equivalent tons. The 2014 schedule called for reduction to 21% of baseline by 2030. In March 2024 the EU enacted Regulation 2024/573, which substantially accelerated the schedule and added new sector-specific equipment prohibitions:
+            EU Regulation 517/2014 (effective January 2015) established the European HFC phase-down on a similar schedule to AIM Act, also denominated in CO2-equivalent tons. The 2014 schedule called for reduction to 21% of baseline by 2030. Regulation (EU) 2024/573 has applied since 11 March 2024 and adds further prohibitions on F-gas equipment, products and use; its Annex IV is the current EU list.
           </p>
 
-          <ComparisonTable
-            headers={["Year", "EU 517/2014 (original)", "EU 2024/573 (recast)", "Practical effect"]}
-            rows={[
-              { label: "2024", cells: ["31% reduction", "31% reduction", "Same — recast accelerates 2025+"] },
-              { label: "2027", cells: ["55% reduction", "67% reduction", "Recast tightens supply 12 pp earlier"] },
-              { label: "2030", cells: ["79% reduction", "84% reduction", "Near-elimination of high-GWP HFCs"] },
-              { label: "2036", cells: ["79% reduction (unchanged)", "92% reduction", "Aggressive — closes service market"] },
-              { label: "2050", cells: ["(not specified)", "95% reduction", "Near-complete HFC phase-out"] },
-            ]}
-          />
-
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
-            The EU mechanism also includes sector-specific equipment bans (no new R-410A residential split systems after 2027, no high-GWP HFC commercial refrigeration after various dates) that drive accelerated equipment-replacement demand independent of the refrigerant-pool mechanism. Combined with AIM Act&apos;s North American regulatory pressure, the global wholesale HFC market is under tightening supply for the foreseeable future.
+            The EU mechanism also includes sector-specific equipment bans that drive accelerated equipment-replacement demand independent of the refrigerant-pool mechanism. Combined with AIM Act&apos;s North American regulatory pressure, the global wholesale HFC market is under tightening supply for the foreseeable future.
           </p>
 
           <FixCallout>
@@ -266,7 +255,7 @@ export default function RefrigerantPricesGuidePage() {
             The R-22 case study — what happens when a refrigerant transitions to reclaim-only supply
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
-            R-22 (chlorodifluoromethane) is the historical analog for what will happen to high-GWP HFCs over the next 10-15 years. R-22 was the dominant HCFC refrigerant for residential and commercial AC from the 1950s through the 2000s. Under the Montreal Protocol&apos;s HCFC schedule (40 CFR Part 82 Subpart A), US production and import were progressively reduced through the 2010s and prohibited entirely on January 1, 2020. Service supply since 2020 has come exclusively from reclaimed material recovered from end-of-life equipment, purified to AHRI Standard 700-2019 specification, and resold.
+            R-22 (chlorodifluoromethane) is the historical analog for what will happen to high-GWP HFCs over the next 10-15 years. R-22 was the dominant HCFC refrigerant for residential and commercial AC from the 1950s through the 2000s. Under the Montreal Protocol&apos;s HCFC schedule (40 CFR Part 82 Subpart A), US production and import were progressively reduced through the 2010s and prohibited entirely on January 1, 2020. Service supply since 2020 comes from reclaimed material (purified to AHRI Standard 700-2019 specification) and remaining pre-2020 inventory.
           </p>
 
           <ComparisonTable
@@ -285,7 +274,7 @@ export default function RefrigerantPricesGuidePage() {
           </p>
 
           <KeyInsight tone="amber" title="The mechanism — and why HFCs will follow the same curve">
-            R-22&apos;s price arc is driven by two structural facts: (1) supply is permanently capped (no new production allowed), (2) the existing reclaim pool depletes as equipment retires faster than recovery extracts. Once a refrigerant transitions to reclaim-only, the long-run trajectory is monotonic price increase until the residual equipment population dies out. R-410A and R-404A are not yet at this point — AIM Act caps virgin production but does not ban it — but the EU 2024/573 recast moves R-410A close to this state by 2030, and equivalent US restrictions are under consideration in EPA&apos;s Technology Transitions rulemaking.
+            R-22&apos;s price arc is driven by two structural facts: (1) supply is permanently capped (no new production allowed), (2) the existing reclaim pool depletes as equipment retires faster than recovery extracts. Once a refrigerant transitions to reclaim-only, the long-run trajectory is monotonic price increase until the residual equipment population dies out. R-410A and R-404A are not yet at this point — AIM Act caps virgin production but does not ban it.
           </KeyInsight>
         </section>
 
@@ -304,18 +293,18 @@ export default function RefrigerantPricesGuidePage() {
             rows={[
               { label: "R-22", cells: ["Not HFC; Montreal Protocol", "New equipment banned since 2010", "Reclaim only since 2020"] },
               { label: "R-410A (GWP 2088)", cells: ["Subject to HFC allowance", "Equipment sales restricted since Jan 1, 2025", "Virgin allowance-constrained; reclaim growing"] },
-              { label: "R-134a (GWP 1430)", cells: ["Subject to HFC allowance", "Mobile AC equipment phased out 2014-2017; stationary still allowed", "Virgin allowance-constrained"] },
+              { label: "R-134a (GWP 1430)", cells: ["Subject to HFC allowance", "New R-134a mobile AC barred for Model Year 2025+ light-duty vehicles (40 CFR 84.54(a)(13)(i)); stationary still allowed", "Virgin allowance-constrained"] },
               { label: "R-404A (GWP 3922)", cells: ["Subject to HFC allowance", "Equipment sales restricted in commercial refrigeration", "Virgin tight; reclaim premium"] },
               { label: "R-407C (GWP 1774)", cells: ["Subject to HFC allowance", "Equipment sales largely transitioned to A2L", "Virgin allowance-constrained"] },
-              { label: "R-32 (GWP 675)", cells: ["Subject to HFC allowance (below 700 GWP threshold)", "New equipment allowed", "Virgin available; market scaling"] },
-              { label: "R-454B (GWP 465)", cells: ["Exempt from 700 GWP equipment ban", "New equipment allowed", "Virgin available; production ramping"] },
+              { label: "R-32 (GWP 675)", cells: ["Subject to HFC allowance; below the 700 limit for new residential/light-commercial AC and heat pumps", "New equipment allowed", "Virgin available; market scaling"] },
+              { label: "R-454B (GWP 465)", cells: ["Regulated HFC blend; below the 700 limit for new residential/light-commercial AC and heat pumps", "Allowed in new residential AC; restricted where the 84.54 limit is 150 or 300", "Virgin available; production ramping"] },
               { label: "R-1234yf (GWP 1)", cells: ["Not subject to allowance", "All sectors allowed", "Virgin available; mobile AC standardized"] },
               { label: "R-744 / R-290 / R-717", cells: ["Naturals; not regulated", "All sectors allowed", "Commodity gas pricing"] },
             ]}
           />
 
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
-            Source: EPA Technology Transitions Final Rule (October 2023); AIM Act Section 60 implementing regulations at 40 CFR Part 84 Subparts A and B; EPA SNAP determinations for each refrigerant at 40 CFR Part 82 Subpart G. Specific implementation dates and sector exemptions may vary — verify against EPA&apos;s current published rule before relying on the table for compliance decisions.
+            Source: EPA Technology Transitions Final Rule (October 2023); AIM Act (42 U.S.C. 7675) implementing regulations at 40 CFR Part 84 Subparts A and B; EPA SNAP determinations for each refrigerant at 40 CFR Part 82 Subpart G. Specific implementation dates and sector exemptions may vary — verify against EPA&apos;s current published rule before relying on the table for compliance decisions.
           </p>
         </section>
 
@@ -334,7 +323,7 @@ export default function RefrigerantPricesGuidePage() {
           </TechSection>
 
           <TechSection icon="insight" tone="blue" title="Tier 2 — Reclaimed refrigerant">
-            Recovered from end-of-life or serviced equipment, processed through dedicated reclamation facilities (Hudson Technologies, A-Gas Americas, Refrigerant Recovery Services, and certified competitors), purified to meet AHRI Standard 700-2019 specifications (95%+ purity for HCFCs; HFC tolerances per AHRI 700), tested, and certified for resale. Legally equivalent to virgin for service use in any equipment. Typically priced at 60-80% of virgin (with significant variation by refrigerant and market conditions). The reclaim pool is the structural price-relief mechanism as virgin supply tightens — reclaimed R-22 became 100% of US R-22 supply after the 2020 production ban; reclaimed R-410A is growing rapidly under AIM Act allowance pressure. Hudson Technologies (NASDAQ: HDSN) is the largest US reclaimer and reports refrigerant segment revenue in quarterly 10-Q and annual 10-K SEC filings; their reporting is a useful primary source for reclaimed market trends.
+            Recovered from end-of-life or serviced equipment, processed through dedicated reclamation facilities (Hudson Technologies, A-Gas Americas, Refrigerant Recovery Services, and certified competitors), purified to meet AHRI Standard 700-2019 specifications (95%+ purity for HCFCs; HFC tolerances per AHRI 700), tested, and certified for resale. Legally equivalent to virgin for service use in any equipment. Typically priced at 60-80% of virgin (with significant variation by refrigerant and market conditions). The reclaim pool is the structural price-relief mechanism as virgin supply tightens — R-22 supply comes from reclaimed refrigerant and pre-2020 inventory; reclaimed R-410A is growing rapidly under AIM Act allowance pressure. Hudson Technologies (NASDAQ: HDSN) is the largest US reclaimer and reports refrigerant segment revenue in quarterly 10-Q and annual 10-K SEC filings; their reporting is a useful primary source for reclaimed market trends.
           </TechSection>
 
           <TechSection icon="insight" tone="blue" title="Tier 3 — Recycled refrigerant (a.k.a. &quot;reclaimed in field&quot;)">
@@ -586,7 +575,7 @@ export default function RefrigerantPricesGuidePage() {
               <strong>Statutory and regulatory primary sources:</strong> American Innovation and Manufacturing Act of 2020 (AIM Act), Public Law 116-260 Division S, signed December 27, 2020, codified at 42 USC § 7675. EPA implementing regulations at 40 CFR Part 84 (allowance system) and Subpart B (Technology Transitions, Final Rule October 2023). EPA SNAP determinations at 40 CFR Part 82 Subpart G. Montreal Protocol implementing regulations at 40 CFR Part 82 Subpart A (HCFC phase-down) and Subpart F (Section 608 refrigerant management).
             </p>
             <p className="mt-3">
-              <strong>EU regulatory sources:</strong> Regulation (EU) No 517/2014 on fluorinated greenhouse gases (entered into force January 2015, repealed January 2025 by Regulation 2024/573). Regulation (EU) 2024/573 of the European Parliament and of the Council of 7 February 2024 on fluorinated greenhouse gases (the recast, accelerated phase-down schedule). Both available on EUR-Lex (eur-lex.europa.eu).
+              <strong>EU regulatory sources:</strong> Regulation (EU) No 517/2014 on fluorinated greenhouse gases (applied from 1 January 2015; replaced by (EU) 2024/573, applying from 11 March 2024). Regulation (EU) 2024/573 of the European Parliament and of the Council of 7 February 2024 on fluorinated greenhouse gases (the recast). Both available on EUR-Lex (eur-lex.europa.eu).
             </p>
             <p className="mt-3">
               <strong>Industry standards:</strong> AHRI Standard 700-2019, Specifications for Refrigerants (defines virgin and reclaimed refrigerant purity criteria; published by Air-Conditioning, Heating, and Refrigeration Institute). ASHRAE Standard 34, Designation and Safety Classification of Refrigerants (affects market dynamics through safety class assignment). ASHRAE Standard 15, Safety Standard for Refrigeration Systems.
@@ -623,7 +612,7 @@ export default function RefrigerantPricesGuidePage() {
             </Link>
             <Link href="/refrigerant-gwp-rankings/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
               <div className="flex items-center gap-2 font-semibold"><TrendingUp className="h-4 w-4 text-blue-600" /> GWP rankings (all 60)</div>
-              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">AIM Act 700-GWP threshold marked; the 150-GWP level used by several 40 CFR 84.54 categories also shown.</p>
+              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">700-GWP limit for new residential/light-commercial AC and heat pumps marked; the 150-GWP level used by several 40 CFR 84.54 categories also shown.</p>
             </Link>
             <Link href="/r-22-vs-r-410a/" className="block rounded-xl border border-zinc-200 p-4 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900">
               <div className="flex items-center gap-2 font-semibold"><Activity className="h-4 w-4 text-blue-600" /> R-22 vs R-410A</div>

@@ -1,7 +1,7 @@
 ---
 slug: r-123
 title: "R-123 Pressure Temperature Chart & Properties"
-introOneLiner: "HCFC (2,2-dichloro-1,1,1-trifluoroethane, CHCl₂CF₃) — B1 toxic non-flammable, GWP 77, ODP 0.02. The dominant low-pressure centrifugal chiller refrigerant 1990-2020; US production banned 1 January 2020. R-1233zd(E) is the standard replacement."
+introOneLiner: "HCFC (2,2-dichloro-1,1,1-trifluoroethane, CHCl₂CF₃) — B1 toxic non-flammable, GWP 77, ODP 0.02. The dominant low-pressure centrifugal chiller refrigerant 1990-2020; US production and import allowed since 2015 only for equipment made before 1 January 2020 and ends entirely 1 January 2030. R-1233zd(E) is the standard replacement."
 
 sources:
   - id: ashrae34
@@ -17,9 +17,9 @@ sources:
     url: "https://ozone.unep.org/treaties/montreal-protocol"
     date: "1987, amended 1992"
   - id: epacfr82
-    label: "EPA 40 CFR Part 82 Subpart A — HCFC production phase-out (R-123 production/import ended 1 Jan 2020)"
+    label: "EPA 40 CFR Part 82 Subpart A — HCFC production phase-out (R-123 made since 2015 only for pre-2020 equipment; all HCFC production/import ends 1 Jan 2030)"
     url: "https://www.epa.gov/ods-phaseout"
-    date: "R-123 production/import ended 1 Jan 2020"
+    date: "all HCFC production/import ends 1 Jan 2030"
   - id: coolprop
     label: "CoolProp 7.2.0"
     url: "http://www.coolprop.org/"
@@ -59,9 +59,9 @@ keyStats:
     context: Higher than R-134a — very low-pressure chiller operation
     sourceId: coolprop
   - label: Production status
-    value: US production/import ended
-    unit: 1 Jan 2020
-    context: Class II HCFC; reclaimed supply for servicing existing equipment (all-HCFC end 2030)
+    value: US production/import ends
+    unit: 1 Jan 2030
+    context: Class II HCFC; made since 2015 only for pre-2020 equipment; reclaimed supply for servicing existing equipment
     sourceId: epacfr82
   - label: Required lubricant
     value: Mineral oil
@@ -75,7 +75,7 @@ narrative:
   whatItIs: |
     R-123 is 2,2-dichloro-1,1,1-trifluoroethane (CHCl₂CF₃) — a hydrochlorofluorocarbon (HCFC) with B1 safety classification and a unique application niche [ashrae34]. The two chlorine atoms give R-123 small but non-zero ODP (0.02); the molecular structure produces very low vapor pressure and a unique high boiling point (82°F) that suits low-pressure centrifugal chiller applications.
 
-    R-123 was the dominant low-pressure centrifugal chiller refrigerant from 1990 through 2020, replacing CFC R-11 in chiller equipment after the 1996 CFC phase-out. R-123's low pressure envelope (sub-atmospheric on the evaporator side at typical chiller temperatures) is well-suited to large centrifugal chiller compressor designs. US production was banned on 1 January 2020 under the Montreal Protocol HCFC schedule [epacfr82].
+    R-123 was the dominant low-pressure centrifugal chiller refrigerant from 1990 through 2020, replacing CFC R-11 in chiller equipment after the 1996 CFC phase-out. R-123's low pressure envelope (sub-atmospheric on the evaporator side at typical chiller temperatures) is well-suited to large centrifugal chiller compressor designs. Under the Montreal Protocol HCFC schedule, R-123 has since 2015 been produced or imported only as refrigerant for equipment made before 1 January 2020, with no US production or import from 1 January 2030 [epacfr82].
 
   whereItsUsed:
     - "Low-pressure centrifugal chillers (Trane CenTraVac, others) installed 1990-2020"
@@ -84,9 +84,9 @@ narrative:
     - "Replaced in new equipment by R-1233zd(E) (A1, GWP 4, near-zero ODP)"
 
   phaseDownStatus: |
-    R-123 US production was banned on 1 January 2020 under the HCFC schedule [epacfr82]. The phase-out parallels R-22's: complete ban on new production, with reclaimed supply remaining legal for service of existing equipment under EPA Section 608 [epasec608].
+    Under the HCFC schedule, R-123 has since 2015 been produced or imported only as refrigerant for equipment made before 1 January 2020, with no US production or import from 1 January 2030 [epacfr82]. The phase-out parallels R-22's: complete ban on new production, with reclaimed supply remaining legal for service of existing equipment under EPA Section 608 [epasec608].
 
-    For existing R-123 chillers, service supply will continue via reclaimed R-123 indefinitely. The remaining R-123 chiller installed base is significant (large centrifugal chillers from the 1990s-2010s era) and will continue operating for decades. Replacement chillers increasingly specify R-1233zd(E) for new equipment.
+    For existing R-123 chillers, service supply relies on reclaimed R-123. The remaining R-123 chiller installed base is significant (large centrifugal chillers from the 1990s-2010s era) and will continue operating for decades. Replacement chillers increasingly specify R-1233zd(E) for new equipment.
 
   serviceNotes: |
     R-123 is B1 — higher toxicity than typical A-class refrigerants. ASHRAE Standard 15 requires specific equipment-room provisions for B1 refrigerants: leak detection, emergency ventilation, machine room exclusion zone provisions [ashrae15].
@@ -100,13 +100,13 @@ faqs:
     a: |
       Low-pressure centrifugal chillers, dominantly. Trane CenTraVac was the most prominent R-123 chiller product line [trane]; other chiller OEMs also offered R-123 options. R-123 was the standard low-pressure chiller refrigerant from 1990 through 2020.
 
-      Production was banned on 1 January 2020 under the HCFC phase-out; new chiller equipment specifies R-1233zd(E) (HCFO, A1, GWP 4, near-zero ODP) as the standard R-123 replacement.
+      Under the HCFC phase-out, R-123 has since 2015 been produced only as refrigerant for equipment made before 1 January 2020, with production and import ending 1 January 2030; new chiller equipment specifies R-1233zd(E) (HCFO, A1, GWP 4, near-zero ODP) as the standard R-123 replacement.
 
   - q: "Why was R-123 phased out?"
     a: |
       Ozone-depletion potential. R-123 contains two chlorine atoms; HCFCs were added to the Montreal Protocol controlled substances list in 1992 (Copenhagen Amendment). Despite R-123's relatively low ODP (0.02), the Montreal Protocol HCFC schedule mandated complete phase-out [montrealprotocol].
 
-      US implementation through 40 CFR Part 82 Subpart A: production banned 1 January 2020 [epacfr82].
+      US implementation through 40 CFR Part 82 Subpart A: since 2015 R-123 is produced or imported only for equipment made before 1 January 2020, with no production or import from 1 January 2030 [epacfr82].
 
   - q: "What's R-123's GWP and ODP?"
     a: |
@@ -120,7 +120,7 @@ faqs:
 
   - q: "Is R-123 still legal?"
     a: |
-      Reclaimed R-123 is legal to use indefinitely in existing equipment under EPA Section 608 rules [epasec608]. New production has been banned in the US since 1 January 2020 [epacfr82]. Supply comes from reclaimed material recovered from equipment removals.
+      Reclaimed R-123 is legal to use indefinitely in existing equipment under EPA Section 608 rules [epasec608]. Since 2015 US production and import has been allowed only as refrigerant for equipment made before 1 January 2020, ending entirely 1 January 2030 [epacfr82]. Supply comes from reclaimed material recovered from equipment removals.
 
   - q: "Why is R-123 B1 (higher toxicity) instead of A1?"
     a: |
@@ -178,7 +178,7 @@ GWP 77 is low for an HCFC — much lower than HFC alternatives (R-134a 1430, R-4
 
 <TechSection icon="insight" tone="emerald" title="How to think about R-123 in 2026 and beyond">
 
-R-123 occupies a defined legacy niche in 2026 — service of low-pressure centrifugal chillers installed 1990-2020. The installed base is significant (thousands of large commercial chillers in the US) and these chillers will continue operating for decades. Service supply via reclaimed R-123 will continue indefinitely.
+R-123 occupies a defined legacy niche in 2026 — service of low-pressure centrifugal chillers installed 1990-2020. The installed base is significant (large commercial chillers across the US) and these chillers will continue operating for decades. Service supply for existing chillers relies on reclaimed R-123.
 
 For new chiller equipment, R-1233zd(E) is the standard low-pressure replacement. The replacement provides operational equivalence (similar pressure envelope, mineral oil compatibility) with environmental and safety improvements (A1 vs B1, GWP 4 vs 77, near-zero vs 0.02 ODP).
 

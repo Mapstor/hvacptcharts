@@ -467,8 +467,12 @@ function RichContent() {
             from the calculator is not sufficient for tall installations.
           </li>
           <li>
-            <strong>Topping off a leaking system.</strong> EPA Section 608 prohibits
-            adding refrigerant without first finding and repairing the leak. If charge
+            <strong>Topping off a leaking system.</strong>{" "}There is no blanket federal
+            rule against adding refrigerant to a leaking system; leak-repair duties are
+            size-based (40 CFR 82.157 for appliances with 50 lb or more of class I/II
+            refrigerant, and 40 CFR 84.106 from January 1, 2026 for appliances with 15 lb
+            or more of HFC refrigerant with GWP above 53). Either way, topping off a leaking
+            system doesn&apos;t fix the problem — if charge
             seems short on an established system, leak search comes first; the calculator
             is for new installs and line-set sizing, not for filling leaks.
           </li>

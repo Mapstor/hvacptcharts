@@ -19,9 +19,6 @@ sources:
   - id: eufgas
     label: "Regulation (EU) No 517/2014, since replaced by (EU) 2024/573 (applying from 11 March 2024)"
     url: "https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases/f-gas-legislation_en"
-  - id: snap
-    label: "EPA Significant New Alternatives Policy (SNAP) — R-454C acceptable for commercial refrigeration"
-    url: "https://www.epa.gov/snap"
   - id: ul60335
     label: "UL 60335-2-89 / IEC 60335-2-89 — Safety standard for commercial refrigerating appliances"
     url: "https://www.ul.com/services/ul-60335-standards"
@@ -47,7 +44,7 @@ keyStats:
   - label: GWP (100-yr)
     value: "146"
     unit: "100-yr"
-    context: Below EU F-Gas 150-GWP threshold for some commercial refrigeration categories
+    context: Below 150, the limit in 517/2014 Annex III rows 11 and 13
   - label: ODP
     value: "0"
     context: Fluorine-only HFC + HFO components
@@ -68,11 +65,10 @@ keyStats:
   - label: Application
     value: New commercial refrigeration
     context: R-404A replacement in new equipment; not a drop-in for legacy A1 systems
-    sourceId: snap
 
 narrative:
   whatItIs: |
-    R-454C is a zeotropic blend of 21.5% R-32 (HFC) and 78.5% R-1234yf (HFO) by mass [ashrae34]. The high R-1234yf content (GWP 1) pulls the blend's overall GWP down to 146 — below the EU F-Gas 150-GWP threshold for some commercial refrigeration categories and well below the AIM Act 700-GWP threshold.
+    R-454C is a zeotropic blend of 21.5% R-32 (HFC) and 78.5% R-1234yf (HFO) by mass [ashrae34]. The high R-1234yf content (GWP 1) pulls the blend's overall GWP down to 146 — below 150, the limit in 517/2014 Annex III rows 11 and 13, and below every 40 CFR 84.54 limit (the lowest is 150).
 
     The defining trade-off vs R-404A is the safety class change from A1 to A2L (mildly flammable) and a significant temperature glide of approximately 14°F. The glide requires careful service measurement (dew curve for superheat, bubble for subcooling) and constrains the application to TXV systems rather than fixed-orifice metering devices.
 
@@ -80,12 +76,12 @@ narrative:
     - "Low-temperature commercial refrigeration — walk-in freezers, frozen food cases (new equipment)"
     - "Medium-temperature commercial refrigeration — refrigerated cases (new equipment)"
     - "Self-contained commercial refrigeration equipment with managed A2L charge"
-    - "R-404A replacement in new equipment installations under EU F-Gas 150-GWP threshold"
+    - "R-404A replacement in new equipment installations under the EU F-Gas 150 limit (517/2014 Annex III rows 11 and 13)"
 
   phaseDownStatus: |
-    R-454C is one of the dominant low-GWP A2L blends for new commercial refrigeration equipment under AIM Act and EU F-Gas Regulation. GWP 146 sits below the EU F-Gas 150-GWP threshold for several commercial refrigeration categories and provides comfortable headroom under the AIM Act 700-GWP threshold [eufgas][aimact].
+    R-454C is one of the dominant low-GWP A2L blends for new commercial refrigeration equipment under AIM Act and EU F-Gas Regulation. GWP 146 sits below 150 — the limit in 517/2014 Annex III rows 11 and 13 — and below every 40 CFR 84.54 limit (the lowest is 150) [eufgas][aimact].
 
-    Long-term regulatory positioning is strong. The 146 GWP figure was deliberately engineered to fit just under the EU 150-GWP threshold — providing structural compliance for the foreseeable regulatory horizon.
+    Long-term regulatory positioning is strong. The 146 GWP figure was deliberately engineered to fit just under 150, the limit in 517/2014 Annex III rows 11 and 13 — providing structural compliance for the foreseeable regulatory horizon.
 
   serviceNotes: |
     POE oil required — same lubricant family as R-410A and R-32. A2L safety class requires A2L-listed equipment, charge limits per UL 60335-2-89 and ASHRAE 15, and A2L-rated leak detection in some installations [ul60335][ashrae15].
@@ -107,7 +103,7 @@ faqs:
 
   - q: "What does R-454C's GWP of 146 mean?"
     a: |
-      A 1 kg release of R-454C traps approximately 146 times more heat than 1 kg of CO₂ over 100 years (mass-weighted from 21.5% R-32 × 675 + 78.5% R-1234yf × 1) [ipccar5]. The 146 figure sits below the EU F-Gas 150-GWP threshold for several commercial refrigeration categories and well below the AIM Act 700-GWP threshold for residential AC.
+      A 1 kg release of R-454C traps approximately 146 times more heat than 1 kg of CO₂ over 100 years (mass-weighted from 21.5% R-32 × 675 + 78.5% R-1234yf × 1) [ipccar5]. The 146 figure sits below 150, the limit in 517/2014 Annex III rows 11 and 13, and well below the AIM Act 700-GWP limit for new residential and light-commercial AC and heat pumps.
 
       For context: R-454C has 27× lower GWP per kg than R-404A (3922), the legacy refrigerant it replaces in low-temperature commercial refrigeration.
 
@@ -138,7 +134,7 @@ faqs:
 retrofitGuidance:
   fromRefrigerant: ""
   notes: |
-    R-454C is a new-equipment refrigerant for commercial refrigeration, not a field retrofit for legacy R-404A or R-22 systems. The A1-to-A2L safety class change requires equipment-level redesign that retrofits cannot deliver. For R-404A retrofit while preserving A1 classification, use R-448A or R-449A (A1, GWP ~1390). For new equipment specification under EU F-Gas 150-GWP threshold or AIM Act, R-454C and R-455A are the dominant A2L choices.
+    R-454C is a new-equipment refrigerant for commercial refrigeration, not a field retrofit for legacy R-404A or R-22 systems. The A1-to-A2L safety class change requires equipment-level redesign that retrofits cannot deliver. For R-404A retrofit while preserving A1 classification, use R-448A or R-449A (A1, GWP ~1390). For new equipment specification under the EU F-Gas 150 limit (517/2014 Annex III rows 11 and 13) or the AIM Act, R-454C and R-455A are the dominant A2L choices.
 ---
 
 <TechSection icon="chart" tone="blue" title="Reading the R-454C PT chart — bubble and dew matter">
@@ -159,7 +155,7 @@ This is not a trivial correction. Typical commercial refrigeration superheat tar
 
 R-454C combines two refrigerants to engineer a specific GWP target. R-32 (HFC, GWP 675, A2L) provides capacity; R-1234yf (HFO, GWP 1, A2L) dilutes the GWP. The mass-weighted GWP arithmetic: 0.215 × 675 + 0.785 × 1 = 145.1 + 0.8 = 145.9, rounded to 146 [ipccar5].
 
-The 146 figure was engineered specifically to sit below the EU F-Gas 150-GWP threshold for several commercial refrigeration categories. R-455A (the alternative A2L low-GWP blend) hits 146 GWP through a different composition (R-744/R-32/R-1234yf 3/21.5/75.5). Both target the same regulatory threshold.
+The 146 figure was engineered specifically to sit below 150, the limit in 517/2014 Annex III rows 11 and 13. R-455A (the alternative A2L low-GWP blend) hits 146 GWP through a different composition (R-744/R-32/R-1234yf 3/21.5/75.5). Both target the same regulatory threshold.
 
 <KeyInsight tone="purple" icon="composition" title="Both components are A2L — blending doesn't change classification">
 A common misconception: blending R-32 (A2L) with R-1234yf (A2L) might somehow yield A1. It doesn't — both components are mildly flammable individually, so the blend is A2L. This differs from R-410A (R-32/R-125 50/50) where R-125 (A1) was used specifically to suppress R-32's flammability and yield an A1 blend. R-454C and R-455A accept the A2L classification as the price of very-low GWP.
@@ -177,11 +173,11 @@ For service technicians transitioning from R-404A practice to R-454C, the pressu
 
 </TechSection>
 
-<TechSection icon="globe" tone="emerald" title="GWP 146 — below EU F-Gas 150 threshold, well below AIM Act 700">
+<TechSection icon="globe" tone="emerald" title="GWP 146 — below the EU F-Gas 150 limit and every 40 CFR 84.54 limit">
 
-R-454C's GWP of 146 was engineered to fit just below the EU F-Gas Regulation 150-GWP threshold for several commercial refrigeration categories [eufgas]. The threshold targets new equipment in plug-in commercial refrigerators and freezers, multi-pack centralized refrigeration systems, and some other commercial refrigeration applications under the 2014 regulation and 2024 amendments.
+R-454C's GWP of 146 was engineered to fit just below 150, the limit in 517/2014 Annex III rows 11 and 13 [eufgas].
 
-Under the AIM Act, R-454C clears the 700-GWP threshold for residential AC (R-454C isn't widely used in residential AC anyway) and is below the higher thresholds applied to most commercial refrigeration categories [aimact]. The 146 figure provides comfortable regulatory headroom for the foreseeable future.
+Under the AIM Act, R-454C clears the 700-GWP limit for new residential and light-commercial AC and heat pumps (R-454C isn't widely used in those applications anyway) and is below every other 40 CFR 84.54 limit that applies to commercial refrigeration categories [aimact]. The 146 figure provides comfortable regulatory headroom for the foreseeable future.
 
 The very-low GWP comes with the A2L flammability trade-off and the wide-glide zeotropic behavior. R-454C is not a drop-in for legacy A1 R-404A equipment — it requires new equipment specifically designed for A2L safety per UL 60335-2-89.
 
@@ -222,11 +218,11 @@ The transition from R-404A service practice to R-454C is the equipment design ge
 
 <TechSection icon="recycle" tone="amber" title="R-454C in the commercial refrigeration phase-down trajectory">
 
-R-454C occupies a specific position in the commercial refrigeration GWP transition. The trajectory: R-502 (CFC azeotrope, banned 1996) → R-404A (HFC blend, dominant 1995-2020, A1, GWP 3922, AIM Act phase-down 2024-2025) → R-448A/R-449A (A1 HFC retrofit, GWP ~1390) → R-454C/R-455A (A2L, GWP 146) → R-744 (CO₂, GWP 1, supermarket-scale).
+R-454C occupies a specific position in the commercial refrigeration GWP transition. The trajectory: R-502 (CFC azeotrope, banned 1996) → R-404A (HFC blend, dominant 1995-2020, A1, GWP 3922, restricted by subsector 2025–2027 under 40 CFR 84.54) → R-448A/R-449A (A1 HFC retrofit, GWP ~1390) → R-454C/R-455A (A2L, GWP 146) → R-744 (CO₂, GWP 1, supermarket-scale).
 
 R-454C and R-455A serve the new-equipment niche between A1 HFC retrofits (R-448A/R-449A) and R-744 transcritical (supermarket scale). For small-to-medium commercial refrigeration installations where R-744's equipment cost is unjustified and A2L safety design is acceptable, R-454C and R-455A are the dominant choices.
 
-Market adoption is faster in EU (where F-Gas 150-GWP thresholds drive aggressive new-equipment requirements) than US (where AIM Act provisions are more gradual). EU commercial refrigeration OEMs (Carrier Commercial Refrigeration, Hussmann, AHT Cooling Systems) ship R-454C and R-455A extensively; US adoption is growing through 2024-2027.
+Market adoption is faster in the EU (where F-Gas thresholds drive aggressive new-equipment requirements) than in the US (where AIM Act provisions are more gradual). EU commercial refrigeration OEMs ship R-454C and R-455A extensively; US adoption is growing.
 
 </TechSection>
 
@@ -236,7 +232,7 @@ R-454C is the dominant low-GWP A2L choice for new commercial refrigeration equip
 
 For new equipment specification, R-454C is a natural choice for medium-to-large self-contained commercial refrigeration (walk-in freezers, refrigerated cases, ice machines) where R-744 transcritical's equipment cost is unjustified. R-455A is the alternative A2L low-GWP blend with a slightly different glide profile and the R-744 small-fraction component for capacity tuning.
 
-For technicians, R-454C work resembles R-404A work but with two adjustments: A2L procedures (A2L-listed equipment, refrigerant detection where the standard requires it, charge limits, no open flames) and zeotropic blend handling (dew vs bubble curve selection for superheat and subcooling). Equipment-OEM training programs through 2024-2027 cover both adjustments explicitly.
+For technicians, R-454C work resembles R-404A work but with two adjustments: A2L procedures (A2L-listed equipment, refrigerant detection where the standard requires it, charge limits, no open flames) and zeotropic blend handling (dew vs bubble curve selection for superheat and subcooling). Equipment-OEM training programs cover both adjustments explicitly.
 
 For R-404A retrofit decisions, R-454C is NOT the right answer — the A2L safety class change requires equipment-level redesign. Use R-448A or R-449A (A1, GWP ~1390) for R-404A retrofit; specify R-454C for new equipment.
 

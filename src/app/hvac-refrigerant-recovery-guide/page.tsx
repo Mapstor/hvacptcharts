@@ -45,7 +45,7 @@ const FAQS = [
   },
   {
     q: "What evacuation level do I need to pull on the system after recovery?",
-    a: "Per 40 CFR § 82.156(b) Table 2, evacuation levels depend on equipment type, manufacture date, and refrigerant charge size. For systems manufactured on or after November 15, 1993 with HFC or HCFC refrigerant charges under 200 lbs (covers virtually all residential and small commercial): pull to 0 PSIG (atmospheric). For systems with charges 200+ lbs: pull to 10-15 in.Hg vacuum depending on refrigerant. For very-low-pressure systems (Type III chillers using R-123 and similar): pull to 25 mm Hg absolute pressure. Always consult the current EPA table — the values were updated when HFCs were added in 2018 and may evolve further. Best practice exceeds the minimum: pull to 500 microns (29.92 in.Hg vacuum) before recharge to ensure all moisture and non-condensables are removed; the legal minimum lets refrigerant out, but the 500-micron target ensures the system is properly prepared.",
+    a: "Per 40 CFR § 82.156(a) Table 1, evacuation levels depend on equipment type, manufacture date, and refrigerant charge size. For systems manufactured on or after November 15, 1993 with HFC or HCFC refrigerant charges under 200 lbs (covers virtually all residential and small commercial): pull to 0 PSIG (atmospheric). For systems with charges 200+ lbs: pull to 10-15 in.Hg vacuum depending on refrigerant. For very-low-pressure systems (Type III chillers using R-123 and similar): pull to 25 mm Hg absolute pressure. Always consult the current EPA table — the values were updated when HFCs were added in 2018 and may evolve further. Best practice exceeds the minimum: pull to 500 microns (29.92 in.Hg vacuum) before recharge to ensure all moisture and non-condensables are removed; the legal minimum lets refrigerant out, but the 500-micron target ensures the system is properly prepared.",
   },
   {
     q: "Does EPA Section 608 require recordkeeping?",
@@ -122,7 +122,7 @@ function buildSchema(): object[] {
         { "@type": "HowToStep", position: 3, name: "Disconnect power and verify with non-contact voltage tester", text: "Disconnect at the breaker; verify zero voltage at the contactor before opening any service valves." },
         { "@type": "HowToStep", position: 4, name: "Weigh the recovery cylinder and zero the scale", text: "Place empty recovery cylinder on the scale, tare to zero, record the starting weight. Recovered refrigerant weight = final weight − starting weight." },
         { "@type": "HowToStep", position: 5, name: "Connect recovery machine inlet to system service ports", text: "Use low-loss fittings or core-removal tools to minimize refrigerant lost during connection. Recovery machine inlet from the system; recovery machine outlet to the recovery cylinder. For high-pressure systems also use a liquid-line side connection for faster recovery." },
-        { "@type": "HowToStep", position: 6, name: "Operate the recovery machine", text: "Start machine per manufacturer procedure. Recover until system pressure drops to atmospheric (0 PSIG for systems under 200 lbs charge per 40 CFR § 82.156(b) Table 2 for HFCs/HCFCs). For larger systems, evacuate to required levels for the refrigerant type." },
+        { "@type": "HowToStep", position: 6, name: "Operate the recovery machine", text: "Start machine per manufacturer procedure. Recover until system pressure drops to atmospheric (0 PSIG for systems under 200 lbs charge per 40 CFR § 82.156(a) Table 1 for HFCs/HCFCs). For larger systems, evacuate to required levels for the refrigerant type." },
         { "@type": "HowToStep", position: 7, name: "Confirm complete recovery", text: "Check system pressure with the manifold; pressure should not rise above 0 PSIG within 5 minutes of recovery-machine shutoff (rising pressure indicates refrigerant remaining or active leak). For ≥ 200 lb systems, confirm vacuum level meets EPA requirement." },
         { "@type": "HowToStep", position: 8, name: "Record and label", text: "Record refrigerant type, weight recovered, system identification, date, and your certification number on the service ticket. Label the recovery cylinder accordingly. For commercial systems, update the equipment's refrigerant log per § 82.166." },
         { "@type": "HowToStep", position: 9, name: "Transport recovered refrigerant", text: "DOT requires recovery cylinders to be properly labeled, secured during transport, and never overfilled. Take recovered refrigerant to a reclaimer or wholesale partner with reclamation contract; do not vent under any circumstances." },
@@ -231,7 +231,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
             EPA Section 608 certification — the four types
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
-            EPA Section 608 § 82.161 establishes four technician certification types, each authorizing work on a specific category of equipment. EPA revised the Section 608 exam to add A2L and A3 refrigerant questions; the current question bank can be used only through Jan 1, 2027, and there is no new Type IV certification (ACHR News, Sep 19, 2026: achrnews.com/articles/166686-what-you-need-to-know-about-the-new-section-608-exam):
+            EPA Section 608 § 82.161 establishes four technician certification types, each authorizing work on a specific category of equipment:
           </p>
 
           <ComparisonTable
@@ -307,10 +307,10 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 05 — Evacuation levels */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            Required evacuation levels per 40 CFR § 82.156(b)
+            Required evacuation levels per 40 CFR § 82.156(a)
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
-            EPA Section 608 specifies minimum evacuation levels — how low you must pull the refrigerant out of the system — depending on equipment type, manufacture date, and charge size. The current Table 2 in § 82.156(b) summarizes the requirements (always cross-reference the current EPA regulation as published values may be updated):
+            EPA Section 608 specifies minimum evacuation levels — how low you must pull the refrigerant out of the system — depending on equipment type, manufacture date, and charge size. The current Table 1 in § 82.156(a) summarizes the requirements (always cross-reference the current EPA regulation as published values may be updated):
           </p>
 
           <ComparisonTable
@@ -327,7 +327,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
           />
 
           <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
-            Source: 40 CFR § 82.156(b) Table 2. Refrigerants R-410A, R-32, R-454B, and other modern HFCs fall under the &quot;Other HFC/HCFC high pressure&quot; categories. The values shown are minimums for legal compliance; best practice for service work exceeds these minimums substantially (typical target: 500 microns / 29.92 in.Hg vacuum before recharge, to fully remove moisture and non-condensables).
+            Source: 40 CFR § 82.156(a) Table 1. Refrigerants R-410A, R-32, R-454B, and other modern HFCs fall under the &quot;Other HFC/HCFC high pressure&quot; categories. The values shown are minimums for legal compliance; best practice for service work exceeds these minimums substantially (typical target: 500 microns / 29.92 in.Hg vacuum before recharge, to fully remove moisture and non-condensables).
           </p>
 
           <KeyInsight tone="amber" title="Legal minimum vs best practice">
@@ -341,7 +341,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
             Recovery procedure — step-by-step for a Type II residential split AC
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
-            The most common scenario: recovering refrigerant from a residential split-system air conditioner using R-410A, R-32, or R-454B for replacement, repair, or compressor work. The procedure below covers Type II equipment with under 200 lb charge per EPA § 82.156(b):
+            The most common scenario: recovering refrigerant from a residential split-system air conditioner using R-410A, R-32, or R-454B for replacement, repair, or compressor work. The procedure below covers Type II equipment with under 200 lb charge per EPA § 82.156(a):
           </p>
 
           <ol className="mt-3 list-decimal space-y-3 pl-6 text-zinc-700 dark:text-zinc-300">
@@ -371,7 +371,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
                 { number: 3, title: "LOTO + verify zero voltage", description: "Disconnect at outdoor + indoor units. Verify zero voltage at contactor with NCVT before opening valves." },
                 { number: 4, title: "Tare cylinder on scale", description: "Empty cylinder, tare to zero. Recovered weight = final − starting. Record for ticket + § 82.166 log." },
                 { number: 5, title: "Connect recovery machine", description: "Inlet to system service port (suction side typical). Outlet to cylinder. Low-loss fittings minimize refrigerant loss." },
-                { number: 6, title: "Recover to required level", description: "HFC <200 lb: pull to 0 PSIG. Larger systems: 10-15 in.Hg per EPA Table 2. Monitor manifold continuously.", critical: true },
+                { number: 6, title: "Recover to required level", description: "HFC <200 lb: pull to 0 PSIG. Larger systems: 10-15 in.Hg per EPA Table 1. Monitor manifold continuously.", critical: true },
                 { number: 7, title: "Verify completeness", description: "Shut off recovery. Watch 5 minutes for pressure rise (oil-bound refrigerant). Re-recover if pressure climbs." },
                 { number: 8, title: "Record + transport", description: "Log refrigerant type + weight + cert number on ticket. Cap cylinder, secure for DOT transport to reclaimer." },
               ]}
@@ -572,7 +572,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
           </h2>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-5 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-300">
             <p>
-              <strong>EPA Section 608 primary sources:</strong> 40 CFR Part 82 Subpart F — § 82.150 (definitions), § 82.152 (recovery + recycling + reclamation definitions), § 82.156 (required practices, including evacuation levels in Table 2), § 82.158 (equipment certification), § 82.161 (technician certification), § 82.162 (reclamation requirements), § 82.164 (reclaimer certification), § 82.166 (recordkeeping and reporting). Civil penalties are assessed under Clean Air Act § 113, with the current inflation-adjusted maximum in 40 CFR 19.4. Full regulation text at ecfr.gov. EPA Section 608 Final Rule 2016 (extension to HFCs); AIM Act 2024 implementation rules.
+              <strong>EPA Section 608 primary sources:</strong> 40 CFR Part 82 Subpart F — § 82.150 (definitions), § 82.152 (recovery + recycling + reclamation definitions), § 82.156 (required practices, including evacuation levels in Table 1), § 82.158 (equipment certification), § 82.161 (technician certification), § 82.162 (reclamation requirements), § 82.164 (reclaimer certification), § 82.166 (recordkeeping and reporting). Civil penalties are assessed under Clean Air Act § 113, with the current inflation-adjusted maximum in 40 CFR 19.4. Full regulation text at ecfr.gov. EPA Section 608 Final Rule 2016 (extension to HFCs); AIM Act 2024 implementation rules.
             </p>
             <p className="mt-3">
               <strong>Industry standards:</strong> AHRI Standard 700-2019 (Specifications for Refrigerants — defines reclaim quality criteria). AHRI Standard 740 (Performance of Refrigerant Recovery, Recycling, or Reclaiming Equipment). AHRI Safe Refrigerant Transition guidance for A2L handling.

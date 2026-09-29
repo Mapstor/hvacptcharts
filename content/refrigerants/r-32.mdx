@@ -79,16 +79,16 @@ narrative:
     The defining trade-off vs R-410A is the safety class change from A1 (non-flammable) to A2L (mildly flammable, low burning velocity). A2L requires equipment-level safety design — A2L-listed equipment, charge limits per ASHRAE 15, and refrigerant leak detection where applicable [ul60335].
 
   whereItsUsed:
-    - "Residential central AC — new equipment 2025+ (Daikin, Mitsubishi, LG, Fujitsu lead)"
+    - "Residential central AC — new equipment 2025+"
     - "Residential heat pumps — increasingly the choice over R-454B for some OEMs"
     - "Light commercial split systems and ductless mini-splits"
     - "VRF / VRV multi-zone systems"
     - "Component of the R-410A blend (50% mass) and many other HFC/HFO blends"
 
   phaseDownStatus: |
-    R-32 itself is not subject to active phase-down. Its GWP of 675 sits just below the AIM Act 700-GWP threshold for new residential AC equipment [aimact]. R-32 is one of the two industry-standard replacements for R-410A (alongside R-454B, GWP 465).
+    R-32 is a regulated HFC under the AIM Act allowance phase-down, but its GWP of 675 sits below the 40 CFR 84.54(a)(1)/(c)(1) limit of 700 for new residential and light-commercial AC and heat pumps [aimact]. R-32 is one of the two industry-standard replacements for R-410A (alongside R-454B, GWP 465).
 
-    Long-term, the EU F-Gas Regulation revision (2024) targets even lower GWP thresholds in some segments, which may eventually pressure R-32. For 2025-2035, R-32 has stable regulatory positioning in the US residential AC market.
+    Regulation (EU) 2024/573 has applied since 11 March 2024 and adds further prohibitions on F-gas equipment, products and use; its Annex IV is the current EU list. For 2025-2035, R-32 has stable regulatory positioning in the US residential AC market.
 
   serviceNotes: |
     POE oil is required (same lubricant family as R-410A) — mineral oil and alkylbenzene are not miscible. ISO 32 viscosity is typical for residential split systems.
@@ -116,7 +116,7 @@ faqs:
     a: |
       Two reasons. (1) GWP: R-32 at 675 falls below the AIM Act 700 threshold for new residential AC; R-410A at 2088 does not [aimact]. (2) Capacity: R-32 has approximately 10-15% higher volumetric refrigerating capacity than R-410A, allowing smaller charge for equivalent cooling output.
 
-      R-454B (GWP 465, R-32/R-1234yf blend) is the parallel A2L choice — Daikin / Mitsubishi / LG / Fujitsu favor pure R-32; Carrier / Trane / Lennox favor R-454B.
+      R-454B (GWP 465, R-32/R-1234yf blend) is the parallel A2L choice — some OEMs favor pure R-32 while others favor R-454B.
 
   - q: "What gauges and recovery equipment do I need for R-32?"
     a: |
@@ -140,7 +140,7 @@ faqs:
     a: |
       Daikin Industries commercialized R-32 in residential AC starting in Japan in 2012 and then globally — they hold extensive patents on the R-32 application know-how [daikin]. Their R-32 deployment ramped through Asia and Europe years before the AIM Act made it the dominant new-equipment choice.
 
-      US Daikin / Mitsubishi / LG / Fujitsu carried that experience forward when AIM Act timing forced industry-wide R-410A transition in 2025. Carrier / Trane / Lennox standardized on R-454B as an alternative path.
+      Manufacturers with that early R-32 experience carried it forward when AIM Act timing forced industry-wide R-410A transition in 2025. Others standardized on R-454B as an alternative path.
 
 retrofitGuidance:
   fromRefrigerant: ""
@@ -182,9 +182,9 @@ The disadvantages are flammability and discharge temperature. The two C-H bonds 
 
 <TechSection icon="globe" tone="emerald" title="ODP 0 and GWP 675 — why R-32 clears the AIM Act threshold">
 
-R-32 has zero ozone-depletion potential because the molecule contains no chlorine [ashrae34]. The Montreal Protocol HCFC phase-down that eliminated R-22 does not apply to R-32 — it's a hydrofluorocarbon (HFC), classified separately, and not on the Montreal Protocol controlled substances list.
+R-32 has zero ozone-depletion potential because the molecule contains no chlorine [ashrae34]. The Montreal Protocol HCFC phase-down that eliminated R-22 does not apply to R-32, which is a hydrofluorocarbon (HFC) rather than an HCFC. HFCs are controlled substances under the Montreal Protocol's Kigali Amendment (2016), listed in Annex F, with a phase-down under Article 2J. HFOs and HCFOs are not listed.
 
-R-32's GWP of 675 (100-year horizon) places it just below the AIM Act regulatory threshold of 700-GWP for new residential AC equipment manufactured on or after 1 January 2025 [aimact]. The 700-GWP threshold was set deliberately to allow R-32 (and the slightly lower R-454B at 465) while excluding R-410A (2088), R-404A (3922), and most other legacy HFC blends.
+R-32's GWP of 675 (100-year horizon) places it just below the AIM Act regulatory threshold of 700-GWP for new residential AC equipment manufactured on or after 1 January 2025 [aimact]. The 700-GWP threshold was set deliberately to allow R-32 (and the lower R-454B at 465) while excluding R-410A (2088), R-404A (3922), and most other legacy HFC blends.
 
 <KeyInsight tone="zinc" icon="climate" title="The 675 GWP figure is not a coincidence">
 The 700-GWP threshold was selected during the AIM Act technology transitions rulemaking to enable the residential AC industry's transition to A2L refrigerants. R-32 at 675 fits; R-454B at 465 fits more comfortably; pure HFOs and natural refrigerants fit by orders of magnitude. R-410A at 2088 doesn't.
@@ -196,7 +196,7 @@ The 700-GWP threshold was selected during the AIM Act technology transitions rul
 
 The regulatory figure of 675 is the AIM Act value (the AR4-basis / 40 CFR 84.64 exchange value) [ipccar5]. IPCC AR6 (Sixth Assessment Report, 2021) updated the atmospheric chemistry and radiative-forcing models and produced 771 — a ~14% upward revision driven by improved understanding of indirect effects and atmospheric chemistry feedbacks [ipccar6].
 
-The AIM Act uses the exchange values for regulatory determinations, not AR6. This keeps policy values stable — re-baselining regulatory thresholds against every new IPCC report would create implementation chaos. So when comparing R-32 to the 700-GWP threshold, use the regulatory figure of 675.
+The AIM Act uses the exchange values for regulatory determinations, not AR6. This keeps policy values stable — re-baselining regulatory thresholds against every new IPCC report would create implementation chaos. So when comparing R-32 to the 40 CFR 84.54(a)(1)/(c)(1) limit of 700 for new residential and light-commercial AC and heat pumps, use the regulatory figure of 675.
 
 For scientific communication and international reporting under the Paris Agreement, AR6 figures are increasingly preferred. The two values represent the same underlying atmospheric chemistry — just better-modeled in AR6. Either is defensible; the right choice depends on whether you're working a regulatory question (the 675 exchange value) or a scientific one (AR6).
 
@@ -260,22 +260,19 @@ R-32 was commercialized for residential AC by Daikin Industries in Japan in 2012
 
 The global R-32 deployment timeline:
 
-- **2012-2013** — Daikin commercial launch in Japan
-- **2014-2016** — Mitsubishi Electric and LG follow in Asia; EU market entry begins
-- **2017-2019** — EU deployment expands ahead of EU F-Gas threshold tightening
-- **2018-2020** — US market entry; Daikin and Mitsubishi residential equipment available
-- **2024** — Carrier, Trane, Lennox announce R-454B (not R-32) for their US residential lines
+- **2012** — Daikin commercial launch in Japan [daikin]
+- **2018 onward** — US market entry [daikin]
 - **1 January 2025** — AIM Act 40 CFR 84.54(a)(1)/(c)(1) effective; new residential AC and heat pumps restricted to refrigerants below the 700-GWP limit (R-410A, GWP 2088, no longer qualifies)
 
-US Carrier, Trane, and Lennox standardized on R-454B (R-32/R-1234yf 68.9/31.1, GWP 465) rather than pure R-32 — the choice was driven by patent licensing considerations and OEM strategy rather than R-32 technical limitations. The two paths (R-32 or R-454B) coexist in the US market; both clear the AIM Act 700-GWP threshold, both are A2L, both use POE oil.
+Some US OEMs standardized on R-454B (R-32/R-1234yf 68.9/31.1, GWP 465) rather than pure R-32 — the choice was driven by patent licensing considerations and OEM strategy rather than R-32 technical limitations. The two paths (R-32 or R-454B) coexist in the US market; both clear the 40 CFR 84.54(a)(1)/(c)(1) limit for new residential and light-commercial AC and heat pumps, both are A2L, both use POE oil.
 
 </TechSection>
 
 <TechSection icon="insight" tone="emerald" title="How to think about R-32 in 2026 and beyond">
 
-R-32 is one of the two dominant new-equipment residential AC refrigerants in 2026, alongside R-454B. The choice between them is driven primarily by equipment availability in your market — Daikin / Mitsubishi / LG / Fujitsu lines use R-32; Carrier / Trane / Lennox lines use R-454B. Performance is comparable; service procedures are A2L for both.
+R-32 is one of the two dominant new-equipment residential AC refrigerants in 2026, alongside R-454B. The choice between them is driven primarily by equipment availability in your market — some OEM lines use R-32, others use R-454B. Performance is comparable; service procedures are A2L for both.
 
-R-32's regulatory positioning is stable through 2035 at minimum. GWP 675 sits below the AIM Act 700 threshold; the AIM Act production schedule reaches 85% reduction by 2036 but R-32 (being a low-GWP HFC) consumes less production allocation per kg than higher-GWP refrigerants. EU F-Gas Regulation revisions (2024) target tighter thresholds in some segments — small split AC may face sub-150-GWP requirements by 2030, which would push beyond R-32 toward pure HFO blends or natural refrigerants. The US is not on that trajectory in 2026.
+R-32's regulatory positioning is stable through 2035 at minimum. GWP 675 sits below the 40 CFR 84.54(a)(1)/(c)(1) limit of 700 for new residential and light-commercial AC and heat pumps; the AIM Act production schedule reaches 85% reduction by 2036 but R-32 (being a low-GWP HFC) consumes less production allocation per kg than higher-GWP refrigerants.
 
 For technicians, R-32 work resembles R-410A work with A2L procedures added on top: same pressures (within about 2%), same lubricant family (POE), same vacuum discipline, same gauge ratings, same charging-by-weight approach. The A2L safety procedures (no open flames near refrigerant, refrigerant detection where the standard requires it, charge limits) are the meaningful operational difference from R-410A practice.
 

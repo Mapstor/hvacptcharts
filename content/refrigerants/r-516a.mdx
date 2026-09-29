@@ -1,12 +1,12 @@
 ---
 slug: r-516a
 title: "R-516A Pressure Temperature Chart & Properties"
-metaDescription: "R516A saturation table °F/PSIG and °C/kPa. ASHRAE A2L, GWP 140 — below the EU F-Gas 150-GWP threshold. Full PT chart, service notes, R134a comparison."
-introOneLiner: "Ternary HFC/HFO blend (77.5% R-1234yf / 8.5% R-134a / 14% R-152a). ASHRAE A2L, GWP 140 — meets the EU F-Gas Regulation 150 threshold. Engineered as a very-low-GWP R-134a replacement for medium-temperature commercial refrigeration."
+metaDescription: "R516A saturation table °F/PSIG and °C/kPa. ASHRAE A2L, GWP 140 — below the EU F-Gas Annex III 150 limit. Full PT chart, service notes, R134a comparison."
+introOneLiner: "Ternary HFC/HFO blend (77.5% R-1234yf / 8.5% R-134a / 14% R-152a). ASHRAE A2L, GWP 140 — below 150, the limit in EU F-Gas 517/2014 Annex III rows 11 and 13. Engineered as a very-low-GWP R-134a replacement for medium-temperature commercial refrigeration."
 
 narrative:
   whatItIs: |
-    R-516A is a ternary near-azeotropic blend of 77.5% R-1234yf, 8.5% R-134a, and 14% R-152a by mass. The R-1234yf-dominant composition produces a very low GWP of 140 — below the EU F-Gas Regulation 150 threshold for new stationary refrigeration that most HFC blends fail. The R-152a contribution is unusual among HFC/HFO blends and contributes to capacity in the medium-temperature range.
+    R-516A is a ternary near-azeotropic blend of 77.5% R-1234yf, 8.5% R-134a, and 14% R-152a by mass. The R-1234yf-dominant composition produces a very low GWP of 140 — below 150, the limit in EU F-Gas 517/2014 Annex III rows 11 and 13 that most HFC blends exceed. The R-152a contribution is unusual among HFC/HFO blends and contributes to capacity in the medium-temperature range.
 
     R-516A's saturation pressures are very close to R-134a — at 70°F approximately 75 PSIG vs R-134a's 71 PSIG. This makes it a strong candidate for R-134a equipment retrofit where the A2L safety class change is acceptable.
 
@@ -17,7 +17,7 @@ narrative:
     - Some industrial chiller designs
 
   phaseDownStatus: |
-    R-516A's GWP of 140 meets the EU F-Gas Regulation 150 threshold for new stationary refrigeration — joining R-454C (146), R-455A (146), R-744 (1), and R-290 (3) as the very-low-GWP options that satisfy the EU's long-term replacement objectives. It also passes the AIM Act 700 threshold by a wide margin.
+    R-516A's GWP of 140 is below 150, the limit in EU F-Gas 517/2014 Annex III rows 11 and 13 — joining R-454C (146), R-455A (146), R-744 (1), and R-290 (3.3) as the very-low-GWP options that satisfy the EU's long-term replacement objectives. It is also below every applicable 40 CFR 84.54 limit (the lowest is 150).
 
     R-516A is less broadly deployed than R-454C and R-455A so far — partly because of the inclusion of R-152a (which is itself A2 flammable and adds blend complexity), partly because of distributor and OEM ecosystem maturity. For applications where R-134a's pressure envelope and equipment design specifics matter, R-516A is the closest very-low-GWP A2L match.
 
@@ -26,11 +26,11 @@ narrative:
 
     R-516A is near-azeotropic — temperature glide approximately 0°F (less than 0.5°F at any operating point per CoolProp HEOS calculation). For practical service it behaves as a pure refrigerant.
 
-    A2L safety class requires: A2L-rated charge limits per UL 60335-2-40 and ASHRAE 15; refrigerant detection where the standard requires it; no open flames during service; A2L-rated recovery cylinders; technician A2L handling training beyond standard EPA Section 608.
+    A2L safety class requires: A2L-rated charge limits per UL 60335-2-40 and ASHRAE 15; refrigerant detection where the standard requires it; no open flames during service; and A2L-rated recovery cylinders. A2L handling training beyond standard EPA Section 608 is recommended, and required only where the adopted code or employer mandates it.
 
 faqs:
   - q: "What is the difference between R-516A and R-454C?"
-    a: "Both are very-low-GWP A2L blends below the EU F-Gas 150 threshold. R-516A is ternary (77.5% R-1234yf / 8.5% R-134a / 14% R-152a) with near-azeotropic behavior; R-454C is binary (21.5% R-32 / 78.5% R-1234yf) with ~14°F glide. R-516A targets R-134a replacement (similar pressures); R-454C targets R-404A replacement (different pressure envelope). The choice depends on which legacy refrigerant the system is replacing."
+    a: "Both are very-low-GWP A2L blends below 150, the limit in EU F-Gas 517/2014 Annex III rows 11 and 13. R-516A is ternary (77.5% R-1234yf / 8.5% R-134a / 14% R-152a) with near-azeotropic behavior; R-454C is binary (21.5% R-32 / 78.5% R-1234yf) with ~14°F glide. R-516A targets R-134a replacement (similar pressures); R-454C targets R-404A replacement (different pressure envelope). The choice depends on which legacy refrigerant the system is replacing."
 
   - q: "Why does R-516A include R-152a?"
     a: "R-152a contributes useful capacity in the medium-temperature range and helps the blend hit the GWP 140 target without requiring 100% R-1234yf (which would have undesirable pressure characteristics for some applications). R-152a itself is A2 (flammable, higher burning velocity than A2L), but at 14% mass fraction in R-516A the overall blend rates as A2L. This is a common blend design technique — using component refrigerants that are individually in higher hazard categories but at concentrations that keep the blend in a lower category."
@@ -48,7 +48,7 @@ faqs:
     a: "Mostly market timing and ecosystem maturity. R-454C (Chemours) and R-455A (Honeywell) have stronger manufacturer marketing positions and equipment OEM approval lists. R-516A's R-152a inclusion adds a small blend complexity that some equipment compatibility programs haven't certified. For applications where R-134a's pressure envelope is the specific target, R-516A is technically well-suited; for R-404A applications R-454C/R-455A dominate."
 
   - q: "Is R-516A below the AIM Act and EU F-Gas GWP thresholds?"
-    a: "Yes to both. GWP 140 is below the AIM Act 700 threshold for new equipment and below the EU F-Gas Regulation 150 threshold for new stationary refrigeration. R-516A is one of the very-low-GWP A2L refrigerants meeting the EU's long-term replacement objectives."
+    a: "Yes to both. GWP 140 is below every 40 CFR 84.54 limit under the AIM Act (the lowest is 150) and below the 150 limit in EU F-Gas 517/2014 Annex III rows 11 and 13. R-516A is one of the very-low-GWP A2L refrigerants meeting the EU's long-term replacement objectives."
 
 retrofitGuidance:
   fromRefrigerant: r-134a

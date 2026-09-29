@@ -850,7 +850,10 @@ function gwpValuesOf(slug: string): number[] {
 /** (e) GWP number next to a refrigerant name. `masked` blanks designations so a
  *  bare "GWP" isn't anchored on a designation's digits ("Lower-GWP R-134a"). */
 function checkGwp(unit: string, masked: string, mentions: RefMention[], page: PageInfo) {
-  const near = (claimed: number, a: number | null) => a != null && Math.abs(claimed - a) <= Math.max(1, a * 0.01);
+  // Small headline GWPs (natural/HFO refrigerants, ≤ ~50) get a tight ±0.5 band
+  // so an "R-717 GWP 0" (vs 1) or "R-290 GWP 3" (vs 3.3, still ±0.5) is caught;
+  // larger values keep the ±1% cross-basis (AR4/5/6) leniency (G10).
+  const near = (claimed: number, a: number | null) => a != null && Math.abs(claimed - a) <= Math.max(a < 50 ? 0.5 : 1, a * 0.01);
   // Leniency: a GWP figure that equals ANY refrigerant mentioned in the sentence
   // (or the page primary) is not a fabrication — only an attribution ambiguity.
   const relevant = new Set<string>([...mentions.map((m) => m.slug), ...page.primaries]);
@@ -869,6 +872,9 @@ function checkGwp(unit: string, masked: string, mentions: RefMention[], page: Pa
     // Threshold ("GWP below 150", "GWP above 700") — a regulatory bound, not a
     // refrigerant's own GWP.
     if (precededByBound(masked, numIdx) || precededByBound(unit, numIdx)) return;
+    // "GWP limit/threshold/cap of 700" — a 40 CFR 84.54 category limit, not the
+    // refrigerant's own GWP.
+    if (/\b(?:limit|threshold|cap)\b[^.\d]{0,8}$/i.test(unit.slice(Math.max(0, numIdx - 24), numIdx))) return;
     const claimed = parseInt(valStr.replace(/,/g, ""), 10);
     const r = getRefrigerant(subject)!;
     const headline = gwpNum(r.environmental.gwp.headline);

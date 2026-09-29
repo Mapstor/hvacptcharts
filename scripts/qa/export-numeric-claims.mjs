@@ -53,7 +53,11 @@ function normalizeRefrigerants(s) {
 const collapse = (s) => s.replace(/\s+/g, " ").trim();
 
 /* visible text extraction (block elements insert boundaries) */
-const BLOCK_TAGS = new Set(["p","div","section","article","li","td","th","tr","h1","h2","h3","h4","h5","h6","ul","ol","dl","dt","dd","header","footer","main","nav","details","summary","figcaption","blockquote","table","br"]);
+const BLOCK_TAGS = new Set(["p","div","section","article","li","td","th","tr","h1","h2","h3","h4","h5","h6","ul","ol","dl","dt","dd","header","footer","main","nav","details","summary","figcaption","blockquote","table","br",
+  // SVG label nodes are independently positioned — separate them so adjacent
+  // axis-tick labels ("0.00","1079","2157"…) don't concatenate into a spurious
+  // long decimal (e.g. "0.001079215732364314").
+  "text","tspan"]);
 function blockText(node, out) {
   if (!node) return;
   if (node.type === "text") { out.push(node.data ?? ""); return; }

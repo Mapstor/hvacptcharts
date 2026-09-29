@@ -19,7 +19,7 @@ sources:
   - id: epacfr82
     label: "EPA 40 CFR Part 82 Subpart A — Production and Consumption Controls (HCFC phase-out)"
     url: "https://www.epa.gov/ods-phaseout"
-    date: "Final HCFC production phase-out: 1 Jan 2020"
+    date: "HCFC-22/142b ended 1 Jan 2020; all HCFCs 1 Jan 2030"
   - id: epasec608
     label: "EPA Section 608 — Stationary Refrigeration and Air Conditioning Regulations (40 CFR Part 82 Subpart F)"
     url: "https://www.epa.gov/section608"
@@ -83,7 +83,7 @@ narrative:
   phaseDownStatus: |
     R-22 (HCFC-22) is a class II ozone-depleting substance controlled by the US Clean Air Act ozone phaseout (EPA 40 CFR Part 82 Subpart A), not the AIM Act — the AIM Act and its 40 CFR 84.54 GWP limits apply to HFCs, not to R-22. EPA class II milestones: from 1 January 2010, no production or import except for use in equipment manufactured before that date; from 1 January 2020, no production or import [epacfr82]. Existing R-22 equipment can still be serviced with reclaimed or recovered refrigerant indefinitely under EPA Section 608 rules [epasec608].
 
-    Service economics have shifted sharply since 2020 — reclaimed R-22 wholesale prices have climbed 8-15× their pre-phaseout levels. Most contractors now recommend full system replacement (R-32 or R-454B equipment) when an R-22 system faces a major component failure.
+    Service economics have shifted sharply since 2020 — reclaimed R-22 wholesale prices have climbed well above their pre-phaseout levels. Most contractors now recommend full system replacement (R-32 or R-454B equipment) when an R-22 system faces a major component failure.
 
   serviceNotes: |
     Mineral oil (MO) is the historical lubricant standard; alkylbenzene (AB) was also widely used in 1990s-era systems. POE oil is NOT used with R-22 in original equipment — POE is required only for HFC retrofits (R-407C, R-422D, R-438A).
@@ -97,11 +97,11 @@ faqs:
 
   - q: "Is R-22 still legal to use?"
     a: |
-      Yes — reclaimed R-22 remains legal to use in existing equipment indefinitely under EPA Section 608 rules. Production and import of R-22 ended on 1 January 2020 under the EPA class II ozone phaseout (40 CFR Part 82 Subpart A) [epacfr82]. The service supply now comes entirely from reclaimed material (extracted from recovered equipment and refined back to specification).
+      Yes — reclaimed R-22 remains legal to use in existing equipment indefinitely under EPA Section 608 rules. Production and import of R-22 ended on 1 January 2020 under the EPA class II ozone phaseout (40 CFR Part 82 Subpart A) [epacfr82]. The service supply now comes from reclaimed refrigerant and pre-2020 inventory (reclaimed material is extracted from recovered equipment and refined back to specification).
 
   - q: "Why is R-22 so expensive now?"
     a: |
-      Virgin production ended in 2020, so the entire service market depends on reclaimed R-22 — a finite and shrinking supply pool. Typical wholesale prices in 2026 are roughly 8-15× the pre-phaseout (2019) baseline, and per-cylinder pricing varies sharply with seasonal demand.
+      Virgin production ended in 2020, so the entire service market depends on reclaimed R-22 — a finite and shrinking supply pool. Wholesale prices in 2026 are well above the pre-phaseout (2019) baseline, and per-cylinder pricing varies sharply with seasonal demand.
 
       The reclaim-only supply will continue to shrink as more R-22 equipment is replaced. Service decisions should account for the rising refrigerant cost — major system repairs often justify full replacement.
 
@@ -148,7 +148,7 @@ The PT chart above plots saturation pressure on the vertical axis against temper
 R-22 is a pure refrigerant with no temperature glide, so a single saturation curve fully describes the phase boundary [ashrae34]. Read across from a measured temperature to find the saturation pressure that should appear at that point in the cycle; read up from a measured manifold pressure to find the saturation temperature.
 
 <KeyInsight tone="emerald" icon="insight" title="Pure refrigerant = simple measurement">
-R-22's pure-component chemistry is one reason it stayed dominant in field service for 60 years. No bubble/dew distinction means superheat math = suction line temp − saturation temp directly; subcooling math = saturation temp − liquid line temp directly. No glide correction needed.
+R-22's pure-component chemistry is one reason it stayed dominant in field service for decades. No bubble/dew distinction means superheat math = suction line temp − saturation temp directly; subcooling math = saturation temp − liquid line temp directly. No glide correction needed.
 </KeyInsight>
 
 </TechSection>
@@ -181,7 +181,7 @@ R-22's global warming potential is 1810 (100-year horizon) [ipccar5]. This means
 
 For US regulatory purposes, however, R-22's GWP is not the binding constraint. R-22 was phased out under the Montreal Protocol HCFC schedule for its ozone-depletion potential (0.055), implemented as 40 CFR Part 82 Subpart A [epacfr82]. The AIM Act, which targets refrigerants based on GWP, applies only to HFCs — R-22 is an HCFC and is not subject to AIM Act provisions.
 
-This regulatory distinction matters when comparing R-22's situation to that of R-410A. R-410A is phased down under AIM Act for GWP reasons; the threshold (700 GWP) sits below R-410A's 2088. R-22 had no such GWP-based cutoff — it was phased out for chlorine chemistry, full stop, and its still-considerable GWP burden continues to influence retrofit-vs-replace economics for the installed base.
+This regulatory distinction matters when comparing R-22's situation to that of R-410A. R-410A is phased down under the AIM Act for GWP reasons; the 700-GWP limit for new residential and light-commercial AC and heat pumps (40 CFR 84.54(a)(1),(c)(1)) sits below R-410A's 2088. R-22 had no such GWP-based cutoff — it was phased out for chlorine chemistry, full stop, and its still-considerable GWP burden continues to influence retrofit-vs-replace economics for the installed base.
 
 </TechSection>
 
@@ -244,7 +244,7 @@ R-22 (HCFC-22) is a class II ozone-depleting substance controlled under the Mont
 - **1 January 2010** — no production or import of R-22 except for use in equipment manufactured before this date (this ended manufacture of new R-22 equipment; existing equipment stayed serviceable) [epacfr82]
 - **1 January 2020** — no production or import of R-22 [epacfr82]
 
-The 2020 production ban was the regulatory event that shifted R-22's economics. From 2020 forward, all R-22 used to service the installed base must come from reclaimed material — recovered from end-of-life equipment, processed back to AHRI 700 purity spec, and resold [ahri700]. Service costs have risen 8-15× from 2019 baseline as reclaim supply tightens.
+The 2020 production ban was the regulatory event that shifted R-22's economics. From 2020 forward, all R-22 used to service the installed base must come from reclaimed material — recovered from end-of-life equipment, processed back to AHRI 700 purity spec, and resold [ahri700]. Service costs have risen sharply from the 2019 baseline as reclaim supply tightens.
 
 </TechSection>
 
@@ -265,8 +265,8 @@ All four are HFC blends with non-zero GWP and are themselves subject to AIM Act 
 
 The R-22 installed base in 2026 is in its end-of-life phase. Residential systems installed in the late 1990s and early 2000s are now 20-25 years old — at or beyond typical lifespan. Major component failures (compressor, condenser coil leaks, expansion valve failure) increasingly tip the repair-versus-replace economic calculation toward full replacement with new R-32 or R-454B equipment.
 
-For systems that remain viable, reclaimed R-22 supply will continue indefinitely under current EPA Section 608 rules [epasec608]. Pricing will continue to rise gradually as reclaim throughput drops with the shrinking installed base. By the late 2030s, the R-22 service market will be a small, specialty segment — comparable to today's R-12 niche service economy (R-12 is a CFC; US production and import of CFCs ended 1 January 1996 under EPA rules).
+For systems that remain viable, servicing with reclaimed R-22 remains legal under current EPA Section 608 rules [epasec608]. Pricing will continue to rise gradually as reclaim throughput drops with the shrinking installed base. In time, the R-22 service market will become a small, specialty segment — comparable to today's R-12 niche service economy (R-12 is a CFC; US production and import of CFCs ended 1 January 1996 under EPA rules).
 
-For new equipment decisions in 2026 there is no path back to R-22 — new R-22 equipment has not been manufactured since the 2010 EPA class II phaseout step, and no virgin R-22 has been produced or imported since 1 January 2020. The decision tree is between R-32 (Daikin, Mitsubishi, LG, Fujitsu equipment lines) and R-454B (Carrier, Trane, Lennox lines); both A2L, both fall below the AIM Act 700-GWP threshold that applies to HFC systems, both deliver better efficiency than R-22-era equipment.
+For new equipment decisions in 2026 there is no path back to R-22 — new R-22 equipment has not been manufactured since the 2010 EPA class II phaseout step, and no virgin R-22 has been produced or imported since 1 January 2020. The decision tree is between R-32 and R-454B; both A2L, both fall below the 700-GWP limit for new residential and light-commercial AC and heat pumps (40 CFR 84.54(a)(1),(c)(1)), both deliver better efficiency than R-22-era equipment.
 
 </TechSection>

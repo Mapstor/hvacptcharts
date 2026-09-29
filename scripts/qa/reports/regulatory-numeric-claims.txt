@@ -1,6 +1,6 @@
 # Regulatory / numeric claim sentences harvested from built HTML
-# Scanned 134 HTML files. 943 unique sentences (after R-X normalization + whitespace collapse).
-# Format: <route-count>\t<sentence>. Sorted by route count, highest first. All 943 unique sentences listed (no cap).
+# Scanned 134 HTML files. 942 unique sentences (after R-X normalization + whitespace collapse).
+# Format: <route-count>\t<sentence>. Sorted by route count, highest first. All 942 unique sentences listed (no cap).
 37	R-X is a regulated HFC (AIM Act, 42 U.S.C. 7675).
 37	R-X is a regulated HFC under the AIM Act (42 U.S.C. 7675).
 21	AIM Act (40 CFR Part 84): US HFC production / import phase-down.
@@ -85,7 +85,6 @@
 1	(4) Refrigerant management: longer linesets (200+ ft); larger refrigerant charges (which trigger ASHRAE 15 + UL 60335-2-40 safety + charge limit considerations); refrigerant detection where the standard requires it.
 1	(4) Regulatory references — AIM Act (40 CFR Part 84), EPA Section 608 (40 CFR Part 82 Subpart F), EU F-Gas Regulation 517/2014 and 2024/573, Kigali Amendment to Montreal Protocol (2016), IPCC AR4/AR5/AR6 for GWP values.
 1	(5) Existing R-X mini-splits CANNOT be converted to R-X — equipment safety design (UL 60335-2-40 + ASHRAE 15) differs substantially for A2L vs A1 refrigerants.
-1	0.001079215732364314GWP100AIM Act thresholdR-1234yf (A2L)1.00R-744 (CO₂)1.00R-290 (propane)3.30R-454B (A2L)465R-32 (A2L)675R-134a (HFC)1430R-22 (HCFC)1810R-410A (HFC)2088R-404A (HFC)3922
 1	02The AIM Act phase-down schedule (40 CFR Part 84)
 1	03EU F-Gas — the parallel mechanism (and its accelerating recast)
 1	05Current state — where we are in the AIM Act phase-down

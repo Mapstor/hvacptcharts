@@ -269,7 +269,7 @@ function RichContent() {
         number={2}
         refrigerant="R-410A → R-32"
         title="New equipment specification — R-32 vs R-410A pressure delta"
-        scenario="Selecting between R-32 and R-410A for new residential AC equipment in the 2026 AIM Act-driven transition. R-32 is the dominant A2L choice in Asia; R-454B leads in North America. Quick pressure check."
+        scenario="Selecting between R-32 and R-410A for new residential AC equipment in the 2026 AIM Act-driven transition. R-32 and R-454B are the common A2L options for this transition. Quick pressure check."
       >
         <Panel title="Comparison at service temperatures" icon={TableIcon}>
           <ComparisonTable
@@ -312,7 +312,7 @@ function RichContent() {
         </VerdictBanner>
         <FixCallout>
           For new LT walk-in equipment specification under AIM Act, R-454C is one of the
-          two leading sub-700 GWP options (R-455A is the other). For service of existing
+          two leading low-GWP options (R-455A is the other) — both at GWP 146, below every 40 CFR 84.54 limit. For service of existing
           R-404A equipment, retrofit candidates include R-448A and R-449A which retain
           mineral-oil compatibility (R-454C requires POE).
         </FixCallout>
@@ -322,7 +322,7 @@ function RichContent() {
         number={4}
         refrigerant="R-134a → R-1234yf"
         title="Mobile AC R-134a to R-1234yf — pressure envelope was engineered to match"
-        scenario="Vehicle production transitioned from R-134a to R-1234yf for GWP compliance under the EU MAC Directive — new vehicle types from 1 January 2011 and all new vehicles from 1 January 2017 (Directive 2006/40/EC) — and under US EPA SNAP. R-1234yf was engineered specifically to preserve R-134a-compatible mobile AC equipment design."
+        scenario="Vehicle production transitioned from R-134a to R-1234yf for GWP compliance under the EU MAC Directive — new vehicle types from 1 January 2011 and all new vehicles from 1 January 2017 (Directive 2006/40/EC) — and in the US under 40 CFR 84.54(a)(13). R-1234yf was engineered specifically to preserve R-134a-compatible mobile AC equipment design."
       >
         <Panel title="Comparison at MAC operating points" icon={TableIcon}>
           <ComparisonTable
@@ -347,7 +347,7 @@ function RichContent() {
         number={5}
         refrigerant="Chiller (R-134a → R-513A)"
         title="Centrifugal chiller R-134a replacement — R-513A is the leading option"
-        scenario="Centrifugal water-cooled chiller, R-134a, due for refrigerant transition (AIM Act, lower GWP). R-513A (Trane / Chemours Opteon XP10) is the most common chiller replacement; it's an azeotropic R-134a/R-1234yf blend."
+        scenario="Centrifugal water-cooled chiller, R-134a, due for refrigerant transition (AIM Act, lower GWP). R-513A (Chemours Opteon XP10) is the most common chiller replacement; it's an azeotropic R-134a/R-1234yf blend."
       >
         <Panel title="Comparison at chiller operating points" icon={TableIcon}>
           <ComparisonTable
@@ -361,7 +361,7 @@ function RichContent() {
         </Panel>
         <VerdictBanner status="ok" title="R-513A runs 6-8% above R-134a — chiller-friendly">
           R-513A pressure envelope is closely matched to R-134a. POE lubricant compatible.
-          Many chiller OEMs (Trane, Carrier, Daikin) certify R-513A as a drop-in
+          Many chiller OEMs certify R-513A as a drop-in
           replacement for R-134a in their centrifugal chiller lines with minor service
           procedure updates. Lower GWP (630 vs R-134a&apos;s 1430).
         </VerdictBanner>

@@ -116,7 +116,7 @@ export const FAULT_PATTERNS: Record<FaultPatternId, FaultPattern> = {
     signature: "High SH + low SC",
     note: "High superheat + low subcooling is the classic undercharge fingerprint. Check for leaks before adding refrigerant.",
     recommendations: [
-      "Check for leaks before adding refrigerant — topping off without repair is an EPA Section 608 violation and the charge will be lost again.",
+      "Check for leaks before adding refrigerant — no general federal rule bars adding refrigerant to a leaking system (leak-repair duties are size-based per 40 CFR 82.157 and 84.106), but without repair the charge will be lost again.",
       "Find the leak with an electronic detector, UV dye, or soap bubbles on accessible joints.",
       "Repair the leak, evacuate to 500 microns, then charge by weight to the nameplate amount.",
     ],

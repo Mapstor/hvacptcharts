@@ -34,7 +34,7 @@ const FAQS = [
   },
   {
     q: "What does high superheat indicate?",
-    a: "High superheat (over 25°F on most residential systems) usually means undercharge, a liquid-line restriction starving the evaporator, a TXV over-controlling or stuck partially closed, or low indoor load. Check subcooling first — low subcooling alongside high superheat strongly suggests undercharge. Verify indoor airflow and inspect the filter-drier (a partially clogged drier raises subcooling on the inlet side and superheat at the outlet) before adding refrigerant under EPA Section 608.",
+    a: "High superheat (over 25°F on most residential systems) usually means undercharge, a liquid-line restriction starving the evaporator, a TXV over-controlling or stuck partially closed, or low indoor load. Check subcooling first — low subcooling alongside high superheat strongly suggests undercharge. Verify indoor airflow and inspect the filter-drier (a partially clogged drier raises subcooling on the inlet side and superheat at the outlet) before adding refrigerant.",
   },
   {
     q: "Why does superheat math differ for zeotropic blends?",
@@ -421,8 +421,9 @@ function RichContent() {
             Systems” (centrifugal chiller evaporator approach and superheat targets).
           </li>
           <li>
-            <strong>EPA Section 608 (40 CFR Part 82 Subpart F)</strong> — Refrigerant
-            handling certification, leak repair requirements before adding refrigerant.
+            <strong>EPA Section 608 (40 CFR Part 82 Subpart F)</strong> — Refrigerant-handling
+            certification and size-based leak-repair duties (40 CFR 82.157); no blanket
+            rule bars adding refrigerant to a leaking system.
           </li>
           <li>
             <strong>OEM service literature</strong> — Carrier, Trane, Lennox, Daikin,

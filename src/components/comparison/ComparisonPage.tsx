@@ -672,7 +672,7 @@ function RegulatoryContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
           {aimAct ? `One or both refrigerants here are AIM Act-affected.` : `Neither refrigerant is directly affected.`}
           {gwpAffected ? (
             <>
-              {" "}US EPA restricts new self-contained residential and light-commercial air
+              {" "}US EPA restricts new residential and light-commercial air
               conditioners and heat pumps using a refrigerant of GWP 700 or more, effective
               January 1, 2025 (
               <a href="https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-B/section-84.54" className="underline" target="_blank" rel="nofollow noopener">40 CFR 84.54(a)(1)</a>).
@@ -792,11 +792,11 @@ function generateComparisonScenarios(a: Refrigerant, b: Refrigerant): Comparison
             ? "Safety class shift — equipment must be re-certified"
             : "No major service-side changes",
       body: !sameLubricant && safetyChange
-        ? `Full retrofit procedure with oil change + A2L equipment certification. For existing equipment, this is typically not feasible — full equipment replacement is the right answer.`
+        ? `Full retrofit procedure with oil change plus equipment certified for the higher safety class. For existing equipment, this is typically not feasible — full equipment replacement is the right answer.`
         : !sameLubricant
           ? `Standard HFC retrofit: drain old oil, flush system, replace with new lubricant family, charge by weight.`
           : safetyChange
-            ? `Field retrofit isn't possible — A2L safety classification requires equipment-level certification (A2L-listed equipment, charge limits, refrigerant detection where the standard requires it). Replace equipment at end-of-life with A2L-certified unit.`
+            ? `Field retrofit isn't possible — the higher safety class requires equipment-level certification (listed or ignition-protected equipment, charge limits, refrigerant detection where the standard requires it). Replace equipment at end-of-life with a class-certified unit.`
             : `Service procedures essentially the same. Retrofit is mostly a refrigerant swap without equipment changes.`,
     },
   });
@@ -830,10 +830,12 @@ function TransitionProcedure({ a, b }: { a: Refrigerant; b: Refrigerant }) {
       <Panel title={`Field-service transition procedure (${a.displayName} → ${b.displayName})`} icon={CalcIcon}>
         <ol className="list-decimal pl-5 text-sm space-y-2">
           <li>
-            <strong>EPA Section 608 leak-check first.</strong>{" "}Verify the existing system
-            isn&apos;t leaking before any work. If it&apos;s leaking, find and repair the
-            leak — adding refrigerant (existing or new) to a leaking system violates 40 CFR
-            Part 82.
+            <strong>Leak-check first.</strong>{" "}Verify the existing system
+            isn&apos;t leaking before recharging. No general federal rule bars adding
+            refrigerant to a leaking system; leak-repair duties apply by appliance size
+            (40 CFR 82.157 for appliances with 50 lb or more of class I/II refrigerant, and
+            40 CFR 84.106 from January 1, 2026 for appliances with 15 lb or more of HFC
+            refrigerant with GWP above 53).
           </li>
           <li>
             <strong>Recover {a.displayName}.</strong> Use a recovery machine rated for{" "}
@@ -979,7 +981,7 @@ function RetrofitNotFeasible({ a, b }: { a: Refrigerant; b: Refrigerant }) {
       <li key="safety">
         <strong>ASHRAE safety class change ({a.safetyClass} → {b.safetyClass}).</strong>{" "}
         {b.displayName} requires equipment certified to UL/IEC 60335-2-40 for
-        {" "}{b.safetyClass}: A2L-listed equipment, room-volume charge limits, and (on
+        {" "}{b.safetyClass}: listed or ignition-protected equipment, room-volume charge limits, and (on
         larger systems) integrated leak detection. Field retrofit of {a.safetyClass}
         -only equipment is not permitted; new equipment must ship with the
         {" "}{b.safetyClass} certification from the factory.
@@ -1078,8 +1080,8 @@ function LifecycleContext({ a, b }: { a: Refrigerant; b: Refrigerant }) {
               {" "}
               {aGwpAboveCap || bGwpAboveCap ? (
                 <>
-                  {" "}One or both have a GWP of 700 or more: US EPA restricts new self-contained
-                  residential and light-commercial AC and heat pumps at that level, effective
+                  {" "}One or both have a GWP of 700 or more: US EPA restricts new residential
+                  and light-commercial AC and heat pumps at that level, effective
                   January 1, 2025 (
                   <a href="https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-B/section-84.54" className="underline" target="_blank" rel="nofollow noopener">40 CFR 84.54(a)(1)</a>).
                   Limits for other equipment types differ.

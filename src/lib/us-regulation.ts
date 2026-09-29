@@ -58,7 +58,7 @@ const EU = regulatory.eu as unknown as {
     article13_3: { gwpAtLeast: number; date: string; text: string };
     url: string;
   };
-  regulation2024_573: { name: string; applies: string; gwpBasisNote?: string; url: string };
+  regulation2024_573: { name: string; applies: string; summary: string; gwpBasisNote?: string; url: string };
   macDirective: {
     name: string;
     rule: string;
@@ -71,6 +71,31 @@ const EU = regulatory.eu as unknown as {
 const SECTION608 = regulatory.us.section608 as unknown as {
   usedRefrigerantSale: { cfr: string; text: string; url: string };
   recoveryEquipmentStandards: { cfr: string; heading: string; url: string };
+  evacuationLevels: { cfr: string; title: string; note: string; url: string };
+  leakRepairNote: string;
+};
+const AIMACT = regulatory.us.aimAct as unknown as {
+  citation: string;
+  phasedownRegulation: { cfr: string; heading: string; url: string };
+  note: string;
+};
+const SNAP = regulatory.us.snap as unknown as {
+  note: string;
+  entries: {
+    endUse: string;
+    substances: string[];
+    status: string;
+    detail?: string;
+    equipment?: string;
+    fr?: string;
+    url: string;
+  }[];
+};
+const MONTREAL = regulatory.montrealProtocol as unknown as {
+  kigaliAnnexF: string;
+  cfcDevelopingCountries: string;
+  ozoneRecovery: string;
+  urls: string[];
 };
 const KIGALI = regulatory.kigali as unknown as {
   montrealProtocolParties: number;
@@ -475,11 +500,53 @@ export const MAC_DIRECTIVE_TEXT =
 export const SECTION_608 = SECTION608;
 export const USED_REFRIGERANT_SALE_RULE = SECTION608.usedRefrigerantSale; // 40 CFR 82.154(d)
 export const RECOVERY_EQUIPMENT_STANDARD = SECTION608.recoveryEquipmentStandards; // 40 CFR 82.158 heading
+export const EVACUATION_LEVELS = SECTION608.evacuationLevels; // 40 CFR 82.156(a), Table 1
+export const LEAK_REPAIR_NOTE = SECTION608.leakRepairNote; // no general "no top-off" rule; size-based duties
+
+/* ─────────────────────────── AIM Act citation (v4) ──────────────────────── */
+export const AIM_ACT = AIMACT;
+export const AIM_ACT_CITATION = AIMACT.citation; // "AIM Act, 42 U.S.C. 7675 (Public Law 116-260 …)"
+export const AIM_PHASEDOWN_CFR = AIMACT.phasedownRegulation; // 40 CFR 84.7 "Phasedown schedule."
+
+/* ─────────────────────────── Montreal Protocol (v4) ─────────────────────── */
+export const MONTREAL_PROTOCOL = MONTREAL;
+export const MONTREAL_KIGALI_ANNEX_F = MONTREAL.kigaliAnnexF;
+export const MONTREAL_CFC_DEVELOPING = MONTREAL.cfcDevelopingCountries;
+export const MONTREAL_OZONE_RECOVERY = MONTREAL.ozoneRecovery;
+
+/* ─────────────────────────── EPA SNAP (verified only, v4) ───────────────── */
+export const SNAP_NOTE = SNAP.note;
+export const SNAP_LISTINGS = SNAP.entries;
+export type SnapEntry = (typeof SNAP.entries)[number];
+
+/** Normalize a SNAP substance string ("HFO-1336mzz(Z)", "R-600a (isobutane)")
+ *  to an R-designation for matching against the dataset. */
+function snapDesig(s: string): string {
+  return s
+    .replace(/\b(?:HFO|HCFO|HFC|HCFC|CFC|PFC)-/i, "R-")
+    .replace(/\s*\((?:isobutane|propane|CO₂|CO2|ammonia|propylene)\)/i, "")
+    .trim();
+}
+
+/** Verified SNAP listings that name this refrigerant (the ONLY SNAP claims the
+ *  site may state, per us.snap). Empty ⇒ no verified SNAP listing to cite. */
+export function snapFor(r: Refrigerant): SnapEntry[] {
+  const key = norm(r.displayName);
+  return SNAP.entries.filter((e) => e.substances.some((s) => norm(snapDesig(s)) === key));
+}
+
+/* ─────────────────────────── EU 2024/573 summary (v4) ───────────────────── */
+export const EU_2024_SUMMARY = EU.regulation2024_573.summary;
 
 /** EU 517/2014 Annex III rows 11–13 + Art. 13(3) where the refrigerant's headline
  *  (AR4) GWP meets the threshold. Only meaningful for retail-food / cold-storage
  *  refrigerants (the caller gates on mapped subsectors). */
 export function eu(r: Refrigerant): EuRow[] {
+  // 517/2014 Annex III rows 11–12 apply to HFCs and row 13 to fluorinated
+  // greenhouse gases; CFCs, HCFCs and pure HFOs are NOT covered (G7). Gate on
+  // AIM-regulated status (i.e. is/contains an HFC) so R-12, R-22, R-1234yf etc.
+  // get no EU rows.
+  if (!isRegulated(r)) return [];
   const headline = gwpNum(r.environmental.gwp.headline);
   if (headline == null) return [];
   const out: EuRow[] = [];

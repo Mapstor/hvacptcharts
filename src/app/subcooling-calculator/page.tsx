@@ -28,7 +28,7 @@ const FAQS = [
   },
   {
     q: "What does low subcooling indicate?",
-    a: "Low subcooling (under 3°F on a TXV system) usually means undercharge — the compressor can't condense enough vapor to fill the condenser with a liquid column, so refrigerant leaves the condenser still partly vapor. Negative subcooling means flash gas reaching the metering device. Cross-check superheat: high SH + low SC is the textbook undercharge fingerprint. Look for leaks before adding refrigerant under EPA Section 608. Less commonly, low SC can indicate a stuck-open bypass valve or sensor malfunction on commercial equipment.",
+    a: "Low subcooling (under 3°F on a TXV system) usually means undercharge — the compressor can't condense enough vapor to fill the condenser with a liquid column, so refrigerant leaves the condenser still partly vapor. Negative subcooling means flash gas reaching the metering device. Cross-check superheat: high SH + low SC is the textbook undercharge fingerprint. Look for leaks before adding refrigerant; federal leak-repair duties are size-based (40 CFR 82.157 and 40 CFR 84.106 from January 1, 2026), not a blanket rule against topping off a leaking system. Less commonly, low SC can indicate a stuck-open bypass valve or sensor malfunction on commercial equipment.",
   },
   {
     q: "What does high subcooling indicate?",
@@ -301,8 +301,7 @@ function RichContent() {
           <li>
             <strong>Ignoring line-set length on mini-splits.</strong>{" "}Long line sets
             (&gt;50 ft) require higher SC at the outdoor unit to deliver adequate SC at the
-            indoor TXV. Mitsubishi, Daikin, LG, and Fujitsu all publish line-length
-            correction tables — use them.
+            indoor TXV. Manufacturers publish line-length correction tables — use them.
           </li>
           <li>
             <strong>Reading before steady state.</strong>{" "}Subcooling stabilizes 10-20
@@ -380,7 +379,9 @@ function RichContent() {
           </li>
           <li>
             <strong>EPA Section 608 (40 CFR Part 82 Subpart F)</strong> — refrigerant
-            handling certification, leak repair requirements before adding refrigerant.
+            handling certification; size-based leak-repair duties (40 CFR 82.157;
+            40 CFR 84.106 from January 1, 2026), not a blanket rule against adding
+            refrigerant to a leaking system.
           </li>
           <li>
             <strong>SAE J2912 / J639</strong> — mobile AC service procedures (R-1234yf,

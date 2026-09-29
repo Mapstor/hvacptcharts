@@ -2,8 +2,8 @@
   "meta": {
     "verified": "2026-09-28",
     "rule": "Every entry below was checked against the cited primary text on the verified date. Do not add, reword or extend entries without a primary source; add new facts only through this file.",
-    "version": 3,
-    "changes": "v2 (2026-09-28): added (a)(2), (a)(11), (a)(13)(i)-(iii), (a)(14), (a)(15), (a)(16)(i)-(ii), (c)(13); semiconductor compliance notes (a)(10)(v), (a)(12)(iv), (c)(5)(ii), (c)(6)(ii), (c)(10)(v); 'sector' field on every entry. | v3 (2026-09-29): us.ods 2015 HCFC milestone (EPA); us.section608 82.154(d) used-refrigerant sale rule + 82.158 heading; eu.macDirective 2006/40/EC dates (2011 new types, 2017 all new vehicles)."
+    "version": 4,
+    "changes": "v2 (2026-09-28): added (a)(2), (a)(11), (a)(13)(i)-(iii), (a)(14), (a)(15), (a)(16)(i)-(ii), (c)(13); semiconductor compliance notes (a)(10)(v), (a)(12)(iv), (c)(5)(ii), (c)(6)(ii), (c)(10)(v); 'sector' field on every entry. | v3 (2026-09-29): us.ods 2015 HCFC milestone (EPA); us.section608 82.154(d) used-refrigerant sale rule + 82.158 heading; eu.macDirective 2006/40/EC dates (2011 new types, 2017 all new vehicles). | v4 (2026-09-29): us.ods 2003 HCFC-141b; section608 evacuation table 82.156(a) Table 1 + leak-repair note; us.aimAct citation + 84.7; us.snap verified listings (household HC 2011/2018, centrifugal chillers, Rule 24); montrealProtocol (Kigali Annex F, CFC developing 2010, ozone recovery)."
   },
   "us": {
     "technologyTransitions": {
@@ -844,6 +844,13 @@
           "url": "https://www.epa.gov/ods-phaseout/phaseout-class-i-ozone-depleting-substances"
         },
         {
+          "substances": "HCFC-141b",
+          "event": "No production or import",
+          "date": "2003-01-01",
+          "source": "US EPA, Phaseout of Class II Ozone-Depleting Substances",
+          "url": "https://www.epa.gov/ods-phaseout/phaseout-class-ii-ozone-depleting-substances"
+        },
+        {
           "substances": "HCFC-22 and HCFC-142b",
           "event": "No production or import, except for use in equipment manufactured before January 1, 2010",
           "date": "2010-01-01",
@@ -884,7 +891,105 @@
         "cfr": "40 CFR 82.158",
         "heading": "Standards for recovery and/or recycling equipment.",
         "url": "https://www.law.cornell.edu/cfr/text/40/82.158"
-      }
+      },
+      "evacuationLevels": {
+        "cfr": "40 CFR 82.156(a), Table 1",
+        "title": "Table 1—Required Levels of Evacuation for Appliances",
+        "note": "Applies to appliances except small appliances, MVACs and MVAC-like appliances; recovery equipment certified under 82.158.",
+        "url": "https://www.law.cornell.edu/cfr/text/40/82.156"
+      },
+      "leakRepairNote": "No general federal rule bars adding refrigerant to a leaking system. Leak-repair duties apply by appliance size: 40 CFR 82.157 (appliances with 50 lb or more of class I/II refrigerant) and 40 CFR 84.106 (from January 1, 2026: appliances with 15 lb or more of HFC refrigerant with GWP above 53; residential and light-commercial AC and heat pumps exempt)."
+    },
+    "aimAct": {
+      "citation": "AIM Act, 42 U.S.C. 7675 (Public Law 116-260, Division S; signed December 27, 2020)",
+      "phasedownRegulation": {
+        "cfr": "40 CFR 84.7",
+        "heading": "Phasedown schedule.",
+        "url": "https://www.law.cornell.edu/cfr/text/40/84.7"
+      },
+      "note": "Cite the statute as 42 U.S.C. 7675 — there is no 'AIM Act Section 60'."
+    },
+    "snap": {
+      "note": "Only these SNAP listings are verified. Any other SNAP acceptability/unacceptability claim must be removed.",
+      "entries": [
+        {
+          "endUse": "Household refrigerators and freezers",
+          "substances": [
+            "R-600a (isobutane)",
+            "R-441A"
+          ],
+          "status": "Acceptable subject to use conditions",
+          "detail": "Original use condition: 57 g (2.0 oz) or less per sealed refrigeration system.",
+          "fr": "FR Doc. 2011-32175 (published December 20, 2011; effective February 21, 2012)",
+          "url": "https://www.govinfo.gov/content/pkg/FR-2011-12-20/html/2011-32175.htm"
+        },
+        {
+          "endUse": "New household refrigerators and freezers",
+          "substances": [
+            "R-600a (isobutane)",
+            "R-290 (propane)",
+            "R-441A"
+          ],
+          "status": "Use conditions revised to reference UL 60335-2-24 (2nd edition, April 28, 2017)",
+          "detail": "UL 60335-2-24 sets a maximum of 150 g per refrigerant circuit.",
+          "fr": "83 FR 38969 (published August 8, 2018; effective September 7, 2018)",
+          "url": "https://www.federalregister.gov/documents/2018/08/08/2018-16773/protection-of-stratospheric-ozone-revision-to-references-for-refrigeration-and-air-conditioning"
+        },
+        {
+          "endUse": "Centrifugal chillers",
+          "substances": [
+            "HFO-1336mzz(Z)"
+          ],
+          "status": "Acceptable",
+          "equipment": "new and retrofit",
+          "url": "https://www.epa.gov/snap/substitutes-centrifugal-chillers"
+        },
+        {
+          "endUse": "Centrifugal chillers",
+          "substances": [
+            "HCFO-1233zd(E)"
+          ],
+          "status": "Acceptable",
+          "equipment": "new only",
+          "url": "https://www.epa.gov/snap/substitutes-centrifugal-chillers"
+        },
+        {
+          "endUse": "Centrifugal chillers",
+          "substances": [
+            "HFO-1234ze(E)"
+          ],
+          "status": "Acceptable",
+          "equipment": "new only",
+          "url": "https://www.epa.gov/snap/substitutes-centrifugal-chillers"
+        },
+        {
+          "endUse": "Centrifugal chillers",
+          "substances": [
+            "R-1224yd(Z)"
+          ],
+          "status": "Acceptable",
+          "equipment": "new and retrofit",
+          "url": "https://www.epa.gov/snap/substitutes-centrifugal-chillers"
+        },
+        {
+          "endUse": "Centrifugal chillers",
+          "substances": [
+            "R-514A"
+          ],
+          "status": "Acceptable",
+          "equipment": "new and retrofit",
+          "url": "https://www.epa.gov/snap/substitutes-centrifugal-chillers"
+        },
+        {
+          "endUse": "Motor vehicle air conditioning in nonroad vehicles; servicing fittings for small refrigerant cans",
+          "substances": [
+            "HFO-1234yf"
+          ],
+          "status": "Listed (SNAP Rule 24)",
+          "fr": "FR Doc. 2022-08923 (published May 4, 2022)",
+          "url": "https://www.federalregister.gov/documents/2022/05/04/2022-08923/protection-of-stratospheric-ozone-listing-of-hfo-1234yf-under-the-significant-new-alternatives"
+        }
+      ]
     }
   },
   "eu": {
@@ -952,5 +1057,14 @@
     "kigaliRatifications": 174,
     "asOf": "2026-08-10",
     "source": "UNEP Ozone Secretariat"
+  },
+  "montrealProtocol": {
+    "kigaliAnnexF": "The Kigali Amendment (2016) added HFCs as controlled substances in Annex F (Group I: 16 HFCs; Group II: HFC-23) with a phase-down under Article 2J. HFOs and HCFOs are not listed.",
+    "cfcDevelopingCountries": "Developing (Article 5) countries phased out CFC production by 2010; developed countries on January 1, 1996.",
+    "ozoneRecovery": "2022 Scientific Assessment Panel: with current policies the ozone layer is expected to recover to 1980 values by around 2066 over the Antarctic, 2045 over the Arctic and 2040 for the rest of the world.",
+    "urls": [
+      "https://ozone.unep.org/treaties/montreal-protocol/amendments/kigali-amendment-2016-amendment-montreal-protocol-agreed",
+      "https://www.unep.org/news-and-stories/press-release/ozone-layer-recovery-track-helping-avoid-global-warming-05degc"
+    ]
   }
 }

@@ -23,7 +23,7 @@ const FAQS = [
   },
   {
     q: "Why is the industry transitioning from R-410A to R-32 and R-454B?",
-    a: "GWP. R-410A is GWP 2088 and is restricted under the AIM Act for new equipment beginning January 1, 2025 (with regulatory phase-down through 2036). R-32 (GWP 675) and R-454B (GWP 465) are the dominant A2L replacements. R-32 is the pure-component choice (Daikin's preference); R-454B is a R-32/R-1234yf blend (Carrier, Trane, Lennox preference). Both require A2L-listed equipment with charge limits and leak-detection accommodations. Equipment built before the transition uses R-410A and continues to be serviceable with reclaimed R-410A indefinitely.",
+    a: "GWP. R-410A is GWP 2088 and is restricted under the AIM Act for new equipment beginning January 1, 2025 (with regulatory phase-down through 2036). R-32 (GWP 675) and R-454B (GWP 465) are the dominant A2L replacements. R-32 is the pure-component choice; R-454B is a R-32/R-1234yf blend. Both require A2L-listed equipment with charge limits and leak-detection accommodations. Equipment built before the transition uses R-410A and continues to be serviceable with reclaimed R-410A indefinitely.",
   },
   {
     q: "Is a lower-GWP refrigerant always better?",
@@ -326,13 +326,14 @@ export default function ComparisonGuidePage() {
             <strong>Ozone-depletion potential (ODP)</strong> measures how effectively a molecule destroys stratospheric
             ozone, relative to R-11 (defined as ODP 1.0). CFCs have high ODP (R-11 = 1.0, R-12 = 1.0, R-13 = 1.0).
             HCFCs have low but non-zero ODP (R-22 = 0.055, R-123 = 0.02, R-124 = 0.022). HFCs and HFOs have zero ODP.
-            The Montreal Protocol (1987 and subsequent amendments) phased out CFCs (US: 1996) and HCFCs (R-22 in 2020,
-            R-123 in 2020, R-124 in 2015). HFCs and HFOs have no ozone concern.
+            The Montreal Protocol (1987 and subsequent amendments) phased out CFCs (US: 1996) and HCFCs (HCFC-22 production and import ended January 1, 2020; other
+            HCFCs such as R-123 and R-124 could since 2015 be produced or imported only as refrigerant for equipment
+            made before January 1, 2020, with no production or import from January 1, 2030). HFCs and HFOs have no ozone concern.
           </p>
           <p>
             <strong>Global warming potential (GWP)</strong> measures the integrated radiative forcing of a molecule
             relative to CO₂ (defined as GWP 1.0) over a 100-year time horizon. GWP varies enormously across
-            refrigerants: R-744 (CO₂) at 1, R-1234yf at 4, R-32 at 675, R-410A at 2088, R-404A at 3922, R-23 at 14800,
+            refrigerants: R-744 (CO₂) at 1, R-1234yf at 1, R-32 at 675, R-410A at 2088, R-404A at 3922, R-23 at 14800,
             R-C318 at 10300. The AIM Act and EU F-Gas Regulation phase down HFCs based on GWP thresholds.
           </p>
           <p>
@@ -360,7 +361,7 @@ export default function ComparisonGuidePage() {
             <strong>Montreal Protocol (1987, amended).</strong> International treaty mandating phase-out of
             ozone-depleting substances. US implementation through the Clean Air Act Section 605/606. CFC production
             banned 1996. HCFC production phase-out: R-141b production banned 2003; R-22 production banned 2020
-            (reclaimed R-22 remains legal for servicing existing equipment); R-123 production banned 2020. The
+            (reclaimed R-22 remains legal for servicing existing equipment); other HCFCs such as R-123 face no US production or import from January 1, 2030 (available since 2015 only as refrigerant for equipment made before January 1, 2020). The
             Montreal Protocol&apos;s Kigali Amendment (2016, US ratified 2022) extends to HFC phase-down.
           </p>
           <p>
@@ -372,16 +373,15 @@ export default function ComparisonGuidePage() {
             and heat pumps. The phase-down continues through 2036.
           </p>
           <p>
-            <strong>EU F-Gas Regulation 517/2014 (revised 2024).</strong> European HFC phase-down with quota-based
-            production controls and equipment-segment GWP thresholds. 150-GWP threshold for some commercial
-            refrigeration and small split AC; 2500-GWP threshold for centralized commercial refrigeration.
-            The 2024 revision tightens schedules further through 2030.
+            <strong>EU F-Gas Regulation 517/2014 (replaced by 2024/573).</strong> European HFC phase-down with
+            quota-based production controls and equipment-segment GWP thresholds. 517/2014 Annex III rows 11 and 13
+            use a 150-GWP threshold and row 12 uses 2500. Regulation (EU) 2024/573 has applied since 11 March 2024
+            and adds further prohibitions on F-gas equipment, products and use; its Annex IV is the current EU list.
           </p>
           <p>
             <strong>EPA SNAP (Significant New Alternatives Policy).</strong> US program listing acceptable substitutes
             for ozone-depleting substances by end-use category. SNAP listings determine which refrigerants are legally
-            usable in which equipment segments. Most modern HFOs and A2L blends have SNAP acceptable-use designations
-            for their target applications.
+            usable in which equipment segments.
           </p>
           <p>
             <strong>What this means for decisions:</strong>
@@ -424,7 +424,7 @@ export default function ComparisonGuidePage() {
           </p>
           <p>
             <strong>Refrigerant cost trends.</strong> Reclaimed R-22 (phased out 2020) is increasingly expensive as
-            supply tightens. R-410A pricing has risen sharply as AIM Act production allocations decrease through 2025.
+            supply tightens. R-410A pricing has risen as AIM Act production allowances decline.
             R-32 and R-454B carry modest premiums as a-2L blends. Hydrocarbons (R-290) are inexpensive but
             charge-limited. R-744 (CO₂) is essentially free but the equipment is expensive. R-717 (ammonia) is
             inexpensive but only deployable in industrial settings.
@@ -445,8 +445,8 @@ export default function ComparisonGuidePage() {
             <p className="mt-2 text-sm">
               The choice in 2026 is between R-32 (pure HFC, A2L, GWP 675) and R-454B (HFC/HFO blend, A2L, GWP 465).
               Both replace R-410A in new equipment. The decision typically follows the equipment OEM&apos;s
-              standardization: Daikin favors R-32 (pure-component supply chain control); Carrier, Trane, Lennox
-              favor R-454B (slightly lower GWP, blend manufactured by Honeywell/Chemours). Performance is comparable.
+              standardization: some manufacturers favor R-32 (pure-component supply-chain control); others favor
+              R-454B (slightly lower GWP). Performance is comparable.
               R-32 has marginally higher discharge temperature (different compressor sizing); R-454B has small (~2°F)
               glide. Both are A2L — equipment design accommodations are similar.
             </p>
@@ -488,8 +488,9 @@ export default function ComparisonGuidePage() {
           <div className="mb-6 rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
             <h3 className="text-base font-semibold">Scenario D: Centrifugal chiller, R-123 / R-134a transition</h3>
             <p className="mt-2 text-sm">
-              R-123 was the dominant low-pressure centrifugal chiller refrigerant for decades — production banned
-              2020. Replacement options: R-1233zd(E) (HFO, A1, GWP 4, near-drop-in pressure envelope), R-1224yd(Z)
+              R-123 was the dominant low-pressure centrifugal chiller refrigerant for decades — as an HCFC other than HCFC-22/142b, since 2015 it could be produced
+              or imported only as refrigerant for equipment made before January 1, 2020, with no production or import
+              from January 1, 2030. Replacement options: R-1233zd(E) (HFO, A1, GWP 4, near-drop-in pressure envelope), R-1224yd(Z)
               (HCFO, A1, GWP 1), R-514A (HFO blend, B1 toxicity classification, GWP 3). R-1233zd(E) leads in
               market share.
             </p>
@@ -535,7 +536,7 @@ export default function ComparisonGuidePage() {
           <ComparisonTable
             title="Centrifugal chillers (R-134a and R-123 transition)"
             rows={["r-123", "r-134a", "r-513a", "r-450a", "r-515b", "r-1234ze", "r-1233zd-e"]}
-            caption="R-123 (production banned 2020) and R-134a are the historical chiller refrigerants. R-513A and R-450A are A1 retrofits for R-134a. R-1234ze(E) and R-1233zd(E) are very-low-GWP next-generation choices (A2L and A1 respectively)."
+            caption="R-123 (an HCFC with no US production or import from January 1, 2030) and R-134a are the historical chiller refrigerants. R-513A and R-450A are A1 retrofits for R-134a. R-1234ze(E) and R-1233zd(E) are very-low-GWP next-generation choices (A2L and A1 respectively)."
           />
 
           <ComparisonTable
@@ -589,7 +590,7 @@ export default function ComparisonGuidePage() {
             <li>IPCC AR4 — the values the AIM Act uses as exchange values; IPCC AR5 and AR6 shown alongside for reference</li>
             <li>AIM Act (Public Law 116-260) and EPA implementation rulemaking — HFC phase-down schedule</li>
             <li>EPA SNAP — Significant New Alternatives Policy acceptable-use designations</li>
-            <li>EU F-Gas Regulation 517/2014 (revised 2024) — EU HFC phase-down framework</li>
+            <li>EU F-Gas Regulation 517/2014 (replaced by 2024/573) — EU HFC phase-down framework</li>
             <li>Montreal Protocol and Kigali Amendment — international ozone and HFC regulation</li>
             <li>ASHRAE Handbook—Refrigeration (2022) — application-specific guidance and operating ranges</li>
             <li>Manufacturer technical literature (Honeywell, Chemours, Daikin, Carrier, Trane, Johnson Controls) for product-specific data</li>

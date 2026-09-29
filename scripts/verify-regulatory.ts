@@ -147,6 +147,19 @@ const PATTERNS: { name: string; re: RegExp }[] = [
   { name: "cylinder-colour", re: /yellow with (?:a )?red/i },                 // S3
   { name: "nitrogen-purged-brazing", re: /nitrogen-purged brazing/i },        // S3
   { name: "lfl-charge-formula", re: /m_?max\s*=\s*LFL/i },                    // S1
+  // ── Task 23 (G11) eliminations ──
+  { name: "aim-act-section-60", re: /AIM Act Section 60/i },                            // G2
+  { name: "cfr-82156b", re: /82\.156\(b\)/i },                                          // G3
+  { name: "prohibits-topping-off", re: /prohibits topping-off|prohibits adding refrigerant without first/i }, // G3
+  { name: "not-on-montreal-list", re: /not on the Montreal Protocol controlled substances/i }, // G2
+  { name: "global-production-ceased", re: /global production ceased/i },                // G1
+  { name: "hcfc-banned-2015", re: /(?:banned|phased out|eliminated)[^.]{0,45}\b2015\b/i }, // G1
+  { name: "under-us-epa-snap", re: /under US EPA SNAP/i },                              // G5
+  { name: "700-new-commercial-refrig", re: /700[ \-]?(?:GWP )?(?:threshold|limit|cap) for new commercial refrigeration/i }, // G4
+  { name: "300-gwp-cap", re: /300[ \-]?GWP cap/i },                                     // G4
+  { name: "150-gwp-cutoff-lowtemp", re: /150[ \-]?GWP (?:cutoff|threshold) for low-temperature/i }, // G4
+  { name: "mandated-new-light-vehicles", re: /mandated on (?:most )?new light[ \-]?(?:duty )?vehicles/i }, // G5
+  { name: "eu-repealed-jan-2025", re: /repealed January 2025/i },                       // G7
 ];
 
 const BLOCK_TAGS = new Set(["p","div","section","article","li","td","th","tr","h1","h2","h3","h4","h5","h6","ul","ol","dl","dt","dd","header","footer","main","nav","details","summary","figcaption","blockquote","table","br"]);
