@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "node -v && pnpm run verify-redirects && pnpm run verify-data && pnpm run verify-diagnostics && pnpm run verify-scenarios && pnpm run verify-gauge-operating-points && pnpm run verify-no-psig-literals && pnpm run verify-no-overlay && next build && pnpm run verify-metadata && pnpm run verify-content-dates && pnpm run verify-no-generator-text && pnpm run verify-numeric-consistency && pnpm run validate-schema && pnpm run verify-regulatory && pnpm run verify-citations",
+    "build": "node -v && pnpm run verify-redirects && pnpm run verify-data && pnpm run verify-diagnostics && pnpm run verify-scenarios && pnpm run verify-gauge-operating-points && pnpm run verify-no-psig-literals && pnpm run verify-no-overlay && next build && pnpm run verify-metadata && pnpm run verify-content-dates && pnpm run verify-no-generator-text && pnpm run verify-numeric-consistency && pnpm run validate-schema && pnpm run verify-operating-pages && pnpm run verify-regulatory && pnpm run verify-citations",
     "start": "next start",
     "lint": "eslint",
     "generate-data": "node scripts/generate-refrigerant-data.mjs",
@@ -25,6 +25,7 @@
     "verify-no-overlay": "tsx scripts/verify-no-overlay.ts",
     "verify-gauge-operating-points": "tsx scripts/verify-gauge-operating-points.ts",
     "validate-schema": "tsx scripts/validate-schema.ts",
+    "verify-operating-pages": "tsx scripts/verify-operating-pages.ts",
     "verify-regulatory": "tsx scripts/verify-regulatory.ts",
     "verify-citations": "tsx scripts/verify-citations.ts"
   },

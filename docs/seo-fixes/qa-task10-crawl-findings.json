@@ -1,0 +1,37 @@
+{
+  "base": "http://localhost:3200",
+  "urlsCrawled": 252,
+  "sitemapUrls": 128,
+  "refrigerantInbound": {
+    "pages": 56,
+    "min": 4,
+    "median": 5.5,
+    "max": 35
+  },
+  "checks": {
+    "a": 0,
+    "b": 0,
+    "c": 0,
+    "d": 0,
+    "e": 1,
+    "f": 0,
+    "g": 0,
+    "h": 0,
+    "i": 0,
+    "j": 0
+  },
+  "fail": {
+    "a": [],
+    "b": [],
+    "c": [],
+    "d": [],
+    "e": [
+      "/what-pressure-should-r454b/: F43.3°C103–118 psig709–812 kPa— psig— kPa1 | F46.1°C103–118 psig709–812 kPa— psig— kPaO | psig2,892–3,295 kPa110°F43.3°C— psig— kPa4"
+    ],
+    "f": [],
+    "g": [],
+    "h": [],
+    "i": [],
+    "j": []
+  }
+}

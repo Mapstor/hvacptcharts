@@ -53,5 +53,15 @@
     "pattern": "lowercase-open-paren",
     "contains": "synthesize(",
     "reason": "Pseudo-code notation on the retrofit-compatibility calculator describing the verdict function synthesize(lubricantCheck, safetyClassCheck, pressureCheck, glideCheck); a function call takes no space before its parenthesis."
+  },
+  {
+    "pattern": "lowercase-open-paren",
+    "contains": "bar(gauge)",
+    "reason": "Standard unit notation on the operating-pressure pages: bar(gauge) = gauge bar. No missing space — conventional unit qualifier, matching the existing kPa(gauge) allowance."
+  },
+  {
+    "pattern": "hook",
+    "contains": "hook up",
+    "reason": "Standard field phrasing on calculators/troubleshooting pages: 'hook up (the) gauges / manifold / a can' means connecting service gauges — not the editorial narrative-'hook' jargon the pattern targets."
   }
 ]

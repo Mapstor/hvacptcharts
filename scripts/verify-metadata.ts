@@ -59,6 +59,24 @@ const TITLE_LENGTH_EXEMPTIONS = new Set<string>([
 const DESC_MIN = 140;
 const DESC_MAX = 165;
 
+// Assertion (g) forbids hyphenated "R-\d" designations in title/description/H1
+// to keep the seoName convention ("R410A"). Task 10 deliberately switches the 9
+// rebuilt operating-pressure pages to the hyphenated ASHRAE name in the H1,
+// title and meta (the spec mandates it), so those routes are exempt from (g).
+// r134a / r1234yf keep the legacy template and the seoName form, so they are NOT
+// exempt.
+const HYPHEN_DESIGNATION_EXEMPT = new Set<string>([
+  "/what-pressure-should-r22/",
+  "/what-pressure-should-410a/",
+  "/what-pressure-should-r32/",
+  "/what-pressure-should-r454b/",
+  "/what-pressure-should-r407c/",
+  "/what-pressure-should-r404a/",
+  "/what-pressure-should-r449a/",
+  "/what-pressure-should-r454c/",
+  "/what-pressure-should-r744/",
+]);
+
 // Per-template head-term rules. For refrigerant/[slug]/ we can't inline all
 // 61 seoNames here; the H1 rule for that template is "contains 'PT Chart'"
 // which the buildRefrigerantMetadata generator guarantees.
@@ -254,6 +272,7 @@ function main() {
 
     // (g) No hyphenated refrigerant designation (R-\d) in title/description/H1.
     const hyphenRe = /\bR-\d/;
+    if (!HYPHEN_DESIGNATION_EXEMPT.has(r.route)) {
     if (hyphenRe.test(r.title)) {
       hardFailures.push(`${r.route}: title contains hyphenated designation "R-\\d" (use seoName form): ${r.title}`);
     }
@@ -262,6 +281,7 @@ function main() {
     }
     if (hyphenRe.test(r.h1)) {
       hardFailures.push(`${r.route}: H1 contains hyphenated designation "R-\\d": ${r.h1}`);
+    }
     }
 
     // (h) SERP promise integrity — any refrigerant page whose description

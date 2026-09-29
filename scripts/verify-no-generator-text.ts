@@ -68,6 +68,19 @@ const PATTERNS: { name: string; re: RegExp }[] = [
   // into an SVG/label, e.g. "0.001079215732364314").
   { name: "literal-markdown-bold", re: /\*\*/ },
   { name: "excessive-decimals", re: /\d\.\d{8,}/ },
+  // Task 10: editorial / content-generation jargon that must never surface on a
+  // rendered page. Genuine HVAC uses (e.g. "hook up gauges") are allowlisted in
+  // generator-text-allowlist.json with a reason.
+  { name: "hook", re: /\bhook\b/i },
+  { name: "wedge", re: /\bwedge\b/i },
+  { name: "archetype", re: /\barchetype\b/i },
+  { name: "answer block", re: /answer block/i },
+  { name: "ladder", re: /\bladder\b/i },
+  { name: "information gain", re: /information gain/i },
+  { name: "fan-out", re: /fan-out/i },
+  { name: "single-sourced", re: /single-sourced/i },
+  { name: "by construction", re: /by construction/i },
+  { name: "calculation module", re: /calculation module/i },
 ];
 
 // Looser run-together patterns (task 19 D3): a missing space after a sentence
