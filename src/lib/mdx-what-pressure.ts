@@ -155,6 +155,14 @@ export interface LoadedWhatPressure {
   body: string;
 }
 
+/** Common fields the shared registry needs from an operating-layout file. */
+const OperatingCommon = z.object({
+  id: z.string(),
+  refrigerantSlug: z.string(),
+  h1: z.string(),
+  introOneLiner: z.string(),
+});
+
 const CONTENT_DIR = path.resolve(process.cwd(), "content", "what-pressure");
 
 export function loadWhatPressure(id: string): LoadedWhatPressure | null {
@@ -162,6 +170,29 @@ export function loadWhatPressure(id: string): LoadedWhatPressure | null {
   if (!fs.existsSync(filepath)) return null;
   const raw = fs.readFileSync(filepath, "utf8");
   const { content, data } = matter(raw);
+  // New operating-page layout (Task 10) parses under OperatingFrontmatter and
+  // renders via OperatingPressurePage. Expose only the common fields the shared
+  // registry needs (hub blurb + refrigerantSlug→id map); the operating template
+  // never reads operatingRanges/diagnosticSteps.
+  if ((data as { layout?: unknown }).layout === "operating") {
+    const common = OperatingCommon.parse(data);
+    if (common.id !== id) {
+      throw new Error(`what-pressure MDX id mismatch in ${filepath}: "${common.id}" vs filename "${id}".`);
+    }
+    return {
+      frontmatter: {
+        id: common.id,
+        refrigerantSlug: common.refrigerantSlug,
+        title: common.h1,
+        introOneLiner: common.introOneLiner,
+        operatingRangesSource: "",
+        operatingRanges: [],
+        diagnosticSteps: [],
+        faqs: [],
+      } as WhatPressureFrontmatter,
+      body: "",
+    };
+  }
   const fm = WhatPressureFrontmatter.parse(data);
   if (fm.id !== id) {
     throw new Error(`what-pressure MDX id mismatch in ${filepath}: "${fm.id}" vs filename "${id}".`);
