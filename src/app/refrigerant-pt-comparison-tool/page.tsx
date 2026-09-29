@@ -347,7 +347,7 @@ function RichContent() {
         number={5}
         refrigerant="Chiller (R-134a → R-513A)"
         title="Centrifugal chiller R-134a replacement — R-513A is the leading option"
-        scenario="Centrifugal water-cooled chiller, R-134a, due for refrigerant transition (AIM Act, lower GWP). R-513A (Chemours Opteon XP10) is the most common chiller replacement; it's an azeotropic R-134a/R-1234yf blend."
+        scenario="Centrifugal water-cooled chiller, R-134a, due for refrigerant transition (AIM Act, lower GWP). R-513A (Chemours Opteon XP10) is a common chiller replacement; it's an azeotropic R-134a/R-1234yf blend."
       >
         <Panel title="Comparison at chiller operating points" icon={TableIcon}>
           <ComparisonTable

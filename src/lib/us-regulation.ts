@@ -71,7 +71,24 @@ const EU = regulatory.eu as unknown as {
 const SECTION608 = regulatory.us.section608 as unknown as {
   usedRefrigerantSale: { cfr: string; text: string; url: string };
   recoveryEquipmentStandards: { cfr: string; heading: string; url: string };
-  evacuationLevels: { cfr: string; title: string; note: string; url: string };
+  evacuationLevels: {
+    cfr: string;
+    title: string;
+    scope: string;
+    units: string;
+    columns: [string, string];
+    rows: { appliance: string; before1993: string; after1993: string }[];
+    url: string;
+  };
+  applianceDefinitions: {
+    cfr: string;
+    highPressure: string;
+    mediumPressure: string;
+    lowPressure: string;
+    veryHighPressure: string;
+    smallAppliance: string;
+    url: string;
+  };
   leakRepairNote: string;
 };
 const AIMACT = regulatory.us.aimAct as unknown as {
@@ -501,6 +518,7 @@ export const SECTION_608 = SECTION608;
 export const USED_REFRIGERANT_SALE_RULE = SECTION608.usedRefrigerantSale; // 40 CFR 82.154(d)
 export const RECOVERY_EQUIPMENT_STANDARD = SECTION608.recoveryEquipmentStandards; // 40 CFR 82.158 heading
 export const EVACUATION_LEVELS = SECTION608.evacuationLevels; // 40 CFR 82.156(a), Table 1
+export const APPLIANCE_DEFINITIONS = SECTION608.applianceDefinitions; // 40 CFR 82.152 pressure classes
 export const LEAK_REPAIR_NOTE = SECTION608.leakRepairNote; // no general "no top-off" rule; size-based duties
 
 /* ─────────────────────────── AIM Act citation (v4) ──────────────────────── */

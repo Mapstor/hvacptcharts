@@ -21,6 +21,7 @@ import {
   regulatoryStatusTagline,
   isUltraLowTempOnly,
   AIM_SOURCE_URL,
+  EVACUATION_LEVELS,
   type Sector,
 } from "@/lib/us-regulation";
 
@@ -160,6 +161,9 @@ const PATTERNS: { name: string; re: RegExp }[] = [
   { name: "150-gwp-cutoff-lowtemp", re: /150[ \-]?GWP (?:cutoff|threshold) for low-temperature/i }, // G4
   { name: "mandated-new-light-vehicles", re: /mandated on (?:most )?new light[ \-]?(?:duty )?vehicles/i }, // G5
   { name: "eu-repealed-jan-2025", re: /repealed January 2025/i },                       // G7
+  // ── Task 24: no combined "10-15 in.Hg" evacuation level (Table 1 gives 0 / 10 / 15
+  //    per pressure class + charge size — never a merged range for small systems) ──
+  { name: "combined-10-15-evac", re: /10\s*[-–—]\s*15\s*in/i },
 ];
 
 const BLOCK_TAGS = new Set(["p","div","section","article","li","td","th","tr","h1","h2","h3","h4","h5","h6","ul","ol","dl","dt","dd","header","footer","main","nav","details","summary","figcaption","blockquote","table","br"]);
@@ -225,6 +229,39 @@ if (fs.existsSync(APP_DIR)) {
     const html = fs.readFileSync(f, "utf8");
     const hasReg = REG_MARKERS.some((mk) => html.includes(mk));
     if (!hasReg) fail(`source: /refrigerant/${r.slug}/ (${klass}) has no regulatory source link/citation`);
+  }
+
+  /* ── 5. recovery-guide evacuation table must match EVACUATION_LEVELS exactly ── */
+  {
+    const f = path.join(APP_DIR, "hvac-refrigerant-recovery-guide.html");
+    if (!fs.existsSync(f)) {
+      fail(`recovery-guide: ${path.relative(ROOT, f)} not found — cannot verify evacuation table`);
+    } else {
+      const $ = cheerio.load(fs.readFileSync(f, "utf8"));
+      const clean = (s: string) => s.replace(/\s+/g, " ").trim();
+      // Bare integers render as "N in. Hg"; strip that suffix to compare to raw JSON.
+      const norm = (s: string) => s.replace(/\s*in\.\s*Hg\b/i, "").trim();
+      let matched = false;
+      $("table").each((_, table) => {
+        const headers = $(table).find("thead th").map((_, th) => clean($(th).text())).get();
+        if (headers.length !== 3) return;
+        if (headers[1] !== EVACUATION_LEVELS.columns[0] || headers[2] !== EVACUATION_LEVELS.columns[1]) return;
+        matched = true;
+        const dataRows = $(table).find("tbody tr");
+        if (dataRows.length !== EVACUATION_LEVELS.rows.length) {
+          fail(`recovery-guide: evacuation table has ${dataRows.length} rows, expected ${EVACUATION_LEVELS.rows.length}`);
+        }
+        dataRows.each((i, tr) => {
+          const cells = $(tr).find("td").map((_, td) => clean($(td).text())).get();
+          const exp = EVACUATION_LEVELS.rows[i];
+          if (!exp) return;
+          if (cells[0] !== exp.appliance) fail(`recovery-guide: evac row ${i} label "${cells[0]}" ≠ "${exp.appliance}"`);
+          if (norm(cells[1] ?? "") !== exp.before1993) fail(`recovery-guide: evac row ${i} (${exp.appliance}) before-1993 "${cells[1]}" ≠ "${exp.before1993}"`);
+          if (norm(cells[2] ?? "") !== exp.after1993) fail(`recovery-guide: evac row ${i} (${exp.appliance}) on/after-1993 "${cells[2]}" ≠ "${exp.after1993}"`);
+        });
+      });
+      if (!matched) fail("recovery-guide: evacuation table (matching EVACUATION_LEVELS columns) not found in rendered HTML — the page must render Table 1 from regulatory.json");
+    }
   }
 } else {
   fail(`.next/server/app not found at ${APP_DIR} — run after \`next build\``);

@@ -446,7 +446,7 @@ export default function ComparisonGuidePage() {
               The choice in 2026 is between R-32 (pure HFC, A2L, GWP 675) and R-454B (HFC/HFO blend, A2L, GWP 465).
               Both replace R-410A in new equipment. The decision typically follows the equipment OEM&apos;s
               standardization: some manufacturers favor R-32 (pure-component supply-chain control); others favor
-              R-454B (slightly lower GWP). Performance is comparable.
+              R-454B (lower GWP: 465 vs 675). Performance is comparable.
               R-32 has marginally higher discharge temperature (different compressor sizing); R-454B has small (~2°F)
               glide. Both are A2L — equipment design accommodations are similar.
             </p>

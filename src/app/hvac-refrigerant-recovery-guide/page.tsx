@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG, SITE_URL, WEBSITE, pageMetadata } from "@/lib/schema/shared";
 import { contentDates, UpdatedLine } from "@/lib/content-dates";
 import { refrigerants, getRefrigerant, gwpNum } from "@/data/refrigerants";
+import { EVACUATION_LEVELS, APPLIANCE_DEFINITIONS } from "@/lib/us-regulation";
 import {
   ComparisonTable,
   FixCallout,
@@ -16,6 +17,10 @@ import {
 import { TechSection, KeyInsight } from "@/components/refrigerant/TechSection";
 import { BarChart } from "@/components/svg/concepts/BarChart";
 import { ProcessFlow } from "@/components/svg/concepts/ProcessFlow";
+
+// Render an evacuation-table cell: bare integers are inches Hg vacuum; the
+// low-pressure row already carries its own "mm Hg absolute" unit.
+const evacCell = (v: string): string => (/^\d+$/.test(v) ? `${v} in. Hg` : v);
 
 const PAGE_URL = `${SITE_URL}/hvac-refrigerant-recovery-guide/`;
 const { published: PUBLISHED, updated: MODIFIED } = contentDates("/hvac-refrigerant-recovery-guide/");
@@ -45,7 +50,7 @@ const FAQS = [
   },
   {
     q: "What evacuation level do I need to pull on the system after recovery?",
-    a: "Per 40 CFR § 82.156(a) Table 1, evacuation levels depend on equipment type, manufacture date, and refrigerant charge size. For systems manufactured on or after November 15, 1993 with HFC or HCFC refrigerant charges under 200 lbs (covers virtually all residential and small commercial): pull to 0 PSIG (atmospheric). For systems with charges 200+ lbs: pull to 10-15 in.Hg vacuum depending on refrigerant. For very-low-pressure systems (Type III chillers using R-123 and similar): pull to 25 mm Hg absolute pressure. Always consult the current EPA table — the values were updated when HFCs were added in 2018 and may evolve further. Best practice exceeds the minimum: pull to 500 microns (29.92 in.Hg vacuum) before recharge to ensure all moisture and non-condensables are removed; the legal minimum lets refrigerant out, but the 500-micron target ensures the system is properly prepared.",
+    a: "Per 40 CFR § 82.156(a) Table 1, the required level depends on the appliance's pressure class, its charge size, and when the recovery/recycling equipment was manufactured (before, versus on or after, November 15, 1993). With post-November-15-1993 recovery equipment: a high-pressure appliance under 200 lb — which covers virtually all residential and small-commercial R-22, R-410A, R-407C, R-32, and R-454B systems — needs 0 in. Hg (atmospheric); a high-pressure appliance 200 lb or more needs 10 in. Hg; a medium-pressure appliance such as R-134a needs 10 in. Hg under 200 lb and 15 in. Hg at 200 lb or more; a very-high-pressure appliance needs 0 in. Hg; and a low-pressure appliance (Type III chillers such as R-123) needs 25 mm Hg absolute. Small appliances, MVACs, and MVAC-like appliances are outside Table 1. Best practice exceeds the legal minimum: pull to 500 microns before recharge to remove all moisture and non-condensables — the legal minimum only lets the refrigerant out, while the 500-micron target ensures the system is properly prepared.",
   },
   {
     q: "Does EPA Section 608 require recordkeeping?",
@@ -122,7 +127,7 @@ function buildSchema(): object[] {
         { "@type": "HowToStep", position: 3, name: "Disconnect power and verify with non-contact voltage tester", text: "Disconnect at the breaker; verify zero voltage at the contactor before opening any service valves." },
         { "@type": "HowToStep", position: 4, name: "Weigh the recovery cylinder and zero the scale", text: "Place empty recovery cylinder on the scale, tare to zero, record the starting weight. Recovered refrigerant weight = final weight − starting weight." },
         { "@type": "HowToStep", position: 5, name: "Connect recovery machine inlet to system service ports", text: "Use low-loss fittings or core-removal tools to minimize refrigerant lost during connection. Recovery machine inlet from the system; recovery machine outlet to the recovery cylinder. For high-pressure systems also use a liquid-line side connection for faster recovery." },
-        { "@type": "HowToStep", position: 6, name: "Operate the recovery machine", text: "Start machine per manufacturer procedure. Recover until system pressure drops to atmospheric (0 PSIG for systems under 200 lbs charge per 40 CFR § 82.156(a) Table 1 for HFCs/HCFCs). For larger systems, evacuate to required levels for the refrigerant type." },
+        { "@type": "HowToStep", position: 6, name: "Operate the recovery machine", text: "Start machine per manufacturer procedure. Recover until system pressure reaches the required level. For a high-pressure appliance under 200 lb — a residential R-410A, R-32, or R-454B split system — that level is 0 in. Hg (atmospheric) with recovery equipment manufactured on or after November 15, 1993, per 40 CFR § 82.156(a) Table 1. Larger, medium-pressure, or low-pressure appliances require a deeper vacuum per that table." },
         { "@type": "HowToStep", position: 7, name: "Confirm complete recovery", text: "Check system pressure with the manifold; pressure should not rise above 0 PSIG within 5 minutes of recovery-machine shutoff (rising pressure indicates refrigerant remaining or active leak). For ≥ 200 lb systems, confirm vacuum level meets EPA requirement." },
         { "@type": "HowToStep", position: 8, name: "Record and label", text: "Record refrigerant type, weight recovered, system identification, date, and your certification number on the service ticket. Label the recovery cylinder accordingly. For commercial systems, update the equipment's refrigerant log per § 82.166." },
         { "@type": "HowToStep", position: 9, name: "Transport recovered refrigerant", text: "DOT requires recovery cylinders to be properly labeled, secured during transport, and never overfilled. Take recovered refrigerant to a reclaimer or wholesale partner with reclamation contract; do not vent under any circumstances." },
@@ -307,27 +312,41 @@ export default function HvacRefrigerantRecoveryGuidePage() {
         {/* SECTION 05 — Evacuation levels */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-            Required evacuation levels per 40 CFR § 82.156(a)
+            Required evacuation levels per {EVACUATION_LEVELS.cfr}
           </h2>
           <p className="text-zinc-700 dark:text-zinc-300">
-            EPA Section 608 specifies minimum evacuation levels — how low you must pull the refrigerant out of the system — depending on equipment type, manufacture date, and charge size. The current Table 1 in § 82.156(a) summarizes the requirements (always cross-reference the current EPA regulation as published values may be updated):
+            EPA Section 608 specifies minimum evacuation levels — how low you must pull the refrigerant out of a system before opening it — by the appliance&apos;s pressure class, the equipment charge size, and the manufacture date of the recovery/recycling equipment. Pressure class is defined in {APPLIANCE_DEFINITIONS.cfr} by liquid-phase saturation pressure at 104 °F:
           </p>
 
+          <div data-src="dataset">
+            <ul className="mt-3 space-y-2 text-zinc-700 dark:text-zinc-300">
+              <li><strong>Very high-pressure appliance.</strong>{" "}{APPLIANCE_DEFINITIONS.veryHighPressure}</li>
+              <li><strong>High-pressure appliance.</strong>{" "}{APPLIANCE_DEFINITIONS.highPressure}</li>
+              <li><strong>Medium-pressure appliance.</strong>{" "}{APPLIANCE_DEFINITIONS.mediumPressure}</li>
+              <li><strong>Low-pressure appliance.</strong>{" "}{APPLIANCE_DEFINITIONS.lowPressure}</li>
+              <li><strong>Small appliance.</strong>{" "}{APPLIANCE_DEFINITIONS.smallAppliance}</li>
+            </ul>
+          </div>
+
+          <p className="mt-6 text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+            {EVACUATION_LEVELS.title}
+          </p>
           <ComparisonTable
-            headers={["Equipment type / refrigerant", "Equipment manufactured before Nov 15, 1993", "Equipment manufactured Nov 15, 1993 or later"]}
-            rows={[
-              { label: "Small appliances (Type I, ≤5 lb charge)", cells: ["0 PSIG or 80% recovery efficiency (self-contained)", "0 PSIG or 90% / 80% recovery efficiency"] },
-              { label: "HCFC-22 high pressure < 200 lb", cells: ["4 in.Hg vacuum", "0 PSIG"] },
-              { label: "HCFC-22 high pressure ≥ 200 lb", cells: ["4 in.Hg vacuum", "10 in.Hg vacuum"] },
-              { label: "Other HFC/HCFC high pressure < 200 lb", cells: ["4 in.Hg vacuum", "10 in.Hg vacuum"] },
-              { label: "Other HFC/HCFC high pressure ≥ 200 lb", cells: ["4 in.Hg vacuum", "15 in.Hg vacuum"] },
-              { label: "Very high pressure (R-12, R-500, R-502, R-507A)", cells: ["0 PSIG", "0 PSIG"] },
-              { label: "Low pressure systems (Type III, R-123 etc.)", cells: ["25 mm Hg absolute (29 in.Hg vacuum)", "25 mm Hg absolute"] },
-            ]}
+            headers={["Appliance type", EVACUATION_LEVELS.columns[0], EVACUATION_LEVELS.columns[1]]}
+            rows={EVACUATION_LEVELS.rows.map((r) => ({
+              label: r.appliance,
+              cells: [evacCell(r.before1993), evacCell(r.after1993)],
+            }))}
           />
 
-          <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
-            Source: 40 CFR § 82.156(a) Table 1. Refrigerants R-410A, R-32, R-454B, and other modern HFCs fall under the &quot;Other HFC/HCFC high pressure&quot; categories. The values shown are minimums for legal compliance; best practice for service work exceeds these minimums substantially (typical target: 500 microns / 29.92 in.Hg vacuum before recharge, to fully remove moisture and non-condensables).
+          <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+            <strong>Units.</strong>{" "}{EVACUATION_LEVELS.units}
+          </p>
+          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+            <strong>Scope.</strong>{" "}{EVACUATION_LEVELS.scope} Source: {EVACUATION_LEVELS.cfr}.
+          </p>
+          <p className="mt-4 text-zinc-700 dark:text-zinc-300">
+            What this means in the field: a typical residential or small-commercial R-22, R-410A, or R-407C system is a high-pressure appliance under 200 lb, so its required level is 0 in. Hg (atmospheric) with recovery equipment manufactured on or after November 15, 1993. An R-134a system under 200 lb is a medium-pressure appliance, so its required level is 10 in. Hg with that same post-1993 equipment. The values shown are legal minimums; best service practice exceeds them substantially — a typical target is 500 microns before recharge, to fully remove moisture and non-condensables.
           </p>
 
           <KeyInsight tone="amber" title="Legal minimum vs best practice">
@@ -351,7 +370,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
             <li><strong>Weigh recovery cylinder and zero scale.</strong> Place empty cylinder on the scale, tare to zero. Recovered weight = final weight − starting (zero) weight. Record for the service ticket.</li>
             <li><strong>Connect recovery machine.</strong> Connect inlet of recovery machine to a service port on the system (typically the suction or low-side port for vapor recovery; some procedures use both ports for faster recovery). Recovery machine outlet to the recovery cylinder. Use low-loss fittings or valve-core removal tools to minimize refrigerant lost during connection.</li>
             <li><strong>Open service valves and start recovery machine.</strong> Open the valves on the system and recovery machine per the manufacturer&apos;s procedure. Recovery machine pumps refrigerant from the system into the cylinder.</li>
-            <li><strong>Recover to required vacuum level.</strong> For HFC systems under 200 lb charge: recover until system pressure reaches 0 PSIG (atmospheric). For larger systems: pull to 10-15 in.Hg vacuum per the EPA table. Monitor the manifold continuously.</li>
+            <li><strong>Recover to required level.</strong> For a high-pressure appliance under 200 lb (residential R-410A, R-32, or R-454B) with post-November-15-1993 recovery equipment: recover until system pressure reaches 0 in. Hg (atmospheric). A high-pressure appliance 200 lb or more needs 10 in. Hg; medium-pressure and low-pressure appliances require the deeper levels in 40 CFR § 82.156(a) Table 1. Monitor the manifold continuously.</li>
             <li><strong>Verify recovery is complete.</strong> Shut off the recovery machine. Watch the system pressure for 5 minutes. If pressure rises significantly, residual refrigerant remains in the oil or in dead-end portions of the circuit; continue recovery. If pressure stays at 0 PSIG, recovery is complete.</li>
             <li><strong>Record results.</strong> Note: refrigerant type, weight recovered, system identification, customer name, date, your certification number. Update the system&apos;s service log per § 82.166. For commercial systems with ≥50 lb charge, this becomes part of the equipment&apos;s required maintenance record.</li>
             <li><strong>Disconnect and seal.</strong> Close all valves. Disconnect recovery hoses. Cap the recovery cylinder if removing from the work area. Place cylinder in the service vehicle, secured for transport per DOT regulations.</li>
@@ -371,7 +390,7 @@ export default function HvacRefrigerantRecoveryGuidePage() {
                 { number: 3, title: "LOTO + verify zero voltage", description: "Disconnect at outdoor + indoor units. Verify zero voltage at contactor with NCVT before opening valves." },
                 { number: 4, title: "Tare cylinder on scale", description: "Empty cylinder, tare to zero. Recovered weight = final − starting. Record for ticket + § 82.166 log." },
                 { number: 5, title: "Connect recovery machine", description: "Inlet to system service port (suction side typical). Outlet to cylinder. Low-loss fittings minimize refrigerant loss." },
-                { number: 6, title: "Recover to required level", description: "HFC <200 lb: pull to 0 PSIG. Larger systems: 10-15 in.Hg per EPA Table 1. Monitor manifold continuously.", critical: true },
+                { number: 6, title: "Recover to required level", description: "High-pressure appliance under 200 lb: pull to 0 in. Hg (atmospheric). 200 lb or more: 10 in. Hg. Medium/low-pressure: deeper per 40 CFR 82.156(a) Table 1. Monitor manifold continuously.", critical: true },
                 { number: 7, title: "Verify completeness", description: "Shut off recovery. Watch 5 minutes for pressure rise (oil-bound refrigerant). Re-recover if pressure climbs." },
                 { number: 8, title: "Record + transport", description: "Log refrigerant type + weight + cert number on ticket. Cap cylinder, secure for DOT transport to reclaimer." },
               ]}
