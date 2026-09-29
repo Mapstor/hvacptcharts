@@ -2,8 +2,8 @@
   "meta": {
     "verified": "2026-09-28",
     "rule": "Every entry below was checked against the cited primary text on the verified date. Do not add, reword or extend entries without a primary source; add new facts only through this file.",
-    "version": 4,
-    "changes": "v2 (2026-09-28): added (a)(2), (a)(11), (a)(13)(i)-(iii), (a)(14), (a)(15), (a)(16)(i)-(ii), (c)(13); semiconductor compliance notes (a)(10)(v), (a)(12)(iv), (c)(5)(ii), (c)(6)(ii), (c)(10)(v); 'sector' field on every entry. | v3 (2026-09-29): us.ods 2015 HCFC milestone (EPA); us.section608 82.154(d) used-refrigerant sale rule + 82.158 heading; eu.macDirective 2006/40/EC dates (2011 new types, 2017 all new vehicles). | v4 (2026-09-29): us.ods 2003 HCFC-141b; section608 evacuation table 82.156(a) Table 1 + leak-repair note; us.aimAct citation + 84.7; us.snap verified listings (household HC 2011/2018, centrifugal chillers, Rule 24); montrealProtocol (Kigali Annex F, CFC developing 2010, ozone recovery)."
+    "version": 5,
+    "changes": "v2 (2026-09-28): added (a)(2), (a)(11), (a)(13)(i)-(iii), (a)(14), (a)(15), (a)(16)(i)-(ii), (c)(13); semiconductor compliance notes (a)(10)(v), (a)(12)(iv), (c)(5)(ii), (c)(6)(ii), (c)(10)(v); 'sector' field on every entry. | v3 (2026-09-29): us.ods 2015 HCFC milestone (EPA); us.section608 82.154(d) used-refrigerant sale rule + 82.158 heading; eu.macDirective 2006/40/EC dates (2011 new types, 2017 all new vehicles). | v4 (2026-09-29): us.ods 2003 HCFC-141b; section608 evacuation table 82.156(a) Table 1 + leak-repair note; us.aimAct citation + 84.7; us.snap verified listings (household HC 2011/2018, centrifugal chillers, Rule 24); montrealProtocol (Kigali Annex F, CFC developing 2010, ozone recovery). | v5 (2026-09-29): section608.evacuationLevels full Table 1 values; section608.applianceDefinitions (82.152)."
   },
   "us": {
     "technologyTransitions": {
@@ -895,10 +895,56 @@
       "evacuationLevels": {
         "cfr": "40 CFR 82.156(a), Table 1",
         "title": "Table 1—Required Levels of Evacuation for Appliances",
-        "note": "Applies to appliances except small appliances, MVACs and MVAC-like appliances; recovery equipment certified under 82.158.",
+        "scope": "Except for small appliances, MVACs, and MVAC-like appliances. Evacuate using recovery and/or recycling equipment certified under 40 CFR 82.158.",
+        "units": "Inches of Hg vacuum, relative to standard atmospheric pressure of 29.9 inches Hg (low-pressure row: mm Hg absolute)",
+        "columns": [
+          "Recovery/recycling equipment manufactured or imported before November 15, 1993",
+          "Recovery/recycling equipment manufactured or imported on or after November 15, 1993"
+        ],
+        "rows": [
+          {
+            "appliance": "Very high-pressure appliance",
+            "before1993": "0",
+            "after1993": "0"
+          },
+          {
+            "appliance": "High-pressure appliance, less than 200 lb full charge",
+            "before1993": "0",
+            "after1993": "0"
+          },
+          {
+            "appliance": "High-pressure appliance, 200 lb or more full charge",
+            "before1993": "4",
+            "after1993": "10"
+          },
+          {
+            "appliance": "Medium-pressure appliance, less than 200 lb full charge",
+            "before1993": "4",
+            "after1993": "10"
+          },
+          {
+            "appliance": "Medium-pressure appliance, 200 lb or more full charge",
+            "before1993": "4",
+            "after1993": "15"
+          },
+          {
+            "appliance": "Low-pressure appliance",
+            "before1993": "25 mm Hg absolute",
+            "after1993": "25 mm Hg absolute"
+          }
+        ],
         "url": "https://www.law.cornell.edu/cfr/text/40/82.156"
       },
-      "leakRepairNote": "No general federal rule bars adding refrigerant to a leaking system. Leak-repair duties apply by appliance size: 40 CFR 82.157 (appliances with 50 lb or more of class I/II refrigerant) and 40 CFR 84.106 (from January 1, 2026: appliances with 15 lb or more of HFC refrigerant with GWP above 53; residential and light-commercial AC and heat pumps exempt)."
+      "leakRepairNote": "No general federal rule bars adding refrigerant to a leaking system. Leak-repair duties apply by appliance size: 40 CFR 82.157 (appliances with 50 lb or more of class I/II refrigerant) and 40 CFR 84.106 (from January 1, 2026: appliances with 15 lb or more of HFC refrigerant with GWP above 53; residential and light-commercial AC and heat pumps exempt).",
+      "applianceDefinitions": {
+        "cfr": "40 CFR 82.152",
+        "highPressure": "Liquid phase saturation pressure between 170 psia and 355 psia at 104 °F. Examples: R-22, R-407A, R-407C, R-410A, R-502.",
+        "mediumPressure": "Liquid phase saturation pressure between 45 psia and 170 psia at 104 °F. Examples: R-114, R-124, R-12, R-134a, R-500.",
+        "lowPressure": "Liquid phase saturation pressure below 45 psia at 104 °F. Examples: R-11, R-123, R-113, R-245fa.",
+        "veryHighPressure": "Critical temperature below 104 °F or liquid phase saturation pressure above 355 psia at 104 °F. Examples: R-13, R-23, R-503, R-508A, R-508B.",
+        "smallAppliance": "Fully manufactured, charged, and hermetically sealed in a factory with five pounds or less of refrigerant (e.g. refrigerators and freezers, room air conditioners including window, portable and PTAC units, dehumidifiers, under-the-counter ice makers, vending machines, drinking water coolers). Small appliances are outside Table 1.",
+        "url": "https://www.law.cornell.edu/cfr/text/40/82.152"
+      }
     },
     "aimAct": {
       "citation": "AIM Act, 42 U.S.C. 7675 (Public Law 116-260, Division S; signed December 27, 2020)",
