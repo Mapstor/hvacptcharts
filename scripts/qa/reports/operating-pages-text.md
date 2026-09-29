@@ -207,7 +207,7 @@ This page gives the suction and discharge to expect at each outdoor temperature 
 
 **Answer block**
 
-**R-407C runs about 60–71 psig (4.2–4.9 bar) suction and 260–299 psig discharge** at 95°F outdoors, with a 38–45°F indoor coil. It sits within a few percent of R-22, so it drops into R-22 equipment. Because it glides, read suction on the dew curve and the liquid line on the bubble curve.
+**R-407C runs about 60–71 psig (4.2–4.9 bar) suction and 260–299 psig discharge** at 95°F outdoors, with a 38–45°F indoor coil. It is an R-22 retrofit that runs at similar pressures and uses R-22-rated equipment. Because it glides, read suction on the dew curve and the liquid line on the bubble curve.
 
 **Section H2s**
 
