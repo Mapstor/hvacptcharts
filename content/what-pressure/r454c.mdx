@@ -1,72 +1,96 @@
 ---
+layout: operating
 id: r454c
 refrigerantSlug: r-454c
-title: "What Pressure Should R454C Be?"
-metaTitle: "R454C Operating Pressures: What Should R454C Be? (By Temp)"
-metaDescription: "R454C A2L commercial refrigeration operating pressures by application and ambient, computed from the CoolProp-verified dataset, plus a diagnostic procedure and FAQ."
-introOneLiner: "R-454C is a low-GWP A2L commercial refrigeration refrigerant (GWP 146). Operating pressures for medium-temp (refrigerated cases) and low-temp (frozen cases) applications. Significant glide (~14°F) requires dew-curve superheat and bubble-curve subcooling."
-pressureModel: commercial-refrigeration
-
-operatingRangesSource: "Computed from the CoolProp-verified R-454C PT dataset (dew/bubble saturation via satPressure); see the method note under the table."
-
-operatingRanges:
-  - ambientF: 75
-    application: "Medium-temp commercial refrigeration (refrigerated cases, ~30°F evap, 75°F ambient)"
-    evaporatorF: 30
-  - ambientF: 95
-    application: "Medium-temp commercial refrigeration at 95°F ambient (rating)"
-    evaporatorF: 30
-  - ambientF: 105
-    application: "Medium-temp commercial refrigeration at 105°F ambient"
-    evaporatorF: 30
-  - ambientF: 95
-    application: "Low-temp commercial refrigeration (frozen cases, -10°F evap, 95°F ambient)"
-    evaporatorF: -10
-  - ambientF: 95
-    application: "Low-temp commercial refrigeration (-25°F evap, 95°F ambient)"
-    evaporatorF: -25
-
-narrativeIntro: |
-  R-454C is one of the modern low-GWP A2L replacements for R-404A in commercial refrigeration, alongside R-455A. Both have GWP 146 (below the EU F-Gas 150-GWP threshold); R-454C is the lower-glide of the two (~14°F vs R-455A's ~22°F).
-
-  Operating pressures depend strongly on application. Medium-temp commercial refrigeration (refrigerated produce, dairy, beverage) runs warmer evaporator setpoints and correspondingly higher suction than low-temp equipment. Low-temp commercial refrigeration (frozen food) runs much colder setpoints, and suction can fall below atmospheric on the dew curve at the coldest conditions. See the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for the ranges by application: suction follows the evaporator setpoint and load, while head tracks ambient and condenser condition.
-
-  Discharge pressure tracks the ambient temperature at the condenser, similar to AC equipment but typically with somewhat less air-temperature approach because commercial refrigeration condensers are sized more aggressively for steady-state operation.
-
-  R-454C is A2L — equipment design requires A2L-rated controls per IEC 60335-2-89 (commercial refrigeration) and ASHRAE 15. The 14°F glide requires TXV or EXV systems for stable operation; fixed-orifice systems are not well-suited.
-
-diagnosticSteps:
-  - title: "Verify the application type and target evap setpoint"
-    text: "Commercial refrigeration operating pressures depend more on application than on ambient: medium-temp dairy case has very different normal operation than low-temp ice cream merchandiser. Check the case data plate for evaporator setpoint and condensing-unit data plate for design conditions before comparing to ranges."
-    tools: ["Equipment data plates", "Refrigeration application reference"]
-  - title: "Allow stabilization time after defrost or door-open events"
-    text: "Commercial refrigeration goes through defrost cycles and load swings (door openings, product loading). Measure after 30+ minutes of stable operation between defrost cycles, with normal product load. Transient readings during defrost recovery are not representative of normal operation."
-    tools: ["Refrigeration controller status display"]
-  - title: "Read pressures with A2L-rated manifold gauge set"
-    text: "A2L-rated manifold. Standard pressure rating (500-800 PSI high-side) is adequate. Avoid open flames during service. A2L-rated leak detection sensors are mandatory in machine-room or refrigerated-space installations."
-    tools: ["A2L-rated manifold gauge set", "A2L leak detector"]
-  - title: "Compute superheat using the DEW curve (R-454C's 14°F glide matters)"
-    text: "R-454C has ~14°F glide. Using the bubble curve for superheat measurement produces a value ~14°F too high — a meaningfully wrong answer. Use the DEW curve. The dew temperature at the measured suction pressure is the proper saturation reference for superheat math. The [superheat calculator](/superheat-calculator/) handles this when R-454C is selected."
-    tools: ["Contact temperature probe", "PT chart with dew column or superheat calculator"]
-  - title: "Compute subcooling using the BUBBLE curve"
-    text: "Use the bubble curve for subcooling on R-454C. The bubble temperature at the measured liquid pressure is the proper saturation reference. The [subcooling calculator](/subcooling-calculator/) handles this."
-    tools: ["Contact temperature probe", "PT chart with bubble column or subcooling calculator"]
-
+pageKind: commercial
+metaTitle: "R-454C Operating Pressures: Walk-In Cooler & Freezer PSI"
+metaDescription: "R-454C running pressures: about {lt} psig suction at a −20°F freezer coil and {mt} psig at a 25°F cooler coil; head {high} psig at 95°F outdoors."
+h1: "What Pressure Should R-454C Be?"
+introOneLiner: "R-454C suction pressures for walk-in coolers and freezers, head pressure by outdoor temperature, and its wide dew-to-bubble standing range."
+intro:
+  - >-
+    You are on an R-454C system — a low-GWP A2L blend now going into new
+    commercial refrigeration — with gauges connected and a big gap between the two
+    saturation temperatures on the dial. That gap is the glide, and it is large.
+  - >-
+    Read superheat off the wrong curve on a blend that glides this much and you
+    can be off by more than ten degrees — enough to flood or starve the evaporator
+    while the gauge looks fine.
+  - >-
+    This page gives R-454C suction by application at the AHRI walk-in coil
+    temperatures, head pressure by outdoor temperature, and the wide dew-to-bubble
+    standing range — all computed from the saturation dataset.
+answerBlock: >-
+  **R-454C suction is about {lt} psig at a −20°F freezer coil and {mt} psig at a
+  25°F cooler coil**, with head around {high} psig at 95°F outdoors. It is a
+  high-glide, low-GWP A2L blend, so read suction on the dew curve and treat
+  standing pressure as a wide dew-to-bubble range.
+sections:
+  - h2: "R-454C pressures for walk-in coolers and freezers"
+    kind: application-suction
+    body: |-
+      Suction is set by the evaporator coil temperature. The AHRI 1250-2020 walk-in
+      rating points — a 25°F cooler coil and a −20°F freezer coil — give the two
+      suction bands you check most. Read suction on the dew curve.
+  - h2: "Head pressure by outdoor temperature"
+    kind: commercial-head-chart
+    body: |-
+      Head is set by the condenser and climbs with the outdoor air, the same on a
+      cooler or a freezer. Find your outdoor temperature down the left column.
+  - h2: "Reading gauges on a high-glide blend"
+    kind: prose
+    body: |-
+      R-454C evaporates and condenses across a wide temperature range, so every
+      pressure has a lower dew temperature and a much higher bubble temperature.
+      Use the dew curve for suction and [superheat](/superheat-calculator/); use the
+      bubble curve for the liquid line and [subcooling](/subcooling-calculator/).
+      Because the glide is large, an A2L-rated manifold that shows both scales — or a
+      calculator that does the lookup — saves you from reading the glide as
+      superheat.
+  - h2: "Standing pressure: a wide dew-to-bubble range"
+    kind: standing
+    mode: range
+    body: |-
+      With the system off and equalized, R-454C sits across a wide dew-to-bubble
+      band at the coil temperature — for example {stand68} psig at 68°F (20°C). Treat
+      standing pressure as a range, not a single number; the spread is the glide.
 faqs:
-  - q: "What's normal R-454C suction pressure for a walk-in cooler at 95°F ambient?"
-    a: "See the medium-temp rows of the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for walk-in coolers and refrigerated display cases. Suction pressure is determined by the evaporator setpoint and load more than by ambient — high ambients raise discharge pressure while suction holds steady as long as the evaporator load is normal."
-  - q: "What's normal R-454C suction pressure for a low-temp freezer?"
-    a: "Much lower than medium-temp — see the low-temp rows of the operating-pressure table above (computed from the CoolProp-verified saturation dataset). The low-temperature setpoint drives the low evaporator pressure, and sub-atmospheric (below-atmospheric) suction is normal for the coldest commercial refrigeration applications, so leak-tightness is critical to prevent air ingress."
-  - q: "How does R-454C glide affect service?"
-    a: "R-454C has ~14°F glide between bubble and dew points at typical operating pressures. Service implications: (1) use dew curve for superheat measurement; (2) use bubble curve for subcooling; (3) TXV systems generally accommodate the glide without adjustment; (4) fixed-orifice systems are not well-matched to high-glide blends — use TXV or EXV equipment with R-454C; (5) leak-induced composition shift (fractionation) is a concern for any zeotropic blend, especially when topping off a leaked system — recover and recharge by weight rather than topping off."
-  - q: "Is R-454C safe to handle?"
-    a: "It's ASHRAE class A2L — mildly flammable with low burning velocity. Safe to handle with A2L procedures: no open flames during service, refrigerant detection where the standard requires it, A2L-listed equipment, charge limits per IEC 60335-2-89. The flammability risk is real but manageable with proper equipment and training. Treating R-454C as if it were A1 (R-404A's class) is a safety-critical error."
-  - q: "Can R-454C replace R-404A in existing equipment?"
-    a: "Generally no — most R-404A equipment is A1-rated and is not approved for A2L refrigerants without OEM evaluation. Equipment built with A2L safety design (A2L-listed equipment, refrigerant detection where the standard requires it, charge limit compliance) is the path forward. For R-404A retrofit of existing A1 equipment, R-448A or R-449A (both A1, GWP ~1390) are the medium-GWP options that keep the safety class consistent."
-  - q: "What lubricant does R-454C use?"
-    a: "Polyolester (POE) oil — same as R-404A. Mineral oil is not compatible. POE oil is hygroscopic; vacuum to 500 microns and filter-drier replacement are standard service practice."
-  - q: "What's the GWP of R-454C?"
-    a: "146, mass-weighted from R-32 (675) at 21.5% and R-1234yf (1) at 78.5%. This is below the EU F-Gas 150-GWP threshold for commercial refrigeration. R-455A has the same GWP (146) with different composition; both are designed to clear the 150-GWP regulatory threshold."
-
-faqs_END: ""
+  - q: "What pressures does R-454C run at in a walk-in freezer?"
+    a: |-
+      About {lt} psig suction at the AHRI −20°F freezer coil temperature, read on
+      the dew curve, with head near {high} psig at 95°F outdoors. Suction is set by
+      the box and holds near this band while the freezer is pulled down; a reading
+      well below it points to an undercharge, a restriction, or a coil needing
+      defrost.
+  - q: "What is R-454C standing pressure?"
+    a: |-
+      A range, not one number — with the system off and equalized R-454C sits across
+      its dew-to-bubble band, about {stand68} psig at 68°F (20°C). The
+      standing-pressure table above gives the band from 65 to 115°F. The wide spread
+      is R-454C's glide.
+  - q: "What is R-454C saturation pressure at 20°C (68°F)?"
+    a: |-
+      About {stand68} psig at 68°F (20°C), given as a dew-to-bubble range because
+      R-454C glides. The lower (dew) end is the saturated-vapor pressure; the higher
+      (bubble) end is the saturated-liquid pressure. Use the dew end when comparing
+      to a suction reading.
+  - q: "What is R-454C discharge pressure?"
+    a: |-
+      About {high} psig at 95°F outdoors, rising on hotter days because the
+      condensing temperature sits above the outdoor air. Head is set by the
+      condenser and ambient, not the box, so it is the same on a cooler or a
+      freezer. Read the head chart above for your outdoor temperature.
+links:
+  - href: "/refrigerant/r-454c/"
+    label: "R-454C pressure–temperature chart"
+  - href: "/superheat-calculator/"
+    label: "Superheat calculator"
+  - href: "/subcooling-calculator/"
+    label: "Subcooling calculator"
+  - href: "/system-pressure-diagnostic-calculator/"
+    label: "Pressure diagnostic tool"
+  - href: "/low-suction-pressure/"
+    label: "Low suction pressure: causes"
+  - href: "/r-454b-vs-r-454c/"
+    label: "R-454B vs R-454C"
 ---

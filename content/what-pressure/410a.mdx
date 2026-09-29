@@ -1,57 +1,124 @@
 ---
+layout: operating
 id: 410a
 refrigerantSlug: r-410a
-title: "What Pressure Should R410A Be?"
-metaTitle: "R410A Operating Pressures: What Should R410A Be? (By Temp)"
-metaDescription: "R410A operating pressure ranges for residential AC by outdoor ambient, computed from the CoolProp-verified saturation dataset, plus a diagnostic procedure and FAQ."
-introOneLiner: "Typical R-410A suction and discharge pressure ranges for residential air conditioning, indexed by outdoor ambient. Pressures roughly 60-65% higher than equivalent R-22 systems; equipment must be rated accordingly."
-pressureModel: residential-ac
-
-operatingRangesSource: "Computed from the CoolProp-verified R-410A PT dataset (dew/bubble saturation via satPressure); see the method note under the table."
-
-operatingRanges:
-  - ambientF: 75
-    application: "Residential AC at 75°F outdoor"
-  - ambientF: 85
-    application: "Residential AC at 85°F outdoor"
-  - ambientF: 95
-    application: "Residential AC at 95°F outdoor (rating condition)"
-  - ambientF: 105
-    application: "Residential AC at 105°F outdoor"
-  - ambientF: 115
-    application: "Residential AC at 115°F outdoor (hot-climate extreme)"
-
-narrativeIntro: |
-  R-410A operates at substantially higher pressures than R-22 — roughly 60% higher across the envelope. Read the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for the actual ranges: suction follows the evaporator setpoint and indoor load, while head tracks ambient and condenser condition. Service equipment, gauges, hoses, and recovery cylinders must be rated for R-410A's higher operating envelope (typically 800 PSI rated equipment).
-
-  The ranges below assume a properly-charged system on a TXV (thermostatic expansion valve) metering device — the dominant configuration for R-410A residential equipment. Fixed-orifice systems show slightly more variability in superheat and subcooling targets; refer to the equipment's charging chart for fixed-orifice values.
-
-diagnosticSteps:
-  - title: "Measure outdoor ambient and indoor return-air temperatures"
-    text: "Record the outdoor dry-bulb temperature near the condenser unit (not in direct sun) and the indoor return-air temperature at the air handler. R-410A residential AC is rated at 95°F outdoor / 80°F indoor dry-bulb (67°F wet-bulb) per AHRI 210/240."
-    tools: ["Outdoor dry-bulb thermometer", "Indoor return-air thermometer"]
-  - title: "Read low-side and high-side pressures (R-410A-rated gauges)"
-    text: "Connect the manifold gauge set to the suction and discharge service ports. R-410A pressures exceed standard R-22 gauge ranges — confirm your manifold is rated 800 PSI on the high side. Let the system run 10–15 minutes under load before recording values."
-    tools: ["R-410A-rated manifold gauge set (800 PSI high-side rating minimum)", "R-410A-rated hoses"]
-  - title: "Compare to expected ranges and identify the deviation"
-    text: "If low-side is below the table: undercharge, liquid-line restriction, or evaporator airflow issue. If low-side is above: overcharge, dirty evaporator coil, or compressor inefficiency. If high-side is above: dirty condenser, restricted condenser airflow, overcharge, or non-condensables. If high-side is below: undercharge, low ambient, or compressor wear."
-  - title: "Verify with superheat and subcooling — TXV systems use subcooling primarily"
-    text: "Pressure readings alone do not pin down the cause. On a TXV system, subcooling is the primary charging metric (target 8–12°F at the condenser outlet). Superheat hovers near the TXV setpoint regardless of charge, so superheat in-range does NOT confirm correct charge on a TXV system. High superheat with low subcooling indicates undercharge; the combined calculator shows the pattern with an interpretation banner."
-    tools: ["Contact or clamp-on temperature probe", "Probe insulation"]
-
+pageKind: residential
+metaTitle: "R-410A Operating Pressures: High & Low Side by Temperature"
+metaDescription: "R-410A operating pressures at 95°F outdoors: about {low} psig low side and {high} psig high side. Chart for 65–115°F plus standing pressure."
+h1: "What Pressure Should R-410A Be?"
+introOneLiner: "R-410A high-side and low-side operating pressures for residential air conditioning, by outdoor temperature, with standing pressure and fault signs."
+intro:
+  - >-
+    You have gauges on a home air conditioner, a number on the dial, and no easy
+    way to place it. R-410A reads far higher than the R-22 systems most rules of
+    thumb were written for, so a perfectly healthy pressure can look alarming.
+  - >-
+    Guess high and you vent refrigerant chasing an overcharge that was never
+    there; guess low and you add refrigerant on top of a full system. Either way
+    you leave the equipment worse than you found it.
+  - >-
+    This page gives the low and high side to expect at each outdoor temperature,
+    the standing pressure with the system off, and how R-410A lines up against
+    R-32 and R-454B — every number computed from the saturation dataset.
+answerBlock: >-
+  **A healthy R-410A system runs about {low} psig on the low side and {high}
+  psig on the high side at 95°F outdoors**, with a 38–45°F indoor coil. The low
+  side barely moves with the weather because it follows the indoor coil; the
+  high side climbs with the outdoor temperature, so read it against the chart
+  below for your ambient.
+sections:
+  - h2: "R-410A high and low side by outdoor temperature"
+    kind: residential-chart
+    body: |-
+      Find your outdoor temperature down the left column. The high side is what
+      tracks the weather; the low side is the number to sanity-check against your
+      indoor coil.
+  - h2: "Suction pressure tracks the indoor load"
+    kind: prose
+    body: |-
+      The low side follows the indoor coil, not the outdoor weather, so on a
+      properly charged system with a 38–45°F coil it sits near {low} psig whether
+      it is 75°F or 105°F outside. A low side well below {low} psig points to weak
+      evaporator airflow, a restriction, or an undercharge; well above {low} psig
+      points to a high indoor load, an overcharge, or a compressor that is not
+      pumping. Confirm with [superheat](/superheat-calculator/) before you touch
+      the charge.
+  - h2: "Standing pressure (system off)"
+    kind: standing
+    mode: bubble
+    body: |-
+      With the system off and the pressures equalized, R-410A settles to the
+      saturation pressure at whatever temperature the coils have reached. This is
+      what you read on a cold start or before recovery.
+  - h2: "Checking the charge with these pressures"
+    kind: prose
+    body: |-
+      Pressure alone does not confirm a charge. On the TXV systems R-410A uses,
+      subcooling is the primary check — measure it with the
+      [subcooling calculator](/subcooling-calculator/) and use
+      [superheat](/superheat-calculator/) as the cross-check. The
+      [pressure diagnostic tool](/system-pressure-diagnostic-calculator/) walks a
+      low-side and high-side reading to the likely cause.
+  - h2: "R-410A vs R-32 vs R-454B at the same conditions"
+    kind: comparison-anchor
+    compareSlugs: ["r-410a", "r-32", "r-454b"]
+    body: |-
+      At the same 95°F condition R-32 runs a little above R-410A and R-454B a
+      little below. R-410A itself is about {cmp_dew_pct} on the low side and
+      {cmp_bub_pct} on the high side versus R-32. The gaps are small, but the
+      three are not interchangeable in a given system.
+  - h2: "Readings that point to a problem"
+    kind: prose
+    body: |-
+      At 95°F outdoors a healthy system shows about {high} psig high side and
+      {low} psig low side. A high side well above {high} psig with a normal low
+      side points to a dirty or blocked condenser, an overcharge, or
+      non-condensables; a low side below {low} psig with high superheat points to
+      an undercharge or a liquid-line restriction; a low side above {low} psig
+      with low superheat points to an overcharge or a failing compressor. Confirm
+      the direction with the calculators before adding or removing refrigerant.
 faqs:
-  - q: "What's the normal operating pressure of R-410A at 95°F outdoor?"
-    a: "Read the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for the 95°F rating condition. Suction runs below the outdoor ambient because the evaporator runs colder than the space it cools and follows the evaporator setpoint and indoor load; discharge runs above ambient because the condenser must reject heat at a saturation temperature higher than the outdoor air, so head tracks ambient and condenser condition."
-  - q: "How does R-410A pressure compare to R-22?"
-    a: "R-410A operates at roughly 60-65% higher pressures than R-22 across the envelope — both suction and discharge sit well above the equivalent R-22 readings at the same ambient (see the operating-pressure table above, computed from the CoolProp-verified saturation dataset). This spread is structural and is why R-22 equipment cannot be retrofitted to R-410A without component replacement."
-  - q: "What gauge rating do I need for R-410A?"
-    a: "Confirm 800 PSI rating on the high-side gauge and hoses. Standard R-22 manifolds rated 500 PSI high-side will read but should not be used at the higher pressures R-410A reaches at hot ambient conditions, where head can approach the manifold's rated limit. R-410A-specific manifolds use 5/16\" SAE service hoses (vs 1/4\" SAE for R-22) — adapters exist but reduce reliability."
-  - q: "Why is R-410A being phased out?"
-    a: "Its Global Warming Potential of 2088 places it above the 700 GWP threshold the AIM Act set for new residential AC equipment as of January 1, 2025. Production of R-410A continues for servicing existing equipment, but new residential AC equipment now uses R-32 (GWP 675), R-454B (GWP 465), or R-452B (GWP 698). Existing R-410A systems remain serviceable indefinitely under current regulations."
-  - q: "What lubricant does R-410A use?"
-    a: "Polyolester (POE) oil. Mineral oil (MO) and alkylbenzene (AB) — standard for R-22 and R-12 — are not miscible with R-410A. POE is hygroscopic; pull vacuum to 500 microns and verify it holds for 30+ minutes before charging."
-  - q: "Why does my high-side pressure keep climbing during operation?"
-    a: "Most likely: condenser airflow problem (dirty coil, blocked fins, restricted condenser-side path, slow fan). Less common: overcharge (verify with subcooling — high subcooling + climbing discharge is the overcharge signal), non-condensables (air or moisture left in the system from inadequate evacuation), or a restricted liquid line causing the condenser to back-fill with liquid. Address airflow first; it's the most common and easiest to verify."
-
-faqs_END: ""
+  - q: "What should R-410A pressures be at 80, 90 and 100°F?"
+    a: |-
+      The low side stays near {low} psig at any outdoor temperature — only the
+      high side moves. The high side runs about {high80} psig at 80°F, {high90}
+      psig at 90°F, and {high100} psig at 100°F outdoors. Read the full chart
+      above for every 5°F step.
+  - q: "Is 400 psi on the high side normal for R-410A?"
+    a: |-
+      It depends on how hot it is outside. Around 100°F outdoors the normal
+      high-side band is about {high100} psig, so 400 sits inside it; on a mild
+      80°F day the band is about {high80} psig, so 400 would be high. Check your
+      outdoor temperature against the chart before calling it a fault — a reading
+      far above the row for your ambient is the real warning sign.
+  - q: "What is R-410A standing pressure?"
+    a: |-
+      With the system off and equalized, R-410A settles to its saturation
+      pressure at the coil temperature — about {stand75} psig near room
+      temperature. The standing-pressure table above gives it from 65 to 115°F. A
+      standing pressure far from the value for the ambient means the charge or the
+      temperature is not what you think.
+  - q: "What should R-410A suction pressure be?"
+    a: |-
+      About {low} psig on a properly charged system with a 38–45°F indoor coil,
+      and it barely changes with the outdoor temperature because it follows the
+      coil. A suction well below {low} psig usually means low evaporator airflow,
+      a restriction, or an undercharge; well above usually means an overcharge or
+      a compressor problem. Check [superheat](/superheat-calculator/) before
+      adjusting.
+links:
+  - href: "/refrigerant/r-410a/"
+    label: "R-410A pressure–temperature chart"
+  - href: "/superheat-calculator/"
+    label: "Superheat calculator"
+  - href: "/subcooling-calculator/"
+    label: "Subcooling calculator"
+  - href: "/system-pressure-diagnostic-calculator/"
+    label: "Pressure diagnostic tool"
+  - href: "/low-suction-pressure/"
+    label: "Low suction pressure: causes"
+  - href: "/r-32-vs-r-410a/"
+    label: "R-32 vs R-410A"
+  - href: "/r-410a-vs-r-454b/"
+    label: "R-410A vs R-454B"
 ---

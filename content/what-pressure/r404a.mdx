@@ -1,70 +1,108 @@
 ---
+layout: operating
 id: r404a
 refrigerantSlug: r-404a
-title: "What Pressure Should R404A Be?"
-metaTitle: "R404A Operating Pressures: What Should R404A Be? (By Temp)"
-metaDescription: "R404A commercial refrigeration operating pressures by evaporator setpoint and ambient, computed from the CoolProp-verified dataset, with diagnostic steps and FAQ."
-introOneLiner: "R-404A operating pressures vary with both the evaporator setpoint (the refrigeration application) and the outdoor ambient. The table below covers the common combinations for medium-temperature and low-temperature commercial refrigeration."
-pressureModel: commercial-refrigeration
-
-operatingRangesSource: "Computed from the CoolProp-verified R-404A PT dataset (dew/bubble saturation via satPressure); see the method note under the table."
-
-operatingRanges:
-  - ambientF: 95
-    evaporatorF: 35
-    application: "Medium-temp display case (35°F evap), 95°F ambient"
-  - ambientF: 95
-    evaporatorF: 25
-    application: "Walk-in cooler (25°F evap), 95°F ambient"
-  - ambientF: 95
-    evaporatorF: 0
-    application: "Walk-in freezer (0°F evap), 95°F ambient"
-  - ambientF: 95
-    evaporatorF: -15
-    application: "Frozen food case (-15°F evap), 95°F ambient"
-  - ambientF: 75
-    evaporatorF: 25
-    application: "Walk-in cooler (25°F evap), 75°F ambient"
-  - ambientF: 75
-    evaporatorF: 0
-    application: "Walk-in freezer (0°F evap), 75°F ambient"
-
-narrativeIntro: |
-  Commercial refrigeration on R-404A differs from residential AC in two ways that affect pressure interpretation. First, the evaporator setpoint varies by application — a walk-in cooler at 25°F has very different suction pressure than a frozen-food case at -15°F. Second, refrigeration cases cycle on and off through their differential band, so steady-state readings need the system to be in the "on" portion of the cycle for at least 10-15 minutes.
-
-  R-404A is a near-azeotropic blend (~1°F glide), so single-curve saturation values are adequate for most service work. Saturation pressure at 70°F: 149 PSIG. Operating pressures depend on evaporator setpoint, ambient, condenser cleanliness, charge, and the system's specific design.
-
-diagnosticSteps:
-  - title: "Identify the evaporator setpoint and verify the case is running"
-    text: "Commercial refrigeration cases run on a temperature differential — typically 3-7°F band between cut-out and cut-in. Read the case thermometer to confirm the unit is in the operating portion of its cycle. The evaporator setpoint determines the expected suction pressure; a 0°F walk-in freezer should NOT show the same suction pressure as a 35°F display case."
-  - title: "Read low-side and high-side pressures at steady state"
-    text: "Let the case run for 10-15 minutes after defrost or door openings. Connect manifold gauges to the suction and discharge service ports — these are typically at the condensing unit (compressor and condenser) rather than at the case itself for centralized systems."
-    tools: ["Manifold gauge set rated for R-404A (500 PSI minimum)", "Service-valve adapters per equipment OEM"]
-  - title: "Compare to expected ranges by evaporator setpoint AND ambient"
-    text: "Use the operating-range table for the closest matching combination. For temperatures between the listed values, interpolate roughly. High discharge with low suction at a typical evaporator setpoint suggests undercharge or restriction. Low discharge with normal suction suggests low ambient or compressor inefficiency."
-  - title: "Verify with superheat and subcooling, account for the small glide"
-    text: "R-404A has ~1°F glide — small enough that bubble vs dew distinction is operationally minor but worth accounting for on precise charge measurements. Use the dew curve for superheat math, bubble for subcooling. Classic patterns: high SH + low SC = undercharge; low SH + high SC = overcharge."
-    tools: ["Contact temperature probe with insulation", "Pipe clamp adapters for commercial refrigeration line sizes"]
-
+pageKind: commercial
+metaTitle: "R-404A Suction & Discharge Pressure: Freezer & Cooler Chart"
+metaDescription: "R-404A suction pressure: about {lt} psig at a −20°F freezer coil and {mt} psig at a 25°F cooler coil; discharge {high} psig at 95°F outdoors."
+h1: "What Pressure Should R-404A Be?"
+introOneLiner: "R-404A suction pressures for walk-in coolers and freezers plus discharge pressure by outdoor temperature, for commercial refrigeration service."
+intro:
+  - >-
+    You are on a commercial refrigeration rack or a walk-in — a cooler or a
+    freezer — with gauges connected and a suction number that only makes sense once
+    you know the box temperature it is holding.
+  - >-
+    Judge freezer suction against cooler numbers and you will call a healthy box
+    low, or miss a real starve; on refrigerated product, a wrong call spoils a
+    load, not just a service call.
+  - >-
+    This page separates suction by application — walk-in cooler versus walk-in
+    freezer, at the AHRI walk-in coil temperatures — and gives discharge by
+    outdoor temperature, all computed from the saturation dataset.
+answerBlock: >-
+  **R-404A suction is about {lt} psig at a −20°F walk-in freezer coil and {mt}
+  psig at a 25°F cooler coil**, with discharge around {high} psig at 95°F
+  outdoors. Suction is set by the box temperature, not the weather; discharge
+  tracks the outdoor air. Match your reading to the application and ambient in the
+  tables below.
+sections:
+  - h2: "R-404A suction pressure: walk-in freezer vs cooler"
+    kind: application-suction
+    body: |-
+      Suction is set by the evaporator coil temperature, which is set by the box.
+      The AHRI 1250-2020 walk-in rating points — a 25°F cooler coil and a −20°F
+      freezer coil — give the two suction bands you check most.
+  - h2: "Discharge (head) pressure by outdoor temperature"
+    kind: commercial-head-chart
+    body: |-
+      Discharge is set by the condenser, which rejects heat above the outdoor air,
+      so it climbs with the ambient — the same on a cooler or a freezer. Find your
+      outdoor temperature down the left column.
+  - h2: "Reading a walk-in freezer: one worked example"
+    kind: prose
+    body: |-
+      Take a −20°F freezer coil at 95°F outdoors. Suction should read about {lt}
+      psig and discharge about {high} psig. To check superheat, look up the dew
+      saturation temperature at your measured suction pressure and subtract it from
+      the suction-line temperature; for subcooling, subtract the liquid-line
+      temperature from the bubble saturation temperature at the discharge pressure.
+      If suction is well below {lt} psig with high superheat, suspect an undercharge,
+      a restriction, or a frosted coil that needs a defrost.
+  - h2: "Superheat checks"
+    kind: prose
+    body: |-
+      R-404A has only a small glide, but still measure superheat on the dew curve
+      and subcooling on the bubble curve. There is no single blanket target —
+      follow the equipment or valve manufacturer's figure for the box and metering
+      device. The [superheat calculator](/superheat-calculator/) and
+      [subcooling calculator](/subcooling-calculator/) do the saturation lookup for
+      you from the measured pressure.
+  - h2: "Readings that point to a problem"
+    kind: prose
+    body: |-
+      On a −20°F freezer at 95°F outdoors, suction near {lt} psig and discharge
+      near {high} psig is healthy. Suction below {lt} psig with high superheat
+      points to an undercharge, a restriction, or a coil needing defrost; suction
+      above the band points to an overcharge, a failing compressor, or a box that
+      is not pulling down. Discharge well above {high} psig points to a dirty
+      condenser or an overcharge. Confirm before adding refrigerant.
 faqs:
-  - q: "What's the normal operating pressure of R-404A?"
-    a: "It depends on the evaporator setpoint and the ambient. Read the row in the operating-pressure table above (computed from the CoolProp-verified saturation dataset) that matches your evaporator setpoint and outdoor ambient. As a rule of thumb: suction follows the evaporator setpoint and load, so a 0°F walk-in freezer sits far lower than a 35°F display case; head pressure tracks ambient and condenser condition rather than the case setpoint."
-
-  - q: "Why is R-404A being phased out?"
-    a: "Its GWP of 3922 is one of the highest of common HFC refrigerants, above every 40 CFR 84.54 limit. Under the AIM Act, new R-404A commercial refrigeration is restricted by subsector and date — for example refrigerated transport from January 1, 2025 (84.54(a)(7)/(c)(8)), remote condensing units from July 27, 2026 (84.54(c)(11)(i), GWP ≥1,400), and supermarket systems from January 1, 2027 (84.54(c)(12)(i)). Servicing existing equipment remains legal (installation is defined in 84.54(e)). Replacement options: R-448A, R-449A (medium-GWP A1), R-454C, R-455A (low-GWP A2L), R-744 (CO2 transcritical), R-290 (propane, charge-limited)."
-
-  - q: "What does it mean if my low-side pressure goes into a vacuum?"
-    a: "On a properly-charged R-404A low-temperature system you should never see vacuum on the low side — even at a −20°F evaporator the R-404A dew saturation is about 16 PSIG — positive, never a vacuum. Vacuum on suction means severe undercharge, severe restriction (filter-drier clogged), or evaporator coil is frosted over and not transferring heat. Stop and diagnose — operating the compressor with vacuum suction risks motor burnout from inadequate refrigerant return for cooling."
-
-  - q: "What lubricant does R-404A use?"
-    a: "Polyolester (POE) oil. Mineral oil and alkylbenzene are not miscible with R-404A. POE is hygroscopic; vacuum integrity matters. Some 1990s R-502 retrofits used 'soft conversion' POE flushes; modern systems use POE from new."
-
-  - q: "Why is my walk-in freezer running poorly with normal-looking R-404A pressures?"
-    a: "Several non-pressure causes are common. Door gasket failure (constant infiltration load); evaporator coil iced over (defrost system failure); evaporator fan failure or restriction (air-side delta T too high); condenser airflow restriction not yet severe enough to spike discharge. The pressures may look normal because the system is meeting its load through extended runtime rather than capacity per cycle. Check runtime fraction and case temperature stability."
-
-  - q: "Can I retrofit my R-404A system to a lower-GWP refrigerant?"
-    a: "Yes — R-448A (Solstice N40) and R-449A (Opteon XP40) are the primary A1 retrofit blends for R-404A. Both have GWP ~1390 vs R-404A's 3922. Procedure: recover R-404A; verify POE oil (R-404A systems should already be on POE); replace filter-drier; pull vacuum; charge by weight per the new refrigerant's procedure. Glide handling requires attention — R-448A and R-449A both have ~5-6°F glide; retune TXV per manufacturer guidance."
-
-  - q: "What's the saturation pressure of R-404A at 70°F?"
-    a: "149.3 PSIG bubble / 147.4 PSIG dew (~2 PSI glide). For most service work the small glide can be ignored and the saturation treated as ~148 PSIG at 70°F. The full PT chart in the dataset goes from -40°F to 150°F at 1°F increments."
+  - q: "What should R-404A suction pressure be on a walk-in freezer?"
+    a: |-
+      About {lt} psig at the AHRI −20°F freezer coil temperature. Suction is set by
+      the box, not the weather, so it holds near this band while the freezer is
+      pulled down. A suction well below {lt} psig usually means an undercharge, a
+      restriction, or a coil that needs defrost.
+  - q: "What should R-404A pressures be on a walk-in cooler?"
+    a: |-
+      Suction about {mt} psig at the AHRI 25°F cooler coil temperature, with
+      discharge around {high} psig at 95°F outdoors. Cooler suction runs well above
+      freezer suction because the box is warmer; match your reading to the
+      application, not to a single number.
+  - q: "What is normal R-404A discharge pressure?"
+    a: |-
+      About {high} psig at 95°F outdoors, rising on hotter days because the
+      condensing temperature sits above the outdoor air. It is the same on a cooler
+      or a freezer — discharge is set by the condenser and ambient, not the box.
+      Read the discharge chart above for your outdoor temperature.
+  - q: "What is R-404A running pressure at 95°F outdoors?"
+    a: |-
+      Discharge about {high} psig at 95°F outdoors; suction depends on the box —
+      about {mt} psig on a 25°F cooler coil and {lt} psig on a −20°F freezer coil.
+      Always pair the suction reading with the application temperature before
+      judging it.
+links:
+  - href: "/refrigerant/r-404a/"
+    label: "R-404A pressure–temperature chart"
+  - href: "/superheat-calculator/"
+    label: "Superheat calculator"
+  - href: "/subcooling-calculator/"
+    label: "Subcooling calculator"
+  - href: "/system-pressure-diagnostic-calculator/"
+    label: "Pressure diagnostic tool"
+  - href: "/low-suction-pressure/"
+    label: "Low suction pressure: causes"
+  - href: "/r-404a-vs-r-449a/"
+    label: "R-404A vs R-449A"
 ---

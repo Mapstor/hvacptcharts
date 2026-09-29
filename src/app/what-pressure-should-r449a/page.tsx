@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { WhatPressurePage, buildWhatPressureMetadata } from "@/components/whatpressure/WhatPressurePage";
+import { OperatingPressurePage, buildOperatingMetadata } from "@/components/whatpressure/OperatingPressurePage";
 
 const ID = "r449a";
 
-export const metadata: Metadata = buildWhatPressureMetadata(ID);
+export const metadata: Metadata = buildOperatingMetadata(ID);
 
 export default function Page() {
-  return <WhatPressurePage id={ID} />;
+  return <OperatingPressurePage id={ID} />;
 }

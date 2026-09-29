@@ -1,63 +1,105 @@
 ---
+layout: operating
 id: r454b
 refrigerantSlug: r-454b
-title: "What Pressure Should R454B Be?"
-metaTitle: "R454B Operating Pressures: What Should R454B Be? (By Temp)"
-metaDescription: "R454B A2L residential AC operating pressures by outdoor temperature, computed from the CoolProp-verified dataset, plus a diagnostic procedure and FAQ."
-introOneLiner: "R-454B operating pressures are close to R-410A — the bubble point runs about 5% below R-410A and the dew point about 9–10% below (R-454B is a zeotropic blend with glide). The substantive operational difference is the A2L safety class (mildly flammable). Service equipment rated for R-410A is pressure-appropriate for R-454B."
-regulatoryNote: "R-454B is 68.9% R-32 by mass; R-32 is an HFC regulated under the AIM Act, so R-454B supply falls under the HFC allowance phasedown."
-pressureModel: residential-ac
-
-operatingRangesSource: "Computed from the CoolProp-verified R-454B PT dataset (dew/bubble saturation via satPressure); see the method note under the table."
-
-operatingRanges:
-  - ambientF: 75
-    application: "Residential AC at 75°F outdoor"
-  - ambientF: 85
-    application: "Residential AC at 85°F outdoor"
-  - ambientF: 95
-    application: "Residential AC at 95°F outdoor (rating condition)"
-  - ambientF: 105
-    application: "Residential AC at 105°F outdoor"
-
-narrativeIntro: |
-  R-454B and R-410A operate at very similar pressures — the blend was specifically engineered for this near-equivalence to simplify the OEM transition from R-410A residential AC. Across the typical ambient range, R-454B bubble-point pressures run about 5% below R-410A's and dew-point pressures about 9–10% below (the wider dew-side gap reflects R-454B's glide).
-
-  The substantive difference is the A2L safety class. R-454B is mildly flammable; R-410A is non-flammable. A2L handling requires charge limits per UL 60335-2-40, refrigerant detection where the standard requires it, no open flames in the service environment, and A2L-rated recovery cylinders. Treating R-454B as if it were R-410A from a safety standpoint is a structural error.
-
-diagnosticSteps:
-  - title: "Confirm A2L procedures before opening the system"
-    text: "Before disconnecting any service connection or recovering refrigerant, verify the environment is suitable for A2L work: no open flames within the service area (brazing or torch work requires the system to be evacuated first); A2L-rated recovery cylinder available; leak detector calibrated for A2L hydrofluoroolefins. Most A2L service incidents trace back to skipping these confirmation steps."
-    tools: ["A2L-rated recovery cylinder", "A2L-calibrated leak detector", "Ventilation if working indoors"]
-  - title: "Measure outdoor ambient and indoor return-air temperatures"
-    text: "Record outdoor dry-bulb at the condenser unit (not in direct sun) and indoor return-air dry-bulb at the air handler. Rating conditions are 95°F outdoor / 80°F indoor dry-bulb per AHRI 210/240 — same as R-410A and R-32 residential AC."
-    tools: ["Outdoor dry-bulb thermometer", "Indoor return-air thermometer"]
-  - title: "Read low-side and high-side pressures"
-    text: "Connect manifold gauges to suction and discharge service ports. R-410A-rated 800 PSI manifolds are appropriate for R-454B from a pressure standpoint. Let the system run 10-15 minutes under load before recording values. Compare to the table above for the relevant outdoor ambient."
-    tools: ["R-410A-rated manifold gauge set (800 PSI high-side rating minimum)"]
-  - title: "Verify with superheat and subcooling — TXV systems use subcooling primarily"
-    text: "R-454B residential AC is typically TXV or EXV; subcooling at the condenser outlet is the primary charging metric on these systems. Superheat hovers near the metering device setpoint regardless of charge — in-range superheat does NOT confirm correct charge on a TXV system. The combined PT/SH/SC calculator handles the math with diagnostic interpretation."
-    tools: ["Contact temperature probe with insulation"]
-
+pageKind: residential
+metaTitle: "R-454B Operating Pressures: Normal High & Low Side Chart"
+metaDescription: "R-454B operating pressures at 95°F outdoors: about {low} psig low side and {high} psig high side. Chart for 65–115°F, side by side with R-410A."
+h1: "What Pressure Should R-454B Be?"
+introOneLiner: "R-454B low-side and high-side operating pressures by outdoor temperature, side by side with R-410A, with standing pressure."
+intro:
+  - >-
+    You are on an R-454B system — one of the A2L refrigerants now replacing
+    R-410A in new equipment — with gauges connected and a reading to judge.
+    R-454B runs close to R-410A, which is exactly why a small offset can confuse.
+  - >-
+    Read it against R-410A memory and you may add or remove refrigerant chasing a
+    difference that is just the fluid. On an A2L system you also do not want to
+    open the circuit unless you have to.
+  - >-
+    This page gives the low and high side to expect at each outdoor temperature,
+    the same numbers laid next to R-410A, and the standing pressure with the
+    system off — all computed from the saturation dataset.
+answerBlock: >-
+  **R-454B runs about {low} psig on the low side and {high} psig on the high
+  side** at 95°F outdoors, with a 38–45°F indoor coil. It sits a little below
+  R-410A on both sides. The low side follows the indoor coil and barely moves with
+  the weather; the high side climbs with the outdoor temperature.
+sections:
+  - h2: "R-454B normal operating pressures"
+    kind: residential-chart
+    body: |-
+      Find the outdoor temperature down the left column. The low side follows the
+      indoor coil; the high side is what tracks the weather.
+  - h2: "R-454B vs R-410A running pressures, 65–115°F"
+    kind: comparison-chart
+    compareSlug: r-410a
+    body: |-
+      R-454B reads a little below R-410A at every outdoor temperature — about
+      {cmp_dew_pct} on the low side and {cmp_bub_pct} on the high side at the 95°F
+      condition. The offset is small and consistent, which is why R-410A-rated
+      gauges and tools are appropriate for R-454B.
+  - h2: "Suction pressure and R-454B's small glide (read dew for suction)"
+    kind: prose
+    body: |-
+      R-454B is a zeotropic blend with a small glide, so suction is read on the
+      dew curve — that is the number on this page and the one to use for superheat.
+      On a properly charged system with a 38–45°F coil the low side holds near
+      {low} psig regardless of the weather. Below {low} psig points to weak
+      airflow, a restriction, or an undercharge; above it points to an overcharge
+      or a compressor problem. Use the [superheat calculator](/superheat-calculator/)
+      on the dew value.
+  - h2: "Standing pressure"
+    kind: standing
+    mode: range
+    body: |-
+      With the system off and equalized, R-454B settles across its dew-to-bubble
+      range at the coil temperature. The small spread is the glide; read the dew
+      end for a suction comparison.
+  - h2: "Checking the charge"
+    kind: prose
+    body: |-
+      Pressure alone does not confirm a charge. On the TXV systems R-454B uses,
+      subcooling is the primary check — measure it with the
+      [subcooling calculator](/subcooling-calculator/) and use
+      [superheat](/superheat-calculator/) on the dew value as the cross-check. The
+      [pressure diagnostic tool](/system-pressure-diagnostic-calculator/) turns a
+      low/high reading into a likely cause.
 faqs:
-  - q: "What's the normal operating pressure of R-454B at 95°F outdoor?"
-    a: "Use the operating-pressure table above (computed from the CoolProp-verified saturation dataset) and read the 95°F outdoor row. Suction follows the evaporator setpoint and load; head tracks the outdoor ambient and condenser condition. R-454B runs very close to R-410A across the envelope, and its small temperature glide means the dew and bubble saturation values differ only slightly."
-
-  - q: "Can I use my R-410A gauges and recovery equipment for R-454B?"
-    a: "Pressure ratings: yes. R-410A manifolds rated 800 PSI are pressure-appropriate for R-454B. Recovery cylinders: NO — must use A2L-rated cylinders. Recovery machines: only if specifically A2L-certified by the manufacturer; check the equipment marking. Hoses: must be rated for working pressure and resistant to refrigerant permeation; R-410A hoses generally work."
-
-  - q: "How does R-454B compare to R-32?"
-    a: "Both are A2L; both are POE-compatible; both are R-410A replacements. R-32 is pure (no glide, GWP 675). R-454B is a near-azeotrope (~2.3°F glide, GWP 465). The OEM split: Carrier favors R-454B (Puron Advance brand continuity); some other manufacturers favor R-32. Operating pressures and service procedures are very similar between the two."
-
-  - q: "Why is R-410A being replaced by R-454B?"
-    a: "GWP. R-454B's 465 is below the 40 CFR 84.54(a)(1)/(c)(1) 700-GWP limit for new residential and light-commercial AC and heat pumps (effective January 1, 2025); R-410A's 2088 is not. R-454B operates at very similar pressures so the equipment design transition from R-410A is straightforward — the substantive change is A2L safety equipment and procedures."
-
-  - q: "What lubricant does R-454B use?"
-    a: "Polyolester (POE) oil — the same as R-410A. Mineral oil and alkylbenzene are not miscible. POE is hygroscopic; pull vacuum to 500 microns and verify it holds for 30+ minutes before charging."
-
-  - q: "What does the A2L safety class mean for installers?"
-    a: "Charge limits per UL 60335-2-40 depend on the refrigerant's LFL and the room size/volume; larger systems require A2L-compliant equipment design with sealed circuits and leak detection. No open flames during service — brazing requires evacuation first. A2L-rated recovery cylinders. Technician training specific to A2L handling beyond standard EPA Section 608."
-
-  - q: "Can I retrofit my R-410A system to R-454B?"
-    a: "Not as a drop-in despite the very close pressure envelope. R-410A (A1) equipment lacks the A2L safety features required for R-454B operation: A2L-rated compressor electrical, integrated leak detection, charge limits per UL 60335-2-40. Retrofit in practice means replacing the compressor and safety systems — at which point full equipment replacement with new R-454B equipment is the standard path."
+  - q: "What pressures does R-454B run at?"
+    a: |-
+      About {low} psig on the low side and {high} psig on the high side at 95°F
+      outdoors with a 38–45°F indoor coil. The low side follows the indoor coil
+      and barely moves with the weather; the high side climbs with the outdoor
+      temperature. Read the chart above for your ambient.
+  - q: "Does R-454B run at lower pressure than R-410A?"
+    a: |-
+      Slightly, yes. At the 95°F condition R-454B is about {cmp_dew_pct} on the
+      low side and {cmp_bub_pct} on the high side versus R-410A. The gap is small
+      and consistent across the outdoor range, so R-410A-rated gauges, hoses, and
+      recovery equipment are appropriate for R-454B.
+  - q: "What is the R-454B low side at 100°F outdoors?"
+    a: |-
+      The low side follows the indoor coil, so it stays near {low} psig whether it
+      is 100°F outside or milder — it is the high side that climbs, to about
+      {high100} psig at 100°F outdoors. A low side far from {low} psig points to an
+      airflow, charge, or restriction problem rather than the weather.
+  - q: "What is R-454B standing pressure?"
+    a: |-
+      With the system off and equalized, R-454B sits across a narrow dew-to-bubble
+      range — about {stand75} psig near room temperature. The standing-pressure
+      table above gives it from 65 to 115°F. The small spread is the blend's glide.
+links:
+  - href: "/refrigerant/r-454b/"
+    label: "R-454B pressure–temperature chart"
+  - href: "/superheat-calculator/"
+    label: "Superheat calculator"
+  - href: "/subcooling-calculator/"
+    label: "Subcooling calculator"
+  - href: "/system-pressure-diagnostic-calculator/"
+    label: "Pressure diagnostic tool"
+  - href: "/r-410a-vs-r-454b/"
+    label: "R-410A vs R-454B"
+  - href: "/r-32-vs-r-454b/"
+    label: "R-32 vs R-454B"
 ---

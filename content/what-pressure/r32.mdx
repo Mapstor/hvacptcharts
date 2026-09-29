@@ -1,57 +1,105 @@
 ---
+layout: operating
 id: r32
 refrigerantSlug: r-32
-title: "What Pressure Should R32 Be?"
-metaTitle: "R32 Operating Pressures: What Should R32 Be? (By Temp)"
-metaDescription: "R32 A2L residential AC operating pressure ranges by outdoor temperature, computed from the CoolProp-verified dataset. Diagnostic procedure, A2L handling, FAQ."
-introOneLiner: "Typical R-32 suction and discharge pressure ranges for residential AC, with A2L handling notes. Pressures slightly higher than R-410A; safety class is A2L (mildly flammable) rather than A1."
-pressureModel: residential-ac
-
-operatingRangesSource: "Computed from the CoolProp-verified R-32 PT dataset (dew/bubble saturation via satPressure); see the method note under the table."
-
-operatingRanges:
-  - ambientF: 75
-    application: "Residential AC at 75°F outdoor"
-  - ambientF: 85
-    application: "Residential AC at 85°F outdoor"
-  - ambientF: 95
-    application: "Residential AC at 95°F outdoor (rating condition)"
-  - ambientF: 105
-    application: "Residential AC at 105°F outdoor"
-  - ambientF: 115
-    application: "Residential AC at 115°F outdoor (hot-climate extreme)"
-
-narrativeIntro: |
-  R-32 operates at pressures slightly higher than R-410A — about 2% across the envelope. See the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for the ranges; the small R-32/R-410A saturation difference carries through them. Service equipment rated for R-410A (800 PSI high-side) is equally appropriate for R-32 from a pressure-rating standpoint.
-
-  The substantive operational difference is the A2L safety class. R-32 is mildly flammable (low burning velocity, ≤ 10 cm/s) where R-410A is non-flammable (A1). This is materially different from R-410A handling — A2L charge limits per UL 60335-2-40, refrigerant detection where the standard requires it, and A2L-rated recovery cylinders apply; A2L-specific technician training is recommended. Treating R-32 as if it were R-410A from a safety standpoint is a structural error.
-
-diagnosticSteps:
-  - title: "Measure outdoor ambient and indoor return-air temperatures"
-    text: "Same procedure as R-410A — record outdoor dry-bulb at the condenser unit (not in direct sun) and indoor return-air dry-bulb at the air handler. Rating conditions are 95°F outdoor / 80°F indoor dry-bulb per AHRI 210/240."
-    tools: ["Outdoor dry-bulb thermometer", "Indoor return-air thermometer"]
-  - title: "Read low-side and high-side pressures"
-    text: "Connect the manifold gauge set to the suction and discharge service ports. R-32-rated gauges are appropriate; R-410A-rated 800 PSI gauges work for R-32 from a pressure standpoint. Let the system run 10–15 minutes under load before recording. Confirm no open flames in the area before disconnecting hoses — A2L procedures."
-    tools: ["R-32 or R-410A-rated manifold gauge set (800 PSI minimum)", "No-flame work environment"]
-  - title: "Compare to expected ranges and identify the deviation"
-    text: "Same diagnostic patterns as R-22 and R-410A: low low-side suggests undercharge or restriction; high low-side suggests overcharge or compressor issue; high high-side suggests dirty condenser or restricted airflow; low high-side suggests undercharge or low ambient. Use the operating range table above for the specific outdoor ambient."
-  - title: "Verify with superheat and subcooling — TXV/EXV systems use subcooling primarily"
-    text: "Same TXV-vs-fixed-orifice logic as R-410A. R-32 systems are typically TXV or EXV; subcooling is the primary charging metric (measured at the condenser outlet against the equipment's target). Superheat hovers near the metering device setpoint; in-range superheat does not confirm correct charge on a TXV system. The combined PT/SH/SC calculator shows both with an interpretation banner."
-    tools: ["Contact or clamp-on temperature probe", "Probe insulation"]
-
+pageKind: residential
+metaTitle: "R-32 Running Pressure: Normal Operating Pressures (Cooling)"
+metaDescription: "R-32 running pressure in cooling: about {low} psig suction and {high} psig high side at 95°F (35°C) outdoors. Chart for 65–115°F in psig and kPa."
+h1: "What Pressure Should R-32 Be?"
+introOneLiner: "R-32 running pressures in cooling by outdoor temperature, in psig and kPa, with standing pressure and how it compares to R-410A."
+intro:
+  - >-
+    You are on an R-32 system — a newer split A/C or heat pump — with gauges
+    connected and a suction and high-side number to judge. R-32 reads a little
+    higher than the R-410A it replaces, so the familiar targets do not quite fit.
+  - >-
+    Read it wrong and you chase a charge that was never off, or miss airflow and
+    condenser faults that a correct baseline would have caught. On an A2L system
+    that also means opening the circuit you did not need to open.
+  - >-
+    This page gives the suction and high side to expect at each outdoor
+    temperature in psig and kPa, the standing pressure at room temperature, and
+    how R-32 lines up against R-410A — all from the saturation dataset.
+answerBlock: >-
+  **R-32 runs about {low} psig suction and {high} psig on the high side** at 95°F
+  (35°C) outdoors, with a 38–45°F indoor coil. Suction follows the indoor coil
+  and barely moves with the weather; the high side climbs with the outdoor
+  temperature. R-32 sits a little above R-410A at the same conditions, so read
+  the chart below for your ambient.
+sections:
+  - h2: "R-32 running pressure in cooling"
+    kind: residential-chart
+    body: |-
+      Find the outdoor temperature down the left column. Every pressure is shown
+      in psig with the kPa(gauge) equivalent beneath it.
+  - h2: "R-32 suction pressure"
+    kind: prose
+    body: |-
+      Suction follows the indoor coil, not the outdoor weather, so on a properly
+      charged R-32 system with a 38–45°F coil it stays near {low} psig across the
+      season. Below {low} psig points to weak evaporator airflow, a restriction,
+      or an undercharge; above {low} psig points to a high indoor load, an
+      overcharge, or a compressor that is not pumping. Confirm with
+      [superheat](/superheat-calculator/) before touching the charge.
+  - h2: "High-side pressure as the outdoor temperature climbs"
+    kind: prose
+    body: |-
+      The high side tracks the outdoor air because the condenser rejects heat
+      above ambient — about {high} psig at 95°F and higher on a hotter day. A high
+      side well above the chart row for your ambient points to a dirty or blocked
+      condenser, an overcharge, or non-condensables. Because R-32 has a higher
+      discharge temperature than R-410A, keep condenser airflow clean.
+  - h2: "Standing pressure at room temperature"
+    kind: standing
+    mode: sat
+    extraTempsF: [68, 86]
+    body: |-
+      With the system off and equalized, R-32 settles to its saturation pressure
+      at the coil temperature. The 68°F (20°C) and 86°F (30°C) rows are the common
+      room-temperature checkpoints.
+  - h2: "R-32 vs R-410A pressures"
+    kind: comparison-anchor
+    compareSlugs: ["r-32", "r-410a"]
+    body: |-
+      At the same 95°F condition R-32 runs about {cmp_dew_pct} on the low side and
+      {cmp_bub_pct} on the high side versus R-410A. The gap is small, but the two
+      are not interchangeable and R-32 is A2L (mildly flammable) where R-410A is
+      A1.
 faqs:
-  - q: "What's the normal operating pressure of R-32 at 95°F outdoor?"
-    a: "Use the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for the ranges at the 95°F rating condition. Suction follows the evaporator setpoint and load while head tracks ambient and condenser condition, so a properly-charged system reads on either side of the saturation pressure — the evaporator runs colder than ambient and the condenser runs hotter."
-  - q: "How does R-32 pressure compare to R-410A?"
-    a: "Very similar — about 2% higher across the envelope. Compare the operating-pressure table above (computed from the CoolProp-verified saturation dataset) with the R-410A ranges: R-32 suction and discharge both sit slightly above R-410A at the same outdoor condition. Service equipment rated for R-410A is appropriate for R-32 pressure-wise. The substantive difference is the A2L safety class, not the operating pressures."
-  - q: "Is R-32 flammable?"
-    a: "Yes — R-32 is ASHRAE class A2L, mildly flammable with a low burning velocity (≤ 10 cm/s) and a heat of combustion below 19,000 kJ/kg. It will propagate flame in air at standard atmospheric pressure and 60°C, but the low burning velocity limits the explosion hazard. A2L equipment design, charge limits, refrigerant detection where the standard requires it, and service procedures apply per UL 60335-2-40 and ASHRAE 15. Treating R-32 like A1 R-410A is a safety-critical error."
-  - q: "What gauges and recovery equipment do I need for R-32?"
-    a: "R-410A-rated 800 PSI manifolds work for R-32 pressure-wise. Recovery cylinders must be rated for A2L. A2L-specific recovery machines exist; R-410A recovery machines can be used for A2L only if specifically certified by the manufacturer — check the equipment marking. Hoses must be rated for the working pressure and resistant to refrigerant permeation."
-  - q: "Why is R-32 replacing R-410A?"
-    a: "Two reasons. First, GWP: R-32 at 675 falls below the AIM Act 700 threshold for new residential AC equipment; R-410A at 2088 does not. Second, capacity: R-32 has higher volumetric refrigerating capacity than R-410A, allowing roughly 10–15% smaller charge for the same cooling capacity in optimized designs. R-454B (GWP 465) is a parallel A2L choice with very similar pressure characteristics."
-  - q: "What lubricant does R-32 use?"
-    a: "Polyolester (POE) oil — the same as R-410A. Mineral oil and alkylbenzene are not miscible with R-32 and must not be used. POE is hygroscopic; pull vacuum to 500 microns and verify it holds for 30+ minutes before charging."
-
-faqs_END: ""
+  - q: "What pressure should R-32 run at in cooling?"
+    a: |-
+      About {low} psig suction and {high} psig on the high side at 95°F (35°C)
+      outdoors with a 38–45°F indoor coil. Suction stays near {low} psig across
+      the weather because it follows the coil; the high side is what climbs with
+      the outdoor temperature. Read the chart above for your ambient.
+  - q: "What is R-32 suction pressure in bar?"
+    a: |-
+      About {low_bar} bar(gauge) at 95°F outdoors — the same band as {low} psig
+      or {low_kpa} kPa(gauge). Suction is set by the indoor coil, so it holds near
+      this range regardless of the outdoor temperature.
+  - q: "What is R-32 standing pressure at 20°C and 30°C?"
+    a: |-
+      About {stand68} psig at 68°F (20°C) and {stand86} psig at 86°F (30°C) with
+      the system off and equalized. R-32 is a single-component refrigerant, so
+      standing pressure is just its saturation pressure at the coil temperature;
+      the table above gives it from 65 to 115°F.
+  - q: "What is R-32 high-side pressure at 35°C (95°F)?"
+    a: |-
+      About {high} psig at 95°F (35°C) outdoors on a healthy system. It rises to
+      roughly {high100} psig near 100°F and falls on cooler days, because the
+      condensing temperature sits above the outdoor air. Compare your reading to
+      the chart row for your ambient.
+links:
+  - href: "/refrigerant/r-32/"
+    label: "R-32 pressure–temperature chart"
+  - href: "/superheat-calculator/"
+    label: "Superheat calculator"
+  - href: "/subcooling-calculator/"
+    label: "Subcooling calculator"
+  - href: "/system-pressure-diagnostic-calculator/"
+    label: "Pressure diagnostic tool"
+  - href: "/r-32-vs-r-410a/"
+    label: "R-32 vs R-410A"
+  - href: "/r-32-vs-r-454b/"
+    label: "R-32 vs R-454B"
 ---

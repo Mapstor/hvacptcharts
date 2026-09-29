@@ -1,58 +1,128 @@
 ---
+layout: operating
 id: r22
 refrigerantSlug: r-22
-title: "What Pressure Should R22 Be?"
-metaTitle: "R22 Operating Pressures: What Should R22 Be? (By Temp)"
-metaDescription: "R22 operating pressures for residential AC by outdoor temperature, computed from the CoolProp-verified dataset, with a step-by-step diagnostic procedure and FAQ."
-introOneLiner: "Typical R-22 suction and discharge pressure ranges for residential air conditioning, indexed by outdoor ambient. Includes a four-step diagnostic procedure and the saturation-vs-operating distinction explained."
-regulatoryNote: "US production and import of R-22 ended on January 1, 2020; service now depends on reclaimed, recycled or stockpiled R-22."
-pressureModel: residential-ac
-
-operatingRangesSource: "Computed from the CoolProp-verified R-22 PT dataset (dew/bubble saturation via satPressure); see the method note under the table."
-
-operatingRanges:
-  - ambientF: 75
-    application: "Residential AC at 75°F outdoor, 75°F indoor return"
-  - ambientF: 85
-    application: "Residential AC at 85°F outdoor"
-  - ambientF: 95
-    application: "Residential AC at 95°F outdoor (rating condition)"
-  - ambientF: 105
-    application: "Residential AC at 105°F outdoor"
-  - ambientF: 115
-    application: "Residential AC at 115°F outdoor (hot-climate extreme)"
-
-narrativeIntro: |
-  R-22 systems run at meaningfully lower pressures than R-410A or R-32 systems on both the suction and discharge sides. That difference is structural: R-22 has a lower vapor pressure at every temperature. It is also why R-22 system components are not rated for the higher pressures of HFC systems, and why direct retrofits between the families are not feasible without component replacement. For the actual values, consult the operating-pressure table above (computed from the CoolProp-verified saturation dataset).
-
-  The ranges in the operating-pressure table above assume a properly-charged system in normal operating condition with adequate indoor airflow (typically 400 CFM/ton). Suction follows the evaporator setpoint and load, while head tracks ambient and condenser condition. Pressures outside the expected range suggest charge, airflow, or component issues — the diagnostic procedure below walks through how to interpret them.
-
-diagnosticSteps:
-  - title: "Measure outdoor ambient and indoor return-air temperatures"
-    text: "Record the outdoor dry-bulb temperature near the condenser unit (not in direct sun) and the indoor return-air temperature at the air handler. These set the expected operating range. R-22 residential AC is rated at 95°F outdoor / 80°F indoor dry-bulb (67°F wet-bulb) per AHRI standard 210/240."
-    tools: ["Outdoor dry-bulb thermometer", "Indoor return-air dry-bulb thermometer"]
-  - title: "Read low-side (suction) and high-side (discharge) pressures"
-    text: "Connect the manifold gauge set to the suction and discharge service ports. Let the system run for 10–15 minutes under load before recording values — pressures stabilize after the system finds equilibrium with the load. Compare against the operating-range table above for your outdoor ambient."
-    tools: ["Refrigerant manifold gauge set rated for R-22 (500 PSI minimum)", "Service-valve adapter if needed"]
-  - title: "Compare to expected ranges and identify the deviation"
-    text: "If low-side is below normal range: suspect undercharge, restriction in the liquid line (filter-drier), or low evaporator airflow. If low-side is above normal: suspect overcharge, dirty evaporator coil, or compressor inefficiency. If high-side is above normal: overcharge, dirty condenser coil, restricted condenser airflow, or non-condensable contamination. If high-side is below normal: undercharge, low ambient, or compressor wear."
-  - title: "Verify with superheat and subcooling"
-    text: "Pressure readings alone do not diagnose the cause. Measure superheat at the suction line and subcooling at the liquid line. Classic patterns: high superheat + low subcooling = undercharge; low superheat + high subcooling = overcharge; both abnormal in the same direction = airflow or metering device issue. The /superheat-calculator/ and /subcooling-calculator/ pages walk through the math; the combined calculator shows both with an interpretation banner."
-    tools: ["Contact or clamp-on temperature probe (+/-1°F)", "Probe insulation"]
-
+pageKind: residential
+metaTitle: "R-22 Operating Pressures: Running, Suction & Discharge PSI"
+metaDescription: "Normal R-22 running pressures at 95°F outdoors: about {low} psig suction and {high} psig discharge. Chart for 65–115°F, standing pressure and fault signs."
+h1: "What Pressure Should R-22 Be?"
+introOneLiner: "Normal R-22 running pressures for residential air conditioning by outdoor temperature, with standing pressure and the readings that signal a fault."
+intro:
+  - >-
+    You have gauges on an older home air conditioner and a suction and discharge
+    number you cannot quite place. Most R-22 charts float free of the one thing
+    that actually sets the readings: how hot it is outside.
+  - >-
+    Call a normal reading a fault and you start removing or adding refrigerant
+    that was fine; miss a real fault and the compressor pays for it. Either
+    mistake is expensive on a system you can no longer top off casually.
+  - >-
+    This page gives the suction and discharge to expect at each outdoor
+    temperature, the standing pressure with the system off, and the direction a
+    reading points when it is wrong — every number computed from the saturation
+    dataset.
+answerBlock: >-
+  **A healthy R-22 system runs about {low} psig suction and {high} psig
+  discharge** at 95°F outdoors, with a 38–45°F indoor coil. Suction follows the
+  indoor coil and hardly moves with the weather; discharge climbs with the
+  outdoor temperature. Read the chart below for your ambient before deciding a
+  reading is high or low.
+sections:
+  - h2: "R-22 running pressures by outdoor temperature"
+    kind: residential-chart
+    body: |-
+      Find the outdoor temperature down the left column. Suction is the number to
+      check against your indoor coil; discharge is what should track the weather.
+  - h2: "R-22 discharge (head) pressure: what pushes it up"
+    kind: prose
+    body: |-
+      Discharge climbs with the outdoor temperature because the condenser has to
+      reject heat at a saturation temperature above the outside air — about {high}
+      psig at 95°F and higher on a hotter day. A discharge well above the row for
+      your ambient almost always means a condenser problem first: a dirty coil,
+      blocked airflow, or a slow fan. Overcharge and non-condensables (air left in
+      after a poor evacuation) come next. Address airflow before you touch the
+      charge.
+  - h2: "R-22 suction pressure follows the indoor coil, not the weather"
+    kind: prose
+    body: |-
+      Suction is set by the indoor coil, so on a properly charged system it stays
+      near {low} psig whether it is 75°F or 105°F outside. A suction below {low}
+      psig points to weak evaporator airflow, a restriction, or an undercharge; a
+      suction above {low} psig points to a high indoor load, an overcharge, or a
+      compressor that is not pumping. Confirm with
+      [superheat](/superheat-calculator/) before adjusting anything.
+  - h2: "Standing pressure with the system off"
+    kind: standing
+    mode: sat
+    body: |-
+      With the system off and the pressures equalized, R-22 settles to its
+      saturation pressure at the temperature of the coils. This is the reading on
+      a cold morning or before recovery.
+  - h2: "Servicing an R-22 system today"
+    kind: prose
+    body: |-
+      US production and import of HCFC-22 ended on January 1, 2020 under the EPA
+      Class II ozone-depleting-substance phaseout. Existing R-22 equipment stays
+      legal to run and service, but any refrigerant you add now comes from
+      reclaimed, recycled, or stockpiled stock — so recover carefully and fix
+      leaks rather than topping off.
+  - h2: "Readings that point to a problem"
+    kind: prose
+    body: |-
+      At 95°F outdoors a healthy system shows about {high} psig discharge and
+      {low} psig suction. Discharge well above {high} psig with normal suction
+      points to a condenser or airflow problem; suction below {low} psig with high
+      superheat points to an undercharge or a restriction; suction above {low}
+      psig with low superheat points to an overcharge or a weak compressor.
+      Confirm the direction with the calculators before recovering or adding
+      refrigerant.
 faqs:
-  - q: "What's the normal operating pressure for R-22 at 95°F outdoor?"
-    a: "See the operating-pressure table above (computed from the CoolProp-verified saturation dataset) for the expected suction and discharge at the 95°F rating condition. Suction sits below the saturation pressure at ambient because the evaporator runs colder than outdoor air, and discharge sits above it because the condenser runs hotter than ambient — suction follows the evaporator setpoint and load, while head tracks ambient and condenser condition."
-  - q: "How does R-22 pressure compare to R-410A?"
-    a: "R-22 operates at meaningfully lower pressures than R-410A across the operating envelope, on both the suction and discharge sides — a structural consequence of R-22's lower vapor pressure at every temperature. This is why R-410A equipment uses heavier-gauge tubing and higher-rated service equipment, and why R-22-to-R-410A is a full system replacement rather than a drop-in refrigerant swap. Compare the actual R-22 values in the operating-pressure table above (computed from the CoolProp-verified saturation dataset)."
-  - q: "Why are my R-22 pressures higher than the table shows?"
-    a: "Most common: condenser airflow is restricted (dirty coil, blocked fins, leaves), the condenser fan is slow or off, or non-condensables (air, moisture from inadequate evacuation) are in the system. Less common: overcharge — but overcharge usually shows itself in subcooling more than discharge pressure. Always verify with subcooling: high subcooling + high discharge is the overcharge fingerprint."
-  - q: "Why are my R-22 pressures lower than the table shows?"
-    a: "Most common: undercharge from a slow leak. Verify with superheat — high superheat + low subcooling is the undercharge fingerprint. Less common: indoor airflow problem reducing load (clogged filter, restricted ducts), low ambient (system runs short cycles), or compressor wear. Locate and repair the leak before recharging: no general federal rule bars adding refrigerant to a leaking system, but Section 608 leak-repair duties apply by appliance size (40 CFR 82.157 for appliances holding 50 lb or more of class I/II refrigerant)."
-  - q: "What lubricant is in an R-22 system?"
-    a: "Mineral oil (MO) is the historical standard for R-22. Alkylbenzene (AB) was used in some 1990s-era systems. POE oil is NOT used with R-22 in original systems — POE is required only for HFC retrofits. Adding POE to a working R-22 system serves no purpose and risks contamination."
-  - q: "How accurate are these operating pressure ranges?"
-    a: "The operating-pressure table above is computed from the CoolProp-verified R-22 saturation dataset; see the method note under the table. Actual pressures depend on the specific equipment design, line-set length and elevation, charge accuracy, indoor airflow, and ambient conditions. The equipment data plate or service manual is the authoritative reference for any specific system."
-
-faqs_END: ""
+  - q: "What should R-22 pressures be at 70, 80, 90 and 100°F?"
+    a: |-
+      Suction stays near {low} psig at any outdoor temperature — only discharge
+      moves. Discharge runs about {high70} psig at 70°F, {high80} psig at 80°F,
+      {high90} psig at 90°F, and {high100} psig at 100°F outdoors. Read the full
+      chart above for every 5°F step.
+  - q: "What is normal R-22 head pressure?"
+    a: |-
+      About {high} psig at 95°F outdoors, rising to roughly {high100} psig near
+      100°F and falling on cooler days. Head pressure is set by the condensing
+      temperature, which sits above the outdoor air, so compare your reading to
+      the chart row for your ambient rather than to a single number.
+  - q: "What is R-22 standing pressure?"
+    a: |-
+      With the system off and equalized, R-22 sits at its saturation pressure for
+      the coil temperature — about {stand75} psig near room temperature. The
+      standing-pressure table above gives it from 65 to 115°F. A standing pressure
+      far from the value for the ambient means the charge or the temperature is
+      not what you think.
+  - q: "What should R-22 suction pressure be?"
+    a: |-
+      About {low} psig on a properly charged system with a 38–45°F indoor coil,
+      and it barely changes with the outdoor temperature because it follows the
+      coil. Below {low} psig suspect low evaporator airflow, a restriction, or an
+      undercharge; above {low} psig suspect an overcharge or a compressor problem.
+  - q: "Can you still recharge a system with R-22?"
+    a: |-
+      Yes, but only with reclaimed, recycled, or stockpiled R-22 — US production
+      and import ended on January 1, 2020. There is no ban on running or servicing
+      existing equipment, so repairing leaks and recovering the charge matters
+      more than ever; casual topping off wastes a supply that no longer refills.
+regulatoryNote: "US production and import of HCFC-22 ended January 1, 2020 (EPA Class II ozone-depleting-substance phaseout)."
+links:
+  - href: "/refrigerant/r-22/"
+    label: "R-22 pressure–temperature chart"
+  - href: "/superheat-calculator/"
+    label: "Superheat calculator"
+  - href: "/subcooling-calculator/"
+    label: "Subcooling calculator"
+  - href: "/system-pressure-diagnostic-calculator/"
+    label: "Pressure diagnostic tool"
+  - href: "/low-suction-pressure/"
+    label: "Low suction pressure: causes"
+  - href: "/r-22-vs-r-410a/"
+    label: "R-22 vs R-410A"
+  - href: "/r-22-vs-r-407c/"
+    label: "R-22 vs R-407C"
 ---
