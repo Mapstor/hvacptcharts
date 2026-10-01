@@ -23,6 +23,7 @@ export const OperatingSectionKind = z.enum([
   "co2-suction",
   "co2-highside",
   "co2-standstill",
+  "fault-table",
   "prose",
 ]);
 export type OperatingSectionKind = z.infer<typeof OperatingSectionKind>;
@@ -64,6 +65,12 @@ export const OperatingFrontmatter = z.object({
   intro: z.array(z.string()).min(1).max(3),
   /** Answer block template (40–60 words rendered, must contain **bold**). */
   answerBlock: z.string(),
+  /**
+   * Narrative comparisons computed from the module for {slots}: each entry adds
+   * {cmp_<key>_low} and {cmp_<key>_high} ("about N% lower/higher") plus
+   * {cmp_<key>_name}. Independent of any comparison table section.
+   */
+  compares: z.array(z.object({ slug: z.string(), key: z.string(), range: z.boolean().optional() })).optional(),
   /** Ordered sections (define the H2 order). */
   sections: z.array(OperatingSection).min(1),
   faqs: z.array(FAQ).min(1),

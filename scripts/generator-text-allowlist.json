@@ -55,13 +55,53 @@
     "reason": "Pseudo-code notation on the retrofit-compatibility calculator describing the verdict function synthesize(lubricantCheck, safetyClassCheck, pressureCheck, glideCheck); a function call takes no space before its parenthesis."
   },
   {
-    "pattern": "lowercase-open-paren",
-    "contains": "bar(gauge)",
-    "reason": "Standard unit notation on the operating-pressure pages: bar(gauge) = gauge bar. No missing space — conventional unit qualifier, matching the existing kPa(gauge) allowance."
-  },
-  {
     "pattern": "hook",
     "contains": "hook up",
     "reason": "Standard field phrasing on calculators/troubleshooting pages: 'hook up (the) gauges / manifold / a can' means connecting service gauges — not the editorial narrative-'hook' jargon the pattern targets."
+  },
+  {
+    "pattern": "anchor",
+    "contains": "text-anchor",
+    "reason": "SVG presentation attribute text-anchor (middle/end) in inline chart markup — not the editorial reference-condition 'anchor'."
+  },
+  {
+    "pattern": "anchor",
+    "contains": "normal-position anchor",
+    "reason": "Gauge-diagnostic domain term on the pressure-signature pages: the 'normal-position anchor' is the reference (healthy) needle position each fault signature is read against — a measurement baseline, not editorial jargon."
+  },
+  {
+    "pattern": "anchor",
+    "contains": "same anchor",
+    "reason": "Charging/superheat-chart prose ('center on the same anchor'): the chart's fixed reference charging point, a domain reference, not editorial jargon."
+  },
+  {
+    "pattern": "anchor",
+    "contains": "conceptual anchor",
+    "reason": "Guides-hub prose describing the PT chart as the conceptual reference the charging calculators build on — a reference point, not editorial jargon."
+  },
+  {
+    "pattern": "anchor",
+    "contains": "anchor links",
+    "reason": "Guides-hub table of contents with HTML anchor links (in-page #fragments) — a web navigation term, not editorial jargon."
+  },
+  {
+    "pattern": "anchor",
+    "contains": "anchor-value",
+    "reason": "Carrier charging-chart provenance: an automated anchor-value check verifies the chart's reference values against the dataset — a QA term, not editorial jargon."
+  },
+  {
+    "pattern": "anchor",
+    "contains": "envelope anchor",
+    "reason": "Saturation-properties-calculator prose: the normal boiling point anchors the application envelope — a thermodynamic reference point, not editorial jargon."
+  },
+  {
+    "pattern": "anchor",
+    "contains": "properties anchor",
+    "reason": "Saturation-properties-calculator prose: saturation properties anchor engineering decisions — a reference-point usage, not editorial jargon."
+  },
+  {
+    "pattern": "saturation dataset",
+    "contains": "verified saturation dataset",
+    "reason": "Data-provenance prose on refrigerant detail pages ('computed from the CoolProp-verified saturation dataset') naming the data source; pre-existing and descriptive, not the internal jargon the pattern targets on the rebuilt operating pages."
   }
 ]

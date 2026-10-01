@@ -378,6 +378,55 @@ caption="Standstill (system off) saturation pressure, 65–85°F"
     );
   }
 
+  if (sec.faultTable) {
+    const { rows, normalLine } = sec.faultTable;
+    return (
+      <section key={sec.h2}>
+        {heading}
+        <SectionBody body={sec.body} />
+        <p className="mt-3 text-zinc-700 dark:text-zinc-300" data-src="dataset">{normalLine}</p>
+        <figure className="my-5">
+          <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
+            <table className="w-full text-sm" data-op-table="fault">
+              <thead>
+                <tr className="border-b border-zinc-200 text-[10px] uppercase tracking-wider text-zinc-500 dark:border-zinc-800">
+                  <th className="px-3 py-2 text-left">Fault</th>
+                  <th className="px-3 py-2 text-left">Suction</th>
+                  <th className="px-3 py-2 text-left">Head</th>
+                  <th className="px-3 py-2 text-left">Superheat</th>
+                  <th className="px-3 py-2 text-left">Subcooling</th>
+                  <th className="px-3 py-2 text-left">First thing to check</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((r) => (
+                  <tr key={r.id} className="border-b border-zinc-100 last:border-0 dark:border-zinc-900">
+                    <td className="px-3 py-2 font-medium">{r.label}</td>
+                    <td className="px-3 py-2">{r.suction}</td>
+                    <td className="px-3 py-2">{r.head}</td>
+                    <td className="px-3 py-2">{r.superheat}</td>
+                    <td className="px-3 py-2">{r.subcooling}</td>
+                    <td className="px-3 py-2">{r.firstCheck}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <figcaption className="mt-1.5 text-xs text-zinc-500">
+            Suction, head, superheat and subcooling direction for each charge-and-system fault.
+          </figcaption>
+        </figure>
+        <p className="mt-2 text-zinc-700 dark:text-zinc-300">
+          Confirm a reading before adjusting the charge: the{" "}
+          <Link href="/system-pressure-diagnostic-calculator/" className="underline">pressure diagnostic tool</Link>,{" "}
+          <Link href="/low-suction-pressure/" className="underline">low suction pressure</Link> and{" "}
+          <Link href="/high-head-pressure-causes/" className="underline">high head pressure</Link> guides walk a reading to its cause.
+        </p>
+        {note}
+      </section>
+    );
+  }
+
   // prose
   return (
     <section key={sec.h2}>
@@ -489,10 +538,10 @@ export function OperatingPressurePage({ id }: { id: string }) {
           </p>
         </header>
 
-        {/* intro */}
-        <div className="text-lg text-zinc-700 dark:text-zinc-300">
+        {/* intro — data-src so the dataset-derived comparison figures are trusted */}
+        <div className="text-lg text-zinc-700 dark:text-zinc-300" data-src="dataset">
           {fm.intro.map((p, i) => (
-            <p key={i} className={i === 0 ? "" : "mt-4"}>{renderInline(p)}</p>
+            <p key={i} className={i === 0 ? "" : "mt-4"}>{renderInline(fill(p, data.slots))}</p>
           ))}
         </div>
 

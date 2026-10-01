@@ -8,9 +8,38 @@
  */
 import type { OperatingFrontmatter, OperatingSection } from "./mdx-operating";
 import * as OP from "@/data/operating-pressures";
-import { getRefrigerant, satTemp } from "@/data/refrigerants";
+import { getRefrigerant, satPressure, satTemp } from "@/data/refrigerants";
+import { FAULT_PATTERNS, type FaultPatternId } from "./fault-patterns";
 
 export type PageKind = "residential" | "commercial" | "co2";
+
+/**
+ * Gauge-reading direction (suction / head) for each charge-and-system fault the
+ * shared SH×SC engine (src/lib/fault-patterns.ts) classifies. Superheat and
+ * subcooling directions come from the engine's signature; these two columns are
+ * the standard low-side/high-side fingerprints that go with them.
+ */
+export interface FaultRow {
+  id: FaultPatternId;
+  label: string;
+  suction: string;
+  head: string;
+  superheat: string;
+  subcooling: string;
+  firstCheck: string;
+}
+const FAULT_DIRECTIONS: Partial<Record<FaultPatternId, { suction: string; head: string; superheat: string; subcooling: string; check: string }>> = {
+  undercharge: { suction: "low", head: "low", superheat: "high", subcooling: "low", check: "Find and fix the leak, then recharge by weight" },
+  overcharge: { suction: "high", head: "high", superheat: "low", subcooling: "high", check: "Verify condenser airflow, then recover to target" },
+  restriction: { suction: "low", head: "normal–low", superheat: "high", subcooling: "high", check: "Check the filter-drier and evaporator airflow" },
+  "airflow-metering": { suction: "high", head: "low", superheat: "low", subcooling: "low", check: "Check the metering device and condenser airflow" },
+};
+/** Ordered fault rows for the "readings that point to a problem" table. */
+export const FAULT_ROWS: FaultRow[] = (["undercharge", "overcharge", "restriction", "airflow-metering"] as FaultPatternId[]).map((id) => {
+  const d = FAULT_DIRECTIONS[id]!;
+  const p = FAULT_PATTERNS[id];
+  return { id, label: p.label, suction: d.suction, head: d.head, superheat: d.superheat, subcooling: d.subcooling, firstCheck: d.check };
+});
 
 export interface RenderedSection {
   h2: string;
@@ -33,6 +62,7 @@ export interface RenderedSection {
   co2Suction?: { cooler: OP.Band; freezer: OP.Band };
   co2HighSide?: { rows: OP.Co2Row[]; critical: OP.Co2Critical | null };
   co2Standstill?: { rows: OP.Co2Row[] };
+  faultTable?: { rows: FaultRow[]; normalLine: string };
   showBar?: boolean;
 }
 
@@ -76,20 +106,41 @@ function anchorBands(slug: string, kind: PageKind): { low: OP.Band; high: OP.Ban
   return OP.residentialAnchor(slug);
 }
 
+/**
+ * "about N% lower/higher" (or "about N–M% …" when the two band ends round
+ * differently) for slug A vs slug B across a saturation band. Whole percent.
+ */
+function compareDesc(slugA: string, slugB: string, t1: number, t2: number, curve: "dew" | "bubble", asRange: boolean): string | null {
+  const a1 = satPressure(slugA, t1, curve), a2 = satPressure(slugA, t2, curve);
+  const b1 = satPressure(slugB, t1, curve), b2 = satPressure(slugB, t2, curve);
+  if (a1 === null || a2 === null || b1 === null || b2 === null) return null;
+  const p1 = ((a1 - b1) / b1) * 100;
+  const p2 = ((a2 - b2) / b2) * 100;
+  const dir = (p1 + p2) / 2 >= 0 ? "higher" : "lower";
+  if (!asRange) {
+    // Single whole-percent from the band average.
+    return `about ${Math.round(Math.abs((p1 + p2) / 2))}% ${dir}`;
+  }
+  const n1 = Math.round(Math.abs(p1));
+  const n2 = Math.round(Math.abs(p2));
+  const lo = Math.min(n1, n2), hi = Math.max(n1, n2);
+  return `about ${lo === hi ? lo : `${lo}–${hi}`}% ${dir}`;
+}
+
 /** Method-block prose (shared by the template and the review export). */
 export function methodParagraphs(kind: PageKind, coolprop: string, refName: string): string[] {
   const p1 =
-    `Every pressure on this page is a saturation lookup on the ${coolprop}-verified pressure–temperature dataset for ${refName} — no typed-in values. ` +
+    `Every pressure here is ${refName}'s saturation pressure at the stated temperature, calculated with ${coolprop}. ` +
     `Suction (low side) uses the saturated-vapor (dew) pressure; head (high side) uses the saturated-liquid (bubble) pressure.`;
   let p2: string;
   if (kind === "residential") {
     p2 =
-      "Residential cooling assumes a 38–45°F indoor evaporator coil for the low side (so it barely moves with the weather) and a condenser running 15–25°F above the outdoor air for the high side. " +
-      "The 95°F anchor is the AHRI 210/240 A2 rating condition (95°F outdoor, 80°F/67°F indoor).";
+      "For the low side we read a 38–45°F indoor evaporator coil: the low side depends mainly on the indoor coil (indoor temperature and airflow) and moves far less than the high side, which we take as a condenser running 15–25°F above the outdoor air. " +
+      "We use 95°F as the reference because it is the outdoor temperature in the AHRI 210/240 A2 rating test (95°F outdoors, 80°F/67°F indoors).";
   } else if (kind === "commercial") {
     p2 =
-      "Suction uses the AHRI 1250-2020 walk-in coil temperatures — 25°F for a cooler, −20°F for a freezer — read on the dew curve at the coil ±3°F. " +
-      "Head uses a condenser running 15–30°F above the outdoor air; the 95°F anchor is an AHRI 1250 outdoor condensing-unit rating point.";
+      "Suction uses the AHRI 1250-2020 walk-in coil temperatures — 25°F for a cooler, −20°F for a freezer — read on the dew curve at the coil ±3°F; head is a condenser running 15–30°F above the outdoor air. " +
+      "We use 95°F as the reference because it is one of the AHRI 1250 outdoor rating temperatures for condensing units.";
   } else {
     p2 =
       "CO₂ suction uses the AHRI 1250-2020 walk-in coil temperatures (25°F cooler, −20°F freezer). " +
@@ -154,29 +205,29 @@ export function buildOperatingData(fm: OperatingFrontmatter): OperatingPageData 
     OP.collectCell(valueSet, sat70);
   }
 
-  /* ── comparison slots (first comparison section drives the FAQ %s) ── */
-  const cmpSection = fm.sections.find((s) => s.kind === "comparison-anchor" || s.kind === "comparison-chart");
-  if (cmpSection) {
-    const other =
-      cmpSection.compareSlug ?? (cmpSection.compareSlugs ?? []).find((s) => s !== slug) ?? null;
-    if (other) {
-      const lowT = kind === "commercial" ? OP.COOLER_COIL_F - OP.COIL_SPAN_F : OP.RES_COIL_LO_F;
-      const highT = OP.ANCHOR_OUTDOOR_F + OP.RES_HEAD_LO_OFFSET;
-      const cmp = OP.comparisonAt(slug, other, lowT, highT);
-      if (cmp) {
-        slots.cmp_dew_pct = cmp.dewPct;
-        slots.cmp_bub_pct = cmp.bubblePct;
-        slots.cmp_other = displayName(other);
-      }
-    }
+  /* ── narrative comparison slots: "about N% lower/higher" per fm.compares ── */
+  // Commercial "on the same box" compares at the single cooler coil temperature;
+  // residential compares across the 38–45°F coil band.
+  const lowT: [number, number] = kind === "commercial"
+    ? [OP.COOLER_COIL_F, OP.COOLER_COIL_F]
+    : [OP.RES_COIL_LO_F, OP.RES_COIL_HI_F];
+  const highT: [number, number] = kind === "commercial"
+    ? [OP.ANCHOR_OUTDOOR_F + OP.COM_HEAD_LO_OFFSET, OP.ANCHOR_OUTDOOR_F + OP.COM_HEAD_HI_OFFSET]
+    : [OP.ANCHOR_OUTDOOR_F + OP.RES_HEAD_LO_OFFSET, OP.ANCHOR_OUTDOOR_F + OP.RES_HEAD_HI_OFFSET];
+  for (const c of fm.compares ?? []) {
+    const low = compareDesc(slug, c.slug, lowT[0], lowT[1], "dew", !!c.range);
+    const high = compareDesc(slug, c.slug, highT[0], highT[1], "bubble", !!c.range);
+    if (low) slots[`cmp_${c.key}_low`] = low;
+    if (high) slots[`cmp_${c.key}_high`] = high;
+    slots[`cmp_${c.key}_name`] = displayName(c.slug);
   }
 
   // Standing-pressure anchors at room-temperature references, using the page's
-  // own standing mode (68°F = 20°C, 86°F = 30°C).
+  // own standing mode (68°F = 20°C, 70°F, 75°F, 86°F = 30°C).
   const standingSection = fm.sections.find((s) => s.kind === "standing");
   if (standingSection) {
     const mode = (standingSection.mode ?? "sat") as OP.StandingMode;
-    for (const t of [68, 75, 86] as const) {
+    for (const t of [68, 70, 75, 86] as const) {
       const row = OP.standingRows(slug, mode, [t])[0];
       slots[`stand${t}`] = row.psigStr;
       OP.collectCell(valueSet, ...row.cells);
@@ -274,6 +325,13 @@ export function buildOperatingData(fm: OperatingFrontmatter): OperatingPageData 
         const rows = OP.co2StandstillRows(slug);
         rows.forEach((r) => OP.collectCell(valueSet, r.cell));
         rs.co2Standstill = { rows };
+        break;
+      }
+      case "fault-table": {
+        const normalLine = kind === "commercial"
+          ? `A healthy ${displayName(slug)} system at 95°F outdoors reads about ${slots.mt} psig suction on a 25°F cooler coil, ${slots.lt} psig on a −20°F freezer coil, and ${slots.high} psig head.`
+          : `A healthy ${displayName(slug)} system at 95°F outdoors reads about ${slots.low} psig on the low side and ${slots.high} psig on the high side.`;
+        rs.faultTable = { rows: FAULT_ROWS, normalLine };
         break;
       }
       case "prose":

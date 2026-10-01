@@ -81,6 +81,11 @@ const PATTERNS: { name: string; re: RegExp }[] = [
   { name: "single-sourced", re: /single-sourced/i },
   { name: "by construction", re: /by construction/i },
   { name: "calculation module", re: /calculation module/i },
+  // Task 10b: more generator/editorial jargon. "anchor" (the reference-condition
+  // sense), "saturation dataset", "typed-in". Genuine uses allowlisted.
+  { name: "anchor", re: /\banchor\b/i },
+  { name: "saturation dataset", re: /saturation dataset/i },
+  { name: "typed-in", re: /typed-in/i },
 ];
 
 // Looser run-together patterns (task 19 D3): a missing space after a sentence

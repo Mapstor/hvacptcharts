@@ -177,12 +177,14 @@ for (const id of IDS) {
     }
   });
 
-  // every psig figure in visible page text ∈ value set (or regulatory.json)
+  // every psig figure in visible page text ∈ value set (or regulatory.json).
+  // Normalize thousands separators on both sides ("1,018" ↔ "1018").
   $("script,style").remove();
+  const vset = new Set([...data.valueSet].map((s) => s.replace(/,/g, "")));
   const bodyText = article.text().replace(/\s+/g, " ");
   for (const m of bodyText.matchAll(/(\d[\d.,]*(?:\s*[–—-]\s*\d[\d.,]*)?)\s*psig\b/gi)) {
     for (const tok of psigTokens(m[1])) {
-      if (!data.valueSet.has(tok) && !REG_NUMS.has(tok)) {
+      if (!vset.has(tok) && !REG_NUMS.has(tok)) {
         fail(id, `psig figure "${tok}" (in "${m[0].trim()}") not in module value set`);
       }
     }
@@ -204,6 +206,10 @@ for (const id of IDS) {
     const t = $(h).text();
     if (/\d[A-Z][a-z]/.test(t)) fail(id, `heading runs number into word: "${t}"`);
   });
+
+  // no unfilled {slot} left in rendered text
+  const slotLeft = article.text().match(/\{[a-z0-9_]+\}/i);
+  if (slotLeft) fail(id, `unfilled slot left in rendered text: ${slotLeft[0]}`);
 
   // banned legacy strings
   const full = $.root().text();

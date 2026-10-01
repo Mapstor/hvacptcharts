@@ -1,14 +1,15 @@
 #!/usr/bin/env tsx
 /**
- * Review export for the 9 operating-pressure pages (Task 10). Writes:
- *   scripts/qa/reports/operating-pages-export.tsv  — every computed cell
- *   scripts/qa/reports/operating-pages-text.md     — rendered prose per page
- * Everything derives from the module + content; no hand-typed values.
+ * Review export for the 9 operating-pressure pages. Writes
+ * scripts/qa/reports/operating-pages-export.tsv — every computed cell, from the
+ * module (no hand-typed values). The full rendered-text export
+ * (operating-pages-text.md) is produced from the BUILT HTML by
+ * scripts/qa/export-operating-text.mjs.
  */
 import fs from "node:fs";
 import path from "node:path";
 import { loadOperating } from "../../src/lib/mdx-operating";
-import { buildOperatingData, fill, methodParagraphs, type RenderedSection } from "../../src/lib/operating-page-data";
+import { buildOperatingData, type RenderedSection } from "../../src/lib/operating-page-data";
 import * as OP from "../../src/data/operating-pressures";
 
 const IDS = ["410a", "r22", "r32", "r454b", "r407c", "r404a", "r449a", "r454c", "r744"];
@@ -100,41 +101,16 @@ function emitSection(route: string, sec: RenderedSection) {
   }
 }
 
-/* ── MD ── */
-const md: string[] = ["# Operating-pressure pages — rendered text export", "", `Generated from the module + content for ${IDS.length} pages.`, ""];
-
 for (const id of IDS) {
   const loaded = loadOperating(id);
-  if (!loaded) { md.push(`## ${id}: (not an operating file)`, ""); continue; }
-  const fm = loaded.frontmatter;
-  const data = buildOperatingData(fm);
-  const route = `/what-pressure-should-${id}/`;
-
-  for (const sec of data.sections) emitSection(route, sec);
-
-  md.push(`## ${route}`, "");
-  md.push(`- **Title:** ${fm.metaTitle}`);
-  md.push(`- **Meta:** ${fill(fm.metaDescription, data.slots)}`);
-  md.push(`- **H1:** ${fm.h1}`, "");
-  md.push("**Intro**", "");
-  for (const p of fm.intro) md.push(p, "");
-  md.push("**Answer block**", "", fill(fm.answerBlock, data.slots), "");
-  md.push("**Section H2s**", "");
-  for (const s of fm.sections) md.push(`- ${s.h2}  _(${s.kind}${captions[s.kind] ? " — " + captions[s.kind] : ""})_`);
-  md.push("");
-  md.push("**FAQ**", "");
-  for (const f of fm.faqs) { md.push(`- **Q:** ${f.q}`); md.push(`  **A:** ${fill(f.a, data.slots).replace(/\n\s*/g, " ")}`); }
-  md.push("");
-  md.push("**How these numbers are calculated**", "");
-  for (const p of methodParagraphs(data.kind, data.coolpropSource, OP.getRef(data.slug)?.displayName ?? id)) md.push(p, "");
-  if (fm.methodNote) md.push(fill(fm.methodNote, data.slots), "");
-  if (data.gaps.length) { md.push("**Dataset gaps (render as —):**", ""); for (const g of data.gaps) md.push(`- ${g}`); md.push(""); }
-  md.push("---", "");
+  if (!loaded) continue;
+  const data = buildOperatingData(loaded.frontmatter);
+  for (const sec of data.sections) emitSection(`/what-pressure-should-${id}/`, sec);
 }
 
-/* ── write ── */
+/* ── write TSV (every computed cell). The full rendered text export is written
+ *    from the built HTML by scripts/qa/export-operating-text.mjs. ── */
 const header = ["route", "section", "table_caption", "row_label", "°F", "°C", "psig_lo", "psig_hi", "kPa_lo", "kPa_hi", "basis", "assumption", "source"].join("\t");
 const tsv = [header, ...tsvRows.map((r) => [r.route, r.section, r.caption, r.label, r.f, r.c, r.psigLo, r.psigHi, r.kpaLo, r.kpaHi, r.basis, r.assumption, r.source].join("\t"))].join("\n") + "\n";
 fs.writeFileSync(path.join(OUT_DIR, "operating-pages-export.tsv"), tsv);
-fs.writeFileSync(path.join(OUT_DIR, "operating-pages-text.md"), md.join("\n"));
-console.log(`[export-operating-pages] wrote ${tsvRows.length} TSV rows + text.md for ${IDS.length} pages`);
+console.log(`[export-operating-pages] wrote ${tsvRows.length} TSV rows for ${IDS.length} pages`);

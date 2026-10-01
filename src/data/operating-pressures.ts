@@ -64,10 +64,14 @@ export const GAP_NOTE = "outside the calculated range";
 
 /* ─────────────────────────── formatters ─────────────────────────── */
 
-/** Integer psig, one decimal below 10 psig; "—" when null (out of range). */
+/**
+ * Integer psig, one decimal below 10 psig, thousands separator at 1,000+;
+ * "—" when null (out of range).
+ */
 export function fmtPsig(p: number | null): string {
   if (p === null || p === undefined || Number.isNaN(p)) return EM_DASH;
-  return Math.abs(p) < 10 ? p.toFixed(1) : String(Math.round(p));
+  if (Math.abs(p) < 10) return p.toFixed(1);
+  return group(Math.round(p));
 }
 
 /** Thousands-grouped integer kPa(gauge); "—" when null. */
@@ -144,6 +148,14 @@ export function band(
   const lo = cell(slug, loF, curve);
   const hi = cell(slug, hiF, curve);
   const gap = lo.psig === null || hi.psig === null;
+  // If either end of the range is below 10 psig, show BOTH ends to one decimal
+  // ("8.1–11.6", not "8.1–12"). Rewrite the cell strings so data-psig, the value
+  // set, and the rendered band all agree.
+  const subTen = (lo.psig !== null && Math.abs(lo.psig) < 10) || (hi.psig !== null && Math.abs(hi.psig) < 10);
+  if (subTen) {
+    if (lo.psig !== null) lo.psigStr = lo.psig.toFixed(1);
+    if (hi.psig !== null) hi.psigStr = hi.psig.toFixed(1);
+  }
   return {
     loF,
     hiF,
@@ -322,9 +334,7 @@ export function co2Critical(slug: string): Co2Critical | null {
     tempC: c.tempC ?? Math.round(((c.tempF - 32) * 5) / 9),
     psig: c.pressurePsig,
     tempFStr: `${c.tempF.toFixed(1)}°F`,
-    // psig carries no thousands separator (the rounding rule reserves separators
-    // for kPa); "1055", not "1,055".
-    psigStr: String(Math.round(c.pressurePsig)),
+    psigStr: group(Math.round(c.pressurePsig)), // "1,055"
   };
 }
 
