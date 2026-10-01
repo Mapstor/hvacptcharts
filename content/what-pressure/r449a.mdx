@@ -9,9 +9,9 @@ h1: "What Pressure Should R-449A Be?"
 introOneLiner: "R-449A (Opteon XP40) suction pressures for walk-in coolers and freezers and head pressure by outdoor temperature, for R-404A-retrofit racks."
 intro:
   - >-
-    You are on an R-449A system — often a retrofitted R-404A rack, sold as
-    Chemours Opteon XP40 — with gauges connected and suction that looks low if you
-    still have R-404A numbers in your head.
+    You are on an R-449A system — an R-404A replacement used in retrofits and new
+    racks, sold as Chemours Opteon XP40 — with gauges connected and suction that
+    looks low if you still have R-404A numbers in your head.
   - >-
     Compare R-449A suction to R-404A memory and you will over-add refrigerant on a
     box that was fine; on a rack full of product that is an expensive way to learn
@@ -19,12 +19,15 @@ intro:
   - >-
     This page gives R-449A suction by application at the AHRI walk-in coil
     temperatures, head pressure by outdoor temperature, and a direct comparison
-    with R-404A on the same box — all computed from the saturation dataset.
+    with R-404A on the same box.
 answerBlock: >-
   **R-449A suction is about {lt} psig at a −20°F freezer coil and {mt} psig at a
   25°F cooler coil**, with head around {high} psig at 95°F outdoors. On a
   retrofitted R-404A box it reads noticeably lower suction than R-404A, so compare
   to R-449A numbers, not to R-404A memory.
+compares:
+  - slug: r-404a
+    key: r404a
 sections:
   - h2: "R-449A suction pressure by application"
     kind: application-suction
@@ -42,11 +45,17 @@ sections:
     kind: comparison-anchor
     compareSlugs: ["r-449a", "r-404a"]
     body: |-
-      On the same 25°F cooler coil, R-449A reads about {cmp_dew_pct} suction versus
-      R-404A and about {cmp_bub_pct} on the head — lower suction is normal, not an
+      On the same 25°F cooler coil, R-449A reads {cmp_r404a_low} on suction versus
+      R-404A and {cmp_r404a_high} on the head — lower suction is normal, not an
       undercharge. R-449A also has real glide, so read suction on the dew curve and
       the liquid line on the bubble curve; using R-404A's near-azeotropic habits
       here misreads superheat by the glide.
+  - h2: "R-449A readings that point to a problem"
+    kind: fault-table
+    body: |-
+      These are refrigeration faults; match a suspect reading to the pattern below,
+      reading suction on the dew curve, then confirm with a calculator before
+      adding refrigerant.
 faqs:
   - q: "What should R-449A suction pressure be?"
     a: |-
@@ -62,10 +71,10 @@ faqs:
       freezer. Read the head chart above for your outdoor temperature.
   - q: "Why does R-449A read lower suction than R-404A on the same box?"
     a: |-
-      Because R-449A's saturation pressure is lower — about {cmp_dew_pct} at the
-      cooler coil condition. On a retrofitted box that lower suction is expected and
-      not an undercharge. Compare to the R-449A numbers above, and read superheat on
-      the dew curve because R-449A glides where R-404A barely does.
+      Because R-449A's saturation pressure is lower — {cmp_r404a_low} at the cooler
+      coil condition. On a retrofitted box that lower suction is expected and not an
+      undercharge. Compare to the R-449A numbers above, and read superheat on the
+      dew curve because R-449A glides where R-404A barely does.
 links:
   - href: "/refrigerant/r-449a/"
     label: "R-449A pressure–temperature chart"

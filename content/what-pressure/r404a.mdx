@@ -19,7 +19,7 @@ intro:
   - >-
     This page separates suction by application — walk-in cooler versus walk-in
     freezer, at the AHRI walk-in coil temperatures — and gives discharge by
-    outdoor temperature, all computed from the saturation dataset.
+    outdoor temperature.
 answerBlock: >-
   **R-404A suction is about {lt} psig at a −20°F walk-in freezer coil and {mt}
   psig at a 25°F cooler coil**, with discharge around {high} psig at 95°F
@@ -59,21 +59,18 @@ sections:
       [subcooling calculator](/subcooling-calculator/) do the saturation lookup for
       you from the measured pressure.
   - h2: "Readings that point to a problem"
-    kind: prose
+    kind: fault-table
     body: |-
-      On a −20°F freezer at 95°F outdoors, suction near {lt} psig and discharge
-      near {high} psig is healthy. Suction below {lt} psig with high superheat
-      points to an undercharge, a restriction, or a coil needing defrost; suction
-      above the band points to an overcharge, a failing compressor, or a box that
-      is not pulling down. Discharge well above {high} psig points to a dirty
-      condenser or an overcharge. Confirm before adding refrigerant.
+      These are refrigeration faults; match a suspect reading to the pattern below,
+      then confirm with a calculator before adding refrigerant.
 faqs:
   - q: "What should R-404A suction pressure be on a walk-in freezer?"
     a: |-
-      About {lt} psig at the AHRI −20°F freezer coil temperature. Suction is set by
-      the box, not the weather, so it holds near this band while the freezer is
-      pulled down. A suction well below {lt} psig usually means an undercharge, a
-      restriction, or a coil that needs defrost.
+      About {lt} psig at the AHRI −20°F freezer coil temperature. It is set by the
+      box, not the weather: suction runs higher while a warm box pulls down and
+      settles into this band once the box is at temperature. A suction well below
+      {lt} psig once the box is cold usually means an undercharge, a restriction, or
+      a coil that needs defrost.
   - q: "What should R-404A pressures be on a walk-in cooler?"
     a: |-
       Suction about {mt} psig at the AHRI 25°F cooler coil temperature, with

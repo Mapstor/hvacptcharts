@@ -9,9 +9,9 @@ h1: "What Pressure Should R-407C Be?"
 introOneLiner: "R-407C suction and discharge pressures for residential and light-commercial AC by outdoor temperature, in psig, bar and kPa, with glide notes."
 intro:
   - >-
-    You are on an R-407C system — usually an R-22 retrofit or light-commercial
-    AC — with gauges connected and two saturation temperatures printed on the
-    dial. The glide is what makes R-407C confusing to read.
+    You are on an R-407C system — an R-22 replacement found in retrofits and
+    light-commercial AC — with gauges connected and two saturation temperatures
+    printed on the dial. The glide is what makes R-407C confusing to read.
   - >-
     Read superheat off the wrong curve and you can be off by the whole glide,
     which is enough to condemn a good charge or clear a bad one. That mistake
@@ -19,12 +19,17 @@ intro:
   - >-
     This page gives the suction and discharge to expect at each outdoor
     temperature in psig, bar and kPa, explains which curve to read for which job,
-    and gives the standing range — all computed from the saturation dataset.
+    and gives the standing range.
 answerBlock: >-
   **R-407C runs about {low} psig ({low_bar} bar) suction and {high} psig
-  discharge** at 95°F outdoors, with a 38–45°F indoor coil. It is an R-22 retrofit
-  that runs at similar pressures and uses R-22-rated equipment. Because it glides,
-  read suction on the dew curve and the liquid line on the bubble curve.
+  discharge** at 95°F outdoors, with a 38–45°F indoor coil. At the same conditions
+  that is {cmp_r22_low} on suction and {cmp_r22_high} on discharge than R-22.
+  Because it glides, read suction on the dew curve and the liquid line on the
+  bubble curve.
+compares:
+  - slug: r-22
+    key: r22
+    range: true
 sections:
   - h2: "R-407C suction and discharge pressure chart"
     kind: residential-chart
@@ -45,17 +50,19 @@ sections:
   - h2: "Running pressure in bar and kPa"
     kind: prose
     body: |-
-      At 95°F outdoors the low side is about {low} psig, which is {low_bar}
-      bar(gauge) or {low_kpa} kPa(gauge); the high side is about {high} psig, which
-      is {high_bar} bar(gauge) or {high_kpa} kPa(gauge). The chart above lists psig
+      At 95°F outdoors the low side is about {low} psig, which is {low_bar} bar
+      (gauge) or {low_kpa} kPa (gauge); the high side is about {high} psig, which is
+      {high_bar} bar (gauge) or {high_kpa} kPa (gauge). The chart above lists psig
       with kPa for every 5°F step; multiply psig by 0.0689 for bar.
   - h2: "Standing pressure is a range, not one number"
     kind: standing
     mode: range
     body: |-
       With the system off and equalized, R-407C does not settle to one pressure —
-      it sits across a dew-to-bubble range at the coil temperature. The spread is
-      the glide, so treat standing pressure as a band, not a single target.
+      it sits across a dew-to-bubble range at the temperature of the coolest part of
+      the system (indoor or outdoor), once it has been off long enough to equalize.
+      The spread is the glide, so treat standing pressure as a band, not a single
+      target.
   - h2: "If the low side reads 28 psig"
     kind: prose
     body: |-
@@ -64,18 +71,24 @@ sections:
       {t28_bubble}. Subtract the dew temperature from your suction-line
       temperature for superheat; do not use the bubble temperature there or you
       will read the glide as extra superheat.
+  - h2: "Off readings on an R-407C system"
+    kind: fault-table
+    body: |-
+      Match a suspect reading to the pattern below — reading superheat and
+      subcooling on the dew and bubble curves respectively — then confirm with a
+      calculator before you add or remove refrigerant.
 faqs:
   - q: "What are normal R-407C suction and discharge pressures?"
     a: |-
       About {low} psig suction and {high} psig discharge at 95°F outdoors with a
-      38–45°F indoor coil. Suction follows the indoor coil and holds across the
-      weather; discharge climbs with the outdoor temperature. Read the chart above
-      for your ambient, and read suction on the dew curve.
+      38–45°F indoor coil. Suction depends mainly on the indoor coil and moves far
+      less than discharge, which climbs with the outdoor temperature. Read the chart
+      above for your ambient, and read suction on the dew curve.
   - q: "What is R-407C running pressure in bar?"
     a: |-
-      About {low_bar} bar(gauge) on the low side and {high_bar} bar(gauge) on the
+      About {low_bar} bar (gauge) on the low side and {high_bar} bar (gauge) on the
       high side at 95°F outdoors — the same as {low} psig and {high} psig. To
-      convert any reading, multiply psig by 0.0689 to get bar(gauge).
+      convert any reading, multiply psig by 0.0689 to get bar (gauge).
   - q: "If the R-407C low side reads 28 psig, what is the evaporating temperature?"
     a: |-
       At 28 psig the dew (saturated-vapor) temperature is about {t28_dew} and the

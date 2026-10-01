@@ -19,43 +19,46 @@ intro:
   - >-
     This page gives the low and high side to expect at each outdoor temperature,
     the same numbers laid next to R-410A, and the standing pressure with the
-    system off — all computed from the saturation dataset.
+    system off.
 answerBlock: >-
   **R-454B runs about {low} psig on the low side and {high} psig on the high
   side** at 95°F outdoors, with a 38–45°F indoor coil. It sits a little below
-  R-410A on both sides. The low side follows the indoor coil and barely moves with
-  the weather; the high side climbs with the outdoor temperature.
+  R-410A on both sides. The low side depends mainly on the indoor coil and moves
+  far less than the high side, which climbs with the outdoor temperature.
+compares:
+  - slug: r-410a
+    key: r410a
 sections:
   - h2: "R-454B normal operating pressures"
     kind: residential-chart
     body: |-
-      Find the outdoor temperature down the left column. The low side follows the
-      indoor coil; the high side is what tracks the weather.
+      Find the outdoor temperature down the left column. The low side depends
+      mainly on the indoor coil; the high side is what tracks the weather.
   - h2: "R-454B vs R-410A running pressures, 65–115°F"
     kind: comparison-chart
     compareSlug: r-410a
     body: |-
-      R-454B reads a little below R-410A at every outdoor temperature — about
-      {cmp_dew_pct} on the low side and {cmp_bub_pct} on the high side at the 95°F
-      condition. The offset is small and consistent, which is why R-410A-rated
-      gauges and tools are appropriate for R-454B.
+      R-454B reads a little below R-410A at every outdoor temperature —
+      {cmp_r410a_low} on the low side and {cmp_r410a_high} on the high side at the
+      95°F condition. The offset is small and consistent across the outdoor range.
   - h2: "Suction pressure and R-454B's small glide (read dew for suction)"
     kind: prose
     body: |-
       R-454B is a zeotropic blend with a small glide, so suction is read on the
       dew curve — that is the number on this page and the one to use for superheat.
       On a properly charged system with a 38–45°F coil the low side holds near
-      {low} psig regardless of the weather. Below {low} psig points to weak
-      airflow, a restriction, or an undercharge; above it points to an overcharge
-      or a compressor problem. Use the [superheat calculator](/superheat-calculator/)
-      on the dew value.
+      {low} psig and moves far less than the high side. Below {low} psig points to
+      weak airflow, a restriction, or an undercharge; above it points to an
+      overcharge or a compressor problem. Use the
+      [superheat calculator](/superheat-calculator/) on the dew value.
   - h2: "Standing pressure"
     kind: standing
     mode: range
     body: |-
       With the system off and equalized, R-454B settles across its dew-to-bubble
-      range at the coil temperature. The small spread is the glide; read the dew
-      end for a suction comparison.
+      range at the temperature of the coolest part of the system (indoor or
+      outdoor), once it has been off long enough to equalize. The small spread is
+      the glide; read the dew end for a suction comparison.
   - h2: "Checking the charge"
     kind: prose
     body: |-
@@ -65,30 +68,35 @@ sections:
       [superheat](/superheat-calculator/) on the dew value as the cross-check. The
       [pressure diagnostic tool](/system-pressure-diagnostic-calculator/) turns a
       low/high reading into a likely cause.
+  - h2: "R-454B readings that point to a problem"
+    kind: fault-table
+    body: |-
+      Match a suspect reading to the pattern below, then confirm with a calculator
+      before you add or remove refrigerant.
 faqs:
   - q: "What pressures does R-454B run at?"
     a: |-
       About {low} psig on the low side and {high} psig on the high side at 95°F
-      outdoors with a 38–45°F indoor coil. The low side follows the indoor coil
-      and barely moves with the weather; the high side climbs with the outdoor
-      temperature. Read the chart above for your ambient.
+      outdoors with a 38–45°F indoor coil. The low side depends mainly on the
+      indoor coil and moves far less than the high side, which climbs with the
+      outdoor temperature. Read the chart above for your ambient.
   - q: "Does R-454B run at lower pressure than R-410A?"
     a: |-
-      Slightly, yes. At the 95°F condition R-454B is about {cmp_dew_pct} on the
-      low side and {cmp_bub_pct} on the high side versus R-410A. The gap is small
-      and consistent across the outdoor range, so R-410A-rated gauges, hoses, and
-      recovery equipment are appropriate for R-454B.
+      Slightly, yes. At the 95°F condition R-454B is {cmp_r410a_low} on the low side
+      and {cmp_r410a_high} on the high side versus R-410A. The gap is small and
+      consistent across the outdoor range.
   - q: "What is the R-454B low side at 100°F outdoors?"
     a: |-
-      The low side follows the indoor coil, so it stays near {low} psig whether it
-      is 100°F outside or milder — it is the high side that climbs, to about
-      {high100} psig at 100°F outdoors. A low side far from {low} psig points to an
-      airflow, charge, or restriction problem rather than the weather.
+      The low side depends mainly on the indoor coil, so it stays near {low} psig
+      whether it is 100°F outside or milder — it is the high side that climbs, to
+      about {high100} psig at 100°F outdoors. A low side far from {low} psig points
+      to an airflow, charge, or restriction problem rather than the weather.
   - q: "What is R-454B standing pressure?"
     a: |-
       With the system off and equalized, R-454B sits across a narrow dew-to-bubble
-      range — about {stand75} psig near room temperature. The standing-pressure
-      table above gives it from 65 to 115°F. The small spread is the blend's glide.
+      range — about {stand70} psig at 70°F and {stand75} psig at 75°F. The
+      standing-pressure table above gives it from 65 to 115°F. The small spread is
+      the blend's glide.
 links:
   - href: "/refrigerant/r-454b/"
     label: "R-454B pressure–temperature chart"

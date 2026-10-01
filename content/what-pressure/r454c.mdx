@@ -19,7 +19,7 @@ intro:
   - >-
     This page gives R-454C suction by application at the AHRI walk-in coil
     temperatures, head pressure by outdoor temperature, and the wide dew-to-bubble
-    standing range — all computed from the saturation dataset.
+    standing range.
 answerBlock: >-
   **R-454C suction is about {lt} psig at a −20°F freezer coil and {mt} psig at a
   25°F cooler coil**, with head around {high} psig at 95°F outdoors. It is a
@@ -52,15 +52,24 @@ sections:
     mode: range
     body: |-
       With the system off and equalized, R-454C sits across a wide dew-to-bubble
-      band at the coil temperature — for example {stand68} psig at 68°F (20°C). Treat
-      standing pressure as a range, not a single number; the spread is the glide.
+      band at the temperature of the coolest part of the system (indoor or outdoor),
+      once it has been off long enough to equalize — for example {stand68} psig at
+      68°F (20°C). Treat standing pressure as a range, not a single number; the
+      spread is the glide.
+  - h2: "When R-454C readings are off"
+    kind: fault-table
+    body: |-
+      These are refrigeration faults; match a suspect reading to the pattern below,
+      reading suction on the dew curve, then confirm with a calculator before
+      adding refrigerant.
 faqs:
   - q: "What pressures does R-454C run at in a walk-in freezer?"
     a: |-
       About {lt} psig suction at the AHRI −20°F freezer coil temperature, read on
       the dew curve, with head near {high} psig at 95°F outdoors. Suction is set by
-      the box and holds near this band while the freezer is pulled down; a reading
-      well below it points to an undercharge, a restriction, or a coil needing
+      the box, not the weather: it runs higher while a warm box pulls down and
+      settles into this band once the box is at temperature. A reading well below it
+      on a cold box points to an undercharge, a restriction, or a coil needing
       defrost.
   - q: "What is R-454C standing pressure?"
     a: |-

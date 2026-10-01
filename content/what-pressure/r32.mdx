@@ -19,28 +19,30 @@ intro:
   - >-
     This page gives the suction and high side to expect at each outdoor
     temperature in psig and kPa, the standing pressure at room temperature, and
-    how R-32 lines up against R-410A — all from the saturation dataset.
+    how R-32 lines up against R-410A.
 answerBlock: >-
   **R-32 runs about {low} psig suction and {high} psig on the high side** at 95°F
-  (35°C) outdoors, with a 38–45°F indoor coil. Suction follows the indoor coil
-  and barely moves with the weather; the high side climbs with the outdoor
-  temperature. R-32 sits a little above R-410A at the same conditions, so read
-  the chart below for your ambient.
+  (35°C) outdoors, with a 38–45°F indoor coil. Suction depends mainly on the
+  indoor coil and moves far less than the high side, which climbs with the outdoor
+  temperature. R-32 sits a little above R-410A, so read the chart for your ambient.
+compares:
+  - slug: r-410a
+    key: r410a
 sections:
   - h2: "R-32 running pressure in cooling"
     kind: residential-chart
     body: |-
       Find the outdoor temperature down the left column. Every pressure is shown
-      in psig with the kPa(gauge) equivalent beneath it.
+      in psig with the kPa (gauge) equivalent beneath it.
   - h2: "R-32 suction pressure"
     kind: prose
     body: |-
-      Suction follows the indoor coil, not the outdoor weather, so on a properly
-      charged R-32 system with a 38–45°F coil it stays near {low} psig across the
-      season. Below {low} psig points to weak evaporator airflow, a restriction,
-      or an undercharge; above {low} psig points to a high indoor load, an
-      overcharge, or a compressor that is not pumping. Confirm with
-      [superheat](/superheat-calculator/) before touching the charge.
+      Suction depends mainly on the indoor coil — its temperature and airflow — so
+      on a properly charged R-32 system with a 38–45°F coil it stays near {low}
+      psig and moves far less than the high side. Below {low} psig points to weak
+      evaporator airflow, a restriction, or an undercharge; above {low} psig points
+      to a high indoor load, an overcharge, or a compressor that is not pumping.
+      Confirm with [superheat](/superheat-calculator/) before touching the charge.
   - h2: "High-side pressure as the outdoor temperature climbs"
     kind: prose
     body: |-
@@ -54,35 +56,40 @@ sections:
     mode: sat
     extraTempsF: [68, 86]
     body: |-
-      With the system off and equalized, R-32 settles to its saturation pressure
-      at the coil temperature. The 68°F (20°C) and 86°F (30°C) rows are the common
-      room-temperature checkpoints.
+      With the system off and equalized, R-32 settles to its saturation pressure at
+      the temperature of the coolest part of the system (indoor or outdoor), once
+      it has been off long enough to equalize. The 68°F (20°C) and 86°F (30°C) rows
+      are the common room-temperature checkpoints.
   - h2: "R-32 vs R-410A pressures"
     kind: comparison-anchor
     compareSlugs: ["r-32", "r-410a"]
     body: |-
-      At the same 95°F condition R-32 runs about {cmp_dew_pct} on the low side and
-      {cmp_bub_pct} on the high side versus R-410A. The gap is small, but the two
-      are not interchangeable and R-32 is A2L (mildly flammable) where R-410A is
-      A1.
+      At the same 95°F condition R-32 runs {cmp_r410a_low} on the low side and
+      {cmp_r410a_high} on the high side versus R-410A. The gap is small, but the two
+      are not interchangeable and R-32 is A2L (mildly flammable) where R-410A is A1.
+  - h2: "When R-32 readings are off"
+    kind: fault-table
+    body: |-
+      Match a suspect reading to the pattern below, then confirm with a calculator
+      before you add or remove refrigerant.
 faqs:
   - q: "What pressure should R-32 run at in cooling?"
     a: |-
       About {low} psig suction and {high} psig on the high side at 95°F (35°C)
-      outdoors with a 38–45°F indoor coil. Suction stays near {low} psig across
-      the weather because it follows the coil; the high side is what climbs with
-      the outdoor temperature. Read the chart above for your ambient.
+      outdoors with a 38–45°F indoor coil. Suction depends mainly on the indoor
+      coil and moves far less than the high side, which climbs with the outdoor
+      temperature. Read the chart above for your ambient.
   - q: "What is R-32 suction pressure in bar?"
     a: |-
-      About {low_bar} bar(gauge) at 95°F outdoors — the same band as {low} psig
-      or {low_kpa} kPa(gauge). Suction is set by the indoor coil, so it holds near
-      this range regardless of the outdoor temperature.
+      About {low_bar} bar (gauge) at 95°F outdoors — the same band as {low} psig or
+      {low_kpa} kPa (gauge). Suction depends mainly on the indoor coil, so it holds
+      near this range and moves far less than the high side.
   - q: "What is R-32 standing pressure at 20°C and 30°C?"
     a: |-
       About {stand68} psig at 68°F (20°C) and {stand86} psig at 86°F (30°C) with
       the system off and equalized. R-32 is a single-component refrigerant, so
-      standing pressure is just its saturation pressure at the coil temperature;
-      the table above gives it from 65 to 115°F.
+      standing pressure is its saturation pressure at the temperature of the
+      coolest part of the system; the table above gives it from 65 to 115°F.
   - q: "What is R-32 high-side pressure at 35°C (95°F)?"
     a: |-
       About {high} psig at 95°F (35°C) outdoors on a healthy system. It rises to

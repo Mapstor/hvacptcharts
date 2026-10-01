@@ -10,22 +10,27 @@ introOneLiner: "R-410A high-side and low-side operating pressures for residentia
 intro:
   - >-
     You have gauges on a home air conditioner, a number on the dial, and no easy
-    way to place it. R-410A reads far higher than the R-22 systems most rules of
-    thumb were written for, so a perfectly healthy pressure can look alarming.
+    way to place it. At 95°F outdoors R-410A reads {cmp_r22_low} on the low side
+    and {cmp_r22_high} on the high side than R-22, so a perfectly healthy pressure
+    can look alarming if you learned on R-22.
   - >-
-    Guess high and you vent refrigerant chasing an overcharge that was never
+    Guess high and you recover refrigerant chasing an overcharge that was never
     there; guess low and you add refrigerant on top of a full system. Either way
     you leave the equipment worse than you found it.
   - >-
     This page gives the low and high side to expect at each outdoor temperature,
     the standing pressure with the system off, and how R-410A lines up against
-    R-32 and R-454B — every number computed from the saturation dataset.
+    R-32 and R-454B.
 answerBlock: >-
-  **A healthy R-410A system runs about {low} psig on the low side and {high}
-  psig on the high side at 95°F outdoors**, with a 38–45°F indoor coil. The low
-  side barely moves with the weather because it follows the indoor coil; the
-  high side climbs with the outdoor temperature, so read it against the chart
-  below for your ambient.
+  **A healthy R-410A system runs about {low} psig on the low side and {high} psig
+  on the high side at 95°F outdoors**, with a 38–45°F indoor coil. The low side
+  depends mainly on the indoor coil and moves far less than the high side, which
+  climbs with the outdoor temperature. Read the chart below for your ambient.
+compares:
+  - slug: r-22
+    key: r22
+  - slug: r-32
+    key: r32
 sections:
   - h2: "R-410A high and low side by outdoor temperature"
     kind: residential-chart
@@ -36,19 +41,20 @@ sections:
   - h2: "Suction pressure tracks the indoor load"
     kind: prose
     body: |-
-      The low side follows the indoor coil, not the outdoor weather, so on a
-      properly charged system with a 38–45°F coil it sits near {low} psig whether
-      it is 75°F or 105°F outside. A low side well below {low} psig points to weak
-      evaporator airflow, a restriction, or an undercharge; well above {low} psig
-      points to a high indoor load, an overcharge, or a compressor that is not
-      pumping. Confirm with [superheat](/superheat-calculator/) before you touch
-      the charge.
+      The low side depends mainly on the indoor coil — its temperature and airflow
+      — not the outdoor weather, so on a properly charged system with a 38–45°F
+      coil it sits near {low} psig and moves far less than the high side. A low
+      side well below {low} psig points to weak evaporator airflow, a restriction,
+      or an undercharge; well above {low} psig points to a high indoor load, an
+      overcharge, or a compressor that is not pumping. Confirm with
+      [superheat](/superheat-calculator/) before you touch the charge.
   - h2: "Standing pressure (system off)"
     kind: standing
     mode: bubble
     body: |-
       With the system off and the pressures equalized, R-410A settles to the
-      saturation pressure at whatever temperature the coils have reached. This is
+      saturation pressure at the temperature of the coolest part of the system
+      (indoor or outdoor), once it has been off long enough to equalize. This is
       what you read on a cold start or before recovery.
   - h2: "Checking the charge with these pressures"
     kind: prose
@@ -64,26 +70,21 @@ sections:
     compareSlugs: ["r-410a", "r-32", "r-454b"]
     body: |-
       At the same 95°F condition R-32 runs a little above R-410A and R-454B a
-      little below. R-410A itself is about {cmp_dew_pct} on the low side and
-      {cmp_bub_pct} on the high side versus R-32. The gaps are small, but the
+      little below. R-410A itself is {cmp_r32_low} on the low side and
+      {cmp_r32_high} on the high side versus R-32. The gaps are small, but the
       three are not interchangeable in a given system.
   - h2: "Readings that point to a problem"
-    kind: prose
+    kind: fault-table
     body: |-
-      At 95°F outdoors a healthy system shows about {high} psig high side and
-      {low} psig low side. A high side well above {high} psig with a normal low
-      side points to a dirty or blocked condenser, an overcharge, or
-      non-condensables; a low side below {low} psig with high superheat points to
-      an undercharge or a liquid-line restriction; a low side above {low} psig
-      with low superheat points to an overcharge or a failing compressor. Confirm
-      the direction with the calculators before adding or removing refrigerant.
+      Match a suspect reading to the pattern below, then confirm with a calculator
+      before you add or remove refrigerant.
 faqs:
   - q: "What should R-410A pressures be at 80, 90 and 100°F?"
     a: |-
-      The low side stays near {low} psig at any outdoor temperature — only the
-      high side moves. The high side runs about {high80} psig at 80°F, {high90}
-      psig at 90°F, and {high100} psig at 100°F outdoors. Read the full chart
-      above for every 5°F step.
+      The low side depends mainly on the indoor coil, so it moves far less than the
+      high side. The high side runs about {high80} psig at 80°F, {high90} psig at
+      90°F, and {high100} psig at 100°F outdoors. Read the full chart above for
+      every 5°F step.
   - q: "Is 400 psi on the high side normal for R-410A?"
     a: |-
       It depends on how hot it is outside. Around 100°F outdoors the normal
@@ -93,18 +94,18 @@ faqs:
       far above the row for your ambient is the real warning sign.
   - q: "What is R-410A standing pressure?"
     a: |-
-      With the system off and equalized, R-410A settles to its saturation
-      pressure at the coil temperature — about {stand75} psig near room
-      temperature. The standing-pressure table above gives it from 65 to 115°F. A
-      standing pressure far from the value for the ambient means the charge or the
-      temperature is not what you think.
+      With the system off and equalized, R-410A settles to its saturation pressure
+      at the temperature of the coolest part of the system (indoor or outdoor),
+      once it has been off long enough to equalize — about {stand70} psig at 70°F
+      and {stand75} psig at 75°F. The standing-pressure table above gives it from
+      65 to 115°F.
   - q: "What should R-410A suction pressure be?"
     a: |-
-      About {low} psig on a properly charged system with a 38–45°F indoor coil,
-      and it barely changes with the outdoor temperature because it follows the
-      coil. A suction well below {low} psig usually means low evaporator airflow,
-      a restriction, or an undercharge; well above usually means an overcharge or
-      a compressor problem. Check [superheat](/superheat-calculator/) before
+      About {low} psig on a properly charged system with a 38–45°F indoor coil. It
+      depends mainly on the indoor coil and moves far less than the high side. A
+      suction well below {low} psig usually means low evaporator airflow, a
+      restriction, or an undercharge; well above usually means an overcharge or a
+      compressor problem. Check [superheat](/superheat-calculator/) before
       adjusting.
 links:
   - href: "/refrigerant/r-410a/"
