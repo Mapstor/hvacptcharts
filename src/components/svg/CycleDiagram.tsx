@@ -134,8 +134,8 @@ export function CycleDiagram({
           rx={3}
         />
         <text x={W / 2} y={svgRound(compressor.y + boxH / 3 - 13)} textAnchor="middle" fontSize="11" fontWeight={600} fill={pipeColors.hotVapor}>
-          Discharge: {svgRound(c.dischargePsig).toFixed(0)} PSIG, {svgRound(c.dischargeTempF).toFixed(0)}°F
-        </text>
+          Discharge: {svgRound(c.dischargePsig).toFixed(0)} PSIG, {svgRound(c.dischargeTempF).toFixed(0)}°F{" "}
+</text>
       </g>
       {/* Liquid line (right side) */}
       <g>
@@ -148,8 +148,8 @@ export function CycleDiagram({
           rx={3}
         />
         <text x={condenser.x + boxW - 30} y={svgRound(H / 2 + 5)} textAnchor="middle" fontSize="11" fontWeight={600} fill={pipeColors.warmLiquid}>
-          Liquid: {svgRound(c.liquidPsig).toFixed(0)} PSIG, {svgRound(c.liquidTempF).toFixed(0)}°F
-        </text>
+          Liquid: {svgRound(c.liquidPsig).toFixed(0)} PSIG, {svgRound(c.liquidTempF).toFixed(0)}°F{" "}
+</text>
       </g>
       {/* Evap inlet (bottom center) */}
       <g>
@@ -176,8 +176,8 @@ export function CycleDiagram({
           rx={3}
         />
         <text x={evaporator.x + 40} y={svgRound(H / 2 + 5)} textAnchor="middle" fontSize="11" fontWeight={600} fill={pipeColors.coolVapor}>
-          Suction: {svgRound(c.suctionPsig).toFixed(0)} PSIG, {svgRound(c.suctionTempF).toFixed(0)}°F
-        </text>
+          Suction: {svgRound(c.suctionPsig).toFixed(0)} PSIG, {svgRound(c.suctionTempF).toFixed(0)}°F{" "}
+</text>
       </g>
 
       {/* Direction arrows on pipes — small chevrons */}

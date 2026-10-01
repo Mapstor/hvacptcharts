@@ -639,7 +639,7 @@ function CriticalPointBars() {
             </text>
             <rect x={LABEL_W} y={y + 4} width={barLen} height={12} fill={d.tone} rx={2} />
             <text x={LABEL_W + barLen + 6} y={y + 14} fontSize="10" fontWeight={600} fill="currentColor">
-              {d.tCrit}°F
+              {d.tCrit}°F{" "}
             </text>
           </g>
         );

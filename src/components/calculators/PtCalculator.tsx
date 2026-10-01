@@ -146,7 +146,7 @@ export function PtCalculator({ initialSlug = "r-410a" }: { initialSlug?: string 
           />
         </div>
         <div className="rounded-md border border-zinc-300 bg-white p-3 dark:border-zinc-700 dark:bg-zinc-950/40">
-          <span className="block text-xs uppercase tracking-wide text-zinc-500">Result</span>
+          <span className="block text-xs uppercase tracking-wide text-zinc-500">Result</span>{" "}
           {submitted ? (
             <ResultDisplay
               direction={direction}

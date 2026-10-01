@@ -143,7 +143,7 @@ export function CombinedCalculator({ initialSlug = "r-410a" }: { initialSlug?: s
 function ResultBox({ label, valueF, tempUnit }: { label: string; valueF: number | null; tempUnit: TempUnit }) {
   return (
     <div className="rounded-md border border-zinc-300 bg-white p-3 dark:border-zinc-700 dark:bg-zinc-950/40">
-      <span className="block text-xs uppercase tracking-wide text-zinc-500">{label}</span>
+      <span className="block text-xs uppercase tracking-wide text-zinc-500">{label}</span>{" "}
       {valueF === null ? (
         <span className="text-zinc-500">—</span>
       ) : (

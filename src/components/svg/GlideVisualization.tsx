@@ -88,14 +88,14 @@ export function GlideVisualization({
 
       {/* Entry / mid / exit temperature labels */}
       <text x={coilX} y={coilY - 10} textAnchor="middle" fontSize="12" fill="var(--c-bubble)" fontWeight={600}>
-        Entry: {svgRound(bubbleTempF).toFixed(1)}°F
-      </text>
+        Entry: {svgRound(bubbleTempF).toFixed(1)}°F{" "}
+</text>
       <text x={coilX + coilW / 2} y={coilY - 10} textAnchor="middle" fontSize="12" fill="var(--c-text)" opacity={0.7}>
-        Mid: {svgRound(midTempF).toFixed(1)}°F
-      </text>
+        Mid: {svgRound(midTempF).toFixed(1)}°F{" "}
+</text>
       <text x={coilX + coilW} y={coilY - 10} textAnchor="middle" fontSize="12" fill="var(--c-dew)" fontWeight={600}>
-        Exit: {svgRound(dewTempF).toFixed(1)}°F
-      </text>
+        Exit: {svgRound(dewTempF).toFixed(1)}°F{" "}
+</text>
 
       {/* Glide bracket beneath the coil */}
       <g>
@@ -104,8 +104,8 @@ export function GlideVisualization({
         <line x1={coilX} y1={coilY + coilH + 17} x2={coilX + coilW} y2={coilY + coilH + 17} stroke="var(--c-text)" strokeWidth={1} />
         <rect x={coilX + coilW / 2 - 70} y={coilY + coilH + 12} width={140} height={16} fill="var(--background)" />
         <text x={coilX + coilW / 2} y={coilY + coilH + 24} textAnchor="middle" fontSize="12" fontWeight={600} fill="var(--c-text)">
-          Glide = {svgRound(glide).toFixed(1)}°F
-        </text>
+          Glide = {svgRound(glide).toFixed(1)}°F{" "}
+</text>
       </g>
 
       {/* Subchart axes */}
@@ -129,8 +129,8 @@ export function GlideVisualization({
         Position along evaporator coil
       </text>
       <text x={subX - 6} y={svgRound(yScale(bubbleTempF)) + 4} textAnchor="end" fontSize="10" fill="var(--c-text)" opacity={0.7}>
-        {svgRound(bubbleTempF).toFixed(0)}°F
-      </text>
+        {svgRound(bubbleTempF).toFixed(0)}°F{" "}
+</text>
       <text x={subX - 6} y={svgRound(yScale(dewTempF)) + 4} textAnchor="end" fontSize="10" fill="var(--c-text)" opacity={0.7}>
         {svgRound(dewTempF).toFixed(0)}°F
       </text>

@@ -146,12 +146,12 @@ export function Lookups({ rows }: { rows: LookupRow[] }) {
         <div key={i} className="flex flex-wrap items-center gap-2 text-sm">
           <span className="rounded bg-zinc-200/70 px-2 py-0.5 font-mono tabular-nums dark:bg-zinc-800/60">
             {r.input}
-          </span>
-          <ArrowRight className="h-3 w-3 shrink-0 text-zinc-400" />
+          </span>{" "}
+          <ArrowRight className="h-3 w-3 shrink-0 text-zinc-400" />{" "}
           <span className="rounded bg-zinc-200/70 px-2 py-0.5 font-mono font-semibold tabular-nums dark:bg-zinc-800/60">
             {r.output}
           </span>
-          {r.note ? <span className="text-xs text-zinc-500 dark:text-zinc-400">{r.note}</span> : null}
+          {r.note ? <>{" "}<span className="text-xs text-zinc-500 dark:text-zinc-400">{r.note}</span></> : null}
         </div>
       ))}
     </div>
@@ -175,7 +175,7 @@ export function Derived({ rows }: { rows: DerivedRow[] }) {
           <div key={i} className="flex flex-wrap items-center gap-2 text-sm">
             <Icon className={`h-3.5 w-3.5 shrink-0 ${VERDICT_TEXT[r.verdict]}`} />
             <span className="font-mono tabular-nums">{r.formula}</span>
-            {r.note ? <span className={`text-xs ${VERDICT_TEXT[r.verdict]}`}>{r.note}</span> : null}
+            {r.note ? <>{" "}<span className={`text-xs ${VERDICT_TEXT[r.verdict]}`}>{r.note}</span></> : null}
           </div>
         );
       })}

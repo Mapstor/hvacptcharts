@@ -161,7 +161,7 @@ export function QuickPTLookup({ displayName, slug, ptChart, hasGlide }: QuickPTL
         <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-[10px] text-zinc-500">
           <span className="inline-flex items-center gap-1">
             <Thermometer className="h-2.5 w-2.5" /> Range: {inputRange}
-          </span>
+          </span>{" "}
           <a
             href={`/pt-calculator/?refrigerant=${slug}`}
             className="text-blue-700 hover:underline dark:text-blue-300"

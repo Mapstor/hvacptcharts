@@ -72,22 +72,22 @@ export function WorkedScenario({ scenario }: { scenario: Scenario }) {
   const evapTarget: [number, number] = s.mode === "refrigeration" ? COMMERCIAL_EVAPORATOR_APPROACH_F : RESIDENTIAL_EVAPORATOR_APPROACH_F;
   const derivedRows: DerivedRow[] = [];
   if (c.superheatF !== null && c.targets) {
-    derivedRows.push({ formula: `Superheat = ${f1(s.suctionLineF)} − ${f1(c.suctionSatDewF)} (dew) = ${f1(c.superheatF)}°F`, verdict: rangeBadge(c.superheatF, c.targets.superheatF), note: rangeNote(c.superheatF, c.targets.superheatF) });
+    derivedRows.push({ formula: `Superheat = ${f1(s.suctionLineF)} − ${f1(c.suctionSatDewF)} (dew) = ${f1(c.superheatF)}°F `, verdict: rangeBadge(c.superheatF, c.targets.superheatF), note: rangeNote(c.superheatF, c.targets.superheatF) });
   }
   if (c.targetSuperheatF !== null) {
     const delta = c.superheatF !== null ? Math.abs(c.superheatF - c.targetSuperheatF) : null;
-    derivedRows.push({ formula: `Target superheat (${f0(s.indoorWB)}°F WB / ${f0(s.outdoorDB)}°F DB) = ${c.targetSuperheatF}°F`, verdict: delta === null ? "info" : delta <= 3 ? "ok" : "warn", note: "fixed-orifice charging-chart target" });
+    derivedRows.push({ formula: `Target superheat (${f0(s.indoorWB)}°F WB / ${f0(s.outdoorDB)}°F DB) = ${c.targetSuperheatF}°F `, verdict: delta === null ? "info" : delta <= 3 ? "ok" : "warn", note: "fixed-orifice charging-chart target" });
   }
   if (c.subcoolingF !== null && c.targets) {
-    derivedRows.push({ formula: `Subcooling = ${f1(c.dischargeSatBubbleF)} (bubble) − ${f1(s.liquidLineF)} = ${f1(c.subcoolingF)}°F`, verdict: rangeBadge(c.subcoolingF, c.targets.subcoolingF), note: rangeNote(c.subcoolingF, c.targets.subcoolingF) });
+    derivedRows.push({ formula: `Subcooling = ${f1(c.dischargeSatBubbleF)} (bubble) − ${f1(s.liquidLineF)} = ${f1(c.subcoolingF)}°F `, verdict: rangeBadge(c.subcoolingF, c.targets.subcoolingF), note: rangeNote(c.subcoolingF, c.targets.subcoolingF) });
   }
   if (showApproaches && c.condenserApproachF !== null) {
     const airLabel = s.coolingMedium === "water" ? "entering water" : s.mode === "heating" ? "return air" : "ambient";
-    derivedRows.push({ formula: `Condenser approach = ${f1(c.dischargeSatBubbleF)} − ${f1(c.condenserAirF)} (${airLabel}) = ${f1(c.condenserApproachF)}°F`, verdict: s.mode === "heating" ? "info" : rangeBadge(c.condenserApproachF, RESIDENTIAL_CONDENSER_APPROACH_F), note: s.mode === "heating" ? "the temperature lift into the indoor coil" : rangeNote(c.condenserApproachF, RESIDENTIAL_CONDENSER_APPROACH_F) });
+    derivedRows.push({ formula: `Condenser approach = ${f1(c.dischargeSatBubbleF)} − ${f1(c.condenserAirF)} (${airLabel}) = ${f1(c.condenserApproachF)}°F `, verdict: s.mode === "heating" ? "info" : rangeBadge(c.condenserApproachF, RESIDENTIAL_CONDENSER_APPROACH_F), note: s.mode === "heating" ? "the temperature lift into the indoor coil" : rangeNote(c.condenserApproachF, RESIDENTIAL_CONDENSER_APPROACH_F) });
   }
   if (showApproaches && c.evaporatorApproachF !== null) {
     const airLabel = s.mode === "heating" ? "outdoor" : s.mode === "refrigeration" ? "box" : "return air";
-    derivedRows.push({ formula: `Evaporator approach = ${f1(c.evaporatorAirF)} (${airLabel}) − ${f1(c.suctionSatDewF)} = ${f1(c.evaporatorApproachF)}°F`, verdict: s.mode === "heating" ? "info" : rangeBadge(c.evaporatorApproachF, evapTarget), note: s.mode === "heating" ? "outdoor coil runs below ambient to absorb heat" : rangeNote(c.evaporatorApproachF, evapTarget) });
+    derivedRows.push({ formula: `Evaporator approach = ${f1(c.evaporatorAirF)} (${airLabel}) − ${f1(c.suctionSatDewF)} = ${f1(c.evaporatorApproachF)}°F `, verdict: s.mode === "heating" ? "info" : rangeBadge(c.evaporatorApproachF, evapTarget), note: s.mode === "heating" ? "outdoor coil runs below ambient to absorb heat" : rangeNote(c.evaporatorApproachF, evapTarget) });
   }
 
   return (

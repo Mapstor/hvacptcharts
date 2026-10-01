@@ -117,7 +117,7 @@ export function SuperheatCalculator({ initialSlug = "r-410a" }: { initialSlug?: 
       </button>
 
       <div className="rounded-md border border-zinc-300 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-950/40">
-        <span className="block text-xs uppercase tracking-wide text-zinc-500">Superheat</span>
+        <span className="block text-xs uppercase tracking-wide text-zinc-500">Superheat</span>{" "}
         {!submitted ? (
           <span className="text-zinc-500">Enter your suction-line pressure and temperature, then click Calculate.</span>
         ) : computation.kind === "no-data" ? (

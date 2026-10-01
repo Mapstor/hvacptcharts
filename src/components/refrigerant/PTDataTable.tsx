@@ -346,7 +346,7 @@ function FahrenheitTable({
             <tr key={p.tempF} className={bg}>
               <td className="border-b border-zinc-100 px-3 py-1 font-semibold dark:border-zinc-900">
                 <span className="inline-flex items-center gap-1.5">
-                  <span>{p.tempF.toFixed(0)}°F</span>
+                  <span>{p.tempF.toFixed(0)}°F</span>{" "}
                   {hl ? (
                     <span className={`rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider ${TONE_TAG[hl.tone]}`}>
                       {hl.label}
@@ -439,7 +439,7 @@ function CelsiusTable({
             <tr key={p.tempC} className={bg}>
               <td className="border-b border-zinc-100 px-3 py-1 font-semibold dark:border-zinc-900">
                 <span className="inline-flex items-center gap-1.5">
-                  <span>{p.tempC.toFixed(0)}°C</span>
+                  <span>{p.tempC.toFixed(0)}°C</span>{" "}
                   {hl ? (
                     <span className={`rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider ${TONE_TAG[hl.tone]}`}>
                       {hl.label}

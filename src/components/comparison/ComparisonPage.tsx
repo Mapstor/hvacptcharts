@@ -839,7 +839,7 @@ function TransitionProcedure({ a, b }: { a: Refrigerant; b: Refrigerant }) {
           </li>
           <li>
             <strong>Recover {a.displayName}.</strong> Use a recovery machine rated for{" "}
-            {a.safetyClass} refrigerants. Recover into properly-labeled cylinders;
+            {a.safetyClass}{" "}refrigerants. Recover into properly-labeled cylinders;
             don&apos;t mix recovered {a.displayName} with virgin or recovered{" "}
             {b.displayName} (cross-contamination invalidates reclaim).
           </li>

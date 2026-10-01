@@ -243,7 +243,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                       <dt className="text-xs text-zinc-600 dark:text-zinc-400">{k.label}</dt>
                       <dd className="flex items-baseline gap-1 text-right">
                         <span className="font-mono text-sm font-semibold">{k.value}</span>
-                        {k.unit ? <span className="text-[10px] text-zinc-500">{k.unit}</span> : null}
+                        {k.unit ? <>{" "}<span className="text-[10px] text-zinc-500">{k.unit}</span></> : null}
                         {k.sourceId && srcIdx.get(k.sourceId) ? (
                           <a
                             href={`#src-${k.sourceId}`}
@@ -456,7 +456,7 @@ export default async function RefrigerantPage({ params }: { params: Promise<{ sl
                 <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                   {r.composition.map((c) => (
                     <li key={c.component} className="flex items-baseline justify-between rounded-md bg-zinc-50 px-2.5 py-1.5 dark:bg-zinc-900">
-                      <span className="font-mono text-sm">{c.component}</span>
+                      <span className="font-mono text-sm">{c.component}</span>{" "}
                       <span className="font-mono text-sm font-semibold">{(c.massFraction * 100).toFixed(1)}%</span>
                     </li>
                   ))}
@@ -1006,7 +1006,7 @@ function StatBox({
       <div className="mt-2.5 flex items-baseline gap-1.5">
         {value !== null ? (
           <>
-            <span className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100">{value}</span>
+            <span className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100">{value}</span>{" "}
             <span className="text-xs text-zinc-500">{unit}</span>
           </>
         ) : (
@@ -1145,9 +1145,9 @@ function PropertiesGrid({ r }: { r: Refrigerant }) {
       label: "GWP (100-yr)",
       value: (
         <span className="flex flex-col">
-          <span>{gwpText(g.headline)}</span>
-          <span className="mt-0.5 text-[10px] font-normal text-zinc-500">{basisLabel(g.headline.source)}</span>
-          <span className="mt-0.5 text-[10px] font-normal text-zinc-500">{ipccLine(g)}</span>
+          <span>{gwpText(g.headline)}</span>{" "}
+          <span className="mt-0.5 text-[10px] font-normal text-zinc-500">{basisLabel(g.headline.source)}</span>{" "}
+          <span className="mt-0.5 text-[10px] font-normal text-zinc-500">{ipccLine(g)}</span>{" "}
           {g.note ? <span className="mt-0.5 text-[10px] font-normal italic text-zinc-500">{g.note}</span> : null}
         </span>
       ),
@@ -1223,7 +1223,7 @@ function ReplacementCard({
                 href={`/refrigerant/${target.slug}/`}
                 className="flex items-baseline justify-between gap-2 rounded-md bg-white px-3 py-2 text-sm transition-colors hover:bg-amber-100/40 dark:bg-zinc-950 dark:hover:bg-amber-950/40"
               >
-                <span className="font-semibold text-blue-700 dark:text-blue-300">{target.displayName}</span>
+                <span className="font-semibold text-blue-700 dark:text-blue-300">{target.displayName}</span>{" "}
                 <span className="text-xs text-zinc-500">
                   {target.safetyClass} · GWP {gwpText(target.environmental.gwp.headline)}
                 </span>

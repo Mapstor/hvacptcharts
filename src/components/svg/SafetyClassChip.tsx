@@ -144,6 +144,7 @@ export function SafetyClassChip({
         <info.Icon size={sizing.iconPx} aria-hidden="true" strokeWidth={2.25} />
         {info.SecondaryIcon ? <info.SecondaryIcon size={sizing.iconPx} aria-hidden="true" strokeWidth={2.25} /> : null}
         <span className="font-mono">{safetyClass}</span>
+        {" "}
         <span>{info.label}</span>
       </span>
     );

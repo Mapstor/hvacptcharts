@@ -203,10 +203,12 @@ function Derived({ label, value, unit, target }: { label: string; value: number 
             <span className="ml-1 text-xs text-zinc-500">{unit}</span>
           </>
         )}
+        {" "}
         {target ? (
           <div className="text-[10px] text-zinc-500">target {target[0]}–{target[1]}{unit}</div>
         ) : null}
       </dd>
+      {" "}
     </div>
   );
 }

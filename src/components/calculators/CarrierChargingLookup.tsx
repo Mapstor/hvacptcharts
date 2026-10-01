@@ -165,9 +165,9 @@ function ResultsSection({ snapshot, ptChart }: { snapshot: Snapshot; ptChart: PT
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           <div className="rounded-lg border-2 border-blue-300 bg-blue-50/60 p-4 dark:border-blue-700/60 dark:bg-blue-950/30">
             <div className="text-[10px] uppercase tracking-wider text-zinc-600 dark:text-zinc-400">Target superheat</div>
-            <div className="mt-1 font-mono text-4xl font-bold text-blue-700 dark:text-blue-300">{snapshot.targetSH}°F</div>
+            <div className="mt-1 font-mono text-4xl font-bold text-blue-700 dark:text-blue-300">{snapshot.targetSH}°F</div>{" "}
             <div className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">Chart row {snapshot.wbRow}°F × column {snapshot.odCol}°F</div>
-          </div>
+          </div>{" "}
           <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
             <div className="text-[10px] uppercase tracking-wider text-zinc-500">Expected suction pressure</div>
             <div className="mt-1 font-mono text-3xl font-bold text-zinc-900 dark:text-zinc-100">
@@ -369,7 +369,7 @@ function ChargingChartHeatmap({ snapshot }: { snapshot: Snapshot }) {
         {[33, 25, 15, 8].map((sh, i) => (
           <g key={`legend-${sh}`}>
             <rect x={width - padding.right + 10} y={padding.top + i * 22} width={18} height={18} fill={superheatColor(sh)} opacity={0.85} />
-            <text x={width - padding.right + 33} y={padding.top + i * 22 + 13} fontSize="10" fill="#52525b" className="dark:fill-zinc-300">{sh}°F</text>
+            <text x={width - padding.right + 33} y={padding.top + i * 22 + 13} fontSize="10" fill="#52525b" className="dark:fill-zinc-300">{sh}°F </text>
           </g>
         ))}
         <rect x={width - padding.right + 10} y={padding.top + 4 * 22} width={18} height={18} fill="#e4e4e7" />
@@ -444,7 +444,7 @@ function R410aPTCurve({ snapshot, ptChart }: { snapshot: Snapshot; ptChart: PTPo
         {xTicks.map((t) => (
           <g key={`x-${t}`}>
             <line x1={xScale(t)} y1={padding.top + innerH} x2={xScale(t)} y2={padding.top + innerH + 4} stroke="#71717a" className="dark:stroke-zinc-400" />
-            <text x={xScale(t)} y={padding.top + innerH + 16} fontSize="10" textAnchor="middle" fill="#71717a" className="dark:fill-zinc-400">{t}°F</text>
+            <text x={xScale(t)} y={padding.top + innerH + 16} fontSize="10" textAnchor="middle" fill="#71717a" className="dark:fill-zinc-400">{t}°F </text>
           </g>
         ))}
         <text x={padding.left + innerW / 2} y={height - 8} fontSize="10" textAnchor="middle" fill="#52525b" className="dark:fill-zinc-300">Saturation temperature (°F)</text>
@@ -457,7 +457,7 @@ function R410aPTCurve({ snapshot, ptChart }: { snapshot: Snapshot; ptChart: PTPo
         <line x1={padding.left} y1={evapY} x2={evapX} y2={evapY} stroke="#16a34a" strokeWidth="1" strokeDasharray="3,2" className="dark:stroke-emerald-400" />
         <circle cx={evapX} cy={evapY} r="6" fill="#16a34a" stroke="white" strokeWidth="2" className="dark:fill-emerald-500" />
         <text x={evapX + 10} y={evapY - 6} fontSize="10" fontWeight="600" fill="#15803d" className="dark:fill-emerald-300">
-          Suction: {snapshot.satEvapF.toFixed(0)}°F → {snapshot.evapP?.bubble.toFixed(1)} PSIG
+          Suction: {snapshot.satEvapF.toFixed(0)}°F → {snapshot.evapP?.bubble.toFixed(1)} PSIG{" "}
         </text>
 
         {/* Discharge (condensing) operating point */}

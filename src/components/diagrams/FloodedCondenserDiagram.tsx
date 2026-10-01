@@ -243,8 +243,8 @@ export function FloodedCondenserDiagram() {
             fontWeight="600"
             fill="#16a34a"
           >
-            TXV target 8–12°F
-          </text>
+            TXV target 8–12°F{" "}
+</text>
 
           {/* Stepped SC readouts — only one is visible at a time */}
           <g className={`${CX}-sc-1`}>
@@ -257,8 +257,8 @@ export function FloodedCondenserDiagram() {
               fill="#f59e0b"
               fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
             >
-              12°F
-            </text>
+              12°F{" "}
+</text>
             <text
               x="600"
               y="212"
@@ -280,8 +280,8 @@ export function FloodedCondenserDiagram() {
               fill="#ea580c"
               fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
             >
-              16°F
-            </text>
+              16°F{" "}
+</text>
             <text
               x="600"
               y="212"
@@ -303,8 +303,8 @@ export function FloodedCondenserDiagram() {
               fill="#dc2626"
               fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
             >
-              20°F
-            </text>
+              20°F{" "}
+</text>
             <text
               x="600"
               y="212"

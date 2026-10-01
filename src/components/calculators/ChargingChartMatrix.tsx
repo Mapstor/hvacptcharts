@@ -108,7 +108,7 @@ export function ChargingChartMatrix({
             <div className="text-xs uppercase tracking-wider text-zinc-500">Target superheat</div>
             <div className="mt-1 font-mono text-2xl font-semibold text-blue-800 dark:text-blue-200">
               {result.tsh !== null ? `${result.tsh}°F` : "—"}
-            </div>
+            </div>{" "}
             <div className="mt-1 text-xs text-zinc-500">
               TSH = round((3 × {result.wb} − 80 − {result.db}) / 2)
               {result.tsh !== null ? ` = ${result.tsh}°F` : " → below 5°F, not reliable"}
@@ -130,14 +130,14 @@ export function ChargingChartMatrix({
               <tr className="bg-zinc-50 dark:bg-zinc-900">
                 <th className="border-b border-r border-zinc-200 px-2 py-1.5 text-left text-[10px] uppercase tracking-wider text-zinc-500 dark:border-zinc-800">WB \ DB</th>
                 {dbCols.map((db) => (
-                  <th key={db} className="border-b border-zinc-200 px-2 py-1.5 text-right dark:border-zinc-800">{db}°F</th>
+                  <th key={db} className="border-b border-zinc-200 px-2 py-1.5 text-right dark:border-zinc-800">{db}°F </th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {wbRows.map((wbRow) => (
                 <tr key={wbRow} className="border-b border-zinc-100 last:border-0 dark:border-zinc-900">
-                  <th className="border-r border-zinc-200 bg-zinc-50/50 px-2 py-1.5 text-right dark:border-zinc-800 dark:bg-zinc-900/50">{wbRow}°F</th>
+                  <th className="border-r border-zinc-200 bg-zinc-50/50 px-2 py-1.5 text-right dark:border-zinc-800 dark:bg-zinc-900/50">{wbRow}°F </th>
                   {dbCols.map((dbCol) => {
                     const t = targetSuperheat(wbRow, dbCol);
                     const isPlaceholder = t === null;

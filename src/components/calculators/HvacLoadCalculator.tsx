@@ -106,7 +106,7 @@ export function HvacLoadCalculator() {
               <div>
                 <label htmlFor="lc-zone" className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Climate zone (IECC)</label>
                 <select id="lc-zone" value={zoneId} onChange={(e) => setZoneId(e.target.value)} className="mt-1 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900">
-                  {CLIMATE_ZONES.map((z) => (<option key={z.id} value={z.id}>{z.label} — cool {z.coolingDbF}°F, heat {z.heatingDbF}°F</option>))}
+                  {CLIMATE_ZONES.map((z) => (<option key={z.id} value={z.id}>{z.label} — cool {z.coolingDbF}°F, heat {z.heatingDbF}°F{" "}</option>))}
                 </select>
               </div>
               <div>

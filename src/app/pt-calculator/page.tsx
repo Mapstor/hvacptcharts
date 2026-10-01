@@ -814,7 +814,7 @@ function GlideBars() {
             </text>
             <rect x={LABEL_W} y={y + 3} width={barLen} height={14} fill="#8e4dd1" rx={2} />
             <text x={LABEL_W + barLen + 6} y={y + 14} fontSize="11" fontWeight={600} fill="currentColor">
-              {r.value.toFixed(1)}°F
+              {r.value.toFixed(1)}°F{" "}
             </text>
           </g>
         );
