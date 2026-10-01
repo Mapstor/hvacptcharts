@@ -29,7 +29,7 @@ const SCENARIOS: Scenario[] = [
   {
     name: "R-410A TXV — restriction fingerprint (high SH, high SC)",
     inputs: { slug: "r-410a", systemType: "txv-residential", ambientF: 95, returnAirF: 75, suctionPsig: 100, suctionLineF: 65, liquidPsig: 450, liquidLineF: 100 },
-    expectFlagLabel: "Likely restriction or low evaporator airflow",
+    expectFlagLabel: "Likely restriction",
   },
   {
     name: "R-410A TXV — negative SH (slugging)",

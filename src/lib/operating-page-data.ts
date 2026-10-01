@@ -31,8 +31,8 @@ export interface FaultRow {
 const FAULT_DIRECTIONS: Partial<Record<FaultPatternId, { suction: string; head: string; superheat: string; subcooling: string; check: string }>> = {
   undercharge: { suction: "low", head: "low", superheat: "high", subcooling: "low", check: "Find and fix the leak, then recharge by weight" },
   overcharge: { suction: "high", head: "high", superheat: "low", subcooling: "high", check: "Verify condenser airflow, then recover to target" },
-  restriction: { suction: "low", head: "normal–low", superheat: "high", subcooling: "high", check: "Check the filter-drier and evaporator airflow" },
-  "airflow-metering": { suction: "high", head: "low", superheat: "low", subcooling: "low", check: "Check the metering device and condenser airflow" },
+  restriction: { suction: "low", head: "normal–low", superheat: "high", subcooling: "high", check: "Look for a temperature drop across the filter-drier or liquid line, then check the metering device." },
+  "airflow-metering": { suction: "high", head: "low", superheat: "low", subcooling: "low", check: "A TXV or EEV stuck open or with a loose sensing bulb; on a fixed-orifice system, the piston size." },
 };
 /** Ordered fault rows for the "readings that point to a problem" table. */
 export const FAULT_ROWS: FaultRow[] = (["undercharge", "overcharge", "restriction", "airflow-metering"] as FaultPatternId[]).map((id) => {
@@ -63,6 +63,8 @@ export interface RenderedSection {
   co2HighSide?: { rows: OP.Co2Row[]; critical: OP.Co2Critical | null };
   co2Standstill?: { rows: OP.Co2Row[] };
   faultTable?: { rows: FaultRow[]; normalLine: string };
+  /** Footnote text for a table that has out-of-range "—" cells. */
+  gapNote?: string;
   showBar?: boolean;
 }
 
@@ -77,6 +79,12 @@ export interface OperatingPageData {
 }
 
 const displayName = (slug: string): string => getRefrigerant(slug)?.displayName ?? slug.toUpperCase();
+
+/** Footnote for a chart with out-of-range "—" cells (e.g. R-454B above 134°F). */
+function gapNoteFor(slug: string): string {
+  const maxT = OP.ptMaxTempF(slug);
+  return `outside the calculated range: the ${displayName(slug)} data used here stop at a ${maxT}°F condensing temperature.`;
+}
 
 /** Round to whole °F and format with a Unicode minus for negatives. */
 function fmtTempF(t: number | null): string {
@@ -252,6 +260,7 @@ export function buildOperatingData(fm: OperatingFrontmatter): OperatingPageData 
         OP.collectBand(valueSet, low, ...rows.map((r) => r.band));
         rows.forEach((r) => { if (r.band.gap) gaps.push(`${slug} residential high side, outdoor ${r.outdoorF}°F: ${OP.GAP_NOTE}`); });
         rs.residentialChart = { low, rows };
+        if (rows.some((r) => r.band.gap)) rs.gapNote = gapNoteFor(slug);
         break;
       }
       case "commercial-head-chart": {
@@ -305,6 +314,7 @@ export function buildOperatingData(fm: OperatingFrontmatter): OperatingPageData 
             other: otherRows[i].band,
           })),
         };
+        if (selfRows.some((r) => r.band.gap) || otherRows.some((r) => r.band.gap)) rs.gapNote = gapNoteFor(slug);
         break;
       }
       case "co2-suction": {

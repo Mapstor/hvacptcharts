@@ -55,17 +55,19 @@ sections:
     kind: standing
     mode: range
     body: |-
-      With the system off and equalized, R-454B settles across its dew-to-bubble
-      range at the temperature of the coolest part of the system (indoor or
-      outdoor), once it has been off long enough to equalize. The small spread is
-      the glide; read the dew end for a suction comparison.
+      Once the system has been off long enough for the pressures to equalize, R-454B
+      reads across its dew-to-bubble range at the temperature of the coolest part of
+      the system (indoor or outdoor). The small spread is the glide; read the dew end
+      for a suction comparison.
   - h2: "Checking the charge"
     kind: prose
     body: |-
-      Pressure alone does not confirm a charge. On the TXV systems R-454B uses,
-      subcooling is the primary check — measure it with the
-      [subcooling calculator](/subcooling-calculator/) and use
-      [superheat](/superheat-calculator/) on the dew value as the cross-check. The
+      Pressure alone does not confirm a charge. With a TXV or electronic expansion
+      valve, subcooling is the usual charging check; with a fixed orifice (piston),
+      superheat is. Follow the method on the unit's charging chart. The
+      [subcooling calculator](/subcooling-calculator/) and
+      [superheat calculator](/superheat-calculator/) (read superheat on the dew
+      value) do the saturation lookup; the
       [pressure diagnostic tool](/system-pressure-diagnostic-calculator/) turns a
       low/high reading into a likely cause.
   - h2: "R-454B readings that point to a problem"
@@ -93,7 +95,7 @@ faqs:
       to an airflow, charge, or restriction problem rather than the weather.
   - q: "What is R-454B standing pressure?"
     a: |-
-      With the system off and equalized, R-454B sits across a narrow dew-to-bubble
+      Once the pressures have equalized, R-454B reads across a narrow dew-to-bubble
       range — about {stand70} psig at 70°F and {stand75} psig at 75°F. The
       standing-pressure table above gives it from 65 to 115°F. The small spread is
       the blend's glide.

@@ -374,6 +374,13 @@ export function getRef(slug: string): Refrigerant | undefined {
   return getRefrigerant(slug);
 }
 
+/** Highest temperature (°F) in the fluid's PT chart — the calculated-range ceiling. */
+export function ptMaxTempF(slug: string): number | null {
+  const r = getRefrigerant(slug);
+  if (!r || !r.ptChart?.length) return null;
+  return Math.max(...r.ptChart.map((p) => p.tempF));
+}
+
 /* ─────────────────────────── value-set collection ─────────────────────────── */
 
 /** Push a cell's individual formatted psig string (skipping gaps) into a set. */

@@ -92,6 +92,7 @@ function OpTable({
   rows,
   chart,
   sectionKind,
+  gapNote,
 }: {
   caption: string;
   source?: ReactNode;
@@ -99,6 +100,7 @@ function OpTable({
   rows: OpCell[][];
   chart?: boolean;
   sectionKind?: string;
+  gapNote?: string;
 }) {
   const hasGap = rows.some((r) => r.some((c) => c.psig === EM_DASH));
   return (
@@ -127,7 +129,10 @@ function OpTable({
                   >
                     <span>{cell.main}</span>
                     {cell.sub ? (
-                      <span className="block text-[11px] font-normal text-zinc-500">{cell.sub}</span>
+                      <>
+                        {" "}
+                        <span className="block text-[11px] font-normal text-zinc-500">{cell.sub}</span>
+                      </>
                     ) : null}
                   </td>
                 ))}
@@ -139,14 +144,20 @@ function OpTable({
       <figcaption className="mt-1.5 text-xs text-zinc-500">
         {caption}
         {source ? <> — {source}</> : null}
-        {hasGap ? <span className="block">{EM_DASH} {GAP_NOTE}</span> : null}
+        {hasGap ? <span className="block">{EM_DASH} {gapNote ?? GAP_NOTE}</span> : null}
       </figcaption>
     </figure>
   );
 }
 
 const fahr = (f: number, c: string) => ({ main: `${f}°F`, sub: `${c}°C`, left: true });
-const pcell = (b: Band): OpCell => ({ main: `${b.psigStr} psig`, sub: `${b.kpaStr} kPa`, psig: b.psigStr, kpa: b.kpaStr });
+// Format a coil temperature with a true minus sign (−20°F, not -20°F).
+const minusF = (t: number): string => `${t < 0 ? "−" : ""}${Math.abs(t)}°F`;
+// Gap cells show a single "—" (no " psig" / " kPa" and no second line).
+const pcell = (b: Band): OpCell =>
+  b.gap
+    ? { main: EM_DASH, psig: EM_DASH }
+    : { main: `${b.psigStr} psig`, sub: `${b.kpaStr} kPa`, psig: b.psigStr, kpa: b.kpaStr };
 
 /* ─────────────────────────── section renderer ─────────────────────────── */
 
@@ -161,7 +172,7 @@ function SectionBody({ body }: { body?: string }) {
   );
 }
 
-function renderSection(sec: RenderedSection, coolprop: string): ReactNode {
+function renderSection(sec: RenderedSection, coolprop: string, kind: string): ReactNode {
   const heading = (
     <h2 className="mb-3 mt-10 text-2xl font-semibold tracking-tight">{sec.h2}</h2>
   );
@@ -179,7 +190,8 @@ function renderSection(sec: RenderedSection, coolprop: string): ReactNode {
         <SectionBody body={sec.body} />
         <OpTable
           sectionKind={sec.kind}
-chart
+          chart
+          gapNote={sec.gapNote}
           caption="Operating pressure by outdoor temperature (65–115°F)"
           source={coolpropSource}
           columns={[{ header: "Outdoor" }, { header: "Low side (psig / kPa)" }, { header: "High side (psig / kPa)" }]}
@@ -190,7 +202,7 @@ chart
           ])}
         />
         <p className="mt-1 text-sm text-zinc-500" data-src="dataset">
-          The low side is the same in every row because it follows the 38–45°F indoor coil, not the weather; only the high side climbs with outdoor temperature.
+          The chart holds the low side at one band because it depends mainly on the 38–45°F indoor coil; real readings move a little with the weather, far less than the high side.
         </p>
         {note}
       </section>
@@ -228,8 +240,8 @@ caption="Suction pressure by application (AHRI 1250-2020 walk-in coil temperatur
           source={<a href={AHRI_1250_URL} className="underline" rel="noopener">AHRI 1250-2020, Tables 16 and 17</a>}
           columns={[{ header: "Application" }, { header: "Suction (psig / kPa)" }]}
           rows={[
-            [{ main: `Walk-in cooler (${COOLER_COIL_F}°F coil)`, left: true }, pcell(cooler)],
-            [{ main: `Walk-in freezer (${FREEZER_COIL_F}°F coil)`, left: true }, pcell(freezer)],
+            [{ main: `Walk-in cooler (${minusF(COOLER_COIL_F)} coil)`, left: true }, pcell(cooler)],
+            [{ main: `Walk-in freezer (${minusF(FREEZER_COIL_F)} coil)`, left: true }, pcell(freezer)],
           ]}
         />
         {note}
@@ -267,7 +279,7 @@ caption="Standing pressure with the system off and equalized"
         <SectionBody body={sec.body} />
         <OpTable
           sectionKind={sec.kind}
-caption="Side by side at 95°F outdoors"
+          caption={kind === "commercial" ? "Side by side: 25°F cooler coil, 95°F outdoors" : "Side by side at 95°F outdoors, 38–45°F indoor coil"}
           source={coolpropSource}
           columns={[{ header: "Refrigerant" }, { header: "Low side (psig / kPa)" }, { header: "High side (psig / kPa)" }]}
           rows={rows.map((row) => [
@@ -289,7 +301,8 @@ caption="Side by side at 95°F outdoors"
         <SectionBody body={sec.body} />
         <OpTable
           sectionKind={sec.kind}
-chart
+          chart
+          gapNote={sec.gapNote}
           caption={`${c.selfName} vs ${c.otherName} high side by outdoor temperature (65–115°F)`}
           source={coolpropSource}
           columns={[
@@ -319,8 +332,8 @@ caption="CO₂ suction pressure by application (AHRI 1250-2020 walk-in coil temp
           source={<a href={AHRI_1250_URL} className="underline" rel="noopener">AHRI 1250-2020, Tables 16 and 17</a>}
           columns={[{ header: "Application" }, { header: "Suction (psig / kPa)" }]}
           rows={[
-            [{ main: `Walk-in cooler (${COOLER_COIL_F}°F coil)`, left: true }, pcell(cooler)],
-            [{ main: `Walk-in freezer (${FREEZER_COIL_F}°F coil)`, left: true }, pcell(freezer)],
+            [{ main: `Walk-in cooler (${minusF(COOLER_COIL_F)} coil)`, left: true }, pcell(cooler)],
+            [{ main: `Walk-in freezer (${minusF(FREEZER_COIL_F)} coil)`, left: true }, pcell(freezer)],
           ]}
         />
         {note}
@@ -346,7 +359,7 @@ caption="Subcritical high-side (condensing) pressure, 40–85°F"
         />
         {critical ? (
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400" data-src="dataset">
-            Critical point (from the dataset): {critical.tempFStr} / {critical.psigStr} psig. Above {critical.tempFStr} there is no saturation pressure — operation is transcritical and the high-pressure control valve, not a saturation temperature, sets the gas-cooler pressure. There is no single &ldquo;normal&rdquo; transcritical number.
+            Critical point (from the dataset): {critical.tempFStr} / {critical.psigStr} psig. Above {critical.tempFStr}{" "}there is no saturation pressure — operation is transcritical and the high-pressure control valve, not a saturation temperature, sets the gas-cooler pressure. There is no single &ldquo;normal&rdquo; transcritical number.
           </p>
         ) : null}
         {note}
@@ -556,7 +569,7 @@ export function OperatingPressurePage({ id }: { id: string }) {
 
         {/* sections */}
         {data.sections.map((sec) => (
-          <Fragment key={sec.h2}>{renderSection(sec, data.coolpropSource)}</Fragment>
+          <Fragment key={sec.h2}>{renderSection(sec, data.coolpropSource, data.kind)}</Fragment>
         ))}
 
         {/* FAQ */}
@@ -585,10 +598,13 @@ export function OperatingPressurePage({ id }: { id: string }) {
             ))}
             {method ? <p className="mt-3">{renderInline(method)}</p> : null}
             <p className="mt-3">
-              Sources: {data.coolpropSource}; AHRI 210/240-2023 (
-              <a href={AHRI_210_240_URL} className="underline" rel="noopener">rating conditions</a>) and AHRI 1250-2020 (
-              <a href={AHRI_1250_URL} className="underline" rel="noopener">walk-in ratings</a>). Your equipment maker&apos;s
-              charging chart or the unit data plate overrides these reference values for that specific system.
+              Sources: {data.coolpropSource};{" "}
+              {data.kind === "residential" ? (
+                <>AHRI 210/240-2023 (<a href={AHRI_210_240_URL} className="underline" rel="noopener">rating conditions</a>)</>
+              ) : (
+                <>AHRI 1250-2020 (<a href={AHRI_1250_URL} className="underline" rel="noopener">walk-in ratings</a>)</>
+              )}. Your equipment maker&apos;s charging chart or the unit data plate overrides these reference values for
+              that specific system.
             </p>
           </div>
         </section>

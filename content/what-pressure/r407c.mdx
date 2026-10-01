@@ -35,8 +35,7 @@ sections:
     kind: residential-chart
     body: |-
       Find the outdoor temperature down the left column. Suction is read on the
-      dew curve; discharge tracks the weather. Bar values are in the section below
-      to keep this chart readable on a phone.
+      dew curve; discharge tracks the weather. Bar values are in the next section.
   - h2: "Why R-407C needs two temperatures: glide (dew for suction, bubble for the liquid line)"
     kind: prose
     body: |-
@@ -58,11 +57,10 @@ sections:
     kind: standing
     mode: range
     body: |-
-      With the system off and equalized, R-407C does not settle to one pressure —
-      it sits across a dew-to-bubble range at the temperature of the coolest part of
-      the system (indoor or outdoor), once it has been off long enough to equalize.
-      The spread is the glide, so treat standing pressure as a band, not a single
-      target.
+      Once the system has been off long enough for the pressures to equalize, R-407C
+      does not read one pressure — it reads across a dew-to-bubble range at the
+      temperature of the coolest part of the system (indoor or outdoor). The spread
+      is the glide, so treat standing pressure as a band, not a single target.
   - h2: "If the low side reads 28 psig"
     kind: prose
     body: |-
