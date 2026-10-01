@@ -86,6 +86,16 @@ const PATTERNS: { name: string; re: RegExp }[] = [
   { name: "anchor", re: /\banchor\b/i },
   { name: "saturation dataset", re: /saturation dataset/i },
   { name: "typed-in", re: /typed-in/i },
+  // Task 10c: a unit run straight into the next digit/letter ("65°F18.3°C",
+  // "psig785", "87.8°Fthere"), or a safety class run straight into a capitalized
+  // word ("A1Non-flammable"). "bar" is guarded to require a leading digit so it
+  // doesn't match words like "barely".
+  { name: "unit-run-into-char", re: /(°F|°C|psig|kPa)(?=[0-9A-Za-z])/ },
+  { name: "bar-run-into-char", re: /\d\s?bar(?=[0-9A-Za-z])/ },
+  // (?!L) keeps A2/B2 from matching inside A2L/B2L, so "A2Ls" (plural) and
+  // "A2L refrigerants" aren't false positives; only a class immediately followed
+  // by a Capitalized word (e.g. "A1Non-flammable", "A2LMildly") is a hit.
+  { name: "safety-class-run-into-word", re: /\b(A2L|A2(?!L)|A3|A1|B2L|B2(?!L)|B3|B1)(?=[A-Z][a-z])/ },
 ];
 
 // Looser run-together patterns (task 19 D3): a missing space after a sentence

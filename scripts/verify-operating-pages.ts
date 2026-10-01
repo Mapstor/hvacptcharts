@@ -178,10 +178,18 @@ for (const id of IDS) {
   });
 
   // every psig figure in visible page text ∈ value set (or regulatory.json).
-  // Normalize thousands separators on both sides ("1,018" ↔ "1018").
+  // Normalize thousands separators on both sides ("1,018" ↔ "1018"). Extract text
+  // with a space at every element boundary so an adjacent name cell ("R-32") does
+  // not fuse with a value cell ("116–133 psig") into a bogus "32116–133" token.
   $("script,style").remove();
   const vset = new Set([...data.valueSet].map((s) => s.replace(/,/g, "")));
-  const bodyText = article.text().replace(/\s+/g, " ");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const spaced = (node: any): string => {
+    if (!node) return "";
+    if (node.type === "text") return node.data ?? "";
+    return " " + (node.children ?? []).map(spaced).join("") + " ";
+  };
+  const bodyText = spaced(article[0]).replace(/\s+/g, " ");
   for (const m of bodyText.matchAll(/(\d[\d.,]*(?:\s*[–—-]\s*\d[\d.,]*)?)\s*psig\b/gi)) {
     for (const tok of psigTokens(m[1])) {
       if (!vset.has(tok) && !REG_NUMS.has(tok)) {
